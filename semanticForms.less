@@ -1,0 +1,383 @@
+@formBackgroundColor: #fff;
+@borderColor: #c0c0c0;
+@placeholderColor: #aaa;
+
+.semanticForms {
+
+
+  // globals
+  font-family: sans-serif;
+
+  input:not([type='submit']):not([type=checkbox]):not([type=radio]),
+  select,
+  textarea {
+    background-color: @formBackgroundColor;
+    outline: 0;
+    border: 1px @borderColor solid;
+    border-radius: 10px;
+    width: 250px;
+    height: 25px;
+    font-size: 16px;
+    font-family: sans-serif;
+    padding: 5px 20px;
+  }
+
+  fieldset {
+    text-align: center;
+    margin-bottom: 25px;
+
+    p {
+      text-align: left;
+      width: 100%;
+      clear: both;
+    }
+  }
+
+  legend {
+    text-align: left;
+  }
+
+  dl {
+    text-align: left;
+  }
+
+  .checkboxes ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  dd.checkboxes {
+    margin: 0;
+  }
+
+
+  // clear fields
+  input:not([type='submit']):not([type=checkbox]):not([type=radio]),
+  textarea {
+    background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'><g><path fill='%23000' d='M964.7,157.6L622.3,500l342.4,342.4l0,0c15.7,15.7,25.3,37.3,25.3,61.1c0,47.7-38.7,86.5-86.5,86.5c-23.9,0-45.5-9.7-61.1-25.3l0,0L500,622.3L157.6,964.7l0,0C142,980.3,120.3,990,96.5,990C48.7,990,10,951.3,10,903.5c0-23.9,9.7-45.5,25.3-61.1l0,0L377.7,500L35.3,157.6l0,0C19.7,142,10,120.3,10,96.5C10,48.7,48.7,10,96.5,10c23.9,0,45.5,9.7,61.1,25.3l0,0L500,377.7L842.4,35.3l0,0C858,19.7,879.7,10,903.5,10c47.8,0,86.5,38.7,86.5,86.5C990,120.3,980.3,142,964.7,157.6L964.7,157.6z'/></g></svg>");
+    background-size: 12px;
+    background-repeat: no-repeat;
+    transition: background 0.2s;
+  }
+
+  input:not([type=checkbox]):not([type=radio]) {
+    background-position: right -12px center;
+  }
+
+  input[type=date]:not([type='submit']):not([type=checkbox]):not([type=radio]) {
+    width: 270px;
+    padding-right: 0;
+  }
+
+  textarea {
+    background-position: right -12px top 10px;
+    height: 100px;
+  }
+
+
+  // style placeholders
+  input::placeholder {
+    color: @placeholderColor;
+  }
+
+  textarea::placeholder {
+    color: @placeholderColor;
+  }
+
+  input:focus::placeholder {
+    color: @placeholderColor;
+  }
+
+  input:focus::-moz-placeholder {
+    color: @placeholderColor;
+  }
+
+  input:focus::-webkit-input-placeholder {
+    color: @placeholderColor;
+  }
+
+  input:focus:-ms-input-placeholder {
+    color: @placeholderColor;
+  }
+
+  textarea:focus::placeholder {
+    color: @placeholderColor;
+  }
+
+  textarea:focus::-moz-placeholder {
+    color: @placeholderColor;
+  }
+
+  textarea:focus::-webkit-input-placeholder {
+    color: @placeholderColor;
+  }
+
+  textarea:focus:-ms-input-placeholder {
+    color: @placeholderColor;
+  }
+
+
+  // buttons
+  input[type='submit'] {
+    width: auto;
+    box-sizing: content-box;
+    float: none;
+    clear: both;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 20px;
+    font-size: 18px;
+    margin: 25px 10px;
+    padding: 5px 25px;
+    border: 1px @borderColor solid;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, @formBackgroundColor), color-stop(1, @borderColor));
+    background-image: -o-linear-gradient(bottom, @formBackgroundColor 0%, @borderColor 100%);
+    background-image: -moz-linear-gradient(bottom, @formBackgroundColor 0%, @borderColor 100%);
+    background-image: -webkit-linear-gradient(bottom, @formBackgroundColor 0%, @borderColor 100%);
+    background-image: -ms-linear-gradient(bottom, @formBackgroundColor 0%, @borderColor 100%);
+    background-image: linear-gradient(to bottom, @formBackgroundColor 0%, @borderColor 100%);
+  }
+
+  input[type='submit']:active {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(@formBackgroundColor, 0), color-stop(@borderColor, 1));
+    background-image: -o-linear-gradient(bottom, @borderColor 0%, @formBackgroundColor 100%);
+    background-image: -moz-linear-gradient(bottom, @borderColor 0%, @formBackgroundColor 100%);
+    background-image: -webkit-linear-gradient(bottom, @borderColor 0%, @formBackgroundColor 100%);
+    background-image: -ms-linear-gradient(bottom, @borderColor 0%, @formBackgroundColor 100%);
+    background-image: linear-gradient(to bottom, @borderColor 0%, @formBackgroundColor 100%);
+  }
+
+
+  // custom select box desgin
+  select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'><polygon points='0,0 100,0 50,50'/></svg>");
+    background-size: 14px;
+    background-position: calc(99%) 16px;
+    background-repeat: no-repeat;
+    font-size: 20px;
+    width: 292px;
+    height: 37px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+
+  // float label forms
+  label.floatLabelFormAnimatedLabel, input:not([type=checkbox]):not([type=radio]), select, textarea, section {
+    transition: all 0.2s;
+    touch-action: manipulation;
+  }
+
+  .floatLabelForm {
+    margin: 0 auto;
+    width: 292px;
+
+    input[disabled] {
+      opacity: 0.5;
+    }
+
+    // remove native clear button, we made a custom one
+    input:not([type=date])::-webkit-clear-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    dd {
+      float: left;
+      margin: 0 25px 0 0;
+    }
+
+    dd:nth-child(4n+2) {
+      clear: both;
+    }
+
+    dt:not(.checkboxes) {
+      font-size: 1px;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      position: absolute;
+      right: 9999px;
+    }
+
+    dd:not(.checkboxes) {
+      display: flex;
+      flex-flow: column-reverse;
+    }
+
+    .checkboxes ul {
+      margin: 3px 20px 0 12px;
+      width: 260px;
+    }
+
+    label.floatLabelFormAnimatedLabel {
+      width: 170px;
+      padding: 5px 15px;
+      font-size: 13px;
+      color: #aaa;
+      cursor: text;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transform-origin: left bottom;
+      transform: translate(0, 38px) scale(1.5);
+    }
+
+    // hide placeholder content until the input is focused
+    ::placeholder {
+      opacity: 0;
+      transition: inherit;
+    }
+
+    ::-moz-placeholder {
+      opacity: 0;
+      transition: inherit;
+    }
+
+    ::-webkit-input-placeholder {
+      opacity: 0;
+      transition: inherit;
+    }
+
+    :-ms-input-placeholder {
+      opacity: 0;
+      transition: inherit;
+    }
+
+    // show the placeholder when the input is focused
+    input:focus::placeholder {
+      opacity: 1;
+    }
+
+    input:focus::-moz-placeholder {
+      opacity: 1;
+    }
+
+    input:focus::-webkit-input-placeholder {
+      opacity: 1;
+    }
+
+    input:focus:-ms-input-placeholder {
+      opacity: 1;
+    }
+
+    textarea:focus::placeholder {
+      opacity: 1;
+    }
+
+    textarea:focus::-moz-placeholder {
+      opacity: 1;
+    }
+
+    textarea:focus::-webkit-input-placeholder {
+      opacity: 1;
+    }
+
+    textarea:focus:-ms-input-placeholder {
+      opacity: 1;
+    }
+
+    // move the label off of input to make room for input content
+    input:not(:placeholder-shown) + label,
+    input:focus + label,
+    textarea:not(:placeholder-shown) + label,
+    textarea:focus + label,
+    select + label.floatLabelFormAnimatedLabel,
+    .checkboxes label.floatLabelFormAnimatedLabel {
+      transform: translate(0, 0) scale(1);
+      text-indent: 6px;
+      cursor: default;
+      color: #000;
+    }
+
+    input.x {
+      background-position: right 6px center;
+    }
+
+    textarea.x {
+      background-position: right 6px top 10px;
+    }
+
+    .onX {
+      cursor: pointer;
+    }
+
+    // disable autofill yellow
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    textarea:-webkit-autofill:active,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus,
+    select:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 1000px #fff inset;
+      transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+      transition-delay: background-color 5000s, color 5000s;
+    }
+  }
+
+  .floatLabelForm::after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+
+  .buttonGroup {
+    width: 100%;
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+
+    input[type='submit'] {
+      float: none;
+      clear: none;
+      margin: 0 0 25px 0;
+    }
+  }
+
+
+  // side-by-side pattern on large screens
+  @media (min-width: 700px) {
+    .floatLabelForm {
+      margin: 0;
+      width: auto;
+      text-align: left;
+    }
+
+    fieldset {
+      text-align: left;
+
+      input[type='submit'] {
+        float: left;
+        clear: none;
+        margin: 25px 50px 25px 0;
+      }
+    }
+  }
+}
+
+
+// non-js exclusive styles
+.semanticForms.lowFlow {
+  dl {
+    margin: 10px 0 0 0;
+  }
+
+  dd {
+    margin: 0 0 25px 0;
+  }
+
+  dd:last-child {
+    margin: 0;
+  }
+}

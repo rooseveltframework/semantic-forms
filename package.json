@@ -1,0 +1,34 @@
+{
+  "name": "semanticforms",
+  "description": "Semantic Forms",
+  "author": "Eric Newport <kethinov@gmail.com>",
+  "version": "1.0.0",
+  "homepage": "https://github.com/kethinov/semanticforms",
+  "license": "CC-BY-4.0",
+  "main": "semanticforms.js",
+  "readmeFilename": "README.md",
+  "dependencies": {},
+  "devDependencies": {
+    "less": "3.0.1",
+    "standard": "11.0.1",
+    "lint-staged": "7.0.0",
+    "husky": "0.14.3"
+  },
+  "scripts": {
+    "test": "echo \"TODO: tests\"",
+    "build": "lessc semanticForms.less semanticForms.css"
+  },
+  "lint-staged": {
+    "*.js": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kethinov/semanticforms.git"
+  },
+  "keywords": [
+    "semantic",
+    "forms",
+    "float",
+    "label"
+  ]
+}

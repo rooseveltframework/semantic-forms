@@ -1,0 +1,299 @@
+.semanticForms {
+  font-family: sans-serif;
+}
+.semanticForms input:not([type='submit']):not([type=checkbox]):not([type=radio]),
+.semanticForms select,
+.semanticForms textarea {
+  background-color: #fff;
+  outline: 0;
+  border: 1px #c0c0c0 solid;
+  border-radius: 10px;
+  width: 250px;
+  height: 25px;
+  font-size: 16px;
+  font-family: sans-serif;
+  padding: 5px 20px;
+}
+.semanticForms fieldset {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.semanticForms fieldset p {
+  text-align: left;
+  width: 100%;
+  clear: both;
+}
+.semanticForms legend {
+  text-align: left;
+}
+.semanticForms dl {
+  text-align: left;
+}
+.semanticForms .checkboxes ul {
+  list-style: none;
+  padding: 0;
+}
+.semanticForms dd.checkboxes {
+  margin: 0;
+}
+.semanticForms input:not([type='submit']):not([type=checkbox]):not([type=radio]),
+.semanticForms textarea {
+  background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'><g><path fill='%23000' d='M964.7,157.6L622.3,500l342.4,342.4l0,0c15.7,15.7,25.3,37.3,25.3,61.1c0,47.7-38.7,86.5-86.5,86.5c-23.9,0-45.5-9.7-61.1-25.3l0,0L500,622.3L157.6,964.7l0,0C142,980.3,120.3,990,96.5,990C48.7,990,10,951.3,10,903.5c0-23.9,9.7-45.5,25.3-61.1l0,0L377.7,500L35.3,157.6l0,0C19.7,142,10,120.3,10,96.5C10,48.7,48.7,10,96.5,10c23.9,0,45.5,9.7,61.1,25.3l0,0L500,377.7L842.4,35.3l0,0C858,19.7,879.7,10,903.5,10c47.8,0,86.5,38.7,86.5,86.5C990,120.3,980.3,142,964.7,157.6L964.7,157.6z'/></g></svg>");
+  background-size: 12px;
+  background-repeat: no-repeat;
+  transition: background 0.2s;
+}
+.semanticForms input:not([type=checkbox]):not([type=radio]) {
+  background-position: right -12px center;
+}
+.semanticForms input[type=date]:not([type='submit']):not([type=checkbox]):not([type=radio]) {
+  width: 270px;
+  padding-right: 0;
+}
+.semanticForms textarea {
+  background-position: right -12px top 10px;
+  height: 100px;
+}
+.semanticForms input::placeholder {
+  color: #aaa;
+}
+.semanticForms textarea::placeholder {
+  color: #aaa;
+}
+.semanticForms input:focus::placeholder {
+  color: #aaa;
+}
+.semanticForms input:focus::-moz-placeholder {
+  color: #aaa;
+}
+.semanticForms input:focus::-webkit-input-placeholder {
+  color: #aaa;
+}
+.semanticForms input:focus:-ms-input-placeholder {
+  color: #aaa;
+}
+.semanticForms textarea:focus::placeholder {
+  color: #aaa;
+}
+.semanticForms textarea:focus::-moz-placeholder {
+  color: #aaa;
+}
+.semanticForms textarea:focus::-webkit-input-placeholder {
+  color: #aaa;
+}
+.semanticForms textarea:focus:-ms-input-placeholder {
+  color: #aaa;
+}
+.semanticForms input[type='submit'] {
+  width: auto;
+  box-sizing: content-box;
+  float: none;
+  clear: both;
+  outline: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 20px;
+  font-size: 18px;
+  margin: 25px 10px;
+  padding: 5px 25px;
+  border: 1px #c0c0c0 solid;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #c0c0c0));
+  background-image: -o-linear-gradient(bottom, #fff 0%, #c0c0c0 100%);
+  background-image: -moz-linear-gradient(bottom, #fff 0%, #c0c0c0 100%);
+  background-image: -webkit-linear-gradient(bottom, #fff 0%, #c0c0c0 100%);
+  background-image: -ms-linear-gradient(bottom, #fff 0%, #c0c0c0 100%);
+  background-image: linear-gradient(to bottom, #fff 0%, #c0c0c0 100%);
+}
+.semanticForms input[type='submit']:active {
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(#fff, 0), color-stop(#c0c0c0, 1));
+  background-image: -o-linear-gradient(bottom, #c0c0c0 0%, #fff 100%);
+  background-image: -moz-linear-gradient(bottom, #c0c0c0 0%, #fff 100%);
+  background-image: -webkit-linear-gradient(bottom, #c0c0c0 0%, #fff 100%);
+  background-image: -ms-linear-gradient(bottom, #c0c0c0 0%, #fff 100%);
+  background-image: linear-gradient(to bottom, #c0c0c0 0%, #fff 100%);
+}
+.semanticForms select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'><polygon points='0,0 100,0 50,50'/></svg>");
+  background-size: 14px;
+  background-position: calc(99%) 16px;
+  background-repeat: no-repeat;
+  font-size: 20px;
+  width: 292px;
+  height: 37px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.semanticForms label.floatLabelFormAnimatedLabel,
+.semanticForms input:not([type=checkbox]):not([type=radio]),
+.semanticForms select,
+.semanticForms textarea,
+.semanticForms section {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+.semanticForms .floatLabelForm {
+  margin: 0 auto;
+  width: 292px;
+}
+.semanticForms .floatLabelForm input[disabled] {
+  opacity: 0.5;
+}
+.semanticForms .floatLabelForm input:not([type=date])::-webkit-clear-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.semanticForms .floatLabelForm dd {
+  float: left;
+  margin: 0 25px 0 0;
+}
+.semanticForms .floatLabelForm dd:nth-child(4n+2) {
+  clear: both;
+}
+.semanticForms .floatLabelForm dt:not(.checkboxes) {
+  font-size: 1px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  position: absolute;
+  right: 9999px;
+}
+.semanticForms .floatLabelForm dd:not(.checkboxes) {
+  display: flex;
+  flex-flow: column-reverse;
+}
+.semanticForms .floatLabelForm .checkboxes ul {
+  margin: 3px 20px 0 12px;
+  width: 260px;
+}
+.semanticForms .floatLabelForm label.floatLabelFormAnimatedLabel {
+  width: 170px;
+  padding: 5px 15px;
+  font-size: 13px;
+  color: #aaa;
+  cursor: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: left bottom;
+  transform: translate(0, 38px) scale(1.5);
+}
+.semanticForms .floatLabelForm ::placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+.semanticForms .floatLabelForm ::-moz-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+.semanticForms .floatLabelForm ::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+.semanticForms .floatLabelForm :-ms-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+.semanticForms .floatLabelForm input:focus::placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm input:focus::-moz-placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm input:focus:-ms-input-placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm textarea:focus::placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm textarea:focus::-moz-placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm textarea:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm textarea:focus:-ms-input-placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm input:not(:placeholder-shown) + label,
+.semanticForms .floatLabelForm input:focus + label,
+.semanticForms .floatLabelForm textarea:not(:placeholder-shown) + label,
+.semanticForms .floatLabelForm textarea:focus + label,
+.semanticForms .floatLabelForm select + label.floatLabelFormAnimatedLabel,
+.semanticForms .floatLabelForm .checkboxes label.floatLabelFormAnimatedLabel {
+  transform: translate(0, 0) scale(1);
+  text-indent: 6px;
+  cursor: default;
+  color: #000;
+}
+.semanticForms .floatLabelForm input.x {
+  background-position: right 6px center;
+}
+.semanticForms .floatLabelForm textarea.x {
+  background-position: right 6px top 10px;
+}
+.semanticForms .floatLabelForm .onX {
+  cursor: pointer;
+}
+.semanticForms .floatLabelForm input:-webkit-autofill,
+.semanticForms .floatLabelForm input:-webkit-autofill:hover,
+.semanticForms .floatLabelForm input:-webkit-autofill:focus,
+.semanticForms .floatLabelForm input:-webkit-autofill:active,
+.semanticForms .floatLabelForm textarea:-webkit-autofill,
+.semanticForms .floatLabelForm textarea:-webkit-autofill:hover,
+.semanticForms .floatLabelForm textarea:-webkit-autofill:focus,
+.semanticForms .floatLabelForm textarea:-webkit-autofill:active,
+.semanticForms .floatLabelForm select:-webkit-autofill,
+.semanticForms .floatLabelForm select:-webkit-autofill:hover,
+.semanticForms .floatLabelForm select:-webkit-autofill:focus,
+.semanticForms .floatLabelForm select:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+  transition-delay: background-color 5000s, color 5000s;
+}
+.semanticForms .floatLabelForm::after {
+  content: " ";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+.semanticForms .buttonGroup {
+  width: 100%;
+  clear: both;
+  display: flex;
+  justify-content: space-between;
+}
+.semanticForms .buttonGroup input[type='submit'] {
+  float: none;
+  clear: none;
+  margin: 0 0 25px 0;
+}
+@media (min-width: 700px) {
+  .semanticForms .floatLabelForm {
+    margin: 0;
+    width: auto;
+    text-align: left;
+  }
+  .semanticForms fieldset {
+    text-align: left;
+  }
+  .semanticForms fieldset input[type='submit'] {
+    float: left;
+    clear: none;
+    margin: 25px 50px 25px 0;
+  }
+}
+.semanticForms.lowFlow dl {
+  margin: 10px 0 0 0;
+}
+.semanticForms.lowFlow dd {
+  margin: 0 0 25px 0;
+}
+.semanticForms.lowFlow dd:last-child {
+  margin: 0;
+}
