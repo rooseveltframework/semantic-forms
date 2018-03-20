@@ -43,63 +43,65 @@
             while (dl && dl.nodeName !== 'DL') {
               dl = dl.parentNode
             }
-            if (!dl.classList.contains('floatLabelForm')) {
-              dl.classList.add('floatLabelForm')
-            }
-            if (type === 'checkbox' || type === 'radio') {
-              label = document.querySelector('label[data-for=' + input.parentNode.parentNode.id + ']')
-            } else {
-              label = document.querySelector('label[for=' + input.id + ']')
-            }
-            label = label.innerHTML
-            if (type === 'checkbox' || type === 'radio') {
-              dl = input.parentNode
-              while (dl && dl.nodeName !== 'DD') {
-                dl = dl.parentNode
+            if (dl) {
+              if (!dl.classList.contains('floatLabelForm')) {
+                dl.classList.add('floatLabelForm')
               }
-              if (dl.firstChild.nodeName !== 'LABEL') {
+              if (type === 'checkbox' || type === 'radio') {
+                label = document.querySelector('label[data-for=' + input.parentNode.parentNode.id + ']')
+              } else {
+                label = document.querySelector('label[for=' + input.id + ']')
+              }
+              label = label.innerHTML
+              if (type === 'checkbox' || type === 'radio') {
+                dl = input.parentNode
+                while (dl && dl.nodeName !== 'DD') {
+                  dl = dl.parentNode
+                }
+                if (dl.firstChild.nodeName !== 'LABEL') {
+                  newLabel = document.createElement('label')
+                  newLabel.className = 'floatLabelFormAnimatedLabel'
+                  newLabel.innerHTML = label
+                  dl.insertBefore(newLabel, dl.firstChild)
+                }
+              } else {
                 newLabel = document.createElement('label')
+                newLabel.setAttribute('for', input.id)
                 newLabel.className = 'floatLabelFormAnimatedLabel'
                 newLabel.innerHTML = label
-                dl.insertBefore(newLabel, dl.firstChild)
+                insertAfter(newLabel, input)
               }
-            } else {
-              newLabel = document.createElement('label')
-              newLabel.setAttribute('for', input.id)
-              newLabel.className = 'floatLabelFormAnimatedLabel'
-              newLabel.innerHTML = label
-              insertAfter(newLabel, input)
-            }
 
-            if (nodeName !== 'SELECT' && type !== 'checkbox' && type !== 'radio' && type !== 'date') {
-              // if it doesn't have a placeholder, add a blank one
-              if (!input.getAttribute('placeholder')) {
-                input.setAttribute('placeholder', '')
-              }
-              input.addEventListener('input', inputHandler)
-              input.addEventListener('mousemove', function (e) {
-                inputHandler(e)
-                var el = e.target
-                if (this.offsetWidth - clearfieldHorizontalOffset < e.clientX - this.getBoundingClientRect().left && clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - this.getBoundingClientRect().top
-                ) {
-                  if (!el.classList.contains('onX')) {
-                    el.classList.add('onX')
+              if (nodeName !== 'SELECT' && type !== 'checkbox' && type !== 'radio' && type !== 'date') {
+                // if it doesn't have a placeholder, add a blank one
+                if (!input.getAttribute('placeholder')) {
+                  input.setAttribute('placeholder', '')
+                }
+                input.addEventListener('input', inputHandler)
+                input.addEventListener('mousemove', function (e) {
+                  inputHandler(e)
+                  var el = e.target
+                  if (this.offsetWidth - clearfieldHorizontalOffset < e.clientX - this.getBoundingClientRect().left && clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - this.getBoundingClientRect().top
+                  ) {
+                    if (!el.classList.contains('onX')) {
+                      el.classList.add('onX')
+                    }
+                  } else {
+                    el.classList.remove('onX')
                   }
-                } else {
-                  el.classList.remove('onX')
-                }
-              })
-              input.addEventListener('click', function (e) {
-                var el = e.target
-                if (this.offsetWidth - clearfieldHorizontalOffset < e.clientX - this.getBoundingClientRect().left &&
-                clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - this.getBoundingClientRect().top
-                ) {
-                  el.value = ''
-                  el.classList.remove('x')
-                  el.classList.remove('onX')
-                }
-              })
-              inputHandler(input) // force x to appear on inputs with prefilled value
+                })
+                input.addEventListener('click', function (e) {
+                  var el = e.target
+                  if (this.offsetWidth - clearfieldHorizontalOffset < e.clientX - this.getBoundingClientRect().left &&
+                  clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - this.getBoundingClientRect().top
+                  ) {
+                    el.value = ''
+                    el.classList.remove('x')
+                    el.classList.remove('onX')
+                  }
+                })
+                inputHandler(input) // force x to appear on inputs with prefilled value
+              }
             }
           }
         }

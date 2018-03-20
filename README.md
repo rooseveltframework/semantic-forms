@@ -2,6 +2,8 @@
 
 A pattern library of forms based on semantic HTML enhanced with a modern UX.
 
+See a [live demo here](https://kethinov.github.io/semanticforms/semanticForms.html).
+
 # Usage
 
 Include the `semanticForms.css` and `semanticForms.js` files from this repo into your project.
@@ -16,7 +18,7 @@ Apply the `semanticForms` class to your `<form>` elements:
 
 Then the CSS/JS enhancements to your forms will apply automatically.
 
-See `semanticForms.html` for a complete pattern library with examples of all UI patterns.
+See `semanticForms.html` or the [live demo](https://kethinov.github.io/semanticforms/semanticForms.html) for a complete pattern library with examples of all UI patterns.
 
 # Features
 
@@ -105,7 +107,7 @@ Driven by flexbox to intelligently align the buttons based on how many are in th
 - Responsive: on wide screens, the forms split into two columns. On smaller screens, they collapse to a single column.
 - Low-flow mode that displays on old browsers, JS-disabled browsers, or can be activated manually by adding the `lowFlow` class to your `<form>` element. The low-flow mode reverts the float label pattern to traditional labels and collapses the forms to single column mode, but preserves the other visual design enhancements driven purely by CSS.
 
-See `semanticForms.html` for more examples.
+See `semanticForms.html` or the [live demo](https://kethinov.github.io/semanticforms/semanticForms.html) for more examples.
 
 # Contributing
 
