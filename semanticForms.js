@@ -77,29 +77,6 @@
                 if (!input.getAttribute('placeholder')) {
                   input.setAttribute('placeholder', '')
                 }
-                input.addEventListener('input', inputHandler)
-                input.addEventListener('mousemove', function (e) {
-                  inputHandler(e)
-                  var el = e.target
-                  if (this.offsetWidth - clearfieldHorizontalOffset < e.clientX - this.getBoundingClientRect().left && clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - this.getBoundingClientRect().top
-                  ) {
-                    if (!el.classList.contains('onX')) {
-                      el.classList.add('onX')
-                    }
-                  } else {
-                    el.classList.remove('onX')
-                  }
-                })
-                input.addEventListener('click', function (e) {
-                  var el = e.target
-                  if (this.offsetWidth - clearfieldHorizontalOffset < e.clientX - this.getBoundingClientRect().left &&
-                  clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - this.getBoundingClientRect().top
-                  ) {
-                    el.value = ''
-                    el.classList.remove('x')
-                    el.classList.remove('onX')
-                  }
-                })
                 inputHandler(input) // force x to appear on inputs with prefilled value
               }
             }
@@ -109,14 +86,52 @@
     }
   }
 
+  document.addEventListener('input', inputHandler)
+
+  document.addEventListener('mousemove', function (e) {
+    var el = e.target
+    var nodeName = el.nodeName
+    var type = el.getAttribute('type')
+    if (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email') {
+      inputHandler(e)
+      if (el.offsetWidth - clearfieldHorizontalOffset < e.clientX - el.getBoundingClientRect().left && clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - el.getBoundingClientRect().top
+      ) {
+        if (!el.classList.contains('onX')) {
+          el.classList.add('onX')
+        }
+      } else {
+        el.classList.remove('onX')
+      }
+    }
+  })
+
+  document.addEventListener('click', function (e) {
+    var el = e.target
+    var nodeName = el.nodeName
+    var type = el.getAttribute('type')
+    if (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email') {
+      if (el.offsetWidth - clearfieldHorizontalOffset < e.clientX - el.getBoundingClientRect().left &&
+      clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - el.getBoundingClientRect().top
+      ) {
+        el.value = ''
+        el.classList.remove('x')
+        el.classList.remove('onX')
+      }
+    }
+  })
+
   function inputHandler (e) {
     var el = e.target || e
-    if (el.value) {
-      if (!el.classList.contains('x')) {
-        el.classList.add('x')
+    var nodeName = el.nodeName
+    var type = el.getAttribute('type')
+    if ((nodeName && type) && (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email')) {
+      if (el.value) {
+        if (!el.classList.contains('x')) {
+          el.classList.add('x')
+        }
+      } else {
+        el.classList.remove('x')
       }
-    } else {
-      el.classList.remove('x')
     }
   }
 

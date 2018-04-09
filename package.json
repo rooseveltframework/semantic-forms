@@ -2,7 +2,7 @@
   "name": "semanticforms",
   "description": "Semantic Forms",
   "author": "Eric Newport <kethinov@gmail.com>",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "https://github.com/kethinov/semanticforms",
   "license": "CC-BY-4.0",
   "main": "semanticforms.js",
