@@ -13,6 +13,7 @@
   var nodeName
   var type
   var label
+  var labelHTML
   var newLabel
   var dl
   var l
@@ -52,7 +53,7 @@
               } else {
                 label = document.querySelector('label[for=' + input.id + ']')
               }
-              label = label.innerHTML
+              labelHTML = label.innerHTML
               if (type === 'checkbox' || type === 'radio') {
                 dl = input.parentNode
                 while (dl && dl.nodeName !== 'DD') {
@@ -61,15 +62,16 @@
                 if (dl.firstChild.nodeName !== 'LABEL') {
                   newLabel = document.createElement('label')
                   newLabel.className = 'floatLabelFormAnimatedLabel'
-                  newLabel.innerHTML = label
+                  newLabel.innerHTML = labelHTML
                   dl.insertBefore(newLabel, dl.firstChild)
                 }
               } else {
                 newLabel = document.createElement('label')
                 newLabel.setAttribute('for', input.id)
                 newLabel.className = 'floatLabelFormAnimatedLabel'
-                newLabel.innerHTML = label
+                newLabel.innerHTML = labelHTML
                 insertAfter(newLabel, input)
+                label.setAttribute('hidden', 'hidden')
               }
 
               if (nodeName !== 'SELECT' && type !== 'checkbox' && type !== 'radio' && type !== 'date') {
