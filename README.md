@@ -8,6 +8,8 @@ See a [live demo here](https://kethinov.github.io/semanticforms/semanticForms.ht
 
 Include the `semanticForms.css` and `semanticForms.js` files from this repo into your project.
 
+If you want to set your own images for the clear fields and dropdown arrows, then include the `semanticFormsNoImages.css` and `semanticForms.js` files from this repo into your project instead, as they do not have any preset images embedded in the CSS and will result in a smaller dependency size.
+
 Apply the `semanticForms` class to your `<form>` elements:
 
 ```html

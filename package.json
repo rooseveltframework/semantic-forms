@@ -2,7 +2,7 @@
   "name": "semanticforms",
   "description": "Semantic Forms",
   "author": "Eric Newport <kethinov@gmail.com>",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://github.com/kethinov/semanticforms",
   "license": "CC-BY-4.0",
   "main": "semanticforms.js",
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "echo \"TODO: tests\"",
-    "build": "lessc semanticForms.less semanticForms.css"
+    "build": "lessc semanticFormsImages.less semanticForms.css && lessc semanticFormsNoImages.less semanticFormsNoImages.css"
   },
   "lint-staged": {
     "*.js": "standard"
