@@ -253,7 +253,8 @@
 .semanticForms .floatLabelForm select:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px #fff inset;
   transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
-  transition-delay: background-color 5000s, color 5000s;
+  transition-delay: 5000s;
+  transition-property: background-color, color;
 }
 .semanticForms .floatLabelForm::after {
   content: " ";
