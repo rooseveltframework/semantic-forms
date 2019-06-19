@@ -59,6 +59,11 @@ typings/
 # dotenv environment variables file
 .env
 
+Thumbs.db
+.DS_Store
+
+.jscodehints
+
 # exclusive to .npmignore
 .travis.yml
 .vscode
