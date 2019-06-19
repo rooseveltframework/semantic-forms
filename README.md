@@ -1,5 +1,7 @@
 # Semantic Forms
 
+[![npm](https://img.shields.io/npm/v/semantic-forms.svg)](https://www.npmjs.com/package/semantic-forms)
+
 A pattern library of forms based on semantic HTML enhanced with a modern UX.
 
 See a [live demo here](https://kethinov.github.io/semanticforms/semanticForms.html).
