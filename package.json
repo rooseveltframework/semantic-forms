@@ -2,20 +2,21 @@
   "name": "semanticforms",
   "description": "Semantic Forms",
   "author": "Eric Newport <kethinov@gmail.com>",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "homepage": "https://github.com/kethinov/semanticforms",
   "license": "CC-BY-4.0",
   "main": "semanticforms.js",
   "readmeFilename": "README.md",
   "dependencies": {},
   "devDependencies": {
-    "less": "3.8.1",
-    "standard": "12.0.1",
-    "lint-staged": "7.3.0",
-    "husky": "1.1.2"
+    "less": "~3.9.0",
+    "standard": "~12.0.1",
+    "lint-staged": "~8.2.1",
+    "husky": "~2.4.1"
   },
   "scripts": {
     "test": "echo \"TODO: tests\"",
+    "coverage": "echo \"TODO: test coverage\"",
     "build": "lessc semanticFormsImages.less semanticForms.css && lessc semanticFormsNoImages.less semanticFormsNoImages.css"
   },
   "lint-staged": {

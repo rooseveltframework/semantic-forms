@@ -10,7 +10,7 @@
   border-radius: 10px;
   width: 250px;
   height: 25px;
-  font-size: 16px;
+  font-size: 100%;
   font-family: sans-serif;
   padding: 5px 20px;
 }
@@ -94,7 +94,7 @@
   -moz-appearance: none;
   appearance: none;
   border-radius: 20px;
-  font-size: 18px;
+  font-size: 100%;
   margin: 25px 10px;
   padding: 5px 25px;
   border: 1px #c0c0c0 solid;
@@ -118,7 +118,7 @@
   background-size: 14px;
   background-position: calc(99%) 16px;
   background-repeat: no-repeat;
-  font-size: 20px;
+  font-size: 120%;
   width: 292px;
   height: 37px;
   -webkit-appearance: none;
@@ -170,7 +170,7 @@
 .semanticForms .floatLabelForm label.floatLabelFormAnimatedLabel {
   width: 170px;
   padding: 5px 15px;
-  font-size: 13px;
+  font-size: 75%;
   color: #aaa;
   cursor: text;
   white-space: nowrap;

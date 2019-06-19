@@ -91,48 +91,54 @@
   document.addEventListener('input', inputHandler)
 
   document.addEventListener('mousemove', function (e) {
-    var el = e.target
-    var nodeName = el.nodeName
-    var type = el.getAttribute('type')
-    if (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email') {
-      inputHandler(e)
-      if (el.offsetWidth - clearfieldHorizontalOffset < e.clientX - el.getBoundingClientRect().left && clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - el.getBoundingClientRect().top
-      ) {
-        if (!el.classList.contains('onX')) {
-          el.classList.add('onX')
+    if (isPatternElement(e)) {
+      var el = e.target
+      var nodeName = el.nodeName
+      var type = el.getAttribute('type')
+      if (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email') {
+        inputHandler(e)
+        if (el.offsetWidth - clearfieldHorizontalOffset < e.clientX - el.getBoundingClientRect().left && clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - el.getBoundingClientRect().top
+        ) {
+          if (!el.classList.contains('onX')) {
+            el.classList.add('onX')
+          }
+        } else {
+          el.classList.remove('onX')
         }
-      } else {
-        el.classList.remove('onX')
       }
     }
   })
 
   document.addEventListener('click', function (e) {
-    var el = e.target
-    var nodeName = el.nodeName
-    var type = el.getAttribute('type')
-    if (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email') {
-      if (el.offsetWidth - clearfieldHorizontalOffset < e.clientX - el.getBoundingClientRect().left &&
-      clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - el.getBoundingClientRect().top
-      ) {
-        el.value = ''
-        el.classList.remove('x')
-        el.classList.remove('onX')
+    if (isPatternElement(e)) {
+      var el = e.target
+      var nodeName = el.nodeName
+      var type = el.getAttribute('type')
+      if (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email') {
+        if (el.offsetWidth - clearfieldHorizontalOffset < e.clientX - el.getBoundingClientRect().left &&
+        clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - el.getBoundingClientRect().top
+        ) {
+          el.value = ''
+          el.classList.remove('x')
+          el.classList.remove('onX')
+        }
       }
     }
   })
 
   function inputHandler (e) {
-    var el = e.target || e
-    var nodeName = el.nodeName
-    var type = el.getAttribute('type')
-    if ((nodeName && type) && (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email')) {
-      if (el.value) {
-        if (!el.classList.contains('x')) {
-          el.classList.add('x')
+    if (isPatternElement(e)) {
+      var el = e.target || e
+      var nodeName = el.nodeName
+      var type = el.getAttribute('type')
+      if ((nodeName && type) && (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email')) {
+        if (el.value) {
+          if (!el.classList.contains('x')) {
+            el.classList.add('x')
+          }
+        } else {
+          el.classList.remove('x')
         }
-      } else {
-        el.classList.remove('x')
       }
     }
   }
@@ -143,5 +149,13 @@
     } else {
       referenceNode.parentNode.appendChild(newNode)
     }
+  }
+
+  function isPatternElement (e) {
+    var thisEl = e.target || e
+    if (!thisEl.classList.contains('semanticforms')) {
+      return false
+    }
+    return true
   }
 })(this)
