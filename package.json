@@ -18,8 +18,8 @@
   "devDependencies": {
     "less": "~3.11.1",
     "standard": "~14.3.3",
-    "lint-staged": "~10.1.2",
-    "husky": "~4.2.3"
+    "lint-staged": "~10.1.7",
+    "husky": "~4.2.5"
   },
   "scripts": {
     "test": "echo \"TODO: tests\"",
