@@ -19,7 +19,7 @@
     "less": "~3.11.1",
     "standard": "~14.3.3",
     "lint-staged": "~10.1.7",
-    "husky": "~4.2.5"
+    "husky": "~4.3.0"
   },
   "scripts": {
     "test": "echo \"TODO: tests\"",
