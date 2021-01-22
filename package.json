@@ -16,7 +16,7 @@
   "readmeFilename": "README.md",
   "dependencies": {},
   "devDependencies": {
-    "less": "~3.12.2",
+    "less": "~4.1.0",
     "standard": "~16.0.1",
     "lint-staged": "~10.5.1",
     "husky": "~4.3.0"
