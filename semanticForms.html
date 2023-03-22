@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <meta name='format-detection' content='telephone=no'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
     <title>Semantic Forms</title>
-    <link rel='stylesheet' href='semanticForms.css'>
+    <link rel="stylesheet" href="semanticForms.css">
     <style>
       h1,
       p {
@@ -19,146 +19,146 @@
         <h1>Semantic Forms</h1>
       </header>
       <article>
-        <section class='content'>
+        <section class="content">
           <p>A pattern library of forms based on semantic HTML enhanced with a modern UX.</p>
 
-          <form action='/somewhere' method='post' class='semanticForms' data-clearfield-horizontal-offset='21' data-clearfield-vertical-offset='5'>
+          <form action="/somewhere" method="post" class="semanticForms" data-clearfield-horizontal-offset="21" data-clearfield-vertical-offset="5">
             <fieldset>
               <legend>Fieldset legend (high flow, JS enabled)</legend>
               <dl>
-                <dt><label for='name'>Name</label></dt>
-                <dd><input id='name' name='name' type='text' placeholder='e.g. John Smith'></dd>
+                <dt><label for="name">Name</label></dt>
+                <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
 
-                <dt><label for='prefilled'>Prefilled field</label></dt>
-                <dd><input id='prefilled' name='prefilled' type='text' placeholder='e.g. Stuff' value='Some text prefilled'></dd>
+                <dt><label for="prefilled">Prefilled field</label></dt>
+                <dd><input id="prefilled" name="prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
 
-                <dt><label for='email'>Email</label></dt>
-                <dd><input id='email' name='email' type='email' placeholder='e.g. john.smith@somewhere.com'></dd>
+                <dt><label for="email">Email</label></dt>
+                <dd><input id="email" name="email" type="email" placeholder="e.g. john.smith@somewhere.com"></dd>
 
-                <dt><label for='noplaceholder'>No placeholder</label></dt>
-                <dd><input id='noplaceholder' name='noplaceholder' type='text'></dd>
+                <dt><label for="noplaceholder">No placeholder</label></dt>
+                <dd><input id="noplaceholder" name="noplaceholder" type="text"></dd>
 
-                <dt><label for='selectbox'>Select box</label></dt>
-                <dd><select id='selectbox' name='selectbox'>
-                  <option value='1'>Item one</option>
-                  <option value='2'>Item two</option>
-                  <option value='3'>Item three</option>
-                  <option value='4'>Item four</option>
-                  <option value='5'>Item five</option>
-                  <option value='6'>Item six</option>
-                  <option value='7'>Item seven</option>
+                <dt><label for="selectbox">Select box</label></dt>
+                <dd><select id="selectbox" name="selectbox">
+                  <option value="1">Item one</option>
+                  <option value="2">Item two</option>
+                  <option value="3">Item three</option>
+                  <option value="4">Item four</option>
+                  <option value="5">Item five</option>
+                  <option value="6">Item six</option>
+                  <option value="7">Item seven</option>
                 </select></dd>
 
-                <dt><label for='textarea'>Textarea</label></dt>
-                <dd><textarea id='textarea' name='textarea' rows='5' cols='50' placeholder='e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.'></textarea></dd>
+                <dt><label for="textarea">Textarea</label></dt>
+                <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic."></textarea></dd>
 
-                <dt><label data-for='checkboxes'>Checkboxes:</label></dt>
-                <dd class='checkboxes'>
-                  <ul id='checkboxes'>
-                    <li><input type='checkbox' name='o_one' id='o_one'> <label for='o_one'>One</label></li>
-                    <li><input type='checkbox' name='o_two' id='o_two'> <label for='o_two'>Two</label></li>
-                    <li><input type='checkbox' name='o_three' id='o_three'> <label for='o_three'>Three</label></li>
+                <dt><label data-for="checkboxes">Checkboxes:</label></dt>
+                <dd class="checkboxes">
+                  <ul id="checkboxes">
+                    <li><input type="checkbox" name="o_one" id="o_one"> <label for="o_one">One</label></li>
+                    <li><input type="checkbox" name="o_two" id="o_two"> <label for="o_two">Two</label></li>
+                    <li><input type="checkbox" name="o_three" id="o_three"> <label for="o_three">Three</label></li>
                   </ul>
                 </dd>
 
-                <dt><label for='textareanoplaceholder'>Textarea (no placeholder)</label></dt>
-                <dd><textarea id='textareanoplaceholder' name='textareanoplaceholder' rows='5' cols='50'></textarea></dd>
+                <dt><label for="textareanoplaceholder">Textarea (no placeholder)</label></dt>
+                <dd><textarea id="textareanoplaceholder" name="textareanoplaceholder" rows="5" cols="50"></textarea></dd>
 
-                <dt><label for='date'>Date field</label></dt>
-                <dd><input id='date' name='date' type='date'></dd>
+                <dt><label for="date">Date field</label></dt>
+                <dd><input id="date" name="date" type="date"></dd>
 
-                <dt><label for='prefilledtextarea'>Textarea (prefilled)</label></dt>
-                <dd><textarea id='prefilledtextarea' name='prefilledtextarea' rows='5' cols='50' placeholder='e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.'>Some prefilled content...</textarea></dd>
+                <dt><label for="prefilledtextarea">Textarea (prefilled)</label></dt>
+                <dd><textarea id="prefilledtextarea" name="prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea></dd>
               </dl>
 
-              <input type='submit' name='submit' value='Non-grouped submit button'>
-              <input type='submit' name='submit' value='Another one'>
+              <input type="submit" name="submit" value="Non-grouped submit button">
+              <input type="submit" name="submit" value="Another one">
 
               <p>Flexbox button layout pattern with two submit buttons:</p>
-              <div class='buttonGroup'>
-                <input type='submit' name='submit' value='Button 1'>
-                <input type='submit' name='submit' value='Button 2'>
-              </div>
+              <menu>
+                <button type="submit" name="submit">Button 1</button>
+                <button type="submit" name="submit">Button 2</button>
+              </menu>
 
               <p>Flexbox button layout pattern with three submit buttons:</p>
-              <div class='buttonGroup'>
-                <input type='submit' name='submit' value='Button 1'>
-                <input type='submit' name='submit' value='Button 2'>
-                <input type='submit' name='submit' value='Button 3'>
-              </div>
+              <menu>
+                <button type="submit" name="submit">Button 1</button>
+                <button type="submit" name="submit">Button 2</button>
+                <button type="submit" name="submit">Button 3</button>
+              </menu>
             </fieldset>
           </form>
 
-          <form action='/somewhere' method='post' class='semanticForms lowFlow'>
+          <form action="/somewhere" method="post" class="semanticForms lowFlow">
             <fieldset>
               <legend>Fieldset legend (low flow, JS disabled)</legend>
               <dl>
-                <dt><label for='low-flow-name'>Name</label></dt>
-                <dd><input id='low-flow-name' name='name' type='text' placeholder='e.g. John Smith'></dd>
+                <dt><label for="low-flow-name">Name</label></dt>
+                <dd><input id="low-flow-name" name="name" type="text" placeholder="e.g. John Smith"></dd>
 
-                <dt><label for='low-flow-prefilled'>Prefilled field</label></dt>
-                <dd><input id='low-flow-prefilled' name='prefilled' type='text' placeholder='e.g. Stuff' value='Some text prefilled'></dd>
+                <dt><label for="low-flow-prefilled">Prefilled field</label></dt>
+                <dd><input id="low-flow-prefilled" name="prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
 
-                <dt><label for='low-flow-email'>Email</label></dt>
-                <dd><input id='low-flow-email' name='email' type='email' placeholder='e.g. john.smith@somewhere.com'></dd>
+                <dt><label for="low-flow-email">Email</label></dt>
+                <dd><input id="low-flow-email" name="email" type="email" placeholder="e.g. john.smith@somewhere.com"></dd>
 
-                <dt><label for='low-flow-noplaceholder'>No placeholder</label></dt>
-                <dd><input id='low-flow-noplaceholder' name='noplaceholder' type='text' placeholder=' '></dd>
+                <dt><label for="low-flow-noplaceholder">No placeholder</label></dt>
+                <dd><input id="low-flow-noplaceholder" name="noplaceholder" type="text" placeholder=" "></dd>
 
-                <dt><label for='low-flow-selectbox'>Select box</label></dt>
-                <dd><select id='low-flow-selectbox' name='selectbox'>
-                  <option value='1'>Item one</option>
-                  <option value='2'>Item two</option>
-                  <option value='3'>Item three</option>
-                  <option value='4'>Item four</option>
-                  <option value='5'>Item five</option>
-                  <option value='6'>Item six</option>
-                  <option value='7'>Item seven</option>
+                <dt><label for="low-flow-selectbox">Select box</label></dt>
+                <dd><select id="low-flow-selectbox" name="selectbox">
+                  <option value="1">Item one</option>
+                  <option value="2">Item two</option>
+                  <option value="3">Item three</option>
+                  <option value="4">Item four</option>
+                  <option value="5">Item five</option>
+                  <option value="6">Item six</option>
+                  <option value="7">Item seven</option>
                 </select></dd>
 
-                <dt><label for='low-flow-textarea'>Textarea</label></dt>
-                <dd><textarea id='low-flow-textarea' name='textarea' rows='5' cols='50' placeholder='e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.'></textarea></dd>
+                <dt><label for="low-flow-textarea">Textarea</label></dt>
+                <dd><textarea id="low-flow-textarea" name="textarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic."></textarea></dd>
 
-                <dt><label data-for='low-flow-checkboxes'>Checkboxes:</label></dt>
-                <dd class='checkboxes'>
-                  <ul id='low-flow-checkboxes'>
-                    <li><input type='checkbox' name='o_one' id='low-flow-o_one'> <label for='low-flow-o_one'>One</label></li>
-                    <li><input type='checkbox' name='o_two' id='low-flow-o_two'> <label for='low-flow-o_two'>Two</label></li>
-                    <li><input type='checkbox' name='o_three' id='low-flow-o_three'> <label for='low-flow-o_three'>Three</label></li>
+                <dt><label data-for="low-flow-checkboxes">Checkboxes:</label></dt>
+                <dd class="checkboxes">
+                  <ul id="low-flow-checkboxes">
+                    <li><input type="checkbox" name="o_one" id="low-flow-o_one"> <label for="low-flow-o_one">One</label></li>
+                    <li><input type="checkbox" name="o_two" id="low-flow-o_two"> <label for="low-flow-o_two">Two</label></li>
+                    <li><input type="checkbox" name="o_three" id="low-flow-o_three"> <label for="low-flow-o_three">Three</label></li>
                   </ul>
                 </dd>
 
-                <dt><label for='low-flow-textareanoplaceholder'>Textarea (no placeholder)</label></dt>
-                <dd><textarea id='low-flow-textareanoplaceholder' name='textareanoplaceholder' rows='5' cols='50'></textarea></dd>
+                <dt><label for="low-flow-textareanoplaceholder">Textarea (no placeholder)</label></dt>
+                <dd><textarea id="low-flow-textareanoplaceholder" name="textareanoplaceholder" rows="5" cols="50"></textarea></dd>
 
-                <dt><label for='low-flow-date'>Date field</label></dt>
-                <dd><input id='low-flow-date' name='low-flow-date' type='date'></dd>
+                <dt><label for="low-flow-date">Date field</label></dt>
+                <dd><input id="low-flow-date" name="low-flow-date" type="date"></dd>
 
-                <dt><label for='low-flow-prefilledtextarea'>Textarea (prefilled)</label></dt>
-                <dd><textarea id='low-flow-prefilledtextarea' name='prefilledtextarea' rows='5' cols='50' placeholder='e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.'>Some prefilled content...</textarea></dd>
+                <dt><label for="low-flow-prefilledtextarea">Textarea (prefilled)</label></dt>
+                <dd><textarea id="low-flow-prefilledtextarea" name="prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea></dd>
               </dl>
 
-              <input type='submit' name='submit' value='Non-grouped submit button'>
-              <input type='submit' name='submit' value='Another one'>
+              <input type="submit" name="submit" value="Non-grouped submit button">
+              <input type="submit" name="submit" value="Another one">
 
               <p>Grouped button layout pattern with two submit buttons:</p>
-              <div class='buttonGroup'>
-                <input type='submit' name='submit' value='Button 1'>
-                <input type='submit' name='submit' value='Button 2'>
-              </div>
+              <menu>
+                <button type="submit" name="submit">Button 1</button>
+                <button type="submit" name="submit">Button 2</button>
+              </menu>
 
               <p>Grouped button layout pattern with three submit buttons:</p>
-              <div class='buttonGroup'>
-                <input type='submit' name='submit' value='Button 1'>
-                <input type='submit' name='submit' value='Button 2'>
-                <input type='submit' name='submit' value='Button 3'>
-              </div>
+              <menu>
+                <button type="submit" name="submit">Button 1</button>
+                <button type="submit" name="submit">Button 2</button>
+                <button type="submit" name="submit">Button 3</button>
+              </menu>
             </fieldset>
           </form>
         </section>
       </article>
     </main>
 
-    <script type='text/javascript' src='semanticForms.js'></script>
+    <script type="text/javascript" src="semanticForms.js"></script>
   </body>
 </html>

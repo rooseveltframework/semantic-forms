@@ -84,7 +84,8 @@
 .semanticForms textarea:focus:-ms-input-placeholder {
   color: #aaa;
 }
-.semanticForms input[type='submit'] {
+.semanticForms input[type='submit'],
+.semanticForms button {
   width: auto;
   box-sizing: content-box;
   float: none;
@@ -105,7 +106,8 @@
   background-image: -ms-linear-gradient(bottom, #fff 0%, #c0c0c0 100%);
   background-image: linear-gradient(to bottom, #fff 0%, #c0c0c0 100%);
 }
-.semanticForms input[type='submit']:active {
+.semanticForms input[type='submit']:active,
+.semanticForms button:active {
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(#fff, 0), color-stop(#c0c0c0, 1));
   background-image: -o-linear-gradient(bottom, #c0c0c0 0%, #fff 100%);
   background-image: -moz-linear-gradient(bottom, #c0c0c0 0%, #fff 100%);
@@ -169,7 +171,7 @@
 }
 .semanticForms .floatLabelForm label.floatLabelFormAnimatedLabel {
   width: 170px;
-  padding: 5px 15px;
+  padding: 6px 15px;
   font-size: 75%;
   color: #aaa;
   cursor: text;
@@ -263,13 +265,15 @@
   height: 0;
   clear: both;
 }
-.semanticForms .buttonGroup {
+.semanticForms menu {
   width: 100%;
   clear: both;
   display: flex;
   justify-content: space-between;
+  padding: 0;
 }
-.semanticForms .buttonGroup input[type='submit'] {
+.semanticForms menu input[type='submit'],
+.semanticForms menu button {
   float: none;
   clear: none;
   margin: 0 0 25px 0;
@@ -283,10 +287,14 @@
   .semanticForms fieldset {
     text-align: left;
   }
-  .semanticForms fieldset input[type='submit'] {
+  .semanticForms fieldset input[type='submit'],
+  .semanticForms fieldset button {
     float: left;
     clear: none;
     margin: 25px 50px 25px 0;
+  }
+  .semanticForms fieldset :last-child {
+    margin-right: 0;
   }
 }
 .semanticForms.lowFlow dl {
