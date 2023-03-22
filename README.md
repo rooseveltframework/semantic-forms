@@ -15,7 +15,7 @@ If you want to set your own images for the clear fields and dropdown arrows, the
 Apply the `semanticForms` class to your `<form>` elements:
 
 ```html
-<form class='semanticForms'>
+<form class="semanticForms">
   <!-- your form here -->
 </form>
 ```
@@ -35,10 +35,10 @@ The float label input pattern is notoriously difficult to implement in a fashion
 ### Example
 
 ```html
-<form class='semanticForms'>
+<form class="semanticForms">
   <dl>
-    <dt><label for='name'>Name</label></dt>
-    <dd><input id='name' name='name' type='text' placeholder='e.g. John Smith'></dd>
+    <dt><label for="name">Name</label></dt>
+    <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
   </dl>
 </form>
 ```
@@ -46,10 +46,10 @@ The float label input pattern is notoriously difficult to implement in a fashion
 ### Or with a `<textarea>`
 
 ```html
-<form class='semanticForms'>
+<form class="semanticForms">
   <dl>
-    <dt><label for='textarea'>Textarea</label></dt>
-    <dd><textarea id='textarea' name='textarea' rows='5' cols='50' placeholder='e.g. Long string of text'></textarea></dd>
+    <dt><label for="textarea">Textarea</label></dt>
+    <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. Long string of text"></textarea></dd>
   </dl>
 </form>
 ```
@@ -59,15 +59,15 @@ If you would like to manipulate the size of the area on the input field reserved
 Adjust the horizontal offset of the clear field's click event click area (the default is 21):
 
 ```html
-<form class='semanticForms' data-clearfield-horizontal-offset='21'>
+<form class="semanticForms" data-clearfield-horizontal-offset="21">
   <!-- your form here -->
 </form>
 ```
 
-Adjust the vertical offset of the clear field's click event click area (the default is 5):
+Adjust the vertical offset of the clear field"s click event click area (the default is 5):
 
 ```html
-<form class='semanticForms' data-clearfield-vertical-offset='5'>
+<form class="semanticForms" data-clearfield-vertical-offset="5">
   <!-- your form here -->
 </form>
 ```
@@ -81,8 +81,8 @@ You can align buttons side-by-side, or in left/right/center groups.
 Nothing fancy here:
 
 ```html
-<input type='submit' name='submit' value='Non-grouped submit button'>
-<input type='submit' name='submit' value='Another one'>
+<button type="submit" name="submit">Non-grouped submit button</button>
+<button type="submit" name="submit">Another one</button>
 ```
 
 ### Button groups
@@ -91,17 +91,17 @@ Driven by flexbox to intelligently align the buttons based on how many are in th
 
 ```html
 <!-- aligns left/right -->
-<div class='buttonGroup'>
-  <input type='submit' name='submit' value='Button 1'>
-  <input type='submit' name='submit' value='Button 2'>
-</div>
+<menu>
+  <button type="submit" name="submit">Button 1</button>
+  <button type="submit" name="submit">Button 2</button>
+</menu>
 
 <!-- aligns left/center/right -->
-<div class='buttonGroup'>
-  <input type='submit' name='submit' value='Button 1'>
-  <input type='submit' name='submit' value='Button 2'>
-  <input type='submit' name='submit' value='Button 3'>
-</div>
+<menu>
+  <button type="submit" name="submit">Button 1</button>
+  <button type="submit" name="submit">Button 2</button>
+  <button type="submit" name="submit">Button 3</button>
+</menu>
 ```
 
 ## Other features

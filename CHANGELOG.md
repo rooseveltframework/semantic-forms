@@ -4,6 +4,14 @@
 
 - Put your changes here...
 
+## 2.0.0
+
+- Replaced `<div class="buttonGroup">` with a `<menu>` element. You will need to refactor your HTML accordingly.
+- Fixed alignment issue caused by browser engines changing their alignment calculations since the first release.
+- Various other refactoring.
+- Pinned deps.
+- Updated dependencies.
+
 ## 1.0.5
 
 - Restricted JS events to target elements within `semanticForms` class form elements.

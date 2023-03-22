@@ -117,7 +117,8 @@
 
 
   // buttons
-  input[type='submit'] {
+  input[type='submit'],
+  button {
     width: auto;
     box-sizing: content-box;
     float: none;
@@ -139,7 +140,8 @@
     background-image: linear-gradient(to bottom, @formBackgroundColor 0%, @borderColor 100%);
   }
 
-  input[type='submit']:active {
+  input[type='submit']:active,
+  button:active {
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(@formBackgroundColor, 0), color-stop(@borderColor, 1));
     background-image: -o-linear-gradient(bottom, @borderColor 0%, @formBackgroundColor 100%);
     background-image: -moz-linear-gradient(bottom, @borderColor 0%, @formBackgroundColor 100%);
@@ -214,7 +216,7 @@
 
     label.floatLabelFormAnimatedLabel {
       width: 170px;
-      padding: 5px 15px;
+      padding: 6px 15px;
       font-size: 75%;
       color: #aaa;
       cursor: text;
@@ -332,13 +334,15 @@
     clear: both;
   }
 
-  .buttonGroup {
+  menu {
     width: 100%;
     clear: both;
     display: flex;
     justify-content: space-between;
+    padding: 0;
 
-    input[type='submit'] {
+    input[type='submit'],
+    button {
       float: none;
       clear: none;
       margin: 0 0 25px 0;
@@ -357,10 +361,15 @@
     fieldset {
       text-align: left;
 
-      input[type='submit'] {
+      input[type='submit'],
+      button {
         float: left;
         clear: none;
         margin: 25px 50px 25px 0;
+      }
+
+      :last-child {
+        margin-right: 0;
       }
     }
   }
