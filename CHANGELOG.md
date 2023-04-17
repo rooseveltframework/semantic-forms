@@ -4,6 +4,10 @@
 
 - Put your changes here...
 
+## 2.1.1
+
+- Fix minor alignment issue.
+
 ## 2.1.0
 
 - Added all input types.

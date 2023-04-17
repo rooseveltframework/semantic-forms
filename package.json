@@ -2,7 +2,7 @@
   "name": "semantic-forms",
   "description": "Semantic Forms",
   "author": "Eric Newport <kethinov@gmail.com>",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "files": [
     "semanticForms.css",
     "semanticForms.js",
