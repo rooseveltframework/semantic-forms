@@ -92,16 +92,52 @@ Driven by flexbox to intelligently align the buttons based on how many are in th
 ```html
 <!-- aligns left/right -->
 <menu>
-  <button type="submit" name="submit">Button 1</button>
-  <button type="submit" name="submit">Button 2</button>
+  <li><button type="submit" name="submit">Button 1</button></li>
+  <button type="submit" name="submit">Button 2</button></li>
 </menu>
 
 <!-- aligns left/center/right -->
 <menu>
-  <button type="submit" name="submit">Button 1</button>
-  <button type="submit" name="submit">Button 2</button>
-  <button type="submit" name="submit">Button 3</button>
+  <li><button type="submit" name="submit">Button 1</button></li>
+  <li><button type="submit" name="submit">Button 2</button></li>
+  <li><button type="submit" name="submit">Button 3</button></li>
 </menu>
+```
+
+## Checkboxes and radio buttons
+
+Checkboxes and radio buttons need to follow the following markup structure:
+### Checkboxes
+
+```html
+<form class="semanticForms">
+  <dl>
+    <dt><label data-for="some_field_name">Checkboxes:</label></dt>
+    <dd class="checkboxes">
+      <ul id="some_field_name">
+        <li><input type="checkbox" name="some_field_name" id="c_one"> <label for="c_one">One</label></li>
+        <li><input type="checkbox" name="some_field_name" id="c_two"> <label for="c_two">Two</label></li>
+        <li><input type="checkbox" name="some_field_name" id="c_three"> <label for="c_three">Three</label></li>
+      </ul>
+    </dd>
+  </dl>
+</form>
+```
+### Radio buttons
+
+```html
+<form class="semanticForms">
+  <dl>
+    <dt><label data-for="some_field_name">Radios:</label></dt>
+    <dd class="radios">
+      <ul id="some_field_name">
+        <li><input type="radio" name="some_field_name" id="r_one"> <label for="r_one">One</label></li>
+        <li><input type="radio" name="some_field_name" id="r_two"> <label for="r_two">Two</label></li>
+        <li><input type="radio" name="some_field_name" id="r_three"> <label for="r_three">Three</label></li>
+      </ul>
+    </dd>
+  </dl>
+</form>
 ```
 
 ## Other features
@@ -119,5 +155,5 @@ See `semanticForms.html` or the [live demo](https://kethinov.github.io/semanticf
 - `npm i`
 - Make your changes. If you want to alter the CSS, do the changes in `semanticForms.less`.
 - `npm run build`. The build step compiles the LESS file into CSS.
+- Test your changes by opening `semanticForms.html` in your browser.
 - Commit, push, open pull request.
-

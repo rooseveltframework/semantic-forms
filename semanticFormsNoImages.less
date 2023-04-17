@@ -7,9 +7,10 @@
   // globals
   font-family: sans-serif;
 
-  input:not([type='submit']):not([type=checkbox]):not([type=radio]),
+  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type=color]),
   select,
   textarea {
+    box-sizing: content-box;
     background-color: @formBackgroundColor;
     outline: 0;
     border: 1px @borderColor solid;
@@ -19,6 +20,23 @@
     font-size: 100%;
     font-family: sans-serif;
     padding: 5px 20px;
+  }
+
+  input[type=color] {
+    background-color: @formBackgroundColor;
+    border: 0;
+    width: 292px;
+    height: 37px;
+    padding: 5px 20px;
+  }
+
+  select {
+    box-sizing: border-box;
+  }
+
+  input[type=range] {
+    border: 0 !important;
+    width: 248px !important;
   }
 
   fieldset {
@@ -40,18 +58,20 @@
     text-align: left;
   }
 
-  .checkboxes ul {
+  .checkboxes ul,
+  .radios ul {
     list-style: none;
     padding: 0;
   }
 
-  dd.checkboxes {
+  dd.checkboxes,
+  dd.radios {
     margin: 0;
   }
 
 
   // clear fields
-  input:not([type='submit']):not([type=checkbox]):not([type=radio]),
+  input:not([type='submit']):not([type='reset']):not([type=checkbox]):not([type=radio]),
   textarea {
     background-image: none;
     background-size: 12px;
@@ -63,10 +83,13 @@
     background-position: right -12px center;
   }
 
-  input[type=date]:not([type='submit']):not([type=checkbox]):not([type=radio]) {
+  /*
+  TODO: still needed?
+  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]) {
     width: 270px;
     padding-right: 0;
   }
+  */
 
   textarea {
     background-position: right -12px top 10px;
@@ -118,6 +141,8 @@
 
   // buttons
   input[type='submit'],
+  input[type='reset'],
+  input[type='image'],
   button {
     width: auto;
     box-sizing: content-box;
@@ -140,7 +165,16 @@
     background-image: linear-gradient(to bottom, @formBackgroundColor 0%, @borderColor 100%);
   }
 
+  input[type='submit']:first-of-type,
+  input[type='reset']:first-of-type,
+  input[type='image']:first-of-type,
+  button:first-of-type {
+    margin-left: 0;
+  }
+
   input[type='submit']:active,
+  input[type='reset']:active,
+  input[type='image']:active,
   button:active {
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(@formBackgroundColor, 0), color-stop(@borderColor, 1));
     background-image: -o-linear-gradient(bottom, @borderColor 0%, @formBackgroundColor 100%);
@@ -188,14 +222,14 @@
 
     dd {
       float: left;
-      margin: 0 25px 0 0;
+      margin: 0 10px 0 10px;
     }
 
     dd:nth-child(4n+2) {
       clear: both;
     }
 
-    dt:not(.checkboxes) {
+    dt:not(.checkboxes):not(.radios) {
       font-size: 1px;
       text-indent: 100%;
       white-space: nowrap;
@@ -204,14 +238,16 @@
       right: 9999px;
     }
 
-    dd:not(.checkboxes) {
+    dd:not(.checkboxes):not(.radios) {
       display: flex;
       flex-flow: column-reverse;
     }
 
-    .checkboxes ul {
-      margin: 3px 20px 0 12px;
-      width: 260px;
+    .checkboxes ul,
+    .radios ul {
+      margin: 3px 20px 0 0;
+      width: 267px;
+      padding-left: 10px;
     }
 
     label.floatLabelFormAnimatedLabel {
@@ -287,7 +323,8 @@
     textarea:not(:placeholder-shown) + label,
     textarea:focus + label,
     select + label.floatLabelFormAnimatedLabel,
-    .checkboxes label.floatLabelFormAnimatedLabel {
+    .checkboxes label.floatLabelFormAnimatedLabel,
+    .radios label.floatLabelFormAnimatedLabel {
       transform: translate(0, 0) scale(1);
       text-indent: 6px;
       cursor: default;
@@ -341,7 +378,13 @@
     justify-content: space-between;
     padding: 0;
 
+    li {
+      list-style-type: none;
+    }
+
     input[type='submit'],
+    input[type='reset'],
+    input[type='image'],
     button {
       float: none;
       clear: none;
@@ -362,10 +405,11 @@
       text-align: left;
 
       input[type='submit'],
+      input[type='reset'],
+      input[type='image'],
       button {
         float: left;
         clear: none;
-        margin: 25px 50px 25px 0;
       }
 
       :last-child {

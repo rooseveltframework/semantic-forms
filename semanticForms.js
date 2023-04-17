@@ -1,25 +1,25 @@
-(function (global) {
+(function () {
   // do some feature detection so none of the JS executes if the browser is too old
   if (typeof document.getElementsByClassName !== 'function' || typeof document.querySelector !== 'function' || !document.body.classList) {
     return
   }
 
-  var forms = document.querySelectorAll('form.semanticForms')
-  var fl = forms.length
-  var f
-  var form
-  var inputs
-  var input
-  var nodeName
-  var type
-  var label
-  var labelHTML
-  var newLabel
-  var dl
-  var l
-  var clearfieldHorizontalOffset
-  var clearfieldVerticalOffset
-  var i
+  const forms = document.querySelectorAll('form.semanticForms')
+  const fl = forms.length
+  let f
+  let form
+  let inputs
+  let input
+  let nodeName
+  let type
+  let label
+  let labelHTML
+  let newLabel
+  let dl
+  let l
+  let clearfieldHorizontalOffset
+  let clearfieldVerticalOffset
+  let i
 
   // don't execute any of the JS if no forms class semanticForms exist
   if (fl <= 0) {
@@ -39,7 +39,7 @@
         if (input && input.id) {
           nodeName = input.nodeName
           type = input.getAttribute('type')
-          if (nodeName === 'TEXTAREA' || nodeName === 'SELECT' || type === 'text' || type === 'password' || type === 'email' || type === 'date' || type === 'checkbox' || type === 'radio') {
+          if (nodeName === 'TEXTAREA' || nodeName === 'SELECT' || type === 'checkbox' || type === 'color' || type === 'date' || type === 'datetime-local' || type === 'email' || type === 'file' || type === 'image' || type === 'month' || type === 'number' || type === 'password' || type === 'radio' || type === 'range' || type === 'search' || type === 'tel' || type === 'text' || type === 'time' || type === 'url' || type === 'week') {
             dl = input.parentNode
             while (dl && dl.nodeName !== 'DL') {
               dl = dl.parentNode
@@ -74,11 +74,12 @@
                 label.setAttribute('hidden', 'hidden')
               }
 
-              if (nodeName !== 'SELECT' && type !== 'checkbox' && type !== 'radio' && type !== 'date') {
+              if (nodeName !== 'SELECT' && type !== 'checkbox' && type !== 'radio') {
                 // if it doesn't have a placeholder, add a blank one
                 if (!input.getAttribute('placeholder')) {
                   input.setAttribute('placeholder', '')
                 }
+                input.classList.add('semanticform')
                 inputHandler(input) // force x to appear on inputs with prefilled value
               }
             }
@@ -92,10 +93,10 @@
 
   document.addEventListener('mousemove', function (e) {
     if (isPatternElement(e)) {
-      var el = e.target
-      var nodeName = el.nodeName
-      var type = el.getAttribute('type')
-      if (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email') {
+      const el = e.target
+      const nodeName = el.nodeName
+      const type = el.getAttribute('type')
+      if (nodeName === 'TEXTAREA' || type === 'checkbox' || type === 'color' || type === 'date' || type === 'datetime-local' || type === 'email' || type === 'file' || type === 'month' || type === 'number' || type === 'password' || type === 'radio' || type === 'range' || type === 'search' || type === 'tel' || type === 'text' || type === 'time' || type === 'url' || type === 'week') {
         inputHandler(e)
         if (el.offsetWidth - clearfieldHorizontalOffset < e.clientX - el.getBoundingClientRect().left && clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - el.getBoundingClientRect().top
         ) {
@@ -111,10 +112,10 @@
 
   document.addEventListener('click', function (e) {
     if (isPatternElement(e)) {
-      var el = e.target
-      var nodeName = el.nodeName
-      var type = el.getAttribute('type')
-      if (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email') {
+      const el = e.target
+      const nodeName = el.nodeName
+      const type = el.getAttribute('type')
+      if (nodeName === 'TEXTAREA' || type === 'checkbox' || type === 'color' || type === 'date' || type === 'datetime-local' || type === 'email' || type === 'file' || type === 'month' || type === 'number' || type === 'password' || type === 'radio' || type === 'range' || type === 'search' || type === 'tel' || type === 'text' || type === 'time' || type === 'url' || type === 'week') {
         if (el.offsetWidth - clearfieldHorizontalOffset < e.clientX - el.getBoundingClientRect().left &&
         clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - el.getBoundingClientRect().top
         ) {
@@ -128,10 +129,10 @@
 
   function inputHandler (e) {
     if (isPatternElement(e)) {
-      var el = e.target || e
-      var nodeName = el.nodeName
-      var type = el.getAttribute('type')
-      if ((nodeName && type) && (nodeName === 'TEXTAREA' || type === 'text' || type === 'password' || type === 'email')) {
+      const el = e.target || e
+      const nodeName = el.nodeName
+      const type = el.getAttribute('type') || nodeName === 'TEXTAREA'
+      if ((nodeName && type) && (nodeName === 'TEXTAREA' || type === 'checkbox' || type === 'color' || type === 'date' || type === 'datetime-local' || type === 'email' || type === 'file' || type === 'month' || type === 'number' || type === 'password' || type === 'radio' || type === 'range' || type === 'search' || type === 'tel' || type === 'text' || type === 'time' || type === 'url' || type === 'week')) {
         if (el.value) {
           if (!el.classList.contains('x')) {
             el.classList.add('x')
@@ -152,8 +153,8 @@
   }
 
   function isPatternElement (e) {
-    var thisEl = e.target || e
-    if (!thisEl.classList.contains('semanticforms')) {
+    const thisEl = e.target || e
+    if (!thisEl.classList.contains('semanticform')) {
       return false
     }
     return true
