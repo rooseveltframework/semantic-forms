@@ -12,153 +12,232 @@
         font-family: sans-serif;
       }
     </style>
+    <script src="semanticForms.js" defer></script>
   </head>
   <body>
     <main>
-      <header>
-        <h1>Semantic Forms</h1>
-      </header>
       <article>
-        <section class="content">
-          <p>A pattern library of forms based on semantic HTML enhanced with a modern UX.</p>
+        <h1>Semantic Forms</h1>
+        <p>A pattern library of forms based on semantic HTML enhanced with a modern UX.</p>
 
-          <form action="/somewhere" method="post" class="semanticForms" data-clearfield-horizontal-offset="21" data-clearfield-vertical-offset="5">
-            <fieldset>
-              <legend>Fieldset legend (high flow, JS enabled)</legend>
-              <dl>
-                <dt><label for="name">Name</label></dt>
-                <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+        <form action="/somewhere" method="post" class="semanticForms" data-clearfield-horizontal-offset="21" data-clearfield-vertical-offset="5">
+          <fieldset>
+            <legend>Fieldset legend (high flow, JS enabled)</legend>
+            <dl>
+              <dt><label for="name">Name</label></dt>
+              <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
 
-                <dt><label for="prefilled">Prefilled field</label></dt>
-                <dd><input id="prefilled" name="prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
+              <dt><label for="prefilled">Prefilled field</label></dt>
+              <dd><input id="prefilled" name="prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
 
-                <dt><label for="email">Email</label></dt>
-                <dd><input id="email" name="email" type="email" placeholder="e.g. john.smith@somewhere.com"></dd>
+              <dt><label for="noplaceholder">No placeholder</label></dt>
+              <dd><input id="noplaceholder" name="noplaceholder" type="text"></dd>
 
-                <dt><label for="noplaceholder">No placeholder</label></dt>
-                <dd><input id="noplaceholder" name="noplaceholder" type="text"></dd>
+              <dt><label for="password">Password field</label></dt>
+              <dd><input id="password" name="password" type="password"></dd>
 
-                <dt><label for="selectbox">Select box</label></dt>
-                <dd><select id="selectbox" name="selectbox">
-                  <option value="1">Item one</option>
-                  <option value="2">Item two</option>
-                  <option value="3">Item three</option>
-                  <option value="4">Item four</option>
-                  <option value="5">Item five</option>
-                  <option value="6">Item six</option>
-                  <option value="7">Item seven</option>
-                </select></dd>
+              <dt><label for="email">Email field</label></dt>
+              <dd><input id="email" name="email" type="email" placeholder="e.g. john.smith@somewhere.com"></dd>
 
-                <dt><label for="textarea">Textarea</label></dt>
-                <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic."></textarea></dd>
+              <dt><label for="tel">Telephone field</label></dt>
+              <dd><input id="tel" name="tel" type="tel" placeholder="e.g. 555-437-1111"></dd>
 
-                <dt><label data-for="checkboxes">Checkboxes:</label></dt>
-                <dd class="checkboxes">
-                  <ul id="checkboxes">
-                    <li><input type="checkbox" name="o_one" id="o_one"> <label for="o_one">One</label></li>
-                    <li><input type="checkbox" name="o_two" id="o_two"> <label for="o_two">Two</label></li>
-                    <li><input type="checkbox" name="o_three" id="o_three"> <label for="o_three">Three</label></li>
-                  </ul>
-                </dd>
+              <dt><label for="url">URL field</label></dt>
+              <dd><input id="url" name="url" type="url" placeholder="e.g. https://github.com"></dd>
 
-                <dt><label for="textareanoplaceholder">Textarea (no placeholder)</label></dt>
-                <dd><textarea id="textareanoplaceholder" name="textareanoplaceholder" rows="5" cols="50"></textarea></dd>
+              <dt><label for="search">Search field</label></dt>
+              <dd><input id="search" name="search" type="search" placeholder="e.g. cats"></dd>
 
-                <dt><label for="date">Date field</label></dt>
-                <dd><input id="date" name="date" type="date"></dd>
+              <dt><label for="number">Number</label></dt>
+              <dd><input id="number" name="number" type="number" placeholder="e.g. 43"></dd>
 
-                <dt><label for="prefilledtextarea">Textarea (prefilled)</label></dt>
-                <dd><textarea id="prefilledtextarea" name="prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea></dd>
-              </dl>
+              <dt><label for="selectbox">Select box</label></dt>
+              <dd><select id="selectbox" name="selectbox">
+                <option value="1">Item one</option>
+                <option value="2">Item two</option>
+                <option value="3">Item three</option>
+                <option value="4">Item four</option>
+                <option value="5">Item five</option>
+                <option value="6">Item six</option>
+                <option value="7">Item seven</option>
+              </select></dd>
 
-              <input type="submit" name="submit" value="Non-grouped submit button">
-              <input type="submit" name="submit" value="Another one">
+              <dt><label data-for="checkboxes">Checkboxes:</label></dt>
+              <dd class="checkboxes">
+                <ul id="checkboxes">
+                  <li><input type="checkbox" name="checkboxes" id="c_one"> <label for="c_one">One</label></li>
+                  <li><input type="checkbox" name="checkboxes" id="c_two"> <label for="c_two">Two</label></li>
+                  <li><input type="checkbox" name="checkboxes" id="c_three"> <label for="c_three">Three</label></li>
+                </ul>
+              </dd>
 
-              <p>Flexbox button layout pattern with two submit buttons:</p>
-              <menu>
-                <button type="submit" name="submit">Button 1</button>
-                <button type="submit" name="submit">Button 2</button>
-              </menu>
+              <dt><label data-for="radios">Radios:</label></dt>
+              <dd class="radios">
+                <ul id="radios">
+                  <li><input type="radio" name="radios" id="r_one"> <label for="r_one">One</label></li>
+                  <li><input type="radio" name="radios" id="r_two"> <label for="r_two">Two</label></li>
+                  <li><input type="radio" name="radios" id="r_three"> <label for="r_three">Three</label></li>
+                </ul>
+              </dd>
 
-              <p>Flexbox button layout pattern with three submit buttons:</p>
-              <menu>
-                <button type="submit" name="submit">Button 1</button>
-                <button type="submit" name="submit">Button 2</button>
-                <button type="submit" name="submit">Button 3</button>
-              </menu>
-            </fieldset>
-          </form>
+              <dt><label for="color">Color field</label></dt>
+              <dd><input id="color" name="color" type="color"></dd>
 
-          <form action="/somewhere" method="post" class="semanticForms lowFlow">
-            <fieldset>
-              <legend>Fieldset legend (low flow, JS disabled)</legend>
-              <dl>
-                <dt><label for="low-flow-name">Name</label></dt>
-                <dd><input id="low-flow-name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+              <dt><label for="date">Date field</label></dt>
+              <dd><input id="date" name="date" type="date"></dd>
 
-                <dt><label for="low-flow-prefilled">Prefilled field</label></dt>
-                <dd><input id="low-flow-prefilled" name="prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
+              <dt><label for="time">Time field</label></dt>
+              <dd><input id="time" name="time" type="time"></dd>
 
-                <dt><label for="low-flow-email">Email</label></dt>
-                <dd><input id="low-flow-email" name="email" type="email" placeholder="e.g. john.smith@somewhere.com"></dd>
+              <dt><label for="datetime-local">Datetime-local field</label></dt>
+              <dd><input id="datetime-local" name="datetime-local" type="datetime-local"></dd>
 
-                <dt><label for="low-flow-noplaceholder">No placeholder</label></dt>
-                <dd><input id="low-flow-noplaceholder" name="noplaceholder" type="text" placeholder=" "></dd>
+              <dt><label for="month">Month field</label></dt>
+              <dd><input id="month" name="month" type="month"></dd>
 
-                <dt><label for="low-flow-selectbox">Select box</label></dt>
-                <dd><select id="low-flow-selectbox" name="selectbox">
-                  <option value="1">Item one</option>
-                  <option value="2">Item two</option>
-                  <option value="3">Item three</option>
-                  <option value="4">Item four</option>
-                  <option value="5">Item five</option>
-                  <option value="6">Item six</option>
-                  <option value="7">Item seven</option>
-                </select></dd>
+              <dt><label for="week">Week field</label></dt>
+              <dd><input id="week" name="week" type="week"></dd>
 
-                <dt><label for="low-flow-textarea">Textarea</label></dt>
-                <dd><textarea id="low-flow-textarea" name="textarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic."></textarea></dd>
+              <dt><label for="file">File field</label></dt>
+              <dd><input id="file" name="file" type="file"></dd>
 
-                <dt><label data-for="low-flow-checkboxes">Checkboxes:</label></dt>
-                <dd class="checkboxes">
-                  <ul id="low-flow-checkboxes">
-                    <li><input type="checkbox" name="o_one" id="low-flow-o_one"> <label for="low-flow-o_one">One</label></li>
-                    <li><input type="checkbox" name="o_two" id="low-flow-o_two"> <label for="low-flow-o_two">Two</label></li>
-                    <li><input type="checkbox" name="o_three" id="low-flow-o_three"> <label for="low-flow-o_three">Three</label></li>
-                  </ul>
-                </dd>
+              <dt><label for="range">Range field</label></dt>
+              <dd><input id="range" name="range" type="range"></dd>
 
-                <dt><label for="low-flow-textareanoplaceholder">Textarea (no placeholder)</label></dt>
-                <dd><textarea id="low-flow-textareanoplaceholder" name="textareanoplaceholder" rows="5" cols="50"></textarea></dd>
+              <dt><label for="textarea">Textarea</label></dt>
+              <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic."></textarea></dd>
 
-                <dt><label for="low-flow-date">Date field</label></dt>
-                <dd><input id="low-flow-date" name="low-flow-date" type="date"></dd>
+              <dt><label for="prefilledtextarea">Textarea (prefilled)</label></dt>
+              <dd><textarea id="prefilledtextarea" name="prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea></dd>
+            </dl>
 
-                <dt><label for="low-flow-prefilledtextarea">Textarea (prefilled)</label></dt>
-                <dd><textarea id="low-flow-prefilledtextarea" name="prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea></dd>
-              </dl>
+            <input type="submit" name="submit" value="Non-grouped submit button">
+            <input type="reset" name="reset" value="Another one">
 
-              <input type="submit" name="submit" value="Non-grouped submit button">
-              <input type="submit" name="submit" value="Another one">
+            <p>Flexbox button layout pattern with two submit buttons:</p>
+            <menu>
+              <li><button type="submit" name="submit">Button 1</button></li>
+              <li><button type="reset" name="reset">Button 2</button></li>
+            </menu>
 
-              <p>Grouped button layout pattern with two submit buttons:</p>
-              <menu>
-                <button type="submit" name="submit">Button 1</button>
-                <button type="submit" name="submit">Button 2</button>
-              </menu>
+            <p>Flexbox button layout pattern with three submit buttons:</p>
+            <menu>
+              <li><button type="submit" name="submit">Button 1</button></li>
+              <li><button type="reset" name="reset">Button 2</button></li>
+              <li><input type="submit" name="submit" value="Button 3"></li>
+            </menu>
+          </fieldset>
+        </form>
 
-              <p>Grouped button layout pattern with three submit buttons:</p>
-              <menu>
-                <button type="submit" name="submit">Button 1</button>
-                <button type="submit" name="submit">Button 2</button>
-                <button type="submit" name="submit">Button 3</button>
-              </menu>
-            </fieldset>
-          </form>
-        </section>
+        <form action="/somewhere" method="post" class="semanticForms lowFlow">
+          <fieldset>
+            <legend>Fieldset legend (high flow, JS enabled)</legend>
+            <dl>
+              <dt><label for="low-flow-name">Name</label></dt>
+              <dd><input id="low-flow-name" name="low-flow-name" type="text" placeholder="e.g. John Smith"></dd>
+
+              <dt><label for="low-flow-prefilled">Prefilled field</label></dt>
+              <dd><input id="low-flow-prefilled" name="low-flow-prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
+
+              <dt><label for="low-flow-noplaceholder">No placeholder</label></dt>
+              <dd><input id="low-flow-noplaceholder" name="low-flow-noplaceholder" type="text"></dd>
+
+              <dt><label for="low-flow-password">Password field</label></dt>
+              <dd><input id="low-flow-password" name="low-flow-password" type="password"></dd>
+
+              <dt><label for="low-flow-email">Email field</label></dt>
+              <dd><input id="low-flow-email" name="low-flow-email" type="email" placeholder="e.g. john.smith@somewhere.com"></dd>
+
+              <dt><label for="low-flow-tel">Telephone field</label></dt>
+              <dd><input id="low-flow-tel" name="low-flow-tel" type="tel" placeholder="e.g. 555-437-1111"></dd>
+
+              <dt><label for="low-flow-url">URL field</label></dt>
+              <dd><input id="low-flow-url" name="low-flow-url" type="url" placeholder="e.g. https://github.com"></dd>
+
+              <dt><label for="low-flow-search">Search field</label></dt>
+              <dd><input id="low-flow-search" name="low-flow-search" type="search" placeholder="e.g. cats"></dd>
+
+              <dt><label for="low-flow-number">Number</label></dt>
+              <dd><input id="low-flow-number" name="low-flow-number" type="number" placeholder="e.g. 43"></dd>
+
+              <dt><label for="low-flow-selectbox">Select box</label></dt>
+              <dd><select id="low-flow-selectbox" name="low-flow-selectbox">
+                <option value="1">Item one</option>
+                <option value="2">Item two</option>
+                <option value="3">Item three</option>
+                <option value="4">Item four</option>
+                <option value="5">Item five</option>
+                <option value="6">Item six</option>
+                <option value="7">Item seven</option>
+              </select></dd>
+
+              <dt><label data-for="low-flow-checkboxes">Checkboxes:</label></dt>
+              <dd class="checkboxes">
+                <ul id="low-flow-checkboxes">
+                  <li><input type="checkbox" name="low-flow-checkboxes" id="low-flow-c_one"> <label for="low-flow-c_one">One</label></li>
+                  <li><input type="checkbox" name="low-flow-checkboxes" id="low-flow-c_two"> <label for="low-flow-c_two">Two</label></li>
+                  <li><input type="checkbox" name="low-flow-checkboxes" id="low-flow-c_three"> <label for="low-flow-c_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label data-for="low-flow-radios">Radios:</label></dt>
+              <dd class="radios">
+                <ul id="low-flow-radios">
+                  <li><input type="radio" name="low-flow-radios" id="low-flow-r_one"> <label for="low-flow-r_one">One</label></li>
+                  <li><input type="radio" name="low-flow-radios" id="low-flow-r_two"> <label for="low-flow-r_two">Two</label></li>
+                  <li><input type="radio" name="low-flow-radios" id="low-flow-r_three"> <label for="low-flow-r_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label for="low-flow-color">Color field</label></dt>
+              <dd><input id="low-flow-color" name="low-flow-color" type="color"></dd>
+
+              <dt><label for="low-flow-date">Date field</label></dt>
+              <dd><input id="low-flow-date" name="low-flow-date" type="date"></dd>
+
+              <dt><label for="low-flow-time">Time field</label></dt>
+              <dd><input id="low-flow-time" name="low-flow-time" type="time"></dd>
+
+              <dt><label for="low-flow-datetime-local">Datetime-local field</label></dt>
+              <dd><input id="low-flow-datetime-local" name="low-flow-datetime-local" type="datetime-local"></dd>
+
+              <dt><label for="low-flow-month">Month field</label></dt>
+              <dd><input id="low-flow-month" name="low-flow-month" type="month"></dd>
+
+              <dt><label for="low-flow-week">Week field</label></dt>
+              <dd><input id="low-flow-week" name="low-flow-week" type="week"></dd>
+
+              <dt><label for="low-flow-file">File field</label></dt>
+              <dd><input id="low-flow-file" name="low-flow-file" type="file"></dd>
+
+              <dt><label for="low-flow-range">Range field</label></dt>
+              <dd><input id="low-flow-range" name="low-flow-range" type="range"></dd>
+
+              <dt><label for="low-flow-textarea">Textarea</label></dt>
+              <dd><textarea id="low-flow-textarea" name="low-flow-textarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic."></textarea></dd>
+
+              <dt><label for="low-flow-prefilledtextarea">Textarea (prefilled)</label></dt>
+              <dd><textarea id="low-flow-prefilledtextarea" name="low-flow-prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea></dd>
+            </dl>
+
+            <input type="submit" name="submit" value="Non-grouped submit button">
+            <input type="reset" name="reset" value="Another one">
+
+            <p>Flexbox button layout pattern with two submit buttons:</p>
+            <menu>
+              <li><button type="submit" name="submit">Button 1</button></li>
+              <li><button type="reset" name="reset">Button 2</button></li>
+            </menu>
+
+            <p>Flexbox button layout pattern with three submit buttons:</p>
+            <menu>
+              <li><button type="submit" name="submit">Button 1</button></li>
+              <li><button type="reset" name="reset">Button 2</button></li>
+              <li><input type="submit" name="submit" value="Button 3"></li>
+            </menu>
+          </fieldset>
+        </form>
       </article>
     </main>
-
-    <script type="text/javascript" src="semanticForms.js"></script>
   </body>
 </html>

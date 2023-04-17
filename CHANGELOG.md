@@ -4,6 +4,15 @@
 
 - Put your changes here...
 
+## 2.1.0
+
+- Added all input types.
+- Fixed clear field.
+- Fixed markup mistakes in the examples.
+- Fixed CSS to support `<menu>` elements correctly.
+- Refactored the JavaScript to modernize it.
+- Updated dependencies.
+
 ## 2.0.0
 
 - Replaced `<div class="buttonGroup">` with a `<menu>` element. You will need to refactor your HTML accordingly.

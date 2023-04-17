@@ -1,9 +1,17 @@
 .semanticForms {
   font-family: sans-serif;
+  /*
+  TODO: still needed?
+  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]) {
+    width: 270px;
+    padding-right: 0;
+  }
+  */
 }
-.semanticForms input:not([type='submit']):not([type=checkbox]):not([type=radio]),
+.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type=color]),
 .semanticForms select,
 .semanticForms textarea {
+  box-sizing: content-box;
   background-color: #fff;
   outline: 0;
   border: 1px #c0c0c0 solid;
@@ -13,6 +21,20 @@
   font-size: 100%;
   font-family: sans-serif;
   padding: 5px 20px;
+}
+.semanticForms input[type=color] {
+  background-color: #fff;
+  border: 0;
+  width: 292px;
+  height: 37px;
+  padding: 5px 20px;
+}
+.semanticForms select {
+  box-sizing: border-box;
+}
+.semanticForms input[type=range] {
+  border: 0 !important;
+  width: 248px !important;
 }
 .semanticForms fieldset {
   text-align: center;
@@ -29,14 +51,16 @@
 .semanticForms dl {
   text-align: left;
 }
-.semanticForms .checkboxes ul {
+.semanticForms .checkboxes ul,
+.semanticForms .radios ul {
   list-style: none;
   padding: 0;
 }
-.semanticForms dd.checkboxes {
+.semanticForms dd.checkboxes,
+.semanticForms dd.radios {
   margin: 0;
 }
-.semanticForms input:not([type='submit']):not([type=checkbox]):not([type=radio]),
+.semanticForms input:not([type='submit']):not([type='reset']):not([type=checkbox]):not([type=radio]),
 .semanticForms textarea {
   background-image: none;
   background-size: 12px;
@@ -45,10 +69,6 @@
 }
 .semanticForms input:not([type=checkbox]):not([type=radio]) {
   background-position: right -12px center;
-}
-.semanticForms input[type=date]:not([type='submit']):not([type=checkbox]):not([type=radio]) {
-  width: 270px;
-  padding-right: 0;
 }
 .semanticForms textarea {
   background-position: right -12px top 10px;
@@ -85,6 +105,8 @@
   color: #aaa;
 }
 .semanticForms input[type='submit'],
+.semanticForms input[type='reset'],
+.semanticForms input[type='image'],
 .semanticForms button {
   width: auto;
   box-sizing: content-box;
@@ -106,7 +128,15 @@
   background-image: -ms-linear-gradient(bottom, #fff 0%, #c0c0c0 100%);
   background-image: linear-gradient(to bottom, #fff 0%, #c0c0c0 100%);
 }
+.semanticForms input[type='submit']:first-of-type,
+.semanticForms input[type='reset']:first-of-type,
+.semanticForms input[type='image']:first-of-type,
+.semanticForms button:first-of-type {
+  margin-left: 0;
+}
 .semanticForms input[type='submit']:active,
+.semanticForms input[type='reset']:active,
+.semanticForms input[type='image']:active,
 .semanticForms button:active {
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(#fff, 0), color-stop(#c0c0c0, 1));
   background-image: -o-linear-gradient(bottom, #c0c0c0 0%, #fff 100%);
@@ -148,12 +178,12 @@
 }
 .semanticForms .floatLabelForm dd {
   float: left;
-  margin: 0 25px 0 0;
+  margin: 0 10px 0 10px;
 }
 .semanticForms .floatLabelForm dd:nth-child(4n+2) {
   clear: both;
 }
-.semanticForms .floatLabelForm dt:not(.checkboxes) {
+.semanticForms .floatLabelForm dt:not(.checkboxes):not(.radios) {
   font-size: 1px;
   text-indent: 100%;
   white-space: nowrap;
@@ -161,13 +191,15 @@
   position: absolute;
   right: 9999px;
 }
-.semanticForms .floatLabelForm dd:not(.checkboxes) {
+.semanticForms .floatLabelForm dd:not(.checkboxes):not(.radios) {
   display: flex;
   flex-flow: column-reverse;
 }
-.semanticForms .floatLabelForm .checkboxes ul {
-  margin: 3px 20px 0 12px;
-  width: 260px;
+.semanticForms .floatLabelForm .checkboxes ul,
+.semanticForms .floatLabelForm .radios ul {
+  margin: 3px 20px 0 0;
+  width: 267px;
+  padding-left: 10px;
 }
 .semanticForms .floatLabelForm label.floatLabelFormAnimatedLabel {
   width: 170px;
@@ -226,7 +258,8 @@
 .semanticForms .floatLabelForm textarea:not(:placeholder-shown) + label,
 .semanticForms .floatLabelForm textarea:focus + label,
 .semanticForms .floatLabelForm select + label.floatLabelFormAnimatedLabel,
-.semanticForms .floatLabelForm .checkboxes label.floatLabelFormAnimatedLabel {
+.semanticForms .floatLabelForm .checkboxes label.floatLabelFormAnimatedLabel,
+.semanticForms .floatLabelForm .radios label.floatLabelFormAnimatedLabel {
   transform: translate(0, 0) scale(1);
   text-indent: 6px;
   cursor: default;
@@ -272,7 +305,12 @@
   justify-content: space-between;
   padding: 0;
 }
+.semanticForms menu li {
+  list-style-type: none;
+}
 .semanticForms menu input[type='submit'],
+.semanticForms menu input[type='reset'],
+.semanticForms menu input[type='image'],
 .semanticForms menu button {
   float: none;
   clear: none;
@@ -288,10 +326,11 @@
     text-align: left;
   }
   .semanticForms fieldset input[type='submit'],
+  .semanticForms fieldset input[type='reset'],
+  .semanticForms fieldset input[type='image'],
   .semanticForms fieldset button {
     float: left;
     clear: none;
-    margin: 25px 50px 25px 0;
   }
   .semanticForms fieldset :last-child {
     margin-right: 0;
