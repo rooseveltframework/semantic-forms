@@ -4,6 +4,8 @@
 
 - Put your changes here...
 
+- Fixed a situation that could lead to a JS error.
+
 ## 2.1.1
 
 - Fix minor alignment issue.
