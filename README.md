@@ -152,8 +152,8 @@ See `semanticForms.html` or the [live demo](https://kethinov.github.io/semanticf
 # Contributing
 
 - Fork/clone this repo.
-- `npm i`
-- Make your changes. If you want to alter the CSS, do the changes in `semanticForms.less`.
+- `npm ci`
+- Make your changes. If you want to alter the CSS, do the changes in the `.less` files.
 - `npm run build`. The build step compiles the LESS file into CSS.
 - Test your changes by opening `semanticForms.html` in your browser.
 - Commit, push, open pull request.
