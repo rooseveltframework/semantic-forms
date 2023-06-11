@@ -6,6 +6,11 @@
 
 - Fixed a situation that could lead to a JS error.
 
+## 2.1.2
+
+- Added a function to the JS files's global scope called `semanticForms` that you can call to initialize new forms that have been added to the DOM since the initial initialization.
+- Updated dependencies.
+
 ## 2.1.1
 
 - Fix minor alignment issue.

@@ -22,6 +22,8 @@ Apply the `semanticForms` class to your `<form>` elements:
 
 Then the CSS/JS enhancements to your forms will apply automatically.
 
+If you add new forms to the DOM after the initial initialization, you can call the global `semanticForms` function to initialize new forms that have been added to the DOM since the initial initialization.
+
 See `semanticForms.html` or the [live demo](https://kethinov.github.io/semanticforms/semanticForms.html) for a complete pattern library with examples of all UI patterns.
 
 # Features

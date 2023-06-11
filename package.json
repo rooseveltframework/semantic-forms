@@ -2,7 +2,7 @@
   "name": "semantic-forms",
   "description": "Semantic Forms",
   "author": "Eric Newport <kethinov@gmail.com>",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "files": [
     "semanticForms.css",
     "semanticForms.js",
@@ -17,7 +17,7 @@
   "dependencies": {},
   "devDependencies": {
     "less": "4.1.3",
-    "standard": "17.0.0"
+    "standard": "17.1.0"
   },
   "scripts": {
     "test": "echo \"TODO: tests\"",

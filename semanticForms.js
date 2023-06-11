@@ -1,10 +1,10 @@
-(function () {
+window.semanticForms = function () {
   // do some feature detection so none of the JS executes if the browser is too old
   if (typeof document.getElementsByClassName !== 'function' || typeof document.querySelector !== 'function' || !document.body.classList) {
     return
   }
 
-  const forms = document.querySelectorAll('form.semanticForms')
+  const forms = document.querySelectorAll('form.semanticForms:not(.semanticFormsActive)')
   const fl = forms.length
   let f
   let form
@@ -28,6 +28,7 @@
 
   for (f = 0; f < fl; f++) {
     form = forms[f]
+    form.classList.add('semanticFormsActive')
     if (!form.classList.contains('lowFlow')) {
       clearfieldHorizontalOffset = parseInt(form.getAttribute('data-clearfield-horizontal-offset')) || 21
       clearfieldVerticalOffset = parseInt(form.getAttribute('data-clearfield-vertical-offset')) || 5
@@ -154,9 +155,10 @@
 
   function isPatternElement (e) {
     const thisEl = e.target || e
-    if (!thisEl.classList || !thisEl.classList.contains('semanticform')) {
+    if (!thisEl.classList.contains('semanticform')) {
       return false
     }
     return true
   }
-})(this)
+}
+window.semanticForms()
