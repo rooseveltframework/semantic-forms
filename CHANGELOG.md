@@ -4,6 +4,10 @@
 
 - Put your changes here...
 
+## 3.0.1
+
+- Fixed alignment issue.
+
 ## 3.0.0
 
 - Removed defualt two column layout. Now defaults to as many columns as the container is wide.
