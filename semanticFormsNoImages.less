@@ -69,7 +69,6 @@
     margin: 0;
   }
 
-
   // clear fields
   input:not([type='submit']):not([type='reset']):not([type=checkbox]):not([type=radio]),
   textarea {
@@ -82,14 +81,6 @@
   input:not([type=checkbox]):not([type=radio]) {
     background-position: right -12px center;
   }
-
-  /*
-  TODO: still needed?
-  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]) {
-    width: 270px;
-    padding-right: 0;
-  }
-  */
 
   textarea {
     background-position: right -12px top 10px;
@@ -184,7 +175,6 @@
     background-image: linear-gradient(to bottom, @borderColor 0%, @formBackgroundColor 100%);
   }
 
-
   // custom select box design
   select {
     background-image: none;
@@ -199,7 +189,6 @@
     appearance: none;
   }
 
-
   // float label forms
   label.floatLabelFormAnimatedLabel, input:not([type=checkbox]):not([type=radio]), select, textarea, section {
     transition: all 0.2s;
@@ -208,7 +197,6 @@
 
   .floatLabelForm {
     margin: 0 auto;
-    width: 292px;
 
     input[disabled] {
       opacity: 0.5;
@@ -223,10 +211,6 @@
     dd {
       float: left;
       margin: 0 10px 0 10px;
-    }
-
-    dd:nth-child(4n+2) {
-      clear: both;
     }
 
     dt:not(.checkboxes):not(.radios) {
@@ -246,7 +230,7 @@
     .checkboxes ul,
     .radios ul {
       margin: 3px 20px 0 0;
-      width: 267px;
+      width: 262px;
       padding-left: 10px;
     }
 
@@ -388,10 +372,9 @@
     button {
       float: none;
       clear: none;
-      margin: 0 0 25px 0;
+      margin: 0;
     }
   }
-
 
   // side-by-side pattern on large screens
   @media (min-width: 700px) {
@@ -416,6 +399,43 @@
 
       :last-child {
         margin-right: 0;
+      }
+    }
+
+    .x2 {
+      input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type=color]),
+      select,
+      textarea {
+        width: 562px;
+      }
+    }
+
+    .x2 {
+      input[type=color] {
+        width: 604px;
+      }
+    }
+
+    .x2 {
+      input[type=range] {
+        width: 560px !important;
+      }
+    }
+
+    .x2 {
+      select {
+        width: 604px;
+      }
+    }
+
+    .x2.checkboxes ul,
+    .x2.radios ul {
+      width: 574px;
+    }
+
+    .x2 {
+      label.floatLabelFormAnimatedLabel {
+        width: 375px;
       }
     }
   }

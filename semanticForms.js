@@ -155,7 +155,7 @@ window.semanticForms = function () {
 
   function isPatternElement (e) {
     const thisEl = e.target || e
-    if (!thisEl.classList.contains('semanticform')) {
+    if (!thisEl || !thisEl.classList || !thisEl.classList.contains('semanticform')) {
       return false
     }
     return true

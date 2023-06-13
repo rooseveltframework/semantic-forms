@@ -58,6 +58,8 @@ The float label input pattern is notoriously difficult to implement in a fashion
 
 If you would like to manipulate the size of the area on the input field reserved for the click event of the clear field, apply one or both of the following `data-` attributes to your form.
 
+If you want to double the width of the input field (on screens with the extra space), add a `x2` class to the `dd` element.
+
 Adjust the horizontal offset of the clear field's click event click area (the default is 21):
 
 ```html
@@ -66,7 +68,7 @@ Adjust the horizontal offset of the clear field's click event click area (the de
 </form>
 ```
 
-Adjust the vertical offset of the clear field"s click event click area (the default is 5):
+Adjust the vertical offset of the clear field's click event click area (the default is 5):
 
 ```html
 <form class="semanticForms" data-clearfield-vertical-offset="5">
@@ -146,7 +148,7 @@ Checkboxes and radio buttons need to follow the following markup structure:
 
 - Custom-styled select boxes with a custom drawn arrow graphic driven by SVG embedded in the CSS.
 - Custom-styled submit buttons to match the aesthetic of the custom-styled forms.
-- Responsive: on wide screens, the forms split into two columns. On smaller screens, they collapse to a single column.
+- Responsive: on wide screens, the forms split into multiple columns. On smaller screens, they collapse to a single column.
 - Low-flow mode that displays on old browsers, JS-disabled browsers, or can be activated manually by adding the `lowFlow` class to your `<form>` element. The low-flow mode reverts the float label pattern to traditional labels and collapses the forms to single column mode, but preserves the other visual design enhancements driven purely by CSS.
 
 See `semanticForms.html` or the [live demo](https://kethinov.github.io/semanticforms/semanticForms.html) for more examples.

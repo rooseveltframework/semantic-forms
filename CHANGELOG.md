@@ -4,7 +4,10 @@
 
 - Put your changes here...
 
-- Fixed a situation that could lead to a JS error.
+## 3.0.0
+
+- Removed defualt two column layout. Now defaults to as many columns as the container is wide.
+- Added `x2` class you can put on `dd` elements to double the width of a form. Does not apply on small screens.
 
 ## 2.1.2
 
@@ -13,6 +16,7 @@
 
 ## 2.1.1
 
+- Fixed a situation that could lead to a JS error.
 - Fix minor alignment issue.
 
 ## 2.1.0

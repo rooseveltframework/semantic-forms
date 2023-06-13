@@ -1,12 +1,5 @@
 .semanticForms {
   font-family: sans-serif;
-  /*
-  TODO: still needed?
-  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]) {
-    width: 270px;
-    padding-right: 0;
-  }
-  */
 }
 .semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type=color]),
 .semanticForms select,
@@ -167,7 +160,6 @@
 }
 .semanticForms .floatLabelForm {
   margin: 0 auto;
-  width: 292px;
 }
 .semanticForms .floatLabelForm input[disabled] {
   opacity: 0.5;
@@ -179,9 +171,6 @@
 .semanticForms .floatLabelForm dd {
   float: left;
   margin: 0 10px 0 10px;
-}
-.semanticForms .floatLabelForm dd:nth-child(4n+2) {
-  clear: both;
 }
 .semanticForms .floatLabelForm dt:not(.checkboxes):not(.radios) {
   font-size: 1px;
@@ -198,7 +187,7 @@
 .semanticForms .floatLabelForm .checkboxes ul,
 .semanticForms .floatLabelForm .radios ul {
   margin: 3px 20px 0 0;
-  width: 267px;
+  width: 262px;
   padding-left: 10px;
 }
 .semanticForms .floatLabelForm label.floatLabelFormAnimatedLabel {
@@ -314,7 +303,7 @@
 .semanticForms menu button {
   float: none;
   clear: none;
-  margin: 0 0 25px 0;
+  margin: 0;
 }
 @media (min-width: 700px) {
   .semanticForms .floatLabelForm {
@@ -336,6 +325,27 @@
   }
   .semanticForms fieldset :last-child {
     margin-right: 0;
+  }
+  .semanticForms .x2 input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type=color]),
+  .semanticForms .x2 select,
+  .semanticForms .x2 textarea {
+    width: 562px;
+  }
+  .semanticForms .x2 input[type=color] {
+    width: 604px;
+  }
+  .semanticForms .x2 input[type=range] {
+    width: 560px !important;
+  }
+  .semanticForms .x2 select {
+    width: 604px;
+  }
+  .semanticForms .x2.checkboxes ul,
+  .semanticForms .x2.radios ul {
+    width: 574px;
+  }
+  .semanticForms .x2 label.floatLabelFormAnimatedLabel {
+    width: 375px;
   }
 }
 .semanticForms.lowFlow dl {
