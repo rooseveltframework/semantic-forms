@@ -111,7 +111,21 @@ Driven by flexbox to intelligently align the buttons based on how many are in th
 ## Checkboxes and radio buttons
 
 Checkboxes and radio buttons need to follow the following markup structure:
-### Checkboxes
+
+### A single checkbox
+
+Not too different than other inputs:
+
+```html
+<form class="semanticForms">
+  <dl>
+    <dt><label for="checkbox">Single checkbox</label></dt>
+    <dd><input id="checkbox" name="checkbox" type="checkbox"></dd>
+  </dl>
+</form>
+```
+
+### Checkbox group
 
 ```html
 <form class="semanticForms">

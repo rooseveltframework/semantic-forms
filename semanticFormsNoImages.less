@@ -247,6 +247,22 @@
       transform: translate(0, 38px) scale(1.5);
     }
 
+    dd:not(.checkboxes):not(.radios).singleCheckbox {
+      width: 292px;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: flex-start;
+      justify-content: left;
+
+      label {
+        margin-top: 10px;
+      }
+
+      input {
+        margin: 10px 10px 0 0;
+      }
+    }
+
     // hide placeholder content until the input is focused
     ::placeholder {
       opacity: 0;

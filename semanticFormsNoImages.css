@@ -202,6 +202,19 @@
   transform-origin: left bottom;
   transform: translate(0, 38px) scale(1.5);
 }
+.semanticForms .floatLabelForm dd:not(.checkboxes):not(.radios).singleCheckbox {
+  width: 292px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  justify-content: left;
+}
+.semanticForms .floatLabelForm dd:not(.checkboxes):not(.radios).singleCheckbox label {
+  margin-top: 10px;
+}
+.semanticForms .floatLabelForm dd:not(.checkboxes):not(.radios).singleCheckbox input {
+  margin: 10px 10px 0 0;
+}
 .semanticForms .floatLabelForm ::placeholder {
   opacity: 0;
   transition: inherit;

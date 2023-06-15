@@ -49,7 +49,7 @@ window.semanticForms = function () {
               if (!dl.classList.contains('floatLabelForm')) {
                 dl.classList.add('floatLabelForm')
               }
-              if (type === 'checkbox' || type === 'radio') {
+              if (input.parentNode.parentNode.id && (type === 'checkbox' || type === 'radio')) {
                 label = document.querySelector('label[data-for=' + input.parentNode.parentNode.id + ']')
               } else {
                 label = document.querySelector('label[for=' + input.id + ']')
@@ -63,6 +63,11 @@ window.semanticForms = function () {
                 if (dl.firstChild.nodeName !== 'LABEL') {
                   newLabel = document.createElement('label')
                   newLabel.className = 'floatLabelFormAnimatedLabel'
+                  if (type === 'checkbox' && input.parentNode.nodeName === 'DD') {
+                    newLabel.setAttribute('for', input.id)
+                    input.parentNode.classList.add('singleCheckbox')
+                    newLabel.className = ''
+                  }
                   newLabel.innerHTML = labelHTML
                   dl.insertBefore(newLabel, dl.firstChild)
                 }

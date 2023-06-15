@@ -4,6 +4,10 @@
 
 - Put your changes here...
 
+## 3.0.2
+
+- Added support for a single checkbox rather than a group of checkboxes.
+
 ## 3.0.1
 
 - Fixed alignment issue.
