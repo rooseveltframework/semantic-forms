@@ -50,9 +50,9 @@ window.semanticForms = function () {
                 dl.classList.add('floatLabelForm')
               }
               if (input.parentNode.parentNode.id && (type === 'checkbox' || type === 'radio')) {
-                label = document.querySelector('label[data-for=' + input.parentNode.parentNode.id + ']')
+                label = document.querySelector('label[data-for=' + input.parentNode.parentNode.id.replace(/\./g, '\\.') + ']')
               } else {
-                label = document.querySelector('label[for=' + input.id + ']')
+                label = document.querySelector('label[for=' + input.id.replace(/\./g, '\\.') + ']')
               }
               labelHTML = label.innerHTML
               if (type === 'checkbox' || type === 'radio') {
@@ -126,6 +126,8 @@ window.semanticForms = function () {
         clearfieldHorizontalOffset + clearfieldVerticalOffset > e.clientY - el.getBoundingClientRect().top
         ) {
           el.value = ''
+          el.dispatchEvent(new Event('input'))
+          el.form.dispatchEvent(new Event('input'))
           el.classList.remove('x')
           el.classList.remove('onX')
         }

@@ -4,6 +4,11 @@
 
 - Put your changes here...
 
+## 3.0.3
+
+- Fixed issue that prevented id selectors from allowing dots in the string.
+- Fixed issue that prevented the clear field from dispatching an input event.
+
 ## 3.0.2
 
 - Added support for a single checkbox rather than a group of checkboxes.
