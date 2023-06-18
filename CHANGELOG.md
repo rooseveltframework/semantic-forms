@@ -4,6 +4,10 @@
 
 - Put your changes here...
 
+## 3.0.4
+
+- Reduced size of select box text.
+
 ## 3.0.3
 
 - Fixed issue that prevented id selectors from allowing dots in the string.
