@@ -2,7 +2,7 @@
   "name": "semantic-forms",
   "description": "Semantic Forms",
   "author": "Eric Newport <kethinov@gmail.com>",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "files": [
     "semanticForms.css",
     "semanticForms.js",
@@ -22,7 +22,7 @@
   "scripts": {
     "test": "echo \"TODO: tests\"",
     "coverage": "echo \"TODO: test coverage\"",
-    "build": "lessc semanticFormsImages.less semanticForms.css && lessc semanticFormsNoImages.less semanticFormsNoImages.css"
+    "build": "lessc semanticFormsImages.less semanticForms.css && lessc semanticFormsNoImages.less semanticFormsNoImages.css && lessc semanticFormsImagesReset.less semanticFormsReset.css && lessc semanticFormsNoImagesReset.less semanticFormsNoImagesReset.css"
   },
   "repository": {
     "type": "git",

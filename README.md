@@ -12,7 +12,9 @@ Include the `semanticForms.css` and `semanticForms.js` files from this repo into
 
 If you want to set your own images for the clear fields and dropdown arrows, then include the `semanticFormsNoImages.css` and `semanticForms.js` files from this repo into your project instead, as they do not have any preset images embedded in the CSS and will result in a smaller dependency size.
 
-Apply the `semanticForms` class to your `<form>` elements:
+If you have CSS inheritance conflicts with other CSS in your webapp, try including the "reset" versions of the semantic forms CSS files (`semanticFormsReset.css` or `semanticFormsNoImagesReset.css`) which set `all: unset;` before applying any semantic-forms styles to help avoid conflicts with other CSS. There is a performance degradation to using this technique, so you should only use this if absolutely necessary.
+
+Then apply the `semanticForms` class to your `<form>` elements:
 
 ```html
 <form class="semanticForms">
