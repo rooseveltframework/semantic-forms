@@ -2,13 +2,17 @@
   "name": "semantic-forms",
   "description": "Semantic Forms",
   "author": "Eric Newport <kethinov@gmail.com>",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "files": [
     "semanticForms.css",
     "semanticForms.js",
     "semanticFormsImages.less",
     "semanticFormsNoImages.css",
-    "semanticFormsNoImages.less"
+    "semanticFormsNoImages.less",
+    "semanticFormsReset.css",
+    "semanticFormsImagesReset.less",
+    "semanticFormsNoImagesReset.css",
+    "semanticFormsNoImagesReset.less"
   ],
   "homepage": "https://github.com/kethinov/semanticforms",
   "license": "CC-BY-4.0",

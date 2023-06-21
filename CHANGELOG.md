@@ -4,6 +4,10 @@
 
 - Put your changes here...
 
+## 3.0.6
+
+- Fixed missing files in npm package.
+
 ## 3.0.5
 
 - Added "reset" versions of the CSS files that set `all: unset;` before applying any semantic forms styles to help avoid conflicts with other CSS. There is a performance degradation to using this technique, so you should only use this if absolutely necessary.
