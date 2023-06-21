@@ -4,6 +4,10 @@
 
 - Put your changes here...
 
+## 3.0.7
+
+- Fixed Chrome issue for forms with no placeholder.
+
 ## 3.0.6
 
 - Fixed missing files in npm package.

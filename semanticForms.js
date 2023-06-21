@@ -83,7 +83,7 @@ window.semanticForms = function () {
               if (nodeName !== 'SELECT' && type !== 'checkbox' && type !== 'radio') {
                 // if it doesn't have a placeholder, add a blank one
                 if (!input.getAttribute('placeholder')) {
-                  input.setAttribute('placeholder', '')
+                  input.setAttribute('placeholder', ' ')
                 }
                 input.classList.add('semanticform')
                 inputHandler(input) // force x to appear on inputs with prefilled value
