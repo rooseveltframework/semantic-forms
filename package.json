@@ -16,7 +16,7 @@
   ],
   "homepage": "https://github.com/kethinov/semanticforms",
   "license": "CC-BY-4.0",
-  "main": "semanticforms.js",
+  "main": "semanticForms.js",
   "readmeFilename": "README.md",
   "dependencies": {},
   "devDependencies": {
