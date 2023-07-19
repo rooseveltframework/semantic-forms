@@ -1,8 +1,13 @@
-# semanticforms Changelog
+# semanticforms changelog
 
 ## Next version
 
 - Put your changes here...
+
+## 3.0.8
+
+- Fixed main export on case-sensitive file systems.
+- Updated dependencies.
 
 ## 3.0.7
 
