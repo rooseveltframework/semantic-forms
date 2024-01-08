@@ -20,6 +20,8 @@ Then apply the `semanticForms` class to your `<form>` elements:
 
 Then the CSS/JS enhancements to your forms will apply automatically, assuming the markup structure you use is one of the supported patterns.
 
+This library also monitors changes to the DOM and will enhance any additional `semanticForms` forms you insert, but the monitoring may not be perfect. If you want to re-scan for new forms to enhance manually, simply call `window.semanticForms()`.
+
 # Features
 
 Overview of pattern library features:

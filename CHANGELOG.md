@@ -8,7 +8,7 @@
 
 - Added dark mode support.
 - Deprecated "reset" versions and "no images" versions.
-- Removed the need to manually call window.semanticForms() every time you alter the DOM in a way that could add new semanticForms elements.
+- Added mutation observer that monitors changes to the DOM and will enhance any additional `semanticForms` forms you insert, but the monitoring may not be perfect. If you want to re-scan for new forms to enhance manually, you may still need to call `window.semanticForms()`.
 - Fixed a bug that caused DOM events to be duplicated when DOM elements are added dynamically after the first page load.
 - Updated dependencies.
 
