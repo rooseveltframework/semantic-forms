@@ -10,10 +10,6 @@ See a [live demo here](https://kethinov.github.io/semanticforms/semanticForms.ht
 
 Include the `semanticForms.css` and `semanticForms.js` files from this repo into your project.
 
-If you want to set your own images for the clear fields and dropdown arrows, then include the `semanticFormsNoImages.css` and `semanticForms.js` files from this repo into your project instead, as they do not have any preset images embedded in the CSS and will result in a smaller dependency size.
-
-If you have CSS inheritance conflicts with other CSS in your webapp, try including the "reset" versions of the semantic forms CSS files (`semanticFormsReset.css` or `semanticFormsNoImagesReset.css`) which set `all: unset;` before applying any semantic-forms styles to help avoid conflicts with other CSS. There is a performance degradation to using this technique, so you should only use this if absolutely necessary.
-
 Then apply the `semanticForms` class to your `<form>` elements:
 
 ```html
@@ -22,11 +18,7 @@ Then apply the `semanticForms` class to your `<form>` elements:
 </form>
 ```
 
-Then the CSS/JS enhancements to your forms will apply automatically.
-
-If you add new forms to the DOM after the initial initialization, you can call the global `semanticForms` function to initialize new forms that have been added to the DOM since the initial initialization.
-
-See `semanticForms.html` or the [live demo](https://kethinov.github.io/semanticforms/semanticForms.html) for a complete pattern library with examples of all UI patterns.
+Then the CSS/JS enhancements to your forms will apply automatically, assuming the markup structure you use is one of the supported patterns.
 
 # Features
 
@@ -58,9 +50,7 @@ The float label input pattern is notoriously difficult to implement in a fashion
 </form>
 ```
 
-If you would like to manipulate the size of the area on the input field reserved for the click event of the clear field, apply one or both of the following `data-` attributes to your form.
-
-If you want to double the width of the input field (on screens with the extra space), add a `x2` class to the `dd` element.
+If you would like to manipulate the size of the area on the input field reserved for the click event of the clear field, apply one or both of the following `data-` attributes to your form:
 
 Adjust the horizontal offset of the clear field's click event click area (the default is 21):
 
@@ -77,6 +67,8 @@ Adjust the vertical offset of the clear field's click event click area (the defa
   <!-- your form here -->
 </form>
 ```
+
+If you want to double the width of the input field (on screens with the extra space), add a `x2` class to the `dd` element.
 
 ## Button groups
 
@@ -99,7 +91,7 @@ Driven by flexbox to intelligently align the buttons based on how many are in th
 <!-- aligns left/right -->
 <menu>
   <li><button type="submit" name="submit">Button 1</button></li>
-  <button type="submit" name="submit">Button 2</button></li>
+  <li><button type="submit" name="submit">Button 2</button></li>
 </menu>
 
 <!-- aligns left/center/right -->
@@ -165,9 +157,10 @@ Not too different than other inputs:
 - Custom-styled select boxes with a custom drawn arrow graphic driven by SVG embedded in the CSS.
 - Custom-styled submit buttons to match the aesthetic of the custom-styled forms.
 - Responsive: on wide screens, the forms split into multiple columns. On smaller screens, they collapse to a single column.
+- Dark mode: apply an additional class of `dark` to your `<form>` elements to use the dark mode.
 - Low-flow mode that displays on old browsers, JS-disabled browsers, or can be activated manually by adding the `lowFlow` class to your `<form>` element. The low-flow mode reverts the float label pattern to traditional labels and collapses the forms to single column mode, but preserves the other visual design enhancements driven purely by CSS.
 
-See `semanticForms.html` or the [live demo](https://kethinov.github.io/semanticforms/semanticForms.html) for more examples.
+See `semanticForms.html` or the [live demo](https://kethinov.github.io/semanticforms/semanticForms.html) for a full demo of all the markup patterns.
 
 # Contributing
 

@@ -1,0 +1,638 @@
+// #region variables
+
+@lightFormBackgroundColor: #fff;
+@lightFormSubBackgroundColor: #f5f5f5;
+@lightFormTextColor: #000;
+@lightBorderColor: #c0c0c0;
+@lightPlaceholderColor: #aaa;
+@darkFormBackgroundColor: #555;
+@darkFormSubBackgroundColor: #2f2f2f;
+@darkFormSubBorderColor: #3f3f3f;
+@darkFormTextColor: #fff;
+@darkBorderColor: #555;
+@darkPlaceholderColor: #aaa;
+@darkButtonGradientLight: #6f6f6f;
+@darkButtonGradientDark: #373737;
+
+// #endregion
+
+// #region default (light mode) styles
+
+form.semanticForms {
+
+  // #region globals
+
+  font-family: sans-serif;
+
+  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type=color]),
+  select,
+  textarea {
+    box-sizing: content-box;
+    background-color: @lightFormBackgroundColor;
+    outline: 0;
+    border: 1px @lightBorderColor solid;
+    border-radius: 10px;
+    width: 250px;
+    height: 25px;
+    font-size: 100%;
+    font-family: sans-serif;
+    padding: 5px 20px;
+  }
+
+  input[type=color] {
+    background-color: @lightFormBackgroundColor;
+    border: 1px @lightBorderColor solid;
+    border-radius: 10px;
+    width: 292px;
+    height: 37px;
+    padding: 5px 20px;
+  }
+
+  select {
+    box-sizing: border-box;
+  }
+
+  input[type=range] {
+    border: 0 !important;
+    width: 248px !important;
+  }
+
+  fieldset {
+    background-color: @lightFormSubBackgroundColor;
+    border: 1px @lightBorderColor solid;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 25px;
+
+    p {
+      text-align: left;
+      width: 100%;
+      clear: both;
+    }
+  }
+
+  legend {
+    text-align: left;
+  }
+
+  dl {
+    text-align: left;
+  }
+
+  .checkboxes ul,
+  .radios ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  dd.checkboxes,
+  dd.radios {
+    margin: 0;
+  }
+
+  menu {
+    width: 100%;
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+    }
+
+    input[type='submit'],
+    input[type='reset'],
+    input[type='image'],
+    button {
+      float: none;
+      clear: none;
+      margin: 0;
+    }
+  }
+
+  // #endregion
+
+  // #region clear fields and custom select box design
+
+  input:not([type='submit']):not([type='reset']):not([type=checkbox]):not([type=radio]),
+  textarea {
+    background-image: url("data:image/svg+xml;utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'%3E%3Cg%3E%3Cpath fill='%23000' d='M964.7,157.6L622.3,500l342.4,342.4l0,0c15.7,15.7,25.3,37.3,25.3,61.1c0,47.7-38.7,86.5-86.5,86.5c-23.9,0-45.5-9.7-61.1-25.3l0,0L500,622.3L157.6,964.7l0,0C142,980.3,120.3,990,96.5,990C48.7,990,10,951.3,10,903.5c0-23.9,9.7-45.5,25.3-61.1l0,0L377.7,500L35.3,157.6l0,0C19.7,142,10,120.3,10,96.5C10,48.7,48.7,10,96.5,10c23.9,0,45.5,9.7,61.1,25.3l0,0L500,377.7L842.4,35.3l0,0C858,19.7,879.7,10,903.5,10c47.8,0,86.5,38.7,86.5,86.5C990,120.3,980.3,142,964.7,157.6L964.7,157.6z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 12px;
+    background-repeat: no-repeat;
+  }
+
+  input:not([type=checkbox]):not([type=radio]) {
+    background-position: right -12px center;
+  }
+
+  textarea {
+    background-position: right -12px top 10px;
+    height: 100px;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+    background-size: 14px;
+    background-position: calc(99%) 16px;
+    background-repeat: no-repeat;
+    width: 292px;
+    height: 37px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  // #endregion
+
+  // #region style placeholders
+
+  input::placeholder {
+    color: @lightPlaceholderColor;
+    opacity: 1;
+  }
+
+  textarea::placeholder {
+    color: @lightPlaceholderColor;
+    opacity: 1;
+  }
+
+  input:focus::placeholder {
+    color: @lightPlaceholderColor;
+    opacity: 1;
+  }
+
+  input:focus::-moz-placeholder {
+    color: @lightPlaceholderColor;
+    opacity: 1;
+  }
+
+  input:focus::-webkit-input-placeholder {
+    color: @lightPlaceholderColor;
+    opacity: 1;
+  }
+
+  input:focus:-ms-input-placeholder {
+    color: @lightPlaceholderColor;
+    opacity: 1;
+  }
+
+  textarea:focus::placeholder {
+    color: @lightPlaceholderColor;
+    opacity: 1;
+  }
+
+  textarea:focus::-moz-placeholder {
+    color: @lightPlaceholderColor;
+    opacity: 1;
+  }
+
+  textarea:focus::-webkit-input-placeholder {
+    color: @lightPlaceholderColor;
+    opacity: 1;
+  }
+
+  textarea:focus:-ms-input-placeholder {
+    color: @lightPlaceholderColor;
+    opacity: 1;
+  }
+
+  // #endregion
+
+  // #region buttons
+
+  input[type='submit'],
+  input[type='reset'],
+  input[type='image'],
+  button {
+    width: auto;
+    box-sizing: content-box;
+    float: none;
+    clear: both;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 20px;
+    font-size: 100%;
+    margin: 25px 10px;
+    padding: 5px 25px;
+    border: 2px @lightBorderColor solid;
+    background-image: linear-gradient(to bottom, @lightFormBackgroundColor 0%, @lightBorderColor 100%);
+  }
+
+  input[type='submit']:first-of-type,
+  input[type='reset']:first-of-type,
+  input[type='image']:first-of-type,
+  button:first-of-type {
+    margin-left: 0;
+  }
+
+  input[type='submit']:active,
+  input[type='reset']:active,
+  input[type='image']:active,
+  button:active {
+    background-image: linear-gradient(to bottom, @lightBorderColor 0%, @lightFormBackgroundColor 100%);
+  }
+
+  // #endregion
+
+  // #region float label forms
+
+  label.floatLabelFormAnimatedLabel, input:not([type=checkbox]):not([type=radio]), select, textarea, section {
+    transition: color 0.2s, text-indent 0.2s, transform 0.2s, background-position 0.2s;
+    touch-action: manipulation;
+  }
+
+  .floatLabelForm {
+    margin: 0 auto;
+
+    input[disabled] {
+      opacity: 0.5;
+    }
+
+    // remove native clear button, we made a custom one
+    input:not([type=date])::-webkit-clear-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    dd {
+      float: left;
+      margin: 0 10px 0 10px;
+    }
+
+    dt:not(.checkboxes):not(.radios) {
+      font-size: 1px;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      position: absolute;
+      right: 9999px;
+    }
+
+    dd:not(.checkboxes):not(.radios) {
+      display: flex;
+      flex-flow: column-reverse;
+    }
+
+    .checkboxes ul,
+    .radios ul {
+      margin: 3px 20px 0 0;
+      width: 262px;
+      padding-left: 10px;
+    }
+
+    label.floatLabelFormAnimatedLabel {
+      width: 170px;
+      padding: 6px 15px;
+      font-size: 75%;
+      color: @lightPlaceholderColor;
+      cursor: text;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transform-origin: left bottom;
+      transform: translate(0, 38px) scale(1.5);
+    }
+
+    dd:not(.checkboxes):not(.radios).singleCheckbox {
+      width: 292px;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: flex-start;
+      justify-content: left;
+
+      label {
+        margin-top: 10px;
+      }
+
+      input {
+        margin: 10px 10px 0 0;
+      }
+    }
+
+    // hide placeholder content until the input is focused
+    ::placeholder {
+      opacity: 0;
+      transition: inherit;
+    }
+
+    ::-moz-placeholder {
+      opacity: 0;
+      transition: inherit;
+    }
+
+    ::-webkit-input-placeholder {
+      opacity: 0;
+      transition: inherit;
+    }
+
+    :-ms-input-placeholder {
+      opacity: 0;
+      transition: inherit;
+    }
+
+    // show the placeholder when the input is focused
+    input:focus::placeholder {
+      opacity: 1;
+    }
+
+    input:focus::-moz-placeholder {
+      opacity: 1;
+    }
+
+    input:focus::-webkit-input-placeholder {
+      opacity: 1;
+    }
+
+    input:focus:-ms-input-placeholder {
+      opacity: 1;
+    }
+
+    textarea:focus::placeholder {
+      opacity: 1;
+    }
+
+    textarea:focus::-moz-placeholder {
+      opacity: 1;
+    }
+
+    textarea:focus::-webkit-input-placeholder {
+      opacity: 1;
+    }
+
+    textarea:focus:-ms-input-placeholder {
+      opacity: 1;
+    }
+
+    // move the label off of input to make room for input content
+    input:not(:placeholder-shown) + label,
+    input:focus + label,
+    textarea:not(:placeholder-shown) + label,
+    textarea:focus + label,
+    select + label.floatLabelFormAnimatedLabel,
+    .checkboxes label.floatLabelFormAnimatedLabel,
+    .radios label.floatLabelFormAnimatedLabel {
+      transform: translate(0, 0) scale(1);
+      text-indent: 6px;
+      cursor: default;
+      color: @lightFormTextColor;
+    }
+
+    input.x {
+      background-position: right 6px center;
+    }
+
+    textarea.x {
+      background-position: right 6px top 10px;
+    }
+
+    .onX {
+      cursor: pointer;
+    }
+
+    // disable autofill yellow
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    textarea:-webkit-autofill:active,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus,
+    select:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 1000px @lightFormBackgroundColor inset;
+      transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+      transition-delay: 5000s;
+      transition-property: background-color, color;
+    }
+  }
+
+  .floatLabelForm::after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+
+  // #endregion
+
+  // #region side-by-side pattern on large screens
+
+  @media (min-width: 700px) {
+    .floatLabelForm {
+      margin: 0 -10px;
+      width: auto;
+      text-align: left;
+    }
+
+    fieldset {
+      text-align: left;
+
+      input[type='submit'],
+      input[type='reset'],
+      input[type='image'],
+      button {
+        float: left;
+        clear: none;
+      }
+
+      :last-child {
+        margin-right: 0;
+      }
+    }
+
+    .x2 {
+      input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type=color]),
+      select,
+      textarea {
+        width: 562px;
+      }
+    }
+
+    .x2 {
+      input[type=color] {
+        width: 604px;
+      }
+    }
+
+    .x2 {
+      input[type=range] {
+        width: 560px !important;
+      }
+    }
+
+    .x2 {
+      select {
+        width: 604px;
+      }
+    }
+
+    .x2.checkboxes ul,
+    .x2.radios ul {
+      width: 574px;
+    }
+
+    .x2 {
+      label.floatLabelFormAnimatedLabel {
+        width: 375px;
+      }
+    }
+  }
+
+  // #endregion
+}
+
+// #endregion
+
+// #region non-js exclusive styles
+
+form.semanticForms.lowFlow {
+  dl {
+    margin: 10px 0 0 0;
+  }
+
+  dd {
+    margin: 0 0 25px 0;
+  }
+
+  dd:last-child {
+    margin: 0;
+  }
+}
+
+// #endregion
+
+// #region dark mode styles
+
+form.semanticForms.dark {
+  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type=color]),
+  select,
+  textarea {
+    background-color: @darkFormBackgroundColor;
+    border: 1px @darkBorderColor solid;
+    color: @darkFormTextColor;
+  }
+
+  input[type=color] {
+    background-color: @darkFormBackgroundColor;
+    border: 1px @darkBorderColor solid;
+    color: @darkFormTextColor;
+  }
+
+  fieldset {
+    background-color: @darkFormSubBackgroundColor;
+    border: 1px @darkFormSubBorderColor solid;
+  }
+
+  // clear fields
+  input:not([type='submit']):not([type='reset']):not([type=checkbox]):not([type=radio]),
+  textarea {
+    background-image: url("data:image/svg+xml;utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' stroke='%23fff' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'%3E%3Cg%3E%3Cpath fill='%23fff' d='M964.7,157.6L622.3,500l342.4,342.4l0,0c15.7,15.7,25.3,37.3,25.3,61.1c0,47.7-38.7,86.5-86.5,86.5c-23.9,0-45.5-9.7-61.1-25.3l0,0L500,622.3L157.6,964.7l0,0C142,980.3,120.3,990,96.5,990C48.7,990,10,951.3,10,903.5c0-23.9,9.7-45.5,25.3-61.1l0,0L377.7,500L35.3,157.6l0,0C19.7,142,10,120.3,10,96.5C10,48.7,48.7,10,96.5,10c23.9,0,45.5,9.7,61.1,25.3l0,0L500,377.7L842.4,35.3l0,0C858,19.7,879.7,10,903.5,10c47.8,0,86.5,38.7,86.5,86.5C990,120.3,980.3,142,964.7,157.6L964.7,157.6z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  // custom select box design
+  select {
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+    color: @darkFormTextColor;
+  }
+
+  // style placeholders
+  input::placeholder {
+    color: @darkPlaceholderColor;
+  }
+
+  textarea::placeholder {
+    color: @darkPlaceholderColor;
+  }
+
+  input:focus::placeholder {
+    color: @darkPlaceholderColor;
+  }
+
+  input:focus::-moz-placeholder {
+    color: @darkPlaceholderColor;
+  }
+
+  input:focus::-webkit-input-placeholder {
+    color: @darkPlaceholderColor;
+  }
+
+  input:focus:-ms-input-placeholder {
+    color: @darkPlaceholderColor;
+  }
+
+  textarea:focus::placeholder {
+    color: @darkPlaceholderColor;
+  }
+
+  textarea:focus::-moz-placeholder {
+    color: @darkPlaceholderColor;
+  }
+
+  textarea:focus::-webkit-input-placeholder {
+    color: @darkPlaceholderColor;
+  }
+
+  textarea:focus:-ms-input-placeholder {
+    color: @darkPlaceholderColor;
+  }
+
+  // buttons
+  input[type='submit'],
+  input[type='reset'],
+  input[type='image'],
+  button {
+    border: 2px @darkButtonGradientDark solid;
+    background-image: linear-gradient(to bottom, @darkButtonGradientLight 0%, @darkButtonGradientDark 100%);
+    color: @darkFormTextColor;
+  }
+
+  input[type='submit']:active,
+  input[type='reset']:active,
+  input[type='image']:active,
+  button:active {
+    background-image: linear-gradient(to bottom, @darkButtonGradientDark 0%, @darkButtonGradientLight 100%);
+    color: @darkFormTextColor;
+  }
+
+  .floatLabelForm {
+    label.floatLabelFormAnimatedLabel {
+      color: @darkPlaceholderColor;
+    }
+
+    // move the label off of input to make room for input content
+    input:not(:placeholder-shown) + label,
+    input:focus + label,
+    textarea:not(:placeholder-shown) + label,
+    textarea:focus + label,
+    select + label.floatLabelFormAnimatedLabel,
+    .checkboxes label.floatLabelFormAnimatedLabel,
+    .radios label.floatLabelFormAnimatedLabel {
+      color: @darkFormTextColor;
+    }
+
+    // disable autofill yellow
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    textarea:-webkit-autofill:active,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus,
+    select:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 1000px @darkFormBackgroundColor inset;
+    }
+  }
+}
+
+// #endregion

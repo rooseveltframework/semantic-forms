@@ -4,6 +4,14 @@
 
 - Put your changes here...
 
+## 3.1.0
+
+- Added dark mode support.
+- Deprecated "reset" versions and "no images" versions.
+- Removed the need to manually call window.semanticForms() every time you alter the DOM in a way that could add new semanticForms elements.
+- Fixed a bug that caused DOM events to be duplicated when DOM elements are added dynamically after the first page load.
+- Updated dependencies.
+
 ## 3.0.8
 
 - Fixed main export on case-sensitive file systems.

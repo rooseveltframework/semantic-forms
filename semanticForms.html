@@ -7,12 +7,20 @@
     <title>Semantic Forms</title>
     <link rel="stylesheet" href="semanticForms.css">
     <style>
+      body.light {
+        background-color: #fff;
+        color: #000;
+      }
+      body.dark {
+        background-color: #000;
+        color: #fff;
+      }
       h1,
       p {
         font-family: sans-serif;
       }
     </style>
-    <script src="semanticForms.js" defer></script>
+    <script src="semanticForms.js"></script>
   </head>
   <body>
     <main>
@@ -62,7 +70,7 @@
                 <option value="7">Item seven</option>
               </select></dd>
 
-              <dt><label data-for="checkboxes">Checkboxes:</label></dt>
+              <dt><label data-for="checkboxes">Checkboxes</label></dt>
               <dd class="checkboxes">
                 <ul id="checkboxes">
                   <li><input type="checkbox" name="checkboxes" id="c_one"> <label for="c_one">One</label></li>
@@ -74,7 +82,7 @@
               <dt><label for="checkbox">Single checkbox</label></dt>
               <dd><input id="checkbox" name="checkbox" type="checkbox"></dd>
 
-              <dt><label data-for="radios">Radios:</label></dt>
+              <dt><label data-for="radios">Radios</label></dt>
               <dd class="radios">
                 <ul id="radios">
                   <li><input type="radio" name="radios" id="r_one"> <label for="r_one">One</label></li>
@@ -174,7 +182,7 @@
                 <option value="7">Item seven</option>
               </select></dd>
 
-              <dt><label data-for="low-flow-checkboxes">Checkboxes:</label></dt>
+              <dt><label data-for="low-flow-checkboxes">Checkboxes</label></dt>
               <dd class="checkboxes">
                 <ul id="low-flow-checkboxes">
                   <li><input type="checkbox" name="low-flow-checkboxes" id="low-flow-c_one"> <label for="low-flow-c_one">One</label></li>
@@ -186,7 +194,7 @@
               <dt><label for="low-flow-checkbox">Single checkbox</label></dt>
               <dd><input id="low-flow-checkbox" name="low-flow-checkbox" type="checkbox"></dd>
 
-              <dt><label data-for="low-flow-radios">Radios:</label></dt>
+              <dt><label data-for="low-flow-radios">Radios</label></dt>
               <dd class="radios">
                 <ul id="low-flow-radios">
                   <li><input type="radio" name="low-flow-radios" id="low-flow-r_one"> <label for="low-flow-r_one">One</label></li>
@@ -245,5 +253,35 @@
         </form>
       </article>
     </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.insertAdjacentHTML('afterbegin', '<p id="mode"><button></button></p>')
+        document.querySelector('#mode button').addEventListener('click', (event) => toggleDarkMode())
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) toggleDarkMode('dark')
+        else toggleDarkMode('light')
+      })
+
+      function toggleDarkMode (mode) {
+        if (mode === 'light' || document.body.className === 'dark') {
+          document.body.className = 'light'
+          document.querySelector('#mode button').innerHTML = 'Switch to dark mode'
+          const forms = document.querySelectorAll('form')
+          for (const form of forms) {
+            form.classList.add('light')
+            form.classList.remove('dark')
+          }
+        } else {
+          document.body.className = 'dark'
+          document.querySelector('#mode button').innerHTML = 'Switch to light mode'
+          const forms = document.querySelectorAll('form')
+          for (const form of forms) {
+            form.classList.add('dark')
+            form.classList.remove('light')
+          }
+        }
+      }
+
+      window.semanticForms()
+    </script>
   </body>
 </html>

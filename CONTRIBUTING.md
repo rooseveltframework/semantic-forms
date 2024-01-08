@@ -1,4 +1,4 @@
-# How to contribute to semanticforms
+# How to contribute to this project
 
 ## Before opening a pull request
 
@@ -8,7 +8,7 @@
 
 ## Release process
 
-If you are a maintainer of semanticforms, please follow the following release procedure:
+If you are a maintainer of this project, please follow the following release procedure:
 
 - Merge all desired pull requests into master.
 - Bump `package.json` to a new version and run `npm i` to generate a new `package-lock.json`.
