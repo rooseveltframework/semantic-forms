@@ -2,7 +2,8 @@
 
 ## Next version
 
-- Put your changes here...
+- Added a reinitialization method to re-scan existing forms. Called with `window.semanticForms.reinitialize(formName)`.
+- Logic to enhance forms now ignores inputs that have already been enhanced.
 
 ## 3.1.0
 

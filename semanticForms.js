@@ -11,6 +11,7 @@ window.semanticForms = () => {
       const clearfieldVerticalOffset = parseInt(form.getAttribute('data-clearfield-vertical-offset')) || 5
       const inputs = Array.prototype.slice.call(form.getElementsByTagName('input')).concat(Array.prototype.slice.call(form.getElementsByTagName('textarea'))).concat(Array.prototype.slice.call(form.getElementsByTagName('select')))
       for (const input of inputs) {
+        if (input.classList.contains('semanticform')) continue
         if (input.id) {
           const nodeName = input.nodeName
           const type = input.getAttribute('type')
@@ -22,6 +23,7 @@ window.semanticForms = () => {
               let label
               if (input.parentNode.parentNode.id && (type === 'checkbox' || type === 'radio')) label = document.querySelector('label[data-for=' + input.parentNode.parentNode.id.replace(/\./g, '\\.') + ']')
               else label = document.querySelector('label[for=' + input.id.replace(/\./g, '\\.') + ']')
+              input.classList.add('semanticform')
               if (type === 'checkbox' || type === 'radio') {
                 dl = input.parentNode
                 while (dl && dl.nodeName !== 'DD') dl = dl.parentNode
@@ -47,7 +49,6 @@ window.semanticForms = () => {
               if (nodeName !== 'SELECT' && type !== 'checkbox' && type !== 'radio') {
                 // if it doesn't have a placeholder, add a blank one
                 if (!input.getAttribute('placeholder')) input.setAttribute('placeholder', ' ')
-                input.classList.add('semanticform')
                 inputHandler(input) // force x to appear on inputs with prefilled value
               }
               input.addEventListener('input', inputHandler)
@@ -128,4 +129,9 @@ window.semanticForms = () => {
     })
     window.semanticFormsObserver.observe(document.body, { attributes: false, childList: true, characterData: false, subtree: true })
   }
+}
+
+window.semanticForms.reinitialize = (form) => {
+  form.classList.remove('semanticFormsActive')
+  window.semanticForms()
 }
