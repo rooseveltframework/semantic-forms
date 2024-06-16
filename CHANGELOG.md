@@ -4,6 +4,11 @@
 
 - Put your changes here...
 
+## 3.2.1
+
+- Fixed a bug that could cause checkboxes and radio buttons to not submit their values to the server properly.
+- Updated various dependencies.
+
 ## 3.2.0
 
 - Added a reinitialization method to re-scan existing forms. Called with `window.semanticForms.reinitialize(formName)`.
