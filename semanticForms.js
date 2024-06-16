@@ -72,7 +72,7 @@ window.semanticForms = () => {
                 const el = event.target
                 const nodeName = el.nodeName
                 const type = el.getAttribute('type')
-                if (nodeName === 'TEXTAREA' || type === 'checkbox' || type === 'color' || type === 'date' || type === 'datetime-local' || type === 'email' || type === 'file' || type === 'month' || type === 'number' || type === 'password' || type === 'radio' || type === 'range' || type === 'search' || type === 'tel' || type === 'text' || type === 'time' || type === 'url' || type === 'week') {
+                if (nodeName === 'TEXTAREA' || type === 'color' || type === 'date' || type === 'datetime-local' || type === 'email' || type === 'file' || type === 'month' || type === 'number' || type === 'password' || type === 'search' || type === 'tel' || type === 'text' || type === 'time' || type === 'url' || type === 'week') {
                   if (el.offsetWidth - clearfieldHorizontalOffset < event.clientX - el.getBoundingClientRect().left &&
                   clearfieldHorizontalOffset + clearfieldVerticalOffset > event.clientY - el.getBoundingClientRect().top
                   ) {
