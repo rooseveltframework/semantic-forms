@@ -1,34 +1,26 @@
 form.semanticForms {
   font-family: sans-serif;
 }
+form.semanticForms ul {
+  list-style: none;
+  padding: 0;
+}
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type=color]),
 form.semanticForms select,
 form.semanticForms textarea {
-  box-sizing: content-box;
+  box-sizing: border-box;
   background-color: #fff;
   outline: 0;
   border: 1px #c0c0c0 solid;
-  border-radius: 10px;
-  width: 250px;
-  height: 25px;
-  font-size: 100%;
   font-family: sans-serif;
-  padding: 5px 20px;
 }
 form.semanticForms input[type=color] {
   background-color: #fff;
   border: 1px #c0c0c0 solid;
   border-radius: 10px;
-  width: 292px;
-  height: 37px;
-  padding: 5px 20px;
 }
 form.semanticForms select {
   box-sizing: border-box;
-}
-form.semanticForms input[type=range] {
-  border: 0 !important;
-  width: 248px !important;
 }
 form.semanticForms fieldset {
   background-color: #f5f5f5;
@@ -53,10 +45,6 @@ form.semanticForms .radios ul {
   list-style: none;
   padding: 0;
 }
-form.semanticForms dd.checkboxes,
-form.semanticForms dd.radios {
-  margin: 0;
-}
 form.semanticForms menu {
   width: 100%;
   clear: both;
@@ -75,15 +63,6 @@ form.semanticForms menu button {
   clear: none;
   margin: 0;
 }
-form.semanticForms input:not([type='submit']):not([type='reset']):not([type=checkbox]):not([type=radio]),
-form.semanticForms textarea {
-  background-image: url("data:image/svg+xml;utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'%3E%3Cg%3E%3Cpath fill='%23000' d='M964.7,157.6L622.3,500l342.4,342.4l0,0c15.7,15.7,25.3,37.3,25.3,61.1c0,47.7-38.7,86.5-86.5,86.5c-23.9,0-45.5-9.7-61.1-25.3l0,0L500,622.3L157.6,964.7l0,0C142,980.3,120.3,990,96.5,990C48.7,990,10,951.3,10,903.5c0-23.9,9.7-45.5,25.3-61.1l0,0L377.7,500L35.3,157.6l0,0C19.7,142,10,120.3,10,96.5C10,48.7,48.7,10,96.5,10c23.9,0,45.5,9.7,61.1,25.3l0,0L500,377.7L842.4,35.3l0,0C858,19.7,879.7,10,903.5,10c47.8,0,86.5,38.7,86.5,86.5C990,120.3,980.3,142,964.7,157.6L964.7,157.6z'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 12px;
-  background-repeat: no-repeat;
-}
-form.semanticForms input:not([type=checkbox]):not([type=radio]) {
-  background-position: right -12px center;
-}
 form.semanticForms textarea {
   background-position: right -12px top 10px;
   height: 100px;
@@ -93,48 +72,19 @@ form.semanticForms select {
   background-size: 14px;
   background-position: calc(99%) 16px;
   background-repeat: no-repeat;
-  width: 292px;
-  height: 37px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
-form.semanticForms input::placeholder {
-  color: #aaa;
-  opacity: 1;
-}
-form.semanticForms textarea::placeholder {
-  color: #aaa;
-  opacity: 1;
-}
-form.semanticForms input:focus::placeholder {
-  color: #aaa;
-  opacity: 1;
-}
-form.semanticForms input:focus::-moz-placeholder {
-  color: #aaa;
-  opacity: 1;
-}
-form.semanticForms input:focus::-webkit-input-placeholder {
-  color: #aaa;
-  opacity: 1;
-}
-form.semanticForms input:focus:-ms-input-placeholder {
-  color: #aaa;
-  opacity: 1;
-}
-form.semanticForms textarea:focus::placeholder {
-  color: #aaa;
-  opacity: 1;
-}
-form.semanticForms textarea:focus::-moz-placeholder {
-  color: #aaa;
-  opacity: 1;
-}
-form.semanticForms textarea:focus::-webkit-input-placeholder {
-  color: #aaa;
-  opacity: 1;
-}
+form.semanticForms input::placeholder,
+form.semanticForms textarea::placeholder,
+form.semanticForms input:focus::placeholder,
+form.semanticForms input:focus::-moz-placeholder,
+form.semanticForms input:focus::-webkit-input-placeholder,
+form.semanticForms input:focus:-ms-input-placeholder,
+form.semanticForms textarea:focus::placeholder,
+form.semanticForms textarea:focus::-moz-placeholder,
+form.semanticForms textarea:focus::-webkit-input-placeholder,
 form.semanticForms textarea:focus:-ms-input-placeholder {
   color: #aaa;
   opacity: 1;
@@ -179,7 +129,12 @@ form.semanticForms section {
   touch-action: manipulation;
 }
 form.semanticForms .floatLabelForm {
-  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+form.semanticForms .floatLabelForm div dd {
+  margin: 0;
 }
 form.semanticForms .floatLabelForm input[disabled] {
   opacity: 0.5;
@@ -188,32 +143,7 @@ form.semanticForms .floatLabelForm input:not([type=date])::-webkit-clear-button 
   -webkit-appearance: none;
   margin: 0;
 }
-form.semanticForms .floatLabelForm dd {
-  float: left;
-  margin: 0 10px 0 10px;
-}
-form.semanticForms .floatLabelForm dt:not(.checkboxes):not(.radios) {
-  font-size: 1px;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  position: absolute;
-  right: 9999px;
-}
-form.semanticForms .floatLabelForm dd:not(.checkboxes):not(.radios) {
-  display: flex;
-  flex-flow: column-reverse;
-}
-form.semanticForms .floatLabelForm .checkboxes ul,
-form.semanticForms .floatLabelForm .radios ul {
-  margin: 3px 20px 0 0;
-  width: 262px;
-  padding-left: 10px;
-}
 form.semanticForms .floatLabelForm label.floatLabelFormAnimatedLabel {
-  width: 170px;
-  padding: 6px 15px;
-  font-size: 75%;
   color: #aaa;
   cursor: text;
   white-space: nowrap;
@@ -223,9 +153,7 @@ form.semanticForms .floatLabelForm label.floatLabelFormAnimatedLabel {
   transform: translate(0, 38px) scale(1.5);
 }
 form.semanticForms .floatLabelForm dd:not(.checkboxes):not(.radios).singleCheckbox {
-  width: 292px;
   display: flex;
-  flex-direction: row-reverse;
   align-items: flex-start;
   justify-content: left;
 }
@@ -235,43 +163,20 @@ form.semanticForms .floatLabelForm dd:not(.checkboxes):not(.radios).singleCheckb
 form.semanticForms .floatLabelForm dd:not(.checkboxes):not(.radios).singleCheckbox input {
   margin: 10px 10px 0 0;
 }
-form.semanticForms .floatLabelForm ::placeholder {
+form.semanticForms .floatLabelForm ::placeholder,
+form.semanticForms .floatLabelForm ::-moz-placeholder,
+form.semanticForms .floatLabelForm ::-webkit-input-placeholder,
+form.semanticForms .floatLabelForm ::-ms-input-placeholder {
   opacity: 0;
   transition: inherit;
 }
-form.semanticForms .floatLabelForm ::-moz-placeholder {
-  opacity: 0;
-  transition: inherit;
-}
-form.semanticForms .floatLabelForm ::-webkit-input-placeholder {
-  opacity: 0;
-  transition: inherit;
-}
-form.semanticForms .floatLabelForm :-ms-input-placeholder {
-  opacity: 0;
-  transition: inherit;
-}
-form.semanticForms .floatLabelForm input:focus::placeholder {
-  opacity: 1;
-}
-form.semanticForms .floatLabelForm input:focus::-moz-placeholder {
-  opacity: 1;
-}
-form.semanticForms .floatLabelForm input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-form.semanticForms .floatLabelForm input:focus:-ms-input-placeholder {
-  opacity: 1;
-}
-form.semanticForms .floatLabelForm textarea:focus::placeholder {
-  opacity: 1;
-}
-form.semanticForms .floatLabelForm textarea:focus::-moz-placeholder {
-  opacity: 1;
-}
-form.semanticForms .floatLabelForm textarea:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
+form.semanticForms .floatLabelForm input:focus::placeholder,
+form.semanticForms .floatLabelForm input:focus::-moz-placeholder,
+form.semanticForms .floatLabelForm input:focus::-webkit-input-placeholder,
+form.semanticForms .floatLabelForm input:focus:-ms-input-placeholder,
+form.semanticForms .floatLabelForm textarea:focus::placeholder,
+form.semanticForms .floatLabelForm textarea:focus::-moz-placeholder,
+form.semanticForms .floatLabelForm textarea:focus::-webkit-input-placeholder,
 form.semanticForms .floatLabelForm textarea:focus:-ms-input-placeholder {
   opacity: 1;
 }
@@ -286,6 +191,15 @@ form.semanticForms .floatLabelForm .radios label.floatLabelFormAnimatedLabel {
   text-indent: 6px;
   cursor: default;
   color: #000;
+}
+dt label form.semanticForms .floatLabelForm input:not(:placeholder-shown) + label,
+dt label form.semanticForms .floatLabelForm input:focus + label,
+dt label form.semanticForms .floatLabelForm textarea:not(:placeholder-shown) + label,
+dt label form.semanticForms .floatLabelForm textarea:focus + label,
+dt label form.semanticForms .floatLabelForm select + label.floatLabelFormAnimatedLabel,
+dt label form.semanticForms .floatLabelForm .checkboxes label.floatLabelFormAnimatedLabel,
+dt label form.semanticForms .floatLabelForm .radios label.floatLabelFormAnimatedLabel {
+  color: red;
 }
 form.semanticForms .floatLabelForm input.x {
   background-position: right 6px center;
@@ -328,13 +242,6 @@ form.semanticForms .floatLabelForm::after {
   }
   form.semanticForms fieldset {
     text-align: left;
-  }
-  form.semanticForms fieldset input[type='submit'],
-  form.semanticForms fieldset input[type='reset'],
-  form.semanticForms fieldset input[type='image'],
-  form.semanticForms fieldset button {
-    float: left;
-    clear: none;
   }
   form.semanticForms fieldset :last-child {
     margin-right: 0;
@@ -385,10 +292,6 @@ form.semanticForms.dark input[type=color] {
 form.semanticForms.dark fieldset {
   background-color: #2f2f2f;
   border: 1px #3f3f3f solid;
-}
-form.semanticForms.dark input:not([type='submit']):not([type='reset']):not([type=checkbox]):not([type=radio]),
-form.semanticForms.dark textarea {
-  background-image: url("data:image/svg+xml;utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' stroke='%23fff' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'%3E%3Cg%3E%3Cpath fill='%23fff' d='M964.7,157.6L622.3,500l342.4,342.4l0,0c15.7,15.7,25.3,37.3,25.3,61.1c0,47.7-38.7,86.5-86.5,86.5c-23.9,0-45.5-9.7-61.1-25.3l0,0L500,622.3L157.6,964.7l0,0C142,980.3,120.3,990,96.5,990C48.7,990,10,951.3,10,903.5c0-23.9,9.7-45.5,25.3-61.1l0,0L377.7,500L35.3,157.6l0,0C19.7,142,10,120.3,10,96.5C10,48.7,48.7,10,96.5,10c23.9,0,45.5,9.7,61.1,25.3l0,0L500,377.7L842.4,35.3l0,0C858,19.7,879.7,10,903.5,10c47.8,0,86.5,38.7,86.5,86.5C990,120.3,980.3,142,964.7,157.6L964.7,157.6z'/%3E%3C/g%3E%3C/svg%3E");
 }
 form.semanticForms.dark select {
   background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
