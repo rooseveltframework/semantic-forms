@@ -7,15 +7,36 @@ window.semanticForms = () => {
 
   // progressively enhance form elements that have the semanticForms class
   const forms = document.querySelectorAll('form.semanticForms:not(.semanticFormsActive)')
+
   for (const form of forms) {
     form.classList.add('semanticFormsActive')
-    if (form.classList.contains('lowFlow')) continue
-
-    const clearfieldHorizontalOffset = parseInt(form.getAttribute('data-clearfield-horizontal-offset')) || 21
-    const clearfieldVerticalOffset = parseInt(form.getAttribute('data-clearfield-vertical-offset')) || 5
 
     // collect all form elements
     const inputs = Array.from(form.querySelectorAll('input, textarea, select'))
+
+    if (form.classList.contains('lowFlow')) {
+      for (const input of inputs) {
+        const dl = input.closest('dl')
+        const dt = input.closest('dd')?.previousElementSibling
+        const dd = input.closest('dd')
+
+        if (dt && dt.nodeName === 'DT' && dd.nodeName === 'DD') {
+          // removes old div that a radio or checkbox may have been added to
+          if (dd.parentElement.nodeName === 'DIV') {
+            dd.parentElement.remove()
+          }
+
+          const div = document.createElement('div')
+          div.append(dt, dd)
+          dl.append(div)
+        }
+      }
+      console.log('low flow')
+      continue
+    }
+
+    const clearfieldHorizontalOffset = parseInt(form.getAttribute('data-clearfield-horizontal-offset')) || 21
+    const clearfieldVerticalOffset = parseInt(form.getAttribute('data-clearfield-vertical-offset')) || 5
 
     for (const input of inputs) {
       // check if input has already been formatted
@@ -48,10 +69,13 @@ window.semanticForms = () => {
               newLabel.setAttribute('for', input.id)
               input.parentNode.classList.add('singleCheckbox')
               newLabel.className = ''
+              label.setAttribute('hidden', 'hidden')
             }
 
             newLabel.innerHTML = label.innerHTML
-            dd.append(newLabel)
+            if (!dd.querySelector('label')) {
+              dd.append(newLabel)
+            }
           }
 
           const div = document.createElement('div')
@@ -68,7 +92,6 @@ window.semanticForms = () => {
           newLabel.innerHTML = label.innerHTML
           label.setAttribute('hidden', 'hidden')
           insertAfter(newLabel, input)
-          // label.classList.add('floatLabelFormAnimatedLabel')
         }
 
         // standard inputs

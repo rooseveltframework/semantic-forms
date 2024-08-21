@@ -12,7 +12,6 @@
   "license": "CC-BY-4.0",
   "main": "semanticForms.js",
   "readmeFilename": "README.md",
-  "dependencies": {},
   "devDependencies": {
     "less": "4.2.0",
     "eslint": "9.9.1",
@@ -24,7 +23,8 @@
     "coverage": "echo \"TODO: test coverage\"",
     "lint": "standard && standard --plugin html *.html",
     "lint-fix": "standard --fix && standard --plugin html *.html --fix",
-    "build": "lessc semanticForms.less semanticForms.css"
+    "build": "lessc semanticForms.less semanticForms.css",
+    "watch": "watch 'npm run build' ./"
   },
   "repository": {
     "type": "git",
