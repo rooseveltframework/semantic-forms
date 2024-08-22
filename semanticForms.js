@@ -14,26 +14,7 @@ window.semanticForms = () => {
     // collect all form elements
     const inputs = Array.from(form.querySelectorAll('input, textarea, select'))
 
-    if (form.classList.contains('lowFlow')) {
-      for (const input of inputs) {
-        const dl = input.closest('dl')
-        const dt = input.closest('dd')?.previousElementSibling
-        const dd = input.closest('dd')
-
-        if (dt && dt.nodeName === 'DT' && dd.nodeName === 'DD') {
-          // removes old div that a radio or checkbox may have been added to
-          if (dd.parentElement.nodeName === 'DIV') {
-            dd.parentElement.remove()
-          }
-
-          const div = document.createElement('div')
-          div.append(dt, dd)
-          dl.append(div)
-        }
-      }
-      console.log('low flow')
-      continue
-    }
+    if (form.classList.contains('lowFlow')) continue
 
     const clearfieldHorizontalOffset = parseInt(form.getAttribute('data-clearfield-horizontal-offset')) || 21
     const clearfieldVerticalOffset = parseInt(form.getAttribute('data-clearfield-vertical-offset')) || 5
@@ -102,7 +83,24 @@ window.semanticForms = () => {
 
         if (type !== 'checkbox' && type !== 'radio') {
           const div = document.createElement('div')
-          div.append(label.closest('dt'), input.closest('dd'))
+          const dt = label.closest('dt')
+          const dd = input.closest('dd')
+
+          if (input.nodeName !== 'SELECT' && type !== 'range') {
+            const clearBtn = document.createElement('button')
+            clearBtn.type = 'button'
+            clearBtn.ariaLabel = 'Clear input'
+            clearBtn.innerHTML = '<svg viewBox="0 0 16 16" width="12" height="12"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />'
+            clearBtn.classList.add('clear')
+            clearBtn.addEventListener('click', () => {
+              input.value = ''
+              input.focus()
+            })
+
+            insertAfter(clearBtn, dd.querySelector('label'))
+          }
+
+          div.append(dt, dd)
           dl.append(div)
         }
 

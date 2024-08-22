@@ -64,6 +64,16 @@ form.semanticForms {
     }
   }
 
+  &.lowFlow {
+    fieldset {
+      dl {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+  }
+
   menu {
     display: flex;
     justify-content: space-between;
@@ -86,6 +96,10 @@ form.semanticForms {
     padding-left: 10px;
   }
 
+  dd {
+    position: relative;
+  }
+
   // style all input types
   input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]),
   select,
@@ -97,11 +111,20 @@ form.semanticForms {
     border-radius: 5px;
     font-size: 16px;
     padding: 8px;
+    padding-right: 30px;
 
     &:focus + label,
     &:not(:placeholder-shown) + label {
       transform: translateY(-150%) scale(0.75);
     }
+  }
+
+  input:placeholder-shown + label + .clear {
+    display: none;
+  }
+
+  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]) {
+    height: 38px;
   }
 
   textarea {
@@ -111,7 +134,33 @@ form.semanticForms {
   // specific styling for color
   input[type=color] {
     padding: 4px !important;
+    padding-right: 30px !important;
     height: 38.5px;
+  }
+
+  .clear {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    // todo: we need to account for <dd>'s that are taller than just a single input
+    top: 0;
+    right: 0;
+    margin-top: 8px;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    color: var(--placeholderColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover,
+    &:focus {
+      color: #333;
+      color: var(--subBorderColor);
+    }
   }
 
   // button styling

@@ -55,6 +55,11 @@ form.semanticForms fieldset dl dd:not(.checkboxes):not(.radios).singleCheckbox l
 form.semanticForms fieldset dl dd:not(.checkboxes):not(.radios).singleCheckbox input {
   margin: 10px 10px 0 0;
 }
+form.semanticForms.lowFlow fieldset dl {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 form.semanticForms menu {
   display: flex;
   justify-content: space-between;
@@ -72,6 +77,9 @@ form.semanticForms .checkboxes ul,
 form.semanticForms .radios ul {
   padding-left: 10px;
 }
+form.semanticForms dd {
+  position: relative;
+}
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]),
 form.semanticForms select,
 form.semanticForms textarea {
@@ -82,6 +90,7 @@ form.semanticForms textarea {
   border-radius: 5px;
   font-size: 16px;
   padding: 8px;
+  padding-right: 30px;
 }
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):focus + label,
 form.semanticForms select:focus + label,
@@ -91,12 +100,41 @@ form.semanticForms select:not(:placeholder-shown) + label,
 form.semanticForms textarea:not(:placeholder-shown) + label {
   transform: translateY(-150%) scale(0.75);
 }
+form.semanticForms input:placeholder-shown + label + .clear {
+  display: none;
+}
+form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]) {
+  height: 38px;
+}
 form.semanticForms textarea {
   height: 100px;
 }
 form.semanticForms input[type=color] {
   padding: 4px !important;
+  padding-right: 30px !important;
   height: 38.5px;
+}
+form.semanticForms .clear {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 8px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  color: var(--placeholderColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+form.semanticForms .clear:hover,
+form.semanticForms .clear:focus {
+  color: #333;
+  color: var(--subBorderColor);
 }
 form.semanticForms input[type='submit'],
 form.semanticForms input[type='reset'],
