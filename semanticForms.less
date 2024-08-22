@@ -7,6 +7,7 @@ form.semanticForms.light {
   --borderColor: #c0c0c0;
   --subBorderColor: #c0c0c0;
   --placeholderColor: #aaa;
+  --scrollbarColor: #c0c0c0;
 }
 
 form.semanticForms.dark {
@@ -17,6 +18,7 @@ form.semanticForms.dark {
   --borderColor: #555;
   --subBorderColor: #3f3f3f;
   --placeholderColor: #aaa;
+  --scrollbarColor: #373737;
 }
 
 // global override
@@ -48,7 +50,7 @@ form.semanticForms {
         grid-template-columns: 1fr 1fr;
       }
 
-      @media screen and (max-width: 450px) {
+      @media screen and (max-width: 528px) {
         grid-template-columns: 1fr;
       }
 
@@ -110,16 +112,17 @@ form.semanticForms {
     width: 100%;
     border-radius: 5px;
     font-size: 16px;
-    padding: 8px;
+    padding: 6px;
     padding-right: 30px;
 
-    &:focus + label,
-    &:not(:placeholder-shown) + label {
+    &:focus+label,
+    &:not(:placeholder-shown)+label {
       transform: translateY(-150%) scale(0.75);
     }
   }
 
-  input:placeholder-shown + label + .clear {
+  input:placeholder-shown+label+.clear,
+  textarea:placeholder-shown+label+.clear {
     display: none;
   }
 
@@ -128,7 +131,30 @@ form.semanticForms {
   }
 
   textarea {
+    min-width: 100%;
+    width: 100%;
+    min-height: 38px;
     height: 100px;
+  }
+
+  @supports (scrollbar-color: auto) {
+    textarea {
+      scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
+    }
+  }
+
+  @supports selector(::-webkit-scrollbar) {
+    textarea::-webkit-scrollbar {
+      background-color: transparent;
+      width: 10px;
+      padding: 4px;
+    }
+
+    textarea::-webkit-scrollbar-thumb {
+      cursor: pointer;
+      background: var(--scrollbarColor);
+      border-radius: 8px;
+    }
   }
 
   // specific styling for color
@@ -143,14 +169,12 @@ form.semanticForms {
     appearance: none;
     -webkit-appearance: none;
     position: absolute;
-    // todo: we need to account for <dd>'s that are taller than just a single input
     top: 0;
     right: 0;
-    margin-top: 8px;
+    margin: 8px 6px;
     background: none;
     border: none;
     border-radius: 50%;
-    width: 30px;
     color: var(--placeholderColor);
     display: flex;
     align-items: center;
@@ -185,21 +209,22 @@ form.semanticForms {
   // }
 
   // style placeholders
-  input, textarea {
+  input,
+  textarea {
     &::placeholder {
       color: var(--placeholderColor);
       opacity: 1;
     }
   }
 
-  input:not(:placeholder-shown) + label,
-  input:focus + label,
-  textarea:not(:placeholder-shown) + label,
-  textarea:focus + label,
-  select + label.floatLabelFormAnimatedLabel,
+  input:not(:placeholder-shown)+label,
+  input:focus+label,
+  textarea:not(:placeholder-shown)+label,
+  textarea:focus+label,
+  select+label.floatLabelFormAnimatedLabel,
   .checkboxes label.floatLabelFormAnimatedLabel,
   .radios label.floatLabelFormAnimatedLabel,
-  dt > label {
+  dt>label {
     color: var(--formTextColor);
   }
 
@@ -209,7 +234,7 @@ form.semanticForms {
       position: relative;
 
       dd:not(.singleCheckbox) {
-        > label {
+        >label {
           position: absolute;
           transform-origin: left center;
           pointer-events: none;
@@ -222,7 +247,9 @@ form.semanticForms {
           text-overflow: ellipsis;
         }
 
-        input, textarea {
+        input,
+        textarea {
+
           // hide placeholder content until input is focused
           &::placeholder {
             opacity: 0;

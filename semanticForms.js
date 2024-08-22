@@ -134,6 +134,20 @@ window.semanticForms = () => {
             }
           }
         })
+
+        // add listener to shift clear button when scrollbar present
+        for (const textarea of document.querySelectorAll('textarea')) {
+          // shifts the close button to the right if a scrollbar is present
+          const shiftCloseBtn = () => {
+            const clearBtn = textarea.parentElement.querySelector('button.clear')
+            textarea.clientHeight < textarea.scrollHeight
+              ? clearBtn.style.marginRight = '15px'
+              : clearBtn.style.marginRight = ''
+          }
+
+          textarea.addEventListener('input', shiftCloseBtn)
+          textarea.addEventListener('mouseup', shiftCloseBtn)
+        }
       }
     }
   }

@@ -6,6 +6,7 @@ form.semanticForms.light {
   --borderColor: #c0c0c0;
   --subBorderColor: #c0c0c0;
   --placeholderColor: #aaa;
+  --scrollbarColor: #c0c0c0;
 }
 form.semanticForms.dark {
   --formBackgroundColor: #555;
@@ -15,6 +16,7 @@ form.semanticForms.dark {
   --borderColor: #555;
   --subBorderColor: #3f3f3f;
   --placeholderColor: #aaa;
+  --scrollbarColor: #373737;
 }
 form.semanticForms * {
   box-sizing: border-box;
@@ -44,7 +46,7 @@ form.semanticForms fieldset dl {
     grid-template-columns: 1fr 1fr;
   }
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 528px) {
   form.semanticForms fieldset dl {
     grid-template-columns: 1fr;
   }
@@ -89,7 +91,7 @@ form.semanticForms textarea {
   width: 100%;
   border-radius: 5px;
   font-size: 16px;
-  padding: 8px;
+  padding: 6px;
   padding-right: 30px;
 }
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):focus + label,
@@ -100,14 +102,35 @@ form.semanticForms select:not(:placeholder-shown) + label,
 form.semanticForms textarea:not(:placeholder-shown) + label {
   transform: translateY(-150%) scale(0.75);
 }
-form.semanticForms input:placeholder-shown + label + .clear {
+form.semanticForms input:placeholder-shown + label + .clear,
+form.semanticForms textarea:placeholder-shown + label + .clear {
   display: none;
 }
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]) {
   height: 38px;
 }
 form.semanticForms textarea {
+  min-width: 100%;
+  width: 100%;
+  min-height: 38px;
   height: 100px;
+}
+@supports (scrollbar-color: auto) {
+  form.semanticForms textarea {
+    scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
+  }
+}
+@supports selector(::-webkit-scrollbar) {
+  form.semanticForms textarea::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+    padding: 4px;
+  }
+  form.semanticForms textarea::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background: var(--scrollbarColor);
+    border-radius: 8px;
+  }
 }
 form.semanticForms input[type=color] {
   padding: 4px !important;
@@ -121,11 +144,10 @@ form.semanticForms .clear {
   position: absolute;
   top: 0;
   right: 0;
-  margin-top: 8px;
+  margin: 8px 6px;
   background: none;
   border: none;
   border-radius: 50%;
-  width: 30px;
   color: var(--placeholderColor);
   display: flex;
   align-items: center;
