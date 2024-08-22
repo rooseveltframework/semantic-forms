@@ -171,6 +171,15 @@ form.semanticForms button {
 form.semanticForms label {
   color: var(--placeholderColor);
 }
+form.semanticForms select {
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  background-size: 14px;
+  background-position: calc(100% - 8px) 12px;
+  background-repeat: no-repeat;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 form.semanticForms input::placeholder,
 form.semanticForms textarea::placeholder {
   color: var(--placeholderColor);

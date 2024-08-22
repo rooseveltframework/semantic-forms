@@ -139,10 +139,10 @@ window.semanticForms = () => {
         for (const textarea of document.querySelectorAll('textarea')) {
           // shifts the close button to the right if a scrollbar is present
           const shiftCloseBtn = () => {
-            const clearBtn = textarea.parentElement.querySelector('button.clear')
-            textarea.clientHeight < textarea.scrollHeight
-              ? clearBtn.style.marginRight = '15px'
-              : clearBtn.style.marginRight = ''
+            const clearBtn = textarea.parentElement?.querySelector('button.clear')
+            if (clearBtn) {
+              clearBtn.style.marginRight = textarea.clientHeight < textarea.scrollHeight ? '15px' : ''
+            }
           }
 
           textarea.addEventListener('input', shiftCloseBtn)
