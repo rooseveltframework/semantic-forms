@@ -1,4 +1,8 @@
 // setup global colors
+form.semanticForms {
+  --inputHeight: 38px;
+}
+
 form.semanticForms.light {
   --formBackgroundColor: #fff;
   --formSubBackgroundColor: #f5f5f5;
@@ -17,7 +21,7 @@ form.semanticForms.dark {
   --buttonBackgroundColor: #373737;
   --borderColor: #555;
   --subBorderColor: #3f3f3f;
-  --placeholderColor: #aaa;
+  --placeholderColor: #C9C9C9;
   --scrollbarColor: #373737;
 }
 
@@ -58,14 +62,11 @@ form.semanticForms {
         label {
           margin-top: 10px;
         }
-
-        input {
-          margin: 10px 10px 0 0;
-        }
       }
     }
   }
 
+  // low flow specific styling
   &.lowFlow {
     fieldset {
       dl {
@@ -89,13 +90,23 @@ form.semanticForms {
     label[data-for="checkboxes"],
     label[data-for="radios"] {
       position: absolute;
-      transform: translateY(-100%) scale(0.75);
+      transform: translateY(-100%) scale(0.8);
     }
   }
 
   .checkboxes ul,
   .radios ul {
     padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  input[type=checkbox],
+  input[type=radio] {
+    margin-right: 10px;
+    padding: 8px;
+    transform: scale(1.5);
   }
 
   dd {
@@ -114,20 +125,31 @@ form.semanticForms {
     font-size: 16px;
     padding: 6px;
     padding-right: 30px;
+    touch-action: manipulation;
 
-    &:focus+label,
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: 0.5;
+
+      + label {
+        filter: brightness(50%);
+      }
+    }
+
+    &:focus + label,
     &:not(:placeholder-shown)+label {
       transform: translateY(-150%) scale(0.75);
     }
   }
 
-  input:placeholder-shown+label+.clear,
-  textarea:placeholder-shown+label+.clear {
-    display: none;
+  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]),
+  select {
+    height: var(--inputHeight);
   }
 
-  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]) {
-    height: 38px;
+  label {
+    color: var(--placeholderColor);
+    touch-action: manipulation;
   }
 
   textarea {
@@ -137,6 +159,7 @@ form.semanticForms {
     height: 100px;
   }
 
+  // update for scrollbars
   @supports (scrollbar-color: auto) {
     textarea {
       scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
@@ -157,13 +180,26 @@ form.semanticForms {
     }
   }
 
-  // specific styling for color
+  // specific styling for color input
   input[type=color] {
     padding: 4px !important;
     padding-right: 30px !important;
-    height: 38.5px;
+    height: var(--inputHeight);
   }
 
+  // custom dropdown graphic on select element
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+    background-size: 14px;
+    background-position: calc(100% - 8px) 16px;
+    background-repeat: no-repeat;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  // "x" button that appears when a value is entered
   .clear {
     cursor: pointer;
     appearance: none;
@@ -171,7 +207,7 @@ form.semanticForms {
     position: absolute;
     top: 0;
     right: 0;
-    margin: 8px 6px;
+    margin: 6px;
     background: none;
     border: none;
     border-radius: 50%;
@@ -187,6 +223,12 @@ form.semanticForms {
     }
   }
 
+  // hide clear button while placeholder text is visible
+  input:placeholder-shown + label + .clear,
+  textarea:placeholder-shown + label + .clear {
+    display: none;
+  }
+
   // button styling
   input[type='submit'],
   input[type='reset'],
@@ -194,24 +236,9 @@ form.semanticForms {
   button {
     background: var(--buttonBackgroundColor);
     color: var(--formTextColor);
+    border: 2px var(--borderColor) solid;
     border-radius: 5px;
     padding: 5px;
-    color: var(--formTextColor);
-    border: 2px var(--borderColor) solid;
-  }
-
-  label {
-    color: var(--placeholderColor);
-  }
-
-  select {
-    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
-    background-size: 14px;
-    background-position: calc(100% - 8px) 12px;
-    background-repeat: no-repeat;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
   }
 
   // style placeholders
@@ -244,7 +271,7 @@ form.semanticForms {
           position: absolute;
           transform-origin: left center;
           pointer-events: none;
-          top: 8px;
+          top: 10px;
           left: 8px;
           transition: transform 250ms;
           cursor: text;
@@ -297,6 +324,25 @@ form.semanticForms {
           }
         }
       }
+    }
+
+    // disable autofill yellow
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    textarea:-webkit-autofill:active,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus,
+    select:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 1000px var(--formBackgroundColor) inset;
+      transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+      transition-delay: 5000s;
+      transition-property: background-color, color;
     }
   }
 }

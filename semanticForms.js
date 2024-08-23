@@ -90,7 +90,7 @@ window.semanticForms = () => {
             const clearBtn = document.createElement('button')
             clearBtn.type = 'button'
             clearBtn.ariaLabel = 'Clear input'
-            clearBtn.innerHTML = '<svg viewBox="0 0 16 16" width="12" height="12"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />'
+            clearBtn.innerHTML = '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />'
             clearBtn.classList.add('clear')
             clearBtn.addEventListener('click', () => {
               input.value = ''
