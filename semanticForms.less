@@ -1,9 +1,6 @@
 // setup global colors
 form.semanticForms {
   --inputHeight: 38px;
-}
-
-form.semanticForms.light {
   --formBackgroundColor: #fff;
   --formSubBackgroundColor: #f5f5f5;
   --formTextColor: #000;
@@ -30,7 +27,6 @@ form.semanticForms * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  list-style-type: none;
   font-family: sans-serif;
 }
 
@@ -41,26 +37,23 @@ form.semanticForms {
   fieldset {
     border-radius: 10px;
     padding: 20px 10px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     background: var(--formSubBackgroundColor);
     border: 1px var(--subBorderColor) solid;
 
     dl {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
 
-      @media screen and (max-width: 768px) {
-        grid-template-columns: 1fr 1fr;
-      }
+      dd:not(.checkboxes):not(.radios) {
+        display: flex;
+        gap: 10px;
+        margin-left: 5px;
 
-      @media screen and (max-width: 528px) {
-        grid-template-columns: 1fr;
-      }
-
-      dd:not(.checkboxes):not(.radios).singleCheckbox {
         label {
-          margin-top: 10px;
+          cursor: pointer;
         }
       }
     }
@@ -77,10 +70,11 @@ form.semanticForms {
     }
   }
 
-  menu {
+  menu, ul {
     display: flex;
     justify-content: space-between;
     padding: 5px;
+    list-style-type: none;
   }
 
   // adjust checkbox and radios labels
@@ -104,8 +98,6 @@ form.semanticForms {
 
   input[type=checkbox],
   input[type=radio] {
-    margin-right: 10px;
-    padding: 8px;
     transform: scale(1.5);
   }
 
@@ -166,19 +158,19 @@ form.semanticForms {
     }
   }
 
-  @supports selector(::-webkit-scrollbar) {
-    textarea::-webkit-scrollbar {
-      background-color: transparent;
-      width: 10px;
-      padding: 4px;
-    }
+  // @supports selector(::-webkit-scrollbar) {
+  //   textarea::-webkit-scrollbar {
+  //     background-color: transparent;
+  //     width: 10px;
+  //     padding: 4px;
+  //   }
 
-    textarea::-webkit-scrollbar-thumb {
-      cursor: pointer;
-      background: var(--scrollbarColor);
-      border-radius: 8px;
-    }
-  }
+  //   textarea::-webkit-scrollbar-thumb {
+  //     cursor: pointer;
+  //     background: var(--scrollbarColor);
+  //     border-radius: 8px;
+  //   }
+  // }
 
   // specific styling for color input
   input[type=color] {
@@ -234,9 +226,10 @@ form.semanticForms {
   input[type='reset'],
   input[type='image'],
   button {
+    cursor: pointer;
     background: var(--buttonBackgroundColor);
     color: var(--formTextColor);
-    border: 2px var(--borderColor) solid;
+    border: 1px var(--borderColor) solid;
     border-radius: 5px;
     padding: 5px;
   }
@@ -250,14 +243,14 @@ form.semanticForms {
     }
   }
 
-  input:not(:placeholder-shown)+label,
-  input:focus+label,
-  textarea:not(:placeholder-shown)+label,
-  textarea:focus+label,
-  select+label.floatLabelFormAnimatedLabel,
+  input:not(:placeholder-shown) + label,
+  input:focus + label,
+  textarea:not(:placeholder-shown) + label,
+  textarea:focus + label,
+  select + label.floatLabelFormAnimatedLabel,
   .checkboxes label.floatLabelFormAnimatedLabel,
   .radios label.floatLabelFormAnimatedLabel,
-  dt>label {
+  dt > label {
     color: var(--formTextColor);
   }
 
@@ -265,9 +258,15 @@ form.semanticForms {
   .floatLabelForm {
     div {
       position: relative;
+      margin-top: 10px;
 
-      dd:not(.singleCheckbox) {
-        >label {
+      dd.checkboxes,
+      dd.radios {
+
+      }
+
+      dd:not(.singleCheckbox):not(.checkboxes):not(.radios) {
+        label {
           position: absolute;
           transform-origin: left center;
           pointer-events: none;
@@ -282,7 +281,6 @@ form.semanticForms {
 
         input,
         textarea {
-
           // hide placeholder content until input is focused
           &::placeholder {
             opacity: 0;

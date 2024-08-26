@@ -26,8 +26,10 @@ window.semanticForms = () => {
       const type = input.getAttribute('type')
 
       if (nodeNameLookup.includes(input.nodeName) || typeLookup.includes(type)) {
-        const dl = input.closest('dl')
-        dl.classList.toggle('floatLabelForm', true)
+        let dl = input.parentNode
+        while (dl && dl.nodeName !== 'DL') dl = dl.parentNode
+        if (!dl) continue
+        if (!dl.classList.contains('floatLabelForm')) dl.classList.add('floatLabelForm')
 
         let label
 
@@ -41,7 +43,8 @@ window.semanticForms = () => {
 
         // checkboxes and radios
         if (type === 'checkbox' || type === 'radio') {
-          const dd = input.closest('dd')
+          let dd = input.parentNode
+          while (dd && dd.nodeName !== 'DD') dd = dd.parentNode
           if (dd.firstChild.nodeName !== 'LABEL') {
             const newLabel = document.createElement('label')
             newLabel.className = 'floatLabelFormAnimatedLabel'
