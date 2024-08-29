@@ -16,9 +16,6 @@ window.semanticForms = () => {
 
     if (form.classList.contains('lowFlow')) continue
 
-    const clearfieldHorizontalOffset = parseInt(form.getAttribute('data-clearfield-horizontal-offset')) || 21
-    const clearfieldVerticalOffset = parseInt(form.getAttribute('data-clearfield-vertical-offset')) || 5
-
     for (const input of inputs) {
       // check if input has already been formatted
       if (input.classList.contains('semanticform') || !input.id) continue
@@ -79,12 +76,11 @@ window.semanticForms = () => {
         }
 
         // standard inputs
-        if (input.nodeName !== 'SELECT' && type !== 'checkbox' && type !== 'radio') {
-          if (!input.getAttribute('placeholder')) input.setAttribute('placeholder', ' ')
-          inputHandler(input) // force x to appear on inputs with prefilled value
-        }
-
         if (type !== 'checkbox' && type !== 'radio') {
+          if (!input.getAttribute('placeholder')) {
+            input.setAttribute('placeholder', ' ')
+          }
+
           const div = document.createElement('div')
           const dt = label.closest('dt')
           const dd = input.closest('dd')
@@ -93,7 +89,7 @@ window.semanticForms = () => {
             const clearBtn = document.createElement('button')
             clearBtn.type = 'button'
             clearBtn.ariaLabel = 'Clear input'
-            clearBtn.innerHTML = '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />'
+            clearBtn.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />'
             clearBtn.classList.add('clear')
             clearBtn.addEventListener('click', () => {
               input.value = ''
@@ -105,38 +101,21 @@ window.semanticForms = () => {
 
           div.append(dt, dd)
           dl.append(div)
+          if (dt.style.display === 'none' && dd.style.display === 'none') {
+            div.style.display = 'none'
+          }
         }
 
-        input.addEventListener('input', inputHandler)
-        input.addEventListener('mousemove', event => {
-          const el = event.target
-
-          if (el.nodeName === 'TEXTAREA' || typeLookup.includes(el.getAttribute('type'))) {
-            inputHandler(event)
-            if (el.offsetWidth - clearfieldHorizontalOffset < event.clientX - el.getBoundingClientRect().left && clearfieldHorizontalOffset + clearfieldVerticalOffset > event.clientY - el.getBoundingClientRect().top
-            ) {
-              if (!el.classList.contains('onX')) {
-                el.classList.add('onX')
-              }
-            } else {
-              el.classList.remove('onX')
-            }
-          }
-        })
-        input.addEventListener('click', event => {
-          const el = event.target
-          if (el.nodeName === 'TEXTAREA' || typeLookup.includes(el.getAttribute('type'))) {
-            if (el.offsetWidth - clearfieldHorizontalOffset < event.clientX - el.getBoundingClientRect().left &&
-                  clearfieldHorizontalOffset + clearfieldVerticalOffset > event.clientY - el.getBoundingClientRect().top
-            ) {
-              el.value = ''
-              el.dispatchEvent(new Event('input'))
-              el.form.dispatchEvent(new Event('input'))
-              el.classList.remove('x')
-              el.classList.remove('onX')
-            }
-          }
-        })
+        // handle file input clear btn - cannot be handled with CSS
+        if (type === 'file') {
+          const clearBtn = input.parentElement.querySelector('.clear')
+          input.addEventListener('input', e => {
+            clearBtn.style.display = e.target.files.length ? 'flex' : 'none'
+          })
+          clearBtn.addEventListener('click', () => {
+            clearBtn.style.display = 'none'
+          })
+        }
 
         // add listener to shift clear button when scrollbar present
         for (const textarea of document.querySelectorAll('textarea')) {
@@ -151,22 +130,6 @@ window.semanticForms = () => {
           textarea.addEventListener('input', shiftCloseBtn)
           textarea.addEventListener('mouseup', shiftCloseBtn)
         }
-      }
-    }
-  }
-
-  // handle keystrokes or other input
-  function inputHandler (event) {
-    const el = event.target || event
-    const nodeName = el.nodeName
-    const type = el.getAttribute('type') || nodeName === 'TEXTAREA'
-    if ((nodeName && type) && (nodeName === 'TEXTAREA' || typeLookup.includes(type))) {
-      if (el.value) {
-        if (!el.classList.contains('x')) {
-          el.classList.add('x')
-        }
-      } else {
-        el.classList.remove('x')
       }
     }
   }

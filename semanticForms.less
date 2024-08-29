@@ -9,17 +9,19 @@ form.semanticForms {
   --subBorderColor: #c0c0c0;
   --placeholderColor: #aaa;
   --scrollbarColor: #c0c0c0;
+  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
 }
 
 form.semanticForms.dark {
   --formBackgroundColor: #555;
   --formSubBackgroundColor: #2f2f2f;
   --formTextColor: #fff;
-  --buttonBackgroundColor: #373737;
-  --borderColor: #555;
+  --buttonBackgroundColor: #454545;
+  --borderColor: #656565;
   --subBorderColor: #3f3f3f;
   --placeholderColor: #C9C9C9;
   --scrollbarColor: #373737;
+  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
 }
 
 // global override
@@ -43,29 +45,22 @@ form.semanticForms {
 
     dl {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); // allows grid items to automatically resize
       gap: 10px;
       margin-bottom: 10px;
 
       dd:not(.checkboxes):not(.radios) {
         display: flex;
         gap: 10px;
-        margin-left: 5px;
+        max-width: 500px; // prevents inputs from spanning entire width
+
+        &:not(.singleCheckbox) {
+          flex-direction: column;
+        }
 
         label {
           cursor: pointer;
         }
-      }
-    }
-  }
-
-  // low flow specific styling
-  &.lowFlow {
-    fieldset {
-      dl {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
       }
     }
   }
@@ -85,20 +80,17 @@ form.semanticForms {
     label[data-for="radios"] {
       position: absolute;
       transform: translateY(-100%) scale(0.8);
+      top: 10px;
     }
   }
 
   .checkboxes ul,
   .radios ul {
     padding-left: 10px;
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
     gap: 4px;
-  }
-
-  input[type=checkbox],
-  input[type=radio] {
-    transform: scale(1.5);
   }
 
   dd {
@@ -115,9 +107,12 @@ form.semanticForms {
     width: 100%;
     border-radius: 5px;
     font-size: 16px;
-    padding: 6px;
-    padding-right: 30px;
     touch-action: manipulation;
+
+    &:not([type="range"]) {
+      padding: 6px;
+      padding-right: 30px;
+    }
 
     &[disabled] {
       cursor: not-allowed;
@@ -158,20 +153,6 @@ form.semanticForms {
     }
   }
 
-  // @supports selector(::-webkit-scrollbar) {
-  //   textarea::-webkit-scrollbar {
-  //     background-color: transparent;
-  //     width: 10px;
-  //     padding: 4px;
-  //   }
-
-  //   textarea::-webkit-scrollbar-thumb {
-  //     cursor: pointer;
-  //     background: var(--scrollbarColor);
-  //     border-radius: 8px;
-  //   }
-  // }
-
   // specific styling for color input
   input[type=color] {
     padding: 4px !important;
@@ -182,7 +163,7 @@ form.semanticForms {
   // custom dropdown graphic on select element
   select {
     cursor: pointer;
-    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+    background-image: var(--selectIcon);
     background-size: 14px;
     background-position: calc(100% - 8px) 16px;
     background-repeat: no-repeat;
@@ -192,17 +173,18 @@ form.semanticForms {
   }
 
   // "x" button that appears when a value is entered
-  .clear {
+  button.clear {
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
     position: absolute;
-    top: 0;
+    top: 10px; // account for margin above each input
+    bottom: 0;
     right: 0;
-    margin: 6px;
+    margin: auto 6px;
+    padding: 5px;
     background: none;
     border: none;
-    border-radius: 50%;
     color: var(--placeholderColor);
     display: flex;
     align-items: center;
@@ -210,14 +192,20 @@ form.semanticForms {
 
     &:hover,
     &:focus {
-      color: #333;
-      color: var(--subBorderColor);
+      filter: brightness(0.8);
     }
+  }
+
+  // custom styling of clear button on textarea
+  textarea + label + .clear {
+    margin: 6px;
+    bottom: auto;
   }
 
   // hide clear button while placeholder text is visible
   input:placeholder-shown + label + .clear,
-  textarea:placeholder-shown + label + .clear {
+  textarea:placeholder-shown + label + .clear,
+  input[type=file] + label + .clear {
     display: none;
   }
 
@@ -225,13 +213,13 @@ form.semanticForms {
   input[type='submit'],
   input[type='reset'],
   input[type='image'],
-  button {
+  button:not(.clear) {
     cursor: pointer;
     background: var(--buttonBackgroundColor);
     color: var(--formTextColor);
     border: 1px var(--borderColor) solid;
     border-radius: 5px;
-    padding: 5px;
+    padding: 10px;
   }
 
   // style placeholders
@@ -258,25 +246,25 @@ form.semanticForms {
   .floatLabelForm {
     div {
       position: relative;
-      margin-top: 10px;
-
-      dd.checkboxes,
-      dd.radios {
-
-      }
 
       dd:not(.singleCheckbox):not(.checkboxes):not(.radios) {
         label {
           position: absolute;
           transform-origin: left center;
           pointer-events: none;
-          top: 10px;
+          top: 20px;
           left: 8px;
           transition: transform 250ms;
           cursor: text;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+        }
+
+        input,
+        textarea,
+        select {
+          margin-top: 10px;
         }
 
         input,
@@ -341,6 +329,22 @@ form.semanticForms {
       transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
       transition-delay: 5000s;
       transition-property: background-color, color;
+    }
+  }
+
+  // low flow specific styling
+  &.lowFlow {
+    fieldset {
+      dl {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      dd {
+        flex-direction: row !important;
+        margin-bottom: 10px;
+      }
     }
   }
 }

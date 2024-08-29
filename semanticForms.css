@@ -8,16 +8,18 @@ form.semanticForms {
   --subBorderColor: #c0c0c0;
   --placeholderColor: #aaa;
   --scrollbarColor: #c0c0c0;
+  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
 }
 form.semanticForms.dark {
   --formBackgroundColor: #555;
   --formSubBackgroundColor: #2f2f2f;
   --formTextColor: #fff;
-  --buttonBackgroundColor: #373737;
-  --borderColor: #555;
+  --buttonBackgroundColor: #454545;
+  --borderColor: #656565;
   --subBorderColor: #3f3f3f;
   --placeholderColor: #C9C9C9;
   --scrollbarColor: #373737;
+  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
 }
 form.semanticForms * {
   box-sizing: border-box;
@@ -38,22 +40,20 @@ form.semanticForms fieldset {
 }
 form.semanticForms fieldset dl {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }
 form.semanticForms fieldset dl dd:not(.checkboxes):not(.radios) {
   display: flex;
   gap: 10px;
-  margin-left: 5px;
+  max-width: 500px;
+}
+form.semanticForms fieldset dl dd:not(.checkboxes):not(.radios):not(.singleCheckbox) {
+  flex-direction: column;
 }
 form.semanticForms fieldset dl dd:not(.checkboxes):not(.radios) label {
   cursor: pointer;
-}
-form.semanticForms.lowFlow fieldset dl {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
 }
 form.semanticForms menu,
 form.semanticForms ul {
@@ -69,17 +69,15 @@ form.semanticForms dt label[data-for="checkboxes"],
 form.semanticForms dt label[data-for="radios"] {
   position: absolute;
   transform: translateY(-100%) scale(0.8);
+  top: 10px;
 }
 form.semanticForms .checkboxes ul,
 form.semanticForms .radios ul {
   padding-left: 10px;
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
-form.semanticForms input[type=checkbox],
-form.semanticForms input[type=radio] {
-  transform: scale(1.5);
 }
 form.semanticForms dd {
   position: relative;
@@ -93,9 +91,13 @@ form.semanticForms textarea {
   width: 100%;
   border-radius: 5px;
   font-size: 16px;
+  touch-action: manipulation;
+}
+form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type="range"]),
+form.semanticForms select:not([type="range"]),
+form.semanticForms textarea:not([type="range"]) {
   padding: 6px;
   padding-right: 30px;
-  touch-action: manipulation;
 }
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio])[disabled],
 form.semanticForms select[disabled],
@@ -142,7 +144,7 @@ form.semanticForms input[type=color] {
 }
 form.semanticForms select {
   cursor: pointer;
-  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  background-image: var(--selectIcon);
   background-size: 14px;
   background-position: calc(100% - 8px) 16px;
   background-repeat: no-repeat;
@@ -155,12 +157,13 @@ form.semanticForms .clear {
   appearance: none;
   -webkit-appearance: none;
   position: absolute;
-  top: 0;
+  top: 10px;
+  bottom: 0;
   right: 0;
-  margin: 6px;
+  margin: auto 6px;
+  padding: 5px;
   background: none;
   border: none;
-  border-radius: 50%;
   color: var(--placeholderColor);
   display: flex;
   align-items: center;
@@ -168,23 +171,27 @@ form.semanticForms .clear {
 }
 form.semanticForms .clear:hover,
 form.semanticForms .clear:focus {
-  color: #333;
-  color: var(--subBorderColor);
+  filter: brightness(0.8);
+}
+form.semanticForms textarea + label + .clear {
+  margin: 6px;
+  bottom: auto;
 }
 form.semanticForms input:placeholder-shown + label + .clear,
-form.semanticForms textarea:placeholder-shown + label + .clear {
+form.semanticForms textarea:placeholder-shown + label + .clear,
+form.semanticForms input[type=file] + label + .clear {
   display: none;
 }
 form.semanticForms input[type='submit'],
 form.semanticForms input[type='reset'],
 form.semanticForms input[type='image'],
-form.semanticForms button {
+form.semanticForms button:not(.clear) {
   cursor: pointer;
   background: var(--buttonBackgroundColor);
   color: var(--formTextColor);
   border: 1px var(--borderColor) solid;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
 }
 form.semanticForms input::placeholder,
 form.semanticForms textarea::placeholder {
@@ -203,19 +210,23 @@ form.semanticForms dt > label {
 }
 form.semanticForms .floatLabelForm div {
   position: relative;
-  margin-top: 10px;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) label {
   position: absolute;
   transform-origin: left center;
   pointer-events: none;
-  top: 10px;
+  top: 20px;
   left: 8px;
   transition: transform 250ms;
   cursor: text;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) input,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) textarea,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) select {
+  margin-top: 10px;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) input::placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) textarea::placeholder {
@@ -269,4 +280,13 @@ form.semanticForms .floatLabelForm select:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
   transition-delay: 5000s;
   transition-property: background-color, color;
+}
+form.semanticForms.lowFlow fieldset dl {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+form.semanticForms.lowFlow fieldset dd {
+  flex-direction: row !important;
+  margin-bottom: 10px;
 }

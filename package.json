@@ -23,8 +23,7 @@
     "coverage": "echo \"TODO: test coverage\"",
     "lint": "standard && standard --plugin html *.html",
     "lint-fix": "standard --fix && standard --plugin html *.html --fix",
-    "build": "lessc semanticForms.less semanticForms.css",
-    "watch": "watch 'npm run build' ./"
+    "build": "lessc semanticForms.less semanticForms.css"
   },
   "repository": {
     "type": "git",
