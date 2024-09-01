@@ -1,5 +1,6 @@
 form.semanticForms {
   --inputHeight: 38px;
+  --universalBorderRadius: 10px;
   --formBackgroundColor: #fff;
   --formSubBackgroundColor: #f5f5f5;
   --formTextColor: #000;
@@ -9,6 +10,10 @@ form.semanticForms {
   --placeholderColor: #aaa;
   --scrollbarColor: #c0c0c0;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  --border: 1px var(--borderColor) solid;
+  --clearButtonColor: #000;
+  --buttonGradientLight: #fff;
+  --buttonGradientDark: #c0c0c0;
 }
 form.semanticForms.dark {
   --formBackgroundColor: #555;
@@ -20,6 +25,10 @@ form.semanticForms.dark {
   --placeholderColor: #C9C9C9;
   --scrollbarColor: #373737;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  --border: none;
+  --clearButtonColor: #fff;
+  --buttonGradientLight: #6f6f6f;
+  --buttonGradientDark: #373737;
 }
 form.semanticForms * {
   box-sizing: border-box;
@@ -32,7 +41,9 @@ form.semanticForms {
   width: 100%;
 }
 form.semanticForms fieldset {
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--universalBorderRadius);
   padding: 20px 10px;
   margin-bottom: 15px;
   background: var(--formSubBackgroundColor);
@@ -82,14 +93,19 @@ form.semanticForms .radios ul {
 form.semanticForms dd {
   position: relative;
 }
+form.semanticForms label {
+  user-select: none;
+  color: var(--placeholderColor);
+  touch-action: manipulation;
+}
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]),
 form.semanticForms select,
 form.semanticForms textarea {
   background: var(--formBackgroundColor);
-  border: 1px var(--borderColor) solid;
+  border: var(--border);
   color: var(--formTextColor);
   width: 100%;
-  border-radius: 5px;
+  border-radius: var(--universalBorderRadius);
   font-size: 16px;
   touch-action: manipulation;
 }
@@ -122,25 +138,15 @@ form.semanticForms input:not([type='submit']):not([type='reset']):not([type='ima
 form.semanticForms select {
   height: var(--inputHeight);
 }
-form.semanticForms label {
-  color: var(--placeholderColor);
-  touch-action: manipulation;
-}
-form.semanticForms textarea {
-  min-width: 100%;
-  width: 100%;
-  min-height: 38px;
-  height: 100px;
-}
-@supports (scrollbar-color: auto) {
-  form.semanticForms textarea {
-    scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
-  }
-}
 form.semanticForms input[type=color] {
   padding: 4px !important;
   padding-right: 30px !important;
   height: var(--inputHeight);
+}
+form.semanticForms input[type=checkbox],
+form.semanticForms input[type=radio] {
+  width: 1.3em;
+  height: 1.3em;
 }
 form.semanticForms select {
   cursor: pointer;
@@ -152,7 +158,18 @@ form.semanticForms select {
   -moz-appearance: none;
   appearance: none;
 }
-form.semanticForms .clear {
+form.semanticForms textarea {
+  resize: vertical;
+  width: 100%;
+  min-height: 38px;
+  height: 100px;
+}
+@supports (scrollbar-color: auto) {
+  form.semanticForms textarea {
+    scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
+  }
+}
+form.semanticForms button.clear {
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
@@ -164,13 +181,13 @@ form.semanticForms .clear {
   padding: 5px;
   background: none;
   border: none;
-  color: var(--placeholderColor);
+  color: var(--clearButtonColor);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-form.semanticForms .clear:hover,
-form.semanticForms .clear:focus {
+form.semanticForms button.clear:hover,
+form.semanticForms button.clear:focus {
   filter: brightness(0.8);
 }
 form.semanticForms textarea + label + .clear {
@@ -186,12 +203,35 @@ form.semanticForms input[type='submit'],
 form.semanticForms input[type='reset'],
 form.semanticForms input[type='image'],
 form.semanticForms button:not(.clear) {
+  max-width: max-content;
   cursor: pointer;
-  background: var(--buttonBackgroundColor);
+  background-image: linear-gradient(to bottom, var(--buttonGradientLight) 0%, var(--buttonGradientDark) 100%);
   color: var(--formTextColor);
-  border: 1px var(--borderColor) solid;
-  border-radius: 5px;
-  padding: 10px;
+  border: 2px var(--buttonGradientDark) solid;
+  border-radius: 20px;
+  padding: 5px 25px;
+  margin: 25px 10px;
+  font-size: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  transition: filter 0.1s;
+}
+form.semanticForms input[type='submit']:hover,
+form.semanticForms input[type='reset']:hover,
+form.semanticForms input[type='image']:hover,
+form.semanticForms button:not(.clear):hover {
+  filter: brightness(1.2);
+}
+form.semanticForms input[type='submit']:active,
+form.semanticForms input[type='reset']:active,
+form.semanticForms input[type='image']:active,
+form.semanticForms button:not(.clear):active,
+form.semanticForms input[type='submit']:focus,
+form.semanticForms input[type='reset']:focus,
+form.semanticForms input[type='image']:focus,
+form.semanticForms button:not(.clear):focus {
+  background-image: linear-gradient(to bottom, var(--buttonGradientDark) 0%, var(--buttonGradientLight) 100%);
 }
 form.semanticForms input::placeholder,
 form.semanticForms textarea::placeholder {

@@ -3,33 +3,30 @@ window.semanticForms = () => {
   if (typeof document.getElementsByClassName !== 'function' || typeof document.querySelector !== 'function' || !document.body.classList || !window.MutationObserver) return
 
   const nodeNameLookup = ['TEXTAREA', 'SELECT']
-  const typeLookup = ['checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'image', 'month', 'number', 'password', 'radio', 'range', 'search', 'tel', 'text', 'time', 'url', 'week']
+  const inputTypeLookup = ['checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'image', 'month', 'number', 'password', 'radio', 'range', 'search', 'tel', 'text', 'time', 'url', 'week']
 
   // progressively enhance form elements that have the semanticForms class
   const forms = document.querySelectorAll('form.semanticForms:not(.semanticFormsActive)')
 
   for (const form of forms) {
     form.classList.add('semanticFormsActive')
-
-    // collect all form elements
-    const inputs = Array.from(form.querySelectorAll('input, textarea, select'))
-
     if (form.classList.contains('lowFlow')) continue
 
+    // update each input in the semantic form
+    const inputs = Array.from(form.querySelectorAll('input, textarea, select'))
     for (const input of inputs) {
-      // check if input has already been formatted
+      // ignore input if it has previously been formatted
       if (input.classList.contains('semanticform') || !input.id) continue
 
       const type = input.getAttribute('type')
-
-      if (nodeNameLookup.includes(input.nodeName) || typeLookup.includes(type)) {
+      if (nodeNameLookup.includes(input.nodeName) || inputTypeLookup.includes(type)) {
+        // find <dl> element
         let dl = input.parentNode
         while (dl && dl.nodeName !== 'DL') dl = dl.parentNode
         if (!dl) continue
         if (!dl.classList.contains('floatLabelForm')) dl.classList.add('floatLabelForm')
 
         let label
-
         if (input.parentNode.parentNode.id && (type === 'checkbox' || type === 'radio')) {
           label = document.querySelector('label[data-for=' + input.parentNode.parentNode.id.replace(/\./g, '\\.') + ']')
         } else {
@@ -38,10 +35,11 @@ window.semanticForms = () => {
 
         input.classList.add('semanticform')
 
-        // checkboxes and radios
+        // specific handling of checkboxes and radios
         if (type === 'checkbox' || type === 'radio') {
           let dd = input.parentNode
           while (dd && dd.nodeName !== 'DD') dd = dd.parentNode
+
           if (dd.firstChild.nodeName !== 'LABEL') {
             const newLabel = document.createElement('label')
             newLabel.className = 'floatLabelFormAnimatedLabel'
@@ -64,6 +62,7 @@ window.semanticForms = () => {
           if (dd.parentElement.nodeName === 'DIV') {
             dd.parentElement.remove()
           }
+
           div.append(label.closest('dt'), dd)
           dl.append(div)
         } else {
@@ -117,6 +116,7 @@ window.semanticForms = () => {
           })
         }
 
+        // todo: is there a way to append the button via DOM manip. to the textarea, removing all code below???
         // add listener to shift clear button when scrollbar present
         for (const textarea of document.querySelectorAll('textarea')) {
           // shifts the close button to the right if a scrollbar is present

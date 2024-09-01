@@ -2,7 +2,10 @@
 
 ## Next version
 
-- Put your changes here...
+- Rewrite of CSS, includes the following changes:
+  - Fieldset elements now utilize CSS grid to dynamically fill available space before wrapping to the next row.
+  - Input clear button is now a button element, allowing interaction via tab.
+  - Input clear button avoids overlap with scrollbars on textarea elements.
 
 ## 3.2.1
 

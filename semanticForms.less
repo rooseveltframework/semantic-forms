@@ -1,6 +1,7 @@
-// setup global colors
+// setup global styles
 form.semanticForms {
   --inputHeight: 38px;
+  --universalBorderRadius: 10px;
   --formBackgroundColor: #fff;
   --formSubBackgroundColor: #f5f5f5;
   --formTextColor: #000;
@@ -10,6 +11,10 @@ form.semanticForms {
   --placeholderColor: #aaa;
   --scrollbarColor: #c0c0c0;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  --border: 1px var(--borderColor) solid;
+  --clearButtonColor: #000;
+  --buttonGradientLight: #fff;
+  --buttonGradientDark: #c0c0c0;
 }
 
 form.semanticForms.dark {
@@ -22,6 +27,10 @@ form.semanticForms.dark {
   --placeholderColor: #C9C9C9;
   --scrollbarColor: #373737;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  --border: none;
+  --clearButtonColor: #fff;
+  --buttonGradientLight: #6f6f6f;
+  --buttonGradientDark: #373737;
 }
 
 // global override
@@ -37,7 +46,9 @@ form.semanticForms {
   width: 100%;
 
   fieldset {
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--universalBorderRadius);
     padding: 20px 10px;
     margin-bottom: 15px;
     background: var(--formSubBackgroundColor);
@@ -97,15 +108,21 @@ form.semanticForms {
     position: relative;
   }
 
+  label {
+    user-select: none;
+    color: var(--placeholderColor);
+    touch-action: manipulation;
+  }
+
   // style all input types
   input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]),
   select,
   textarea {
     background: var(--formBackgroundColor);
-    border: 1px var(--borderColor) solid;
+    border: var(--border);
     color: var(--formTextColor);
     width: 100%;
-    border-radius: 5px;
+    border-radius: var(--universalBorderRadius);
     font-size: 16px;
     touch-action: manipulation;
 
@@ -134,30 +151,18 @@ form.semanticForms {
     height: var(--inputHeight);
   }
 
-  label {
-    color: var(--placeholderColor);
-    touch-action: manipulation;
-  }
-
-  textarea {
-    min-width: 100%;
-    width: 100%;
-    min-height: 38px;
-    height: 100px;
-  }
-
-  // update for scrollbars
-  @supports (scrollbar-color: auto) {
-    textarea {
-      scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
-    }
-  }
-
   // specific styling for color input
   input[type=color] {
     padding: 4px !important;
     padding-right: 30px !important;
     height: var(--inputHeight);
+  }
+
+  input[type=checkbox],
+  input[type=radio] {
+    // 30# times larger based on font size
+    width: 1.3em;
+    height: 1.3em;
   }
 
   // custom dropdown graphic on select element
@@ -170,6 +175,20 @@ form.semanticForms {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+  }
+
+  textarea {
+    resize: vertical;
+    width: 100%;
+    min-height: 38px;
+    height: 100px;
+  }
+
+  // update for scrollbars
+  @supports (scrollbar-color: auto) {
+    textarea {
+      scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
+    }
   }
 
   // "x" button that appears when a value is entered
@@ -185,7 +204,7 @@ form.semanticForms {
     padding: 5px;
     background: none;
     border: none;
-    color: var(--placeholderColor);
+    color: var(--clearButtonColor);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -214,12 +233,28 @@ form.semanticForms {
   input[type='reset'],
   input[type='image'],
   button:not(.clear) {
+    max-width: max-content;
     cursor: pointer;
-    background: var(--buttonBackgroundColor);
+    background-image: linear-gradient(to bottom, var(--buttonGradientLight) 0%, var(--buttonGradientDark) 100%);
     color: var(--formTextColor);
-    border: 1px var(--borderColor) solid;
-    border-radius: 5px;
-    padding: 10px;
+    border: 2px var(--buttonGradientDark) solid;
+    border-radius: 20px;
+    padding: 5px 25px;
+    margin: 25px 10px;
+    font-size: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: filter 0.1s;
+
+    &:hover {
+      filter: brightness(1.2);
+    }
+
+    &:active,
+    &:focus {
+      background-image: linear-gradient(to bottom, var(--buttonGradientDark) 0%, var(--buttonGradientLight) 100%);
+    }
   }
 
   // style placeholders
