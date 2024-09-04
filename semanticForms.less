@@ -1,7 +1,5 @@
 // setup global styles
 form.semanticForms {
-  --inputHeight: 38px;
-  --universalBorderRadius: 10px;
   --formBackgroundColor: #fff;
   --formSubBackgroundColor: #f5f5f5;
   --formTextColor: #000;
@@ -10,11 +8,13 @@ form.semanticForms {
   --subBorderColor: #c0c0c0;
   --placeholderColor: #aaa;
   --scrollbarColor: #c0c0c0;
-  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
-  --border: 1px var(--borderColor) solid;
   --clearButtonColor: #000;
   --buttonGradientLight: #fff;
   --buttonGradientDark: #c0c0c0;
+  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  --inputHeight: 38px;
+  --borderRadius: 10px;
+  --border: 1px var(--borderColor) solid;
 }
 
 form.semanticForms.dark {
@@ -26,11 +26,11 @@ form.semanticForms.dark {
   --subBorderColor: #3f3f3f;
   --placeholderColor: #C9C9C9;
   --scrollbarColor: #373737;
-  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
-  --border: none;
   --clearButtonColor: #fff;
   --buttonGradientLight: #6f6f6f;
   --buttonGradientDark: #373737;
+  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  --border: none;
 }
 
 // global override
@@ -48,7 +48,8 @@ form.semanticForms {
   fieldset {
     display: flex;
     flex-direction: column;
-    border-radius: var(--universalBorderRadius);
+    gap: 10px;
+    border-radius: var(--borderRadius);
     padding: 20px 10px;
     margin-bottom: 15px;
     background: var(--formSubBackgroundColor);
@@ -122,7 +123,7 @@ form.semanticForms {
     border: var(--border);
     color: var(--formTextColor);
     width: 100%;
-    border-radius: var(--universalBorderRadius);
+    border-radius: var(--borderRadius);
     font-size: 16px;
     touch-action: manipulation;
 
