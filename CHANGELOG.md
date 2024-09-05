@@ -6,7 +6,7 @@
   - Fieldset elements now utilize CSS grid to dynamically fill available space before wrapping to the next row.
   - Input clear button is now a button element, allowing interaction via tab.
   - Input clear button avoids overlap with scrollbars on textarea elements.
-  - Added multiple utility classes that define how wide inputs will span.
+  - Added multiple utility classes that define how wide inputs will span in the responsive layout.
 
 ## 3.2.1
 

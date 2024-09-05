@@ -20,23 +20,22 @@ window.semanticForms = () => {
 
       const type = input.getAttribute('type')
       if (nodeNameLookup.includes(input.nodeName) || inputTypeLookup.includes(type)) {
-        // find <dl> element
+        // recursively find <dl> element
         let dl = input.parentNode
         while (dl && dl.nodeName !== 'DL') dl = dl.parentNode
+
         if (!dl) continue
         if (!dl.classList.contains('floatLabelForm')) dl.classList.add('floatLabelForm')
 
-        let label
-        if (input.parentNode.parentNode.id && (type === 'checkbox' || type === 'radio')) {
-          label = document.querySelector('label[data-for=' + input.parentNode.parentNode.id.replace(/\./g, '\\.') + ']')
-        } else {
-          label = document.querySelector('label[for=' + input.id.replace(/\./g, '\\.') + ']')
-        }
+        const label = input.parentNode.parentNode.id && (type === 'checkbox' || type === 'radio')
+          ? document.querySelector('label[data-for=' + input.parentNode.parentNode.id.replace(/\./g, '\\.') + ']')
+          : document.querySelector('label[for=' + input.id.replace(/\./g, '\\.') + ']')
 
         input.classList.add('semanticform')
 
-        // specific handling of checkboxes and radios
+        // #region create labels
         if (type === 'checkbox' || type === 'radio') {
+          // recursively find <dd> element
           let dd = input.parentNode
           while (dd && dd.nodeName !== 'DD') dd = dd.parentNode
 
@@ -52,17 +51,13 @@ window.semanticForms = () => {
             }
 
             newLabel.innerHTML = label.innerHTML
-            if (!dd.querySelector('label')) {
-              dd.append(newLabel)
-            }
+            if (!dd.querySelector('label')) dd.append(newLabel)
           }
+
+          // removes old div that a radio or checkbox may have been added to
+          if (dd.parentElement.nodeName === 'DIV') dd.parentElement.remove()
 
           const div = document.createElement('div')
-          // removes old div that a radio or checkbox may have been added to
-          if (dd.parentElement.nodeName === 'DIV') {
-            dd.parentElement.remove()
-          }
-
           div.append(label.closest('dt'), dd)
           dl.append(div)
         } else {
@@ -73,6 +68,7 @@ window.semanticForms = () => {
           label.setAttribute('hidden', 'hidden')
           insertAfter(newLabel, input)
         }
+        // #endregion
 
         // standard inputs
         if (type !== 'checkbox' && type !== 'radio') {
@@ -84,6 +80,7 @@ window.semanticForms = () => {
           const dt = label.closest('dt')
           const dd = input.closest('dd')
 
+          // #region clear button
           if (input.nodeName !== 'SELECT' && type !== 'range') {
             const clearBtn = document.createElement('button')
             clearBtn.type = 'button'
@@ -96,7 +93,9 @@ window.semanticForms = () => {
             })
             insertAfter(clearBtn, dd.querySelector('label'))
           }
+          // #endregion
 
+          // check for span utility class
           if (/span-/.test(dd.className)) {
             const match = dd.className.match(/span-[0-9]/)[0]
             dd.classList.remove(match)
@@ -105,12 +104,12 @@ window.semanticForms = () => {
 
           div.append(dt, dd)
           dl.append(div)
-          if (dt.style.display === 'none' && dd.style.display === 'none') {
-            div.style.display = 'none'
-          }
+
+          // determine visibility of newly created <div>
+          if (dt.style.display === 'none' && dd.style.display === 'none') div.style.display = 'none'
         }
 
-        // handle file input clear btn - cannot be handled with CSS
+        // handle file input clear btn, cannot be handled with CSS
         if (type === 'file') {
           const clearBtn = input.parentElement.querySelector('.clear')
           input.addEventListener('input', e => {
@@ -121,7 +120,6 @@ window.semanticForms = () => {
           })
         }
 
-        // TODO investigate appending the button via DOM manipulation
         // add listener to shift clear button when scrollbar present
         for (const textarea of document.querySelectorAll('textarea')) {
           // shifts the close button to the right if a scrollbar is present
@@ -139,7 +137,11 @@ window.semanticForms = () => {
     }
   }
 
-  // utility method for inserting an element after another element
+  /**
+   * Places an element immediately after another element
+   * @param {Object} newNode element being placed after the reference node
+   * @param {*} referenceNode element to be used as reference for new node
+   */
   function insertAfter (newNode, referenceNode) {
     if (referenceNode.nextSibling) referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
     else referenceNode.parentNode.appendChild(newNode)
