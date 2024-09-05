@@ -43,6 +43,7 @@ form.semanticForms * {
   padding: 0;
 }
 form.semanticForms fieldset {
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -223,34 +224,9 @@ form.semanticForms textarea::placeholder {
   color: var(--placeholderColor);
   opacity: 1;
 }
-form.semanticForms .floatLabelForm {
-  container-type: inline-size;
-}
 form.semanticForms .floatLabelForm div {
   position: relative;
   width: 100%;
-}
-form.semanticForms .floatLabelForm div.span-1 dd,
-form.semanticForms .floatLabelForm div.span-2 dd,
-form.semanticForms .floatLabelForm div.span-3 dd,
-form.semanticForms .floatLabelForm div.span-4 dd,
-form.semanticForms .floatLabelForm div.span-5 dd {
-  max-width: 100% !important;
-}
-form.semanticForms .floatLabelForm div.span-1 {
-  grid-column: span 1;
-}
-form.semanticForms .floatLabelForm div.span-2 {
-  grid-column: span 2;
-}
-form.semanticForms .floatLabelForm div.span-3 {
-  grid-column: span 3;
-}
-form.semanticForms .floatLabelForm div.span-4 {
-  grid-column: span 4;
-}
-form.semanticForms .floatLabelForm div.span-5 {
-  grid-column: span 5;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label {
   position: absolute;
@@ -318,18 +294,40 @@ form.semanticForms .floatLabelForm div label {
   color: var(--placeholderColor);
   touch-action: manipulation;
 }
-form.semanticForms .floatLabelForm input:-webkit-autofill,
-form.semanticForms .floatLabelForm input:-webkit-autofill:hover,
-form.semanticForms .floatLabelForm input:-webkit-autofill:focus,
-form.semanticForms .floatLabelForm input:-webkit-autofill:active,
-form.semanticForms .floatLabelForm textarea:-webkit-autofill,
-form.semanticForms .floatLabelForm textarea:-webkit-autofill:hover,
-form.semanticForms .floatLabelForm textarea:-webkit-autofill:focus,
-form.semanticForms .floatLabelForm textarea:-webkit-autofill:active,
-form.semanticForms .floatLabelForm select:-webkit-autofill,
-form.semanticForms .floatLabelForm select:-webkit-autofill:hover,
-form.semanticForms .floatLabelForm select:-webkit-autofill:focus,
-form.semanticForms .floatLabelForm select:-webkit-autofill:active {
+form.semanticForms .floatLabelForm div.span-1 dd,
+form.semanticForms .floatLabelForm div.span-2 dd,
+form.semanticForms .floatLabelForm div.span-3 dd,
+form.semanticForms .floatLabelForm div.span-4 dd,
+form.semanticForms .floatLabelForm div.span-5 dd {
+  max-width: 100% !important;
+}
+form.semanticForms .floatLabelForm div.span-1 {
+  grid-column: span 1;
+}
+form.semanticForms .floatLabelForm div.span-2 {
+  grid-column: span 2;
+}
+form.semanticForms .floatLabelForm div.span-3 {
+  grid-column: span 3;
+}
+form.semanticForms .floatLabelForm div.span-4 {
+  grid-column: span 4;
+}
+form.semanticForms .floatLabelForm div.span-5 {
+  grid-column: span 5;
+}
+form.semanticForms input:-webkit-autofill,
+form.semanticForms input:-webkit-autofill:hover,
+form.semanticForms input:-webkit-autofill:focus,
+form.semanticForms input:-webkit-autofill:active,
+form.semanticForms textarea:-webkit-autofill,
+form.semanticForms textarea:-webkit-autofill:hover,
+form.semanticForms textarea:-webkit-autofill:focus,
+form.semanticForms textarea:-webkit-autofill:active,
+form.semanticForms select:-webkit-autofill,
+form.semanticForms select:-webkit-autofill:hover,
+form.semanticForms select:-webkit-autofill:focus,
+form.semanticForms select:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px var(--formBackgroundColor) inset;
   transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
   transition-delay: 5000s;
@@ -338,6 +336,32 @@ form.semanticForms .floatLabelForm select:-webkit-autofill:active {
 @supports (scrollbar-color: auto) {
   form.semanticForms textarea {
     scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
+  }
+}
+@container (width < 1300px) {
+  form.semanticForms .span-5 {
+    grid-column: span 4 !important;
+  }
+}
+@container (width < 1050px) {
+  form.semanticForms .span-4,
+  form.semanticForms .span-5 {
+    grid-column: span 3 !important;
+  }
+}
+@container (width < 800px) {
+  form.semanticForms .span-3,
+  form.semanticForms .span-4,
+  form.semanticForms .span-5 {
+    grid-column: span 2 !important;
+  }
+}
+@container (width < 550px) {
+  form.semanticForms .span-2,
+  form.semanticForms .span-3,
+  form.semanticForms .span-4,
+  form.semanticForms .span-5 {
+    grid-column: span 1 !important;
   }
 }
 form.semanticForms.lowFlow fieldset dl {

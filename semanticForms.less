@@ -50,6 +50,7 @@ form.semanticForms {
 
   // #region container layout
   fieldset {
+    container-type: inline-size;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -255,44 +256,9 @@ form.semanticForms {
 
   // animated labels
   .floatLabelForm {
-    container-type: inline-size;
-
     div {
       position: relative;
       width: 100%;
-
-      // #region span classes
-      &.span-1,
-      &.span-2,
-      &.span-3,
-      &.span-4,
-      &.span-5 {
-        dd {
-          max-width: 100% !important;
-        }
-      }
-
-      &.span-1 {
-        grid-column: span 1;
-      }
-
-      &.span-2 {
-        grid-column: span 2;
-      }
-
-      &.span-3 {
-        grid-column: span 3;
-      }
-
-      &.span-4 {
-        grid-column: span 4;
-      }
-
-      &.span-5 {
-        grid-column: span 5;
-      }
-      // #endregion
-
 
       dd:not(.singleCheckbox, .checkboxes, .radios) {
         label {
@@ -380,24 +346,58 @@ form.semanticForms {
       // #endregion
     }
 
-    // disable autofill yellow
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active,
-    textarea:-webkit-autofill,
-    textarea:-webkit-autofill:hover,
-    textarea:-webkit-autofill:focus,
-    textarea:-webkit-autofill:active,
-    select:-webkit-autofill,
-    select:-webkit-autofill:hover,
-    select:-webkit-autofill:focus,
-    select:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 1000px var(--formBackgroundColor) inset;
-      transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
-      transition-delay: 5000s;
-      transition-property: background-color, color;
+    // #region span classes
+    div {
+      &.span-1,
+      &.span-2,
+      &.span-3,
+      &.span-4,
+      &.span-5 {
+        dd {
+          max-width: 100% !important;
+        }
+      }
+
+      &.span-1 {
+        grid-column: span 1;
+      }
+
+      &.span-2 {
+        grid-column: span 2;
+      }
+
+      &.span-3 {
+        grid-column: span 3;
+      }
+
+      &.span-4 {
+        grid-column: span 4;
+      }
+
+      &.span-5 {
+        grid-column: span 5;
+      }
     }
+    // #endregion
+  }
+
+  // disable autofill yellow
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  textarea:-webkit-autofill:active,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus,
+  select:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--formBackgroundColor) inset;
+    transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+    transition-delay: 5000s;
+    transition-property: background-color, color;
   }
 
   // update for scrollbars
@@ -406,6 +406,34 @@ form.semanticForms {
       scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
     }
   }
+
+
+  // #region container queries
+  @container (width < 1300px) {
+    .span-5 {
+      grid-column: span 4 !important;
+    }
+  }
+
+  @container (width < 1050px) {
+    .span-4, .span-5 {
+      grid-column: span 3 !important;
+    }
+  }
+
+  @container (width < 800px) {
+    .span-3, .span-4, .span-5 {
+      grid-column: span 2 !important;
+    }
+  }
+
+  @container (width < 550px) {
+    .span-2, .span-3, .span-4, .span-5 {
+      grid-column: span 1 !important;
+    }
+  }
+  // #endregion
+
 
   // #region low flow form
   &.lowFlow {
