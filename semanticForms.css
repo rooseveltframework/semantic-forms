@@ -14,6 +14,8 @@ form.semanticForms {
   --inputHeight: 38px;
   --borderRadius: 10px;
   --border: 1px var(--borderColor) solid;
+  --inputTopMargin: 15px;
+  --inputMinWidth: 250px;
 }
 form.semanticForms.dark {
   --formBackgroundColor: #555;
@@ -30,81 +32,68 @@ form.semanticForms.dark {
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --border: none;
 }
+form.semanticForms {
+  width: 100%;
+}
 form.semanticForms * {
+  color: var(--formTextColor);
   box-sizing: border-box;
+  font-family: sans-serif;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-}
-form.semanticForms {
-  color: var(--formTextColor);
-  width: 100%;
 }
 form.semanticForms fieldset {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  border-radius: var(--borderRadius);
+  gap: 5px;
   padding: 20px 10px;
   margin-bottom: 15px;
+  border-radius: var(--borderRadius);
   background: var(--formSubBackgroundColor);
   border: 1px var(--subBorderColor) solid;
 }
 form.semanticForms fieldset dl {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }
-form.semanticForms fieldset dl dd:not(.checkboxes):not(.radios) {
+form.semanticForms fieldset dl dd {
+  position: relative;
+}
+form.semanticForms fieldset dl dd:not(.checkboxes, .radios) {
   display: flex;
   gap: 10px;
   max-width: 500px;
 }
-form.semanticForms fieldset dl dd:not(.checkboxes):not(.radios):not(.singleCheckbox) {
+form.semanticForms fieldset dl dd:not(.checkboxes, .radios):not(.singleCheckbox) {
   flex-direction: column;
 }
-form.semanticForms fieldset dl dd:not(.checkboxes):not(.radios) label {
-  cursor: pointer;
+form.semanticForms fieldset dl dd.checkboxes ul,
+form.semanticForms fieldset dl dd.radios ul {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--inputTopMargin);
+  padding-left: 10px;
+  gap: 5px;
 }
 form.semanticForms menu,
 form.semanticForms ul {
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  flex-wrap: wrap;
+  gap: 10px;
   list-style-type: none;
 }
-form.semanticForms dt {
-  position: relative;
-}
-form.semanticForms dt label[data-for="checkboxes"],
-form.semanticForms dt label[data-for="radios"] {
-  position: absolute;
-  transform: translateY(-100%) scale(0.8);
-  top: 10px;
-}
-form.semanticForms .checkboxes ul,
-form.semanticForms .radios ul {
-  padding-left: 10px;
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-form.semanticForms dd {
-  position: relative;
-}
-form.semanticForms label {
-  user-select: none;
-  color: var(--placeholderColor);
-  touch-action: manipulation;
+form.semanticForms details[open],
+form.semanticForms summary {
+  margin-bottom: 10px;
 }
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]),
 form.semanticForms select,
 form.semanticForms textarea {
   background: var(--formBackgroundColor);
   border: var(--border);
-  color: var(--formTextColor);
   width: 100%;
   border-radius: var(--borderRadius);
   font-size: 16px;
@@ -148,6 +137,7 @@ form.semanticForms input[type=checkbox],
 form.semanticForms input[type=radio] {
   width: 1.3em;
   height: 1.3em;
+  cursor: pointer;
 }
 form.semanticForms select {
   cursor: pointer;
@@ -165,17 +155,13 @@ form.semanticForms textarea {
   min-height: 38px;
   height: 100px;
 }
-@supports (scrollbar-color: auto) {
-  form.semanticForms textarea {
-    scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
-  }
-}
 form.semanticForms button.clear {
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
   position: absolute;
-  top: 10px;
+  height: min-content;
+  top: var(--inputTopMargin);
   bottom: 0;
   right: 0;
   margin: auto 6px;
@@ -207,11 +193,9 @@ form.semanticForms button:not(.clear) {
   max-width: max-content;
   cursor: pointer;
   background-image: linear-gradient(to bottom, var(--buttonGradientLight) 0%, var(--buttonGradientDark) 100%);
-  color: var(--formTextColor);
   border: 2px var(--buttonGradientDark) solid;
   border-radius: 20px;
   padding: 5px 25px;
-  margin: 25px 10px;
   font-size: 100%;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -239,24 +223,40 @@ form.semanticForms textarea::placeholder {
   color: var(--placeholderColor);
   opacity: 1;
 }
-form.semanticForms input:not(:placeholder-shown) + label,
-form.semanticForms input:focus + label,
-form.semanticForms textarea:not(:placeholder-shown) + label,
-form.semanticForms textarea:focus + label,
-form.semanticForms select + label.floatLabelFormAnimatedLabel,
-form.semanticForms .checkboxes label.floatLabelFormAnimatedLabel,
-form.semanticForms .radios label.floatLabelFormAnimatedLabel,
-form.semanticForms dt > label {
-  color: var(--formTextColor);
+form.semanticForms .floatLabelForm {
+  container-type: inline-size;
 }
 form.semanticForms .floatLabelForm div {
   position: relative;
+  width: 100%;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) label {
+form.semanticForms .floatLabelForm div.span-1 dd,
+form.semanticForms .floatLabelForm div.span-2 dd,
+form.semanticForms .floatLabelForm div.span-3 dd,
+form.semanticForms .floatLabelForm div.span-4 dd,
+form.semanticForms .floatLabelForm div.span-5 dd {
+  max-width: 100% !important;
+}
+form.semanticForms .floatLabelForm div.span-1 {
+  grid-column: span 1;
+}
+form.semanticForms .floatLabelForm div.span-2 {
+  grid-column: span 2;
+}
+form.semanticForms .floatLabelForm div.span-3 {
+  grid-column: span 3;
+}
+form.semanticForms .floatLabelForm div.span-4 {
+  grid-column: span 4;
+}
+form.semanticForms .floatLabelForm div.span-5 {
+  grid-column: span 5;
+}
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label {
   position: absolute;
   transform-origin: left center;
   pointer-events: none;
-  top: 20px;
+  top: calc(var(--inputTopMargin) + 10px);
   left: 8px;
   transition: transform 250ms;
   cursor: text;
@@ -264,46 +264,59 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):
   overflow: hidden;
   text-overflow: ellipsis;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) input,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) textarea,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) select {
-  margin-top: 10px;
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select {
+  margin-top: var(--inputTopMargin);
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) input::placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) textarea::placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::placeholder {
   opacity: 0;
   transition: inherit;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) input::-moz-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) textarea::-moz-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-moz-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-moz-placeholder {
   opacity: 0;
   transition: inherit;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) input::-webkit-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) textarea::-webkit-input-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-webkit-input-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-webkit-input-placeholder {
   opacity: 0;
   transition: inherit;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) input:-ms-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) textarea:-ms-input-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:-ms-input-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:-ms-input-placeholder {
   opacity: 0;
   transition: inherit;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) input:focus::placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) textarea:focus::placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::placeholder {
   opacity: 1;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) input:focus::-moz-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) textarea:focus::-moz-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-moz-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-moz-placeholder {
   opacity: 1;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) input:focus::-webkit-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) textarea:focus::-webkit-input-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder {
   opacity: 1;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) input:focus:-ms-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox):not(.checkboxes):not(.radios) textarea:focus:-ms-input-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus:-ms-input-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus:-ms-input-placeholder {
   opacity: 1;
+}
+form.semanticForms .floatLabelForm div dt {
+  position: relative;
+}
+form.semanticForms .floatLabelForm div dt label:is([data-for="checkboxes"], [data-for="radios"]) {
+  position: absolute;
+  transform: translateY(-100%) scale(0.8);
+  top: var(--inputTopMargin);
+}
+form.semanticForms .floatLabelForm div label {
+  user-select: none;
+  color: var(--placeholderColor);
+  touch-action: manipulation;
 }
 form.semanticForms .floatLabelForm input:-webkit-autofill,
 form.semanticForms .floatLabelForm input:-webkit-autofill:hover,
@@ -322,6 +335,11 @@ form.semanticForms .floatLabelForm select:-webkit-autofill:active {
   transition-delay: 5000s;
   transition-property: background-color, color;
 }
+@supports (scrollbar-color: auto) {
+  form.semanticForms textarea {
+    scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
+  }
+}
 form.semanticForms.lowFlow fieldset dl {
   display: flex;
   flex-direction: column;
@@ -330,4 +348,8 @@ form.semanticForms.lowFlow fieldset dl {
 form.semanticForms.lowFlow fieldset dd {
   flex-direction: row !important;
   margin-bottom: 10px;
+}
+form.semanticForms.lowFlow .checkboxes ul,
+form.semanticForms.lowFlow .radios ul {
+  margin-top: calc(var(--inputTopMargin) / 2);
 }

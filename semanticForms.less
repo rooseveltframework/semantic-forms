@@ -1,4 +1,4 @@
-// setup global styles
+// #region global styles
 form.semanticForms {
   --formBackgroundColor: #fff;
   --formSubBackgroundColor: #f5f5f5;
@@ -15,6 +15,8 @@ form.semanticForms {
   --inputHeight: 38px;
   --borderRadius: 10px;
   --border: 1px var(--borderColor) solid;
+  --inputTopMargin: 15px;
+  --inputMinWidth: 250px;
 }
 
 form.semanticForms.dark {
@@ -32,46 +34,59 @@ form.semanticForms.dark {
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --border: none;
 }
-
-// global override
-form.semanticForms * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
+// #endregion
 
 form.semanticForms {
-  color: var(--formTextColor);
   width: 100%;
 
+  // style reset
+  * {
+    color: var(--formTextColor);
+    box-sizing: border-box;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  // #region container layout
   fieldset {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    border-radius: var(--borderRadius);
+    gap: 5px;
     padding: 20px 10px;
     margin-bottom: 15px;
+    border-radius: var(--borderRadius);
     background: var(--formSubBackgroundColor);
     border: 1px var(--subBorderColor) solid;
 
     dl {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); // allows grid items to automatically resize
+      // responsive layout for grid, re-fits once the --inputMinWidth is met, 1fr stretches to fill the space
+      grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
       gap: 10px;
       margin-bottom: 10px;
 
-      dd:not(.checkboxes):not(.radios) {
-        display: flex;
-        gap: 10px;
-        max-width: 500px; // prevents inputs from spanning entire width
+      dd {
+        position: relative;
 
-        &:not(.singleCheckbox) {
-          flex-direction: column;
+        &:not(.checkboxes, .radios) {
+          display: flex;
+          gap: 10px;
+          // prevent inputs from spanning entire width when there are no following items
+          max-width: 500px;
+
+          // places all items within the <dd> horizontally
+          &:not(.singleCheckbox) {
+            flex-direction: column;
+          }
         }
 
-        label {
-          cursor: pointer;
+        &.checkboxes ul, &.radios ul {
+          display: flex;
+          flex-direction: column;
+          margin-top: var(--inputTopMargin);
+          padding-left: 10px;
+          gap: 5px;
         }
       }
     }
@@ -80,48 +95,23 @@ form.semanticForms {
   menu, ul {
     display: flex;
     justify-content: space-between;
-    padding: 5px;
+    flex-wrap: wrap;
+    gap: 10px;
+    // padding: 5px;
     list-style-type: none;
   }
 
-  // adjust checkbox and radios labels
-  dt {
-    position: relative;
-
-    label[data-for="checkboxes"],
-    label[data-for="radios"] {
-      position: absolute;
-      transform: translateY(-100%) scale(0.8);
-      top: 10px;
-    }
+  details[open], summary {
+    margin-bottom: 10px;
   }
+  // #endregion
 
-  .checkboxes ul,
-  .radios ul {
-    padding-left: 10px;
-    margin-top: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  dd {
-    position: relative;
-  }
-
-  label {
-    user-select: none;
-    color: var(--placeholderColor);
-    touch-action: manipulation;
-  }
-
-  // style all input types
+  // #region input styling
   input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]),
   select,
   textarea {
     background: var(--formBackgroundColor);
     border: var(--border);
-    color: var(--formTextColor);
     width: 100%;
     border-radius: var(--borderRadius);
     font-size: 16px;
@@ -161,9 +151,10 @@ form.semanticForms {
 
   input[type=checkbox],
   input[type=radio] {
-    // 30# times larger based on font size
+    // 30% larger based on font size
     width: 1.3em;
     height: 1.3em;
+    cursor: pointer;
   }
 
   // custom dropdown graphic on select element
@@ -184,21 +175,16 @@ form.semanticForms {
     min-height: 38px;
     height: 100px;
   }
+  // #endregion
 
-  // update for scrollbars
-  @supports (scrollbar-color: auto) {
-    textarea {
-      scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
-    }
-  }
-
-  // "x" button that appears when a value is entered
+  // #region buttons
   button.clear {
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
     position: absolute;
-    top: 10px; // account for margin above each input
+    height: min-content;
+    top: var(--inputTopMargin); // account for margin above each input
     bottom: 0;
     right: 0;
     margin: auto 6px;
@@ -237,11 +223,10 @@ form.semanticForms {
     max-width: max-content;
     cursor: pointer;
     background-image: linear-gradient(to bottom, var(--buttonGradientLight) 0%, var(--buttonGradientDark) 100%);
-    color: var(--formTextColor);
     border: 2px var(--buttonGradientDark) solid;
     border-radius: 20px;
     padding: 5px 25px;
-    margin: 25px 10px;
+    // margin: 25px 10px;
     font-size: 100%;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -257,38 +242,65 @@ form.semanticForms {
       background-image: linear-gradient(to bottom, var(--buttonGradientDark) 0%, var(--buttonGradientLight) 100%);
     }
   }
+  // #endregion
 
-  // style placeholders
-  input,
-  textarea {
+  // #region placeholders
+  input, textarea {
     &::placeholder {
       color: var(--placeholderColor);
       opacity: 1;
     }
   }
-
-  input:not(:placeholder-shown) + label,
-  input:focus + label,
-  textarea:not(:placeholder-shown) + label,
-  textarea:focus + label,
-  select + label.floatLabelFormAnimatedLabel,
-  .checkboxes label.floatLabelFormAnimatedLabel,
-  .radios label.floatLabelFormAnimatedLabel,
-  dt > label {
-    color: var(--formTextColor);
-  }
+  // #endregion
 
   // animated labels
   .floatLabelForm {
+    container-type: inline-size;
+
     div {
       position: relative;
+      width: 100%;
 
-      dd:not(.singleCheckbox):not(.checkboxes):not(.radios) {
+      // #region span classes
+      &.span-1,
+      &.span-2,
+      &.span-3,
+      &.span-4,
+      &.span-5 {
+        dd {
+          max-width: 100% !important;
+        }
+      }
+
+      &.span-1 {
+        grid-column: span 1;
+      }
+
+      &.span-2 {
+        grid-column: span 2;
+      }
+
+      &.span-3 {
+        grid-column: span 3;
+      }
+
+      &.span-4 {
+        grid-column: span 4;
+      }
+
+      &.span-5 {
+        grid-column: span 5;
+      }
+      // #endregion
+
+
+      dd:not(.singleCheckbox, .checkboxes, .radios) {
         label {
           position: absolute;
           transform-origin: left center;
           pointer-events: none;
-          top: 20px;
+          // when the label is positioned within the input, it needs a 10px buffer
+          top: calc(var(--inputTopMargin) + 10px);
           left: 8px;
           transition: transform 250ms;
           cursor: text;
@@ -300,7 +312,7 @@ form.semanticForms {
         input,
         textarea,
         select {
-          margin-top: 10px;
+          margin-top: var(--inputTopMargin);
         }
 
         input,
@@ -346,6 +358,26 @@ form.semanticForms {
           }
         }
       }
+
+      // #region labels
+
+      // top level label for checkbox and radio groups
+      dt {
+        position: relative;
+
+        label:is([data-for="checkboxes"], [data-for="radios"]) {
+          position: absolute;
+          transform: translateY(-100%) scale(0.8);
+          top: var(--inputTopMargin);
+        }
+      }
+
+      label {
+        user-select: none;
+        color: var(--placeholderColor);
+        touch-action: manipulation;
+      }
+      // #endregion
     }
 
     // disable autofill yellow
@@ -368,7 +400,14 @@ form.semanticForms {
     }
   }
 
-  // low flow specific styling
+  // update for scrollbars
+  @supports (scrollbar-color: auto) {
+    textarea {
+      scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
+    }
+  }
+
+  // #region low flow form
   &.lowFlow {
     fieldset {
       dl {
@@ -382,5 +421,11 @@ form.semanticForms {
         margin-bottom: 10px;
       }
     }
+
+    .checkboxes ul,
+    .radios ul {
+      margin-top: calc(var(--inputTopMargin) / 2);
+    }
   }
+  // #endregion
 }

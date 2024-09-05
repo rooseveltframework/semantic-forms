@@ -94,8 +94,13 @@ window.semanticForms = () => {
               input.value = ''
               input.focus()
             })
-
             insertAfter(clearBtn, dd.querySelector('label'))
+          }
+
+          if (/span-/.test(dd.className)) {
+            const match = dd.className.match(/span-[0-9]/)[0]
+            dd.classList.remove(match)
+            div.classList.add(match)
           }
 
           div.append(dt, dd)
@@ -116,7 +121,7 @@ window.semanticForms = () => {
           })
         }
 
-        // todo: is there a way to append the button via DOM manip. to the textarea, removing all code below???
+        // TODO investigate appending the button via DOM manipulation
         // add listener to shift clear button when scrollbar present
         for (const textarea of document.querySelectorAll('textarea')) {
           // shifts the close button to the right if a scrollbar is present
