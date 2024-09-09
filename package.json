@@ -6,7 +6,7 @@
   "files": [
     "semanticForms.css",
     "semanticForms.js",
-    "semanticForms.less"
+    "semanticForms.scss"
   ],
   "homepage": "https://github.com/kethinov/semanticforms",
   "license": "CC-BY-4.0",
