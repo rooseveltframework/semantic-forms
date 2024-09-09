@@ -190,6 +190,7 @@ See `semanticForms.html` or the [live demo](https://kethinov.github.io/semanticf
 - Fork/clone this repo.
 - `npm ci`
 - Make your changes. If you want to alter the CSS, do the changes in the `.scss` files.
+  - `npm run watch` automatically compiles the CSS file after a change is detected in the SCSS file.
 - `npm run build`. The build step compiles the SCSS file into CSS.
 - Test your changes by opening `semanticForms.html` in your browser.
 - Commit, push, open pull request.
