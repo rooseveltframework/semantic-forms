@@ -78,6 +78,16 @@ form.semanticForms fieldset dl dd.radios ul {
   padding-left: 10px;
   gap: 5px;
 }
+form.semanticForms fieldset dl dd.checkboxes ul li,
+form.semanticForms fieldset dl dd.radios ul li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+form.semanticForms fieldset dl dd.checkboxes ul li label,
+form.semanticForms fieldset dl dd.radios ul li label {
+  margin-top: 2px;
+}
 form.semanticForms menu,
 form.semanticForms ul {
   display: flex;
@@ -102,12 +112,12 @@ form.semanticForms textarea {
   border-radius: var(--borderRadius);
   font-size: 16px;
   touch-action: manipulation;
+  outline: none;
 }
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type="range"]),
 form.semanticForms select:not([type="range"]),
 form.semanticForms textarea:not([type="range"]) {
-  padding: 6px;
-  padding-right: 30px;
+  padding: 6px 30px 6px 20px;
 }
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio])[disabled],
 form.semanticForms select[disabled],
@@ -120,13 +130,20 @@ form.semanticForms select[disabled] + label,
 form.semanticForms textarea[disabled] + label {
   filter: brightness(50%);
 }
-form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):focus + label,
-form.semanticForms select:focus + label,
-form.semanticForms textarea:focus + label,
-form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not(:placeholder-shown) + label,
-form.semanticForms select:not(:placeholder-shown) + label,
-form.semanticForms textarea:not(:placeholder-shown) + label {
-  transform: translateY(-150%) scale(0.75);
+form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):focus,
+form.semanticForms select:focus,
+form.semanticForms textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--borderColor);
+}
+form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):focus:not([type=checkbox]):not([type=radio]) + label,
+form.semanticForms select:focus:not([type=checkbox]):not([type=radio]) + label,
+form.semanticForms textarea:focus:not([type=checkbox]):not([type=radio]) + label,
+form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not(:placeholder-shown):not([type=checkbox]):not([type=radio]) + label,
+form.semanticForms select:not(:placeholder-shown):not([type=checkbox]):not([type=radio]) + label,
+form.semanticForms textarea:not(:placeholder-shown):not([type=checkbox]):not([type=radio]) + label {
+  color: var(--formTextColor);
+  transform: translateY(-150%) scale(0.7);
 }
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]),
 form.semanticForms select {
@@ -142,6 +159,10 @@ form.semanticForms input[type=radio] {
   width: 1.3em;
   height: 1.3em;
   cursor: pointer;
+}
+form.semanticForms input[type=checkbox] + label,
+form.semanticForms input[type=radio] + label {
+  color: var(--formTextColor) !important;
 }
 form.semanticForms select {
   cursor: pointer;
@@ -168,6 +189,8 @@ form.semanticForms button.clear {
   top: var(--inputTopMargin);
   bottom: 0;
   right: 0;
+  width: 25px;
+  height: 25px;
   margin: auto 6px;
   padding: 5px;
   background: none;
@@ -222,21 +245,17 @@ form.semanticForms input[type='image']:focus,
 form.semanticForms button:not(.clear):focus {
   background-image: linear-gradient(to bottom, var(--buttonGradientDark) 0%, var(--buttonGradientLight) 100%);
 }
-form.semanticForms input::placeholder,
-form.semanticForms textarea::placeholder {
-  color: var(--placeholderColor);
-  opacity: 1;
-}
 form.semanticForms .floatLabelForm div {
   position: relative;
   width: 100%;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label {
+  font-size: 18px;
   position: absolute;
   transform-origin: left center;
   pointer-events: none;
-  top: calc(var(--inputTopMargin) + 10px);
-  left: 8px;
+  top: calc(var(--inputTopMargin) + 8px);
+  left: 20px;
   transition: transform 250ms;
   cursor: text;
   white-space: nowrap;
@@ -297,30 +316,35 @@ form.semanticForms .floatLabelForm div label {
   color: var(--placeholderColor);
   touch-action: manipulation;
 }
-form.semanticForms .floatLabelForm div.span-1 dd,
-form.semanticForms .floatLabelForm div.span-2 dd,
-form.semanticForms .floatLabelForm div.span-3 dd,
-form.semanticForms .floatLabelForm div.span-4 dd,
-form.semanticForms .floatLabelForm div.span-5 dd,
-form.semanticForms .floatLabelForm div.span-full dd {
+form.semanticForms .floatLabelForm input::placeholder,
+form.semanticForms .floatLabelForm textarea::placeholder {
+  color: var(--placeholderColor);
+  opacity: 1;
+}
+form.semanticForms .floatLabelForm div.col-1 dd,
+form.semanticForms .floatLabelForm div.col-2 dd,
+form.semanticForms .floatLabelForm div.col-3 dd,
+form.semanticForms .floatLabelForm div.col-4 dd,
+form.semanticForms .floatLabelForm div.col-5 dd,
+form.semanticForms .floatLabelForm div.col-full dd {
   max-width: 100% !important;
 }
-form.semanticForms .floatLabelForm div.span-1 {
+form.semanticForms .floatLabelForm div.col-1 {
   grid-column: span 1;
 }
-form.semanticForms .floatLabelForm div.span-2 {
+form.semanticForms .floatLabelForm div.col-2 {
   grid-column: span 2;
 }
-form.semanticForms .floatLabelForm div.span-3 {
+form.semanticForms .floatLabelForm div.col-3 {
   grid-column: span 3;
 }
-form.semanticForms .floatLabelForm div.span-4 {
+form.semanticForms .floatLabelForm div.col-4 {
   grid-column: span 4;
 }
-form.semanticForms .floatLabelForm div.span-5 {
+form.semanticForms .floatLabelForm div.col-5 {
   grid-column: span 5;
 }
-form.semanticForms .floatLabelForm div.span-full {
+form.semanticForms .floatLabelForm div.col-full {
   grid-column: 1 / -1;
 }
 form.semanticForms input:-webkit-autofill,
@@ -346,28 +370,28 @@ form.semanticForms select:-webkit-autofill:active {
   }
 }
 @container (width < 1300px) {
-  form.semanticForms .span-5 {
+  form.semanticForms .col-5 {
     grid-column: span 4 !important;
   }
 }
 @container (width < 1050px) {
-  form.semanticForms .span-4,
-  form.semanticForms .span-5 {
+  form.semanticForms .col-4,
+  form.semanticForms .col-5 {
     grid-column: span 3 !important;
   }
 }
 @container (width < 800px) {
-  form.semanticForms .span-3,
-  form.semanticForms .span-4,
-  form.semanticForms .span-5 {
+  form.semanticForms .col-3,
+  form.semanticForms .col-4,
+  form.semanticForms .col-5 {
     grid-column: span 2 !important;
   }
 }
 @container (width < 550px) {
-  form.semanticForms .span-2,
-  form.semanticForms .span-3,
-  form.semanticForms .span-4,
-  form.semanticForms .span-5 {
+  form.semanticForms .col-2,
+  form.semanticForms .col-3,
+  form.semanticForms .col-4,
+  form.semanticForms .col-5 {
     grid-column: span 1 !important;
   }
 }

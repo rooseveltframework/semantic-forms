@@ -88,6 +88,17 @@ form.semanticForms {
           margin-top: var(--inputTopMargin);
           padding-left: 10px;
           gap: 5px;
+
+          li {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            label {
+              // shift text down to match center
+              margin-top: 2px;
+            }
+          }
         }
       }
     }
@@ -120,10 +131,10 @@ form.semanticForms {
     border-radius: var(--borderRadius);
     font-size: 16px;
     touch-action: manipulation;
+    outline: none;
 
     &:not([type="range"]) {
-      padding: 6px;
-      padding-right: 30px;
+      padding: 6px 30px 6px 20px;
     }
 
     &[disabled] {
@@ -134,10 +145,22 @@ form.semanticForms {
         filter: brightness(50%);
       }
     }
+  }
 
-    &:focus + label,
-    &:not(:placeholder-shown)+label {
-      transform: translateY(-150%) scale(0.75);
+  // focus attributes
+  input:not([type='submit']):not([type='reset']):not([type='image']),
+  select,
+  textarea {
+    // custom focus highlight
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--borderColor);
+    }
+
+    &:focus:not([type=checkbox]):not([type=radio]) + label,
+    &:not(:placeholder-shown):not([type=checkbox]):not([type=radio])+label {
+      color: var(--formTextColor);
+      transform: translateY(-150%) scale(0.7);
     }
   }
 
@@ -159,6 +182,10 @@ form.semanticForms {
     width: 1.3em;
     height: 1.3em;
     cursor: pointer;
+
+    & + label {
+      color: var(--formTextColor) !important;
+    }
   }
 
   // custom dropdown graphic on select element
@@ -191,6 +218,8 @@ form.semanticForms {
     top: var(--inputTopMargin); // account for margin above each input
     bottom: 0;
     right: 0;
+    width: 25px;
+    height: 25px;
     margin: auto 6px;
     padding: 5px;
     background: none;
@@ -248,16 +277,7 @@ form.semanticForms {
   }
   // #endregion
 
-  // #region placeholders
-  input, textarea {
-    &::placeholder {
-      color: var(--placeholderColor);
-      opacity: 1;
-    }
-  }
-  // #endregion
-
-  // animated labels
+  // #region labels
   .floatLabelForm {
     div {
       position: relative;
@@ -265,12 +285,13 @@ form.semanticForms {
 
       dd:not(.singleCheckbox, .checkboxes, .radios) {
         label {
+          font-size: 18px;
           position: absolute;
           transform-origin: left center;
           pointer-events: none;
-          // when the label is positioned within the input, it needs a 10px buffer
-          top: calc(var(--inputTopMargin) + 10px);
-          left: 8px;
+          // when the label is positioned within the input it needs a buffer
+          top: calc(var(--inputTopMargin) + 8px);
+          left: 20px;
           transition: transform 250ms;
           cursor: text;
           white-space: nowrap;
@@ -328,8 +349,6 @@ form.semanticForms {
         }
       }
 
-      // #region labels
-
       // top level label for checkbox and radio groups
       dt {
         position: relative;
@@ -346,42 +365,49 @@ form.semanticForms {
         color: var(--placeholderColor);
         touch-action: manipulation;
       }
-      // #endregion
     }
 
-    // #region span classes
+    input, textarea {
+      &::placeholder {
+        color: var(--placeholderColor);
+        opacity: 1;
+      }
+    }
+    // #endregion
+
+    // #region col classes
     div {
-      &.span-1,
-      &.span-2,
-      &.span-3,
-      &.span-4,
-      &.span-5,
-      &.span-full {
+      &.col-1,
+      &.col-2,
+      &.col-3,
+      &.col-4,
+      &.col-5,
+      &.col-full {
         dd {
           max-width: 100% !important;
         }
       }
 
-      &.span-1 {
+      &.col-1 {
         grid-column: span 1;
       }
 
-      &.span-2 {
+      &.col-2 {
         grid-column: span 2;
       }
 
-      &.span-3 {
+      &.col-3 {
         grid-column: span 3;
       }
 
-      &.span-4 {
+      &.col-4 {
         grid-column: span 4;
       }
 
-      &.span-5 {
+      &.col-5 {
         grid-column: span 5;
       }
-      &.span-full {
+      &.col-full {
         grid-column: 1 / -1;
       }
     }
@@ -417,25 +443,25 @@ form.semanticForms {
 
   // #region container queries
   @container (width < 1300px) {
-    .span-5 {
+    .col-5 {
       grid-column: span 4 !important;
     }
   }
 
   @container (width < 1050px) {
-    .span-4, .span-5 {
+    .col-4, .col-5 {
       grid-column: span 3 !important;
     }
   }
 
   @container (width < 800px) {
-    .span-3, .span-4, .span-5 {
+    .col-3, .col-4, .col-5 {
       grid-column: span 2 !important;
     }
   }
 
   @container (width < 550px) {
-    .span-2, .span-3, .span-4, .span-5 {
+    .col-2, .col-3, .col-4, .col-5 {
       grid-column: span 1 !important;
     }
   }

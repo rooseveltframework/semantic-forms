@@ -13,9 +13,9 @@
   "main": "semanticForms.js",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "less": "4.2.0",
     "eslint": "9.9.1",
     "eslint-plugin-html": "8.1.1",
+    "less": "4.2.0",
     "standard": "17.1.0"
   },
   "scripts": {

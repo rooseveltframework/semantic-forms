@@ -53,38 +53,38 @@ The float label input pattern is notoriously difficult to implement in a fashion
 ```
 
 ### Specify input columns
-You can specify the number of columns an input will span using the `span-#` class on the `<dd>` element. The inputs are responsive and will shrink according to available space.
+You can specify the number of columns an input will span using the `col-#` class on the `<dd>` element. The inputs are responsive and will shrink according to available space.
 
 ```html
 <form class="semanticForms">
   <dl>
     <!-- 1 column -->
     <dt><label for="input-1">Input 1</label></dt>
-    <dd class="span-1"><input type="text" id="input-1" name="input-1"></dd>
+    <dd class="col-1"><input type="text" id="input-1" name="input-1"></dd>
 
     <!-- 2 columns  -->
     <dt><label for="input-2">Input 2</label></dt>
-    <dd class="span-2"><input type="text" id="input-2" name="input-2"></dd>
+    <dd class="col-2"><input type="text" id="input-2" name="input-2"></dd>
 
     <!-- 5 columns (max) -->
     <dt><label for="input-3">Input 3</label></dt>
-    <dd class="span-5"><input type="text" id="input-5" name="input-5"></dd>
+    <dd class="col-5"><input type="text" id="input-5" name="input-5"></dd>
   </dl>
 </form>
 ```
 
-`span-full` can also be used to force an input to take up the entire width of a form.
+`col-full` can also be used to force an input to take up the entire width of a form.
 
 ```html
 <form class="semanticForms">
   <dl>
     <!-- this will be 2 columns on the first row -->
     <dt><label for="input-2">Input 2</label></dt>
-    <dd class="span-2"><input type="text" id="input-2" name="input-2"></dd>
+    <dd class="col-2"><input type="text" id="input-2" name="input-2"></dd>
 
     <!-- this will be the full width of the form on the second row -->
     <dt><label for="input-1">Input 1</label></dt>
-    <dd class="span-full"><input type="text" id="input-1" name="input-1"></dd>
+    <dd class="col-full"><input type="text" id="input-1" name="input-1"></dd>
 
     <!-- this defaults to 1 column on the third row -->
     <dt><label for="input-3">Input 3</label></dt>

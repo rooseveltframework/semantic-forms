@@ -85,7 +85,7 @@ window.semanticForms = () => {
             const clearBtn = document.createElement('button')
             clearBtn.type = 'button'
             clearBtn.ariaLabel = 'Clear input'
-            clearBtn.innerHTML = '<svg viewBox="0 0 16 16" width="14" height="14"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />'
+            clearBtn.innerHTML = '<svg viewBox="0 0 16 16" width="18" height="18"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />'
             clearBtn.classList.add('clear')
             clearBtn.addEventListener('click', () => {
               input.value = ''
@@ -95,9 +95,9 @@ window.semanticForms = () => {
           }
           // #endregion
 
-          // check for span utility class
-          if (/span-/.test(dd.className)) {
-            const match = dd.className.match(/span-([0-9]|full)/)[0]
+          // check for col- utility class
+          if (/col-/.test(dd.className)) {
+            const match = dd.className.match(/col-([0-9]|full)/)[0]
             dd.classList.remove(match)
             div.classList.add(match)
           }
