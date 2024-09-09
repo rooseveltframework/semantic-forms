@@ -15,7 +15,7 @@
   "devDependencies": {
     "eslint": "9.9.1",
     "eslint-plugin-html": "8.1.1",
-    "less": "4.2.0",
+    "sass": "1.78.0",
     "standard": "17.1.0"
   },
   "scripts": {
@@ -23,7 +23,8 @@
     "coverage": "echo \"TODO: test coverage\"",
     "lint": "standard && standard --plugin html *.html",
     "lint-fix": "standard --fix && standard --plugin html *.html --fix",
-    "build": "lessc semanticForms.less semanticForms.css"
+    "build": "sass semanticForms.scss semanticForms.css",
+    "watch": "sass --watch semanticForms.scss semanticForms.css"
   },
   "repository": {
     "type": "git",
