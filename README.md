@@ -28,7 +28,7 @@ Overview of pattern library features:
 
 ## Float label inputs
 
-The float label input pattern is notoriously difficult to implement in a fashion that doesn't degrade HTML semantics or accessibility. This pattern library implements a solution that solves that problem. Your label doesn't need to be a sibling of your input like with other implementations. This implementation also has a custom clear field driven by SVG embedded in the CSS.
+The float label input pattern is notoriously difficult to implement in a fashion that doesn't degrade HTML semantics or accessibility. This pattern library implements a solution that solves that problem. Your label doesn't need to be a sibling of your input like with other implementations. This implementation also has a custom clear button for each input.
 
 ### Example
 
@@ -52,25 +52,46 @@ The float label input pattern is notoriously difficult to implement in a fashion
 </form>
 ```
 
-If you would like to manipulate the size of the area on the input field reserved for the click event of the clear field, apply one or both of the following `data-` attributes to your form:
-
-Adjust the horizontal offset of the clear field's click event click area (the default is 21):
+### Specify input columns
+You can specify the number of columns an input will span using the `span-#` class on the `<dd>` element. The inputs are responsive and will shrink according to available space.
 
 ```html
-<form class="semanticForms" data-clearfield-horizontal-offset="21">
-  <!-- your form here -->
+<form class="semanticForms">
+  <dl>
+    <!-- 1 column -->
+    <dt><label for="input-1">Input 1</label></dt>
+    <dd class="span-1"><input type="text" id="input-1" name="input-1"></dd>
+
+    <!-- 2 columns  -->
+    <dt><label for="input-2">Input 2</label></dt>
+    <dd class="span-2"><input type="text" id="input-2" name="input-2"></dd>
+
+    <!-- 5 columns (max) -->
+    <dt><label for="input-3">Input 3</label></dt>
+    <dd class="span-5"><input type="text" id="input-5" name="input-5"></dd>
+  </dl>
 </form>
 ```
 
-Adjust the vertical offset of the clear field's click event click area (the default is 5):
+`span-full` can also be used to force an input to take up the entire width of a form.
 
 ```html
-<form class="semanticForms" data-clearfield-vertical-offset="5">
-  <!-- your form here -->
+<form class="semanticForms">
+  <dl>
+    <!-- this will be 2 columns on the first row -->
+    <dt><label for="input-2">Input 2</label></dt>
+    <dd class="span-2"><input type="text" id="input-2" name="input-2"></dd>
+
+    <!-- this will be the full width of the form on the second row -->
+    <dt><label for="input-1">Input 1</label></dt>
+    <dd class="span-full"><input type="text" id="input-1" name="input-1"></dd>
+
+    <!-- this defaults to 1 column on the third row -->
+    <dt><label for="input-3">Input 3</label></dt>
+    <dd><input type="text" id="input-3" name="input-3"></dd>
+  </dl>
 </form>
 ```
-
-If you want to double the width of the input field (on screens with the extra space), add a `x2` class to the `dd` element.
 
 ## Button groups
 

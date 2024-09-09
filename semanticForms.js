@@ -97,7 +97,7 @@ window.semanticForms = () => {
 
           // check for span utility class
           if (/span-/.test(dd.className)) {
-            const match = dd.className.match(/span-[0-9]/)[0]
+            const match = dd.className.match(/span-([0-9]|full)/)[0]
             dd.classList.remove(match)
             div.classList.add(match)
           }

@@ -301,7 +301,8 @@ form.semanticForms .floatLabelForm div.span-1 dd,
 form.semanticForms .floatLabelForm div.span-2 dd,
 form.semanticForms .floatLabelForm div.span-3 dd,
 form.semanticForms .floatLabelForm div.span-4 dd,
-form.semanticForms .floatLabelForm div.span-5 dd {
+form.semanticForms .floatLabelForm div.span-5 dd,
+form.semanticForms .floatLabelForm div.span-full dd {
   max-width: 100% !important;
 }
 form.semanticForms .floatLabelForm div.span-1 {
@@ -318,6 +319,9 @@ form.semanticForms .floatLabelForm div.span-4 {
 }
 form.semanticForms .floatLabelForm div.span-5 {
   grid-column: span 5;
+}
+form.semanticForms .floatLabelForm div.span-full {
+  grid-column: 1 / -1;
 }
 form.semanticForms input:-webkit-autofill,
 form.semanticForms input:-webkit-autofill:hover,
