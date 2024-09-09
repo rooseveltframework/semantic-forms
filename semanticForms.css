@@ -90,6 +90,9 @@ form.semanticForms details[open],
 form.semanticForms summary {
   margin-bottom: 10px;
 }
+form.semanticForms summary {
+  cursor: pointer;
+}
 form.semanticForms input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]),
 form.semanticForms select,
 form.semanticForms textarea {
@@ -370,8 +373,15 @@ form.semanticForms.lowFlow fieldset dl {
   gap: 5px;
 }
 form.semanticForms.lowFlow fieldset dd {
-  flex-direction: row !important;
   margin-bottom: 10px;
+}
+form.semanticForms.lowFlow fieldset dd:not(.checkboxes) input[type="checkbox"] {
+  margin-left: 10px;
+}
+form.semanticForms.lowFlow fieldset dd input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type="range"]),
+form.semanticForms.lowFlow fieldset dd select,
+form.semanticForms.lowFlow fieldset dd textarea {
+  padding-right: 6px;
 }
 form.semanticForms.lowFlow .checkboxes ul,
 form.semanticForms.lowFlow .radios ul {

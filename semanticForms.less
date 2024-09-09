@@ -98,12 +98,15 @@ form.semanticForms {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 10px;
-    // padding: 5px;
     list-style-type: none;
   }
 
   details[open], summary {
     margin-bottom: 10px;
+  }
+
+  summary {
+    cursor: pointer;
   }
   // #endregion
 
@@ -445,8 +448,22 @@ form.semanticForms {
       }
 
       dd {
-        flex-direction: row !important;
         margin-bottom: 10px;
+
+        // nudge single checkboxes to match checkbox groups
+        &:not(.checkboxes) {
+          input[type="checkbox"] {
+            margin-left: 10px;
+          }
+        }
+
+        // remove "x" padding
+        input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type="range"]),
+        select,
+        textarea {
+          padding-right: 6px;
+        }
+
       }
     }
 
