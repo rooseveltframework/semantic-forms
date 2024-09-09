@@ -127,6 +127,11 @@ form.semanticForms select[disabled] + label,
 form.semanticForms textarea[disabled] + label {
   filter: brightness(50%);
 }
+form.semanticForms input:not([type=submit]):not([type=reset]):not([type=image]):not([type=checkbox]):not([type=radio])[disabled] + label + button,
+form.semanticForms select[disabled] + label + button,
+form.semanticForms textarea[disabled] + label + button {
+  display: none;
+}
 form.semanticForms input:not([type=submit]):not([type=reset]):not([type=image]):focus,
 form.semanticForms select:focus,
 form.semanticForms textarea:focus {
@@ -182,8 +187,7 @@ form.semanticForms button.clear {
   -webkit-appearance: none;
   position: absolute;
   height: min-content;
-  top: var(--inputTopMargin);
-  bottom: 0;
+  top: calc(var(--inputTopMargin) + 6px);
   right: 0;
   width: 25px;
   height: 25px;
@@ -200,7 +204,6 @@ form.semanticForms button.clear:hover, form.semanticForms button.clear:focus {
   filter: brightness(0.8);
 }
 form.semanticForms textarea + label + .clear {
-  margin: 6px;
   bottom: auto;
 }
 form.semanticForms input:placeholder-shown + label + .clear,

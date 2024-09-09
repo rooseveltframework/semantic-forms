@@ -28,7 +28,7 @@
         <h1>Semantic Forms</h1>
         <p>A pattern library of forms based on semantic HTML enhanced with a modern UX.</p>
 
-        <form action="/somewhere" method="post" class="semanticForms" data-clearfield-horizontal-offset="21" data-clearfield-vertical-offset="5">
+        <form action="/somewhere" method="post" class="semanticForms">
           <fieldset>
             <legend>Fieldset legend (high flow, JS enabled)</legend>
             <dl>
@@ -61,6 +61,9 @@
 
               <dt><label for="disabledInput">Disabled input</label></dt>
               <dd><input id="disabledInput" name="disabledInput" type="text" placeholder="e.g. foo" disabled></dd>
+
+              <dt><label for="disabledInputValue">Disabled input w/ value</label></dt>
+              <dd><input id="disabledInputValue" name="disabledInputValue" type="text" placeholder="e.g. foo" value="some value" disabled></dd>
 
               <dt><label for="selectbox">Select box</label></dt>
               <dd><select id="selectbox" name="selectbox">
@@ -131,7 +134,7 @@
               <dl>
                 <dt><label for="nested-input-1">Input</label></dt>
                 <dd>
-                  <input type="text" id="nested-input-1" name="nested-input-1" placeholder="Some interesting placeholder text">
+                  <input type="text" id="nested-input-1" name="nested-input-1" value="a value" placeholder="Some interesting placeholder text">
                   <p>Here is some subtext.</p>
                 </dd>
 

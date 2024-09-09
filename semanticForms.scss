@@ -144,6 +144,10 @@ form.semanticForms {
       + label {
         filter: brightness(50%);
       }
+
+      + label + button {
+        display: none;
+      }
     }
   }
 
@@ -215,8 +219,7 @@ form.semanticForms {
     -webkit-appearance: none;
     position: absolute;
     height: min-content;
-    top: var(--inputTopMargin); // account for margin above each input
-    bottom: 0;
+    top: calc(var(--inputTopMargin) + 6px); // account for margin above each input
     right: 0;
     width: 25px;
     height: 25px;
@@ -237,7 +240,6 @@ form.semanticForms {
 
   // custom styling of clear button on textarea
   textarea + label + .clear {
-    margin: 6px;
     bottom: auto;
   }
 
