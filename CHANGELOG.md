@@ -2,11 +2,15 @@
 
 ## Next version
 
-- Rewrite of CSS, includes the following changes:
+- Rewrite of CSS, includes the following changes and fixed:
   - Fieldset elements now utilize CSS grid to dynamically fill available space before wrapping to the next row.
-  - Input clear button is now a button element, allowing interaction via tab.
-  - Input clear button avoids overlap with scrollbars on textarea elements.
+  - Input clear button is now a `<button>` element, allowing interaction via keyboard tabbing.
+  - Input clear button now avoids overlap with scrollbars on `<textarea>` elements.
+  - Input clear button no longer appears on disabled inputs.
+  - Nested `<fieldset>` elements now darken with each nesting level.
+  - Siblings in `<dd>` elements now properly display underneath the input.
   - Added multiple utility classes that define how wide inputs will span in the responsive layout.
+  - Replaced the `less` CSS preprocessor with `sass`.
 
 ## 3.2.1
 

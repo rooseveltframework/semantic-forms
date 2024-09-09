@@ -13,10 +13,11 @@ form.semanticForms {
   --buttonGradientDark: #c0c0c0;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --inputHeight: 38px;
-  --borderRadius: 10px;
-  --border: 1px var(--borderColor) solid;
+  --inputFontSize: 18px;
   --inputTopMargin: 15px;
   --inputMinWidth: 250px;
+  --borderRadius: 10px;
+  --border: 1px var(--borderColor) solid;
 }
 
 form.semanticForms.dark {
@@ -59,6 +60,11 @@ form.semanticForms {
     border-radius: var(--borderRadius);
     background: var(--formSubBackgroundColor);
     border: 1px var(--subBorderColor) solid;
+
+    // nested fieldsets darken
+    fieldset {
+      background-color:rgba(0,0,0,.1);
+    }
 
     dl {
       display: grid;
@@ -122,14 +128,14 @@ form.semanticForms {
   // #endregion
 
   // #region input styling
-  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]),
+  input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
   select,
   textarea {
     background: var(--formBackgroundColor);
     border: var(--border);
     width: 100%;
     border-radius: var(--borderRadius);
-    font-size: 16px;
+    font-size: var(--inputFontSize);
     touch-action: manipulation;
     outline: none;
 
@@ -152,7 +158,7 @@ form.semanticForms {
   }
 
   // focus attributes
-  input:not([type='submit']):not([type='reset']):not([type='image']),
+  input:not([type='submit'], [type='reset'], [type='image']),
   select,
   textarea {
     // custom focus highlight
@@ -161,14 +167,14 @@ form.semanticForms {
       box-shadow: 0 0 0 2px var(--borderColor);
     }
 
-    &:focus:not([type=checkbox]):not([type=radio]) + label,
-    &:not(:placeholder-shown):not([type=checkbox]):not([type=radio])+label {
+    &:focus:not([type=checkbox], [type=radio]) + label,
+    &:not(:placeholder-shown, [type=checkbox], [type=radio])+label {
       color: var(--formTextColor);
       transform: translateY(-150%) scale(0.7);
     }
   }
 
-  input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]),
+  input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
   select {
     height: var(--inputHeight);
   }
@@ -287,7 +293,7 @@ form.semanticForms {
 
       dd:not(.singleCheckbox, .checkboxes, .radios) {
         label {
-          font-size: 18px;
+          font-size: var(--inputFontSize);
           position: absolute;
           transform-origin: left center;
           pointer-events: none;
@@ -490,7 +496,7 @@ form.semanticForms {
         }
 
         // remove "x" padding
-        input:not([type='submit']):not([type='reset']):not([type='image']):not([type=checkbox]):not([type=radio]):not([type="range"]),
+        input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio], [type="range"]),
         select,
         textarea {
           padding-right: 6px;

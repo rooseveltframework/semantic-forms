@@ -12,10 +12,11 @@ form.semanticForms {
   --buttonGradientDark: #c0c0c0;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --inputHeight: 38px;
-  --borderRadius: 10px;
-  --border: 1px var(--borderColor) solid;
+  --inputFontSize: 18px;
   --inputTopMargin: 15px;
   --inputMinWidth: 250px;
+  --borderRadius: 10px;
+  --border: 1px var(--borderColor) solid;
 }
 
 form.semanticForms.dark {
@@ -54,6 +55,9 @@ form.semanticForms fieldset {
   border-radius: var(--borderRadius);
   background: var(--formSubBackgroundColor);
   border: 1px var(--subBorderColor) solid;
+}
+form.semanticForms fieldset fieldset {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 form.semanticForms fieldset dl {
   display: grid;
@@ -100,53 +104,53 @@ form.semanticForms details[open], form.semanticForms summary {
 form.semanticForms summary {
   cursor: pointer;
 }
-form.semanticForms input:not([type=submit]):not([type=reset]):not([type=image]):not([type=checkbox]):not([type=radio]),
+form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
 form.semanticForms select,
 form.semanticForms textarea {
   background: var(--formBackgroundColor);
   border: var(--border);
   width: 100%;
   border-radius: var(--borderRadius);
-  font-size: 16px;
+  font-size: var(--inputFontSize);
   touch-action: manipulation;
   outline: none;
 }
-form.semanticForms input:not([type=submit]):not([type=reset]):not([type=image]):not([type=checkbox]):not([type=radio]):not([type=range]),
+form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]),
 form.semanticForms select:not([type=range]),
 form.semanticForms textarea:not([type=range]) {
   padding: 6px 30px 6px 20px;
 }
-form.semanticForms input:not([type=submit]):not([type=reset]):not([type=image]):not([type=checkbox]):not([type=radio])[disabled],
+form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled],
 form.semanticForms select[disabled],
 form.semanticForms textarea[disabled] {
   cursor: not-allowed;
   opacity: 0.5;
 }
-form.semanticForms input:not([type=submit]):not([type=reset]):not([type=image]):not([type=checkbox]):not([type=radio])[disabled] + label,
+form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] + label,
 form.semanticForms select[disabled] + label,
 form.semanticForms textarea[disabled] + label {
   filter: brightness(50%);
 }
-form.semanticForms input:not([type=submit]):not([type=reset]):not([type=image]):not([type=checkbox]):not([type=radio])[disabled] + label + button,
+form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] + label + button,
 form.semanticForms select[disabled] + label + button,
 form.semanticForms textarea[disabled] + label + button {
   display: none;
 }
-form.semanticForms input:not([type=submit]):not([type=reset]):not([type=image]):focus,
+form.semanticForms input:not([type=submit], [type=reset], [type=image]):focus,
 form.semanticForms select:focus,
 form.semanticForms textarea:focus {
   outline: none;
   box-shadow: 0 0 0 2px var(--borderColor);
 }
-form.semanticForms input:not([type=submit]):not([type=reset]):not([type=image]):focus:not([type=checkbox]):not([type=radio]) + label, form.semanticForms input:not([type=submit]):not([type=reset]):not([type=image]):not(:placeholder-shown):not([type=checkbox]):not([type=radio]) + label,
-form.semanticForms select:focus:not([type=checkbox]):not([type=radio]) + label,
-form.semanticForms select:not(:placeholder-shown):not([type=checkbox]):not([type=radio]) + label,
-form.semanticForms textarea:focus:not([type=checkbox]):not([type=radio]) + label,
-form.semanticForms textarea:not(:placeholder-shown):not([type=checkbox]):not([type=radio]) + label {
+form.semanticForms input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio]) + label, form.semanticForms input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown, [type=checkbox], [type=radio]) + label,
+form.semanticForms select:focus:not([type=checkbox], [type=radio]) + label,
+form.semanticForms select:not(:placeholder-shown, [type=checkbox], [type=radio]) + label,
+form.semanticForms textarea:focus:not([type=checkbox], [type=radio]) + label,
+form.semanticForms textarea:not(:placeholder-shown, [type=checkbox], [type=radio]) + label {
   color: var(--formTextColor);
   transform: translateY(-150%) scale(0.7);
 }
-form.semanticForms input:not([type=submit]):not([type=reset]):not([type=image]):not([type=checkbox]):not([type=radio]),
+form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
 form.semanticForms select {
   height: var(--inputHeight);
 }
@@ -247,7 +251,7 @@ form.semanticForms .floatLabelForm div {
   width: 100%;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label {
-  font-size: 18px;
+  font-size: var(--inputFontSize);
   position: absolute;
   transform-origin: left center;
   pointer-events: none;
@@ -391,7 +395,7 @@ form.semanticForms.lowFlow fieldset dd {
 form.semanticForms.lowFlow fieldset dd:not(.checkboxes) input[type=checkbox] {
   margin-left: 10px;
 }
-form.semanticForms.lowFlow fieldset dd input:not([type=submit]):not([type=reset]):not([type=image]):not([type=checkbox]):not([type=radio]):not([type=range]),
+form.semanticForms.lowFlow fieldset dd input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
 form.semanticForms.lowFlow fieldset dd select,
 form.semanticForms.lowFlow fieldset dd textarea {
   padding-right: 6px;
