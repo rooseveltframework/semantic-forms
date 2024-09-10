@@ -11,13 +11,13 @@ form.semanticForms {
   --clearButtonColor: #000;
   --buttonGradientLight: #fff;
   --buttonGradientDark: #c0c0c0;
-  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --inputHeight: 38px;
   --inputFontSize: 18px;
   --inputTopMargin: 15px;
   --inputMinWidth: 250px;
   --borderRadius: 10px;
   --border: 1px var(--borderColor) solid;
+  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
 }
 
 form.semanticForms.dark {
@@ -32,8 +32,8 @@ form.semanticForms.dark {
   --clearButtonColor: #fff;
   --buttonGradientLight: #6f6f6f;
   --buttonGradientDark: #373737;
-  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --border: none;
+  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
 }
 // #endregion
 
@@ -52,23 +52,23 @@ form.semanticForms {
   // #region container layout
   fieldset {
     container-type: inline-size;
+    border-radius: var(--borderRadius);
+    background: var(--formSubBackgroundColor);
+    border: 1px var(--subBorderColor) solid;
     display: flex;
     flex-direction: column;
     gap: 5px;
     padding: 20px 10px;
     margin-bottom: 15px;
-    border-radius: var(--borderRadius);
-    background: var(--formSubBackgroundColor);
-    border: 1px var(--subBorderColor) solid;
 
-    // nested fieldsets darken
+    // nested fieldsets are darkened
     fieldset {
       background-color:rgba(0,0,0,.1);
     }
 
     dl {
       display: grid;
-      // responsive layout for grid, re-fits once the --inputMinWidth is met, 1fr stretches to fill the space
+      // responsive layout for grid, resizes once the --inputMinWidth is met, 1fr stretches to fill the space
       grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
       gap: 10px;
       margin-bottom: 10px;
@@ -131,11 +131,11 @@ form.semanticForms {
   input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
   select,
   textarea {
+    font-size: var(--inputFontSize);
     background: var(--formBackgroundColor);
     border: var(--border);
-    width: 100%;
     border-radius: var(--borderRadius);
-    font-size: var(--inputFontSize);
+    width: 100%;
     touch-action: manipulation;
     outline: none;
 
@@ -148,7 +148,7 @@ form.semanticForms {
       opacity: 0.5;
 
       + label {
-        filter: brightness(50%);
+        opacity: 0.5;
       }
 
       + label + button {
@@ -157,7 +157,7 @@ form.semanticForms {
     }
   }
 
-  // focus attributes
+  // focused styles
   input:not([type='submit'], [type='reset'], [type='image']),
   select,
   textarea {
@@ -168,7 +168,7 @@ form.semanticForms {
     }
 
     &:focus:not([type=checkbox], [type=radio]) + label,
-    &:not(:placeholder-shown, [type=checkbox], [type=radio])+label {
+    &:not(:placeholder-shown, [type=checkbox], [type=radio]) + label {
       color: var(--formTextColor);
       transform: translateY(-150%) scale(0.7);
     }
@@ -181,14 +181,14 @@ form.semanticForms {
 
   // specific styling for color input
   input[type=color] {
+    height: var(--inputHeight);
     padding: 4px !important;
     padding-right: 30px !important;
-    height: var(--inputHeight);
   }
 
   input[type=checkbox],
   input[type=radio] {
-    // 30% larger based on font size
+    // 30% larger based on parent font size
     width: 1.3em;
     height: 1.3em;
     cursor: pointer;
@@ -198,9 +198,9 @@ form.semanticForms {
     }
   }
 
-  // custom dropdown graphic on select element
   select {
     cursor: pointer;
+    // custom dropdown graphic on select element
     background-image: var(--selectIcon);
     background-size: 14px;
     background-position: calc(100% - 8px) 16px;
@@ -208,6 +208,11 @@ form.semanticForms {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+
+    // force label to be correct color
+    & + label {
+      color: var(--formTextColor) !important;
+    }
   }
 
   textarea {
@@ -225,7 +230,8 @@ form.semanticForms {
     -webkit-appearance: none;
     position: absolute;
     height: min-content;
-    top: calc(var(--inputTopMargin) + 6px); // account for margin above each input
+    // account for margin above each input
+    top: calc(var(--inputTopMargin) + 6px);
     right: 0;
     width: 25px;
     height: 25px;
@@ -261,17 +267,16 @@ form.semanticForms {
   input[type='reset'],
   input[type='image'],
   button:not(.clear) {
-    max-width: max-content;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
     cursor: pointer;
+    max-width: max-content;
     background-image: linear-gradient(to bottom, var(--buttonGradientLight) 0%, var(--buttonGradientDark) 100%);
     border: 2px var(--buttonGradientDark) solid;
     border-radius: 20px;
     padding: 5px 25px;
-    // margin: 25px 10px;
     font-size: 100%;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
     transition: filter 0.1s;
 
     &:hover {
@@ -362,6 +367,7 @@ form.semanticForms {
         position: relative;
 
         label:is([data-for="checkboxes"], [data-for="radios"]) {
+          color: var(--formTextColor);
           position: absolute;
           transform: translateY(-100%) scale(0.8);
           top: var(--inputTopMargin);

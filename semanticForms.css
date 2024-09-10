@@ -10,13 +10,13 @@ form.semanticForms {
   --clearButtonColor: #000;
   --buttonGradientLight: #fff;
   --buttonGradientDark: #c0c0c0;
-  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --inputHeight: 38px;
   --inputFontSize: 18px;
   --inputTopMargin: 15px;
   --inputMinWidth: 250px;
   --borderRadius: 10px;
   --border: 1px var(--borderColor) solid;
+  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
 }
 
 form.semanticForms.dark {
@@ -31,8 +31,8 @@ form.semanticForms.dark {
   --clearButtonColor: #fff;
   --buttonGradientLight: #6f6f6f;
   --buttonGradientDark: #373737;
-  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --border: none;
+  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
 }
 
 form.semanticForms {
@@ -47,14 +47,14 @@ form.semanticForms * {
 }
 form.semanticForms fieldset {
   container-type: inline-size;
+  border-radius: var(--borderRadius);
+  background: var(--formSubBackgroundColor);
+  border: 1px var(--subBorderColor) solid;
   display: flex;
   flex-direction: column;
   gap: 5px;
   padding: 20px 10px;
   margin-bottom: 15px;
-  border-radius: var(--borderRadius);
-  background: var(--formSubBackgroundColor);
-  border: 1px var(--subBorderColor) solid;
 }
 form.semanticForms fieldset fieldset {
   background-color: rgba(0, 0, 0, 0.1);
@@ -107,11 +107,11 @@ form.semanticForms summary {
 form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
 form.semanticForms select,
 form.semanticForms textarea {
+  font-size: var(--inputFontSize);
   background: var(--formBackgroundColor);
   border: var(--border);
-  width: 100%;
   border-radius: var(--borderRadius);
-  font-size: var(--inputFontSize);
+  width: 100%;
   touch-action: manipulation;
   outline: none;
 }
@@ -129,7 +129,7 @@ form.semanticForms textarea[disabled] {
 form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] + label,
 form.semanticForms select[disabled] + label,
 form.semanticForms textarea[disabled] + label {
-  filter: brightness(50%);
+  opacity: 0.5;
 }
 form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] + label + button,
 form.semanticForms select[disabled] + label + button,
@@ -155,9 +155,9 @@ form.semanticForms select {
   height: var(--inputHeight);
 }
 form.semanticForms input[type=color] {
+  height: var(--inputHeight);
   padding: 4px !important;
   padding-right: 30px !important;
-  height: var(--inputHeight);
 }
 form.semanticForms input[type=checkbox],
 form.semanticForms input[type=radio] {
@@ -178,6 +178,9 @@ form.semanticForms select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+form.semanticForms select + label {
+  color: var(--formTextColor) !important;
 }
 form.semanticForms textarea {
   resize: vertical;
@@ -219,16 +222,16 @@ form.semanticForms input[type=submit],
 form.semanticForms input[type=reset],
 form.semanticForms input[type=image],
 form.semanticForms button:not(.clear) {
-  max-width: max-content;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
   cursor: pointer;
+  max-width: max-content;
   background-image: linear-gradient(to bottom, var(--buttonGradientLight) 0%, var(--buttonGradientDark) 100%);
   border: 2px var(--buttonGradientDark) solid;
   border-radius: 20px;
   padding: 5px 25px;
   font-size: 100%;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   transition: filter 0.1s;
 }
 form.semanticForms input[type=submit]:hover,
@@ -308,6 +311,7 @@ form.semanticForms .floatLabelForm div dt {
   position: relative;
 }
 form.semanticForms .floatLabelForm div dt label:is([data-for=checkboxes], [data-for=radios]) {
+  color: var(--formTextColor);
   position: absolute;
   transform: translateY(-100%) scale(0.8);
   top: var(--inputTopMargin);
