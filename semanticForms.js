@@ -95,9 +95,9 @@ window.semanticForms = () => {
           }
           // #endregion
 
-          // check for col- utility class
-          if (/col-/.test(dd.className)) {
-            const match = dd.className.match(/col-([0-9]|full)/)[0]
+          // check for colspan- utility class
+          if (/colspan-/.test(dd.className)) {
+            const match = dd.className.match(/colspan-([0-9]|full)/)[0]
             dd.classList.remove(match)
             div.classList.add(match)
           }

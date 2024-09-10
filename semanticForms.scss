@@ -406,37 +406,37 @@ form.semanticForms {
 
     // #region col classes
     div {
-      &.col-1,
-      &.col-2,
-      &.col-3,
-      &.col-4,
-      &.col-5,
-      &.col-full {
+      &.colspan-1,
+      &.colspan-2,
+      &.colspan-3,
+      &.colspan-4,
+      &.colspan-5,
+      &.colspan-full {
         dd {
           max-width: 100% !important;
         }
       }
 
-      &.col-1 {
+      &.colspan-1 {
         grid-column: span 1;
       }
 
-      &.col-2 {
+      &.colspan-2 {
         grid-column: span 2;
       }
 
-      &.col-3 {
+      &.colspan-3 {
         grid-column: span 3;
       }
 
-      &.col-4 {
+      &.colspan-4 {
         grid-column: span 4;
       }
 
-      &.col-5 {
+      &.colspan-5 {
         grid-column: span 5;
       }
-      &.col-full {
+      &.colspan-full {
         grid-column: 1 / -1;
       }
     }
@@ -481,25 +481,25 @@ form.semanticForms {
 
   // #region container queries
   @container (width < 1300px) {
-    .col-5 {
+    .colspan-5 {
       grid-column: span 4 !important;
     }
   }
 
   @container (width < 1050px) {
-    .col-4, .col-5 {
+    .colspan-4, .colspan-5 {
       grid-column: span 3 !important;
     }
   }
 
   @container (width < 800px) {
-    .col-3, .col-4, .col-5 {
+    .colspan-3, .colspan-4, .colspan-5 {
       grid-column: span 2 !important;
     }
   }
 
   @container (width < 550px) {
-    .col-2, .col-3, .col-4, .col-5 {
+    .colspan-2, .colspan-3, .colspan-4, .colspan-5 {
       grid-column: span 1 !important;
     }
   }
