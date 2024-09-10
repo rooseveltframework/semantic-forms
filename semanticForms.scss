@@ -12,16 +12,19 @@ form.semanticForms {
   --buttonGradientLight: #fff;
   --buttonGradientDark: #c0c0c0;
   --inputHeight: 38px;
-  --inputFontSize: 18px;
+  --inputFontSize: 16px;
   --inputTopMargin: 15px;
   --inputMinWidth: 250px;
   --borderRadius: 10px;
+  --nestedFieldset: rgba(0,0,0,.1);
   --border: 1px var(--borderColor) solid;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  --customResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E")
 }
 
 form.semanticForms.dark {
   --formBackgroundColor: #555;
+  --inputBackgroudColor: rgba(85,85,85,0.1);
   --formSubBackgroundColor: #2f2f2f;
   --formTextColor: #fff;
   --buttonBackgroundColor: #454545;
@@ -32,8 +35,10 @@ form.semanticForms.dark {
   --clearButtonColor: #fff;
   --buttonGradientLight: #6f6f6f;
   --buttonGradientDark: #373737;
+  --nestedFieldset: rgba(255,255,255,.3);
   --border: none;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  --customResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E")
 }
 // #endregion
 
@@ -63,7 +68,7 @@ form.semanticForms {
 
     // nested fieldsets are darkened
     fieldset {
-      background-color:rgba(0,0,0,.1);
+      background-color: var(--nestedFieldset);
     }
 
     dl {
@@ -169,7 +174,7 @@ form.semanticForms {
 
     &:focus:not([type=checkbox], [type=radio]) + label,
     &:not(:placeholder-shown, [type=checkbox], [type=radio]) + label {
-      color: var(--formTextColor);
+      color: var(--formTextColor) !important;
       transform: translateY(-150%) scale(0.7);
     }
   }
@@ -196,6 +201,11 @@ form.semanticForms {
     & + label {
       color: var(--formTextColor) !important;
     }
+  }
+
+  input[type=file] {
+    cursor: pointer;
+    font-size: var(--inputFontSize);
   }
 
   select {
@@ -298,12 +308,13 @@ form.semanticForms {
 
       dd:not(.singleCheckbox, .checkboxes, .radios) {
         label {
+          line-height: 1.2;
           font-size: var(--inputFontSize);
           position: absolute;
           transform-origin: left center;
           pointer-events: none;
           // when the label is positioned within the input it needs a buffer
-          top: calc(var(--inputTopMargin) + 8px);
+          top: calc(var(--inputTopMargin) + 10px);
           left: 20px;
           transition: transform 250ms;
           cursor: text;
@@ -450,7 +461,16 @@ form.semanticForms {
   // update for scrollbars
   @supports (scrollbar-color: auto) {
     textarea {
-      scrollbar-color: var(--scrollbarColor) var(--formBackgroundColor);
+      scrollbar-color: var(--scrollbarColor) transparent;
+
+      &::-webkit-resizer {
+        border: none;
+        background-image: var(--customResizer);
+        background-size: 14px;
+        background-repeat: no-repeat;
+        background-position: 100%;
+        margin: 0 2px 2px 0;
+      }
     }
   }
 
