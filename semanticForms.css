@@ -69,7 +69,7 @@ form.semanticForms fieldset fieldset {
 }
 form.semanticForms fieldset dl {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
+  grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }
@@ -341,23 +341,47 @@ form.semanticForms .floatLabelForm input::placeholder, form.semanticForms .float
 form.semanticForms .floatLabelForm div.colspan-1 dd, form.semanticForms .floatLabelForm div.colspan-2 dd, form.semanticForms .floatLabelForm div.colspan-3 dd, form.semanticForms .floatLabelForm div.colspan-4 dd, form.semanticForms .floatLabelForm div.colspan-5 dd, form.semanticForms .floatLabelForm div.colspan-full dd {
   max-width: 100% !important;
 }
-form.semanticForms .floatLabelForm div.colspan-1 {
-  grid-column: span 1;
-}
-form.semanticForms .floatLabelForm div.colspan-2 {
-  grid-column: span 2;
-}
-form.semanticForms .floatLabelForm div.colspan-3 {
-  grid-column: span 3;
-}
-form.semanticForms .floatLabelForm div.colspan-4 {
-  grid-column: span 4;
+form.semanticForms .floatLabelForm div.colspan-full {
+  grid-column: 1/-1;
 }
 form.semanticForms .floatLabelForm div.colspan-5 {
   grid-column: span 5;
 }
-form.semanticForms .floatLabelForm div.colspan-full {
-  grid-column: 1/-1;
+form.semanticForms .floatLabelForm div.colspan-4 {
+  grid-column: span 4;
+}
+form.semanticForms .floatLabelForm div.colspan-3 {
+  grid-column: span 3;
+}
+form.semanticForms .floatLabelForm div.colspan-2 {
+  grid-column: span 2;
+}
+form.semanticForms .floatLabelForm div.colspan-1 {
+  grid-column: span 1;
+}
+form.semanticForms fieldset.colspan-full dl,
+form.semanticForms fieldset dl.colspan-full {
+  grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
+}
+form.semanticForms fieldset.colspan-5 dl,
+form.semanticForms fieldset dl.colspan-5 {
+  grid-template-columns: repeat(5, minmax(var(--inputMinWidth), 1fr));
+}
+form.semanticForms fieldset.colspan-4 dl,
+form.semanticForms fieldset dl.colspan-4 {
+  grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr));
+}
+form.semanticForms fieldset.colspan-3 dl,
+form.semanticForms fieldset dl.colspan-3 {
+  grid-template-columns: repeat(3, minmax(var(--inputMinWidth), 1fr));
+}
+form.semanticForms fieldset.colspan-2 dl,
+form.semanticForms fieldset dl.colspan-2 {
+  grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
+}
+form.semanticForms fieldset.colspan-1 dl,
+form.semanticForms fieldset dl.colspan-1 {
+  grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr));
 }
 form.semanticForms input:-webkit-autofill,
 form.semanticForms input:-webkit-autofill:hover,
@@ -390,22 +414,50 @@ form.semanticForms select:-webkit-autofill:active {
   }
 }
 @container (width < 1300px) {
-  form.semanticForms .colspan-5 {
+  form.semanticForms fieldset.colspan-5 dl,
+  form.semanticForms dl.colspan-5 {
+    grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr)) !important;
+  }
+  form.semanticForms div.colspan-5 {
     grid-column: span 4 !important;
   }
 }
 @container (width < 1050px) {
-  form.semanticForms .colspan-4, form.semanticForms .colspan-5 {
+  form.semanticForms fieldset.colspan-4 dl,
+  form.semanticForms fieldset.colspan-5 dl,
+  form.semanticForms dl.colspan-4,
+  form.semanticForms dl.colspan-5 {
+    grid-template-columns: repeat(3, minmax(var(--inputMinWidth), 1fr)) !important;
+  }
+  form.semanticForms div.colspan-4, form.semanticForms div.colspan-5 {
     grid-column: span 3 !important;
   }
 }
 @container (width < 800px) {
-  form.semanticForms .colspan-3, form.semanticForms .colspan-4, form.semanticForms .colspan-5 {
+  form.semanticForms fieldset.colspan-3 dl,
+  form.semanticForms fieldset.colspan-4 dl,
+  form.semanticForms fieldset.colspan-5 dl,
+  form.semanticForms dl.colspan-3,
+  form.semanticForms dl.colspan-4,
+  form.semanticForms dl.colspan-5 {
+    grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr)) !important;
+  }
+  form.semanticForms div.colspan-3, form.semanticForms div.colspan-4, form.semanticForms div.colspan-5 {
     grid-column: span 2 !important;
   }
 }
 @container (width < 550px) {
-  form.semanticForms .colspan-2, form.semanticForms .colspan-3, form.semanticForms .colspan-4, form.semanticForms .colspan-5 {
+  form.semanticForms fieldset.colspan-2 dl,
+  form.semanticForms fieldset.colspan-3 dl,
+  form.semanticForms fieldset.colspan-4 dl,
+  form.semanticForms fieldset.colspan-5 dl,
+  form.semanticForms dl.colspan-2,
+  form.semanticForms dl.colspan-3,
+  form.semanticForms dl.colspan-4,
+  form.semanticForms dl.colspan-5 {
+    grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr)) !important;
+  }
+  form.semanticForms div.colspan-2, form.semanticForms div.colspan-3, form.semanticForms div.colspan-4, form.semanticForms div.colspan-5 {
     grid-column: span 1 !important;
   }
 }

@@ -52,24 +52,78 @@ The float label input pattern is notoriously difficult to implement in a fashion
 </form>
 ```
 
+### Specify fieldset columns
+You can limit the number of columns on your forms using the `colspan-#` class on the `<fieldset>` or `<dl>` element. Applying the class to the `<fieldset>` will apply it to all nested `<dl>` elements.
+
+```html
+<form class="semanticForms">
+  <!-- 2 columns on all <dl>'s-->
+  <fieldset class="colspan-2">
+    <dl>
+      <dt><label for="input-1">Input 1</label></dt>
+      <dd><input type="text" id="input-1" name="input-1"></dd>
+
+      <dt><label for="input-2">Input 2</label></dt>
+      <dd ><input type="text" id="input-2" name="input-2"></dd>
+
+      <!-- will wrap to the next row -->
+      <dt><label for="input-3">Input 3</label></dt>
+      <dd><input type="text" id="input-3" name="input-3"></dd>
+    </dl>
+  </fieldset>
+</form>
+```
+
+```html
+<form class="semanticForms">
+  <fieldset>
+    <!-- will have 3 columns -->
+    <dl class="colspan-3">
+      <dt><label for="input-1">Input 1</label></dt>
+      <dd><input type="text" id="input-1" name="input-1"></dd>
+
+      <dt><label for="input-2">Input 2</label></dt>
+      <dd ><input type="text" id="input-2" name="input-2"></dd>
+
+      <dt><label for="input-3">Input 3</label></dt>
+      <dd><input type="text" id="input-3" name="input-3"></dd>
+    </dl>
+
+    <!-- will have 4 columns -->
+    <dl class="colspan-4">
+      <dt><label for="input-4">Input 4</label></dt>
+      <dd><input type="text" id="input-4" name="input-4"></dd>
+
+      <dt><label for="input-5">Input 5</label></dt>
+      <dd ><input type="text" id="input-5" name="input-5"></dd>
+
+      <dt><label for="input-6">Input 6</label></dt>
+      <dd><input type="text" id="input-6" name="input-6"></dd>
+    </dl>
+  </fieldset>
+</form>
+```
+
 ### Specify input columns
 You can specify the number of columns an input will span using the `colspan-#` class on the `<dd>` element. The inputs are responsive and will shrink according to available space.
 
 ```html
 <form class="semanticForms">
-  <dl>
-    <!-- 1 column -->
-    <dt><label for="input-1">Input 1</label></dt>
-    <dd class="colspan-1"><input type="text" id="input-1" name="input-1"></dd>
+  <fieldset>
+    <dl>
+      <!-- 1 column -->
+      <dt><label for="input-1">Input 1</label></dt>
+      <dd class="colspan-1"><input type="text" id="input-1" name="input-1"></dd>
 
-    <!-- 2 columns  -->
-    <dt><label for="input-2">Input 2</label></dt>
-    <dd class="colspan-2"><input type="text" id="input-2" name="input-2"></dd>
+      <!-- 2 columns  -->
+      <dt><label for="input-2">Input 2</label></dt>
+      <dd class="colspan-2"><input type="text" id="input-2" name="input-2"></dd>
 
-    <!-- 5 columns (max) -->
-    <dt><label for="input-3">Input 3</label></dt>
-    <dd class="colspan-5"><input type="text" id="input-5" name="input-5"></dd>
-  </dl>
+      <!-- 5 columns (max) -->
+      <dt><label for="input-3">Input 3</label></dt>
+      <dd class="colspan-5"><input type="text" id="input-3" name="input-3"></dd>
+    </dl>
+  </fieldset>
 </form>
 ```
 
@@ -77,19 +131,21 @@ You can specify the number of columns an input will span using the `colspan-#` c
 
 ```html
 <form class="semanticForms">
-  <dl>
-    <!-- this will be 2 columns on the first row -->
-    <dt><label for="input-2">Input 2</label></dt>
-    <dd class="colspan-2"><input type="text" id="input-2" name="input-2"></dd>
+  <fieldset>
+    <dl>
+      <!-- this will be 2 columns on the first row -->
+      <dt><label for="input-2">Input 2</label></dt>
+      <dd class="colspan-2"><input type="text" id="input-2" name="input-2"></dd>
 
-    <!-- this will be the full width of the form on the second row -->
-    <dt><label for="input-1">Input 1</label></dt>
-    <dd class="colspan-full"><input type="text" id="input-1" name="input-1"></dd>
+      <!-- this will be the full width of the form on the second row -->
+      <dt><label for="input-1">Input 1</label></dt>
+      <dd class="colspan-full"><input type="text" id="input-1" name="input-1"></dd>
 
-    <!-- this defaults to 1 column on the third row -->
-    <dt><label for="input-3">Input 3</label></dt>
-    <dd><input type="text" id="input-3" name="input-3"></dd>
-  </dl>
+      <!-- this defaults to 1 column on the third row -->
+      <dt><label for="input-3">Input 3</label></dt>
+      <dd><input type="text" id="input-3" name="input-3"></dd>
+    </dl>
+  </fieldset>
 </form>
 ```
 

@@ -29,7 +29,7 @@
         <p>A pattern library of forms based on semantic HTML enhanced with a modern UX.</p>
 
         <form action="/somewhere" method="post" class="semanticForms">
-          <fieldset>
+          <fieldset class="colspan-full">
             <legend>Fieldset legend (high flow, JS enabled)</legend>
             <dl>
               <dt><label for="name">Name</label></dt>
@@ -174,12 +174,24 @@
                 </dl>
 
                 <fieldset>
-                  <legend>A final nested fieldset</legend>
+                  <legend>A final nested fieldset with colspan</legend>
 
                   <dl>
-                    <dt><label for="final-nested-input">Input</label></dt>
+                    <dt><label for="left-nested-input-a">Input A</label></dt>
                     <dd>
-                      <input type="text" id="final-nested-input" name="final-nested-input" placeholder="Some interesting placeholder text">
+                      <input type="text" id="left-nested-input-a" name="left-nested-input-a" placeholder="Some interesting placeholder text">
+                    </dd>
+                    <dt><label for="left-nested-input-b">Input B</label></dt>
+                    <dd>
+                      <input type="text" id="left-nested-input-b" name="left-nested-input-b" placeholder="Some interesting placeholder text">
+                    </dd>
+                    <dt><label for="left-nested-input-c">Input C</label></dt>
+                    <dd>
+                      <input type="text" id="left-nested-input-c" name="left-nested-input-c" placeholder="Some interesting placeholder text">
+                    </dd>
+                    <dt><label for="left-nested-input-d">Input D</label></dt>
+                    <dd>
+                      <input type="text" id="left-nested-input-d" name="left-nested-input-d" placeholder="Some interesting placeholder text">
                     </dd>
                   </dl>
                 </fieldset>
@@ -207,6 +219,98 @@
                 <dt><label for="colspan-5">colspan-5</label></dt>
                 <dd class="colspan-5"><input type="text" name="colspan-5" id="colspan-5"></dd>
               </dl>
+
+              <fieldset class="colspan-1">
+                <legend>colspan-1</legend>
+
+                <dl>
+                  <dt><label for="colspan-1-a">Input A</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-1-a" name="colspan-1-a" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-1-b">Input B</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-1-b" name="colspan-1-b" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-1-c">Input C</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-1-c" name="colspan-1-c" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-1-d">Input D</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-1-d" name="colspan-1-d" placeholder="Some interesting placeholder text">
+                  </dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-2">
+                <legend>colspan-2</legend>
+
+                <dl>
+                  <dt><label for="colspan-2-a">Input A</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-2-a" name="colspan-2-a" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-2-b">Input B</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-2-b" name="colspan-2-b" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-2-c">Input C</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-2-c" name="colspan-2-c" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-2-d">Input D</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-2-d" name="colspan-2-d" placeholder="Some interesting placeholder text">
+                  </dd>
+                </dl>
+              </fieldset>
+
+              <fieldset>
+                <legend>colspan-3</legend>
+
+                <dl class="colspan-3">
+                  <dt><label for="colspan-3-a">Input A</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-3-a" name="colspan-3-a" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-3-b">Input B</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-3-b" name="colspan-3-b" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-3-c">Input C</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-3-c" name="colspan-3-c" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-3-d">Input D</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-3-d" name="colspan-3-d" placeholder="Some interesting placeholder text">
+                  </dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-full">
+                <legend>colspan-full</legend>
+
+                <dl>
+                  <dt><label for="colspan-full-a">Input A</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-full-a" name="colspan-full-a" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-full-b">Input B</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-full-b" name="colspan-full-b" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-full-c">Input C</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-full-c" name="colspan-full-c" placeholder="Some interesting placeholder text">
+                  </dd>
+                  <dt><label for="colspan-full-d">Input D</label></dt>
+                  <dd>
+                    <input type="text" id="colspan-full-d" name="colspan-full-d" placeholder="Some interesting placeholder text">
+                  </dd>
+                </dl>
+              </fieldset>
             </fieldset>
 
             <details>

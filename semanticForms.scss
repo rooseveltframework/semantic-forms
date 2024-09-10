@@ -77,8 +77,7 @@ form.semanticForms {
 
     dl {
       display: grid;
-      // responsive layout for grid, resizes once the --inputMinWidth is met, 1fr stretches to fill the space
-      grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
+      grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
       gap: 10px;
       margin-bottom: 10px;
 
@@ -404,7 +403,7 @@ form.semanticForms {
     }
     // #endregion
 
-    // #region col classes
+    // #region colspan classes
     div {
       &.colspan-1,
       &.colspan-2,
@@ -417,31 +416,62 @@ form.semanticForms {
         }
       }
 
-      &.colspan-1 {
-        grid-column: span 1;
+      &.colspan-full {
+        grid-column: 1 / -1;
       }
 
-      &.colspan-2 {
-        grid-column: span 2;
-      }
-
-      &.colspan-3 {
-        grid-column: span 3;
+      &.colspan-5 {
+        grid-column: span 5;
       }
 
       &.colspan-4 {
         grid-column: span 4;
       }
 
-      &.colspan-5 {
-        grid-column: span 5;
+      &.colspan-3 {
+        grid-column: span 3;
       }
-      &.colspan-full {
-        grid-column: 1 / -1;
+
+      &.colspan-2 {
+        grid-column: span 2;
+      }
+
+      &.colspan-1 {
+        grid-column: span 1;
       }
     }
-    // #endregion
   }
+
+  fieldset.colspan-full dl,
+  fieldset dl.colspan-full {
+    grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
+  }
+
+  fieldset.colspan-5 dl,
+  fieldset dl.colspan-5 {
+    grid-template-columns: repeat(5, minmax(var(--inputMinWidth), 1fr));
+  }
+
+  fieldset.colspan-4 dl,
+  fieldset dl.colspan-4 {
+    grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr));
+  }
+
+  fieldset.colspan-3 dl,
+  fieldset dl.colspan-3 {
+    grid-template-columns: repeat(3, minmax(var(--inputMinWidth), 1fr));
+  }
+
+  fieldset.colspan-2 dl,
+  fieldset dl.colspan-2 {
+    grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
+  }
+
+  fieldset.colspan-1 dl,
+  fieldset dl.colspan-1 {
+    grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr));
+  }
+  // #endregion
 
   // disable autofill yellow
   input:-webkit-autofill,
@@ -478,28 +508,60 @@ form.semanticForms {
     }
   }
 
-
   // #region container queries
+  // The container is the <fieldset> element
   @container (width < 1300px) {
-    .colspan-5 {
+    fieldset.colspan-5 dl,
+    dl.colspan-5 {
+      grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr)) !important;
+    }
+
+    div.colspan-5 {
       grid-column: span 4 !important;
     }
   }
 
   @container (width < 1050px) {
-    .colspan-4, .colspan-5 {
+    fieldset.colspan-4 dl,
+    fieldset.colspan-5 dl,
+    dl.colspan-4,
+    dl.colspan-5 {
+      grid-template-columns: repeat(3, minmax(var(--inputMinWidth), 1fr)) !important;
+    }
+
+    div.colspan-4, div.colspan-5 {
       grid-column: span 3 !important;
     }
   }
 
   @container (width < 800px) {
-    .colspan-3, .colspan-4, .colspan-5 {
+    fieldset.colspan-3 dl,
+    fieldset.colspan-4 dl,
+    fieldset.colspan-5 dl,
+    dl.colspan-3,
+    dl.colspan-4,
+    dl.colspan-5 {
+      grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr)) !important;
+    }
+
+    div.colspan-3, div.colspan-4, div.colspan-5 {
       grid-column: span 2 !important;
     }
   }
 
   @container (width < 550px) {
-    .colspan-2, .colspan-3, .colspan-4, .colspan-5 {
+    fieldset.colspan-2 dl,
+    fieldset.colspan-3 dl,
+    fieldset.colspan-4 dl,
+    fieldset.colspan-5 dl,
+    dl.colspan-2,
+    dl.colspan-3,
+    dl.colspan-4,
+    dl.colspan-5 {
+      grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr)) !important;
+    }
+
+    div.colspan-2, div.colspan-3, div.colspan-4, div.colspan-5 {
       grid-column: span 1 !important;
     }
   }
