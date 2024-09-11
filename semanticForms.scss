@@ -50,6 +50,9 @@ form.semanticForms {
   width: 100%;
   container-type: inline-size;
   container-name: semanticForm;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
   // style reset
   * {
