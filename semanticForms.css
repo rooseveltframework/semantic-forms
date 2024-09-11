@@ -67,36 +67,36 @@ form.semanticForms fieldset {
 form.semanticForms fieldset fieldset {
   background-color: var(--nestedFieldset);
 }
-form.semanticForms fieldset dl {
+form.semanticForms dl {
   display: grid;
   grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }
-form.semanticForms fieldset dl dd {
+form.semanticForms dl dd {
   position: relative;
 }
-form.semanticForms fieldset dl dd:not(.checkboxes, .radios) {
+form.semanticForms dl dd:not(.checkboxes, .radios) {
   display: flex;
   gap: 10px;
-  max-width: 500px;
+  max-width: 100%;
 }
-form.semanticForms fieldset dl dd:not(.checkboxes, .radios):not(.singleCheckbox) {
+form.semanticForms dl dd:not(.checkboxes, .radios):not(.singleCheckbox) {
   flex-direction: column;
 }
-form.semanticForms fieldset dl dd.checkboxes ul, form.semanticForms fieldset dl dd.radios ul {
+form.semanticForms dl dd.checkboxes ul, form.semanticForms dl dd.radios ul {
   display: flex;
   flex-direction: column;
   margin-top: var(--inputTopMargin);
   padding-left: 10px;
   gap: 5px;
 }
-form.semanticForms fieldset dl dd.checkboxes ul li, form.semanticForms fieldset dl dd.radios ul li {
+form.semanticForms dl dd.checkboxes ul li, form.semanticForms dl dd.radios ul li {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-form.semanticForms fieldset dl dd.checkboxes ul li label, form.semanticForms fieldset dl dd.radios ul li label {
+form.semanticForms dl dd.checkboxes ul li label, form.semanticForms dl dd.radios ul li label {
   margin-top: 2px;
 }
 form.semanticForms menu, form.semanticForms ul {
@@ -337,9 +337,6 @@ form.semanticForms .floatLabelForm div label {
 form.semanticForms .floatLabelForm input::placeholder, form.semanticForms .floatLabelForm textarea::placeholder {
   color: var(--placeholderColor);
   opacity: 1;
-}
-form.semanticForms .floatLabelForm div.colspan-1 dd, form.semanticForms .floatLabelForm div.colspan-2 dd, form.semanticForms .floatLabelForm div.colspan-3 dd, form.semanticForms .floatLabelForm div.colspan-4 dd, form.semanticForms .floatLabelForm div.colspan-5 dd, form.semanticForms .floatLabelForm div.colspan-full dd {
-  max-width: 100% !important;
 }
 form.semanticForms .floatLabelForm div.colspan-full {
   grid-column: 1/-1;

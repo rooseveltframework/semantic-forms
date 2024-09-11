@@ -29,10 +29,8 @@
         <p>A pattern library of forms based on semantic HTML enhanced with a modern UX.</p>
 
         <form action="/somewhere" method="post" class="semanticForms">
-          <fieldset class="colspan-full">
-            <legend>Fieldset legend (high flow, JS enabled)</legend>
-            <dl>
-              <dt><label for="name">Name</label></dt>
+          <dl>
+            <dt><label for="name">Name</label></dt>
               <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
 
               <dt><label for="prefilled">Prefilled field</label></dt>
@@ -43,7 +41,11 @@
 
               <dt><label for="password">Password field</label></dt>
               <dd><input id="password" name="password" type="password"></dd>
+          </dl>
 
+          <fieldset class="colspan-full">
+            <legend>Fieldset legend (high flow, JS enabled)</legend>
+            <dl>
               <dt><label for="email">Email field</label></dt>
               <dd><input id="email" name="email" type="email" placeholder="e.g. john.smith@somewhere.com"></dd>
 

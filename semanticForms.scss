@@ -75,43 +75,43 @@ form.semanticForms {
       background-color: var(--nestedFieldset);
     }
 
-    dl {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
-      gap: 10px;
-      margin-bottom: 10px;
+  }
 
-      dd {
-        position: relative;
+  dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
 
-        &:not(.checkboxes, .radios) {
-          display: flex;
-          gap: 10px;
-          // prevent inputs from spanning entire width when there are no following items
-          max-width: 500px;
+    dd {
+      position: relative;
 
-          // places all items within the <dd> horizontally
-          &:not(.singleCheckbox) {
-            flex-direction: column;
-          }
-        }
+      &:not(.checkboxes, .radios) {
+        display: flex;
+        gap: 10px;
+        max-width: 100%;
 
-        &.checkboxes ul, &.radios ul {
-          display: flex;
+        // places all items within the <dd> horizontally
+        &:not(.singleCheckbox) {
           flex-direction: column;
-          margin-top: var(--inputTopMargin);
-          padding-left: 10px;
+        }
+      }
+
+      &.checkboxes ul, &.radios ul {
+        display: flex;
+        flex-direction: column;
+        margin-top: var(--inputTopMargin);
+        padding-left: 10px;
+        gap: 5px;
+
+        li {
+          display: flex;
+          align-items: center;
           gap: 5px;
 
-          li {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-
-            label {
-              // shift text down to match center
-              margin-top: 2px;
-            }
+          label {
+            // shift text down to match center
+            margin-top: 2px;
           }
         }
       }
@@ -405,17 +405,6 @@ form.semanticForms {
 
     // #region colspan classes
     div {
-      &.colspan-1,
-      &.colspan-2,
-      &.colspan-3,
-      &.colspan-4,
-      &.colspan-5,
-      &.colspan-full {
-        dd {
-          max-width: 100% !important;
-        }
-      }
-
       &.colspan-full {
         grid-column: 1 / -1;
       }
