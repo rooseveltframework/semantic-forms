@@ -176,7 +176,7 @@ form.semanticForms {
     // custom focus highlight
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px var(--borderColor);
+      box-shadow: 0 0 0 1px var(--borderColor);
     }
 
     &:focus:not([type=checkbox], [type=radio]) + label,
