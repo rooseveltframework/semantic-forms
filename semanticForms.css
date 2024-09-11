@@ -45,6 +45,8 @@ form.semanticForms.dark input::-webkit-calendar-picker-indicator {
 
 form.semanticForms {
   width: 100%;
+  container-type: inline-size;
+  container-name: semanticForm;
 }
 form.semanticForms * {
   color: var(--formTextColor);
@@ -54,7 +56,6 @@ form.semanticForms * {
   padding: 0;
 }
 form.semanticForms fieldset {
-  container-type: inline-size;
   border-radius: var(--borderRadius);
   background: var(--formSubBackgroundColor);
   border: 1px var(--subBorderColor) solid;
@@ -357,27 +358,27 @@ form.semanticForms .floatLabelForm div.colspan-1 {
   grid-column: span 1;
 }
 form.semanticForms fieldset.colspan-full dl,
-form.semanticForms fieldset dl.colspan-full {
+form.semanticForms dl.colspan-full {
   grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
 }
 form.semanticForms fieldset.colspan-5 dl,
-form.semanticForms fieldset dl.colspan-5 {
+form.semanticForms dl.colspan-5 {
   grid-template-columns: repeat(5, minmax(var(--inputMinWidth), 1fr));
 }
 form.semanticForms fieldset.colspan-4 dl,
-form.semanticForms fieldset dl.colspan-4 {
+form.semanticForms dl.colspan-4 {
   grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr));
 }
 form.semanticForms fieldset.colspan-3 dl,
-form.semanticForms fieldset dl.colspan-3 {
+form.semanticForms dl.colspan-3 {
   grid-template-columns: repeat(3, minmax(var(--inputMinWidth), 1fr));
 }
 form.semanticForms fieldset.colspan-2 dl,
-form.semanticForms fieldset dl.colspan-2 {
+form.semanticForms dl.colspan-2 {
   grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
 }
 form.semanticForms fieldset.colspan-1 dl,
-form.semanticForms fieldset dl.colspan-1 {
+form.semanticForms dl.colspan-1 {
   grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr));
 }
 form.semanticForms input:-webkit-autofill,
@@ -410,7 +411,7 @@ form.semanticForms select:-webkit-autofill:active {
     margin: 0 2px 2px 0;
   }
 }
-@container (width < 1300px) {
+@container semanticForm (width < 1300px) {
   form.semanticForms fieldset.colspan-5 dl,
   form.semanticForms dl.colspan-5 {
     grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr)) !important;
@@ -419,7 +420,7 @@ form.semanticForms select:-webkit-autofill:active {
     grid-column: span 4 !important;
   }
 }
-@container (width < 1050px) {
+@container semanticForm (width < 1050px) {
   form.semanticForms fieldset.colspan-4 dl,
   form.semanticForms fieldset.colspan-5 dl,
   form.semanticForms dl.colspan-4,
@@ -430,7 +431,7 @@ form.semanticForms select:-webkit-autofill:active {
     grid-column: span 3 !important;
   }
 }
-@container (width < 800px) {
+@container semanticForm (width < 800px) {
   form.semanticForms fieldset.colspan-3 dl,
   form.semanticForms fieldset.colspan-4 dl,
   form.semanticForms fieldset.colspan-5 dl,
@@ -443,7 +444,7 @@ form.semanticForms select:-webkit-autofill:active {
     grid-column: span 2 !important;
   }
 }
-@container (width < 550px) {
+@container semanticForm (width < 550px) {
   form.semanticForms fieldset.colspan-2 dl,
   form.semanticForms fieldset.colspan-3 dl,
   form.semanticForms fieldset.colspan-4 dl,
@@ -451,7 +452,8 @@ form.semanticForms select:-webkit-autofill:active {
   form.semanticForms dl.colspan-2,
   form.semanticForms dl.colspan-3,
   form.semanticForms dl.colspan-4,
-  form.semanticForms dl.colspan-5 {
+  form.semanticForms dl.colspan-5,
+  form.semanticForms dl {
     grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr)) !important;
   }
   form.semanticForms div.colspan-2, form.semanticForms div.colspan-3, form.semanticForms div.colspan-4, form.semanticForms div.colspan-5 {

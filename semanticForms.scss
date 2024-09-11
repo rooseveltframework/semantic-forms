@@ -48,6 +48,8 @@ form.semanticForms.dark {
 
 form.semanticForms {
   width: 100%;
+  container-type: inline-size;
+  container-name: semanticForm;
 
   // style reset
   * {
@@ -60,7 +62,6 @@ form.semanticForms {
 
   // #region container layout
   fieldset {
-    container-type: inline-size;
     border-radius: var(--borderRadius);
     background: var(--formSubBackgroundColor);
     border: 1px var(--subBorderColor) solid;
@@ -432,32 +433,32 @@ form.semanticForms {
   }
 
   fieldset.colspan-full dl,
-  fieldset dl.colspan-full {
+  dl.colspan-full {
     grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
   }
 
   fieldset.colspan-5 dl,
-  fieldset dl.colspan-5 {
+  dl.colspan-5 {
     grid-template-columns: repeat(5, minmax(var(--inputMinWidth), 1fr));
   }
 
   fieldset.colspan-4 dl,
-  fieldset dl.colspan-4 {
+  dl.colspan-4 {
     grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr));
   }
 
   fieldset.colspan-3 dl,
-  fieldset dl.colspan-3 {
+  dl.colspan-3 {
     grid-template-columns: repeat(3, minmax(var(--inputMinWidth), 1fr));
   }
 
   fieldset.colspan-2 dl,
-  fieldset dl.colspan-2 {
+  dl.colspan-2 {
     grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
   }
 
   fieldset.colspan-1 dl,
-  fieldset dl.colspan-1 {
+  dl.colspan-1 {
     grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr));
   }
   // #endregion
@@ -499,7 +500,7 @@ form.semanticForms {
 
   // #region container queries
   // The container is the <fieldset> element
-  @container (width < 1300px) {
+  @container semanticForm (width < 1300px) {
     fieldset.colspan-5 dl,
     dl.colspan-5 {
       grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr)) !important;
@@ -510,7 +511,7 @@ form.semanticForms {
     }
   }
 
-  @container (width < 1050px) {
+  @container semanticForm (width < 1050px) {
     fieldset.colspan-4 dl,
     fieldset.colspan-5 dl,
     dl.colspan-4,
@@ -523,7 +524,7 @@ form.semanticForms {
     }
   }
 
-  @container (width < 800px) {
+  @container semanticForm (width < 800px) {
     fieldset.colspan-3 dl,
     fieldset.colspan-4 dl,
     fieldset.colspan-5 dl,
@@ -538,7 +539,7 @@ form.semanticForms {
     }
   }
 
-  @container (width < 550px) {
+  @container semanticForm (width < 550px) {
     fieldset.colspan-2 dl,
     fieldset.colspan-3 dl,
     fieldset.colspan-4 dl,
@@ -546,7 +547,8 @@ form.semanticForms {
     dl.colspan-2,
     dl.colspan-3,
     dl.colspan-4,
-    dl.colspan-5 {
+    dl.colspan-5,
+    dl {
       grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr)) !important;
     }
 
