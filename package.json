@@ -2,7 +2,7 @@
   "name": "semantic-forms",
   "description": "Semantic Forms",
   "author": "Eric Newport <kethinov@gmail.com>",
-  "version": "3.2.1",
+  "version": "4.0.0",
   "files": [
     "semanticForms.css",
     "semanticForms.js",
@@ -13,9 +13,11 @@
   "main": "semanticForms.js",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "eslint": "9.9.1",
+    "eslint": "9.10.0",
     "eslint-plugin-html": "8.1.1",
+    "nodemon": "~3.1.4",
     "sass": "1.78.0",
+    "serve": "14.2.3",
     "standard": "17.1.0"
   },
   "scripts": {
@@ -23,6 +25,9 @@
     "coverage": "echo \"TODO: test coverage\"",
     "lint": "standard && standard --plugin html *.html",
     "lint-fix": "standard --fix && standard --plugin html *.html --fix",
+    "d": "nodemon --exec \"npm run build && serve\"",
+    "dev": "nodemon --exec \"npm run build && serve\"",
+    "development": "nodemon --exec \"npm run build && serve\"",
     "build": "sass semanticForms.scss semanticForms.css",
     "watch": "sass --watch semanticForms.scss semanticForms.css"
   },
