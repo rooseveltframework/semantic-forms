@@ -713,6 +713,75 @@ form.semanticForms {
 
   // #region container queries
   // The container is the <fieldset> element
+  @container semanticForm (width > 2250px) {
+    &.lowFlow fieldset dl,
+    &.lowFlow dl {
+      grid-template-columns: repeat(6, minmax(var(--inputMinWidth), 1fr));
+
+      & dt:nth-of-type(6n + 1),
+      & dd:nth-of-type(6n + 1) {
+        grid-column: 1;
+      }
+
+      & dt:nth-of-type(6n + 2),
+      & dd:nth-of-type(6n + 2) {
+        grid-column: 2;
+      }
+
+      & dt:nth-of-type(6n + 3),
+      & dd:nth-of-type(6n + 3) {
+        grid-column: 3;
+      }
+
+      & dt:nth-of-type(6n + 4),
+      & dd:nth-of-type(6n + 4) {
+        grid-column: 4;
+      }
+
+      & dt:nth-of-type(6n + 5),
+      & dd:nth-of-type(6n + 5) {
+        grid-column: 5;
+      }
+
+      & dt:nth-of-type(6n + 6),
+      & dd:nth-of-type(6n + 6) {
+        grid-column: 6;
+      }
+    }
+  }
+
+  @container semanticForm (width < 2250px) {
+    &.lowFlow fieldset dl,
+    &.lowFlow dl {
+      grid-template-columns: repeat(5, minmax(var(--inputMinWidth), 1fr));
+
+      & dt:nth-of-type(5n + 1),
+      & dd:nth-of-type(5n + 1) {
+        grid-column: 1;
+      }
+
+      & dt:nth-of-type(5n + 2),
+      & dd:nth-of-type(5n + 2) {
+        grid-column: 2;
+      }
+
+      & dt:nth-of-type(5n + 3),
+      & dd:nth-of-type(5n + 3) {
+        grid-column: 3;
+      }
+
+      & dt:nth-of-type(5n + 4),
+      & dd:nth-of-type(5n + 4) {
+        grid-column: 4;
+      }
+
+      & dt:nth-of-type(5n + 5),
+      & dd:nth-of-type(5n + 5) {
+        grid-column: 5;
+      }
+    }
+  }
+
   @container semanticForm (width < 1300px) {
     fieldset.colspan-5 dl,
     dl.colspan-5 {
@@ -723,6 +792,8 @@ form.semanticForms {
       grid-column: span 4 !important;
     }
 
+    &.lowFlow fieldset dl,
+    &.lowFlow dl,
     &.lowFlow fieldset.colspan-5 dl,
     &.lowFlow dl.colspan-5 {
       grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr));
@@ -761,6 +832,8 @@ form.semanticForms {
       grid-column: span 3 !important;
     }
 
+    &.lowFlow fieldset dl,
+    &.lowFlow dl,
     &.lowFlow fieldset.colspan-4 dl,
     &.lowFlow dl.colspan-4,
     &.lowFlow fieldset.colspan-5 dl,
@@ -800,6 +873,8 @@ form.semanticForms {
       grid-column: span 2 !important;
     }
 
+    &.lowFlow fieldset dl,
+    &.lowFlow dl,
     &.lowFlow fieldset.colspan-3 dl,
     &.lowFlow dl.colspan-3,
     &.lowFlow fieldset.colspan-4 dl,
