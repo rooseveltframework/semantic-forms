@@ -358,7 +358,7 @@
             <p>Flexbox button layout pattern with two submit buttons:</p>
             <menu>
               <li><button type="submit" name="button1">Button 1</button></li>
-              <li><input type="image" name="image" alt="Button 2" width="100" src="https://cdn.iconscout.com/icon/free/png-256/free-home-icon-download-in-svg-png-gif-file-formats--app-for-ios-store-apps-apple-watch-pack-user-interface-icons-1100749.png"></li>
+              <li><input type="image" name="image" alt="Button 2" width="100" src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Perspective-Button-Go-icon.png"></li>
             </menu>
 
             <p>Flexbox button layout pattern with three submit buttons:</p>
@@ -648,7 +648,7 @@
             <p>Flexbox button layout pattern with two submit buttons:</p>
             <menu>
               <li><button type="submit" name="button1">Button 1</button></li>
-              <li><button type="reset" name="button2">Button 2</button></li>
+              <li><input type="image" name="image" alt="Button 2" width="100" src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Perspective-Button-Go-icon.png"></li>
             </menu>
 
             <p>Flexbox button layout pattern with three submit buttons:</p>
@@ -672,6 +672,14 @@
         for (const form of forms) {
           form.addEventListener('submit', e => {
             e.preventDefault()
+          })
+        }
+
+        const greenButtons = document.querySelectorAll('input[type="image"]')
+        for (const button of greenButtons) {
+          button.addEventListener('click', (e) => {
+            e.preventDefault()
+            window.alert('GREEN!!!')
           })
         }
       })
