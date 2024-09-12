@@ -11,6 +11,10 @@ form.semanticForms {
   --clearButtonColor: #000;
   --buttonGradientLight: #fff;
   --buttonGradientDark: #c0c0c0;
+  --invalid: #ea868f;
+  --valid: #75b798;
+  --invalidBorder: 2px solid var(--invalid);
+  --validBorder: 2px solid var(--valid);
   --inputHeight: 38px;
   --inputFontSize: 16px;
   --inputTopMargin: 15px;
@@ -150,6 +154,13 @@ form.semanticForms {
     width: 100%;
     touch-action: manipulation;
     outline: none;
+
+    &:required {
+      + label::after {
+        content: '*';
+        color: red;
+      }
+    }
 
     &:not([type="range"]) {
       padding: 6px 30px 6px 20px;
@@ -569,6 +580,31 @@ form.semanticForms {
 
   // #endregion
 
+
+  // #region invalid/valid styling
+  input:not([type='submit'], [type='reset'], [type='image']),
+  select,
+  textarea {
+    &.invalid,
+    &:user-invalid {
+      border: var(--invalidBorder) !important;
+
+      + label {
+        color: var(--invalid) !important;
+      }
+    }
+
+    &.valid,
+    &:required:user-valid {
+      border: var(--validBorder) !important;
+
+      + label {
+        color: var(--valid) !important;
+      }
+    }
+  }
+  // #endregion
+
   // disable autofill yellow
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -604,52 +640,76 @@ form.semanticForms {
     }
   }
 
-    // #region low flow form
-    &.lowFlow {
-      dl {
-        grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
-        grid-auto-flow: dense;
-        gap: 5px;
+  // #region low flow form
+  &.lowFlow {
+    dl {
+      grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
+      grid-auto-flow: dense;
+      gap: 5px;
 
-        // 1, 4, 7, ...
-        & > dt:nth-of-type(2n + 1),
-        & > dd:nth-of-type(2n + 1) {
-          grid-column: 1;
+      // 1, 4, 7, ...
+      & > dt:nth-of-type(2n + 1),
+      & > dd:nth-of-type(2n + 1) {
+        grid-column: 1;
+      }
+
+      // 2, 5, 8, ...
+      & > dt:nth-of-type(2n + 2),
+      & > dd:nth-of-type(2n + 2) {
+        grid-column: 2;
+      }
+
+      dt {
+        // add required asterisk
+        &:has(+ dd input:required) {
+          label::after {
+            content: '*';
+            color: red;
+          }
         }
 
-        // 2, 5, 8, ...
-        & > dt:nth-of-type(2n + 2),
-        & > dd:nth-of-type(2n + 2) {
-          grid-column: 2;
+        &:has(+ dd input:required:user-valid),
+        &:has(+ dd input.valid) {
+          label {
+            color: var(--valid) !important;
+          }
         }
 
-
-        dd {
-          margin-bottom: 10px;
-
-          // nudge single checkboxes to match checkbox groups
-          &:not(.checkboxes) {
-            input[type="checkbox"] {
-              margin-left: 10px;
-            }
+        &:has(+ dd input.invalid),
+        &:has(+ dd input:user-invalid) {
+          label {
+            color: var(--invalid) !important;
           }
-
-          // remove "x" padding
-          input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio], [type="range"]),
-          select,
-          textarea {
-            padding-right: 6px;
-          }
-
         }
       }
 
-      .checkboxes ul,
-      .radios ul {
-        margin-top: calc(var(--inputTopMargin) / 2);
+
+      dd {
+        margin-bottom: 10px;
+
+        // nudge single checkboxes to match checkbox groups
+        &:not(.checkboxes) {
+          input[type="checkbox"] {
+            margin-left: 10px;
+          }
+        }
+
+        // remove "x" padding
+        input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio], [type="range"]),
+        select,
+        textarea {
+          padding-right: 6px;
+        }
+
       }
     }
-    // #endregion
+
+    .checkboxes ul,
+    .radios ul {
+      margin-top: calc(var(--inputTopMargin) / 2);
+    }
+  }
+  // #endregion
 
   // #region container queries
   // The container is the <fieldset> element
@@ -777,6 +837,8 @@ form.semanticForms {
       grid-column: span 1 !important;
     }
 
+    &.lowFlow fieldset dl,
+    &.lowFlow dl,
     &.lowFlow fieldset.colspan-2 dl,
     &.lowFlow dl.colspan-2,
     &.lowFlow fieldset.colspan-3 dl,

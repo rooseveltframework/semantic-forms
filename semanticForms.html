@@ -17,6 +17,7 @@
         color: #fff;
       }
       h1,
+      h2,
       p {
         font-family: sans-serif;
       }
@@ -29,6 +30,7 @@
         <h1>Semantic Forms</h1>
         <p>A pattern library of forms based on semantic HTML enhanced with a modern UX.</p>
 
+        <h2>Default styling</h2>
         <form action="/somewhere" method="post" class="semanticForms">
           <dl>
             <dt><label for="name">Name</label></dt>
@@ -61,6 +63,15 @@
 
               <dt><label for="number">Number</label></dt>
               <dd><input id="number" name="number" type="number" placeholder="e.g. 43"></dd>
+
+              <dt><label for="invalid-field">Invalid field</label></dt>
+              <dd><input id="invalid-field" class="invalid" name="invalid-field" type="number" placeholder="e.g. 43" min="0" value="-2"></dd>
+
+              <dt><label for="valid-field">Valid field</label></dt>
+              <dd><input id="valid-field" class="valid" name="valid-field" type="number" placeholder="e.g. 43" min="0" value="2"></dd>
+
+              <dt><label for="required-field">Required field</label></dt>
+              <dd><input id="required-field" name="required-field" type="text" required></dd>
 
               <dt><label for="disabledInput">Disabled input</label></dt>
               <dd><input id="disabledInput" name="disabledInput" type="text" placeholder="e.g. foo" disabled></dd>
@@ -359,6 +370,8 @@
           </fieldset>
         </form>
 
+        <h2>Low flow styling</h2>
+        <p>Adding the <code>lowFlow</code> class to the form element removes all JS enhancements.</p>
         <form action="/somewhere" method="post" class="semanticForms lowFlow">
           <dl>
             <dt><label for="low-flow-name">Name</label></dt>
@@ -391,6 +404,15 @@
 
               <dt><label for="low-flow-number">Number</label></dt>
               <dd><input id="low-flow-number" name="low-flow-number" type="number" placeholder="e.g. 43"></dd>
+
+              <dt><label for="low-flow-invalid-field">Invalid field</label></dt>
+              <dd><input id="low-flow-invalid-field" class="invalid" name="low-flow-invalid-Field" type="number" placeholder="e.g. 43" min="0" value="-2"></dd>
+
+              <dt><label for="low-flow-valid-field">Valid field</label></dt>
+              <dd><input id="low-flow-valid-field" class="valid" name="low-flow-valid-field" type="number" placeholder="e.g. 43" min="0" value="2"></dd>
+
+              <dt><label for="low-flow-required-field">Required field</label></dt>
+              <dd><input id="low-flow-required-field" name="low-flow-required-field" type="number" placeholder="e.g. 43" min="0" required></dd>
 
               <dt><label for="low-flow-selectbox">Select box</label></dt>
               <dd><select id="low-flow-selectbox" name="low-flow-selectbox">
@@ -497,6 +519,104 @@
               </fieldset>
             </fieldset>
 
+            <fieldset>
+              <legend>Colspan classes</legend>
+
+              <fieldset class="colspan-1">
+                <legend>colspan-1</legend>
+
+                <dl>
+                  <dt><label for="low-flow-colspan-1-a">Input A</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-1-a" name="low-flow-colspan-1-a"></dd>
+
+                  <dt><label for="low-flow-colspan-1-b">Input B</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-1-b" name="low-flow-colspan-1-b"></dd>
+
+                  <dt><label for="low-flow-colspan-1-c">Input C</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-1-c" name="low-flow-colspan-1-c"></dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-2">
+                <legend>colspan-2</legend>
+
+                <dl>
+                  <dt><label for="low-flow-colspan-2-a">Input A</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-2-a" name="low-flow-colspan-2-a"></dd>
+
+                  <dt><label for="low-flow-colspan-2-b">Input B</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-2-b" name="low-flow-colspan-2-b"></dd>
+
+                  <dt><label for="low-flow-colspan-2-c">Input C</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-2-c" name="low-flow-colspan-2-c"></dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-3">
+                <legend>colspan-3</legend>
+
+                <dl>
+                  <dt><label for="low-flow-colspan-3-a">Input A</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-3-a" name="low-flow-colspan-3-a"></dd>
+
+                  <dt><label for="low-flow-colspan-3-b">Input B</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-3-b" name="low-flow-colspan-3-b"></dd>
+
+                  <dt><label for="low-flow-colspan-3-c">Input C</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-3-c" name="low-flow-colspan-3-c"></dd>
+
+                  <dt><label for="low-flow-colspan-3-d">Input D</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-3-d" name="low-flow-colspan-3-d"></dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-4">
+                <legend>colspan-4</legend>
+
+                <dl>
+                  <dt><label for="low-flow-colspan-4-a">Input A</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-4-a" name="low-flow-colspan-4-a"></dd>
+
+                  <dt><label for="low-flow-colspan-4-b">Input B</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-4-b" name="low-flow-colspan-4-b"></dd>
+
+                  <dt><label for="low-flow-colspan-4-c">Input C</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-4-c" name="low-flow-colspan-4-c"></dd>
+
+                  <dt><label for="low-flow-colspan-4-d">Input D</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-4-d" name="low-flow-colspan-4-d"></dd>
+
+                  <dt><label for="low-flow-colspan-4-e">Input E</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-4-e" name="low-flow-colspan-4-e"></dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-5">
+                <legend>colspan-5</legend>
+
+                <dl>
+                  <dt><label for="low-flow-colspan-5-a">Input A</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-a" name="low-flow-colspan-5-a"></dd>
+
+                  <dt><label for="low-flow-colspan-5-b">Input B</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-b" name="low-flow-colspan-5-b"></dd>
+
+                  <dt><label for="low-flow-colspan-5-c">Input C</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-c" name="low-flow-colspan-5-c"></dd>
+
+                  <dt><label for="low-flow-colspan-5-d">Input D</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-d" name="low-flow-colspan-5-d"></dd>
+
+                  <dt><label for="low-flow-colspan-5-e">Input E</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-e" name="low-flow-colspan-5-e"></dd>
+
+                  <dt><label for="low-flow-colspan-5-f">Input F</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-f" name="low-flow-colspan-5-f"></dd>
+                </dl>
+              </fieldset>
+            </fieldset>
+
+
             <details>
               <summary>Detail element</summary>
               <dl>
@@ -547,6 +667,13 @@
         document.querySelector('#mode button').addEventListener('click', (event) => toggleDarkMode())
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) toggleDarkMode('dark')
         else toggleDarkMode('light')
+
+        const forms = document.querySelectorAll('form')
+        for (const form of forms) {
+          form.addEventListener('submit', e => {
+            e.preventDefault()
+          })
+        }
       })
 
       function toggleDarkMode (mode) {
