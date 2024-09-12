@@ -360,21 +360,23 @@
         </form>
 
         <form action="/somewhere" method="post" class="semanticForms lowFlow">
+          <dl>
+            <dt><label for="low-flow-name">Name</label></dt>
+            <dd><input id="low-flow-name" name="low-flow-name" type="text" placeholder="e.g. John Smith"></dd>
+
+            <dt><label for="low-flow-prefilled">Prefilled field</label></dt>
+            <dd><input id="low-flow-prefilled" name="low-flow-prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
+
+            <dt><label for="low-flow-noplaceholder">No placeholder</label></dt>
+            <dd><input id="low-flow-noplaceholder" name="low-flow-noplaceholder" type="text"></dd>
+
+            <dt><label for="low-flow-password">Password field</label></dt>
+            <dd><input id="low-flow-password" name="low-flow-password" type="password"></dd>
+          </dl>
+
           <fieldset>
             <legend>Fieldset legend (low flow, JS disabled)</legend>
             <dl>
-              <dt><label for="low-flow-name">Name</label></dt>
-              <dd><input id="low-flow-name" name="low-flow-name" type="text" placeholder="e.g. John Smith"></dd>
-
-              <dt><label for="low-flow-prefilled">Prefilled field</label></dt>
-              <dd><input id="low-flow-prefilled" name="low-flow-prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
-
-              <dt><label for="low-flow-noplaceholder">No placeholder</label></dt>
-              <dd><input id="low-flow-noplaceholder" name="low-flow-noplaceholder" type="text"></dd>
-
-              <dt><label for="low-flow-password">Password field</label></dt>
-              <dd><input id="low-flow-password" name="low-flow-password" type="password"></dd>
-
               <dt><label for="low-flow-email">Email field</label></dt>
               <dd><input id="low-flow-email" name="low-flow-email" type="email" placeholder="e.g. john.smith@somewhere.com"></dd>
 
