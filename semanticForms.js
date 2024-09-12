@@ -64,8 +64,10 @@ window.semanticForms = () => {
           const newLabel = document.createElement('label')
           newLabel.setAttribute('for', input.id)
           newLabel.className = 'floatLabelFormAnimatedLabel'
+
           newLabel.innerHTML = label.innerHTML
           label.setAttribute('hidden', 'hidden')
+
           insertAfter(newLabel, input)
         }
         // #endregion

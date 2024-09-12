@@ -64,6 +64,9 @@
               <dt><label for="number">Number</label></dt>
               <dd><input id="number" name="number" type="number" placeholder="e.g. 43"></dd>
 
+              <dt><label for="label-subtext">Input with label help text</label></dt>
+              <dd><input id="label-subtext" name="label-subtext" type="text" placeholder="e.g. John Smith"><label for="label-subtext">Some help text</label></dd>
+
               <dt><label for="invalid-field">Invalid field</label></dt>
               <dd><input id="invalid-field" class="invalid" name="invalid-field" type="number" placeholder="e.g. 43" min="0" value="-2"></dd>
 
@@ -80,15 +83,18 @@
               <dd><input id="disabledInputValue" name="disabledInputValue" type="text" placeholder="e.g. foo" value="some value" disabled></dd>
 
               <dt><label for="selectbox">Select box</label></dt>
-              <dd><select id="selectbox" name="selectbox">
-                <option value="1">Item one</option>
-                <option value="2">Item two</option>
-                <option value="3">Item three</option>
-                <option value="4">Item four</option>
-                <option value="5">Item five</option>
-                <option value="6">Item six</option>
-                <option value="7">Item seven</option>
-              </select></dd>
+              <dd>
+                <select id="selectbox" name="selectbox">
+                  <option value="1">Item one</option>
+                  <option value="2">Item two</option>
+                  <option value="3">Item three</option>
+                  <option value="4">Item four</option>
+                  <option value="5">Item five</option>
+                  <option value="6">Item six</option>
+                  <option value="7">Item seven</option>
+                </select>
+                <label for="selectbox">Some help text regarding the select box</label>
+              </dd>
 
               <dt><label data-for="checkboxes">Checkboxes</label></dt>
               <dd class="checkboxes">
@@ -139,7 +145,10 @@
               <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic."></textarea></dd>
 
               <dt><label for="prefilledtextarea">Textarea (prefilled)</label></dt>
-              <dd><textarea id="prefilledtextarea" name="prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea></dd>
+              <dd>
+                <textarea id="prefilledtextarea" name="prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea>
+                <label for="prefilledtextarea">Some help text regarding the textarea</label>
+              </dd>
             </dl>
 
             <fieldset>
@@ -405,6 +414,12 @@
               <dt><label for="low-flow-number">Number</label></dt>
               <dd><input id="low-flow-number" name="low-flow-number" type="number" placeholder="e.g. 43"></dd>
 
+              <dt><label for="low-flow-label-subtext">Input with label help text</label></dt>
+              <dd>
+                <input id="low-flow-label-subtext" name="low-flow-label-subtext" type="text" placeholder="e.g. John Smith">
+                <label for="low-flow-label-subtext">Some help text</label>
+              </dd>
+
               <dt><label for="low-flow-invalid-field">Invalid field</label></dt>
               <dd><input id="low-flow-invalid-field" class="invalid" name="low-flow-invalid-Field" type="number" placeholder="e.g. 43" min="0" value="-2"></dd>
 
@@ -415,15 +430,18 @@
               <dd><input id="low-flow-required-field" name="low-flow-required-field" type="number" placeholder="e.g. 43" min="0" required></dd>
 
               <dt><label for="low-flow-selectbox">Select box</label></dt>
-              <dd><select id="low-flow-selectbox" name="low-flow-selectbox">
-                <option value="1">Item one</option>
-                <option value="2">Item two</option>
-                <option value="3">Item three</option>
-                <option value="4">Item four</option>
-                <option value="5">Item five</option>
-                <option value="6">Item six</option>
-                <option value="7">Item seven</option>
-              </select></dd>
+              <dd>
+                <select id="low-flow-selectbox" name="low-flow-selectbox">
+                  <option value="1">Item one</option>
+                  <option value="2">Item two</option>
+                  <option value="3">Item three</option>
+                  <option value="4">Item four</option>
+                  <option value="5">Item five</option>
+                  <option value="6">Item six</option>
+                  <option value="7">Item seven</option>
+                </select>
+                <label for="low-flow-selectbox">Some help text regarding the select box</label>
+              </dd>
 
               <dt><label data-for="low-flow-checkboxes">Checkboxes</label></dt>
               <dd class="checkboxes">
@@ -474,7 +492,10 @@
               <dd><textarea id="low-flow-textarea" name="low-flow-textarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic."></textarea></dd>
 
               <dt><label for="low-flow-prefilledtextarea">Textarea (prefilled)</label></dt>
-              <dd><textarea id="low-flow-prefilledtextarea" name="low-flow-prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea></dd>
+              <dd>
+                <textarea id="low-flow-prefilledtextarea" name="low-flow-prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea>
+                <label for="low-flow-prefilledtextarea">Some help text regarding the select box</label>
+              </dd>
             </dl>
 
             <fieldset>
