@@ -288,7 +288,6 @@ form.semanticForms {
   // button styling
   input[type='submit'],
   input[type='reset'],
-  input[type='image'],
   button:not(.clear) {
     appearance: none;
     -moz-appearance: none;
@@ -300,15 +299,21 @@ form.semanticForms {
     border-radius: 20px;
     padding: 5px 25px;
     font-size: 100%;
-    transition: filter 0.1s;
-
-    &:hover {
-      filter: brightness(1.05);
-    }
 
     &:active,
     &:focus {
       background-image: linear-gradient(to bottom, var(--buttonGradientDark) 0%, var(--buttonGradientLight) 100%);
+    }
+  }
+
+  input[type='submit'],
+  input[type='reset'],
+  input[type='image'],
+  button:not(.clear) {
+    transition: filter 0.1s;
+
+    &:hover {
+      filter: brightness(1.05);
     }
   }
   // #endregion

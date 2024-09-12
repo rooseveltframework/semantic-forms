@@ -243,7 +243,6 @@ form.semanticForms input[type=file] + label + .clear {
 }
 form.semanticForms input[type=submit],
 form.semanticForms input[type=reset],
-form.semanticForms input[type=image],
 form.semanticForms button:not(.clear) {
   appearance: none;
   -moz-appearance: none;
@@ -255,6 +254,18 @@ form.semanticForms button:not(.clear) {
   border-radius: 20px;
   padding: 5px 25px;
   font-size: 100%;
+}
+form.semanticForms input[type=submit]:active, form.semanticForms input[type=submit]:focus,
+form.semanticForms input[type=reset]:active,
+form.semanticForms input[type=reset]:focus,
+form.semanticForms button:not(.clear):active,
+form.semanticForms button:not(.clear):focus {
+  background-image: linear-gradient(to bottom, var(--buttonGradientDark) 0%, var(--buttonGradientLight) 100%);
+}
+form.semanticForms input[type=submit],
+form.semanticForms input[type=reset],
+form.semanticForms input[type=image],
+form.semanticForms button:not(.clear) {
   transition: filter 0.1s;
 }
 form.semanticForms input[type=submit]:hover,
@@ -262,15 +273,6 @@ form.semanticForms input[type=reset]:hover,
 form.semanticForms input[type=image]:hover,
 form.semanticForms button:not(.clear):hover {
   filter: brightness(1.05);
-}
-form.semanticForms input[type=submit]:active, form.semanticForms input[type=submit]:focus,
-form.semanticForms input[type=reset]:active,
-form.semanticForms input[type=reset]:focus,
-form.semanticForms input[type=image]:active,
-form.semanticForms input[type=image]:focus,
-form.semanticForms button:not(.clear):active,
-form.semanticForms button:not(.clear):focus {
-  background-image: linear-gradient(to bottom, var(--buttonGradientDark) 0%, var(--buttonGradientLight) 100%);
 }
 form.semanticForms .floatLabelForm div {
   position: relative;
