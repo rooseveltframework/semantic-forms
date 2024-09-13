@@ -135,18 +135,23 @@ form.semanticForms {
   }
 
   p {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-
     input, select, textarea {
       max-width: 350px;
     }
 
-    &:has(input[type='checkbox'], input[type='radio']) {
+    // input/label combo
+    &:has(input:not([type='checkbox'], [type='radio']), textarea):has(label) {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    // checkbox or radio/label combo
+    &:has(input[type='checkbox'], input[type='radio']):has(label) {
       display: flex;
       flex-direction: row;
       align-items: center;
+      gap: 5px;
     }
   }
 

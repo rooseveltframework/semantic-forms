@@ -113,18 +113,19 @@ form.semanticForms dl dd.checkboxes ul li label, form.semanticForms dl dd.radios
   font-size: var(--inputFontSize);
   margin-top: 2px;
 }
-form.semanticForms p {
+form.semanticForms p input, form.semanticForms p select, form.semanticForms p textarea {
+  max-width: 350px;
+}
+form.semanticForms p:has(input:not([type=checkbox], [type=radio]), textarea):has(label) {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-form.semanticForms p input, form.semanticForms p select, form.semanticForms p textarea {
-  max-width: 350px;
-}
-form.semanticForms p:has(input[type=checkbox], input[type=radio]) {
+form.semanticForms p:has(input[type=checkbox], input[type=radio]):has(label) {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 5px;
 }
 form.semanticForms menu, form.semanticForms ul {
   display: flex;
