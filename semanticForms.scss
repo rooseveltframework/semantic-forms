@@ -140,14 +140,14 @@ form.semanticForms {
     }
 
     // input/label combo
-    &:has(input:not([type='checkbox'], [type='radio']), textarea):has(label) {
+    &:has(input:not([type='checkbox'], [type='radio']), textarea, label) {
       display: flex;
       flex-direction: column;
       gap: 5px;
     }
 
     // checkbox or radio/label combo
-    &:has(input[type='checkbox'], input[type='radio']):has(label) {
+    &:has(input[type='checkbox'], input[type='radio'], label) {
       display: flex;
       flex-direction: row;
       align-items: center;
