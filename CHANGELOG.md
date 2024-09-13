@@ -9,8 +9,10 @@
 - Breaking: Overhauled entire codebase to drive it using CSS grid instead of flexbox. This makes everything more flexible overall and fit more designs better. However the CSS and markup changes will likely cause breaking changes to previous integrations, so when upgrading make some time to visually test all your pages to alter any CSS overrides you had in place accordingly. You also might want to make some markup changes to make use of new available classes to tweak the fit of individual form fields on specific forms.
 - Altered fields to fit available space better at various screen sizes.
 - Added multiple utility classes that define how wide inputs will span in the responsive layout.
-- Added form validation styles.
-- Added asterisk that appears next to required inputs.
+- Added support for input type=image.
+- Added support for secondary labels.
+- Added styling for invalid form fields.
+- Added asterisk that appears on required inputs.
 - Improved accessibility considerably. Now has 100% Lighthouse score.
 - Added feature to progressively nest fieldsets with progressively darker/lighter background colors.
 - Fixed bug causing clear button appearing on disabled inputs.
