@@ -134,6 +134,22 @@ form.semanticForms {
     }
   }
 
+  p {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    input, select, textarea {
+      max-width: 350px;
+    }
+
+    &:has(input[type='checkbox'], input[type='radio']) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
   menu, ul {
     display: flex;
     justify-content: space-between;
