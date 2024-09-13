@@ -320,6 +320,10 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .rad
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select {
   margin-top: var(--inputTopMargin);
 }
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea {
+  transition: opacity 250ms;
+}
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::placeholder {
   opacity: 0;
@@ -328,7 +332,6 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .rad
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-moz-placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-moz-placeholder {
   opacity: 0;
-  visibility: hidden;
   transition: opacity 250ms;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-webkit-input-placeholder,
@@ -348,7 +351,6 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .rad
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-moz-placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-moz-placeholder {
   opacity: 1;
-  visibility: visible;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder {

@@ -389,6 +389,7 @@ form.semanticForms {
 
         input,
         textarea {
+          transition: opacity 250ms;
           // hide placeholder content until input is focused
           &::placeholder {
             opacity: 0;
@@ -397,7 +398,6 @@ form.semanticForms {
 
           &::-moz-placeholder {
             opacity: 0;
-            visibility: hidden;
             transition: opacity 250ms;
           }
 
@@ -419,7 +419,6 @@ form.semanticForms {
 
             &::-moz-placeholder {
               opacity: 1;
-              visibility: visible;
             }
 
             &::-webkit-input-placeholder {
