@@ -51,6 +51,13 @@ window.semanticForms = () => {
             }
 
             newLabel.innerHTML = label.innerHTML
+
+            if (dd.querySelector(':required')) {
+              if (!label.querySelector('span')) {
+                label.innerHTML += '<span title="This field is required.">*</span>'
+              }
+            }
+
             if (!dd.querySelector('label')) dd.append(newLabel)
           }
 
@@ -66,6 +73,11 @@ window.semanticForms = () => {
           newLabel.className = 'floatLabelFormAnimatedLabel'
 
           newLabel.innerHTML = label.innerHTML
+
+          if (input.hasAttribute('required')) {
+            newLabel.innerHTML += ' <span title="This field is required.">*</span>'
+          }
+
           label.setAttribute('hidden', 'hidden')
 
           insertAfter(newLabel, input)

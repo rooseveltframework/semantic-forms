@@ -184,13 +184,6 @@ form.semanticForms {
     touch-action: manipulation;
     outline: none;
 
-    &:required {
-      + label:first-of-type:after {
-        content: '*';
-        color: red;
-      }
-    }
-
     &:not([type="range"]) {
       padding: 6px 30px 6px 20px;
     }
@@ -399,22 +392,22 @@ form.semanticForms {
           // hide placeholder content until input is focused
           &::placeholder {
             opacity: 0;
-            transition: inherit;
+            transition: opacity 250ms;
           }
 
           &::-moz-placeholder {
             opacity: 0;
-            transition: inherit;
+            transition: opacity 250ms;
           }
 
           &::-webkit-input-placeholder {
             opacity: 0;
-            transition: inherit;
+            transition: opacity 250ms;
           }
 
           &:-ms-input-placeholder {
             opacity: 0;
-            transition: inherit;
+            transition: opacity 250ms;
           }
 
           // show placeholder content when focused
@@ -441,6 +434,12 @@ form.semanticForms {
           user-select: none;
           color: var(--placeholderColor);
           touch-action: manipulation;
+
+          span {
+            cursor: help;
+            pointer-events: auto;
+            color: red;
+          }
         }
       }
 
@@ -459,10 +458,13 @@ form.semanticForms {
 
       &:has(dd input:required) {
         dt {
-          label::after {
-            content: '*';
+          label > span {
+            margin-left: 5px;
+            cursor: help;
+            pointer-events: auto;
             color: red;
           }
+
         }
       }
     }
@@ -716,7 +718,7 @@ form.semanticForms {
         // add required asterisk
         &:has(+ dd input:required) {
           label::after {
-            content: '*';
+            content: ' *';
             color: red;
           }
         }

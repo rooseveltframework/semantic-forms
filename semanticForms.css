@@ -151,12 +151,6 @@ form.semanticForms textarea {
   touch-action: manipulation;
   outline: none;
 }
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):required + label:first-of-type:after,
-form.semanticForms select:required + label:first-of-type:after,
-form.semanticForms textarea:required + label:first-of-type:after {
-  content: "*";
-  color: red;
-}
 form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]),
 form.semanticForms select:not([type=range]),
 form.semanticForms textarea:not([type=range]) {
@@ -329,22 +323,22 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .rad
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::placeholder {
   opacity: 0;
-  transition: inherit;
+  transition: opacity 250ms;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-moz-placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-moz-placeholder {
   opacity: 0;
-  transition: inherit;
+  transition: opacity 250ms;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-webkit-input-placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-webkit-input-placeholder {
   opacity: 0;
-  transition: inherit;
+  transition: opacity 250ms;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:-ms-input-placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:-ms-input-placeholder {
   opacity: 0;
-  transition: inherit;
+  transition: opacity 250ms;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::placeholder {
@@ -367,6 +361,11 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .rad
   color: var(--placeholderColor);
   touch-action: manipulation;
 }
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span {
+  cursor: help;
+  pointer-events: auto;
+  color: red;
+}
 form.semanticForms .floatLabelForm div dt {
   position: relative;
 }
@@ -377,8 +376,10 @@ form.semanticForms .floatLabelForm div dt label {
   transform: translateY(-100%) scale(0.8);
   top: var(--inputTopMargin);
 }
-form.semanticForms .floatLabelForm div:has(dd input:required) dt label::after {
-  content: "*";
+form.semanticForms .floatLabelForm div:has(dd input:required) dt label > span {
+  margin-left: 5px;
+  cursor: help;
+  pointer-events: auto;
   color: red;
 }
 form.semanticForms .floatLabelForm input::placeholder, form.semanticForms .floatLabelForm textarea::placeholder {
@@ -543,7 +544,7 @@ form.semanticForms.lowFlow dl > dt:nth-of-type(2n + 2), form.semanticForms.lowFl
   grid-column: 2;
 }
 form.semanticForms.lowFlow dl dt:has(+ dd input:required) label::after {
-  content: "*";
+  content: " *";
   color: red;
 }
 form.semanticForms.lowFlow dl dd {
