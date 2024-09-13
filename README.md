@@ -248,13 +248,36 @@ Not too different than other inputs:
 </form>
 ```
 
+## Validation styles
+
+Inputs with the `required` attribution will result in a visual indicator (*) being added to its label. You can disable this indicator with the `data-no-asterisk` attribute on the label element:
+
+```html
+<form class="semanticForms">
+  <dl>
+    <dt><label for="input" data-no-asterisk>Input label</label></dt>
+    <dd><input type="text" name="input" id="input" required>
+  </dl>
+</form>
+```
+
+You can adjust the tooltip text of the asterisk with the `data-asterisk-text` attribute:
+
+```html
+<form class="semanticForms">
+  <dl>
+    <dt><label for="input" data-asterisk-text="This is a custom tooltip.">Input label</label></dt>
+    <dd><input type="text" name="input" id="input" required>
+  </dl>
+</form>
+```
 ## Other features
 
 - Custom-styled select boxes with a custom drawn arrow graphic driven by SVG embedded in the CSS.
 - Custom-styled submit buttons to match the aesthetic of the custom-styled forms.
 - Required inputs add a red asterisk to their labels.
 - Responsive: on wide screens, the forms split into multiple columns. On smaller screens, they collapse to a single column.
-- Validation: Valid and invalid styling are automatically applied to all inputs, including select and textarea elements. Validation styling may be added manually using the `valid` and `invalid` classes for the input. `valid` styling is only applied to inputs that also have the `required` attribute.
+- Validation: Invalid inputs are styled automatically after the user leaves the form input. Validation styling may be added manually using the `invalid` class.
 - Dark mode: apply an additional class of `dark` to your `<form>` elements to use the dark mode.
 - Low-flow mode that displays on old browsers, JS-disabled browsers, or can be activated manually by adding the `lowFlow` class to your `<form>` element. The low-flow mode reverts the float label pattern to traditional labels and collapses the forms to single column mode, but preserves the other visual design enhancements driven purely by CSS.
 

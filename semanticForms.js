@@ -52,10 +52,9 @@ window.semanticForms = () => {
 
             newLabel.innerHTML = label.innerHTML
 
-            if (dd.querySelector(':required')) {
-              if (!label.querySelector('span')) {
-                label.innerHTML += '<span title="This field is required.">*</span>'
-              }
+            if (dd.querySelector(':required') && label.getAttribute('data-no-asterisk') === null && !label.querySelector('span')) {
+              const text = label.getAttribute('data-asterisk-text') || 'This field is required.'
+              label.innerHTML += `<span title="${text}">*</span>`
             }
 
             if (!dd.querySelector('label')) dd.append(newLabel)
@@ -74,8 +73,9 @@ window.semanticForms = () => {
 
           newLabel.innerHTML = label.innerHTML
 
-          if (input.hasAttribute('required')) {
-            newLabel.innerHTML += ' <span title="This field is required.">*</span>'
+          if (input.hasAttribute('required') && label.getAttribute('data-no-asterisk') === null && !label.querySelector('span')) {
+            const text = label.getAttribute('data-asterisk-text') || 'This field is required.'
+            newLabel.innerHTML += ` <span title="${text}">*</span>`
           }
 
           label.setAttribute('hidden', 'hidden')

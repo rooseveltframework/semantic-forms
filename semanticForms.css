@@ -277,7 +277,7 @@ form.semanticForms input[type=image]:hover,
 form.semanticForms button:not(.clear):hover {
   filter: brightness(1.05);
 }
-form.semanticForms .floatLabelForm:not(:has(div:nth-of-type(2))) dd:not(.checkboxes, .radios) {
+form.semanticForms .floatLabelForm:not(:has(div:nth-of-type(2))) dd:not(.checkboxes, .radios):not(:has(textarea)) {
   max-width: 350px;
 }
 form.semanticForms .floatLabelForm div {
@@ -328,6 +328,7 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .rad
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-moz-placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-moz-placeholder {
   opacity: 0;
+  visibility: hidden;
   transition: opacity 250ms;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-webkit-input-placeholder,
@@ -347,6 +348,7 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .rad
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-moz-placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-moz-placeholder {
   opacity: 1;
+  visibility: visible;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder {

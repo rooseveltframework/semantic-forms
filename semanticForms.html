@@ -31,6 +31,16 @@
         <p>A pattern library of forms based on semantic HTML enhanced with a modern UX.</p>
 
         <h2>Default styling</h2>
+
+        <form class="semanticForms">
+          <dl class="colspan-1">
+            <dt><label for="textarea">textarea</label></dt>
+            <dd>
+              <!-- <input type="text" id="textarea" name="textarea"> -->
+              <textarea id="textarea" name="textarea"></textarea>
+            </dd>
+          </dl>
+        </form>
         <form action="/somewhere" method="post" class="semanticForms">
           <dl>
             <dt><label for="name">Name</label></dt>
@@ -81,6 +91,12 @@
               <dt><label for="required-field">Required field</label></dt>
               <dd><input id="required-field" name="required-field" type="text" required></dd>
 
+              <dt><label for="required-field-no-asterisk" data-no-asterisk>Required field (no asterisk)</label></dt>
+              <dd><input id="required-field-no-asterisk" name="required-field-no-asterisk" type="text" required></dd>
+
+              <dt><label for="required-field-custom-title" data-asterisk-text="This is a custom title.">Required field (custom title)</label></dt>
+              <dd><input id="required-field-custom-title" name="required-field-custom-title" type="text" required></dd>
+
               <dt><label for="disabledInput">Disabled input</label></dt>
               <dd><input id="disabledInput" name="disabledInput" type="text" placeholder="e.g. foo" disabled></dd>
 
@@ -104,9 +120,18 @@
               <dt><label data-for="checkboxes">Checkboxes</label></dt>
               <dd class="checkboxes">
                 <ul id="checkboxes">
-                  <li><input type="checkbox" name="checkboxes" id="c_one" checked required> <label for="c_one">One</label></li>
+                  <li><input type="checkbox" name="checkboxes" id="c_one" checked> <label for="c_one">One</label></li>
                   <li><input type="checkbox" name="checkboxes" id="c_two"> <label for="c_two">Two</label></li>
                   <li><input type="checkbox" name="checkboxes" id="c_three"> <label for="c_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label data-for="required-checkboxes" data-asterisk-text="Custom checkbox title text.">Required checkboxes</label></dt>
+              <dd class="checkboxes">
+                <ul id="required-checkboxes">
+                  <li><input type="checkbox" name="required-checkboxes" id="required-c_one" checked required> <label for="required-c_one">One</label></li>
+                  <li><input type="checkbox" name="required-checkboxes" id="required-c_two"> <label for="required-c_two">Two</label></li>
+                  <li><input type="checkbox" name="required-checkboxes" id="required-c_three" checked> <label for="required-c_three">Three</label></li>
                 </ul>
               </dd>
 

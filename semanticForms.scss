@@ -332,7 +332,7 @@ form.semanticForms {
   // #region labels
   .floatLabelForm {
     &:not(:has(div:nth-of-type(2))) {
-      dd:not(.checkboxes, .radios) {
+      dd:not(.checkboxes, .radios):not(:has(textarea)) {
         max-width: 350px;
       }
     }
@@ -397,6 +397,7 @@ form.semanticForms {
 
           &::-moz-placeholder {
             opacity: 0;
+            visibility: hidden;
             transition: opacity 250ms;
           }
 
@@ -418,6 +419,7 @@ form.semanticForms {
 
             &::-moz-placeholder {
               opacity: 1;
+              visibility: visible;
             }
 
             &::-webkit-input-placeholder {
