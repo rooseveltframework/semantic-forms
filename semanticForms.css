@@ -270,7 +270,7 @@ form.semanticForms button:not(.clear):hover {
   filter: brightness(1.05);
 }
 form.semanticForms .floatLabelForm:not(:has(div:nth-of-type(2))) dd:not(.checkboxes, .radios) {
-  max-width: 450px;
+  max-width: 350px;
 }
 form.semanticForms .floatLabelForm div {
   position: relative;

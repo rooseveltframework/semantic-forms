@@ -7,7 +7,6 @@ form.semanticForms {
   --borderColor: #c0c0c0;
   --subBorderColor: #c0c0c0;
   --placeholderColor: rgba(0, 0, 0, 0.75);
-  // --placeholderColor: #757575;
   --scrollbarColor: #c0c0c0;
   --clearButtonColor: #000;
   --buttonGradientLight: #fff;
@@ -35,7 +34,6 @@ form.semanticForms.dark {
   --borderColor: #656565;
   --subBorderColor: #3f3f3f;
   --placeholderColor: rgba(255, 255, 255, 0.85);
-  // --placeholderColor: #C9C9C9;
   --scrollbarColor: #373737;
   --clearButtonColor: #fff;
   --buttonGradientLight: #6f6f6f;
@@ -321,7 +319,7 @@ form.semanticForms {
   .floatLabelForm {
     &:not(:has(div:nth-of-type(2))) {
       dd:not(.checkboxes, .radios) {
-        max-width: 450px;
+        max-width: 350px;
       }
     }
 
