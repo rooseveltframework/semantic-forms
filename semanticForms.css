@@ -5,21 +5,20 @@ form.semanticForms {
   --buttonBackgroundColor: #f5f5f5;
   --borderColor: #c0c0c0;
   --subBorderColor: #c0c0c0;
-  --placeholderColor: #757575;
+  --placeholderColor: rgba(0, 0, 0, 0.75);
   --scrollbarColor: #c0c0c0;
   --clearButtonColor: #000;
   --buttonGradientLight: #fff;
   --buttonGradientDark: #c0c0c0;
-  --invalid: #ea868f;
-  --valid: #75b798;
+  --invalid: #f00;
   --invalidBorder: 2px solid var(--invalid);
-  --validBorder: 2px solid var(--valid);
   --inputHeight: 38px;
   --inputFontSize: 16px;
   --inputTopMargin: 15px;
   --inputMinWidth: 250px;
   --borderRadius: 10px;
-  --nestedFieldset: rgba(0,0,0,.05);
+  --nestedFieldset: rgba(0, 0, 0, .05);
+  --nestedInput: #fff;
   --border: 1px var(--borderColor) solid;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --customResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E") ;
@@ -33,12 +32,13 @@ form.semanticForms.dark {
   --buttonBackgroundColor: #454545;
   --borderColor: #656565;
   --subBorderColor: #3f3f3f;
-  --placeholderColor: #C9C9C9;
+  --placeholderColor: rgba(255, 255, 255, 0.85);
   --scrollbarColor: #373737;
   --clearButtonColor: #fff;
   --buttonGradientLight: #6f6f6f;
   --buttonGradientDark: #373737;
-  --nestedFieldset: rgba(255,255,255,.05);
+  --nestedFieldset: rgba(255, 255, 255, .05);
+  --nestedInput: rgba(255, 255, 255, .15);
   --border: none;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --customResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
@@ -72,8 +72,13 @@ form.semanticForms fieldset {
   padding: 20px 10px;
   margin-bottom: 15px;
 }
-form.semanticForms fieldset fieldset {
+form.semanticForms fieldset > fieldset {
   background-color: var(--nestedFieldset);
+}
+form.semanticForms fieldset > fieldset input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
+form.semanticForms fieldset > fieldset select,
+form.semanticForms fieldset > fieldset textarea {
+  background: var(--nestedInput);
 }
 form.semanticForms dl {
   display: grid;
@@ -105,6 +110,7 @@ form.semanticForms dl dd.checkboxes ul li, form.semanticForms dl dd.radios ul li
   gap: 5px;
 }
 form.semanticForms dl dd.checkboxes ul li label, form.semanticForms dl dd.radios ul li label {
+  font-size: var(--inputFontSize);
   margin-top: 2px;
 }
 form.semanticForms menu, form.semanticForms ul {
@@ -175,8 +181,8 @@ form.semanticForms input[type=color] {
 }
 form.semanticForms input[type=checkbox],
 form.semanticForms input[type=radio] {
-  width: 1.3em;
-  height: 1.3em;
+  width: 1.4em;
+  height: 1.4em;
   cursor: pointer;
 }
 form.semanticForms input[type=checkbox] + label:first-of-type,
@@ -263,6 +269,9 @@ form.semanticForms input[type=image]:hover,
 form.semanticForms button:not(.clear):hover {
   filter: brightness(1.05);
 }
+form.semanticForms .floatLabelForm:not(:has(div:nth-of-type(2))) dd:not(.checkboxes, .radios) {
+  max-width: 450px;
+}
 form.semanticForms .floatLabelForm div {
   position: relative;
   width: 100%;
@@ -296,7 +305,7 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .rad
   margin-top: -5px;
   padding-left: 20px;
   font-size: small;
-  color: var(--placeholderColor);
+  color: var(--formTextColor);
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea,
@@ -339,40 +348,45 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .rad
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus:-ms-input-placeholder {
   opacity: 1;
 }
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type {
+  user-select: none;
+  color: var(--placeholderColor);
+  touch-action: manipulation;
+}
 form.semanticForms .floatLabelForm div dt {
   position: relative;
 }
-form.semanticForms .floatLabelForm div dt label:is([data-for=checkboxes], [data-for=radios]) {
+form.semanticForms .floatLabelForm div dt label {
+  user-select: auto;
   color: var(--formTextColor);
   position: absolute;
   transform: translateY(-100%) scale(0.8);
   top: var(--inputTopMargin);
 }
-form.semanticForms .floatLabelForm div label:first-of-type {
-  user-select: none;
-  color: var(--placeholderColor);
-  touch-action: manipulation;
+form.semanticForms .floatLabelForm div:has(dd input:required) dt label::after {
+  content: "*";
+  color: red;
 }
 form.semanticForms .floatLabelForm input::placeholder, form.semanticForms .floatLabelForm textarea::placeholder {
   color: var(--placeholderColor);
   opacity: 1;
 }
-form.semanticForms .floatLabelForm div.colspan-full {
+form.semanticForms div.colspan-full {
   grid-column: 1/-1;
 }
-form.semanticForms .floatLabelForm div.colspan-5 {
+form.semanticForms div.colspan-5 {
   grid-column: span 5;
 }
-form.semanticForms .floatLabelForm div.colspan-4 {
+form.semanticForms div.colspan-4 {
   grid-column: span 4;
 }
-form.semanticForms .floatLabelForm div.colspan-3 {
+form.semanticForms div.colspan-3 {
   grid-column: span 3;
 }
-form.semanticForms .floatLabelForm div.colspan-2 {
+form.semanticForms div.colspan-2 {
   grid-column: span 2;
 }
-form.semanticForms .floatLabelForm div.colspan-1 {
+form.semanticForms div.colspan-1 {
   grid-column: span 1;
 }
 form.semanticForms fieldset.colspan-full dl,
@@ -473,20 +487,6 @@ form.semanticForms textarea.invalid ~ label:nth-of-type(2),
 form.semanticForms textarea:user-invalid ~ label:nth-of-type(2) {
   color: var(--invalid) !important;
 }
-form.semanticForms input:not([type=submit], [type=reset], [type=image]).valid, form.semanticForms input:not([type=submit], [type=reset], [type=image]):required:user-valid,
-form.semanticForms select.valid,
-form.semanticForms select:required:user-valid,
-form.semanticForms textarea.valid,
-form.semanticForms textarea:required:user-valid {
-  border: var(--validBorder) !important;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image]).valid ~ label:nth-of-type(2), form.semanticForms input:not([type=submit], [type=reset], [type=image]):required:user-valid ~ label:nth-of-type(2),
-form.semanticForms select.valid ~ label:nth-of-type(2),
-form.semanticForms select:required:user-valid ~ label:nth-of-type(2),
-form.semanticForms textarea.valid ~ label:nth-of-type(2),
-form.semanticForms textarea:required:user-valid ~ label:nth-of-type(2) {
-  color: var(--valid) !important;
-}
 form.semanticForms input:-webkit-autofill,
 form.semanticForms input:-webkit-autofill:hover,
 form.semanticForms input:-webkit-autofill:focus,
@@ -531,12 +531,6 @@ form.semanticForms.lowFlow dl > dt:nth-of-type(2n + 2), form.semanticForms.lowFl
 form.semanticForms.lowFlow dl dt:has(+ dd input:required) label::after {
   content: "*";
   color: red;
-}
-form.semanticForms.lowFlow dl dt:has(+ dd input:required:user-valid) label, form.semanticForms.lowFlow dl dt:has(+ dd input.valid) label {
-  color: var(--valid) !important;
-}
-form.semanticForms.lowFlow dl dt:has(+ dd input.invalid) label, form.semanticForms.lowFlow dl dt:has(+ dd input:user-invalid) label {
-  color: var(--invalid) !important;
 }
 form.semanticForms.lowFlow dl dd {
   margin-bottom: 10px;

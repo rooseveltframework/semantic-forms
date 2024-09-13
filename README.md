@@ -163,6 +163,9 @@ You can specify the number of columns an input will span using the `colspan-#` c
 </form>
 ```
 
+> #### Low flow `colspan-#`
+> To apply `colspan-#` styles to lowFlow form inputs, you will need to manually wrap your `<dt>` and `<dd>` elements in a `<div>`.
+
 ## Button groups
 
 You can align buttons side-by-side, or in left/right/center groups.

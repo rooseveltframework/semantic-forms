@@ -6,21 +6,21 @@ form.semanticForms {
   --buttonBackgroundColor: #f5f5f5;
   --borderColor: #c0c0c0;
   --subBorderColor: #c0c0c0;
-  --placeholderColor: #757575;
+  --placeholderColor: rgba(0, 0, 0, 0.75);
+  // --placeholderColor: #757575;
   --scrollbarColor: #c0c0c0;
   --clearButtonColor: #000;
   --buttonGradientLight: #fff;
   --buttonGradientDark: #c0c0c0;
-  --invalid: #ea868f;
-  --valid: #75b798;
+  --invalid: #f00;
   --invalidBorder: 2px solid var(--invalid);
-  --validBorder: 2px solid var(--valid);
   --inputHeight: 38px;
   --inputFontSize: 16px;
   --inputTopMargin: 15px;
   --inputMinWidth: 250px;
   --borderRadius: 10px;
-  --nestedFieldset: rgba(0,0,0,.05);
+  --nestedFieldset: rgba(0, 0, 0, .05);
+  --nestedInput: #fff;
   --border: 1px var(--borderColor) solid;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --customResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E")
@@ -34,12 +34,14 @@ form.semanticForms.dark {
   --buttonBackgroundColor: #454545;
   --borderColor: #656565;
   --subBorderColor: #3f3f3f;
-  --placeholderColor: #C9C9C9;
+  --placeholderColor: rgba(255, 255, 255, 0.85);
+  // --placeholderColor: #C9C9C9;
   --scrollbarColor: #373737;
   --clearButtonColor: #fff;
   --buttonGradientLight: #6f6f6f;
   --buttonGradientDark: #373737;
-  --nestedFieldset: rgba(255,255,255,.05);
+  --nestedFieldset: rgba(255, 255, 255, .05);
+  --nestedInput: rgba(255, 255, 255, .15);
   --border: none;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --customResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
@@ -79,8 +81,15 @@ form.semanticForms {
     margin-bottom: 15px;
 
     // nested fieldsets are darkened
-    fieldset {
+    > fieldset {
       background-color: var(--nestedFieldset);
+
+      // add opacity to styled inputs to prevent blending with background
+      input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
+      select,
+      textarea {
+        background: var(--nestedInput);
+      }
     }
 
   }
@@ -119,6 +128,7 @@ form.semanticForms {
 
           label {
             // shift text down to match center
+            font-size: var(--inputFontSize);
             margin-top: 2px;
           }
         }
@@ -189,12 +199,6 @@ form.semanticForms {
       outline: none;
       box-shadow: 0 0 0 1px var(--borderColor);
     }
-
-    // &:focus:not([type=checkbox], [type=radio]) + label:first-of-type,
-    // &:not(:placeholder-shown, [type=checkbox], [type=radio]) + label:first-of-type {
-    //   color: var(--formTextColor) !important;
-    //   transform: translateY(-150%) scale(0.7);
-    // }
   }
 
   input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
@@ -212,8 +216,8 @@ form.semanticForms {
   input[type=checkbox],
   input[type=radio] {
     // 30% larger based on parent font size
-    width: 1.3em;
-    height: 1.3em;
+    width: 1.4em;
+    height: 1.4em;
     cursor: pointer;
 
     & + label:first-of-type {
@@ -236,11 +240,6 @@ form.semanticForms {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-
-    // // force label to be correct color
-    // & + label:first-of-type {
-    //   color: var(--formTextColor) !important;
-    // }
   }
 
   textarea {
@@ -320,6 +319,12 @@ form.semanticForms {
 
   // #region labels
   .floatLabelForm {
+    &:not(:has(div:nth-of-type(2))) {
+      dd:not(.checkboxes, .radios) {
+        max-width: 450px;
+      }
+    }
+
     div {
       position: relative;
       width: 100%;
@@ -361,7 +366,7 @@ form.semanticForms {
           margin-top: -5px;
           padding-left: 20px;
           font-size: small;
-          color: var(--placeholderColor);
+          color: var(--formTextColor);
         }
 
         input,
@@ -412,13 +417,20 @@ form.semanticForms {
             }
           }
         }
+
+        label:first-of-type {
+          user-select: none;
+          color: var(--placeholderColor);
+          touch-action: manipulation;
+        }
       }
 
       // top level label for checkbox and radio groups
       dt {
         position: relative;
 
-        label:is([data-for="checkboxes"], [data-for="radios"]) {
+        label {
+          user-select: auto;
           color: var(--formTextColor);
           position: absolute;
           transform: translateY(-100%) scale(0.8);
@@ -426,10 +438,13 @@ form.semanticForms {
         }
       }
 
-      label:first-of-type {
-        user-select: none;
-        color: var(--placeholderColor);
-        touch-action: manipulation;
+      &:has(dd input:required) {
+        dt {
+          label::after {
+            content: '*';
+            color: red;
+          }
+        }
       }
     }
 
@@ -441,31 +456,32 @@ form.semanticForms {
     }
     // #endregion
 
-    // #region colspan classes
-    div {
-      &.colspan-full {
-        grid-column: 1 / -1;
-      }
+  }
 
-      &.colspan-5 {
-        grid-column: span 5;
-      }
+  // #region colspan classes
+  div {
+    &.colspan-full {
+      grid-column: 1 / -1;
+    }
 
-      &.colspan-4 {
-        grid-column: span 4;
-      }
+    &.colspan-5 {
+      grid-column: span 5;
+    }
 
-      &.colspan-3 {
-        grid-column: span 3;
-      }
+    &.colspan-4 {
+      grid-column: span 4;
+    }
 
-      &.colspan-2 {
-        grid-column: span 2;
-      }
+    &.colspan-3 {
+      grid-column: span 3;
+    }
 
-      &.colspan-1 {
-        grid-column: span 1;
-      }
+    &.colspan-2 {
+      grid-column: span 2;
+    }
+
+    &.colspan-1 {
+      grid-column: span 1;
     }
   }
 
@@ -608,7 +624,7 @@ form.semanticForms {
 
   // #endregion
 
-  // #region invalid/valid styling
+  // #region invalid styling
   input:not([type='submit'], [type='reset'], [type='image']),
   select,
   textarea {
@@ -618,15 +634,6 @@ form.semanticForms {
 
       ~ label:nth-of-type(2) {
         color: var(--invalid) !important;
-      }
-    }
-
-    &.valid,
-    &:required:user-valid {
-      border: var(--validBorder) !important;
-
-      ~ label:nth-of-type(2) {
-        color: var(--valid) !important;
       }
     }
   }
@@ -692,20 +699,6 @@ form.semanticForms {
           label::after {
             content: '*';
             color: red;
-          }
-        }
-
-        &:has(+ dd input:required:user-valid),
-        &:has(+ dd input.valid) {
-          label {
-            color: var(--valid) !important;
-          }
-        }
-
-        &:has(+ dd input.invalid),
-        &:has(+ dd input:user-invalid) {
-          label {
-            color: var(--invalid) !important;
           }
         }
       }
