@@ -18,6 +18,7 @@ form.semanticForms {
   --inputMinWidth: 250px;
   --borderRadius: 10px;
   --nestedFieldset: rgba(0, 0, 0, .05);
+  --nestedFieldsetBorder: 1px rgba(0, 0, 0, .2) solid;
   --nestedInput: #fff;
   --border: 1px var(--borderColor) solid;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
@@ -38,6 +39,7 @@ form.semanticForms.dark {
   --buttonGradientLight: #6f6f6f;
   --buttonGradientDark: #373737;
   --nestedFieldset: rgba(255, 255, 255, .05);
+  --nestedFieldsetBorder: 1px rgba(255, 255, 255, .1) solid;
   --nestedInput: rgba(255, 255, 255, .15);
   --border: none;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
@@ -74,6 +76,7 @@ form.semanticForms fieldset {
 }
 form.semanticForms fieldset > fieldset {
   background-color: var(--nestedFieldset);
+  border: var(--nestedFieldsetBorder);
 }
 form.semanticForms fieldset > fieldset input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
 form.semanticForms fieldset > fieldset select,
