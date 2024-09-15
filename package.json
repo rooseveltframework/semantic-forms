@@ -1,14 +1,20 @@
 {
   "name": "semantic-forms",
   "description": "Semantic Forms",
-  "author": "Eric Newport <kethinov@gmail.com>",
+  "author": "Roosevelt Framework Team <rooseveltframework@gmail.com>",
+  "contributors": [
+    {
+      "name": "Contributors",
+      "url": "https://github.com/rooseveltframework/semantic-forms/graphs/contributors"
+    }
+  ],
   "version": "4.0.0",
   "files": [
     "semanticForms.css",
     "semanticForms.js",
     "semanticForms.scss"
   ],
-  "homepage": "https://github.com/kethinov/semanticforms",
+  "homepage": "https://github.com/rooseveltframework/semantic-forms",
   "license": "CC-BY-4.0",
   "main": "semanticForms.js",
   "readmeFilename": "README.md",
@@ -18,7 +24,7 @@
     "nodemon": "~3.1.4",
     "sass": "1.78.0",
     "serve": "14.2.3",
-    "standard": "17.1.0"
+    "standard": "17.1.2"
   },
   "scripts": {
     "test": "echo \"TODO: tests\"",
@@ -33,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kethinov/semanticforms.git"
+    "url": "git://github.com/rooseveltframework/semantic-forms.git"
   },
   "keywords": [
     "semantic",

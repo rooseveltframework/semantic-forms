@@ -1,4 +1,4 @@
-# semanticforms changelog
+# Semantic Forms changelog
 
 ## Next version
 
@@ -6,7 +6,7 @@
 
 ## 4.0.0
 
-- Breaking: Overhauled entire codebase to drive it using CSS grid instead of flexbox. This makes everything more flexible overall and fit more designs better. However the CSS and markup changes will likely cause breaking changes to previous integrations, so when upgrading make some time to visually test all your pages to alter any CSS overrides you had in place accordingly. You also might want to make some markup changes to make use of new available classes to tweak the fit of individual form fields on specific forms.
+- Breaking: Overhauled entire codebase to drive it using mostly CSS grid instead of flexbox. This makes everything more flexible overall and fit more designs better. However the CSS and markup changes will likely cause breaking changes to previous integrations, so when upgrading make some time to visually test all your pages to alter any CSS overrides you had in place accordingly. You also might want to make some markup changes to make use of new available classes to tweak the fit of individual form fields on specific forms.
 - Altered fields to fit available space better at various screen sizes.
 - Added multiple utility classes that define how wide inputs will span in the responsive layout.
 - Added support for input type=image.

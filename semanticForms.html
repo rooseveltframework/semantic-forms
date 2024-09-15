@@ -30,7 +30,7 @@
         <h1>Semantic Forms</h1>
         <p>A pattern library of forms based on semantic HTML enhanced with a modern UX.</p>
 
-        <h2>Default styling</h2>
+        <h2>High flow (JavaScript enabled) styling</h2>
 
         <form action="/somewhere" method="post" class="semanticForms">
           <dl>
@@ -53,7 +53,7 @@
           </dl>
 
           <fieldset class="colspan-full">
-            <legend>Fieldset legend (high flow, JS enabled)</legend>
+            <legend>Fieldset legend</legend>
             <dl>
               <dt><label for="email">Email field</label></dt>
               <dd><input id="email" name="email" type="email" placeholder="e.g. you@email.server"></dd>
@@ -423,7 +423,7 @@
           </fieldset>
         </form>
 
-        <h2>Low flow styling</h2>
+        <h2>Low flow (JavaScript disabled) styling</h2>
         <p>Adding the <code>lowFlow</code> class to the form element removes all JS enhancements.</p>
         <form action="/somewhere" method="post" class="semanticForms lowFlow">
           <dl>
@@ -446,7 +446,7 @@
           </dl>
 
           <fieldset>
-            <legend>Fieldset legend (low flow, JS disabled)</legend>
+            <legend>Fieldset legend</legend>
             <dl>
               <dt><label for="low-flow-email">Email field</label></dt>
               <dd><input id="low-flow-email" name="low-flow-email" type="email" placeholder="e.g. you@email.server"></dd>

@@ -2,9 +2,22 @@
 
 [![npm](https://img.shields.io/npm/v/semantic-forms.svg)](https://www.npmjs.com/package/semantic-forms)
 
-A pattern library of forms based on semantic HTML enhanced with a modern UX.
+A pattern library of attractive forms for your website with the following design goals:
+
+- Attractive, modern float label visual design.
+- Responsive layout based on modern CSS grid technique.
+- Clear fields.
+- Light and dark mode.
+- Invalid field styling.
+- Good accessibility.
+- Semantic HTML (no div soup).
+- Uses a progressive enhancement approach so that core functionality and most of the features still work with JavaScript disabled.
+- Sets no global styles and is scoped by a single class name `semanticForms` applied to `<form>` elements.
+- No dependencies.
 
 See a [live demo here](https://kethinov.github.io/semanticforms/semanticForms.html).
+
+This module was built and is maintained by the [Roosevelt web framework](https://github.com/rooseveltframework/roosevelt) [team](https://github.com/orgs/rooseveltframework/people), but it can be used independently of Roosevelt as well.
 
 # Usage
 
@@ -18,13 +31,17 @@ Then apply the `semanticForms` class to your `<form>` elements:
 </form>
 ```
 
+Then apply the JavaScript enhancements:
+
+```javascript
+window.semanticForms()
+```
+
 Then the CSS/JS enhancements to your forms will apply automatically, assuming the markup structure you use is one of the supported patterns.
 
-This library also monitors changes to the DOM and will enhance any additional `semanticForms` forms you insert, but the monitoring may not be perfect. If you want to re-scan for new forms to enhance manually, simply call `window.semanticForms()`. If you only want to reinitialize one form instead of all of them, call `window.semanticForms.reinitialize(formName)`.
+If you make changes to the DOM after Semantic Forms is activated and want to activate any additional `semanticForms` forms you insert, you can re-scan for new forms by calling `window.semanticForms()` again. If you only want to reinitialize one form instead of all of them, call `window.semanticForms.reinitialize(formElement)`.
 
 # Features
-
-Overview of pattern library features:
 
 ## Float label inputs
 
@@ -54,7 +71,7 @@ The float label input pattern is notoriously difficult to implement in a fashion
 
 ### Add help text
 
-Include a label in the `<dd>` element with a matching `for` attribute to place help text beneath the input.
+Include a label in the `<dd>` element with a matching `for` attribute to place help text beneath the input:
 
 ```html
 <form class="semanticForms">
@@ -69,7 +86,12 @@ Include a label in the `<dd>` element with a matching `for` attribute to place h
 ```
 
 ## Responsive columns
-You can limit the number of columns on your forms using the `colspan-#` class on a `<dl>` element. Applying the class to a `<fieldset>` will apply that styling to all nested `<dl>` elements.
+
+This feature makes it so the form fields will grow, shrink, expand the number of columns, or reduce the number of columns based on how much space exists in the container. You can customize it by applying various `colspan-#` classes to various elements in the form markup structure.
+
+### Set number of columns for a group of forms
+
+You can limit the number of columns on your forms using the `colspan-#` class on a `<dl>` element:
 
 ```html
 <form class="semanticForms">
@@ -78,7 +100,7 @@ You can limit the number of columns on your forms using the `colspan-#` class on
     <dd><input type="text" id="input-a" name="input-a"></dd>
 
     <dt><label for="input-b">Input B</label></dt>
-    <dd ><input type="text" id="input-b" name="input-b"></dd>
+    <dd><input type="text" id="input-b" name="input-b"></dd>
 
     <!-- wraps to the next row -->
     <dt><label for="input-c">Input C</label></dt>
@@ -86,6 +108,8 @@ You can limit the number of columns on your forms using the `colspan-#` class on
   </dl>
 </form>
 ```
+
+You can also apply the class to a `<fieldset>` which will apply that styling to all nested `<dl>` elements:
 
 ```html
 <form class="semanticForms">
@@ -96,7 +120,7 @@ You can limit the number of columns on your forms using the `colspan-#` class on
       <dd><input type="text" id="input-a" name="input-a"></dd>
 
       <dt><label for="input-b">Input B</label></dt>
-      <dd ><input type="text" id="input-b" name="input-b"></dd>
+      <dd><input type="text" id="input-b" name="input-b"></dd>
 
       <dt><label for="input-c">Input C</label></dt>
       <dd><input type="text" id="input-c" name="input-c"></dd>
@@ -108,7 +132,7 @@ You can limit the number of columns on your forms using the `colspan-#` class on
       <dd><input type="text" id="input-d" name="input-d"></dd>
 
       <dt><label for="input-e">Input E</label></dt>
-      <dd ><input type="text" id="input-e" name="input-e"></dd>
+      <dd><input type="text" id="input-e" name="input-e"></dd>
 
       <dt><label for="input-f">Input F</label></dt>
       <dd><input type="text" id="input-f" name="input-f"></dd>
@@ -117,8 +141,8 @@ You can limit the number of columns on your forms using the `colspan-#` class on
 </form>
 ```
 
-### Specify input columns
-You can specify the number of columns an input will span using the `colspan-#` class on the `<dd>` element. The inputs are responsive and will shrink according to available space. Available numbered classes are `colspan-1` through `colspan-5`.
+### Set number of columns a single input field takes up
+You can specify the number of columns an input will span using the `colspan-#` class on the `<dd>` element. The inputs are responsive and will shrink according to available space. Available numbered classes are `colspan-1` through `colspan-5`:
 
 
 ```html
@@ -141,7 +165,7 @@ You can specify the number of columns an input will span using the `colspan-#` c
 </form>
 ```
 
-`colspan-full` can also be used to force an input to take up the entire width of a form.
+`colspan-full` can also be used to force an input to take up the entire width of a form:
 
 ```html
 <form class="semanticForms">
@@ -163,8 +187,23 @@ You can specify the number of columns an input will span using the `colspan-#` c
 </form>
 ```
 
-> #### Low flow `colspan-#`
-> To apply `colspan-#` styles to lowFlow form inputs, you will need to manually wrap your `<dt>` and `<dd>` elements in a `<div>`.
+#### Set number of columns a single input field takes up on the low flow (JavaScript disabled flow)
+
+To apply `colspan-#` styles to low flow (JavaScript disabled flow) form inputs, you will need to manually wrap your `<dt>` and `<dd>` elements in a `<div>`:
+
+```html
+<form class="semanticForms">
+  <fieldset>
+    <dl>
+      <div>
+        <dt><label for="input-a">Input A</label></dt>
+        <!-- this spans 2 columns on row 1 -->
+        <dd class="colspan-2"><input type="text" id="input-a" name="input-a"></dd>
+			</div>
+    </dl>
+  </fieldset>
+</form>
+```
 
 ## Button groups
 
@@ -250,7 +289,7 @@ Not too different than other inputs:
 
 ## Validation styles
 
-Inputs with the `required` attribution will result in a visual indicator (*) being added to its label. You can disable this indicator with the `data-no-asterisk` attribute on the label element:
+Inputs with the `required` attribute will result in a visual indicator (*) being added to its label. You can disable this indicator with the `data-no-asterisk` attribute on the label element:
 
 ```html
 <form class="semanticForms">
@@ -271,24 +310,25 @@ You can adjust the tooltip text of the asterisk with the `data-asterisk-text` at
   </dl>
 </form>
 ```
-## Other features
+## Dark mode
 
-- Custom-styled select boxes with a custom drawn arrow graphic driven by SVG embedded in the CSS.
-- Custom-styled submit buttons to match the aesthetic of the custom-styled forms.
-- Required inputs add a red asterisk to their labels.
-- Responsive: on wide screens, the forms split into multiple columns. On smaller screens, they collapse to a single column.
-- Validation: Invalid inputs are styled automatically after the user leaves the form input. Validation styling may be added manually using the `invalid` class.
-- Dark mode: apply an additional class of `dark` to your `<form>` elements to use the dark mode.
-- Low-flow mode that displays on old browsers, JS-disabled browsers, or can be activated manually by adding the `lowFlow` class to your `<form>` element. The low-flow mode reverts the float label pattern to traditional labels and collapses the forms to single column mode, but preserves the other visual design enhancements driven purely by CSS.
+To set the dark mode, apply an additional class of `dark` to your `<form>` elements to force the dark mode.
 
-See `semanticForms.html` or the [live demo](https://kethinov.github.io/semanticforms/semanticForms.html) for a full demo of all the markup patterns.
+## Low flow (JavaScript disabled) mode
+
+The low flow will be displayed if JS is disabled.
+
+You can also activate the low flow (JavaScript disabled) mode manually by adding the `lowFlow` class to your `<form>` element.
+
+The low-flow mode reverts the float label pattern to traditional labels and doesn't include other JS-exclusive enhancements, but preserves the other visual design enhancements driven purely by CSS.
 
 # Contributing
 
 - Fork/clone this repo.
 - `npm ci`
 - Make your changes. If you want to alter the CSS, do the changes in the `.scss` files.
-  - `npm run watch` automatically compiles the CSS file after a change is detected in the SCSS file.
 - `npm run build`. The build step compiles the SCSS file into CSS.
+  - You can also run `npm run watch` automatically compiles the CSS file after a change is detected in the SCSS file.
 - Test your changes by opening `semanticForms.html` in your browser.
+  - If you want to test your work on an actual HTTP server, run `npm run dev` or `npm run d`.
 - Commit, push, open pull request.
