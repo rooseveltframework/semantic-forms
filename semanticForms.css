@@ -11,7 +11,7 @@ form.semanticForms {
   --buttonGradientLight: #fff;
   --buttonGradientDark: #c0c0c0;
   --invalid: #f00;
-  --invalidBorder: 2px solid var(--invalid);
+  --invalidBorder: 1px solid var(--invalid);
   --inputHeight: 38px;
   --inputFontSize: 16px;
   --inputTopMargin: 15px;
