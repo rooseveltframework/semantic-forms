@@ -257,6 +257,7 @@ form.semanticForms button:not(.clear) {
   border-radius: 20px;
   padding: 5px 25px;
   font-size: 100%;
+  line-height: 1;
 }
 form.semanticForms input[type=submit]:active, form.semanticForms input[type=submit]:focus,
 form.semanticForms input[type=reset]:active,
