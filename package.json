@@ -1,34 +1,45 @@
 {
   "name": "semantic-forms",
   "description": "Semantic Forms",
-  "author": "Eric Newport <kethinov@gmail.com>",
-  "version": "3.2.1",
+  "author": "Roosevelt Framework Team <rooseveltframework@gmail.com>",
+  "contributors": [
+    {
+      "name": "Contributors",
+      "url": "https://github.com/rooseveltframework/semantic-forms/graphs/contributors"
+    }
+  ],
+  "version": "4.0.0",
   "files": [
     "semanticForms.css",
     "semanticForms.js",
-    "semanticForms.less"
+    "semanticForms.scss"
   ],
-  "homepage": "https://github.com/kethinov/semanticforms",
+  "homepage": "https://github.com/rooseveltframework/semantic-forms",
   "license": "CC-BY-4.0",
   "main": "semanticForms.js",
   "readmeFilename": "README.md",
-  "dependencies": {},
   "devDependencies": {
-    "less": "4.2.0",
-    "eslint": "9.5.0",
+    "eslint": "9.10.0",
     "eslint-plugin-html": "8.1.1",
-    "standard": "17.1.0"
+    "nodemon": "~3.1.4",
+    "sass": "1.78.0",
+    "serve": "14.2.3",
+    "standard": "17.1.2"
   },
   "scripts": {
     "test": "echo \"TODO: tests\"",
     "coverage": "echo \"TODO: test coverage\"",
     "lint": "standard && standard --plugin html *.html",
     "lint-fix": "standard --fix && standard --plugin html *.html --fix",
-    "build": "lessc semanticForms.less semanticForms.css"
+    "d": "nodemon --exec \"npm run build && serve\"",
+    "dev": "nodemon --exec \"npm run build && serve\"",
+    "development": "nodemon --exec \"npm run build && serve\"",
+    "build": "sass semanticForms.scss semanticForms.css",
+    "watch": "sass --watch semanticForms.scss semanticForms.css"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kethinov/semanticforms.git"
+    "url": "git://github.com/rooseveltframework/semantic-forms.git"
   },
   "keywords": [
     "semantic",

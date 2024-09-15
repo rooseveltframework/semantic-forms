@@ -1,8 +1,26 @@
-# semanticforms changelog
+# Semantic Forms changelog
 
 ## Next version
 
 - Put your changes here...
+
+## 4.0.0
+
+- Breaking: Overhauled entire codebase to drive it using mostly CSS grid instead of flexbox. This makes everything more flexible overall and fit more designs better. However the CSS and markup changes will likely cause breaking changes to previous integrations, so when upgrading make some time to visually test all your pages to alter any CSS overrides you had in place accordingly. You also might want to make some markup changes to make use of new available classes to tweak the fit of individual form fields on specific forms.
+- Altered fields to fit available space better at various screen sizes.
+- Added multiple utility classes that define how wide inputs will span in the responsive layout.
+- Added support for input type=image.
+- Added support for secondary labels.
+- Added styling for invalid form fields.
+- Added asterisk that appears on required inputs.
+- Improved accessibility considerably. Now has 100% Lighthouse score.
+- Added feature to progressively nest fieldsets with progressively darker/lighter background colors.
+- Fixed bug causing clear button appearing on disabled inputs.
+- Fixed bug causing clear button to overlap with scrollbars on textareas.
+- Fixed bug causing nested fieldset to have incorrect padding and margins.
+- Fixed various other small bugs.
+- Replaced the `less` CSS preprocessor with `sass`.
+- Updated various dependencies.
 
 ## 3.2.1
 
@@ -59,7 +77,7 @@
 
 ## 3.0.0
 
-- Removed defualt two column layout. Now defaults to as many columns as the container is wide.
+- Removed default two column layout. Now defaults to as many columns as the container is wide.
 - Added `x2` class you can put on `dd` elements to double the width of a form. Does not apply on small screens.
 
 ## 2.1.2
