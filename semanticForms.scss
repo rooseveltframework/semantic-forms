@@ -195,11 +195,11 @@ form.semanticForms {
       cursor: not-allowed;
       opacity: 0.5;
 
-      + label:first-of-type {
+      ~ label:first-of-type {
         opacity: 0.5;
       }
 
-      + label + button {
+      ~ label + button {
         display: none;
       }
     }
@@ -235,7 +235,7 @@ form.semanticForms {
     height: 1.4em;
     cursor: pointer;
 
-    & + label:first-of-type {
+    & ~ label:first-of-type {
       color: var(--formTextColor) !important;
     }
   }
@@ -288,14 +288,14 @@ form.semanticForms {
   }
 
   // custom styling of clear button on textarea
-  textarea + label + .clear {
+  textarea ~ .clear {
     bottom: auto;
   }
 
   // hide clear button while placeholder text is visible
-  input:placeholder-shown + label + .clear,
-  textarea:placeholder-shown + label + .clear,
-  input[type=file] + label + .clear {
+  input:placeholder-shown ~ .clear,
+  textarea:placeholder-shown ~ .clear,
+  input[type=file] ~ .clear {
     display: none;
   }
 
@@ -349,14 +349,14 @@ form.semanticForms {
         input:not([type='submit'], [type='reset'], [type='image']),
         select,
         textarea {
-          &:focus:not([type=checkbox], [type=radio]) + label:first-of-type,
-          &:not(:placeholder-shown, [type=checkbox], [type=radio]) + label:first-of-type {
+          &:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+          &:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type {
             color: var(--formTextColor) !important;
             transform: translateY(-150%) scale(0.7);
           }
         }
 
-        select + label:first-of-type {
+        select ~ label:first-of-type {
           // force label to be correct color
           color: var(--formTextColor) !important;
         }
@@ -651,6 +651,11 @@ form.semanticForms {
   // #endregion
 
   // #region invalid styling
+  [data-invalid-text] {
+    display: none;
+    color: var(--invalid);
+  }
+
   input:not([type='submit'], [type='reset'], [type='image']),
   select,
   textarea {
@@ -661,7 +666,13 @@ form.semanticForms {
       ~ label:nth-of-type(2) {
         color: var(--invalid) !important;
       }
+
+      ~ [data-invalid-text] {
+        font-size: small;
+        display: flex;
+      }
     }
+
   }
   // #endregion
 

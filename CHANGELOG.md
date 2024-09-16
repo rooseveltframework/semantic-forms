@@ -4,6 +4,11 @@
 
 - Put your changes here...
 
+## 4.0.1
+
+- Added invalid help text support.
+- Fixed a bug that caused float labels to break when certain browser extensions were enabled.
+
 ## 4.0.0
 
 - Breaking: Overhauled entire codebase to drive it using mostly CSS grid instead of flexbox. This makes everything more flexible overall and fit more designs better. However the CSS and markup changes will likely cause breaking changes to previous integrations, so when upgrading make some time to visually test all your pages to alter any CSS overrides you had in place accordingly. You also might want to make some markup changes to make use of new available classes to tweak the fit of individual form fields on specific forms.
