@@ -300,7 +300,7 @@ Inputs with the `required` attribute will result in a visual indicator (*) being
 </form>
 ```
 
-You can add text that appears when a field is invalid with the `data-invalid-text` attribute:
+You can set a paragraph of text below a field to only appear when a field is invalid with the `data-invalid-text` attribute:
 
 ```html
 <form class="semanticForms">
