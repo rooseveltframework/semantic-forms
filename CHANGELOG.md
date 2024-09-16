@@ -2,6 +2,10 @@
 
 ## Next version
 
+- Put your changes here...
+
+## 4.0.1
+
 - Added invalid help text support.
 - Fixed a bug that caused float labels to break when certain browser extensions were enabled.
 
