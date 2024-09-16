@@ -2,7 +2,7 @@
 
 ## Next version
 
-- Put your changes here...
+- Added invalid help text support.
 
 ## 4.0.0
 

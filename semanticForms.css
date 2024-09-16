@@ -496,6 +496,10 @@ form.semanticForms.lowFlow fieldset.colspan-1 dl, form.semanticForms.lowFlow dl.
 form.semanticForms.lowFlow fieldset.colspan-1 dl dt:nth-of-type(n + 1), form.semanticForms.lowFlow fieldset.colspan-1 dl dd:nth-of-type(n + 1), form.semanticForms.lowFlow dl.colspan-1 dt:nth-of-type(n + 1), form.semanticForms.lowFlow dl.colspan-1 dd:nth-of-type(n + 1) {
   grid-column: 1;
 }
+form.semanticForms [data-invalid-text] {
+  display: none;
+  color: var(--invalid);
+}
 form.semanticForms input:not([type=submit], [type=reset], [type=image]).invalid, form.semanticForms input:not([type=submit], [type=reset], [type=image]):user-invalid,
 form.semanticForms select.invalid,
 form.semanticForms select:user-invalid,
@@ -509,6 +513,14 @@ form.semanticForms select:user-invalid ~ label:nth-of-type(2),
 form.semanticForms textarea.invalid ~ label:nth-of-type(2),
 form.semanticForms textarea:user-invalid ~ label:nth-of-type(2) {
   color: var(--invalid) !important;
+}
+form.semanticForms input:not([type=submit], [type=reset], [type=image]).invalid ~ [data-invalid-text], form.semanticForms input:not([type=submit], [type=reset], [type=image]):user-invalid ~ [data-invalid-text],
+form.semanticForms select.invalid ~ [data-invalid-text],
+form.semanticForms select:user-invalid ~ [data-invalid-text],
+form.semanticForms textarea.invalid ~ [data-invalid-text],
+form.semanticForms textarea:user-invalid ~ [data-invalid-text] {
+  font-size: small;
+  display: flex;
 }
 form.semanticForms input:-webkit-autofill,
 form.semanticForms input:-webkit-autofill:hover,

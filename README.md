@@ -300,6 +300,20 @@ Inputs with the `required` attribute will result in a visual indicator (*) being
 </form>
 ```
 
+You can add text that appears when a field is invalid with the `data-invalid-text` attribute:
+
+```html
+<form class="semanticForms">
+  <dl>
+    <dt><label for="password">Password label</label><dt>
+    <dd>
+      <input type="password" name="password" id="password" minlength="8">
+      <p data-invalid-text>Password must be at least 8 characters long.</p>
+    </dd>
+  </dl>
+</form>
+```
+
 You can adjust the tooltip text of the asterisk with the `data-asterisk-text` attribute:
 
 ```html

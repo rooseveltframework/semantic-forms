@@ -651,6 +651,11 @@ form.semanticForms {
   // #endregion
 
   // #region invalid styling
+  [data-invalid-text] {
+    display: none;
+    color: var(--invalid);
+  }
+
   input:not([type='submit'], [type='reset'], [type='image']),
   select,
   textarea {
@@ -661,7 +666,13 @@ form.semanticForms {
       ~ label:nth-of-type(2) {
         color: var(--invalid) !important;
       }
+
+      ~ [data-invalid-text] {
+        font-size: small;
+        display: flex;
+      }
     }
+
   }
   // #endregion
 

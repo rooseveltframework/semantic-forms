@@ -44,7 +44,10 @@
               <dd><input id="noplaceholder" name="noplaceholder" type="text"></dd>
 
               <dt><label for="password">Password field</label></dt>
-              <dd><input id="password" name="password" type="password" required></dd>
+              <dd>
+                <input id="password" name="password" type="password" minlength="8" required>
+                <p data-invalid-text>Password should be at least 8 characters long.</p>
+              </dd>
           </dl>
 
           <dl>
@@ -178,7 +181,7 @@
               <dl>
                 <dt><label for="nested-input-1">Input</label></dt>
                 <dd>
-                  <input type="text" id="nested-input-1" name="nested-input-1" value="a value" placeholder="Some interesting placeholder text">
+                  <input type="text" id="nested-input-1" name="nested-input-1" value="a value" placeholder="Some interesting placeholder text" minlength="2">
                   <p>Here is some subtext.</p>
                 </dd>
 
@@ -437,7 +440,10 @@
             <dd><input id="low-flow-noplaceholder" name="low-flow-noplaceholder" type="text"></dd>
 
             <dt><label for="low-flow-password">Password field</label></dt>
-            <dd><input id="low-flow-password" name="low-flow-password" type="password"></dd>
+            <dd>
+              <input id="low-flow-password" name="low-flow-password" type="password" minlength="8" required>
+              <p data-invalid-text>Password should be at least 8 characters long.</p>
+            </dd>
           </dl>
 
           <dl>
