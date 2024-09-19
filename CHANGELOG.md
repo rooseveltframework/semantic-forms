@@ -2,7 +2,13 @@
 
 ## Next version
 
+- Put your changes here...
+
+
+## 4.0.2
+
 - Fixed a visual bug that occurred when single checkbox elements had extra elements included.
+- Updated various dependencies.
 
 ## 4.0.1
 
