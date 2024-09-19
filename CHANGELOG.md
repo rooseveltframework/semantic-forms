@@ -2,7 +2,7 @@
 
 ## Next version
 
-- Put your changes here...
+- Fixed a visual bug that occurred when single checkbox elements had extra elements included.
 
 ## 4.0.1
 
