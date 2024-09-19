@@ -48,6 +48,7 @@ window.semanticForms = () => {
               input.parentNode.classList.add('singleCheckbox')
               newLabel.className = ''
               label.setAttribute('hidden', 'hidden')
+              insertAfter(newLabel, input)
             }
 
             newLabel.innerHTML = label.innerHTML

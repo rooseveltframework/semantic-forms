@@ -93,12 +93,19 @@ form.semanticForms dl dd {
   position: relative;
 }
 form.semanticForms dl dd:not(.checkboxes, .radios) {
-  display: flex;
   gap: 10px;
   max-width: 100%;
 }
 form.semanticForms dl dd:not(.checkboxes, .radios):not(.singleCheckbox) {
+  display: flex;
   flex-direction: column;
+}
+form.semanticForms dl dd:not(.checkboxes, .radios).singleCheckbox {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+}
+form.semanticForms dl dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], label) {
+  grid-column: 1/-1;
 }
 form.semanticForms dl dd.checkboxes ul, form.semanticForms dl dd.radios ul {
   display: flex;

@@ -92,7 +92,6 @@ form.semanticForms {
         background: var(--nestedInput);
       }
     }
-
   }
 
   dl {
@@ -105,13 +104,22 @@ form.semanticForms {
       position: relative;
 
       &:not(.checkboxes, .radios) {
-        display: flex;
         gap: 10px;
         max-width: 100%;
 
         // places all items within the <dd> horizontally
         &:not(.singleCheckbox) {
+          display: flex;
           flex-direction: column;
+        }
+
+        &.singleCheckbox {
+          display: grid;
+          grid-template-columns: min-content 1fr;
+
+          & > :not(input[type='checkbox'], label) {
+            grid-column: 1 / -1;
+          }
         }
       }
 
