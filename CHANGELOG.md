@@ -2,7 +2,7 @@
 
 ## Next version
 
-- Put your changes here...
+- Adjusted the margins of single checkbox labels.
 
 
 ## 4.0.2

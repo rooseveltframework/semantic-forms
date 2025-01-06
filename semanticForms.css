@@ -57,10 +57,10 @@ form.semanticForms {
   flex-direction: column;
   gap: 10px;
 }
-form.semanticForms * {
+form.semanticForms fieldset, form.semanticForms label, form.semanticForms input, form.semanticForms select, form.semanticForms textarea, form.semanticForms button, form.semanticForms dl, form.semanticForms menu, form.semanticForms dt, form.semanticForms dd, form.semanticForms div, form.semanticForms dd > p {
   color: var(--formTextColor);
-  box-sizing: border-box;
   font-family: sans-serif;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -101,8 +101,8 @@ form.semanticForms dl dd:not(.checkboxes, .radios):not(.singleCheckbox) {
   flex-direction: column;
 }
 form.semanticForms dl dd:not(.checkboxes, .radios).singleCheckbox {
-  display: grid;
-  grid-template-columns: min-content 1fr;
+  display: flex;
+  align-items: center;
 }
 form.semanticForms dl dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], label) {
   grid-column: 1/-1;
@@ -118,10 +118,6 @@ form.semanticForms dl dd.checkboxes ul li, form.semanticForms dl dd.radios ul li
   display: flex;
   align-items: center;
   gap: 5px;
-}
-form.semanticForms dl dd.checkboxes ul li label, form.semanticForms dl dd.radios ul li label {
-  font-size: var(--inputFontSize);
-  margin-top: 2px;
 }
 form.semanticForms p input, form.semanticForms p select, form.semanticForms p textarea {
   max-width: 350px;
@@ -201,6 +197,7 @@ form.semanticForms input[type=checkbox],
 form.semanticForms input[type=radio] {
   width: 1.4em;
   height: 1.4em;
+  margin: auto 0;
   cursor: pointer;
 }
 form.semanticForms input[type=checkbox] ~ label:first-of-type,
@@ -287,6 +284,12 @@ form.semanticForms input[type=reset]:hover,
 form.semanticForms input[type=image]:hover,
 form.semanticForms button:not(.clear):hover {
   filter: brightness(1.05);
+}
+form.semanticForms input[type=checkbox] + label:first-of-type,
+form.semanticForms input[type=radio] + label:first-of-type {
+  padding: 2px 0;
+  line-height: var(--inputFontSize);
+  font-size: var(--inputFontSize);
 }
 form.semanticForms .floatLabelForm:not(:has(div:nth-of-type(2))) dd:not(.checkboxes, .radios):not(:has(textarea)) {
   max-width: 350px;
