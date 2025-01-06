@@ -3,7 +3,8 @@
 ## Next version
 
 - Adjusted the margins of single checkbox labels.
-
+- Fixed a bug that prevented some inputs from expanding to the width of its container.
+- Altered CSS reset to only target elements affected by semantic forms.
 
 ## 4.0.2
 
