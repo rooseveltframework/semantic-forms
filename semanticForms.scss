@@ -61,7 +61,18 @@ form.semanticForms {
   gap: 10px;
 
   // style reset
-  fieldset, label, input, select, textarea, button, dl, menu, dt, dd, div, dd > p {
+  fieldset,
+  label,
+  input,
+  select,
+  textarea,
+  button,
+  menu:has(li > input, li > label, li > button, li > select, li > textarea),
+  dl:has(dt > label, dd > input, dd > select, dd > textarea),
+  dt:has(> input, > select, > textarea),
+  dd:has(> input, > select, > textarea, > ul, > menu),
+  div,
+  dd > p {
     color: var(--formTextColor);
     font-family: sans-serif;
     box-sizing: border-box;
@@ -94,7 +105,7 @@ form.semanticForms {
     }
   }
 
-  dl {
+  dl:has(dt > label, dd > input, dd > select, dd > textarea) {
     display: grid;
     grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
     gap: 10px;
@@ -156,7 +167,8 @@ form.semanticForms {
     }
   }
 
-  menu, ul {
+  menu:has(li > input),
+  ul:has(li > input) {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -337,8 +349,7 @@ form.semanticForms {
   input[type=checkbox] + label:first-of-type,
   input[type=radio] + label:first-of-type {
     // shift text down to match center
-    padding: 2px 0;
-    line-height: var(--inputFontSize);
+    padding-top: 2px;
     font-size: var(--inputFontSize);
   }
 
@@ -458,8 +469,10 @@ form.semanticForms {
           user-select: auto;
           color: var(--formTextColor);
           position: absolute;
-          transform: translateY(-100%) scale(0.8);
+          transform-origin: left center;
+          transform: translateY(-100%) scale(0.7);
           top: var(--inputTopMargin);
+          left: 10px;
         }
       }
 

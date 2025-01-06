@@ -57,7 +57,18 @@ form.semanticForms {
   flex-direction: column;
   gap: 10px;
 }
-form.semanticForms fieldset, form.semanticForms label, form.semanticForms input, form.semanticForms select, form.semanticForms textarea, form.semanticForms button, form.semanticForms dl, form.semanticForms menu, form.semanticForms dt, form.semanticForms dd, form.semanticForms div, form.semanticForms dd > p {
+form.semanticForms fieldset,
+form.semanticForms label,
+form.semanticForms input,
+form.semanticForms select,
+form.semanticForms textarea,
+form.semanticForms button,
+form.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
+form.semanticForms dt:has(> input, > select, > textarea),
+form.semanticForms dd:has(> input, > select, > textarea, > ul, > menu),
+form.semanticForms div,
+form.semanticForms dd > p {
   color: var(--formTextColor);
   font-family: sans-serif;
   box-sizing: border-box;
@@ -83,38 +94,38 @@ form.semanticForms fieldset > fieldset select,
 form.semanticForms fieldset > fieldset textarea {
   background: var(--nestedInput);
 }
-form.semanticForms dl {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) {
   display: grid;
   grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }
-form.semanticForms dl dd {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd {
   position: relative;
 }
-form.semanticForms dl dd:not(.checkboxes, .radios) {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios) {
   gap: 10px;
   max-width: 100%;
 }
-form.semanticForms dl dd:not(.checkboxes, .radios):not(.singleCheckbox) {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios):not(.singleCheckbox) {
   display: flex;
   flex-direction: column;
 }
-form.semanticForms dl dd:not(.checkboxes, .radios).singleCheckbox {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox {
   display: flex;
   align-items: center;
 }
-form.semanticForms dl dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], label) {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], label) {
   grid-column: 1/-1;
 }
-form.semanticForms dl dd.checkboxes ul, form.semanticForms dl dd.radios ul {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul {
   display: flex;
   flex-direction: column;
   margin-top: var(--inputTopMargin);
   padding-left: 10px;
   gap: 5px;
 }
-form.semanticForms dl dd.checkboxes ul li, form.semanticForms dl dd.radios ul li {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul li, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul li {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -130,7 +141,8 @@ form.semanticForms p:has(input[type=checkbox], input[type=radio]) {
   align-items: center;
   gap: 5px;
 }
-form.semanticForms menu, form.semanticForms ul {
+form.semanticForms menu:has(li > input),
+form.semanticForms ul:has(li > input) {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -284,8 +296,7 @@ form.semanticForms button:not(.clear):hover {
 }
 form.semanticForms input[type=checkbox] + label:first-of-type,
 form.semanticForms input[type=radio] + label:first-of-type {
-  padding: 2px 0;
-  line-height: var(--inputFontSize);
+  padding-top: 2px;
   font-size: var(--inputFontSize);
 }
 form.semanticForms .floatLabelForm div {
@@ -385,8 +396,10 @@ form.semanticForms .floatLabelForm div dt label {
   user-select: auto;
   color: var(--formTextColor);
   position: absolute;
-  transform: translateY(-100%) scale(0.8);
+  transform-origin: left center;
+  transform: translateY(-100%) scale(0.7);
   top: var(--inputTopMargin);
+  left: 10px;
 }
 form.semanticForms .floatLabelForm div:has(dd input:required) dt label > span {
   margin-left: 5px;
