@@ -67,7 +67,7 @@ form.semanticForms menu:has(li > input, li > label, li > button, li > select, li
 form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
 form.semanticForms dt:has(> input, > select, > textarea),
 form.semanticForms dd:has(> input, > select, > textarea, > ul, > menu),
-form.semanticForms div,
+form.semanticForms div:has(dt, dd),
 form.semanticForms dd > p {
   color: var(--formTextColor);
   font-family: sans-serif;

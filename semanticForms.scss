@@ -71,7 +71,7 @@ form.semanticForms {
   dl:has(dt > label, dd > input, dd > select, dd > textarea),
   dt:has(> input, > select, > textarea),
   dd:has(> input, > select, > textarea, > ul, > menu),
-  div,
+  div:has(dt, dd),
   dd > p {
     color: var(--formTextColor);
     font-family: sans-serif;
