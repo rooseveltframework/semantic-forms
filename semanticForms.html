@@ -16,11 +16,6 @@
         background-color: #000;
         color: #fff;
       }
-      h1,
-      h2,
-      p {
-        font-family: sans-serif;
-      }
     </style>
     <script src="semanticForms.js"></script>
   </head>
@@ -793,6 +788,78 @@
             </menu>
           </fieldset>
         </form>
+      </article>
+
+      <article>
+        <!-- standard elements -->
+        <h1>Header 1</h1>
+        <h2>Header 2</h2>
+        <h3>Header 3</h3>
+        <h4>Header 4</h4>
+        <h5>Header 5</h5>
+        <h6>Header 6</h6>
+
+        <p>This is some regular HTML that should not be affected by any semantic forms styles</p>
+        <div>This is a div</div>
+        <blockquote>This is a block quote</blockquote>
+        <a href="https://github.com/rooseveltframework/semantic-forms">A link to the semantic forms repo</a>
+        <fieldset>
+          <legend>Fieldset</legend>
+          <p>Some text inside a fieldset</p>
+        </fieldset>
+
+        <!-- tables -->
+        <table>
+          <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+          </tr>
+          <tr>
+            <td>D</td>
+            <td>E</td>
+            <td>F</td>
+          </tr>
+        </table>
+
+        <!-- lists -->
+        <ul>
+          <li>unordered list 1</li>
+          <li>unordered list 2</li>
+          <li>unordered list 3</li>
+        </ul>
+        <ol>
+          <li>ordered list 1</li>
+          <li>ordered list 2</li>
+          <li>ordered list 3</li>
+        </ol>
+        <menu>
+          <li>menu list 1</li>
+          <li>menu list 2</li>
+          <li>menu list 3</li>
+        </menu>
+        <dl>
+          <dt>description list title</dt>
+          <dd>description list value</dd>
+        </dl>
+        <details>
+          <p>Some detail text</p>
+        </details>
+
+        <!-- form elements -->
+        <button>button</button>
+        <input type="text" placeholder="Text input">
+        <input type="number" placeholder="Number input">
+        <input type="color">
+        <input type="range">
+        <input type="date">
+        <label for="html-checkbox">HTML checkbox <input type="checkbox" name="html-checkbox" id="html-checkbox"></label>
+        <textarea placeholder="Text area"></textarea>
       </article>
     </main>
     <script>
