@@ -61,10 +61,21 @@ form.semanticForms {
   gap: 10px;
 
   // style reset
-  * {
+  fieldset,
+  label,
+  input,
+  select,
+  textarea,
+  button,
+  menu:has(li > input, li > label, li > button, li > select, li > textarea),
+  dl:has(dt > label, dd > input, dd > select, dd > textarea),
+  dt:has(> input, > select, > textarea),
+  dd:has(> input, > select, > textarea, > ul, > menu),
+  div:has(dt, dd),
+  dd > p {
     color: var(--formTextColor);
-    box-sizing: border-box;
     font-family: sans-serif;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
@@ -94,7 +105,7 @@ form.semanticForms {
     }
   }
 
-  dl {
+  dl:has(dt > label, dd > input, dd > select, dd > textarea) {
     display: grid;
     grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
     gap: 10px;
@@ -114,8 +125,8 @@ form.semanticForms {
         }
 
         &.singleCheckbox {
-          display: grid;
-          grid-template-columns: min-content 1fr;
+          display: flex;
+          align-items: center;
 
           & > :not(input[type='checkbox'], label) {
             grid-column: 1 / -1;
@@ -134,22 +145,12 @@ form.semanticForms {
           display: flex;
           align-items: center;
           gap: 5px;
-
-          label {
-            // shift text down to match center
-            font-size: var(--inputFontSize);
-            margin-top: 2px;
-          }
         }
       }
     }
   }
 
   p {
-    input, select, textarea {
-      max-width: 350px;
-    }
-
     // input/label combo
     &:has(input:not([type='checkbox'], [type='radio']), textarea, label) {
       display: flex;
@@ -158,7 +159,7 @@ form.semanticForms {
     }
 
     // checkbox or radio/label combo
-    &:has(input[type='checkbox'], input[type='radio'], label) {
+    &:has(input[type='checkbox'], input[type='radio']) {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -166,7 +167,8 @@ form.semanticForms {
     }
   }
 
-  menu, ul {
+  menu:has(li > input),
+  ul:has(li > input) {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -241,6 +243,7 @@ form.semanticForms {
     // 30% larger based on parent font size
     width: 1.4em;
     height: 1.4em;
+    margin: auto 0;
     cursor: pointer;
 
     & ~ label:first-of-type {
@@ -342,13 +345,15 @@ form.semanticForms {
   // #endregion
 
   // #region labels
-  .floatLabelForm {
-    &:not(:has(div:nth-of-type(2))) {
-      dd:not(.checkboxes, .radios):not(:has(textarea)) {
-        max-width: 350px;
-      }
-    }
 
+  input[type=checkbox] + label:first-of-type,
+  input[type=radio] + label:first-of-type {
+    // shift text down to match center
+    padding-top: 2px;
+    font-size: var(--inputFontSize);
+  }
+
+  .floatLabelForm {
     div {
       position: relative;
       width: 100%;
@@ -464,8 +469,10 @@ form.semanticForms {
           user-select: auto;
           color: var(--formTextColor);
           position: absolute;
-          transform: translateY(-100%) scale(0.8);
+          transform-origin: left center;
+          transform: translateY(-100%) scale(0.7);
           top: var(--inputTopMargin);
+          left: 10px;
         }
       }
 
@@ -754,13 +761,13 @@ form.semanticForms {
 
         // nudge single checkboxes to match checkbox groups
         &:not(.checkboxes) {
-          input[type="checkbox"] {
+          input[type=checkbox] {
             margin-left: 10px;
           }
         }
 
         // remove "x" padding
-        input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio], [type="range"]),
+        input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
         select,
         textarea {
           padding-right: 6px;

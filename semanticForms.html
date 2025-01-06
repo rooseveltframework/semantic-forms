@@ -16,11 +16,6 @@
         background-color: #000;
         color: #fff;
       }
-      h1,
-      h2,
-      p {
-        font-family: sans-serif;
-      }
     </style>
     <script src="semanticForms.js"></script>
   </head>
@@ -35,19 +30,19 @@
         <form action="/somewhere" method="post" class="semanticForms">
           <dl>
             <dt><label for="name">Name</label></dt>
-              <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+            <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
 
-              <dt><label for="prefilled">Prefilled field</label></dt>
-              <dd><input id="prefilled" name="prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
+            <dt><label for="prefilled">Prefilled field</label></dt>
+            <dd><input id="prefilled" name="prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
 
-              <dt><label for="noplaceholder">No placeholder</label></dt>
-              <dd><input id="noplaceholder" name="noplaceholder" type="text"></dd>
+            <dt><label for="noplaceholder">No placeholder</label></dt>
+            <dd><input id="noplaceholder" name="noplaceholder" type="text"></dd>
 
-              <dt><label for="password">Password field</label></dt>
-              <dd>
-                <input id="password" name="password" type="password" minlength="8" required>
-                <p data-invalid-text>Password should be at least 8 characters long.</p>
-              </dd>
+            <dt><label for="password">Password field</label></dt>
+            <dd>
+              <input id="password" name="password" type="password" minlength="8" required>
+              <p data-invalid-text>Password should be at least 8 characters long.</p>
+            </dd>
           </dl>
 
           <dl>
@@ -272,21 +267,16 @@
 
                 <dl>
                   <dt><label for="colspan-1-a">Input A</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-1-a" name="colspan-1-a" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-1-a" name="colspan-1-a" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-1-b">Input B</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-1-b" name="colspan-1-b" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-1-b" name="colspan-1-b" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-1-c">Input C</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-1-c" name="colspan-1-c" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-1-c" name="colspan-1-c" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-1-d">Input D</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-1-d" name="colspan-1-d" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-1-d" name="colspan-1-d" placeholder="Some interesting placeholder text"></dd>
                 </dl>
               </fieldset>
 
@@ -295,21 +285,16 @@
 
                 <dl>
                   <dt><label for="colspan-2-a">Input A</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-2-a" name="colspan-2-a" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-2-a" name="colspan-2-a" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-2-b">Input B</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-2-b" name="colspan-2-b" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-2-b" name="colspan-2-b" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-2-c">Input C</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-2-c" name="colspan-2-c" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-2-c" name="colspan-2-c" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-2-d">Input D</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-2-d" name="colspan-2-d" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-2-d" name="colspan-2-d" placeholder="Some interesting placeholder text"></dd>
                 </dl>
               </fieldset>
 
@@ -318,21 +303,16 @@
 
                 <dl class="colspan-3">
                   <dt><label for="colspan-3-a">Input A</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-3-a" name="colspan-3-a" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-3-a" name="colspan-3-a" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-3-b">Input B</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-3-b" name="colspan-3-b" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-3-b" name="colspan-3-b" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-3-c">Input C</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-3-c" name="colspan-3-c" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-3-c" name="colspan-3-c" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-3-d">Input D</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-3-d" name="colspan-3-d" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-3-d" name="colspan-3-d" placeholder="Some interesting placeholder text"></dd>
                 </dl>
               </fieldset>
 
@@ -341,21 +321,16 @@
 
                 <dl>
                   <dt><label for="colspan-full-a">Input A</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-full-a" name="colspan-full-a" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-full-a" name="colspan-full-a" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-full-b">Input B</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-full-b" name="colspan-full-b" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-full-b" name="colspan-full-b" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-full-c">Input C</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-full-c" name="colspan-full-c" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-full-c" name="colspan-full-c" placeholder="Some interesting placeholder text"></dd>
+
                   <dt><label for="colspan-full-d">Input D</label></dt>
-                  <dd>
-                    <input type="text" id="colspan-full-d" name="colspan-full-d" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="colspan-full-d" name="colspan-full-d" placeholder="Some interesting placeholder text"></dd>
                 </dl>
               </fieldset>
             </fieldset>
@@ -424,7 +399,38 @@
               Some regular text with <strong>other elements</strong> <span>inside of it</span>
             </p>
           </fieldset>
+
+          <h2>Non-form related HTML elements</h2>
+          <p>This is some regular HTML that should not be affected by any semantic forms styles</p>
+          <div>This is a div</div>
+          <blockquote>This is a block quote</blockquote>
+          <a href="https://github.com/rooseveltframework/semantic-forms">A link to the semantic forms repo</a>
+
+          <ul>
+            <li>unordered list 1</li>
+            <li>unordered list 2</li>
+            <li>unordered list 3</li>
+          </ul>
+          <ol>
+            <li>ordered list 1</li>
+            <li>ordered list 2</li>
+            <li>ordered list 3</li>
+          </ol>
+          <menu>
+            <li>menu list 1</li>
+            <li>menu list 2</li>
+            <li>menu list 3</li>
+          </menu>
+          <dl>
+            <dt>description list title</dt>
+            <dd>description list value</dd>
+          </dl>
+          <details>
+            <p>Some detail text</p>
+          </details>
         </form>
+
+        <hr>
 
         <h2>Low flow (JavaScript disabled) styling</h2>
         <p>Adding the <code>lowFlow</code> class to the form element removes all JS enhancements.</p>
@@ -588,9 +594,7 @@
 
                 <dl>
                   <dt><label for="low-flow-nested-nested-input">Input</label></dt>
-                  <dd>
-                    <input type="text" id="low-flow-nested-nested-input" name="low-flow-nested-nested-input" placeholder="Some interesting placeholder text">
-                  </dd>
+                  <dd><input type="text" id="low-flow-nested-nested-input" name="low-flow-nested-nested-input" placeholder="Some interesting placeholder text"></dd>
                 </dl>
               </fieldset>
             </fieldset>
@@ -792,6 +796,34 @@
               <li><input type="submit" name="button3" value="Button 3"></li>
             </menu>
           </fieldset>
+
+          <h2>Non-form related HTML elements</h2>
+          <p>This is some regular HTML that should not be affected by any semantic forms styles</p>
+          <div>This is a div</div>
+          <blockquote>This is a block quote</blockquote>
+          <a href="https://github.com/rooseveltframework/semantic-forms">A link to the semantic forms repo</a>
+          <ul>
+            <li>unordered list 1</li>
+            <li>unordered list 2</li>
+            <li>unordered list 3</li>
+          </ul>
+          <ol>
+            <li>ordered list 1</li>
+            <li>ordered list 2</li>
+            <li>ordered list 3</li>
+          </ol>
+          <menu>
+            <li>menu list 1</li>
+            <li>menu list 2</li>
+            <li>menu list 3</li>
+          </menu>
+          <dl>
+            <dt>description list title</dt>
+            <dd>description list value</dd>
+          </dl>
+          <details>
+            <p>Some detail text</p>
+          </details>
         </form>
       </article>
     </main>
@@ -804,9 +836,7 @@
 
         const forms = document.querySelectorAll('form')
         for (const form of forms) {
-          form.addEventListener('submit', e => {
-            e.preventDefault()
-          })
+          form.addEventListener('submit', e => e.preventDefault())
         }
 
         const greenButtons = document.querySelectorAll('input[type="image"]')

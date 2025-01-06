@@ -2,8 +2,9 @@
 
 ## Next version
 
-- Put your changes here...
-
+- Adjusted the margins of checkbox and radio labels.
+- Fixed a bug that prevented some inputs from expanding to the width of its container.
+- Altered CSS reset to only target form elements within a semantic form.
 
 ## 4.0.2
 
