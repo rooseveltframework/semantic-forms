@@ -141,8 +141,8 @@ form.semanticForms p:has(input[type=checkbox], input[type=radio]) {
   align-items: center;
   gap: 5px;
 }
-form.semanticForms menu:has(li > input),
-form.semanticForms ul:has(li > input) {
+form.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
+form.semanticForms ul:has(li > input, li > label, li > button, li > select, li > textarea) {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

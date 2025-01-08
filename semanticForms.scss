@@ -167,8 +167,8 @@ form.semanticForms {
     }
   }
 
-  menu:has(li > input),
-  ul:has(li > input) {
+  menu:has(li > input, li > label, li > button, li > select, li > textarea),
+  ul:has(li > input, li > label, li > button, li > select, li > textarea) {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
