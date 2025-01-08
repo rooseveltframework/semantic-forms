@@ -2,7 +2,7 @@
 
 ## Next version
 
-- Put your changes here...
+- Fixed a bug that caused menu items with buttons to appear as a list.
 
 ## 4.0.3
 
