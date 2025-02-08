@@ -248,8 +248,8 @@ Not too different than other inputs:
 ```html
 <form class="semanticForms">
   <dl>
-    <dt><label for="checkbox">Single checkbox</label></dt>
-    <dd><input id="checkbox" name="checkbox" type="checkbox"></dd>
+    <dt><label for="some_field_name">Single checkbox</label></dt>
+    <dd><input type="checkbox" name="some_field_name" id="checkbox"></dd>
   </dl>
 </form>
 ```
@@ -261,10 +261,10 @@ Not too different than other inputs:
   <dl>
     <dt><label data-for="some_field_name">Checkboxes:</label></dt>
     <dd class="checkboxes">
-      <ul id="some_field_name">
-        <li><input type="checkbox" name="some_field_name" id="c_one"> <label for="c_one">One</label></li>
-        <li><input type="checkbox" name="some_field_name" id="c_two"> <label for="c_two">Two</label></li>
-        <li><input type="checkbox" name="some_field_name" id="c_three"> <label for="c_three">Three</label></li>
+      <ul id="some_field_name_checkboxes">
+        <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one"> <label for="some_field_name_checkboxes_one">One</label></li>
+        <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
+        <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
       </ul>
     </dd>
   </dl>
