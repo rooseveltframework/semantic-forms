@@ -106,26 +106,26 @@
                 <label for="selectbox">Some help text regarding the select box</label>
               </dd>
 
-              <dt><label data-for="checkboxes">Checkboxes</label></dt>
+              <dt><label data-for="some_field_name_checkboxes">Checkboxes</label></dt>
               <dd class="checkboxes">
-                <ul id="checkboxes">
-                  <li><input type="checkbox" name="checkboxes" id="c_one" checked> <label for="c_one">One</label></li>
-                  <li><input type="checkbox" name="checkboxes" id="c_two"> <label for="c_two">Two</label></li>
-                  <li><input type="checkbox" name="checkboxes" id="c_three"> <label for="c_three">Three</label></li>
+                <ul id="some_field_name_checkboxes">
+                  <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one" checked> <label for="some_field_name_checkboxes_one">One</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
                 </ul>
               </dd>
 
               <dt><label data-for="required-checkboxes" data-asterisk-text="Custom checkbox title text.">Required checkboxes</label></dt>
               <dd class="checkboxes">
                 <ul id="required-checkboxes">
-                  <li><input type="checkbox" name="required-checkboxes" id="required-c_one" checked required> <label for="required-c_one">One</label></li>
-                  <li><input type="checkbox" name="required-checkboxes" id="required-c_two"> <label for="required-c_two">Two</label></li>
-                  <li><input type="checkbox" name="required-checkboxes" id="required-c_three" checked> <label for="required-c_three">Three</label></li>
+                  <li><input type="checkbox" name="required-field" id="required-checkboxes_one" checked required> <label for="required-checkboxes_one">One</label></li>
+                  <li><input type="checkbox" name="required-field" id="required-checkboxes_two"> <label for="required-checkboxes_two">Two</label></li>
+                  <li><input type="checkbox" name="required-field" id="required-checkboxes_three" checked> <label for="required-checkboxes_three">Three</label></li>
                 </ul>
               </dd>
 
-              <dt><label for="checkbox">Single checkbox</label></dt>
-              <dd><input id="checkbox" name="checkbox" type="checkbox"></dd>
+              <dt><label for="single-checkbox">Single checkbox</label></dt>
+              <dd><input type="checkbox" name="single-checkbox-field" id="single-checkbox"></dd>
 
               <dt><label data-for="radios">Radios</label></dt>
               <dd class="radios">
@@ -390,7 +390,7 @@
             </p>
             <p>
               <label for="p-tag-textarea">Textarea</label>
-              <textarea type="text" name="p-tag-textarea" id="p-tag-textarea"></textarea>
+              <textarea name="p-tag-textarea" id="p-tag-textarea"></textarea>
             </p>
             <p>
               <button type="button" name="p-tag-button" id="p-tag-button">Button</button>
@@ -426,6 +426,7 @@
             <dd>description list value</dd>
           </dl>
           <details>
+            <summary>Details summary</summary>
             <p>Some detail text</p>
           </details>
         </form>
@@ -507,14 +508,14 @@
               <dt><label data-for="low-flow-checkboxes">Checkboxes</label></dt>
               <dd class="checkboxes">
                 <ul id="low-flow-checkboxes">
-                  <li><input type="checkbox" name="low-flow-checkboxes" id="low-flow-c_one"> <label for="low-flow-c_one">One</label></li>
-                  <li><input type="checkbox" name="low-flow-checkboxes" id="low-flow-c_two"> <label for="low-flow-c_two">Two</label></li>
-                  <li><input type="checkbox" name="low-flow-checkboxes" id="low-flow-c_three"> <label for="low-flow-c_three">Three</label></li>
+                  <li><input type="checkbox" name="low-flow-field" id="low-flow-checkboxes_one"> <label for="low-flow-checkboxes_one">One</label></li>
+                  <li><input type="checkbox" name="low-flow-field" id="low-flow-checkboxes_two"> <label for="low-flow-checkboxes_two">Two</label></li>
+                  <li><input type="checkbox" name="low-flow-field" id="low-flow-checkboxes_three"> <label for="low-flow-checkboxes_three">Three</label></li>
                 </ul>
               </dd>
 
               <dt><label for="low-flow-checkbox">Single checkbox</label></dt>
-              <dd><input id="low-flow-checkbox" name="low-flow-checkbox" type="checkbox"></dd>
+              <dd><input type="checkbox" name="low-flow-checkbox-field" id="low-flow-checkbox"></dd>
 
               <dt><label data-for="low-flow-radios">Radios</label></dt>
               <dd class="radios">
@@ -733,7 +734,7 @@
 
 
             <details>
-              <summary>Detail element</summary>
+              <summary>Details summary</summary>
               <dl>
                 <dt><label for="low-flow-detail-input-1">Detail input</label></dt>
                 <dd><input type="text" name="low-flow-detail-input-1" id="low-flow-detail-input-1"></dd>
@@ -750,7 +751,7 @@
             </details>
 
             <details>
-              <summary>Another detail element</summary>
+              <summary>Another details element</summary>
               <dl>
                 <dt><label for="low-flow-another-detail-input-1">Detail input</label></dt>
                 <dd><input type="text" name="low-flow-another-detail-input-1" id="low-flow-another-detail-input-1"></dd>
@@ -770,7 +771,7 @@
               </p>
               <p>
                 <label for="low-flow-p-tag-textarea">Textarea</label>
-                <textarea type="text" name="low-flow-p-tag-textarea" id="low-flow-p-tag-textarea"></textarea>
+                <textarea name="low-flow-p-tag-textarea" id="low-flow-p-tag-textarea"></textarea>
               </p>
               <p>
                 <button type="button" name="low-flow-p-tag-button" id="low-flow-p-tag-button">Button</button>
@@ -822,6 +823,7 @@
             <dd>description list value</dd>
           </dl>
           <details>
+            <summary>Details summary</summary>
             <p>Some detail text</p>
           </details>
         </form>
