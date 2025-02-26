@@ -1,6 +1,9 @@
-window.semanticForms = () => {
+module.exports = () => {
   // do some feature detection so none of the JS executes if the browser is too old
   if (typeof document.getElementsByClassName !== 'function' || typeof document.querySelector !== 'function' || !document.body.classList || !window.MutationObserver) return
+
+  const passwordShow = '<svg fill="none" height="256" viewBox="0 0 24 24" width="256" xmlns="http://www.w3.org/2000/svg"><g stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m1 12s4-8 11-8 11 8 11 8"/><path d="m1 12s4 8 11 8 11-8 11-8"/><circle cx="12" cy="12" r="3"/></g></svg>'
+  const passwordHide = '<svg fill="none" height="256" viewBox="0 0 24 24" width="256" xmlns="http://www.w3.org/2000/svg"><g stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m2 2 20 20"/><path d="m6.71277 6.7226c-3.04798 2.07267-4.71277 5.2774-4.71277 5.2774s3.63636 7 10 7c2.0503 0 3.8174-.7266 5.2711-1.7116m-6.2711-12.23018c.3254-.03809.6588-.05822 1-.05822 6.3636 0 10 7 10 7s-.6918 1.3317-2 2.8335"/><path d="m14 14.2362c-.5308.475-1.2316.7639-2 .7639-1.6569 0-3-1.3431-3-3 0-.8237.33193-1.5698.86932-2.11192"/></g></svg>'
 
   const nodeNameLookup = ['TEXTAREA', 'SELECT']
   const inputTypeLookup = ['checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'image', 'month', 'number', 'password', 'radio', 'range', 'search', 'tel', 'text', 'time', 'url', 'week']
@@ -99,16 +102,23 @@ window.semanticForms = () => {
           if (input.nodeName !== 'SELECT' && type !== 'range') {
             const clearBtn = document.createElement('button')
             clearBtn.type = 'button'
-            clearBtn.ariaLabel = 'Clear input'
+            clearBtn.title = input.getAttribute('data-clear-field-text') || 'Clear field'
+            clearBtn.ariaLabel = input.getAttribute('data-clear-field-text') || 'Clear field'
             clearBtn.tabIndex = -1
             clearBtn.innerHTML = '<svg viewBox="0 0 16 16" width="18" height="18"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />'
             clearBtn.classList.add('clear')
-            clearBtn.addEventListener('click', () => {
+            clearBtn.id = `semanticFormsClearButton_${input.id}`
+            clearBtn.addEventListener('click', (event) => {
+              input.previousValue = input.value
               input.value = ''
               input.focus()
+              lastClearFieldPressed = input.id
             })
             insertAfter(clearBtn, dd.querySelector('label'))
           }
+          input.addEventListener('focus', (event) => {
+            if (event.target.nodeName === 'INPUT') lastFocusedInput = event.target
+          })
           // #endregion
 
           // check for colspan- utility class
@@ -135,6 +145,35 @@ window.semanticForms = () => {
             clearBtn.style.display = 'none'
           })
         }
+
+        // #region show password button
+        if (type === 'password' && input.getAttribute('data-no-reveal') === null) {
+          const showBtn = document.createElement('button')
+          showBtn.type = 'button'
+          showBtn.title = input.getAttribute('data-show-password-text') || 'Show password'
+          showBtn.ariaLabel = input.getAttribute('data-show-password-text') || 'Show password'
+          showBtn.tabIndex = -1
+          showBtn.innerHTML = passwordShow
+          showBtn.classList.add('show')
+          showBtn.id = `semanticFormsShowButton_${input.id}`
+          const dd = input.closest('dd')
+          showBtn.addEventListener('click', (event) => {
+            if (input.type === 'password') {
+              showBtn.innerHTML = passwordHide
+              showBtn.title = input.getAttribute('data-hide-password-text') || 'Hide password'
+              showBtn.ariaLabel = input.getAttribute('data-hide-password-text') || 'Hide password'
+              input.type = 'text'
+            } else {
+              showBtn.innerHTML = passwordShow
+              showBtn.title = input.getAttribute('data-show-password-text') || 'Show password'
+              showBtn.ariaLabel = input.getAttribute('data-show-password-text') || 'Show password'
+              input.type = 'password'
+            }
+            input.focus()
+          })
+          insertAfter(showBtn, dd.querySelector('label'))
+        }
+        // #endregion
 
         // add listener to shift clear button when scrollbar present
         for (const textarea of document.querySelectorAll('textarea')) {
@@ -163,6 +202,33 @@ window.semanticForms = () => {
     else referenceNode.parentNode.appendChild(newNode)
   }
 
+  // handle undo/redo
+  let lastFocusedInput
+  let lastClearFieldPressed
+  document.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key === 'z' && !event.shiftKey) {
+      // undo clearing a field
+      if (lastFocusedInput) {
+        if (lastFocusedInput?.parentNode?.querySelector('button.clear').id === `semanticFormsClearButton_${lastClearFieldPressed}` || lastFocusedInput?.parentNode?.querySelector('button.clear').name === `semanticFormsClearButton_${lastClearFieldPressed}`) {
+          if (lastFocusedInput.previousValue) {
+            lastFocusedInput.redoValue = lastFocusedInput.value
+            lastFocusedInput.value = lastFocusedInput.previousValue
+          }
+        }
+      }
+    } else if ((event.ctrlKey && event.key === 'y') || (event.metaKey && event.shiftKey && event.key === 'z')) {
+      // redo clearing a field
+      if (lastFocusedInput) {
+        if (lastFocusedInput?.parentNode?.querySelector('button.clear').id === `semanticFormsClearButton_${lastClearFieldPressed}` || lastFocusedInput?.parentNode?.querySelector('button.clear').name === `semanticFormsClearButton_${lastClearFieldPressed}`) {
+          if (lastFocusedInput.redoValue) {
+            lastFocusedInput.previousValue = lastFocusedInput.value
+            lastFocusedInput.value = lastFocusedInput.redoValue
+          }
+        }
+      }
+    }
+  })
+
   // monitor changes to the DOM and enhance new semanticForms forms that get added
   if (!window.semanticFormsObserver) {
     window.semanticFormsObserver = new window.MutationObserver((mutations) => {
@@ -179,9 +245,9 @@ window.semanticForms = () => {
     })
     window.semanticFormsObserver.observe(document.body, { attributes: false, childList: true, characterData: false, subtree: true })
   }
-}
 
-window.semanticForms.reinitialize = (form) => {
-  form.classList.remove('semanticFormsActive')
-  window.semanticForms()
+  window.semanticForms.reinitialize = (form) => {
+    form.classList.remove('semanticFormsActive')
+    window.semanticForms()
+  }
 }
