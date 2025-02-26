@@ -15,7 +15,7 @@ A pattern library of attractive forms for your website with the following design
 - Sets no global styles and is scoped by a single class name `semanticForms` applied to `<form>` elements.
 - No dependencies.
 
-See a [live demo here](https://rooseveltframework.github.io/semantic-forms/semanticForms.html).
+See a [live demo here](https://rooseveltframework.github.io/semantic-forms/test/semanticForms.html).
 
 This module was built and is maintained by the [Roosevelt web framework](https://github.com/rooseveltframework/roosevelt) [team](https://github.com/orgs/rooseveltframework/people), but it can be used independently of Roosevelt as well.
 
