@@ -41,6 +41,11 @@
     "test": "npm run build && playwright test",
     "coverage": "npm run build && nyc playwright test"
   },
+  "standard": {
+    "ignore": [
+      "dist/"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/rooseveltframework/semantic-forms.git"
