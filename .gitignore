@@ -62,4 +62,8 @@ typings/
 
 .npm-cache
 .nyc_output
+dist/*.cjs
+dist/*.mjs
+dist/*.min.*
+dist/*.map
 test-results
