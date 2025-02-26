@@ -62,7 +62,4 @@ typings/
 
 .npm-cache
 .nyc_output
-dist
-!dist/semantic-forms.css # needed for live demo
-!dist/semantic-forms.js # needed for live demo
 test-results
