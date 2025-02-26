@@ -19,9 +19,21 @@ See a [live demo here](https://rooseveltframework.github.io/semantic-forms/seman
 
 This module was built and is maintained by the [Roosevelt web framework](https://github.com/rooseveltframework/roosevelt) [team](https://github.com/orgs/rooseveltframework/people), but it can be used independently of Roosevelt as well.
 
+# Install
+
+`npm install semantic-forms`
+
+The package is distributed with the following builds available:
+
+- `dist/semantic-forms.cjs`: CommonJS bundle: `const semanticForms = require('semantic-forms')`
+- `dist/semantic-forms.js`: Standalone bundle that can be included via `<script>` tags. Declares a global variable called: `semanticForms`
+- `dist/semantic-forms.min.js`: Minified standalone bundle that can be included via `<script>` tags. Declares a global variable called: `semanticForms`
+- `dist/semantic-forms.mjs`: ES module: `import semanticForms from 'semantic-forms'`
+- `dist/semantic-forms.min.mjs`: Minified ES module: `import semanticForms from 'semantic-forms/min'`
+
 # Usage
 
-Include the `semanticForms.css` and `semanticForms.js` files from this repo into your project.
+Include the `dist/semantic-forms.css` and whichever of the above versions of the JS file you prefer from this repo into your project.
 
 Then apply the `semanticForms` class to your `<form>` elements:
 
@@ -85,6 +97,20 @@ Include a label in the `<dd>` element with a matching `for` attribute to place h
 </form>
 ```
 
+#### Customizing input fields
+
+By default, input fields will display an X icon to clear the text and password fields will also display a show/hide toggle for displaying the password in plain text. You can customize this behavior as follows:
+
+- Customize the hover text of the clear field button by applying a `data-clear-field-text="your text"` attribute to the input.
+
+- Customize the hover text of the show password button by applying a `data-show-password-text="your text"` attribute to the input.
+
+- Customize the hover text of the hide password button by applying a `data-hide-password-text="your text"` attribute to the input.
+
+- Prevent the show/hide toggle from appearing on password fields by applying a `data-no-reveal` attribute to the input.
+
+
+
 ## Responsive columns
 
 This feature makes it so the form fields will grow, shrink, expand the number of columns, or reduce the number of columns based on how much space exists in the container. You can customize it by applying various `colspan-#` classes to various elements in the form markup structure.
@@ -142,8 +168,8 @@ You can also apply the class to a `<fieldset>` which will apply that styling to 
 ```
 
 ### Set number of columns a single input field takes up
-You can specify the number of columns an input will span using the `colspan-#` class on the `<dd>` element. The inputs are responsive and will shrink according to available space. Available numbered classes are `colspan-1` through `colspan-5`:
 
+You can specify the number of columns an input will span using the `colspan-#` class on the `<dd>` element. The inputs are responsive and will shrink according to available space. Available numbered classes are `colspan-1` through `colspan-5`:
 
 ```html
 <form class="semanticForms">
@@ -199,7 +225,7 @@ To apply `colspan-#` styles to low flow (JavaScript disabled flow) form inputs, 
         <dt><label for="input-a">Input A</label></dt>
         <!-- this spans 2 columns on row 1 -->
         <dd class="colspan-2"><input type="text" id="input-a" name="input-a"></dd>
-			</div>
+            </div>
     </dl>
   </fieldset>
 </form>
@@ -270,6 +296,7 @@ Not too different than other inputs:
   </dl>
 </form>
 ```
+
 ### Radio buttons
 
 ```html
@@ -324,6 +351,7 @@ You can adjust the tooltip text of the asterisk with the `data-asterisk-text` at
   </dl>
 </form>
 ```
+
 ## Dark mode
 
 To set the dark mode, apply an additional class of `dark` to your `<form>` elements to force the dark mode.
@@ -344,5 +372,5 @@ The low-flow mode reverts the float label pattern to traditional labels and does
 - `npm run build`. The build step compiles the SCSS file into CSS.
   - You can also run `npm run watch` automatically compiles the CSS file after a change is detected in the SCSS file.
 - Test your changes by opening `semanticForms.html` in your browser.
-  - If you want to test your work on an actual HTTP server, run `npm run dev` or `npm run d`.
+  - If you want to test your work on an actual HTTP server, run `npm run dev` or `npm run d`, and then visit http://localhost:3000/test/semanticForms
 - Commit, push, open pull request.

@@ -201,6 +201,10 @@ form.semanticForms {
       padding: 6px 30px 6px 20px;
     }
 
+    &[type="password"], &[type="text"]:has(~ button.show) {
+      padding: 6px 55px 6px 20px;
+    }
+
     &[disabled] {
       cursor: not-allowed;
       opacity: 0.5;
@@ -243,7 +247,7 @@ form.semanticForms {
     // 30% larger based on parent font size
     width: 1.4em;
     height: 1.4em;
-    margin: auto 0;
+    margin: 3px 0;
     cursor: pointer;
 
     & ~ label:first-of-type {
@@ -277,7 +281,7 @@ form.semanticForms {
   // #endregion
 
   // #region buttons
-  button.clear {
+  button.clear, button.show {
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
@@ -298,13 +302,18 @@ form.semanticForms {
     justify-content: center;
   }
 
+  button.show {
+    right: 25px;
+  }
+
   // custom styling of clear button on textarea
   textarea ~ .clear {
     bottom: auto;
   }
 
-  // hide clear button while placeholder text is visible
+  // hide clear/show button while placeholder text is visible
   input:placeholder-shown ~ .clear,
+  input:placeholder-shown ~ .show,
   textarea:placeholder-shown ~ .clear,
   input[type=file] ~ .clear {
     display: none;
@@ -313,7 +322,7 @@ form.semanticForms {
   // button styling
   input[type='submit'],
   input[type='reset'],
-  button:not(.clear) {
+  button:not(.clear):not(.show) {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -335,7 +344,7 @@ form.semanticForms {
   input[type='submit'],
   input[type='reset'],
   input[type='image'],
-  button:not(.clear) {
+  button:not(.clear):not(.show) {
     transition: filter 0.1s;
 
     &:hover {

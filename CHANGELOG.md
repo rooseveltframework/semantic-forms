@@ -4,6 +4,17 @@
 
 - Put your changes here...
 
+## 5.0.0
+
+- Breaking: Added JS module bundling to make it possible for you to import CJS, ESM, or a standalone version of the JavaScript in this library to your project. However you will need to change your imports to match the new file names. See README for details.
+- Added show/hide toggle to password fields which can be disabled with a `data-no-reveal` attribute.
+- Added hover text for the clear field button and the show/hide password button.
+- Added ability to customize clear field button hover text and show/hide password button hover text using data attributes as well.
+- Added support for undo/redo keyboard commands when pressing the clear field.
+- Added test suite.
+- Fixed some accessibility issues.
+- Updated various dependencies.
+
 ## 4.0.4
 
 - Fixed a bug that caused menu items with buttons to appear as a list.

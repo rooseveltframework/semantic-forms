@@ -8,10 +8,9 @@
       "url": "https://github.com/rooseveltframework/semantic-forms/graphs/contributors"
     }
   ],
-  "version": "4.0.4",
+  "version": "5.0.0",
   "files": [
-    "semanticForms.css",
-    "semanticForms.js",
+    "dist",
     "semanticForms.scss"
   ],
   "homepage": "https://github.com/rooseveltframework/semantic-forms",
@@ -19,23 +18,28 @@
   "main": "semanticForms.js",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "eslint": "9.20.0",
+    "@jsdevtools/coverage-istanbul-loader": "3.0.5",
+    "@playwright/test": "1.50.1",
+    "eslint": "9.21.0",
     "eslint-plugin-html": "8.1.2",
+    "express": "4.21.2",
     "nodemon": "3.1.9",
-    "sass": "1.84.0",
+    "nyc": "17.1.0",
+    "sass": "1.85.1",
     "serve": "14.2.4",
-    "standard": "17.1.2"
+    "standard": "17.1.2",
+    "webpack-cli": "6.0.1"
   },
   "scripts": {
-    "test": "echo \"TODO: tests\"",
-    "coverage": "echo \"TODO: test coverage\"",
-    "lint": "standard && standard --plugin html *.html",
-    "lint-fix": "standard --fix && standard --plugin html *.html --fix",
+    "build": "webpack && sass semanticForms.scss dist/semantic-forms.css",
+    "watch": "webpack && sass --watch semanticForms.scss dist/semantic-forms.css",
     "d": "nodemon --exec \"npm run build && serve\"",
     "dev": "nodemon --exec \"npm run build && serve\"",
     "development": "nodemon --exec \"npm run build && serve\"",
-    "build": "sass semanticForms.scss semanticForms.css",
-    "watch": "sass --watch semanticForms.scss semanticForms.css"
+    "lint": "standard && standard --plugin html test/*.html",
+    "lint-fix": "standard --fix && standard --plugin html test/*.html --fix",
+    "test": "npm run build && playwright test",
+    "coverage": "npm run build && nyc playwright test"
   },
   "repository": {
     "type": "git",

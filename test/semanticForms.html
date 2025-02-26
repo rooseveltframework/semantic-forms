@@ -6,7 +6,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="description" content="A pattern library of forms based on semantic HTML enhanced with a modern UX.">
     <title>Semantic Forms</title>
-    <link rel="stylesheet" href="semanticForms.css">
+    <link rel="stylesheet" href="../dist/semantic-forms.css">
     <style>
       body.light {
         background-color: #fff;
@@ -17,7 +17,7 @@
         color: #fff;
       }
     </style>
-    <script src="semanticForms.js"></script>
+    <script src="../dist/semantic-forms.js"></script>
   </head>
   <body>
     <main>
@@ -41,6 +41,18 @@
             <dt><label for="password">Password field</label></dt>
             <dd>
               <input id="password" name="password" type="password" minlength="8" required>
+              <p data-invalid-text>Password should be at least 8 characters long.</p>
+            </dd>
+
+            <dt><label for="dontshow-password">Don't show password field</label></dt>
+            <dd>
+              <input id="dontshow-password" name="dontshow-password" type="password" minlength="8" required data-no-reveal>
+              <p data-invalid-text>Password should be at least 8 characters long.</p>
+            </dd>
+
+            <dt><label for="customize-password">Customize clear/show buttons</label></dt>
+            <dd>
+              <input id="customize-password" name="customize-password" type="password" minlength="8" required data-clear-field-text="Vaporize this text" data-show-password-text="Reveal this password" data-hide-password-text="omg no hide it again!">
               <p data-invalid-text>Password should be at least 8 characters long.</p>
             </dd>
           </dl>
@@ -212,6 +224,13 @@
                   <dt><label for="nested-nested-input-2">Input 2</label></dt>
                   <dd>
                     <input type="text" id="nested-nested-input-2" name="nested-nested-input-2" placeholder="Some interesting placeholder text">
+                  </dd>
+
+                  <dt><label for="nested-nested-select">Select</label></dt>
+                  <dd>
+                    <select id="nested-nested-select" name="nested-nested-select">
+                      <option value="jfkdskfs">Hey</option>
+                    </select>
                   </dd>
                 </dl>
 
@@ -596,6 +615,18 @@
                 <dl>
                   <dt><label for="low-flow-nested-nested-input">Input</label></dt>
                   <dd><input type="text" id="low-flow-nested-nested-input" name="low-flow-nested-nested-input" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="low-flow-nested-nested-input-2">Input 2</label></dt>
+                  <dd>
+                    <input type="text" id="low-flow-nested-nested-input-2" name="low-flow-nested-nested-input-2" placeholder="Some interesting placeholder text">
+                  </dd>
+
+                  <dt><label for="low-flow-nested-nested-select">Select</label></dt>
+                  <dd>
+                    <select id="low-flow-nested-nested-select" name="low-flow-nested-nested-select">
+                      <option value="jfkdskfs">Hey</option>
+                    </select>
+                  </dd>
                 </dl>
               </fieldset>
             </fieldset>
