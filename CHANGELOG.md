@@ -4,6 +4,11 @@
 
 - Put your changes here...
 
+## 5.0.1
+
+- Fixed a bug that caused some devDependencies to end up in the production build.
+- Updated various dependencies.
+
 ## 5.0.0
 
 - Breaking: Added JS module bundling to make it possible for you to import CJS, ESM, or a standalone version of the JavaScript in this library to your project. However you will need to change your imports to match the new file names. See README for details.

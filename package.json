@@ -8,7 +8,7 @@
       "url": "https://github.com/rooseveltframework/semantic-forms/graphs/contributors"
     }
   ],
-  "version": "5.0.0",
+  "version": "5.0.1",
   "files": [
     "dist",
     "semanticForms.scss"
@@ -39,7 +39,7 @@
     "lint": "standard && standard --plugin html test/*.html",
     "lint-fix": "standard --fix && standard --plugin html test/*.html --fix",
     "test": "npm run build && playwright test",
-    "coverage": "npm run build && nyc playwright test"
+    "coverage": "webpack --env coverage && sass semanticForms.scss dist/semantic-forms.css && nyc playwright test && npm run build"
   },
   "standard": {
     "ignore": [
