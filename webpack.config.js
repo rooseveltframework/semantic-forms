@@ -110,15 +110,17 @@ export default [
         })
       ]
     },
-    module: {
-      rules: [
-        {
-          test: /\.js/,
-          exclude: /node_modules/,
-          use: '@jsdevtools/coverage-istanbul-loader'
+    module: process.argv.includes('coverage')
+      ? {
+          rules: [
+            {
+              test: /\.js/,
+              exclude: /node_modules/,
+              use: '@jsdevtools/coverage-istanbul-loader'
+            }
+          ]
         }
-      ]
-    }
+      : undefined
   },
 
   // esm minified
