@@ -81,7 +81,16 @@
               <dd><input id="number" name="number" type="number" placeholder="e.g. 43"></dd>
 
               <dt><label for="label-subtext">Input with label help text</label></dt>
-              <dd><input id="label-subtext" name="label-subtext" type="text" placeholder="e.g. John Smith"><label for="label-subtext">Some help text</label></dd>
+              <dd>
+                <input id="label-subtext" name="label-subtext" type="text" placeholder="e.g. John Smith">
+                <label for="label-subtext">Some help text</label>
+              </dd>
+
+              <dt><label for="label-help-icon" data-show-help-icon>Input with help icon</label></dt>
+              <dd><input id="label-help-icon" name="label-subtext" type="text" title="Some more help text." placeholder="Hover over the icon"></dd>
+
+              <dt><label for="label-required-help-icon" data-show-help-icon>Required input with help icon</label></dt>
+              <dd><input id="label-required-help-icon" name="label-subtext" type="text" title="Some more help text." placeholder="Hover over the icon" required></dd>
 
               <dt><label for="invalid-field">Invalid field</label></dt>
               <dd><input id="invalid-field" class="invalid" name="invalid-field" type="number" placeholder="e.g. 43" min="0" value="-2"></dd>
@@ -118,12 +127,50 @@
                 <label for="selectbox">Some help text regarding the select box</label>
               </dd>
 
+              <dt><label for="required-selectbox">Required select box</label></dt>
+              <dd>
+                <select id="required-selectbox" name="required-selectbox" required>
+                  <option value="1">Item one</option>
+                  <option value="2">Item two</option>
+                  <option value="3">Item three</option>
+                  <option value="4">Item four</option>
+                  <option value="5">Item five</option>
+                  <option value="6">Item six</option>
+                  <option value="7">Item seven</option>
+                </select>
+              </dd>
+
+              <dt><label for="required-selectbox-hide" data-no-asterisk>Required select box (no asterisk)</label></dt>
+              <dd>
+                <select id="required-selectbox-hide" name="required-selectbox-hide" required>
+                  <option value="1">Item one</option>
+                  <option value="2">Item two</option>
+                  <option value="3">Item three</option>
+                  <option value="4">Item four</option>
+                  <option value="5">Item five</option>
+                  <option value="6">Item six</option>
+                  <option value="7">Item seven</option>
+                </select>
+              </dd>
+
               <dt><label data-for="some_field_name_checkboxes">Checkboxes</label></dt>
               <dd class="checkboxes">
                 <ul id="some_field_name_checkboxes">
                   <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one" checked> <label for="some_field_name_checkboxes_one">One</label></li>
                   <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
                   <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label data-for="helptext_checkboxes" title="Here is some helpful text." data-show-help-icon>Checkboxes with help text</label></dt>
+              <dd class="checkboxes">
+                <ul id="helptext_checkboxes">
+                  <li><input type="checkbox" name="some_field_name" id="helptext_checkboxes_one" checked> <label
+                      for="helptext_checkboxes_one">One</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="helptext_checkboxes_two"> <label
+                      for="helptext_checkboxes_two">Two</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="helptext_checkboxes_three"> <label
+                      for="helptext_checkboxes_three">Three</label></li>
                 </ul>
               </dd>
 
@@ -138,6 +185,18 @@
 
               <dt><label for="single-checkbox">Single checkbox</label></dt>
               <dd><input type="checkbox" name="single-checkbox-field" id="single-checkbox"></dd>
+
+              <dt><label for="single-required-checkbox">Required single checkbox</label></dt>
+              <dd><input type="checkbox" name="single-required-checkbox-field" id="single-required-checkbox" required></dd>
+
+              <dt><label for="single-help-icon-checkbox" title="Single checkboxes can have help text too!" data-show-help-icon>Single help text checkbox</label></dt>
+              <dd><input type="checkbox" name="single-help-icon-checkbox-field" id="single-help-icon-checkbox"></dd>
+
+              <dt><label for="single-help-text-checkbox">Checkbox with help text</label>
+              <dd>
+                <input type="checkbox" id="single-help-text-checkbox">
+                <label for="single-help-text-checkbox">Some help text</label>
+              </dd>
 
               <dt><label data-for="radios">Radios</label></dt>
               <dd class="radios">

@@ -24,6 +24,7 @@ form.semanticForms {
   --border: 1px var(--borderColor) solid;
   --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --customResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E")
+  --helpIcon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22800px%22%20height%3D%22800px%22%20viewBox%3D%220%200%2016%2016%22%20version%3D%221.1%22%3E%3Crect%20width%3D%2216%22%20height%3D%2216%22%20id%3D%22icon-bound%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M8%2C10.5c-0.552%2C0-1%2C0.448-1%2C1c0%2C0.552%2C0.448%2C1%2C1%2C1c0.552%2C0%2C1-0.448%2C1-1C9%2C10.948%2C8.552%2C10.5%2C8%2C10.5z%20M8%2C0%20C3.582%2C0%2C0%2C3.582%2C0%2C8c0%2C4.418%2C3.582%2C8%2C8%2C8s8-3.582%2C8-8C16%2C3.582%2C12.418%2C0%2C8%2C0z%20M12.243%2C12.243C11.109%2C13.376%2C9.603%2C14%2C8%2C14%20s-3.109-0.624-4.243-1.757C2.624%2C11.109%2C2%2C9.603%2C2%2C8s0.624-3.109%2C1.757-4.243C4.891%2C2.624%2C6.397%2C2%2C8%2C2s3.109%2C0.624%2C4.243%2C1.757%20C13.376%2C4.891%2C14%2C6.397%2C14%2C8C14%2C9.603%2C13.376%2C11.109%2C12.243%2C12.243z%20M7.927%2C3.755c-2.248%2C0-2.76%2C1.695-2.802%2C2.906h1.571%20c0.028-0.256%2C0.101-1.418%2C1.221-1.418c0.672%2C0%2C1.206%2C0.406%2C1.206%2C1.175c0%2C0.695-0.724%2C1.155-1.303%2C1.711%20C7.241%2C8.685%2C7.168%2C9.325%2C7.168%2C9.824V10c0.146%2C0%2C1.615%2C0%2C1.615%2C0V9.824c0-1.256%2C1.967-1.594%2C1.967-3.541%20C10.75%2C5.059%2C9.874%2C3.755%2C7.927%2C3.755z%22%2F%3E%3C%2Fsvg%3E")
 }
 
 form.semanticForms.dark {
@@ -100,7 +101,7 @@ form.semanticForms {
       input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
       select,
       textarea {
-        background: var(--nestedInput);
+        background-color: var(--nestedInput);
       }
     }
   }
@@ -360,6 +361,17 @@ form.semanticForms {
     // shift text down to match center
     padding-top: 2px;
     font-size: var(--inputFontSize);
+
+    span.required {
+      cursor: help;
+      pointer-events: auto;
+      color: red;
+    }
+
+    span.help {
+      cursor: help;
+      pointer-events: auto; 
+    }
   }
 
   .floatLabelForm {
@@ -462,10 +474,15 @@ form.semanticForms {
           color: var(--placeholderColor);
           touch-action: manipulation;
 
-          span {
+          span.required {
             cursor: help;
             pointer-events: auto;
             color: red;
+          }
+          
+          span.help {
+            cursor: help;
+            pointer-events: auto; 
           }
         }
       }
@@ -482,6 +499,11 @@ form.semanticForms {
           transform: translateY(-100%) scale(0.7);
           top: var(--inputTopMargin);
           left: 10px;
+          
+          span.help {
+            cursor: help;
+            pointer-events: auto; 
+          }
         }
       }
 

@@ -109,6 +109,9 @@ By default, input fields will display an X icon to clear the text and password f
 
 - Prevent the show/hide toggle from appearing on password fields by applying a `data-no-reveal` attribute to the input.
 
+- Show a help text icon next to labels of inputs that contain a `title` attribute by applying a `data-show-help-icon` attribute to the label.
+  - Note that checkboxes and radios should have a `title` attribute on the label instead of the inputs.
+
 
 
 ## Responsive columns
