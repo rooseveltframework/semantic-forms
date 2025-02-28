@@ -38,7 +38,7 @@ const semanticForms = () => {
         input.classList.add('semanticform')
 
         // #region create labels
-      
+
         if (type === 'checkbox' || type === 'radio') {
           // recursively find <dd> element
           let dd = input.parentNode
