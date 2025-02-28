@@ -1,4 +1,4 @@
-module.exports = () => {
+const semanticForms = () => {
   // do some feature detection so none of the JS executes if the browser is too old
   if (typeof document.getElementsByClassName !== 'function' || typeof document.querySelector !== 'function' || !document.body.classList || !window.MutationObserver) return
 
@@ -236,7 +236,7 @@ module.exports = () => {
       for (const mutation of mutations) {
         for (const node of mutation.addedNodes) {
           if (node.nodeName === 'FORM') {
-            window.semanticForms()
+            semanticForms()
             stop = true
           }
         }
@@ -246,8 +246,10 @@ module.exports = () => {
     window.semanticFormsObserver.observe(document.body, { attributes: false, childList: true, characterData: false, subtree: true })
   }
 
-  window.semanticForms.reinitialize = (form) => {
+  semanticForms.reinitialize = (form) => {
     form.classList.remove('semanticFormsActive')
-    window.semanticForms()
+    semanticForms()
   }
 }
+
+module.exports = semanticForms
