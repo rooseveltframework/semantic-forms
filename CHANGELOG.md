@@ -2,10 +2,15 @@
 
 ## Next version
 
+- Put your changes here...
+
+## 5.0.2
+
 - Fixed a bug that would cause errors when `reinitialize()` was called.
 - Fixed a bug that caused nested selects to lose their dropdown icon.
 - Fixed a bug where required single checkboxes would not show an asterisk.
 - Added a help text icon beside labels with a `title` attribute on their respective inputs, or on labels for checkboxes and radios. Enabled with a `data-show-help-icon` attribute.
+- Updated various dependencies.
 
 ## 5.0.1
 

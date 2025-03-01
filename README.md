@@ -46,12 +46,12 @@ Then apply the `semanticForms` class to your `<form>` elements:
 Then apply the JavaScript enhancements:
 
 ```javascript
-window.semanticForms()
+semanticForms()
 ```
 
 Then the CSS/JS enhancements to your forms will apply automatically, assuming the markup structure you use is one of the supported patterns.
 
-If you make changes to the DOM after Semantic Forms is activated and want to activate any additional `semanticForms` forms you insert, you can re-scan for new forms by calling `window.semanticForms()` again. If you only want to reinitialize one form instead of all of them, call `window.semanticForms.reinitialize(formElement)`.
+If you make changes to the DOM after Semantic Forms is activated and want to activate any additional `semanticForms` forms you insert, you can re-scan for new forms by calling `semanticForms.reinitialize()` again. If you only want to reinitialize one form instead of all of them, call `semanticForms.reinitialize(formElement)`.
 
 # Features
 
@@ -110,9 +110,8 @@ By default, input fields will display an X icon to clear the text and password f
 - Prevent the show/hide toggle from appearing on password fields by applying a `data-no-reveal` attribute to the input.
 
 - Show a help text icon next to labels of inputs that contain a `title` attribute by applying a `data-show-help-icon` attribute to the label.
+  
   - Note that checkboxes and radios should have a `title` attribute on the label instead of the inputs.
-
-
 
 ## Responsive columns
 
