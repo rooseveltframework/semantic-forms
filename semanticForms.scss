@@ -100,7 +100,7 @@ form.semanticForms {
       input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
       select,
       textarea {
-        background: var(--nestedInput);
+        background-color: var(--nestedInput);
       }
     }
   }
@@ -360,6 +360,17 @@ form.semanticForms {
     // shift text down to match center
     padding-top: 2px;
     font-size: var(--inputFontSize);
+
+    span.required {
+      cursor: help;
+      pointer-events: auto;
+      color: red;
+    }
+
+    span.help {
+      cursor: help;
+      pointer-events: auto; 
+    }
   }
 
   .floatLabelForm {
@@ -462,10 +473,15 @@ form.semanticForms {
           color: var(--placeholderColor);
           touch-action: manipulation;
 
-          span {
+          span.required {
             cursor: help;
             pointer-events: auto;
             color: red;
+          }
+          
+          span.help {
+            cursor: help;
+            pointer-events: auto; 
           }
         }
       }
@@ -482,6 +498,11 @@ form.semanticForms {
           transform: translateY(-100%) scale(0.7);
           top: var(--inputTopMargin);
           left: 10px;
+          
+          span.help {
+            cursor: help;
+            pointer-events: auto; 
+          }
         }
       }
 

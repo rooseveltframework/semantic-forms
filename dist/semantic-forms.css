@@ -92,7 +92,7 @@ form.semanticForms fieldset > fieldset {
 form.semanticForms fieldset > fieldset input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
 form.semanticForms fieldset > fieldset select,
 form.semanticForms fieldset > fieldset textarea {
-  background: var(--nestedInput);
+  background-color: var(--nestedInput);
 }
 form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) {
   display: grid;
@@ -310,6 +310,17 @@ form.semanticForms input[type=radio] + label:first-of-type {
   padding-top: 2px;
   font-size: var(--inputFontSize);
 }
+form.semanticForms input[type=checkbox] + label:first-of-type span.required,
+form.semanticForms input[type=radio] + label:first-of-type span.required {
+  cursor: help;
+  pointer-events: auto;
+  color: red;
+}
+form.semanticForms input[type=checkbox] + label:first-of-type span.help,
+form.semanticForms input[type=radio] + label:first-of-type span.help {
+  cursor: help;
+  pointer-events: auto;
+}
 form.semanticForms .floatLabelForm div {
   position: relative;
   width: 100%;
@@ -395,10 +406,14 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .rad
   color: var(--placeholderColor);
   touch-action: manipulation;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span.required {
   cursor: help;
   pointer-events: auto;
   color: red;
+}
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span.help {
+  cursor: help;
+  pointer-events: auto;
 }
 form.semanticForms .floatLabelForm div dt {
   position: relative;
@@ -411,6 +426,10 @@ form.semanticForms .floatLabelForm div dt label {
   transform: translateY(-100%) scale(0.7);
   top: var(--inputTopMargin);
   left: 10px;
+}
+form.semanticForms .floatLabelForm div dt label span.help {
+  cursor: help;
+  pointer-events: auto;
 }
 form.semanticForms .floatLabelForm div:has(dd input:required) dt label > span {
   margin-left: 5px;
