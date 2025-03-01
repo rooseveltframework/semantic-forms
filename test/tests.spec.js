@@ -4,7 +4,6 @@ const path = require('path')
 const fs = require('fs')
 const express = require('express')
 let server
-let counter = 0
 
 test.describe('semantic forms', () => {
   test.beforeAll(async () => {
@@ -23,11 +22,10 @@ test.describe('semantic forms', () => {
 
   test.afterEach(async ({ page }) => {
     if (process.env.NYC_PROCESS_ID) {
+      // extract coverage data
       const coverage = await page.evaluate(() => window.__coverage__)
-      if (coverage) {
-        counter++
-        fs.writeFileSync(path.join(process.cwd(), '.nyc_output', `coverage-${counter}.json`), JSON.stringify(coverage))
-      }
+      // write coverage data to a file
+      if (coverage) fs.writeFileSync(path.join(process.cwd(), '.nyc_output', `coverage-${test.info().testId}.json`), JSON.stringify(coverage))
     }
   })
 
