@@ -19,7 +19,7 @@ See a [live demo here](https://rooseveltframework.github.io/semantic-forms/test/
 
 This module was built and is maintained by the [Roosevelt web framework](https://github.com/rooseveltframework/roosevelt) [team](https://github.com/orgs/rooseveltframework/people), but it can be used independently of Roosevelt as well.
 
-# Install
+## Install
 
 `npm install semantic-forms`
 
@@ -31,7 +31,7 @@ The package is distributed with the following builds available:
 - `dist/semantic-forms.mjs`: ES module: `import semanticForms from 'semantic-forms'`
 - `dist/semantic-forms.min.mjs`: Minified ES module: `import semanticForms from 'semantic-forms/min'`
 
-# Usage
+## Usage
 
 Include the `dist/semantic-forms.css` and whichever of the above versions of the JS file you prefer from this repo into your project.
 
@@ -53,13 +53,13 @@ Then the CSS/JS enhancements to your forms will apply automatically, assuming th
 
 If you make changes to the DOM after Semantic Forms is activated and want to activate any additional `semanticForms` forms you insert, you can re-scan for new forms by calling `semanticForms.reinitialize()` again. If you only want to reinitialize one form instead of all of them, call `semanticForms.reinitialize(formElement)`.
 
-# Features
+## Features
 
-## Float label inputs
+### Float label inputs
 
 The float label input pattern is notoriously difficult to implement in a fashion that doesn't degrade HTML semantics or accessibility. This pattern library implements a solution that solves that problem. Your label doesn't need to be a sibling of your input like with other implementations. This implementation also has a custom clear button for each input.
 
-### Example
+#### Example
 
 ```html
 <form class="semanticForms">
@@ -70,7 +70,7 @@ The float label input pattern is notoriously difficult to implement in a fashion
 </form>
 ```
 
-### Or with a `<textarea>`
+#### Or with a `<textarea>`
 
 ```html
 <form class="semanticForms">
@@ -81,7 +81,7 @@ The float label input pattern is notoriously difficult to implement in a fashion
 </form>
 ```
 
-### Add help text
+#### Add help text
 
 Include a label in the `<dd>` element with a matching `for` attribute to place help text beneath the input:
 
@@ -113,11 +113,11 @@ By default, input fields will display an X icon to clear the text and password f
   
   - Note that checkboxes and radios should have a `title` attribute on the label instead of the inputs.
 
-## Responsive columns
+### Responsive columns
 
 This feature makes it so the form fields will grow, shrink, expand the number of columns, or reduce the number of columns based on how much space exists in the container. You can customize it by applying various `colspan-#` classes to various elements in the form markup structure.
 
-### Set number of columns for a group of forms
+#### Set number of columns for a group of forms
 
 You can limit the number of columns on your forms using the `colspan-#` class on a `<dl>` element:
 
@@ -169,7 +169,7 @@ You can also apply the class to a `<fieldset>` which will apply that styling to 
 </form>
 ```
 
-### Set number of columns a single input field takes up
+#### Set number of columns a single input field takes up
 
 You can specify the number of columns an input will span using the `colspan-#` class on the `<dd>` element. The inputs are responsive and will shrink according to available space. Available numbered classes are `colspan-1` through `colspan-5`:
 
@@ -215,7 +215,7 @@ You can specify the number of columns an input will span using the `colspan-#` c
 </form>
 ```
 
-#### Set number of columns a single input field takes up on the low flow (JavaScript disabled flow)
+##### Set number of columns a single input field takes up on the low flow (JavaScript disabled flow)
 
 To apply `colspan-#` styles to low flow (JavaScript disabled flow) form inputs, you will need to manually wrap your `<dt>` and `<dd>` elements in a `<div>`:
 
@@ -233,11 +233,11 @@ To apply `colspan-#` styles to low flow (JavaScript disabled flow) form inputs, 
 </form>
 ```
 
-## Button groups
+### Button groups
 
 You can align buttons side-by-side, or in left/right/center groups.
 
-### Non-grouped example
+#### Non-grouped example
 
 Nothing fancy here:
 
@@ -246,7 +246,7 @@ Nothing fancy here:
 <button type="submit" name="submit">Another one</button>
 ```
 
-### Button groups
+#### Button groups
 
 Driven by flexbox to intelligently align the buttons based on how many are in the group:
 
@@ -265,11 +265,11 @@ Driven by flexbox to intelligently align the buttons based on how many are in th
 </menu>
 ```
 
-## Checkboxes and radio buttons
+### Checkboxes and radio buttons
 
 Checkboxes and radio buttons need to follow the following markup structure:
 
-### A single checkbox
+#### A single checkbox
 
 Not too different than other inputs:
 
@@ -282,7 +282,7 @@ Not too different than other inputs:
 </form>
 ```
 
-### Checkbox group
+#### Checkbox group
 
 ```html
 <form class="semanticForms">
@@ -299,7 +299,7 @@ Not too different than other inputs:
 </form>
 ```
 
-### Radio buttons
+#### Radio buttons
 
 ```html
 <form class="semanticForms">
@@ -316,7 +316,7 @@ Not too different than other inputs:
 </form>
 ```
 
-## Validation styles
+### Validation styles
 
 Inputs with the `required` attribute will result in a visual indicator (*) being added to its label. You can disable this indicator with the `data-no-asterisk` attribute on the label element:
 
@@ -354,11 +354,11 @@ You can adjust the tooltip text of the asterisk with the `data-asterisk-text` at
 </form>
 ```
 
-## Dark mode
+### Dark mode
 
 To set the dark mode, apply an additional class of `dark` to your `<form>` elements to force the dark mode.
 
-## Low flow (JavaScript disabled) mode
+### Low flow (JavaScript disabled) mode
 
 The low flow will be displayed if JS is disabled.
 
@@ -366,7 +366,7 @@ You can also activate the low flow (JavaScript disabled) mode manually by adding
 
 The low-flow mode reverts the float label pattern to traditional labels and doesn't include other JS-exclusive enhancements, but preserves the other visual design enhancements driven purely by CSS.
 
-# Contributing
+## Contributing
 
 - Fork/clone this repo.
 - `npm ci`
