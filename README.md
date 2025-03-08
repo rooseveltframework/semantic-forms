@@ -1,6 +1,7 @@
 # Semantic Forms
 
-[![npm](https://img.shields.io/npm/v/semantic-forms.svg)](https://www.npmjs.com/package/semantic-forms)
+[![Build Status](https://github.com/rooseveltframework/semantic-forms/workflows/CI/badge.svg
+)](https://github.com/rooseveltframework/semantic-forms/actions?query=workflow%3ACI) [![npm](https://img.shields.io/npm/v/semantic-forms.svg)](https://www.npmjs.com/package/semantic-forms)
 
 A pattern library of attractive forms for your website with the following design goals:
 
@@ -110,7 +111,7 @@ By default, input fields will display an X icon to clear the text and password f
 - Prevent the show/hide toggle from appearing on password fields by applying a `data-no-reveal` attribute to the input.
 
 - Show a help text icon next to labels of inputs that contain a `title` attribute by applying a `data-show-help-icon` attribute to the label.
-  
+
   - Note that checkboxes and radios should have a `title` attribute on the label instead of the inputs.
 
 ### Responsive columns

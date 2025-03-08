@@ -1,6 +1,6 @@
 {
   "name": "semantic-forms",
-  "description": "Semantic Forms",
+  "description": "🎯 A pattern library of forms based on semantic HTML enhanced with a modern UX.",
   "author": "Roosevelt Framework Team <rooseveltframework@gmail.com>",
   "contributors": [
     {
@@ -19,8 +19,8 @@
   "readmeFilename": "README.md",
   "devDependencies": {
     "@jsdevtools/coverage-istanbul-loader": "3.0.5",
-    "@playwright/test": "1.50.1",
-    "eslint": "9.21.0",
+    "@playwright/test": "1.51.0",
+    "eslint": "9.22.0",
     "eslint-plugin-html": "8.1.2",
     "express": "4.21.2",
     "nodemon": "3.1.9",
