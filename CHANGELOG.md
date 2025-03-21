@@ -4,6 +4,11 @@
 
 - Put your changes here...
 
+## 5.0.3
+
+- Fixed a bug that prevented `semantic-forms` from detecting when you inserted new forms into the page.
+- Updated dependencies.
+
 ## 5.0.2
 
 - Fixed a bug that would cause errors when `reinitialize()` was called.
