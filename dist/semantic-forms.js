@@ -49,7 +49,7 @@ if(lastFocusedInput)if(lastFocusedInput?.parentNode?.querySelector("button.clear
 // redo clearing a field
 if(lastFocusedInput)if(lastFocusedInput?.parentNode?.querySelector("button.clear").id===`semanticFormsClearButton_${lastClearFieldPressed}`||lastFocusedInput?.parentNode?.querySelector("button.clear").name===`semanticFormsClearButton_${lastClearFieldPressed}`)if(lastFocusedInput.redoValue){lastFocusedInput.previousValue=lastFocusedInput.value;lastFocusedInput.value=lastFocusedInput.redoValue}}));
 // monitor changes to the DOM and enhance new semanticForms forms that get added
-if(!window.semanticFormsObserver){window.semanticFormsObserver=new window.MutationObserver((mutations=>{let stop=false;for(const mutation of mutations){for(const node of mutation.addedNodes)if(node.nodeName==="FORM"||node?.querySelector("form")){semanticForms();stop=true}if(stop)break}}));window.semanticFormsObserver.observe(document.body,{attributes:false,childList:true,characterData:false,subtree:true})}semanticForms.reinitialize=form=>{form.classList.remove("semanticFormsActive");semanticForms()}};module.exports=semanticForms
+if(!window.semanticFormsObserver){window.semanticFormsObserver=new window.MutationObserver((mutations=>{let stop=false;for(const mutation of mutations){for(const node of mutation.addedNodes)if(node.nodeName==="FORM"||node?.querySelector?.("form")){semanticForms();stop=true}if(stop)break}}));window.semanticFormsObserver.observe(document.body,{attributes:false,childList:true,characterData:false,subtree:true})}semanticForms.reinitialize=form=>{form.classList.remove("semanticFormsActive");semanticForms()}};module.exports=semanticForms
 /***/
 /******/}};
 /************************************************************************/
