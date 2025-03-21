@@ -249,7 +249,7 @@ const semanticForms = () => {
       let stop = false
       for (const mutation of mutations) {
         for (const node of mutation.addedNodes) {
-          if (node.nodeName === 'FORM' || node?.querySelector('form')) {
+          if (node.nodeName === 'FORM' || node?.querySelector?.('form')) {
             semanticForms()
             stop = true
           }

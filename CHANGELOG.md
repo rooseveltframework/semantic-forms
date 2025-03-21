@@ -4,6 +4,10 @@
 
 - Put your changes here...
 
+## 5.0.4
+
+- Fixed a periodic JS error.
+
 ## 5.0.3
 
 - Fixed a bug that prevented `semantic-forms` from detecting when you inserted new forms into the page.
