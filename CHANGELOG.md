@@ -4,6 +4,11 @@
 
 - Put your changes here...
 
+## 5.0.5
+
+- Added better error handling to the JS.
+- Updated dependencies.
+
 ## 5.0.4
 
 - Fixed a periodic JS error.

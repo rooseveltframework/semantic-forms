@@ -278,7 +278,7 @@ Not too different than other inputs:
 <form class="semanticForms">
   <dl>
     <dt><label for="some_field_name">Single checkbox</label></dt>
-    <dd><input type="checkbox" name="some_field_name" id="checkbox"></dd>
+    <dd><input type="checkbox" name="some_field_name" id="some_field_name"></dd>
   </dl>
 </form>
 ```
