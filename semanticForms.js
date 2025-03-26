@@ -1,6 +1,9 @@
 const semanticForms = () => {
   // do some feature detection so none of the JS executes if the browser is too old
-  if (typeof document.getElementsByClassName !== 'function' || typeof document.querySelector !== 'function' || !document.body.classList || !window.MutationObserver) return
+  if (typeof document.getElementsByClassName !== 'function' || typeof document.querySelector !== 'function' || !document.body.classList || !window.MutationObserver) {
+    console.warn('semantic-forms was loaded into an unsupported browser and will not execute.')
+    return
+  }
 
   const passwordShow = '<svg fill="none" height="256" viewBox="0 0 24 24" width="256" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m1 12s4-8 11-8 11 8 11 8"/><path d="m1 12s4 8 11 8 11-8 11-8"/><circle cx="12" cy="12" r="3"/></g></svg>'
   const passwordHide = '<svg fill="none" height="256" viewBox="0 0 24 24" width="256" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m2 2 20 20"/><path d="m6.71277 6.7226c-3.04798 2.07267-4.71277 5.2774-4.71277 5.2774s3.63636 7 10 7c2.0503 0 3.8174-.7266 5.2711-1.7116m-6.2711-12.23018c.3254-.03809.6588-.05822 1-.05822 6.3636 0 10 7 10 7s-.6918 1.3317-2 2.8335"/><path d="m14 14.2362c-.5308.475-1.2316.7639-2 .7639-1.6569 0-3-1.3431-3-3 0-.8237.33193-1.5698.86932-2.11192"/></g></svg>'
@@ -35,6 +38,10 @@ const semanticForms = () => {
           ? document.querySelector('label[data-for=' + input.parentNode.parentNode.id.replace(/\./g, '\\.') + ']')
           : document.querySelector('label[for=' + input.id.replace(/\./g, '\\.') + ']')
 
+        if (!label) {
+          console.error(`semantic-forms: Found an input (${input.id || input.getAttribute('name')}) without a properly associated label. Make sure there is a label for it and the label has a matching "for" attribute.`)
+        }
+
         input.classList.add('semanticform')
 
         // #region create labels
@@ -43,6 +50,11 @@ const semanticForms = () => {
           // recursively find <dd> element
           let dd = input.parentNode
           while (dd && dd.nodeName !== 'DD') dd = dd.parentNode
+
+          if (!dd) {
+            console.error(`semantic-forms: Found an input (${input.id || input.getAttribute('name')}) that is not inside a <dd> element.`)
+            continue
+          }
 
           if (dd.firstChild.nodeName !== 'LABEL') {
             const newLabel = document.createElement('label')
@@ -104,13 +116,20 @@ const semanticForms = () => {
 
         // standard inputs
         if (type !== 'checkbox' && type !== 'radio') {
-          if (!input.getAttribute('placeholder')) {
-            input.setAttribute('placeholder', ' ')
-          }
+          if (!input.getAttribute('placeholder')) input.setAttribute('placeholder', ' ')
 
           const div = document.createElement('div')
           const dt = label.closest('dt')
           const dd = input.closest('dd')
+
+          if (!dt) {
+            console.error(`semantic-forms: Found an input (${input.id || input.getAttribute('name')}) that does not have a corresponding <dt> element.`)
+            continue
+          }
+          if (!dd) {
+            console.error(`semantic-forms: Found an input (${input.id || input.getAttribute('name')}) that does not have a corresponding <dd> element.`)
+            continue
+          }
 
           // #region clear button
           if (input.nodeName !== 'SELECT' && type !== 'range') {
@@ -171,6 +190,10 @@ const semanticForms = () => {
           showBtn.classList.add('show')
           showBtn.id = `semanticFormsShowButton_${input.id}`
           const dd = input.closest('dd')
+          if (!dd) {
+            console.error(`semantic-forms: Found an input (${input.id || input.getAttribute('name')}) that is not inside a <dd> element.`)
+            continue
+          }
           showBtn.addEventListener('click', (event) => {
             if (input.type === 'password') {
               showBtn.innerHTML = passwordHide
@@ -194,9 +217,7 @@ const semanticForms = () => {
           // shifts the close button to the right if a scrollbar is present
           const shiftCloseBtn = () => {
             const clearBtn = textarea.parentElement?.querySelector('button.clear')
-            if (clearBtn) {
-              clearBtn.style.marginRight = textarea.clientHeight < textarea.scrollHeight ? '15px' : ''
-            }
+            if (clearBtn) clearBtn.style.marginRight = textarea.clientHeight < textarea.scrollHeight ? '15px' : ''
           }
 
           textarea.addEventListener('input', shiftCloseBtn)
