@@ -22,7 +22,7 @@
     "@playwright/test": "1.51.1",
     "eslint": "9.23.0",
     "eslint-plugin-html": "8.1.2",
-    "express": "4.21.2",
+    "express": "5.1.0",
     "nodemon": "3.1.9",
     "nyc": "17.1.0",
     "sass": "1.86.0",
