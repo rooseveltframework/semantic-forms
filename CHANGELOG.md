@@ -4,6 +4,12 @@
 
 - Put your changes here...
 
+## 5.0.6
+
+- Added slicker live demo docs.
+- Fixed a bug causing dark mode not to respect OS preference.
+- Updated dependencies.
+
 ## 5.0.5
 
 - Added better error handling to the JS.

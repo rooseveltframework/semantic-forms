@@ -1,0 +1,553 @@
+<include src="layouts/main">
+  <arg pageTitle>Semantic Forms — usage</arg>
+  <arg pageContent>
+    <article>
+      <h2>Install</h2>
+
+      <p><code>npm install semantic-forms</code></p>
+
+      <p>The package is distributed with the following builds available:</p>
+
+      <ul>
+        <li><code>dist/semantic-forms.cjs</code>: CommonJS bundle: <code>const semanticForms = require('semantic-forms')</code></li>
+        <li><code>dist/semantic-forms.js</code>: Standalone bundle that can be included via <code><!--# <script> --></code> tags. Declares a global variable called: <code>semanticForms</code></li>
+        <li><code>dist/semantic-forms.min.js</code>: Minified standalone bundle that can be included via <code><!--# <p> --></code> tags. Declares a global variable called: <code>semanticForms</code></li>
+        <li><code>dist/semantic-forms.mjs</code>: ES module: <code>import semanticForms from 'semantic-forms'</code></li>
+        <li><code>dist/semantic-forms.min.mjs</code>: Minified ES module: <code>import semanticForms from 'semantic-forms/min'</code></li>
+      </ul>
+
+      <h2>Use</h2>
+
+      <p>Include the <code>dist/semantic-forms.css</code> and whichever of the above versions of the JS file you prefer from this repo into your project.</p>
+
+      <p>Then apply the <code>semanticForms</code> class to your <code><!--#<form>--></code> elements:</p>
+
+      <pre><code class="language-html"><escape>
+<form class="semanticForms">
+  <!-- your form here -->
+</form>
+      </escape></code></pre>
+
+      <p>Then apply the JavaScript enhancements:</p>
+
+      <pre><code class='language-javascript'>semanticForms()</code></pre>
+
+      <p>Then the CSS/JS enhancements to your forms will apply automatically, assuming the markup structure you use is one of the supported patterns.</p>
+
+      <p>If you make changes to the DOM after Semantic Forms is activated and want to activate any additional <code>semanticForms</code> forms you insert, you can re-scan for new forms by calling <code>semanticForms.reinitialize()</code> again. If you only want to reinitialize one form instead of all of them, call <code>semanticForms.reinitialize(formElement)</code>.</p>
+
+      <h3>Features</h3>
+
+      <h4>Float label inputs</h4>
+
+      <p>The float label input pattern is notoriously difficult to implement in a fashion that doesn't degrade HTML semantics or accessibility. This pattern library implements a solution that solves that problem. Your label doesn't need to be a sibling of your input like with other implementations. This implementation also has a custom clear button for each input.</p>
+
+      <h5>Example</h5>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <dt><label for="name">Name</label></dt>
+    <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <dt><label for="name">Name</label></dt>
+          <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+        </dl>
+      </form>
+
+      <h5>Or with a <code><!--# <textarea> --></code></h5>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <dt><label for="textarea">Textarea</label></dt>
+    <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. Long string of text"></textarea></dd>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <dt><label for="textarea">Textarea</label></dt>
+          <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. Long string of text"></textarea></dd>
+        </dl>
+      </form>
+
+      <h5>Add help text</h5>
+
+      <p>Include a label in the <code>&lt;dd&gt;</code> element with a matching <code>for</code> attribute to place help text beneath the input:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <dt><label for="password">Password</label></dt>
+    <dd>
+      <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required>
+      <label for="password">Must be at least 8 characters long.</label>
+    </dd>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <dt><label for="password">Password</label></dt>
+          <dd>
+            <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required>
+            <label for="password">Must be at least 8 characters long.</label>
+          </dd>
+        </dl>
+      </form>
+
+      <h5>Customizing input fields</h5>
+
+      <p>By default, input fields will display an X icon to clear the text and password fields will also display a show/hide toggle for displaying the password in plain text. You can customize this behavior as follows:</p>
+
+      <ul>
+        <li><p>Customize the hover text of the clear field button by applying a <code>data-clear-field-text=&quot;your text&quot;</code> attribute to the input.</p></li>
+        <li><p>Customize the hover text of the show password button by applying a <code>data-show-password-text=&quot;your text&quot;</code> attribute to the input.</p></li>
+        <li><p>Customize the hover text of the hide password button by applying a <code>data-hide-password-text=&quot;your text&quot;</code> attribute to the input.</p></li>
+        <li><p>Prevent the show/hide toggle from appearing on password fields by applying a <code>data-no-reveal</code> attribute to the input.</p></li>
+        <li>
+          <p>Show a help text icon next to labels of inputs that contain a <code>title</code> attribute by applying a <code>data-show-help-icon</code> attribute to the label.</p>
+          <ul>
+            <li>Note that checkboxes and radios should have a <code>title</code> attribute on the label instead of the inputs.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Responsive columns</h4>
+
+      <p>This feature makes it so the form fields will grow, shrink, expand the number of columns, or reduce the number of columns based on how much space exists in the container. You can customize it by applying various <code>colspan-#</code> classes to various elements in the form markup structure.</p>
+
+      <h5>Set number of columns for a group of forms</h5>
+
+      <p>You can limit the number of columns on your forms using the <code>colspan-#</code> class on a <code>&lt;dl&gt;</code> element:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl class="colspan-2">
+    <dt><label for="input-a">Input A</label></dt>
+    <dd><input type="text" id="input-a" name="input-a"></dd>
+
+    <dt><label for="input-b">Input B</label></dt>
+    <dd><input type="text" id="input-b" name="input-b"></dd>
+
+    <!-- wraps to the next row -->
+    <dt><label for="input-c">Input C</label></dt>
+    <dd><input type="text" id="input-c" name="input-c"></dd>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms">
+        <dl class="colspan-2">
+          <dt><label for="input-a">Input A</label></dt>
+          <dd><input type="text" id="input-a" name="input-a"></dd>
+
+          <dt><label for="input-b">Input B</label></dt>
+          <dd><input type="text" id="input-b" name="input-b"></dd>
+
+          <!-- wraps to the next row -->
+          <dt><label for="input-c">Input C</label></dt>
+          <dd><input type="text" id="input-c" name="input-c"></dd>
+        </dl>
+      </form>
+
+      <p>You can also apply the class to a <code>&lt;fieldset&gt;</code> which will apply that styling to all nested <code>&lt;dl&gt;</code> elements:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <fieldset class="colspan-3">
+    <!-- inherits 3 column class -->
+    <dl>
+      <dt><label for="f-ex-input-a">Input A</label></dt>
+      <dd><input type="text" id="f-ex-input-a" name="f-ex-input-a"></dd>
+
+      <dt><label for="f-ex-input-b">Input B</label></dt>
+      <dd><input type="text" id="f-ex-input-b" name="f-ex-input-b"></dd>
+
+      <dt><label for="f-ex-input-c">Input C</label></dt>
+      <dd><input type="text" id="f-ex-input-c" name="f-ex-input-c"></dd>
+    </dl>
+
+    <!-- has 4 columns -->
+    <dl class="colspan-4">
+      <dt><label for="f-ex-input-d">Input D</label></dt>
+      <dd><input type="text" id="f-ex-input-d" name="f-ex-input-d"></dd>
+
+      <dt><label for="f-ex-input-e">Input E</label></dt>
+      <dd><input type="text" id="f-ex-input-e" name="f-ex-input-e"></dd>
+
+      <dt><label for="f-ex-input-f">Input F</label></dt>
+      <dd><input type="text" id="f-ex-input-f" name="f-ex-input-f"></dd>
+    </dl>
+  </fieldset>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <fieldset class="colspan-3">
+          <!-- inherits 3 column class -->
+          <dl>
+            <dt><label for="f-ex-input-a">Input A</label></dt>
+            <dd><input type="text" id="f-ex-input-a" name="f-ex-input-a"></dd>
+
+            <dt><label for="f-ex-input-b">Input B</label></dt>
+            <dd><input type="text" id="f-ex-input-b" name="f-ex-input-b"></dd>
+
+            <dt><label for="f-ex-input-c">Input C</label></dt>
+            <dd><input type="text" id="f-ex-input-c" name="f-ex-input-c"></dd>
+          </dl>
+
+          <!-- has 4 columns -->
+          <dl class="colspan-4">
+            <dt><label for="f-ex-input-d">Input D</label></dt>
+            <dd><input type="text" id="f-ex-input-d" name="f-ex-input-d"></dd>
+
+            <dt><label for="f-ex-input-e">Input E</label></dt>
+            <dd><input type="text" id="f-ex-input-e" name="f-ex-input-e"></dd>
+
+            <dt><label for="f-ex-input-f">Input F</label></dt>
+            <dd><input type="text" id="f-ex-input-f" name="f-ex-input-f"></dd>
+          </dl>
+        </fieldset>
+      </form>
+
+      <h5>Set number of columns a single input field takes up</h5>
+
+      <p>You can specify the number of columns an input will span using the <code>colspan-#</code> class on the <code>&lt;dd&gt;</code> element. The inputs are responsive and will shrink according to available space. Available numbered classes are <code>colspan-1</code> through <code>colspan-5</code>:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <fieldset>
+    <dl>
+      <dt><label for="cspan-ex-input-a">Input A</label></dt>
+      <!-- 1 column -->
+      <dd class="colspan-1"><input type="text" id="cspan-ex-input-a" name="cspan-ex-input-a"></dd>
+
+      <dt><label for="cspan-ex-input-b">Input B</label></dt>
+      <!-- 2 columns  -->
+      <dd class="colspan-2"><input type="text" id="cspan-ex-input-b" name="cspan-ex-input-b"></dd>
+
+      <dt><label for="cspan-ex-input-c">Input C</label></dt>
+      <!-- 5 columns (max) -->
+      <dd class="colspan-5"><input type="text" id="cspan-ex-input-c" name="cspan-ex-input-c"></dd>
+    </dl>
+  </fieldset>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms">
+        <fieldset>
+          <dl>
+            <dt><label for="cspan-ex-input-a">Input A</label></dt>
+            <!-- 1 column -->
+            <dd class="colspan-1"><input type="text" id="cspan-ex-input-a" name="cspan-ex-input-a"></dd>
+
+            <dt><label for="cspan-ex-input-b">Input B</label></dt>
+            <!-- 2 columns  -->
+            <dd class="colspan-2"><input type="text" id="cspan-ex-input-b" name="cspan-ex-input-b"></dd>
+
+            <dt><label for="cspan-ex-input-c">Input C</label></dt>
+            <!-- 5 columns (max) -->
+            <dd class="colspan-5"><input type="text" id="cspan-ex-input-c" name="cspan-ex-input-c"></dd>
+          </dl>
+        </fieldset>
+      </form>
+
+      <p><code>colspan-full</code> can also be used to force an input to take up the entire width of a form:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <fieldset>
+    <dl>
+      <dt><label for="cspanfull-ex-input-a">Input A</label></dt>
+      <!-- this spans 2 columns on row 1 -->
+      <dd class="colspan-2"><input type="text" id="cspanfull-ex-input-a" name="cspanfull-ex-input-a"></dd>
+
+      <dt><label for="cspanfull-ex-input-b">Input B</label></dt>
+      <!-- this spans the full width of row 2 -->
+      <dd class="colspan-full"><input type="text" id="cspanfull-ex-input-b" name="cspanfull-ex-input-b"></dd>
+
+      <!-- this spans 1 column on row 3 -->
+      <dt><label for="cspanfull-ex-input-c">Input C</label></dt>
+      <dd><input type="text" id="cspanfull-ex-input-c" name="cspanfull-ex-input-c"></dd>
+    </dl>
+  </fieldset>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <fieldset>
+          <dl>
+            <dt><label for="cspanfull-ex-input-a">Input A</label></dt>
+            <!-- this spans 2 columns on row 1 -->
+            <dd class="colspan-2"><input type="text" id="cspanfull-ex-input-a" name="cspanfull-ex-input-a"></dd>
+
+            <dt><label for="cspanfull-ex-input-b">Input B</label></dt>
+            <!-- this spans the full width of row 2 -->
+            <dd class="colspan-full"><input type="text" id="cspanfull-ex-input-b" name="cspanfull-ex-input-b"></dd>
+
+            <!-- this spans 1 column on row 3 -->
+            <dt><label for="cspanfull-ex-input-c">Input C</label></dt>
+            <dd><input type="text" id="cspanfull-ex-input-c" name="cspanfull-ex-input-c"></dd>
+          </dl>
+        </fieldset>
+      </form>
+
+      <h6>Set number of columns a single input field takes up on the low flow (JavaScript disabled flow)</h6>
+
+      <p>To apply <code>colspan-#</code> styles to low flow (JavaScript disabled flow) form inputs, you will need to manually wrap your <code>&lt;dt&gt;</code> and <code>&lt;dd&gt;</code> elements in a <code>&lt;div&gt;</code>:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <fieldset>
+    <dl>
+      <div>
+        <dt><label for="cspan-lowflow-input-a">Input A</label></dt>
+        <!-- this spans 2 columns on row 1 -->
+        <dd class="colspan-2"><input type="text" id="cspan-lowflow-input-a" name="cspan-lowflow-input-a"></dd>
+      </div>
+    </dl>
+  </fieldset>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <fieldset>
+          <dl>
+            <div>
+              <dt><label for="cspan-lowflow-input-a">Input A</label></dt>
+              <!-- this spans 2 columns on row 1 -->
+              <dd class="colspan-2"><input type="text" id="cspan-lowflow-input-a" name="cspan-lowflow-input-a"></dd>
+            </div>
+          </dl>
+        </fieldset>
+      </form>
+
+      <h4>Button groups</h4>
+
+      <p>You can align buttons side-by-side, or in left/right/center groups.</p>
+
+      <h5>Non-grouped example</h5>
+
+      <p>Nothing fancy here:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <button type="submit" name="submit">Non-grouped submit button</button>
+  <button type="submit" name="submit">Another one</button>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <button type="submit" name="submit">Non-grouped submit button</button>
+        <button type="submit" name="submit">Another one</button>
+      </form>
+
+      <h6>Button groups</h6>
+
+      <p>Driven by flexbox to intelligently align the buttons based on how many are in the group:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <!-- aligns left/right -->
+  <menu>
+    <li><button type="submit" name="submit">Button 1</button></li>
+    <li><button type="submit" name="submit">Button 2</button></li>
+  </menu>
+
+  <!-- aligns left/center/right -->
+  <menu>
+    <li><button type="submit" name="submit">Button 1</button></li>
+    <li><button type="submit" name="submit">Button 2</button></li>
+    <li><button type="submit" name="submit">Button 3</button></li>
+  </menu>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <!-- aligns left/right -->
+        <menu>
+          <li><button type="submit" name="submit">Button 1</button></li>
+          <li><button type="submit" name="submit">Button 2</button></li>
+        </menu>
+
+        <!-- aligns left/center/right -->
+        <menu>
+          <li><button type="submit" name="submit">Button 1</button></li>
+          <li><button type="submit" name="submit">Button 2</button></li>
+          <li><button type="submit" name="submit">Button 3</button></li>
+        </menu>
+      </form>
+
+      <h4>Checkboxes and radio buttons</h4>
+
+      <p>Checkboxes and radio buttons need to follow the following markup structure:</p>
+
+      <h5>A single checkbox</h5>
+
+      <p>Not too different than other inputs:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <dt><label for="some_field_name">Single checkbox</label></dt>
+    <dd><input type="checkbox" name="some_field_name" id="some_field_name"></dd>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <dt><label for="some_field_name">Single checkbox</label></dt>
+          <dd><input type="checkbox" name="some_field_name" id="some_field_name"></dd>
+        </dl>
+      </form>
+
+      <h5>Checkbox group</h5>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <dt><label data-for="some_checkboxes">Checkboxes:</label></dt>
+    <dd class="checkboxes">
+      <ul id="some_checkboxes">
+        <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one"> <label for="some_field_name_checkboxes_one">One</label></li>
+        <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
+        <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
+      </ul>
+    </dd>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <dt><label data-for="some_checkboxes">Checkboxes:</label></dt>
+          <dd class="checkboxes">
+            <ul id="some_checkboxes">
+              <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one"> <label for="some_field_name_checkboxes_one">One</label></li>
+              <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
+              <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
+            </ul>
+          </dd>
+        </dl>
+      </form>
+
+      <h5>Radio buttons</h5>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <dt><label data-for="some_radios">Radios:</label></dt>
+    <dd class="radios">
+      <ul id="some_radios">
+        <li><input type="radio" name="some_field_name" id="some_field_name_radios_one"> <label for="some_field_name_radios_one">One</label></li>
+        <li><input type="radio" name="some_field_name" id="some_field_name_radios_two"> <label for="some_field_name_radios_two">Two</label></li>
+        <li><input type="radio" name="some_field_name" id="some_field_name_radios_three"> <label for="some_field_name_radios_three">Three</label></li>
+      </ul>
+    </dd>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <dt><label data-for="some_radios">Radios:</label></dt>
+          <dd class="radios">
+            <ul id="some_radios">
+              <li><input type="radio" name="some_field_name" id="some_field_name_radios_one"> <label for="some_field_name_radios_one">One</label></li>
+              <li><input type="radio" name="some_field_name" id="some_field_name_radios_two"> <label for="some_field_name_radios_two">Two</label></li>
+              <li><input type="radio" name="some_field_name" id="some_field_name_radios_three"> <label for="some_field_name_radios_three">Three</label></li>
+            </ul>
+          </dd>
+        </dl>
+      </form>
+
+      <h4>Validation styles</h4>
+
+      <p>Inputs with the <code>required</code> attribute will result in a visual indicator (*) being added to its label. You can disable this indicator with the <code>data-no-asterisk</code> attribute on the label element:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <dt><label for="input" data-no-asterisk>Input label</label></dt>
+    <dd><input type="text" name="input" id="input" required>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <dt><label for="input" data-no-asterisk>Input label</label></dt>
+          <dd><input type="text" name="input" id="input" required>
+        </dl>
+      </form>
+
+      <p>You can set a paragraph of text below a field to only appear when a field is invalid with the <code>data-invalid-text</code> attribute:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <dt><label for="password_validation">Password label</label><dt>
+    <dd>
+      <input type="password" name="password" id="password_validation" minlength="8">
+      <p data-invalid-text>Password must be at least 8 characters long.</p>
+    </dd>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <dt><label for="password_validation">Password label</label><dt>
+          <dd>
+            <input type="password" name="password" id="password_validation" minlength="8">
+            <p data-invalid-text>Password must be at least 8 characters long.</p>
+          </dd>
+        </dl>
+      </form>
+
+      <p>You can adjust the tooltip text of the asterisk with the <code>data-asterisk-text</code> attribute:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <dt><label for="input_validation" data-asterisk-text="This is a custom tooltip.">Input label</label></dt>
+    <dd><input type="text" name="input" id="input_validation" required>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <dt><label for="input_validation" data-asterisk-text="This is a custom tooltip.">Input label</label></dt>
+          <dd><input type="text" name="input" id="input_validation" required>
+        </dl>
+      </form>
+
+      <h3>Dark mode</h3>
+
+      <p>To set the dark mode, apply an additional class of <code>dark</code> to your <code>&lt;form&gt;</code> elements to force the dark mode.</p>
+
+      <h3>Low flow (JavaScript disabled) mode</h3>
+
+      <p>The low flow will be displayed if JS is disabled.</p>
+
+      <p>You can also activate the low flow (JavaScript disabled) mode manually by adding the <code>lowFlow</code> class to your <code>&lt;form&gt;</code> element.</p>
+
+      <p>The low-flow mode reverts the float label pattern to traditional labels and doesn't include other JS-exclusive enhancements, but preserves the other visual design enhancements driven purely by CSS.</p>
+
+      <h3>More</h3>
+
+      <p>See a page demoing all features <a href="https://rooseveltframework.github.io/semantic-forms/test/semanticForms.html">here</a>.</p>
+    </article>
+  </arg>
+</include>

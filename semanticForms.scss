@@ -1,5 +1,5 @@
 // #region global styles
-form.semanticForms {
+form.semanticForms, form.semanticForms.light {
   --formBackgroundColor: #fff;
   --formSubBackgroundColor: #f5f5f5;
   --formTextColor: #000;
@@ -26,7 +26,7 @@ form.semanticForms {
   --customResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E")
 }
 
-form.semanticForms.dark {
+@mixin dark-mode {
   --formBackgroundColor: #555;
   --inputBackgroudColor: rgba(85,85,85,0.1);
   --formSubBackgroundColor: #2f2f2f;
@@ -50,9 +50,19 @@ form.semanticForms.dark {
     filter: invert(100%);
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  form.semanticForms {
+    @include dark-mode;
+  }
+}
+
+form.semanticForms.dark {
+  @include dark-mode;
+}
 // #endregion
 
-form.semanticForms {
+form.semanticForms, form.semanticForms.light {
   width: 100%;
   container-type: inline-size;
   container-name: semanticForm;
@@ -369,7 +379,7 @@ form.semanticForms {
 
     span.help {
       cursor: help;
-      pointer-events: auto; 
+      pointer-events: auto;
     }
   }
 
@@ -478,10 +488,10 @@ form.semanticForms {
             pointer-events: auto;
             color: red;
           }
-          
+
           span.help {
             cursor: help;
-            pointer-events: auto; 
+            pointer-events: auto;
           }
         }
       }
@@ -498,10 +508,10 @@ form.semanticForms {
           transform: translateY(-100%) scale(0.7);
           top: var(--inputTopMargin);
           left: 10px;
-          
+
           span.help {
             cursor: help;
-            pointer-events: auto; 
+            pointer-events: auto;
           }
         }
       }
