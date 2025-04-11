@@ -498,6 +498,7 @@ form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .rad
   color: var(--formTextColor) !important;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type, form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type {
+  max-width: 230px !important; /* this prevents label text from sticking out of the input element */
   line-height: 1.2;
   font-size: var(--inputFontSize);
   position: absolute;
@@ -824,13 +825,13 @@ form.semanticForms.light.semanticFormsActive dl.colspan-1 {
     grid-column: 1;
   }
 }
-form.semanticForms:not(.semanticFormsActive), form.semanticForms.light:not(.semanticFormsActive) {
-  width: 50%;
-}
 form.semanticForms:not(.semanticFormsActive) dl, form.semanticForms.light:not(.semanticFormsActive) dl {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+form.semanticForms:not(.semanticFormsActive) dl dt, form.semanticForms.light:not(.semanticFormsActive) dl dt {
+  max-width: 365px !important; /* this matches the max-width of js-enabled inputs */
 }
 form.semanticForms:not(.semanticFormsActive) dl dt:has(+ dd input:required) label::after, form.semanticForms.light:not(.semanticFormsActive) dl dt:has(+ dd input:required) label::after {
   content: " *";
@@ -838,6 +839,7 @@ form.semanticForms:not(.semanticFormsActive) dl dt:has(+ dd input:required) labe
 }
 form.semanticForms:not(.semanticFormsActive) dl dd, form.semanticForms.light:not(.semanticFormsActive) dl dd {
   margin-bottom: 10px;
+  max-width: 365px !important; /* this matches the max-width of js-enabled inputs */
 }
 form.semanticForms:not(.semanticFormsActive) dl dd:not(.checkboxes) input[type=checkbox], form.semanticForms.light:not(.semanticFormsActive) dl dd:not(.checkboxes) input[type=checkbox] {
   margin-left: 10px;

@@ -301,32 +301,6 @@
         </fieldset>
       </form>
 
-      <h6>Set number of columns a single input field takes up on the low flow (JavaScript disabled flow)</h6>
-
-      <p>To apply <code>colspan-#</code> styles to low flow (JavaScript disabled flow) form inputs, you will need to manually wrap your <code>&lt;dt&gt;</code> and <code>&lt;dd&gt;</code> elements in a <code>&lt;div&gt;</code>:</p>
-
-      <pre><code class='language-html' lang='html'><escape>
-<form class="semanticForms">
-  <fieldset>
-    <dl>
-      <dt><label for="cspan-lowflow-input-a">Input A</label></dt>
-      <!-- this spans 2 columns on row 1 -->
-      <dd class="colspan-2"><input type="text" id="cspan-lowflow-input-a" name="cspan-lowflow-input-a"></dd>
-    </dl>
-  </fieldset>
-</form>
-      </escape></code></pre>
-
-      <form class="semanticForms">
-        <fieldset>
-          <dl>
-            <dt><label for="cspan-lowflow-input-a">Input A</label></dt>
-            <!-- this spans 2 columns on row 1 -->
-            <dd class="colspan-2"><input type="text" id="cspan-lowflow-input-a" name="cspan-lowflow-input-a"></dd>
-          </dl>
-        </fieldset>
-      </form>
-
       <h4>Button groups</h4>
 
       <p>You can align buttons side-by-side, or in left/right/center groups.</p>
@@ -536,8 +510,6 @@
       <h3>Low flow (JavaScript disabled) mode</h3>
 
       <p>The low flow will be displayed if JS is disabled.</p>
-
-      <p>You can also activate the low flow (JavaScript disabled) mode manually by adding the <code>lowFlow</code> class to your <code>&lt;form&gt;</code> element.</p>
 
       <p>The low-flow mode reverts the float label pattern to traditional labels and doesn't include other JS-exclusive enhancements, but preserves the other visual design enhancements driven purely by CSS.</p>
 

@@ -469,6 +469,7 @@ form.semanticForms, form.semanticForms.light {
         }
 
         label:first-of-type {
+          max-width: 230px !important; /* this prevents label text from sticking out of the input element */
           line-height: 1.2;
           font-size: var(--inputFontSize);
           position: absolute;
@@ -896,15 +897,15 @@ form.semanticForms, form.semanticForms.light {
   }
 
   // #region low flow form
-  &:not(.semanticFormsActive) {  
-    width: 50%;
-    
+  &:not(.semanticFormsActive) {      
     dl {
       display: flex;
       flex-direction: column;
       gap: 5px;
 
       dt {
+         max-width: 365px !important; /* this matches the max-width of js-enabled inputs */
+
         // add required asterisk
         &:has(+ dd input:required) {
           label::after {
@@ -917,6 +918,7 @@ form.semanticForms, form.semanticForms.light {
 
       dd {
         margin-bottom: 10px;
+        max-width: 365px !important; /* this matches the max-width of js-enabled inputs */
 
         // nudge single checkboxes to match checkbox groups
         &:not(.checkboxes) {
