@@ -134,7 +134,7 @@ form.semanticForms.light fieldset > fieldset textarea {
 }
 form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea), form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) {
   display: grid;
-  grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }
@@ -400,6 +400,8 @@ form.semanticForms.light input[type=radio] + label:first-of-type span.help {
 form.semanticForms .floatLabelForm div, form.semanticForms.light .floatLabelForm div {
   position: relative;
   width: 100%;
+  min-width: 252px;
+  max-width: 365px;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio]) ~ label:first-of-type, form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
@@ -532,6 +534,9 @@ form.semanticForms .floatLabelForm input::placeholder, form.semanticForms .float
   color: var(--placeholderColor);
   opacity: 1;
 }
+form.semanticForms div[class^=colspan-], form.semanticForms.light div[class^=colspan-] {
+  max-width: 100%;
+}
 form.semanticForms div.colspan-full, form.semanticForms.light div.colspan-full {
   grid-column: 1/-1;
 }
@@ -549,6 +554,11 @@ form.semanticForms div.colspan-2, form.semanticForms.light div.colspan-2 {
 }
 form.semanticForms div.colspan-1, form.semanticForms.light div.colspan-1 {
   grid-column: span 1;
+}
+form.semanticForms fieldset[class^=colspan-] dl div,
+form.semanticForms dl[class^=colspan-] div, form.semanticForms.light fieldset[class^=colspan-] dl div,
+form.semanticForms.light dl[class^=colspan-] div {
+  max-width: 100%;
 }
 form.semanticForms fieldset.colspan-full dl,
 form.semanticForms dl.colspan-full, form.semanticForms.light fieldset.colspan-full dl,

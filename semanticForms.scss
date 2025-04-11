@@ -117,7 +117,7 @@ form.semanticForms, form.semanticForms.light {
 
   dl:has(dt > label, dd > input, dd > select, dd > textarea) {
     display: grid;
-    grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
     gap: 10px;
     margin-bottom: 10px;
 
@@ -387,6 +387,8 @@ form.semanticForms, form.semanticForms.light {
     div {
       position: relative;
       width: 100%;
+      min-width: 252px;
+      max-width: 365px;;
 
       dd:not(.singleCheckbox, .checkboxes, .radios) {
         input:not([type='submit'], [type='reset'], [type='image']),
@@ -541,6 +543,10 @@ form.semanticForms, form.semanticForms.light {
 
   // #region colspan classes
   div {
+    &[class^='colspan-'] {
+      max-width: 100%;
+    }
+
     &.colspan-full {
       grid-column: 1 / -1;
     }
@@ -563,6 +569,13 @@ form.semanticForms, form.semanticForms.light {
 
     &.colspan-1 {
       grid-column: span 1;
+    }
+  }
+
+  fieldset[class^='colspan-'] dl,
+  dl[class^='colspan-'] {
+    div {
+      max-width: 100%;
     }
   }
 

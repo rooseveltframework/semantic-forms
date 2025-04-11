@@ -2,7 +2,7 @@
 
 ## Next version
 
-- Put your changes here...
+- Fixed a bug where the responsive grid layout would not always line up correctly.
 
 ## 5.0.6
 
