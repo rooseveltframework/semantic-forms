@@ -2,7 +2,9 @@
 
 ## Next version
 
-- Put your changes here...
+- Fixed a bug where the responsive grid layout would not always line up correctly.
+- Removed documentation on deprecated `lowFlow` class.
+- Added a max-width to form labels to prevent text from being longer than input element, causing graphical errors.
 
 ## 5.0.6
 
