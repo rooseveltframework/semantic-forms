@@ -1,5 +1,16 @@
 # How to contribute to this project
 
+## Coding
+
+- Fork/clone this repo.
+- `npm ci`
+- Make your changes. If you want to alter the CSS, do the changes in the `.scss` files.
+- `npm run build`. The build step compiles the SCSS file into CSS.
+  - You can also run `npm run watch` automatically compiles the CSS file after a change is detected in the SCSS file.
+- Test your changes by opening `semanticForms.html` in your browser.
+  - If you want to test your work on an actual HTTP server, run `npm run dev` or `npm run d`, and then visit http://localhost:3000/test/semanticForms
+- Commit, push, open pull request.
+
 ## Before opening a pull request
 
 - Be sure all tests pass: `npm t`.
