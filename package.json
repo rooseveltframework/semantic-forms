@@ -23,7 +23,7 @@
     "eslint": "9.24.0",
     "eslint-plugin-html": "8.1.2",
     "express": "5.1.0",
-    "nodemon": "3.1.9",
+    "nodemon": "3.1.10",
     "nyc": "17.1.0",
     "sass": "1.86.3",
     "serve": "14.2.4",
