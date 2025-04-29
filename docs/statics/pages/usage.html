@@ -2,7 +2,7 @@
   <arg pageTitle>Semantic Forms — usage</arg>
   <arg pageContent>
     <article>
-      <h2>Install</h2>
+      <h2 id="install">Install</h2>
 
       <p><code>npm install semantic-forms</code></p>
 
@@ -10,13 +10,13 @@
 
       <ul>
         <li><code>dist/semantic-forms.cjs</code>: CommonJS bundle: <code>const semanticForms = require('semantic-forms')</code></li>
-        <li><code>dist/semantic-forms.js</code>: Standalone bundle that can be included via <code><!--# <script> --></code> tags. Declares a global variable called: <code>semanticForms</code></li>
-        <li><code>dist/semantic-forms.min.js</code>: Minified standalone bundle that can be included via <code><!--# <p> --></code> tags. Declares a global variable called: <code>semanticForms</code></li>
+        <li><code>dist/semantic-forms.js</code>: Standalone bundle that can be included via <code><!--#<script>--></code> tags. Declares a global variable called: <code>semanticForms</code></li>
+        <li><code>dist/semantic-forms.min.js</code>: Minified standalone bundle that can be included via <code><!--#<p>--></code> tags. Declares a global variable called: <code>semanticForms</code></li>
         <li><code>dist/semantic-forms.mjs</code>: ES module: <code>import semanticForms from 'semantic-forms'</code></li>
         <li><code>dist/semantic-forms.min.mjs</code>: Minified ES module: <code>import semanticForms from 'semantic-forms/min'</code></li>
       </ul>
 
-      <h2>Use</h2>
+      <h2 id="use">Use</h2>
 
       <p>Include the <code>dist/semantic-forms.css</code> and whichever of the above versions of the JS file you prefer from this repo into your project.</p>
 
@@ -36,13 +36,13 @@
 
       <p>If you make changes to the DOM after Semantic Forms is activated and want to activate any additional <code>semanticForms</code> forms you insert, you can re-scan for new forms by calling <code>semanticForms.reinitialize()</code> again. If you only want to reinitialize one form instead of all of them, call <code>semanticForms.reinitialize(formElement)</code>.</p>
 
-      <h3>Features</h3>
+      <h3 id="features">Features</h3>
 
-      <h4>Float label inputs</h4>
+      <h4 id="floatlabel">Float label inputs</h4>
 
       <p>The float label input pattern is notoriously difficult to implement in a fashion that doesn't degrade HTML semantics or accessibility. This pattern library implements a solution that solves that problem. Your label doesn't need to be a sibling of your input like with other implementations. This implementation also has a custom clear button for each input.</p>
 
-      <h5>Example</h5>
+      <h5 id="floatlabelex">Example</h5>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
@@ -60,7 +60,7 @@
         </dl>
       </form>
 
-      <h5>Or with a <code><!--# <textarea> --></code></h5>
+      <h5 id="floatlabelextextarea">Or with a <code><!--#<textarea>--></code></h5>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
@@ -78,9 +78,9 @@
         </dl>
       </form>
 
-      <h5>Add help text</h5>
+      <h5 id="addhelptext">Add help text</h5>
 
-      <p>Include a label in the <code>&lt;dd&gt;</code> element with a matching <code>for</code> attribute to place help text beneath the input:</p>
+      <p>Include a label in the <code><!--#<dd>--></code> element with a matching <code>for</code> attribute to place help text beneath the input:</p>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
@@ -104,7 +104,7 @@
         </dl>
       </form>
 
-      <h5>Customizing input fields</h5>
+      <h5 id="custominputfields">Customizing input fields</h5>
 
       <p>By default, input fields will display an X icon to clear the text and password fields will also display a show/hide toggle for displaying the password in plain text. You can customize this behavior as follows:</p>
 
@@ -121,13 +121,13 @@
         </li>
       </ul>
 
-      <h4>Responsive columns</h4>
+      <h4 id="responsivecolumns">Responsive columns</h4>
 
       <p>This feature makes it so the form fields will grow, shrink, expand the number of columns, or reduce the number of columns based on how much space exists in the container. You can customize it by applying various <code>colspan-#</code> classes to various elements in the form markup structure.</p>
 
-      <h5>Set number of columns for a group of forms</h5>
+      <h5 id="colspan">Set number of columns for a group of forms</h5>
 
-      <p>You can limit the number of columns on your forms using the <code>colspan-#</code> class on a <code>&lt;dl&gt;</code> element:</p>
+      <p>You can limit the number of columns on your forms using the <code>colspan-#</code> class on a <code><!--#<dl>--></code> element:</p>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
@@ -159,7 +159,7 @@
         </dl>
       </form>
 
-      <p>You can also apply the class to a <code>&lt;fieldset&gt;</code> which will apply that styling to all nested <code>&lt;dl&gt;</code> elements:</p>
+      <p>You can also apply the class to a <code><!--#<fieldset>--></code> which will apply that styling to all nested <code><!--#<dl>--></code> elements:</p>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
@@ -219,9 +219,9 @@
         </fieldset>
       </form>
 
-      <h5>Set number of columns a single input field takes up</h5>
+      <h5 id="setcolspannumber">Set number of columns a single input field takes up</h5>
 
-      <p>You can specify the number of columns an input will span using the <code>colspan-#</code> class on the <code>&lt;dd&gt;</code> element. The inputs are responsive and will shrink according to available space. Available numbered classes are <code>colspan-1</code> through <code>colspan-5</code>:</p>
+      <p>You can specify the number of columns an input will span using the <code>colspan-#</code> class on the <code><!--#<dd>--></code> element. The inputs are responsive and will shrink according to available space. Available numbered classes are <code>colspan-1</code> through <code>colspan-5</code>:</p>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
@@ -301,11 +301,11 @@
         </fieldset>
       </form>
 
-      <h4>Button groups</h4>
+      <h4 id="buttongroups">Button groups</h4>
 
       <p>You can align buttons side-by-side, or in left/right/center groups.</p>
 
-      <h5>Non-grouped example</h5>
+      <h5 id="nongroupedbuttons">Non-grouped example</h5>
 
       <p>Nothing fancy here:</p>
 
@@ -321,7 +321,7 @@
         <button type="submit" name="submit">Another one</button>
       </form>
 
-      <h6>Button groups</h6>
+      <h6 id="buttongroupex">Button groups</h6>
 
       <p>Driven by flexbox to intelligently align the buttons based on how many are in the group:</p>
 
@@ -357,11 +357,11 @@
         </menu>
       </form>
 
-      <h4>Checkboxes and radio buttons</h4>
+      <h4 id="checkboxesandradios">Checkboxes and radio buttons</h4>
 
       <p>Checkboxes and radio buttons need to follow the following markup structure:</p>
 
-      <h5>A single checkbox</h5>
+      <h5 id="singlecheckbox">A single checkbox</h5>
 
       <p>Not too different than other inputs:</p>
 
@@ -381,7 +381,7 @@
         </dl>
       </form>
 
-      <h5>Checkbox group</h5>
+      <h5 id="checkboxgroup">Checkbox group</h5>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
@@ -411,7 +411,7 @@
         </dl>
       </form>
 
-      <h5>Radio buttons</h5>
+      <h5 id="radiobuttons">Radio buttons</h5>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
@@ -441,7 +441,7 @@
         </dl>
       </form>
 
-      <h4>Validation styles</h4>
+      <h4 id="validationstyles">Validation styles</h4>
 
       <p>Inputs with the <code>required</code> attribute will result in a visual indicator (*) being added to its label. You can disable this indicator with the <code>data-no-asterisk</code> attribute on the label element:</p>
 
@@ -503,19 +503,19 @@
         </dl>
       </form>
 
-      <h3>Dark mode</h3>
+      <h3 id="lightanddarkmode">Light mode and dark mode</h3>
 
-      <p>To set the dark mode, apply an additional class of <code>dark</code> to your <code>&lt;form&gt;</code> elements to force the dark mode.</p>
+      <p>Light mode and dark mode will be detected automatically based on operating system preference. To set it manually, you can apply an additional class of <code>light</code> or <code>dark</code> to your <code><!--#<form>--></code> elements to force the mode.</p>
 
-      <h3>Low flow (JavaScript disabled) mode</h3>
+      <h3 id="lowflowmode">Low flow (JavaScript disabled) mode</h3>
 
       <p>The low flow will be displayed if JS is disabled.</p>
 
-      <p>You can also activate the low flow (JavaScript disabled) mode manually by adding the <code>lowFlow</code> class to your <code>&lt;form&gt;</code> element.</p>
+      <p>You can also activate the low flow (JavaScript disabled) mode manually by adding the <code>lowFlow</code> class to your <code><!--#<form>--></code> element.</p>
 
       <p>The low-flow mode reverts the float label pattern to traditional labels and doesn't include other JS-exclusive enhancements, but preserves the other visual design enhancements driven purely by CSS.</p>
 
-      <h3>More</h3>
+      <h3 id="more">More</h3>
 
       <p>See a page demoing all features <a href="https://rooseveltframework.github.io/semantic-forms/test/semanticForms.html">here</a>.</p>
     </article>
