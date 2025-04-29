@@ -11,7 +11,8 @@
   "version": "5.0.7",
   "files": [
     "dist",
-    "semanticForms.scss"
+    "semanticForms.scss",
+    "docs/statics/pages"
   ],
   "homepage": "https://github.com/rooseveltframework/semantic-forms",
   "license": "CC-BY-4.0",
