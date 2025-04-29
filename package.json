@@ -12,7 +12,8 @@
   "files": [
     "dist",
     "semanticForms.scss",
-    "docs/statics/pages"
+    "docs/statics/pages",
+    "*.md"
   ],
   "homepage": "https://github.com/rooseveltframework/semantic-forms",
   "license": "CC-BY-4.0",
