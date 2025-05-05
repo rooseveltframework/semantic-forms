@@ -1,3 +1,8 @@
+## 5.0.8
+
+- Altered dark mode support so that it does not apply if the `<html>` or `<body>` tag has a class of `"light"`.
+- Updated dependencies.
+
 ## 5.0.7
 
 - Fixed a bug where the responsive grid layout would not always line up correctly.
