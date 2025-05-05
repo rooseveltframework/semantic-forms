@@ -52,13 +52,21 @@ form.semanticForms, form.semanticForms.light {
 }
 
 @media (prefers-color-scheme: dark) {
-  form.semanticForms {
-    @include dark-mode;
+  html:not(.light) {
+    body:not(.light) {
+      form.semanticForms {
+        @include dark-mode;
+      }
+    }
   }
 }
 
-form.semanticForms.dark {
-  @include dark-mode;
+html:not(.light) {
+  body:not(.light) {
+    form.semanticForms.dark {
+      @include dark-mode;
+    }
+  }
 }
 // #endregion
 
@@ -257,7 +265,7 @@ form.semanticForms, form.semanticForms.light {
     }
   }
   // #endregion
-  
+
   // #region invalid styling
   [data-invalid-text] {
     display: none;
@@ -609,65 +617,65 @@ form.semanticForms, form.semanticForms.light {
       &[class^='colspan-'] {
         max-width: 100%;
       }
-  
+
       &.colspan-full {
         grid-column: 1 / -1;
       }
-  
+
       &.colspan-5 {
         grid-column: span 5;
       }
-  
+
       &.colspan-4 {
         grid-column: span 4;
       }
-  
+
       &.colspan-3 {
         grid-column: span 3;
       }
-  
+
       &.colspan-2 {
         grid-column: span 2;
       }
-  
+
       &.colspan-1 {
         grid-column: span 1;
       }
     }
-  
+
     fieldset[class^='colspan-'] dl,
     dl[class^='colspan-'] {
       div {
         max-width: 100%;
       }
     }
-  
+
     fieldset.colspan-full dl,
     dl.colspan-full {
       grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
     }
-  
+
     fieldset.colspan-5 dl,
     dl.colspan-5 {
       grid-template-columns: repeat(5, minmax(var(--inputMinWidth), 1fr));
     }
-  
+
     fieldset.colspan-4 dl,
     dl.colspan-4 {
       grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr));
     }
-  
-  
+
+
     fieldset.colspan-3 dl,
     dl.colspan-3 {
       grid-template-columns: repeat(3, minmax(var(--inputMinWidth), 1fr));
     }
-  
+
     fieldset.colspan-2 dl,
     dl.colspan-2 {
       grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
     }
-  
+
     fieldset.colspan-1 dl,
     dl.colspan-1 {
       grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr));
@@ -897,7 +905,7 @@ form.semanticForms, form.semanticForms.light {
   }
 
   // #region low flow form
-  &:not(.semanticFormsActive) {      
+  &:not(.semanticFormsActive) {
     dl {
       display: flex;
       flex-direction: column;
