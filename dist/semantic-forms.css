@@ -215,6 +215,9 @@ form.semanticForms textarea, form.semanticForms.light textarea {
   min-height: 38px;
   height: 100px;
 }
+form.semanticForms input[type=search]::-webkit-search-cancel-button, form.semanticForms.light input[type=search]::-webkit-search-cancel-button {
+  display: none;
+}
 form.semanticForms button.clear, form.semanticForms button.show, form.semanticForms.light button.clear, form.semanticForms.light button.show {
   cursor: pointer;
   appearance: none;
