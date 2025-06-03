@@ -1,3 +1,8 @@
+## 5.0.9
+
+- Fixed bug causing native clear field to appear on search inputs.
+- Updated dependencies.
+
 ## 5.0.8
 
 - Altered dark mode support so that it does not apply if the `<html>` or `<body>` tag has a class of `"light"`.
