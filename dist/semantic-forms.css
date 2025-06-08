@@ -269,15 +269,11 @@ form.semanticForms.light button:not(.clear):not(.show) {
   font-size: 100%;
   line-height: 1;
 }
-form.semanticForms input[type=submit]:active, form.semanticForms input[type=submit]:focus,
+form.semanticForms input[type=submit]:active,
 form.semanticForms input[type=reset]:active,
-form.semanticForms input[type=reset]:focus,
-form.semanticForms button:not(.clear):not(.show):active,
-form.semanticForms button:not(.clear):not(.show):focus, form.semanticForms.light input[type=submit]:active, form.semanticForms.light input[type=submit]:focus,
+form.semanticForms button:not(.clear):not(.show):active, form.semanticForms.light input[type=submit]:active,
 form.semanticForms.light input[type=reset]:active,
-form.semanticForms.light input[type=reset]:focus,
-form.semanticForms.light button:not(.clear):not(.show):active,
-form.semanticForms.light button:not(.clear):not(.show):focus {
+form.semanticForms.light button:not(.clear):not(.show):active {
   background-image: linear-gradient(to bottom, var(--buttonGradientDark) 0%, var(--buttonGradientLight) 100%);
 }
 form.semanticForms input[type=submit],

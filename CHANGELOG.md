@@ -1,3 +1,8 @@
+## 5.0.10
+
+- Fixed bug causing active styles to apply to focused buttons.
+- Updated dependencies.
+
 ## 5.0.9
 
 - Fixed bug causing native clear field to appear on search inputs.

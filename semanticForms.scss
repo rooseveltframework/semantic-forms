@@ -253,8 +253,7 @@ form.semanticForms, form.semanticForms.light {
     font-size: 100%;
     line-height: 1;
 
-    &:active,
-    &:focus {
+    &:active {
       background-image: linear-gradient(to bottom, var(--buttonGradientDark) 0%, var(--buttonGradientLight) 100%);
     }
   }
