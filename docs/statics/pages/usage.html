@@ -83,22 +83,22 @@
       <p>Include a label in the <code><!--#<dd>--></code> element with a matching <code>for</code> attribute to place help text beneath the input:</p>
 
       <pre><code class='language-html' lang='html'><escape>
-<form class="semanticForms">
+<form class="semanticForms" method="post">
   <dl>
     <dt><label for="password">Password</label></dt>
     <dd>
-      <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required>
+      <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required autocomplete="off">
       <label for="password">Must be at least 8 characters long.</label>
     </dd>
   </dl>
 </form>
 </escape></code></pre>
 
-      <form class="semanticForms">
+      <form class="semanticForms" method="post">
         <dl>
           <dt><label for="password">Password</label></dt>
           <dd>
-            <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required>
+            <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required autocomplete="off">
             <label for="password">Must be at least 8 characters long.</label>
           </dd>
         </dl>
@@ -310,13 +310,13 @@
       <p>Nothing fancy here:</p>
 
       <pre><code class='language-html' lang='html'><escape>
-<form class="semanticForms">
+<form class="semanticForms" method="post">
   <button type="submit" name="submit">Non-grouped submit button</button>
   <button type="submit" name="submit">Another one</button>
 </form>
       </escape></code></pre>
 
-      <form class="semanticForms">
+      <form class="semanticForms" method="post">
         <button type="submit" name="submit">Non-grouped submit button</button>
         <button type="submit" name="submit">Another one</button>
       </form>
@@ -326,7 +326,7 @@
       <p>Driven by flexbox to intelligently align the buttons based on how many are in the group:</p>
 
       <pre><code class='language-html' lang='html'><escape>
-<form class="semanticForms">
+<form class="semanticForms" method="post">
   <!-- aligns left/right -->
   <menu>
     <li><button type="submit" name="submit">Button 1</button></li>
@@ -342,7 +342,7 @@
 </form>
       </escape></code></pre>
 
-      <form class="semanticForms">
+      <form class="semanticForms" method="post">
         <!-- aligns left/right -->
         <menu>
           <li><button type="submit" name="submit">Button 1</button></li>
@@ -464,22 +464,22 @@
       <p>You can set a paragraph of text below a field to only appear when a field is invalid with the <code>data-invalid-text</code> attribute:</p>
 
       <pre><code class='language-html' lang='html'><escape>
-<form class="semanticForms">
+<form class="semanticForms" method="post">
   <dl>
     <dt><label for="password_validation">Password label</label></dt>
     <dd>
-      <input type="password" name="password" id="password_validation" minlength="8">
+      <input type="password" name="password" id="password_validation" minlength="8" autocomplete="off">
       <p data-invalid-text>Password must be at least 8 characters long.</p>
     </dd>
   </dl>
 </form>
       </escape></code></pre>
 
-      <form class="semanticForms">
+      <form class="semanticForms" method="post">
         <dl>
           <dt><label for="password_validation">Password label</label></dt>
           <dd>
-            <input type="password" name="password" id="password_validation" minlength="8">
+            <input type="password" name="password" id="password_validation" minlength="8" autocomplete="off">
             <p data-invalid-text>Password must be at least 8 characters long.</p>
           </dd>
         </dl>
