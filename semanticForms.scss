@@ -1,50 +1,49 @@
 // #region global styles
 form.semanticForms, form.semanticForms.light {
-  --formBackgroundColor: #fff;
-  --formSubBackgroundColor: #f5f5f5;
-  --formTextColor: #000;
-  --buttonBackgroundColor: #f5f5f5;
-  --borderColor: #c0c0c0;
-  --subBorderColor: #c0c0c0;
-  --placeholderColor: rgba(0, 0, 0, 0.75);
-  --scrollbarColor: #c0c0c0;
-  --clearButtonColor: #000;
-  --buttonGradientLight: #fff;
-  --buttonGradientDark: #c0c0c0;
-  --invalid: #f00;
-  --invalidBorder: 1px solid var(--invalid);
-  --inputHeight: 38px;
-  --inputFontSize: 16px;
-  --inputTopMargin: 15px;
-  --inputMinWidth: 250px;
-  --borderRadius: 10px;
-  --nestedFieldset: rgba(0, 0, 0, .05);
-  --nestedFieldsetBorder: 1px rgba(0, 0, 0, .2) solid;
-  --nestedInput: #fff;
-  --border: 1px var(--borderColor) solid;
-  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
-  --customResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E")
+  --semanticFormsFontFamily: sans-serif;
+  --semanticFormsFormBgColor: #fff;
+  --semanticFormsFormSubBgColor: #f5f5f5;
+  --semanticFormsTextColor: #000;
+  --semanticFormsBorderColor: #c0c0c0;
+  --semanticFormsSubBorderColor: #c0c0c0;
+  --semanticFormsPlaceholderColor: rgba(0, 0, 0, 0.75);
+  --semanticFormsScrollbarColor: #c0c0c0;
+  --semanticFormsClearButtonColor: #000;
+  --semanticFormsButtonGradientLight: #fff;
+  --semanticFormsButtonGradientDark: #c0c0c0;
+  --semanticFormsInvalid: #f00;
+  --semanticFormsInvalidBorder: 1px solid var(--semanticFormsInvalid);
+  --semanticFormsInputHeight: 38px;
+  --semanticFormsInputFontSize: 16px;
+  --semanticFormsInputTopMargin: 15px;
+  --semanticFormsInputMinWidth: 250px;
+  --semanticFormsBorderRadius: 10px;
+  --semanticFormsNestedFieldsetBgColor: rgba(0, 0, 0, .05);
+  --semanticFormsNestedFieldsetBorder: 1px rgba(0, 0, 0, .2) solid;
+  --semanticFormsNestedInputBgColor: #fff;
+  --semanticFormsBorder: 1px var(--semanticFormsBorderColor) solid;
+  --semanticFormsSelectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  --semanticFormsCustomResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E")
 }
 
 @mixin dark-mode {
-  --formBackgroundColor: #555;
+  --semanticFormsFormBgColor: #555;
   --inputBackgroudColor: rgba(85,85,85,0.1);
-  --formSubBackgroundColor: #2f2f2f;
-  --formTextColor: #fff;
-  --buttonBackgroundColor: #454545;
-  --borderColor: #656565;
-  --subBorderColor: #3f3f3f;
-  --placeholderColor: rgba(255, 255, 255, 0.85);
-  --scrollbarColor: #373737;
-  --clearButtonColor: #fff;
-  --buttonGradientLight: #6f6f6f;
-  --buttonGradientDark: #373737;
-  --nestedFieldset: rgba(255, 255, 255, .05);
-  --nestedFieldsetBorder: 1px rgba(255, 255, 255, .1) solid;
-  --nestedInput: rgba(255, 255, 255, .15);
-  --border: none;
-  --selectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
-  --customResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
+  --semanticFormsFormSubBgColor: #2f2f2f;
+  --semanticFormsTextColor: #fff;
+  --semanticFormsBorderColor: #656565;
+  --semanticFormsSubBorderColor: #3f3f3f;
+  --semanticFormsPlaceholderColor: rgba(255, 255, 255, 0.85);
+  --semanticFormsScrollbarColor: #373737;
+  --semanticFormsClearButtonColor: #fff;
+  --semanticFormsButtonGradientLight: #6f6f6f;
+  --semanticFormsButtonGradientDark: #373737;
+  --semanticFormsNestedFieldsetBgColor: rgba(255, 255, 255, .05);
+  --semanticFormsNestedFieldsetBorder: 1px rgba(255, 255, 255, .1) solid;
+  --semanticFormsNestedInputBgColor: rgba(255, 255, 255, .15);
+  --semanticFormsBorder: none;
+  --semanticFormsSelectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  --semanticFormsCustomResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
 
   input::-webkit-calendar-picker-indicator {
     filter: invert(100%);
@@ -71,6 +70,7 @@ html:not(.light) {
 // #endregion
 
 form.semanticForms, form.semanticForms.light {
+  font-family: var(--semanticFormsFontFamily);
   width: 100%;
   container-type: inline-size;
   container-name: semanticForm;
@@ -91,8 +91,8 @@ form.semanticForms, form.semanticForms.light {
   dd:has(> input, > select, > textarea, > ul, > menu),
   div:has(dt, dd),
   dd > p {
-    color: var(--formTextColor);
-    font-family: sans-serif;
+    color: var(--semanticFormsTextColor);
+    font-family: var(--semanticFormsFontFamily);
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -102,10 +102,10 @@ form.semanticForms, form.semanticForms.light {
   input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
   select,
   textarea {
-    font-size: var(--inputFontSize);
-    background: var(--formBackgroundColor);
-    border: var(--border);
-    border-radius: var(--borderRadius);
+    font-size: var(--semanticFormsInputFontSize);
+    background: var(--semanticFormsFormBgColor);
+    border: var(--semanticFormsBorder);
+    border-radius: var(--semanticFormsBorderRadius);
     width: 100%;
     touch-action: manipulation;
     outline: none;
@@ -139,18 +139,18 @@ form.semanticForms, form.semanticForms.light {
     // custom focus highlight
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 1px var(--borderColor);
+      box-shadow: 0 0 0 1px var(--semanticFormsBorderColor);
     }
   }
 
   input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
   select {
-    height: var(--inputHeight);
+    height: var(--semanticFormsInputHeight);
   }
 
   // specific styling for color input
   input[type=color] {
-    height: var(--inputHeight);
+    height: var(--semanticFormsInputHeight);
     padding: 4px !important;
     padding-right: 30px !important;
   }
@@ -164,19 +164,19 @@ form.semanticForms, form.semanticForms.light {
     cursor: pointer;
 
     & ~ label:first-of-type {
-      color: var(--formTextColor) !important;
+      color: var(--semanticFormsTextColor) !important;
     }
   }
 
   input[type=file] {
     cursor: pointer;
-    font-size: var(--inputFontSize);
+    font-size: var(--semanticFormsInputFontSize);
   }
 
   select {
     cursor: pointer;
     // custom dropdown graphic on select element
-    background-image: var(--selectIcon);
+    background-image: var(--semanticFormsSelectIcon);
     background-size: 14px;
     background-position: calc(100% - 8px) 16px;
     background-repeat: no-repeat;
@@ -206,7 +206,7 @@ form.semanticForms, form.semanticForms.light {
     position: absolute;
     height: min-content;
     // account for margin above each input
-    top: calc(var(--inputTopMargin) + 6px);
+    top: calc(var(--semanticFormsInputTopMargin) + 6px);
     right: 0;
     width: 25px;
     height: 25px;
@@ -214,7 +214,7 @@ form.semanticForms, form.semanticForms.light {
     padding: 5px;
     background: none;
     border: none;
-    color: var(--clearButtonColor);
+    color: var(--semanticFormsClearButtonColor);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -246,15 +246,15 @@ form.semanticForms, form.semanticForms.light {
     -webkit-appearance: none;
     cursor: pointer;
     max-width: max-content;
-    background-image: linear-gradient(to bottom, var(--buttonGradientLight) 0%, var(--buttonGradientDark) 100%);
-    border: 2px var(--buttonGradientDark) solid;
+    background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
+    border: 2px var(--semanticFormsButtonGradientDark) solid;
     border-radius: 20px;
     padding: 5px 25px;
     font-size: 100%;
     line-height: 1;
 
     &:active {
-      background-image: linear-gradient(to bottom, var(--buttonGradientDark) 0%, var(--buttonGradientLight) 100%);
+      background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientDark) 0%, var(--semanticFormsButtonGradientLight) 100%);
     }
   }
 
@@ -273,7 +273,7 @@ form.semanticForms, form.semanticForms.light {
   // #region invalid styling
   [data-invalid-text] {
     display: none;
-    color: var(--invalid);
+    color: var(--semanticFormsInvalid);
   }
 
   input:not([type='submit'], [type='reset'], [type='image']),
@@ -281,10 +281,10 @@ form.semanticForms, form.semanticForms.light {
   textarea {
     &.invalid,
     &:user-invalid {
-      border: var(--invalidBorder) !important;
+      border: var(--semanticFormsInvalidBorder) !important;
 
       ~ label:nth-of-type(2) {
-        color: var(--invalid) !important;
+        color: var(--semanticFormsInvalid) !important;
       }
 
       ~ [data-invalid-text] {
@@ -309,16 +309,16 @@ form.semanticForms, form.semanticForms.light {
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus,
   select:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 1000px var(--formBackgroundColor) inset;
+    -webkit-box-shadow: 0 0 0 1000px var(--semanticFormsFormBgColor) inset;
     transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
     transition-delay: 5000s;
     transition-property: background-color, color;
   }
 
   fieldset {
-    border-radius: var(--borderRadius);
-    background: var(--formSubBackgroundColor);
-    border: 1px var(--subBorderColor) solid;
+    border-radius: var(--semanticFormsBorderRadius);
+    background: var(--semanticFormsFormSubBgColor);
+    border: 1px var(--semanticFormsSubBorderColor) solid;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -327,14 +327,14 @@ form.semanticForms, form.semanticForms.light {
 
     // nested fieldsets are darkened
     > fieldset {
-      background-color: var(--nestedFieldset);
-      border: var(--nestedFieldsetBorder);
+      background-color: var(--semanticFormsNestedFieldsetBgColor);
+      border: var(--semanticFormsNestedFieldsetBorder);
 
       // add opacity to styled inputs to prevent blending with background
       input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
       select,
       textarea {
-        background-color: var(--nestedInput);
+        background-color: var(--semanticFormsNestedInputBgColor);
       }
     }
   }
@@ -350,11 +350,11 @@ form.semanticForms, form.semanticForms.light {
   // update for scrollbars
   @supports (scrollbar-color: auto) {
     textarea {
-      scrollbar-color: var(--scrollbarColor) transparent;
+      scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
 
       &::-webkit-resizer {
         border: none;
-        background-image: var(--customResizer);
+        background-image: var(--semanticFormsCustomResizer);
         background-size: 14px;
         background-repeat: no-repeat;
         background-position: 100%;
@@ -367,7 +367,7 @@ form.semanticForms, form.semanticForms.light {
 
   dl:has(dt > label, dd > input, dd > select, dd > textarea) {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
     gap: 10px;
     margin-bottom: 10px;
 
@@ -397,7 +397,7 @@ form.semanticForms, form.semanticForms.light {
       &.checkboxes ul, &.radios ul {
         display: flex;
         flex-direction: column;
-        margin-top: var(--inputTopMargin);
+        margin-top: var(--semanticFormsInputTopMargin);
         padding-left: 10px;
         gap: 5px;
 
@@ -443,7 +443,7 @@ form.semanticForms, form.semanticForms.light {
   input[type=radio] + label:first-of-type {
     // shift text down to match center
     padding-top: 2px;
-    font-size: var(--inputFontSize);
+    font-size: var(--semanticFormsInputFontSize);
 
     span.required {
       cursor: help;
@@ -458,10 +458,13 @@ form.semanticForms, form.semanticForms.light {
   }
 
   .floatLabelForm {
+    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
+
     div {
       position: relative;
       width: 100%;
-      min-width: 252px;
+      min-width: var(--semanticFormsInputMinWidth);
+      max-width: 100%;
       max-width: 365px;
 
       dd:not(.singleCheckbox, .checkboxes, .radios) {
@@ -470,31 +473,42 @@ form.semanticForms, form.semanticForms.light {
         textarea {
           &:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
           &:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type {
-            color: var(--formTextColor) !important;
+            color: var(--semanticFormsTextColor) !important;
+            // TODO: finish this work on making the help icon responsive
+            // width: 100%;
+            // width: calc(100% + 20px);
             transform: translateY(-150%) scale(0.7);
+
+            // span.required,
+            // span.help {
+            //   position: static;
+            //   right: auto;
+            // }
           }
         }
 
         select ~ label:first-of-type {
           // force label to be correct color
-          color: var(--formTextColor) !important;
+          color: var(--semanticFormsTextColor) !important;
         }
 
         label:first-of-type {
-          max-width: 230px !important; /* this prevents label text from sticking out of the input element */
           line-height: 1.2;
-          font-size: var(--inputFontSize);
+          font-size: var(--semanticFormsInputFontSize);
           position: absolute;
           transform-origin: left center;
           pointer-events: none;
           // when the label is positioned within the input it needs a buffer
-          top: calc(var(--inputTopMargin) + 10px);
+          top: calc(var(--semanticFormsInputTopMargin) + 10px);
           left: 20px;
           transition: transform 250ms;
           cursor: text;
+          flex: 1;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          min-width: 0;
+          width: calc(100% - 35px);
         }
 
         // subtext
@@ -502,13 +516,13 @@ form.semanticForms, form.semanticForms.light {
           margin-top: -5px;
           padding-left: 20px;
           font-size: small;
-          color: var(--formTextColor);
+          color: var(--semanticFormsTextColor);
         }
 
         input,
         textarea,
         select {
-          margin-top: var(--inputTopMargin);
+          margin-top: var(--semanticFormsInputTopMargin);
         }
 
         input,
@@ -557,19 +571,46 @@ form.semanticForms, form.semanticForms.light {
 
         label:first-of-type {
           user-select: none;
-          color: var(--placeholderColor);
+          color: var(--semanticFormsPlaceholderColor);
           touch-action: manipulation;
 
+          // TODO: same as below
+          // &:has(span.help) {
+          //   width: 80%;
+          //   padding-right: 20px;
+          // }
+
+          // &:has(span.required) {
+          //   width: 80%;
+          //   padding-right: 10px;
+          // }
+
           span.required {
+            // TODO: this places the required asterisk too far to the right when the float label is shrunk
+            // position: absolute;
+            // right: 0;
             cursor: help;
             pointer-events: auto;
             color: red;
           }
 
           span.help {
+            // TODO: this places the help icon too far to the right when the float label is shrunk
+            // position: absolute;
+            // right: 0;
             cursor: help;
             pointer-events: auto;
           }
+
+          // // TODO: cover the case where an input is required AND has help text
+          // &:has(span.required, span.help) {
+          //   width: 80%;
+          //   padding-right: 30px;
+
+          //   span.required {
+          //     right: 18px;
+          //   }
+          // }
         }
       }
 
@@ -579,14 +620,27 @@ form.semanticForms, form.semanticForms.light {
 
         label {
           user-select: auto;
-          color: var(--formTextColor);
+          color: var(--semanticFormsTextColor);
+          font-size: var(--semanticFormsInputFontSize);
           position: absolute;
           transform-origin: left center;
           transform: translateY(-100%) scale(0.7);
-          top: var(--inputTopMargin);
+          top: var(--semanticFormsInputTopMargin);
           left: 10px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          min-width: 0;
+          width: calc(100% + 20px);
+          
+          // TODO: remove this? // &:has(span.help) {
+            // width: 100%;
+            // padding-right: 20px;
+          // }
 
           span.help {
+            // TODO: remove this? // position: absolute;
+            // right: 0;
             cursor: help;
             pointer-events: auto;
           }
@@ -595,7 +649,14 @@ form.semanticForms, form.semanticForms.light {
 
       &:has(dd input:required) {
         dt {
+          label {
+            width: 100%;
+            padding-right:10px;
+          }
+
           label > span {
+            // TODO: remove this? // position: absolute;
+            // right: 0;
             margin-left: 5px;
             cursor: help;
             pointer-events: auto;
@@ -608,7 +669,7 @@ form.semanticForms, form.semanticForms.light {
 
     input, textarea {
       &::placeholder {
-        color: var(--placeholderColor);
+        color: var(--semanticFormsPlaceholderColor);
         opacity: 1;
       }
     }
@@ -656,33 +717,33 @@ form.semanticForms, form.semanticForms.light {
 
     fieldset.colspan-full dl,
     dl.colspan-full {
-      grid-template-columns: repeat(auto-fit, minmax(var(--inputMinWidth), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
     }
 
     fieldset.colspan-5 dl,
     dl.colspan-5 {
-      grid-template-columns: repeat(5, minmax(var(--inputMinWidth), 1fr));
+      grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
     }
 
     fieldset.colspan-4 dl,
     dl.colspan-4 {
-      grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr));
+      grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
     }
 
 
     fieldset.colspan-3 dl,
     dl.colspan-3 {
-      grid-template-columns: repeat(3, minmax(var(--inputMinWidth), 1fr));
+      grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
     }
 
     fieldset.colspan-2 dl,
     dl.colspan-2 {
-      grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
+      grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
     }
 
     fieldset.colspan-1 dl,
     dl.colspan-1 {
-      grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr));
+      grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
     }
     // #endregion
 
@@ -691,7 +752,7 @@ form.semanticForms, form.semanticForms.light {
     @container semanticForm (width > 2250px) {
       &.lowFlow fieldset dl,
       &.lowFlow dl {
-        grid-template-columns: repeat(6, minmax(var(--inputMinWidth), 1fr));
+        grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
         & dt:nth-of-type(6n + 1),
         & dd:nth-of-type(6n + 1) {
@@ -728,7 +789,7 @@ form.semanticForms, form.semanticForms.light {
     @container semanticForm (width < 2250px) {
       &.lowFlow fieldset dl,
       &.lowFlow dl {
-        grid-template-columns: repeat(5, minmax(var(--inputMinWidth), 1fr));
+        grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
         & dt:nth-of-type(5n + 1),
         & dd:nth-of-type(5n + 1) {
@@ -760,7 +821,7 @@ form.semanticForms, form.semanticForms.light {
     @container semanticForm (width < 1300px) {
       fieldset.colspan-5 dl,
       dl.colspan-5 {
-        grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr)) !important;
+        grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
       }
 
       div.colspan-5 {
@@ -771,7 +832,7 @@ form.semanticForms, form.semanticForms.light {
       &.lowFlow dl,
       &.lowFlow fieldset.colspan-5 dl,
       &.lowFlow dl.colspan-5 {
-        grid-template-columns: repeat(4, minmax(var(--inputMinWidth), 1fr));
+        grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
         & dt:nth-of-type(4n + 1),
         & dd:nth-of-type(4n + 1) {
@@ -800,7 +861,7 @@ form.semanticForms, form.semanticForms.light {
       fieldset.colspan-5 dl,
       dl.colspan-4,
       dl.colspan-5 {
-        grid-template-columns: repeat(3, minmax(var(--inputMinWidth), 1fr)) !important;
+        grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
       }
 
       div.colspan-4, div.colspan-5 {
@@ -813,7 +874,7 @@ form.semanticForms, form.semanticForms.light {
       &.lowFlow dl.colspan-4,
       &.lowFlow fieldset.colspan-5 dl,
       &.lowFlow dl.colspan-5 {
-        grid-template-columns: repeat(3, minmax(var(--inputMinWidth), 1fr));
+        grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
         & dt:nth-of-type(3n + 1),
         & dd:nth-of-type(3n + 1) {
@@ -839,7 +900,7 @@ form.semanticForms, form.semanticForms.light {
       dl.colspan-3,
       dl.colspan-4,
       dl.colspan-5 {
-        grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr)) !important;
+        grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
       }
 
       div.colspan-3,
@@ -856,7 +917,7 @@ form.semanticForms, form.semanticForms.light {
       &.lowFlow dl.colspan-4,
       &.lowFlow fieldset.colspan-5 dl,
       &.lowFlow dl.colspan-5 {
-        grid-template-columns: repeat(2, minmax(var(--inputMinWidth), 1fr));
+        grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
         & dt:nth-of-type(2n + 1),
         & dd:nth-of-type(2n + 1) {
@@ -880,7 +941,7 @@ form.semanticForms, form.semanticForms.light {
       dl.colspan-4,
       dl.colspan-5,
       dl {
-        grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr)) !important;
+        grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
       }
 
       div.colspan-2, div.colspan-3, div.colspan-4, div.colspan-5 {
@@ -897,7 +958,7 @@ form.semanticForms, form.semanticForms.light {
       &.lowFlow dl.colspan-4,
       &.lowFlow fieldset.colspan-5 dl,
       &.lowFlow dl.colspan-5 {
-        grid-template-columns: repeat(1, minmax(var(--inputMinWidth), 1fr));
+        grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
         & dt:nth-of-type(n + 1),
         & dd:nth-of-type(n + 1) {
@@ -950,14 +1011,14 @@ form.semanticForms, form.semanticForms.light {
         label {
           margin-top: -5px;
           font-size: small;
-          color: var(--placeholderColor);
+          color: var(--semanticFormsPlaceholderColor);
         }
       }
     }
 
     .checkboxes ul,
     .radios ul {
-      margin-top: calc(var(--inputTopMargin) / 2);
+      margin-top: calc(var(--semanticFormsInputTopMargin) / 2);
     }
   }
   // #endregion
