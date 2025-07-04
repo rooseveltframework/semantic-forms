@@ -633,7 +633,7 @@ form.semanticForms, form.semanticForms.light {
           min-width: 0;
           width: calc(100% + 20px);
           
-          // &:has(span.help) {
+          // TODO: remove this? // &:has(span.help) {
             // width: 100%;
             // padding-right: 20px;
           // }
