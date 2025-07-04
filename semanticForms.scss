@@ -602,7 +602,7 @@ form.semanticForms, form.semanticForms.light {
             pointer-events: auto;
           }
 
-          // // cover the case where an input is required AND has help text
+          // // TODO: cover the case where an input is required AND has help text
           // &:has(span.required, span.help) {
           //   width: 80%;
           //   padding-right: 30px;
