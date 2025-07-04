@@ -474,7 +474,7 @@ form.semanticForms, form.semanticForms.light {
           &:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
           &:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type {
             color: var(--semanticFormsTextColor) !important;
-            // TODO finish this work on making the help icon responsive
+            // TODO: finish this work on making the help icon responsive
             // width: 100%;
             // width: calc(100% + 20px);
             transform: translateY(-150%) scale(0.7);
