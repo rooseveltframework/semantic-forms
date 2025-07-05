@@ -7,9 +7,9 @@
   "dependencies": {
     "check-if-css-is-disabled": "2.0.2",
     "highlight.js": "11.11.1",
-    "roosevelt": "0.30.7",
+    "roosevelt": "0.31.1",
     "semantic-forms": "../",
-    "sass": "1.89.1",
+    "sass": "1.89.2",
     "teddy": "1.1.4",
     "webpack": "5.99.9"
   },
@@ -17,7 +17,7 @@
     "http-server": "14.1.1",
     "nodemon": "3.1.10",
     "standard": "17.1.2",
-    "stylelint": "16.20.0",
+    "stylelint": "16.21.1",
     "stylelint-config-standard-scss": "15.0.1"
   },
   "nodemonConfig": {

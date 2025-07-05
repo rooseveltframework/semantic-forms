@@ -515,6 +515,23 @@
 
       <p>The low-flow mode reverts the float label pattern to traditional labels and doesn't include other JS-exclusive enhancements, but preserves the other visual design enhancements driven purely by CSS.</p>
 
+      <h3 id="overriding">Overriding default styles</h3>
+
+      <p>The most convenient way to override the default styles in Semantic Forms is to override the built-in CSS variables.</p>
+
+      <p>For example:</p>
+
+      <pre><code class='language-css' lang='css'><escape>
+form.semanticForms {
+  /* will overwrite the default semantic-forms values */
+  --semanticFormsFontFamily: monospace;
+  --semanticFormsTextColor: blue;
+  --semanticFormsInputMinWidth: 300px;
+}
+      </escape></code></pre>
+
+      <p>For a complete list of CSS variables you can override, <a href="https://github.com/rooseveltframework/semantic-forms/blob/main/semanticForms.scss">see the top of semanticForms.scss</a>.</p>
+
       <h3 id="more">More</h3>
 
       <p>See a page demoing all features <a href="https://rooseveltframework.github.io/semantic-forms/test/semanticForms.html">here</a>.</p>
