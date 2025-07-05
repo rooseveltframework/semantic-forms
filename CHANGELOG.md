@@ -1,3 +1,10 @@
+## 5.1.0
+
+- Added ability to more conveniently override default CSS via additional CSS variables.
+- Updated all CSS variables to be prefixed with `semanticForms` (i.e. `--semanticFormsFontFamily`) to minimize the chance of naming collisions with the rest of your CSS.
+- Fixed bug that prevented input label ellipses from being responsive to the input width.
+- Updated dependencies.
+
 ## 5.0.10
 
 - Fixed bug causing active styles to apply to focused buttons.
