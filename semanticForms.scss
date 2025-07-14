@@ -326,7 +326,7 @@ form.semanticForms, form.semanticForms.light {
     margin-bottom: 15px;
 
     // nested fieldsets are darkened
-    > fieldset {
+    fieldset {
       background-color: var(--semanticFormsNestedFieldsetBgColor);
       border: var(--semanticFormsNestedFieldsetBorder);
 
@@ -970,8 +970,11 @@ form.semanticForms, form.semanticForms.light {
 
     // #region low flow form
     &.lowFlow {
-        grid-auto-flow: dense;
         gap: 5px;
+
+        dl {
+          grid-auto-flow: dense;
+        }
   
         // 1, 4, 7, ...
         & > dt:nth-of-type(2n + 1),
