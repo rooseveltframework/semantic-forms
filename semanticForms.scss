@@ -967,59 +967,68 @@ form.semanticForms, form.semanticForms.light {
       }
     }
     // #endregion
-  }
 
-  // #region low flow form
-  &:not(.semanticFormsActive) {
-    dl {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-
-      dt {
-         max-width: 365px !important; /* this matches the max-width of js-enabled inputs */
-
-        // add required asterisk
-        &:has(+ dd input:required) {
-          label::after {
-            content: ' *';
-            color: red;
+    // #region low flow form
+    &.lowFlow {
+        grid-auto-flow: dense;
+        gap: 5px;
+  
+        // 1, 4, 7, ...
+        & > dt:nth-of-type(2n + 1),
+        & > dd:nth-of-type(2n + 1) {
+          grid-column: 1;
+        }
+  
+        // 2, 5, 8, ...
+        & > dt:nth-of-type(2n + 2),
+        & > dd:nth-of-type(2n + 2) {
+          grid-column: 2;
+        }
+  
+        dt {
+           min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+  
+          // add required asterisk
+          &:has(+ dd input:required) {
+            label::after {
+              content: ' *';
+              color: red;
+            }
+          }
+        }
+  
+  
+        dd {
+          margin-bottom: 10px;
+          min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+  
+          // nudge single checkboxes to match checkbox groups
+          &:not(.checkboxes) {
+            input[type=checkbox] {
+              margin-left: 10px;
+            }
+          }
+  
+          // remove "x" padding
+          input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
+          select,
+          textarea {
+            padding-right: 6px;
+          }
+  
+          // subtext
+          label {
+            margin-top: -5px;
+            font-size: small;
+            color: var(--semanticFormsPlaceholderColor);
           }
         }
       }
-
-
-      dd {
-        margin-bottom: 10px;
-        max-width: 365px !important; /* this matches the max-width of js-enabled inputs */
-
-        // nudge single checkboxes to match checkbox groups
-        &:not(.checkboxes) {
-          input[type=checkbox] {
-            margin-left: 10px;
-          }
-        }
-
-        // remove "x" padding
-        input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
-        select,
-        textarea {
-          padding-right: 6px;
-        }
-
-        // subtext
-        label {
-          margin-top: -5px;
-          font-size: small;
-          color: var(--semanticFormsPlaceholderColor);
-        }
+  
+      .checkboxes ul,
+      .radios ul {
+        margin-top: calc(var(--semanticFormsInputTopMargin) / 2);
       }
     }
-
-    .checkboxes ul,
-    .radios ul {
-      margin-top: calc(var(--semanticFormsInputTopMargin) / 2);
-    }
+    // #endregion
   }
-  // #endregion
-}
