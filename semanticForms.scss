@@ -247,6 +247,7 @@ form.semanticForms, form.semanticForms.light {
     cursor: pointer;
     max-width: max-content;
     background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
+    background-origin: border-box; // prevents graphical errors in Firefox
     border: 2px var(--semanticFormsButtonGradientDark) solid;
     border-radius: 20px;
     padding: 5px 25px;

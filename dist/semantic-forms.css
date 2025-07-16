@@ -266,7 +266,7 @@ form.semanticForms.light button:not(.clear):not(.show) {
   border-radius: 20px;
   padding: 5px 25px;
   font-size: 100%;
-  line-height: 1;
+  line-height: 16px;
 }
 form.semanticForms input[type=submit]:active,
 form.semanticForms input[type=reset]:active,
