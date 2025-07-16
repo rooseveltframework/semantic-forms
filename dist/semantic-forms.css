@@ -262,11 +262,12 @@ form.semanticForms.light button:not(.clear):not(.show) {
   cursor: pointer;
   max-width: max-content;
   background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
+  background-origin: border-box;
   border: 2px var(--semanticFormsButtonGradientDark) solid;
   border-radius: 20px;
   padding: 5px 25px;
   font-size: 100%;
-  line-height: 16px;
+  line-height: 1;
 }
 form.semanticForms input[type=submit]:active,
 form.semanticForms input[type=reset]:active,
