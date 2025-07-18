@@ -247,6 +247,7 @@ form.semanticForms, form.semanticForms.light {
     cursor: pointer;
     max-width: max-content;
     background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
+    background-origin: border-box; // prevents graphical errors in Firefox
     border: 2px var(--semanticFormsButtonGradientDark) solid;
     border-radius: 20px;
     padding: 5px 25px;
@@ -326,7 +327,7 @@ form.semanticForms, form.semanticForms.light {
     margin-bottom: 15px;
 
     // nested fieldsets are darkened
-    > fieldset {
+    fieldset {
       background-color: var(--semanticFormsNestedFieldsetBgColor);
       border: var(--semanticFormsNestedFieldsetBorder);
 
@@ -967,59 +968,71 @@ form.semanticForms, form.semanticForms.light {
       }
     }
     // #endregion
-  }
 
-  // #region low flow form
-  &:not(.semanticFormsActive) {
-    dl {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
+    // #region low flow form
+    &.lowFlow {
+        gap: 5px;
 
-      dt {
-         max-width: 365px !important; /* this matches the max-width of js-enabled inputs */
-
-        // add required asterisk
-        &:has(+ dd input:required) {
-          label::after {
-            content: ' *';
-            color: red;
+        dl {
+          grid-auto-flow: dense;
+        }
+  
+        // 1, 4, 7, ...
+        & > dt:nth-of-type(2n + 1),
+        & > dd:nth-of-type(2n + 1) {
+          grid-column: 1;
+        }
+  
+        // 2, 5, 8, ...
+        & > dt:nth-of-type(2n + 2),
+        & > dd:nth-of-type(2n + 2) {
+          grid-column: 2;
+        }
+  
+        dt {
+           min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+  
+          // add required asterisk
+          &:has(+ dd input:required) {
+            label::after {
+              content: ' *';
+              color: red;
+            }
+          }
+        }
+  
+  
+        dd {
+          margin-bottom: 10px;
+          min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+  
+          // nudge single checkboxes to match checkbox groups
+          &:not(.checkboxes) {
+            input[type=checkbox] {
+              margin-left: 10px;
+            }
+          }
+  
+          // remove "x" padding
+          input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
+          select,
+          textarea {
+            padding-right: 6px;
+          }
+  
+          // subtext
+          label {
+            margin-top: -5px;
+            font-size: small;
+            color: var(--semanticFormsPlaceholderColor);
           }
         }
       }
-
-
-      dd {
-        margin-bottom: 10px;
-        max-width: 365px !important; /* this matches the max-width of js-enabled inputs */
-
-        // nudge single checkboxes to match checkbox groups
-        &:not(.checkboxes) {
-          input[type=checkbox] {
-            margin-left: 10px;
-          }
-        }
-
-        // remove "x" padding
-        input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
-        select,
-        textarea {
-          padding-right: 6px;
-        }
-
-        // subtext
-        label {
-          margin-top: -5px;
-          font-size: small;
-          color: var(--semanticFormsPlaceholderColor);
-        }
+  
+      .checkboxes ul,
+      .radios ul {
+        margin-top: calc(var(--semanticFormsInputTopMargin) / 2);
       }
     }
-
-    .checkboxes ul,
-    .radios ul {
-      margin-top: calc(var(--semanticFormsInputTopMargin) / 2);
-    }
+    // #endregion
   }
-  // #endregion
-}
