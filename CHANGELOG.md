@@ -1,3 +1,10 @@
+## 5.1.1
+
+- Fixed broken low flow styling.
+- Fixed a visual bug on button gradients in Firefox.
+- Fixed background styling on nested fieldsets within `<detail>` elements.
+- Updated dependencies.
+
 ## 5.1.0
 
 - Added ability to more conveniently override default CSS via additional CSS variables.
