@@ -633,7 +633,7 @@ form.semanticForms, form.semanticForms.light {
           text-overflow: ellipsis;
           min-width: 0;
           width: calc(100% + 20px);
-          
+
           // TODO: remove this? // &:has(span.help) {
             // width: 100%;
             // padding-right: 20px;
@@ -976,22 +976,22 @@ form.semanticForms, form.semanticForms.light {
         dl {
           grid-auto-flow: dense;
         }
-  
+
         // 1, 4, 7, ...
         & > dt:nth-of-type(2n + 1),
         & > dd:nth-of-type(2n + 1) {
           grid-column: 1;
         }
-  
+
         // 2, 5, 8, ...
         & > dt:nth-of-type(2n + 2),
         & > dd:nth-of-type(2n + 2) {
           grid-column: 2;
         }
-  
+
         dt {
            min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
-  
+
           // add required asterisk
           &:has(+ dd input:required) {
             label::after {
@@ -1000,26 +1000,26 @@ form.semanticForms, form.semanticForms.light {
             }
           }
         }
-  
-  
+
+
         dd {
           margin-bottom: 10px;
           min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
-  
+
           // nudge single checkboxes to match checkbox groups
           &:not(.checkboxes) {
             input[type=checkbox] {
               margin-left: 10px;
             }
           }
-  
+
           // remove "x" padding
           input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
           select,
           textarea {
             padding-right: 6px;
           }
-  
+
           // subtext
           label {
             margin-top: -5px;
@@ -1028,7 +1028,7 @@ form.semanticForms, form.semanticForms.light {
           }
         }
       }
-  
+
       .checkboxes ul,
       .radios ul {
         margin-top: calc(var(--semanticFormsInputTopMargin) / 2);

@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="A pattern library of forms based on semantic HTML enhanced with a modern UX.">
+    <title>Semantic Forms</title>
+    <link rel="preload" href="/css/styles.css" as="style">
+    <link rel="preload" href="/js/main.js" as="script">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/main.js" defer></script>
+    <style>
+      body.light {
+        background-color: #fff;
+        color: #000;
+      }
+      body.dark {
+        background-color: #000;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <article>
+        <h1>Semantic Forms</h1>
+        <p>A pattern library of forms based on semantic HTML enhanced with a modern UX.</p>
+
+        <h2>High flow (JavaScript enabled) styling</h2>
+
+        <form action="/somewhere" method="post" class="semanticForms">
+          <dl>
+            <dt><label for="name">Name</label></dt>
+            <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+
+            <dt><label for="prefilled">Prefilled field</label></dt>
+            <dd><input id="prefilled" name="prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
+
+            <dt><label for="noplaceholder">No placeholder</label></dt>
+            <dd><input id="noplaceholder" name="noplaceholder" type="text"></dd>
+
+            <dt><label for="password">Password field</label></dt>
+            <dd>
+              <input id="password" name="password" type="password" minlength="8" required>
+              <p data-invalid-text>Password should be at least 8 characters long.</p>
+            </dd>
+
+            <dt><label for="dontshow-password">Don't show password field</label></dt>
+            <dd>
+              <input id="dontshow-password" name="dontshow-password" type="password" minlength="8" required data-no-reveal>
+              <p data-invalid-text>Password should be at least 8 characters long.</p>
+            </dd>
+
+            <dt><label for="customize-password">Customize clear/show buttons</label></dt>
+            <dd>
+              <input id="customize-password" name="customize-password" type="password" minlength="8" required data-clear-field-text="Vaporize this text" data-show-password-text="Reveal this password" data-hide-password-text="omg no hide it again!">
+              <p data-invalid-text>Password should be at least 8 characters long.</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt><label for="single-input">Single form input</label></dt>
+            <dd><input type="text" name="single-input" id="single-input"></dd>
+          </dl>
+
+          <fieldset class="colspan-full">
+            <legend>Fieldset legend</legend>
+            <dl>
+              <dt><label for="email">Email field</label></dt>
+              <dd><input id="email" name="email" type="email" placeholder="e.g. you@email.server"></dd>
+
+              <dt><label for="tel">Telephone field</label></dt>
+              <dd><input id="tel" name="tel" type="tel" placeholder="e.g. 555-437-1111"></dd>
+
+              <dt><label for="url">URL field</label></dt>
+              <dd><input id="url" name="url" type="url" placeholder="e.g. https://github.com"></dd>
+
+              <dt><label for="search">Search field</label></dt>
+              <dd><input id="search" name="search" type="search" placeholder="e.g. cats"></dd>
+
+              <dt><label for="number">Number</label></dt>
+              <dd><input id="number" name="number" type="number" placeholder="e.g. 43"></dd>
+
+              <dt><label for="label-subtext">Input with label help text</label></dt>
+              <dd>
+                <input id="label-subtext" name="label-subtext" type="text" placeholder="e.g. John Smith">
+                <label for="label-subtext">Some help text</label>
+              </dd>
+
+              <dt><label for="label-help-icon" data-show-help-icon>Input with help icon</label></dt>
+              <dd><input id="label-help-icon" name="label-subtext" type="text" title="Some more help text." placeholder="Hover over the icon"></dd>
+
+              <dt><label for="label-required-help-icon" data-show-help-icon>Required input with help icon</label></dt>
+              <dd><input id="label-required-help-icon" name="label-subtext" type="text" title="Some more help text." placeholder="Hover over the icon" required></dd>
+
+              <dt><label for="invalid-field">Invalid field</label></dt>
+              <dd><input id="invalid-field" class="invalid" name="invalid-field" type="number" placeholder="e.g. 43" min="0" value="-2"></dd>
+
+              <dt><label for="valid-field">Valid field</label></dt>
+              <dd><input id="valid-field" class="valid" name="valid-field" type="number" placeholder="e.g. 43" min="0" value="2"></dd>
+
+              <dt><label for="required-field">Required field</label></dt>
+              <dd><input id="required-field" name="required-field" type="text" required></dd>
+
+              <dt><label for="required-field-no-asterisk" data-no-asterisk>Required field (no asterisk)</label></dt>
+              <dd><input id="required-field-no-asterisk" name="required-field-no-asterisk" type="text" required></dd>
+
+              <dt><label for="required-field-custom-title" data-asterisk-text="This is a custom title.">Required field (custom title)</label></dt>
+              <dd><input id="required-field-custom-title" name="required-field-custom-title" type="text" required></dd>
+
+              <dt><label for="disabledInput">Disabled input</label></dt>
+              <dd><input id="disabledInput" name="disabledInput" type="text" placeholder="e.g. foo" disabled></dd>
+
+              <dt><label for="disabledInputValue">Disabled input w/ value</label></dt>
+              <dd><input id="disabledInputValue" name="disabledInputValue" type="text" placeholder="e.g. foo" value="some value" disabled></dd>
+
+              <dt><label for="selectbox">Select box</label></dt>
+              <dd>
+                <select id="selectbox" name="selectbox">
+                  <option value="1">Item one</option>
+                  <option value="2">Item two</option>
+                  <option value="3">Item three</option>
+                  <option value="4">Item four</option>
+                  <option value="5">Item five</option>
+                  <option value="6">Item six</option>
+                  <option value="7">Item seven</option>
+                </select>
+                <label for="selectbox">Some help text regarding the select box</label>
+              </dd>
+
+              <dt><label for="required-selectbox">Required select box</label></dt>
+              <dd>
+                <select id="required-selectbox" name="required-selectbox" required>
+                  <option value="1">Item one</option>
+                  <option value="2">Item two</option>
+                  <option value="3">Item three</option>
+                  <option value="4">Item four</option>
+                  <option value="5">Item five</option>
+                  <option value="6">Item six</option>
+                  <option value="7">Item seven</option>
+                </select>
+              </dd>
+
+              <dt><label for="required-selectbox-hide" data-no-asterisk>Required select box (no asterisk)</label></dt>
+              <dd>
+                <select id="required-selectbox-hide" name="required-selectbox-hide" required>
+                  <option value="1">Item one</option>
+                  <option value="2">Item two</option>
+                  <option value="3">Item three</option>
+                  <option value="4">Item four</option>
+                  <option value="5">Item five</option>
+                  <option value="6">Item six</option>
+                  <option value="7">Item seven</option>
+                </select>
+              </dd>
+
+              <dt><label data-for="some_field_name_checkboxes">Checkboxes</label></dt>
+              <dd class="checkboxes">
+                <ul id="some_field_name_checkboxes">
+                  <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one" checked> <label for="some_field_name_checkboxes_one">One</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label data-for="helptext_checkboxes" title="Here is some helpful text." data-show-help-icon>Checkboxes with help text</label></dt>
+              <dd class="checkboxes">
+                <ul id="helptext_checkboxes">
+                  <li><input type="checkbox" name="some_field_name" id="helptext_checkboxes_one" checked> <label
+                      for="helptext_checkboxes_one">One</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="helptext_checkboxes_two"> <label
+                      for="helptext_checkboxes_two">Two</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="helptext_checkboxes_three"> <label
+                      for="helptext_checkboxes_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label data-for="required-checkboxes" data-asterisk-text="Custom checkbox title text.">Required checkboxes</label></dt>
+              <dd class="checkboxes">
+                <ul id="required-checkboxes">
+                  <li><input type="checkbox" name="required-field" id="required-checkboxes_one" checked required> <label for="required-checkboxes_one">One</label></li>
+                  <li><input type="checkbox" name="required-field" id="required-checkboxes_two"> <label for="required-checkboxes_two">Two</label></li>
+                  <li><input type="checkbox" name="required-field" id="required-checkboxes_three" checked> <label for="required-checkboxes_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label for="single-checkbox">Single checkbox</label></dt>
+              <dd><input type="checkbox" name="single-checkbox-field" id="single-checkbox"></dd>
+
+              <dt><label for="single-required-checkbox">Required single checkbox</label></dt>
+              <dd><input type="checkbox" name="single-required-checkbox-field" id="single-required-checkbox" required></dd>
+
+              <dt><label for="single-help-icon-checkbox" title="Single checkboxes can have help text too!" data-show-help-icon>Single help text checkbox</label></dt>
+              <dd><input type="checkbox" name="single-help-icon-checkbox-field" id="single-help-icon-checkbox"></dd>
+
+              <dt><label data-for="radios">Radios</label></dt>
+              <dd class="radios">
+                <ul id="radios">
+                  <li><input type="radio" name="radios" id="r_one"> <label for="r_one">One</label></li>
+                  <li><input type="radio" name="radios" id="r_two"> <label for="r_two">Two</label></li>
+                  <li><input type="radio" name="radios" id="r_three"> <label for="r_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label for="color">Color field</label></dt>
+              <dd><input id="color" name="color" type="color"></dd>
+
+              <dt><label for="date">Date field</label></dt>
+              <dd><input id="date" name="date" type="date"></dd>
+
+              <dt><label for="time">Time field</label></dt>
+              <dd><input id="time" name="time" type="time"></dd>
+
+              <dt><label for="datetime-local">Datetime-local field</label></dt>
+              <dd><input id="datetime-local" name="datetime-local" type="datetime-local"></dd>
+
+              <dt><label for="month">Month field</label></dt>
+              <dd><input id="month" name="month" type="month"></dd>
+
+              <dt><label for="week">Week field</label></dt>
+              <dd><input id="week" name="week" type="week"></dd>
+
+              <dt><label for="file">File field</label></dt>
+              <dd><input id="file" name="file" type="file"></dd>
+
+              <dt><label for="range">Range field</label></dt>
+              <dd><input id="range" name="range" type="range"></dd>
+
+              <dt><label for="textarea">Textarea</label></dt>
+              <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic."></textarea></dd>
+
+              <dt><label for="prefilledtextarea">Textarea (prefilled)</label></dt>
+              <dd>
+                <textarea id="prefilledtextarea" name="prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea>
+                <label for="prefilledtextarea">Some help text regarding the textarea with some really long text that should overflow and wrap</label>
+              </dd>
+            </dl>
+
+            <fieldset>
+              <legend>Nested fieldset</legend>
+
+              <dl>
+                <dt><label for="nested-input-1">Input</label></dt>
+                <dd>
+                  <input type="text" id="nested-input-1" name="nested-input-1" value="a value" placeholder="Some interesting placeholder text">
+                  <p>Here is some subtext.</p>
+                </dd>
+
+                <dt><label for="nested-input-2">Input 2</label></dt>
+                <dd>
+                  <input type="text" id="nested-input-2" name="nested-input-2" placeholder="Some interesting placeholder text">
+                  <p><small>Here's some small subtext.</small></p>
+                </dd>
+
+                <dt><label for="nested-input-3">Input 3</label></dt>
+                <dd>
+                  <input type="text" id="nested-input-3" name="nested-input-3" placeholder="Some interesting placeholder text">
+                  <p><strong>Here's some bold subtext.</strong></p>
+                </dd>
+
+                <dt><label for="nested-input-4">Input 4</label></dt>
+                <dd>
+                  <input type="text" id="nested-input-4" name="nested-input-4" placeholder="Some interesting placeholder text">
+                  <p>Here is some subtext.</p>
+                  <p>Here is some more subtext.</p>
+                </dd>
+              </dl>
+
+              <fieldset>
+                <legend>Another nested fieldset</legend>
+
+                <dl>
+                  <dt><label for="nested-nested-input-1">Input 1</label></dt>
+                  <dd>
+                    <input type="text" id="nested-nested-input-1" name="nested-nested-input-1" placeholder="Some interesting placeholder text">
+                  </dd>
+
+                  <dt><label for="nested-nested-input-2">Input 2</label></dt>
+                  <dd>
+                    <input type="text" id="nested-nested-input-2" name="nested-nested-input-2" placeholder="Some interesting placeholder text">
+                  </dd>
+
+                  <dt><label for="nested-nested-select">Select</label></dt>
+                  <dd>
+                    <select id="nested-nested-select" name="nested-nested-select">
+                      <option value="jfkdskfs">Hey</option>
+                    </select>
+                  </dd>
+                </dl>
+
+                <fieldset>
+                  <legend>A final nested fieldset with colspan</legend>
+
+                  <dl>
+                    <dt><label for="left-nested-input-a">Input A</label></dt>
+                    <dd>
+                      <input type="text" id="left-nested-input-a" name="left-nested-input-a" placeholder="Some interesting placeholder text">
+                    </dd>
+                    <dt><label for="left-nested-input-b">Input B</label></dt>
+                    <dd>
+                      <input type="text" id="left-nested-input-b" name="left-nested-input-b" placeholder="Some interesting placeholder text">
+                    </dd>
+                    <dt><label for="left-nested-input-c">Input C</label></dt>
+                    <dd>
+                      <input type="text" id="left-nested-input-c" name="left-nested-input-c" placeholder="Some interesting placeholder text">
+                    </dd>
+                    <dt><label for="left-nested-input-d">Input D</label></dt>
+                    <dd>
+                      <input type="text" id="left-nested-input-d" name="left-nested-input-d" placeholder="Some interesting placeholder text">
+                    </dd>
+                  </dl>
+                </fieldset>
+              </fieldset>
+            </fieldset>
+
+            <fieldset>
+              <legend>Colspan classes</legend>
+
+              <dl>
+                <dt><label for="colspan-1a">colspan-1</label></dt>
+                <dd class="colspan-1"><input type="text" name="colspan-1a" id="colspan-1a"></dd>
+                <dt><label for="colspan-1b">colspan-1</label></dt>
+                <dd class="colspan-1"><input type="text" name="colspan-1b" id="colspan-1b"></dd>
+                <dt><label for="colspan-2">colspan-2</label></dt>
+                <dd class="colspan-2"><input type="text" name="colspan-2" id="colspan-2"></dd>
+                <dt><label for="colspan-4">colspan-4</label></dt>
+                <dd class="colspan-4"><input type="text" name="colspan-4" id="colspan-4"></dd>
+                <dt><label for="colspan-3">colspan-3</label></dt>
+                <dd class="colspan-3"><input type="text" name="colspan-3" id="colspan-3"></dd>
+                <dt><label for="colspan-1c">colspan-1</label></dt>
+                <dd class="colspan-1"><input type="text" name="colspan-1c" id="colspan-1c"></dd>
+                <dt><label for="colspan-full">colspan-full</label></dt>
+                <dd class="colspan-full"><input type="text" name="colspan-full" id="colspan-full"></dd>
+                <dt><label for="colspan-5">colspan-5</label></dt>
+                <dd class="colspan-5"><input type="text" name="colspan-5" id="colspan-5"></dd>
+              </dl>
+
+              <fieldset class="colspan-1">
+                <legend>colspan-1</legend>
+
+                <dl>
+                  <dt><label for="colspan-1-a">Input A</label></dt>
+                  <dd><input type="text" id="colspan-1-a" name="colspan-1-a" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-1-b">Input B</label></dt>
+                  <dd><input type="text" id="colspan-1-b" name="colspan-1-b" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-1-c">Input C</label></dt>
+                  <dd><input type="text" id="colspan-1-c" name="colspan-1-c" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-1-d">Input D</label></dt>
+                  <dd><input type="text" id="colspan-1-d" name="colspan-1-d" placeholder="Some interesting placeholder text"></dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-2">
+                <legend>colspan-2</legend>
+
+                <dl>
+                  <dt><label for="colspan-2-a">Input A</label></dt>
+                  <dd><input type="text" id="colspan-2-a" name="colspan-2-a" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-2-b">Input B</label></dt>
+                  <dd><input type="text" id="colspan-2-b" name="colspan-2-b" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-2-c">Input C</label></dt>
+                  <dd><input type="text" id="colspan-2-c" name="colspan-2-c" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-2-d">Input D</label></dt>
+                  <dd><input type="text" id="colspan-2-d" name="colspan-2-d" placeholder="Some interesting placeholder text"></dd>
+                </dl>
+              </fieldset>
+
+              <fieldset>
+                <legend>colspan-3</legend>
+
+                <dl class="colspan-3">
+                  <dt><label for="colspan-3-a">Input A</label></dt>
+                  <dd><input type="text" id="colspan-3-a" name="colspan-3-a" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-3-b">Input B</label></dt>
+                  <dd><input type="text" id="colspan-3-b" name="colspan-3-b" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-3-c">Input C</label></dt>
+                  <dd><input type="text" id="colspan-3-c" name="colspan-3-c" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-3-d">Input D</label></dt>
+                  <dd><input type="text" id="colspan-3-d" name="colspan-3-d" placeholder="Some interesting placeholder text"></dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-full">
+                <legend>colspan-full</legend>
+
+                <dl>
+                  <dt><label for="colspan-full-a">Input A</label></dt>
+                  <dd><input type="text" id="colspan-full-a" name="colspan-full-a" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-full-b">Input B</label></dt>
+                  <dd><input type="text" id="colspan-full-b" name="colspan-full-b" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-full-c">Input C</label></dt>
+                  <dd><input type="text" id="colspan-full-c" name="colspan-full-c" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="colspan-full-d">Input D</label></dt>
+                  <dd><input type="text" id="colspan-full-d" name="colspan-full-d" placeholder="Some interesting placeholder text"></dd>
+                </dl>
+              </fieldset>
+            </fieldset>
+
+            <details>
+              <summary>Detail element</summary>
+              <dl>
+                <dt><label for="detail-input-1">Detail input</label></dt>
+                <dd><input type="text" name="detail-input-1" id="detail-input-1"></dd>
+
+                <dt><label for="detail-input-2">Detail input</label></dt>
+                <dd><input type="text" name="detail-input-2" id="detail-input-2"></dd>
+
+                <dt><label for="detail-input-3">Detail input</label></dt>
+                <dd><input type="text" name="detail-input-3" id="detail-input-3"></dd>
+
+                <dt><label for="detail-input-4">Detail input</label></dt>
+                <dd><input type="text" name="detail-input-4" id="detail-input-4"></dd>
+              </dl>
+            </details>
+
+            <details>
+              <summary>Another detail element</summary>
+              <dl>
+                <dt><label for="another-detail-input-1">Detail input</label></dt>
+                <dd><input type="text" name="another-detail-input-1" id="another-detail-input-1"></dd>
+              </dl>
+            </details>
+
+            <input type="submit" name="button1" value="Non-grouped submit button">
+            <input type="reset" name="reset" value="Another one">
+
+            <p>Flexbox button layout pattern with two submit buttons:</p>
+            <menu>
+              <li><button type="submit" name="button1">Button 1</button></li>
+              <li><input type="image" title="an image input element" name="image" alt="Button 2" width="100" src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Perspective-Button-Go-icon.png"></li>
+            </menu>
+
+            <p>Flexbox button layout pattern with three submit buttons:</p>
+            <menu>
+              <li><button type="submit" name="button1">Button 1</button></li>
+              <li><button type="reset" name="button2">Button 2</button></li>
+              <li><input type="submit" name="button3" value="Button 3"></li>
+            </menu>
+          </fieldset>
+
+          <fieldset>
+            <legend>P tag elements</legend>
+
+            <p>
+              <input type="checkbox" name="p-tag-checkbox" id="p-tag-checkbox">
+              <label for="p-tag-checkbox">Checkbox</label>
+            </p>
+            <p>
+              <label for="p-tag-input">Text input</label>
+              <input type="text" name="p-tag-input" id="p-tag-input">
+            </p>
+            <p>
+              <label for="p-tag-textarea">Textarea</label>
+              <textarea name="p-tag-textarea" id="p-tag-textarea"></textarea>
+            </p>
+            <p>
+              <button type="button" name="p-tag-button" id="p-tag-button">Button</button>
+            </p>
+            <p>
+              Some regular text with <strong>other elements</strong> <span>inside of it</span>
+            </p>
+          </fieldset>
+
+          <h2>Non-form related HTML elements</h2>
+          <p>This is some regular HTML that should not be affected by any semantic forms styles</p>
+          <div>This is a div</div>
+          <blockquote>This is a block quote</blockquote>
+          <a href="https://github.com/rooseveltframework/semantic-forms">A link to the semantic forms repo</a>
+
+          <ul>
+            <li>unordered list 1</li>
+            <li>unordered list 2</li>
+            <li>unordered list 3</li>
+          </ul>
+          <ol>
+            <li>ordered list 1</li>
+            <li>ordered list 2</li>
+            <li>ordered list 3</li>
+          </ol>
+          <menu>
+            <li>menu list 1</li>
+            <li>menu list 2</li>
+            <li>menu list 3</li>
+          </menu>
+          <dl>
+            <dt>description list title</dt>
+            <dd>description list value</dd>
+          </dl>
+          <details>
+            <summary>Details summary</summary>
+            <p>Some detail text</p>
+          </details>
+        </form>
+
+        <hr>
+
+        <h2>Low flow (JavaScript disabled) styling</h2>
+        <p>Adding the <code>lowFlow</code> class to the form element removes all JS enhancements.</p>
+        <form action="/somewhere" method="post" class="semanticForms lowFlow">
+          <dl>
+            <dt><label for="low-flow-name">Name</label></dt>
+            <dd><input id="low-flow-name" name="low-flow-name" type="text" placeholder="e.g. John Smith"></dd>
+
+            <dt><label for="low-flow-prefilled">Prefilled field</label></dt>
+            <dd><input id="low-flow-prefilled" name="low-flow-prefilled" type="text" placeholder="e.g. Stuff" value="Some text prefilled"></dd>
+
+            <dt><label for="low-flow-noplaceholder">No placeholder</label></dt>
+            <dd><input id="low-flow-noplaceholder" name="low-flow-noplaceholder" type="text"></dd>
+
+            <dt><label for="low-flow-password">Password field</label></dt>
+            <dd>
+              <input id="low-flow-password" name="low-flow-password" type="password" minlength="8" required>
+              <p data-invalid-text>Password should be at least 8 characters long.</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt><label for="low-flow-single-input">Single form input</label></dt>
+            <dd><input type="text" name="low-flow-single-input" id="low-flow-single-input"></dd>
+          </dl>
+
+          <fieldset>
+            <legend>Fieldset legend</legend>
+            <dl>
+              <dt><label for="low-flow-email">Email field</label></dt>
+              <dd><input id="low-flow-email" name="low-flow-email" type="email" placeholder="e.g. you@email.server"></dd>
+
+              <dt><label for="low-flow-tel">Telephone field</label></dt>
+              <dd><input id="low-flow-tel" name="low-flow-tel" type="tel" placeholder="e.g. 555-437-1111"></dd>
+
+              <dt><label for="low-flow-url">URL field</label></dt>
+              <dd><input id="low-flow-url" name="low-flow-url" type="url" placeholder="e.g. https://github.com"></dd>
+
+              <dt><label for="low-flow-search">Search field</label></dt>
+              <dd><input id="low-flow-search" name="low-flow-search" type="search" placeholder="e.g. cats"></dd>
+
+              <dt><label for="low-flow-number">Number</label></dt>
+              <dd><input id="low-flow-number" name="low-flow-number" type="number" placeholder="e.g. 43"></dd>
+
+              <dt><label for="low-flow-label-subtext">Input with label help text</label></dt>
+              <dd>
+                <input id="low-flow-label-subtext" name="low-flow-label-subtext" type="text" placeholder="e.g. John Smith">
+                <label for="low-flow-label-subtext">Some help text</label>
+              </dd>
+
+              <dt><label for="low-flow-invalid-field">Invalid field</label></dt>
+              <dd><input id="low-flow-invalid-field" class="invalid" name="low-flow-invalid-Field" type="number" placeholder="e.g. 43" min="0" value="-2"></dd>
+
+              <dt><label for="low-flow-valid-field">Valid field</label></dt>
+              <dd><input id="low-flow-valid-field" class="valid" name="low-flow-valid-field" type="number" placeholder="e.g. 43" min="0" value="2"></dd>
+
+              <dt><label for="low-flow-required-field">Required field</label></dt>
+              <dd><input id="low-flow-required-field" name="low-flow-required-field" type="number" placeholder="e.g. 43" min="0" required></dd>
+
+              <dt><label for="low-flow-selectbox">Select box</label></dt>
+              <dd>
+                <select id="low-flow-selectbox" name="low-flow-selectbox">
+                  <option value="1">Item one</option>
+                  <option value="2">Item two</option>
+                  <option value="3">Item three</option>
+                  <option value="4">Item four</option>
+                  <option value="5">Item five</option>
+                  <option value="6">Item six</option>
+                  <option value="7">Item seven</option>
+                </select>
+                <label for="low-flow-selectbox">Some help text regarding the select box</label>
+              </dd>
+
+              <dt><label data-for="low-flow-checkboxes">Checkboxes</label></dt>
+              <dd class="checkboxes">
+                <ul id="low-flow-checkboxes">
+                  <li><input type="checkbox" name="low-flow-field" id="low-flow-checkboxes_one"> <label for="low-flow-checkboxes_one">One</label></li>
+                  <li><input type="checkbox" name="low-flow-field" id="low-flow-checkboxes_two"> <label for="low-flow-checkboxes_two">Two</label></li>
+                  <li><input type="checkbox" name="low-flow-field" id="low-flow-checkboxes_three"> <label for="low-flow-checkboxes_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label for="low-flow-checkbox">Single checkbox</label></dt>
+              <dd><input type="checkbox" name="low-flow-checkbox-field" id="low-flow-checkbox"></dd>
+
+              <dt><label data-for="low-flow-radios">Radios</label></dt>
+              <dd class="radios">
+                <ul id="low-flow-radios">
+                  <li><input type="radio" name="low-flow-radios" id="low-flow-r_one"> <label for="low-flow-r_one">One</label></li>
+                  <li><input type="radio" name="low-flow-radios" id="low-flow-r_two"> <label for="low-flow-r_two">Two</label></li>
+                  <li><input type="radio" name="low-flow-radios" id="low-flow-r_three"> <label for="low-flow-r_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label for="low-flow-color">Color field</label></dt>
+              <dd><input id="low-flow-color" name="low-flow-color" type="color"></dd>
+
+              <dt><label for="low-flow-date">Date field</label></dt>
+              <dd><input id="low-flow-date" name="low-flow-date" type="date"></dd>
+
+              <dt><label for="low-flow-time">Time field</label></dt>
+              <dd><input id="low-flow-time" name="low-flow-time" type="time"></dd>
+
+              <dt><label for="low-flow-datetime-local">Datetime-local field</label></dt>
+              <dd><input id="low-flow-datetime-local" name="low-flow-datetime-local" type="datetime-local"></dd>
+
+              <dt><label for="low-flow-month">Month field</label></dt>
+              <dd><input id="low-flow-month" name="low-flow-month" type="month"></dd>
+
+              <dt><label for="low-flow-week">Week field</label></dt>
+              <dd><input id="low-flow-week" name="low-flow-week" type="week"></dd>
+
+              <dt><label for="low-flow-file">File field</label></dt>
+              <dd><input id="low-flow-file" name="low-flow-file" type="file"></dd>
+
+              <dt><label for="low-flow-range">Range field</label></dt>
+              <dd><input id="low-flow-range" name="low-flow-range" type="range"></dd>
+
+              <dt><label for="low-flow-textarea">Textarea</label></dt>
+              <dd><textarea id="low-flow-textarea" name="low-flow-textarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic."></textarea></dd>
+
+              <dt><label for="low-flow-prefilledtextarea">Textarea (prefilled)</label></dt>
+              <dd>
+                <textarea id="low-flow-prefilledtextarea" name="low-flow-prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea>
+                <label for="low-flow-prefilledtextarea">Some help text regarding the textarea with some really long text that should overflow and wrap</label>
+              </dd>
+            </dl>
+
+            <fieldset>
+              <legend>Nested fieldset</legend>
+
+              <dl>
+                <dt><label for="low-flow-nested-input-1">Input</label></dt>
+                <dd>
+                  <input type="text" id="low-flow-nested-input-1" name="low-flow-nested-input-1" placeholder="Some interesting placeholder text">
+                  <p>Here is some subtext.</p>
+                </dd>
+
+                <dt><label for="low-flow-nested-input-2">Input 2</label></dt>
+                <dd>
+                  <input type="text" id="low-flow-nested-input-2" name="low-flow-nested-input-2" placeholder="Some interesting placeholder text">
+                  <p><small>Here's some small subtext.</small></p>
+                </dd>
+
+                <dt><label for="low-flow-nested-input-3">Input 3</label></dt>
+                <dd>
+                  <input type="text" id="low-flow-nested-input-3" name="low-flow-nested-input-3" placeholder="Some interesting placeholder text">
+                  <p><strong>Here's some bold subtext.</strong></p>
+                </dd>
+
+                <dt><label for="low-flow-nested-input-4">Input 4</label></dt>
+                <dd>
+                  <input type="text" id="low-flow-nested-input-4" name="low-flow-nested-input-4" placeholder="Some interesting placeholder text">
+                  <p>Here is some subtext.</p>
+                  <p>Here is some more subtext.</p>
+                </dd>
+              </dl>
+
+              <fieldset>
+                <legend>Another nested fieldset</legend>
+
+                <dl>
+                  <dt><label for="low-flow-nested-nested-input">Input</label></dt>
+                  <dd><input type="text" id="low-flow-nested-nested-input" name="low-flow-nested-nested-input" placeholder="Some interesting placeholder text"></dd>
+
+                  <dt><label for="low-flow-nested-nested-input-2">Input 2</label></dt>
+                  <dd>
+                    <input type="text" id="low-flow-nested-nested-input-2" name="low-flow-nested-nested-input-2" placeholder="Some interesting placeholder text">
+                  </dd>
+
+                  <dt><label for="low-flow-nested-nested-select">Select</label></dt>
+                  <dd>
+                    <select id="low-flow-nested-nested-select" name="low-flow-nested-nested-select">
+                      <option value="jfkdskfs">Hey</option>
+                    </select>
+                  </dd>
+                </dl>
+              </fieldset>
+            </fieldset>
+
+            <fieldset>
+              <legend>Colspan classes</legend>
+
+              <dl>
+                <div class="colspan-1">
+                  <dt><label for="low-flow-colspan-1a">colspan-1</label></dt>
+                  <dd><input type="text" name="low-flow-colspan-1a" id="low-flow-colspan-1a"></dd>
+                </div>
+                <div class="colspan-1">
+                  <dt><label for="low-flow-colspan-1b">colspan-1</label></dt>
+                  <dd><input type="text" name="low-flow-colspan-1b" id="low-flow-colspan-1b"></dd>
+                </div>
+                <div class="colspan-2">
+                  <dt><label for="low-flow-colspan-2">colspan-2</label></dt>
+                  <dd><input type="text" name="low-flow-colspan-2" id="low-flow-colspan-2"></dd>
+                </div>
+                <div class="colspan-4">
+                  <dt><label for="low-flow-colspan-4">colspan-4</label></dt>
+                  <dd><input type="text" name="low-flow-colspan-4" id="low-flow-colspan-4"></dd>
+                </div>
+                <div class="colspan-3">
+                  <dt><label for="low-flow-colspan-3">colspan-3</label></dt>
+                  <dd><input type="text" name="low-flow-colspan-3" id="low-flow-colspan-3"></dd>
+                </div>
+                <div class="colspan-1">
+                  <dt><label for="low-flow-colspan-1c">colspan-1</label></dt>
+                  <dd><input type="text" name="low-flow-colspan-1c" id="low-flow-colspan-1c"></dd>
+                </div>
+                <div class="colspan-full">
+                  <dt><label for="low-flow-colspan-full">colspan-full</label></dt>
+                  <dd><input type="text" name="low-flow-colspan-full" id="low-flow-colspan-full"></dd>
+                </div>
+                <div class="colspan-5">
+                  <dt><label for="low-flow-colspan-5">colspan-5</label></dt>
+                  <dd><input type="text" name="low-flow-colspan-5" id="low-flow-colspan-5"></dd>
+                </div>
+              </dl>
+
+              <fieldset class="colspan-1">
+                <legend>colspan-1</legend>
+
+                <dl>
+                  <dt><label for="low-flow-colspan-1-a">Input A</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-1-a" name="low-flow-colspan-1-a"></dd>
+
+                  <dt><label for="low-flow-colspan-1-b">Input B</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-1-b" name="low-flow-colspan-1-b"></dd>
+
+                  <dt><label for="low-flow-colspan-1-c">Input C</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-1-c" name="low-flow-colspan-1-c"></dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-2">
+                <legend>colspan-2</legend>
+
+                <dl>
+                  <dt><label for="low-flow-colspan-2-a">Input A</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-2-a" name="low-flow-colspan-2-a"></dd>
+
+                  <dt><label for="low-flow-colspan-2-b">Input B</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-2-b" name="low-flow-colspan-2-b"></dd>
+
+                  <dt><label for="low-flow-colspan-2-c">Input C</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-2-c" name="low-flow-colspan-2-c"></dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-3">
+                <legend>colspan-3</legend>
+
+                <dl>
+                  <dt><label for="low-flow-colspan-3-a">Input A</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-3-a" name="low-flow-colspan-3-a"></dd>
+
+                  <dt><label for="low-flow-colspan-3-b">Input B</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-3-b" name="low-flow-colspan-3-b"></dd>
+
+                  <dt><label for="low-flow-colspan-3-c">Input C</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-3-c" name="low-flow-colspan-3-c"></dd>
+
+                  <dt><label for="low-flow-colspan-3-d">Input D</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-3-d" name="low-flow-colspan-3-d"></dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-4">
+                <legend>colspan-4</legend>
+
+                <dl>
+                  <dt><label for="low-flow-colspan-4-a">Input A</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-4-a" name="low-flow-colspan-4-a"></dd>
+
+                  <dt><label for="low-flow-colspan-4-b">Input B</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-4-b" name="low-flow-colspan-4-b"></dd>
+
+                  <dt><label for="low-flow-colspan-4-c">Input C</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-4-c" name="low-flow-colspan-4-c"></dd>
+
+                  <dt><label for="low-flow-colspan-4-d">Input D</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-4-d" name="low-flow-colspan-4-d"></dd>
+
+                  <dt><label for="low-flow-colspan-4-e">Input E</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-4-e" name="low-flow-colspan-4-e"></dd>
+                </dl>
+              </fieldset>
+
+              <fieldset class="colspan-5">
+                <legend>colspan-5</legend>
+
+                <dl>
+                  <dt><label for="low-flow-colspan-5-a">Input A</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-a" name="low-flow-colspan-5-a"></dd>
+
+                  <dt><label for="low-flow-colspan-5-b">Input B</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-b" name="low-flow-colspan-5-b"></dd>
+
+                  <dt><label for="low-flow-colspan-5-c">Input C</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-c" name="low-flow-colspan-5-c"></dd>
+
+                  <dt><label for="low-flow-colspan-5-d">Input D</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-d" name="low-flow-colspan-5-d"></dd>
+
+                  <dt><label for="low-flow-colspan-5-e">Input E</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-e" name="low-flow-colspan-5-e"></dd>
+
+                  <dt><label for="low-flow-colspan-5-f">Input F</label></dt>
+                  <dd><input type="text" id="low-flow-colspan-5-f" name="low-flow-colspan-5-f"></dd>
+                </dl>
+              </fieldset>
+            </fieldset>
+
+
+            <details>
+              <summary>Details summary</summary>
+              <dl>
+                <dt><label for="low-flow-detail-input-1">Detail input</label></dt>
+                <dd><input type="text" name="low-flow-detail-input-1" id="low-flow-detail-input-1"></dd>
+
+                <dt><label for="low-flow-detail-input-2">Detail input</label></dt>
+                <dd><input type="text" name="low-flow-detail-input-2" id="low-flow-detail-input-2"></dd>
+
+                <dt><label for="low-flow-detail-input-3">Detail input</label></dt>
+                <dd><input type="text" name="low-flow-detail-input-3" id="low-flow-detail-input-3"></dd>
+
+                <dt><label for="low-flow-detail-input-4">Detail input</label></dt>
+                <dd><input type="text" name="low-flow-detail-input-4" id="low-flow-detail-input-4"></dd>
+              </dl>
+            </details>
+
+            <details>
+              <summary>Another details element</summary>
+              <dl>
+                <dt><label for="low-flow-another-detail-input-1">Detail input</label></dt>
+                <dd><input type="text" name="low-flow-another-detail-input-1" id="low-flow-another-detail-input-1"></dd>
+              </dl>
+            </details>
+
+            <fieldset>
+              <legend>P tag elements</legend>
+
+              <p>
+                <input type="checkbox" name="low-flow-p-tag-checkbox" id="low-flow-p-tag-checkbox">
+                <label for="low-flow-p-tag-checkbox">Checkbox</label>
+              </p>
+              <p>
+                <label for="low-flow-p-tag-input">Text input</label>
+                <input type="text" name="low-flow-p-tag-input" id="low-flow-p-tag-input">
+              </p>
+              <p>
+                <label for="low-flow-p-tag-textarea">Textarea</label>
+                <textarea name="low-flow-p-tag-textarea" id="low-flow-p-tag-textarea"></textarea>
+              </p>
+              <p>
+                <button type="button" name="low-flow-p-tag-button" id="low-flow-p-tag-button">Button</button>
+              </p>
+              <p>
+                Some regular text with <strong>other elements</strong> <span>inside of it</span>
+              </p>
+            </fieldset>
+
+            <input type="submit" name="button1" value="Non-grouped submit button">
+            <input type="reset" name="reset" value="Another one">
+
+            <p>Flexbox button layout pattern with two submit buttons:</p>
+            <menu>
+              <li><button type="submit" name="button1">Button 1</button></li>
+              <li><input type="image" title="an image input element" name="image" alt="Button 2" width="100" src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Perspective-Button-Go-icon.png"></li>
+            </menu>
+
+            <p>Flexbox button layout pattern with three submit buttons:</p>
+            <menu>
+              <li><button type="submit" name="button1">Button 1</button></li>
+              <li><button type="reset" name="button2">Button 2</button></li>
+              <li><input type="submit" name="button3" value="Button 3"></li>
+            </menu>
+          </fieldset>
+
+          <h2>Non-form related HTML elements</h2>
+          <p>This is some regular HTML that should not be affected by any semantic forms styles</p>
+          <div>This is a div</div>
+          <blockquote>This is a block quote</blockquote>
+          <a href="https://github.com/rooseveltframework/semantic-forms">A link to the semantic forms repo</a>
+          <ul>
+            <li>unordered list 1</li>
+            <li>unordered list 2</li>
+            <li>unordered list 3</li>
+          </ul>
+          <ol>
+            <li>ordered list 1</li>
+            <li>ordered list 2</li>
+            <li>ordered list 3</li>
+          </ol>
+          <menu>
+            <li>menu list 1</li>
+            <li>menu list 2</li>
+            <li>menu list 3</li>
+          </menu>
+          <dl>
+            <dt>description list title</dt>
+            <dd>description list value</dd>
+          </dl>
+          <details>
+            <summary>Details summary</summary>
+            <p>Some detail text</p>
+          </details>
+        </form>
+      </article>
+    </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.insertAdjacentHTML('afterbegin', '<p id="mode"><button></button></p>')
+        document.querySelector('#mode button').addEventListener('click', (event) => toggleDarkMode())
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) toggleDarkMode('dark')
+        else toggleDarkMode('light')
+
+        const forms = document.querySelectorAll('form')
+        for (const form of forms) {
+          form.addEventListener('submit', e => e.preventDefault())
+        }
+
+        const greenButtons = document.querySelectorAll('input[type="image"]')
+        for (const button of greenButtons) {
+          button.addEventListener('click', (e) => {
+            e.preventDefault()
+            window.alert('GREEN!!!')
+          })
+        }
+      })
+
+      function toggleDarkMode (mode) {
+        if (mode === 'light' || document.body.className === 'dark') {
+          document.body.className = 'light'
+          document.querySelector('#mode button').innerHTML = 'Switch to dark mode'
+          const forms = document.querySelectorAll('form')
+          for (const form of forms) {
+            form.classList.add('light')
+            form.classList.remove('dark')
+          }
+        } else {
+          document.body.className = 'dark'
+          document.querySelector('#mode button').innerHTML = 'Switch to light mode'
+          const forms = document.querySelectorAll('form')
+          for (const form of forms) {
+            form.classList.add('dark')
+            form.classList.remove('light')
+          }
+        }
+      }
+
+      window.semanticForms()
+    </script>
+  </body>
+</html>
