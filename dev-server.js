@@ -9,17 +9,7 @@ spawnSync('sh', ['-c', 'node build.js --development-mode'], {
   cwd: 'docs'
 })
 
-const child = spawn('sh', ['-c', 'http-server public/'], {
+spawn('sh', ['-c', 'http-server public/'], {
   stdio: 'inherit',
   cwd: 'docs'
-})
-
-process.on('SIGINT', () => {
-  child.kill('SIGINT')
-  process.exit()
-})
-
-process.on('SIGTERM', () => {
-  child.kill('SIGTERM')
-  process.exit()
 })
