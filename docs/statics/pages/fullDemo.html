@@ -6,10 +6,10 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="description" content="A pattern library of forms based on semantic HTML enhanced with a modern UX.">
     <title>Semantic Forms</title>
-    <link rel="preload" href="/css/styles.css" as="style">
-    <link rel="preload" href="/js/main.js" as="script">
-    <link rel="stylesheet" href="/css/styles.css">
-    <script src="/js/main.js" defer></script>
+    <link rel="preload" href="/css/semantic-forms-styles.css" as="style">
+    <link rel="preload" href="/js/semantic-forms-main.js" as="script">
+    <link rel="stylesheet" href="/css/semantic-forms-styles.css">
+    <script src="/js/semantic-forms-main.js" defer></script>
     <style>
       body.light {
         background-color: #fff;
@@ -18,6 +18,10 @@
       body.dark {
         background-color: #000;
         color: #fff;
+      }
+      :where(h1) {
+        margin-block: 0.67em;
+        font-size: 2em;
       }
     </style>
   </head>
@@ -955,8 +959,6 @@
           }
         }
       }
-
-      window.semanticForms()
     </script>
   </body>
 </html>

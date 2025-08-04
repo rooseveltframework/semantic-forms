@@ -12,7 +12,7 @@
   "files": [
     "dist",
     "semanticForms.scss",
-    "docs/statics/pages",
+    "docs/statics",
     "*.md"
   ],
   "homepage": "https://rooseveltframework.org/docs/semantic-forms/latest",
@@ -38,8 +38,8 @@
     "d": "nodemon dev-server.js --ext js,scss",
     "dev": "nodemon dev-server.js --ext js,scss",
     "development": "nodemon dev-server.js --ext js,scss",
-    "lint": "standard && standard --plugin html test/*.html",
-    "lint-fix": "standard --fix && standard --plugin html test/*.html --fix",
+    "lint": "standard && standard --plugin html docs/statics/pages/*.html",
+    "lint-fix": "standard --fix && standard --plugin html docs/statics/pages/*.html --fix",
     "test": "npm run build && playwright test",
     "coverage": "webpack --env coverage && sass semanticForms.scss dist/semantic-forms.css && nyc playwright test && npm run build"
   },
