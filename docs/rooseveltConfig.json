@@ -20,9 +20,10 @@
       "bundles": [
         {
           "config": {
-            "entry": "${js.sourcePath}/main.js",
+            "entry": "${js.sourcePath}/semantic-forms-main.js",
             "output": {
-              "path": "${publicFolder}/js"
+              "path": "${publicFolder}/js",
+              "filename": "semantic-forms-main.js"
             },
             "resolve": {
               "alias": {

@@ -12,7 +12,7 @@
   "files": [
     "dist",
     "semanticForms.scss",
-    "docs/statics/pages",
+    "docs/statics",
     "*.md"
   ],
   "homepage": "https://rooseveltframework.org/docs/semantic-forms/latest",
