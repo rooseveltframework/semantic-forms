@@ -424,6 +424,16 @@ form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea), f
 form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd, form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd {
   position: relative;
 }
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios, form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes, form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes > label, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios > label, form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes > label, form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios > label {
+  padding-left: 20px;
+  font-size: small;
+  color: var(--semanticFormsTextColor);
+}
 form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios), form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios) {
   gap: 10px;
   max-width: 100%;
@@ -433,11 +443,19 @@ form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd
   flex-direction: column;
 }
 form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox, form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox {
-  display: flex;
+  display: grid;
+  grid-template-columns: 15px 1fr;
   align-items: center;
+  padding-left: 11px;
 }
 form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], label), form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], label) {
   grid-column: 1/-1;
+}
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox label:nth-of-type(2), form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox label:nth-of-type(2) {
+  grid-column: 1/-1;
+  padding-left: 20px;
+  font-size: small;
+  color: var(--semanticFormsTextColor);
 }
 form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul, form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul, form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul {
   display: flex;
@@ -612,6 +630,7 @@ form.semanticForms .floatLabelForm div dt, form.semanticForms.light .floatLabelF
   position: relative;
 }
 form.semanticForms .floatLabelForm div dt label, form.semanticForms.light .floatLabelForm div dt label {
+  z-index: 2;
   user-select: auto;
   color: var(--semanticFormsTextColor);
   font-size: var(--semanticFormsInputFontSize);
@@ -896,7 +915,7 @@ form.semanticForms.semanticFormsActive.lowFlow dd label, form.semanticForms.ligh
 form.semanticForms.semanticFormsActive .checkboxes ul,
 form.semanticForms.semanticFormsActive .radios ul, form.semanticForms.light.semanticFormsActive .checkboxes ul,
 form.semanticForms.light.semanticFormsActive .radios ul {
-  margin-top: calc(var(--semanticFormsInputTopMargin) / 2);
+  margin-top: var(--semanticFormsInputTopMargin);
 }
 
 /*# sourceMappingURL=semantic-forms.css.map */

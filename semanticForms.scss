@@ -395,22 +395,45 @@ form.semanticForms, form.semanticForms.light {
     dd {
       position: relative;
 
+      &.checkboxes, &.radios {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        // checkbox subtext
+        & > label {
+          padding-left: 20px;
+          font-size: small;
+          color: var(--semanticFormsTextColor);
+        }
+      }
+
       &:not(.checkboxes, .radios) {
         gap: 10px;
         max-width: 100%;
 
-        // places all items within the <dd> horizontally
+        // places all items within the <dd> vertically
         &:not(.singleCheckbox) {
           display: flex;
           flex-direction: column;
         }
 
         &.singleCheckbox {
-          display: flex;
+          display: grid;
+          grid-template-columns: 15px 1fr;
           align-items: center;
+          padding-left: 11px;
 
           & > :not(input[type='checkbox'], label) {
             grid-column: 1 / -1;
+          }
+
+          // single checkbox subtext
+          label:nth-of-type(2) {
+            grid-column: 1 / -1;
+            padding-left: 20px;
+            font-size: small;
+            color: var(--semanticFormsTextColor);
           }
         }
       }
@@ -640,6 +663,7 @@ form.semanticForms, form.semanticForms.light {
         position: relative;
 
         label {
+          z-index: 2; // ensure the hoverable icon is interactable
           user-select: auto;
           color: var(--semanticFormsTextColor);
           font-size: var(--semanticFormsInputFontSize);
@@ -1051,7 +1075,7 @@ form.semanticForms, form.semanticForms.light {
 
       .checkboxes ul,
       .radios ul {
-        margin-top: calc(var(--semanticFormsInputTopMargin) / 2);
+        margin-top: var(--semanticFormsInputTopMargin);
       }
     }
     // #endregion
