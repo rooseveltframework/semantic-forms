@@ -654,7 +654,7 @@
           </details>
         </form>
 
-        <h2>Table with semantic forms styling</h2>
+        <h2>Table with <code>semanticForms</code> class</h2>
         <table class="semanticForms">
           <thead>
             <tr class="title">
@@ -701,6 +701,31 @@
                   <li><button type="button">Button 1</button></li>
                   <li><button type="button">Button 2</button></li>
                 </menu>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Table with a <code>form</code> in a cell</h2>
+        <table class="semanticForms">
+          <thead>
+            <tr class="title">
+              <th colspan="2">Table Title</th>
+            </tr>
+            <tr>
+              <th>Column 1</th>
+              <th>Column 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Some text</td>
+              <td>
+                <form action="/somewhere" class="semanticForms">
+                  <menu>
+                    <li><button type="submit">Submit button</button></li>
+                  </menu>
+                </form>
               </td>
             </tr>
           </tbody>
