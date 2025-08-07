@@ -454,18 +454,19 @@ table.semanticForms.light {
         max-width: 100%;
 
         // places all items within the <dd> vertically
-        &:not(.singleCheckbox) {
+        &:not(.singleCheckbox, .singleRadio) {
           display: flex;
           flex-direction: column;
         }
 
-        &.singleCheckbox {
+        &.singleCheckbox,
+        &.singleRadio {
           display: grid;
           grid-template-columns: 15px 1fr;
           align-items: center;
           padding-left: 11px;
 
-          & > :not(input[type='checkbox'], label) {
+          & > :not(input[type='checkbox'], input[type='radio'], label) {
             grid-column: 1 / -1;
           }
 
@@ -475,6 +476,12 @@ table.semanticForms.light {
             padding-left: 20px;
             font-size: small;
             color: var(--semanticFormsTextColor);
+          }
+        }
+
+        &.singleRadio {
+          input {
+            margin: 0;
           }
         }
       }
@@ -552,7 +559,7 @@ table.semanticForms.light {
       max-width: 100%;
       max-width: 365px;
 
-      dd:not(.singleCheckbox, .checkboxes, .radios) {
+      dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) {
         input:not([type='submit'], [type='reset'], [type='image']),
         select,
         textarea {

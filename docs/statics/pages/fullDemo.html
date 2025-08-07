@@ -70,6 +70,8 @@
 
           <fieldset class="colspan-full">
             <legend>Fieldset legend</legend>
+
+            <h3>Inputs and Selects</h3>
             <dl>
               <dt><label for="email">Email field</label></dt>
               <dd><input id="email" name="email" type="email" placeholder="e.g. you@email.server"></dd>
@@ -119,6 +121,33 @@
               <dt><label for="disabledInputValue">Disabled input w/ value</label></dt>
               <dd><input id="disabledInputValue" name="disabledInputValue" type="text" placeholder="e.g. foo" value="some value" disabled></dd>
 
+              <dt><label for="color">Color field</label></dt>
+              <dd><input id="color" name="color" type="color"></dd>
+
+              <dt><label for="date">Date field</label></dt>
+              <dd><input id="date" name="date" type="date"></dd>
+
+              <dt><label for="time">Time field</label></dt>
+              <dd><input id="time" name="time" type="time"></dd>
+
+              <dt><label for="datetime-local">Datetime-local field</label></dt>
+              <dd><input id="datetime-local" name="datetime-local" type="datetime-local"></dd>
+
+              <dt><label for="month">Month field</label></dt>
+              <dd><input id="month" name="month" type="month"></dd>
+
+              <dt><label for="week">Week field</label></dt>
+              <dd><input id="week" name="week" type="week"></dd>
+
+              <dt><label for="file">File field</label></dt>
+              <dd><input id="file" name="file" type="file"></dd>
+
+              <dt><label for="range">Range field</label></dt>
+              <dd><input id="range" name="range" type="range"></dd>
+            </dl>
+            
+            <h3>Selects</h3>
+            <dl>
               <dt><label for="selectbox">Select box</label></dt>
               <dd>
                 <select id="selectbox" name="selectbox">
@@ -161,24 +190,24 @@
                 </select>
               </dd>
 
-              <dt><label data-for="some_field_name_checkboxes">Checkboxes</label></dt>
-              <dd class="checkboxes">
-                <ul id="some_field_name_checkboxes">
-                  <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one" checked> <label for="some_field_name_checkboxes_one">One</label></li>
-                  <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
-                  <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
-                </ul>
-              </dd>
+                <dt><label for="multiple-select">Multiple select</label></dt>
+              <dd><select name="multiple-select" id="multiple-select" multiple>
+                <option value="1">Option 1</option>
+                <option value="2" selected>Option 2</option>
+                <option value="3" selected>Option 3</option>
+                <option value="4">Option 4</option>
+                <option value="5">Option 5</option>
+              </select></dd>
+            </dl>
 
-              <dt><label data-for="helptext_checkboxes" title="Here is some helpful text." data-show-help-icon>Checkboxes with help text</label></dt>
+            <h3>Checkboxes</h3>
+            <dl>
+              <dt><label data-for="checkboxes">Checkboxes</label></dt>
               <dd class="checkboxes">
-                <ul id="helptext_checkboxes">
-                  <li><input type="checkbox" name="some_field_name" id="helptext_checkboxes_one" checked> <label
-                      for="helptext_checkboxes_one">One</label></li>
-                  <li><input type="checkbox" name="some_field_name" id="helptext_checkboxes_two"> <label
-                      for="helptext_checkboxes_two">Two</label></li>
-                  <li><input type="checkbox" name="some_field_name" id="helptext_checkboxes_three"> <label
-                      for="helptext_checkboxes_three">Three</label></li>
+                <ul id="checkboxes">
+                  <li><input type="checkbox" name="some_field_name" id="checkboxes_one" checked> <label for="checkboxes_one">One</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="checkboxes_two"> <label for="checkboxes_two">Two</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="checkboxes_three"> <label for="checkboxes_three">Three</label></li>
                 </ul>
               </dd>
 
@@ -191,39 +220,57 @@
                 </ul>
               </dd>
 
-              <dt><label data-for="additional-text-checkboxes">Additional text checkboxes</label></dt>
+              <dt><label data-for="help-text-checkboxes" title="Here is some helpful text." data-show-help-icon>Checkboxes w/ help text</label></dt>
               <dd class="checkboxes">
-                <ul id="additional-text-checkboxes">
-                  <li>
-                    <input type="checkbox" name="additional-text-field" id="additional-text-checkboxes_one" checked> 
-                    <label for="additional-text-checkboxes_one">One</label>
-                  </li>
-                  <li>
-                    <input type="checkbox" name="additional-text-field" id="additional-text-checkboxes_two"> 
-                    <label for="additional-text-checkboxes_two">Two</label>
-                  </li>
-                  <li>
-                    <input type="checkbox" name="additional-text-field" id="additional-text-checkboxes_three" checked> 
-                    <label for="additional-text-checkboxes_three">Three</label></li>
+                <ul id="help-text-checkboxes">
+                  <li><input type="checkbox" name="some_field_name" id="help-text-checkboxes_one" checked> <label
+                      for="help-text-checkboxes_one">One</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="help-text-checkboxes_two"> <label
+                      for="help-text-checkboxes_two">Two</label></li>
+                  <li><input type="checkbox" name="some_field_name" id="help-text-checkboxes_three"> <label
+                      for="help-text-checkboxes_three">Three</label></li>
                 </ul>
-                <label data-for="additional-text-checkboxes">This is some additional text.</label>
               </dd>
 
-              <dt><label for="single-checkbox">Single checkbox</label></dt>
-              <dd><input type="checkbox" name="single-checkbox-field" id="single-checkbox"></dd>
+              <dt><label data-for="extra-text-checkboxes">Checkboxes w/ additional text</label></dt>
+              <dd class="checkboxes">
+                <ul id="extra-text-checkboxes">
+                  <li>
+                    <input type="checkbox" name="extra-text-field" id="extra-text-checkboxes_one" checked> 
+                    <label for="extra-text-checkboxes_one">One</label>
+                  </li>
+                  <li>
+                    <input type="checkbox" name="extra-text-field" id="extra-text-checkboxes_two"> 
+                    <label for="extra-text-checkboxes_two">Two</label>
+                  </li>
+                  <li>
+                    <input type="checkbox" name="extra-text-field" id="extra-text-checkboxes_three" checked> 
+                    <label for="extra-text-checkboxes_three">Three</label></li>
+                </ul>
+                <label data-for="extra-text-checkboxes">This is some additional text.</label>
+              </dd>
+            </dl>
 
-              <dt><label for="single-required-checkbox">Required single checkbox</label></dt>
-              <dd><input type="checkbox" name="single-required-checkbox-field" id="single-required-checkbox" required></dd>
+            <dl>
+              <dt><label for="checkbox">Checkbox</label></dt>
+              <dd><input type="checkbox" name="checkbox-field" id="checkbox"></dd>
 
-              <dt><label for="single-help-icon-checkbox" title="Single checkboxes can have help text too!" data-show-help-icon>Single help text checkbox</label></dt>
-              <dd><input type="checkbox" name="single-help-icon-checkbox-field" id="single-help-icon-checkbox"></dd>
+              <dt><label for="required-checkbox">Checkbox (required)</label></dt>
+              <dd><input type="checkbox" name="required-checkbox-field" id="required-checkbox" required></dd>
 
-              <dt><label for="additional-text-checkbox">Checkbox with additional text</label></dt>
+              <dt><label for="help-icon-checkbox" title="Single checkboxes can have help text too!" data-show-help-icon>Checkbox w/ help text</label></dt>
+              <dd><input type="checkbox" name="help-icon-checkbox-field" id="help-icon-checkbox"></dd>
+
+              <dt><label for="additional-text-checkbox">Checkbox w/ additional text</label></dt>
               <dd>
-                <input type="checkbox" name="single-extra-text-checkbox-field" id="additional-text-checkbox">
+                <input type="checkbox" name="extra-text-checkbox-field" id="additional-text-checkbox">
                 <label for="additional-text-checkbox">This is some additional text.</label>
               </dd>
+            </dl>
+              
 
+            <h3>Radios</h3>
+            <dl>
               <dt><label data-for="radios">Radios</label></dt>
               <dd class="radios">
                 <ul id="radios">
@@ -233,49 +280,66 @@
                 </ul>
               </dd>
 
-              <dt><label data-for="additional-text-radios">Radios with additional text</label></dt>
+              <dt><label data-for="required-radios" data-asterisk-text="Custom radio title text.">Required radios</label></dt>
               <dd class="radios">
-                <ul id="additional-text-radios">
+                <ul id="required-radios">
+                  <li><input type="radio" name="required-field" id="required-radios_one" checked required> <label for="required-radios_one">One</label></li>
+                  <li><input type="radio" name="required-field" id="required-radios_two"> <label for="required-radios_two">Two</label></li>
+                  <li><input type="radio" name="required-field" id="required-radios_three" checked> <label for="required-radios_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label data-for="help-text-radios" title="Here is some helpful text." data-show-help-icon>Radios w/ help text</label></dt>
+              <dd class="radios">
+                <ul id="help-text-radios">
+                  <li><input type="radio" name="some_field_name" id="help-text-radios_one" checked> <label
+                      for="help-text-radios_one">One</label></li>
+                  <li><input type="radio" name="some_field_name" id="help-text-radios_two"> <label
+                      for="help-text-radios_two">Two</label></li>
+                  <li><input type="radio" name="some_field_name" id="help-text-radios_three"> <label
+                      for="help-text-radios_three">Three</label></li>
+                </ul>
+              </dd>
+
+              <dt><label data-for="radios-with-additional-text">Radios w/ additional text</label></dt>
+              <dd class="radios">
+                <ul id="radios-with-additional-text">
                   <li>
-                    <input type="radio" name="additional-text-radios" id="a_r_one"> 
+                    <input type="radio" name="radios-with-additional-text" id="a_r_one"> 
                     <label for="a_r_one">One</label>
                   </li>
                   <li>
-                    <input type="radio" name="additional-text-radios" id="a_r_two"> 
+                    <input type="radio" name="radios-with-additional-text" id="a_r_two"> 
                     <label for="a_r_two">Two</label>
                   </li>
                   <li>
-                    <input type="radio" name="additional-text-radios" id="a_r_three"> 
+                    <input type="radio" name="radios-with-additional-text" id="a_r_three"> 
                     <label for="a_r_three">Three</label>
                   </li>
                 </ul>
-                <label data-for="additional-text-radios">This is some additional text.</label>
+                <label data-for="radios-with-additional-text">This is some additional text.</label>
               </dd>
+            </dl>
 
-              <dt><label for="color">Color field</label></dt>
-              <dd><input id="color" name="color" type="color"></dd>
+            <dl>
+              <dt><label for="radio">Radio</label></dt>
+              <dd><input type="radio" name="radio" id="radio"></dd>
 
-              <dt><label for="date">Date field</label></dt>
-              <dd><input id="date" name="date" type="date"></dd>
+              <dt><label for="required-radio">Radio (required)</label></dt>
+              <dd><input type="radio" name="required-radio" id="required-radio" required></dd>
 
-              <dt><label for="time">Time field</label></dt>
-              <dd><input id="time" name="time" type="time"></dd>
+              <dt><label for="help-icon-radio" title="Single radios can have help text too!" data-show-help-icon>Radio w/ help text</label></dt>
+              <dd><input type="radio" name="help-icon-radio-field" id="help-icon-radio"></dd>
 
-              <dt><label for="datetime-local">Datetime-local field</label></dt>
-              <dd><input id="datetime-local" name="datetime-local" type="datetime-local"></dd>
+              <dt><label for="extra-text-radio">Radio w/ additional text</label></dt>
+              <dd>
+                <input type="radio" name="extra-text-radio" id="extra-text-radio">
+                <label for="extra-text-radio">This is some additional text.</label>
+              </dd>
+            </dl>
 
-              <dt><label for="month">Month field</label></dt>
-              <dd><input id="month" name="month" type="month"></dd>
-
-              <dt><label for="week">Week field</label></dt>
-              <dd><input id="week" name="week" type="week"></dd>
-
-              <dt><label for="file">File field</label></dt>
-              <dd><input id="file" name="file" type="file"></dd>
-
-              <dt><label for="range">Range field</label></dt>
-              <dd><input id="range" name="range" type="range"></dd>
-
+            <h3>Other</h3>
+            <dl>
               <dt><label for="textarea">Textarea</label></dt>
               <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic."></textarea></dd>
 
@@ -284,19 +348,92 @@
                 <textarea id="prefilledtextarea" name="prefilledtextarea" rows="5" cols="50" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic.">Some prefilled content...</textarea>
                 <label for="prefilledtextarea">Some help text regarding the textarea with some really long text that should overflow and wrap</label>
               </dd>
-
-              <dt><label for="multiple-select">Multiple select</label></dt>
-              <dd><select name="multiple-select" id="multiple-select" multiple>
-                <option value="1">Option 1</option>
-                <option value="2" selected>Option 2</option>
-                <option value="3" selected>Option 3</option>
-                <option value="4">Option 4</option>
-                <option value="5">Option 5</option>
-              </select></dd>
             </dl>
 
+            <h3>Tables</h3>
+
+            <h4>Table with inputs and buttons</h4>
+            <table>
+              <thead>
+                <tr class="title">
+                  <th colspan="3">Table Title</th>
+                </tr>
+                <tr>
+                  <th>Column 1</th>
+                  <th>Column 2</th>
+                  <th>Column 3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="text" name="table-text-1A" id="table-text-1A" placeholder="A text input in a table">
+                  </td>
+                  <td>
+                    <menu>
+                      <li><button type="button">Button 1</button></li>
+                      <li><button type="button">Button 2</button></li>
+                    </menu>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>
+                    <input type="text" name="table-text-2A" id="table-text-2A" placeholder="A text input in a table">
+                  </td>
+                  <td>
+                    <menu>
+                      <li><button type="button">Button 1</button></li>
+                      <li><button type="button">Button 2</button></li>
+                    </menu>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>
+                    <input type="text" name="table-text-3A" id="table-text-3A" placeholder="A text input in a table">
+                  </td>
+                  <td>
+                    <menu>
+                      <li><button type="button">Button 1</button></li>
+                      <li><button type="button">Button 2</button></li>
+                    </menu>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Table using <code>colgroups</code> to define column width</h4>
+            <table class="semanticForms">
+              <colgroup>
+                <col span="1" style="width: 20%">
+                <col span="1" style="width: 50%">
+                <col span="1" style="width: 30%">
+              </colgroup>
+              <thead>
+                <tr class="title">
+                  <th colspan="3">Table Title</th>
+                </tr>
+                <tr>
+                  <th>Column 1</th>
+                  <th>Column 2</th>
+                  <th>Column 3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>20%</td>
+                  <td>50%</td>
+                  <td>30%</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Nested fieldsets</h3>
+
             <fieldset>
-              <legend>Nested fieldset</legend>
+              <legend>Fieldset 1</legend>
 
               <dl>
                 <dt><label for="nested-input-1">Input</label></dt>
@@ -326,7 +463,7 @@
               </dl>
 
               <fieldset>
-                <legend>Another nested fieldset</legend>
+                <legend>Fieldset 2</legend>
 
                 <dl>
                   <dt><label for="nested-nested-input-1">Input 1</label></dt>
@@ -348,7 +485,7 @@
                 </dl>
 
                 <fieldset>
-                  <legend>A final nested fieldset with colspan</legend>
+                  <legend>Fieldset 3</legend>
 
                   <dl>
                     <dt><label for="left-nested-input-a">Input A</label></dt>
@@ -516,88 +653,6 @@
               <li><button type="reset" name="button2">Button 2</button></li>
               <li><input type="submit" name="button3" value="Button 3"></li>
             </menu>
-          </fieldset>
-
-          <fieldset>
-            <legend>Tables</legend>
-
-            <h3>Table with inputs and buttons</h3>
-            <table>
-              <thead>
-                <tr class="title">
-                  <th colspan="3">Table Title</th>
-                </tr>
-                <tr>
-                  <th>Column 1</th>
-                  <th>Column 2</th>
-                  <th>Column 3</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    <input type="text" name="table-text-1A" id="table-text-1A" placeholder="A text input in a table">
-                  </td>
-                  <td>
-                    <menu>
-                      <li><button type="button">Button 1</button></li>
-                      <li><button type="button">Button 2</button></li>
-                    </menu>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>
-                    <input type="text" name="table-text-2A" id="table-text-2A" placeholder="A text input in a table">
-                  </td>
-                  <td>
-                    <menu>
-                      <li><button type="button">Button 1</button></li>
-                      <li><button type="button">Button 2</button></li>
-                    </menu>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>
-                    <input type="text" name="table-text-3A" id="table-text-3A" placeholder="A text input in a table">
-                  </td>
-                  <td>
-                    <menu>
-                      <li><button type="button">Button 1</button></li>
-                      <li><button type="button">Button 2</button></li>
-                    </menu>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <h3>Table using <code>colgroups</code> to define column width</h3>
-            <table class="semanticForms">
-              <colgroup>
-                <col span="1" style="width: 20%">
-                <col span="1" style="width: 50%">
-                <col span="1" style="width: 30%">
-              </colgroup>
-              <thead>
-                <tr class="title">
-                  <th colspan="3">Table Title</th>
-                </tr>
-                <tr>
-                  <th>Column 1</th>
-                  <th>Column 2</th>
-                  <th>Column 3</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>20%</td>
-                  <td>50%</td>
-                  <td>30%</td>
-                </tr>
-              </tbody>
-            </table>
           </fieldset>
 
           <fieldset>

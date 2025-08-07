@@ -793,36 +793,51 @@ table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > texta
   gap: 10px;
   max-width: 100%;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios):not(.singleCheckbox),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios):not(.singleCheckbox),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios):not(.singleCheckbox),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios):not(.singleCheckbox) {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios):not(.singleCheckbox, .singleRadio),
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios):not(.singleCheckbox, .singleRadio),
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios):not(.singleCheckbox, .singleRadio),
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios):not(.singleCheckbox, .singleRadio) {
   display: flex;
   flex-direction: column;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox,
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio,
 form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox,
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio,
 table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox {
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio,
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox,
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio {
   display: grid;
   grid-template-columns: 15px 1fr;
   align-items: center;
   padding-left: 11px;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], label),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], label),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], label),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], label) {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], input[type=radio], label), form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio > :not(input[type=checkbox], input[type=radio], label),
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], input[type=radio], label),
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio > :not(input[type=checkbox], input[type=radio], label),
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], input[type=radio], label),
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio > :not(input[type=checkbox], input[type=radio], label),
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox > :not(input[type=checkbox], input[type=radio], label),
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio > :not(input[type=checkbox], input[type=radio], label) {
   grid-column: 1/-1;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox label:nth-of-type(2),
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox label:nth-of-type(2), form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio label:nth-of-type(2),
 form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox label:nth-of-type(2),
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio label:nth-of-type(2),
 table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox label:nth-of-type(2),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox label:nth-of-type(2) {
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio label:nth-of-type(2),
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleCheckbox label:nth-of-type(2),
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio label:nth-of-type(2) {
   grid-column: 1/-1;
   padding-left: 20px;
   font-size: small;
   color: var(--semanticFormsTextColor);
+}
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio input,
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio input,
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio input,
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:not(.checkboxes, .radios).singleRadio input {
+  margin: 0;
 }
 form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul,
 form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul,
@@ -929,42 +944,42 @@ table.semanticForms.light .floatLabelForm div {
   max-width: 100%;
   max-width: 365px;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio]) ~ label:first-of-type, form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio]) ~ label:first-of-type, form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type {
   color: var(--semanticFormsTextColor) !important;
   transform: translateY(-150%) scale(0.7);
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select ~ label:first-of-type {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select ~ label:first-of-type,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select ~ label:first-of-type,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select ~ label:first-of-type,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select ~ label:first-of-type {
   color: var(--semanticFormsTextColor) !important;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type {
   line-height: 1.2;
   font-size: var(--semanticFormsInputFontSize);
   position: absolute;
@@ -981,143 +996,143 @@ table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxe
   min-width: 0;
   width: calc(100% - 35px);
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:nth-of-type(2),
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:nth-of-type(2),
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:nth-of-type(2),
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:nth-of-type(2) {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:nth-of-type(2),
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:nth-of-type(2),
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:nth-of-type(2),
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:nth-of-type(2) {
   margin-top: -5px;
   padding-left: 20px;
   font-size: small;
   color: var(--semanticFormsTextColor);
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) select {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select {
   margin-top: var(--semanticFormsInputTopMargin);
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea {
   transition: opacity 250ms;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::placeholder {
   opacity: 0;
   transition: opacity 250ms;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-moz-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-moz-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-moz-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-moz-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-moz-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-moz-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-moz-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-moz-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-moz-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-moz-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-moz-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-moz-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-moz-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-moz-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-moz-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-moz-placeholder {
   opacity: 0;
   transition: opacity 250ms;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-webkit-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-webkit-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-webkit-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-webkit-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-webkit-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-webkit-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input::-webkit-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea::-webkit-input-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-webkit-input-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-webkit-input-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-webkit-input-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-webkit-input-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-webkit-input-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-webkit-input-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-webkit-input-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-webkit-input-placeholder {
   opacity: 0;
   transition: opacity 250ms;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:-ms-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:-ms-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:-ms-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:-ms-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:-ms-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:-ms-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:-ms-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:-ms-input-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:-ms-input-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:-ms-input-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:-ms-input-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:-ms-input-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:-ms-input-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:-ms-input-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:-ms-input-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:-ms-input-placeholder {
   opacity: 0;
   transition: opacity 250ms;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::placeholder {
   opacity: 1;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-moz-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-moz-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-moz-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-moz-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-moz-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-moz-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-moz-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-moz-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-moz-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-moz-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-moz-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-moz-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-moz-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-moz-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-moz-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-moz-placeholder {
   opacity: 1;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder {
   opacity: 1;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus:-ms-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus:-ms-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus:-ms-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus:-ms-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus:-ms-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus:-ms-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) input:focus:-ms-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) textarea:focus:-ms-input-placeholder {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus:-ms-input-placeholder,
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:-ms-input-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus:-ms-input-placeholder,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:-ms-input-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus:-ms-input-placeholder,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:-ms-input-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus:-ms-input-placeholder,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:-ms-input-placeholder {
   opacity: 1;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type {
   user-select: none;
   color: var(--semanticFormsPlaceholderColor);
   touch-action: manipulation;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span.required,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span.required,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span.required,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span.required {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.required,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.required,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.required,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.required {
   cursor: help;
   pointer-events: auto;
   color: red;
 }
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span.help,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span.help,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span.help,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .checkboxes, .radios) label:first-of-type span.help {
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help {
   cursor: help;
   pointer-events: auto;
 }

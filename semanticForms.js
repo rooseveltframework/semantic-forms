@@ -68,6 +68,14 @@ const semanticForms = () => {
               insertAfter(newLabel, input)
             }
 
+            if (type === 'radio' && input.parentNode.nodeName === 'DD') {
+              newLabel.setAttribute('for', input.id)
+              input.parentNode.classList.add('singleRadio')
+              newLabel.className = ''
+              label.setAttribute('hidden', 'hidden')
+              insertAfter(newLabel, input)
+            }
+
             newLabel.innerHTML = label.innerHTML
 
             if (label.hasAttribute('title') && label.getAttribute('data-show-help-icon') !== null && !label.querySelector('span.help')) {
