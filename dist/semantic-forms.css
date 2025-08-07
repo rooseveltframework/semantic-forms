@@ -203,6 +203,8 @@ form.semanticForms input[type=file], form.semanticForms.light input[type=file] {
 }
 form.semanticForms select, form.semanticForms.light select {
   cursor: pointer;
+}
+form.semanticForms select:not([multiple]), form.semanticForms.light select:not([multiple]) {
   background-image: var(--semanticFormsSelectIcon);
   background-size: 14px;
   background-position: calc(100% - 8px) 16px;
@@ -210,6 +212,20 @@ form.semanticForms select, form.semanticForms.light select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+form.semanticForms select[multiple], form.semanticForms.light select[multiple] {
+  min-height: 38px;
+  height: 100px;
+  padding: 0 !important;
+}
+form.semanticForms select[multiple] option, form.semanticForms.light select[multiple] option {
+  padding: 6px 20px;
+}
+form.semanticForms select[multiple] option:first-of-type, form.semanticForms.light select[multiple] option:first-of-type {
+  border-top-left-radius: var(--semanticFormsBorderRadius);
+}
+form.semanticForms select[multiple] option:last-of-type, form.semanticForms.light select[multiple] option:last-of-type {
+  border-bottom-left-radius: var(--semanticFormsBorderRadius);
 }
 form.semanticForms textarea, form.semanticForms.light textarea {
   resize: vertical;
@@ -413,6 +429,9 @@ form.semanticForms summary, form.semanticForms.light summary {
     background-repeat: no-repeat;
     background-position: 100%;
     margin: 0 2px 2px 0;
+  }
+  form.semanticForms select[multiple], form.semanticForms.light select[multiple] {
+    scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
   }
 }
 form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea), form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) {
