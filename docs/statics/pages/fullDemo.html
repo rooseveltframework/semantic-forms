@@ -136,6 +136,7 @@
               <dt><label for="required-selectbox">Required select box</label></dt>
               <dd>
                 <select id="required-selectbox" name="required-selectbox" required>
+                  <option value="">Make a selection</option>
                   <option value="1">Item one</option>
                   <option value="2">Item two</option>
                   <option value="3">Item three</option>
@@ -149,6 +150,7 @@
               <dt><label for="required-selectbox-hide" data-no-asterisk>Required select box (no asterisk)</label></dt>
               <dd>
                 <select id="required-selectbox-hide" name="required-selectbox-hide" required>
+                  <option value="">Make a selection</option>
                   <option value="1">Item one</option>
                   <option value="2">Item two</option>
                   <option value="3">Item three</option>
@@ -204,7 +206,7 @@
                     <input type="checkbox" name="additional-text-field" id="additional-text-checkboxes_three" checked> 
                     <label for="additional-text-checkboxes_three">Three</label></li>
                 </ul>
-                <label for="additional-text-checkboxes">This is some additional text.</label>
+                <label data-for="additional-text-checkboxes">This is some additional text.</label>
               </dd>
 
               <dt><label for="single-checkbox">Single checkbox</label></dt>
@@ -216,10 +218,10 @@
               <dt><label for="single-help-icon-checkbox" title="Single checkboxes can have help text too!" data-show-help-icon>Single help text checkbox</label></dt>
               <dd><input type="checkbox" name="single-help-icon-checkbox-field" id="single-help-icon-checkbox"></dd>
 
-              <dt><label for="additional-text-checkboxes">Checkbox with additional text</label></dt>
+              <dt><label for="additional-text-checkbox">Checkbox with additional text</label></dt>
               <dd>
-                <input type="checkbox" name="single-extra-text-checkbox-field" id="additional-text-checkboxes">
-                <label for="additional-text-checkboxes">This is some additional text.</label>
+                <input type="checkbox" name="single-extra-text-checkbox-field" id="additional-text-checkbox">
+                <label for="additional-text-checkbox">This is some additional text.</label>
               </dd>
 
               <dt><label data-for="radios">Radios</label></dt>
@@ -247,7 +249,7 @@
                     <label for="a_r_three">Three</label>
                   </li>
                 </ul>
-                <label for="additional-text-radios">This is some additional text.</label>
+                <label data-for="additional-text-radios">This is some additional text.</label>
               </dd>
 
               <dt><label for="color">Color field</label></dt>
@@ -483,11 +485,20 @@
             </details>
 
             <details>
-              <summary>Another detail element</summary>
+              <summary>Another detail element with a nested fieldset</summary>
               <dl>
                 <dt><label for="another-detail-input-1">Detail input</label></dt>
                 <dd><input type="text" name="another-detail-input-1" id="another-detail-input-1"></dd>
               </dl>
+
+              <fieldset>
+                <legend>Nested fieldset</legend>
+
+                <dl>
+                  <dt><label for="another-detail-input-2">Nested fieldset input</label></dt>
+                  <dd><input type="text" name="another-detail-input-2" id="another-detail-input-2"></dd>
+                </dl>
+              </fieldset>
             </details>
 
             <input type="submit" name="button1" value="Non-grouped submit button">
@@ -505,6 +516,88 @@
               <li><button type="reset" name="button2">Button 2</button></li>
               <li><input type="submit" name="button3" value="Button 3"></li>
             </menu>
+          </fieldset>
+
+          <fieldset>
+            <legend>Tables</legend>
+
+            <h3>Table with inputs and buttons</h3>
+            <table>
+              <thead>
+                <tr class="title">
+                  <th colspan="3">Table Title</th>
+                </tr>
+                <tr>
+                  <th>Column 1</th>
+                  <th>Column 2</th>
+                  <th>Column 3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="text" name="table-text-1A" id="table-text-1A" placeholder="A text input in a table">
+                  </td>
+                  <td>
+                    <menu>
+                      <li><button type="button">Button 1</button></li>
+                      <li><button type="button">Button 2</button></li>
+                    </menu>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>
+                    <input type="text" name="table-text-2A" id="table-text-2A" placeholder="A text input in a table">
+                  </td>
+                  <td>
+                    <menu>
+                      <li><button type="button">Button 1</button></li>
+                      <li><button type="button">Button 2</button></li>
+                    </menu>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>
+                    <input type="text" name="table-text-3A" id="table-text-3A" placeholder="A text input in a table">
+                  </td>
+                  <td>
+                    <menu>
+                      <li><button type="button">Button 1</button></li>
+                      <li><button type="button">Button 2</button></li>
+                    </menu>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Table using <code>colgroups</code> to define column width</h3>
+            <table class="semanticForms">
+              <colgroup>
+                <col span="1" style="width: 20%">
+                <col span="1" style="width: 50%">
+                <col span="1" style="width: 30%">
+              </colgroup>
+              <thead>
+                <tr class="title">
+                  <th colspan="3">Table Title</th>
+                </tr>
+                <tr>
+                  <th>Column 1</th>
+                  <th>Column 2</th>
+                  <th>Column 3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>20%</td>
+                  <td>50%</td>
+                  <td>30%</td>
+                </tr>
+              </tbody>
+            </table>
           </fieldset>
 
           <fieldset>
@@ -560,6 +653,89 @@
             <p>Some detail text</p>
           </details>
         </form>
+
+        <h2>Table with semantic forms styling</h2>
+        <table class="semanticForms">
+          <thead>
+            <tr class="title">
+              <th colspan="3">Table Title</th>
+            </tr>
+            <tr>
+              <th>Column 1</th>
+              <th>Column 2</th>
+              <th>Column 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <input type="text" name="table-text-1C" id="table-text-1C" placeholder="A text input in a table">
+              </td>
+              <td>
+                <menu>
+                  <li><button type="button">Button 1</button></li>
+                  <li><button type="button">Button 2</button></li>
+                </menu>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <input type="text" name="table-text-2C" id="table-text-2C" placeholder="A text input in a table">
+              </td>
+              <td>
+                <menu>
+                  <li><button type="button">Button 1</button></li>
+                  <li><button type="button">Button 2</button></li>
+                </menu>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>
+                <input type="text" name="table-text-3C" id="table-text-3C" placeholder="A text input in a table">
+              </td>
+              <td>
+                <menu>
+                  <li><button type="button">Button 1</button></li>
+                  <li><button type="button">Button 2</button></li>
+                </menu>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Unstyled table</h2>
+        <table>
+          <thead>
+            <tr class="title">
+              <th colspan="3">Table Title</th>
+            </tr>
+            <tr>
+              <th>Column 1</th>
+              <th>Column 2</th>
+              <th>Column 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>A</td>
+              <td>a</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>B</td>
+              <td>b</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>C</td>
+              <td>c</td>
+            </tr>
+          </tbody>
+        </table>
 
         <hr>
 
@@ -994,6 +1170,7 @@
 
       function toggleDarkMode (mode) {
         if (mode === 'light' || document.body.className === 'dark') {
+          document.documentElement.className = 'light'
           document.body.className = 'light'
           document.querySelector('#mode button').innerHTML = 'Switch to dark mode'
           const forms = document.querySelectorAll('form')
@@ -1002,6 +1179,7 @@
             form.classList.remove('dark')
           }
         } else {
+          document.documentElement.className = 'dark'
           document.body.className = 'dark'
           document.querySelector('#mode button').innerHTML = 'Switch to light mode'
           const forms = document.querySelectorAll('form')
