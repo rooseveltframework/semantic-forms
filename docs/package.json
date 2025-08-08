@@ -9,7 +9,7 @@
     "highlight.js": "11.11.1",
     "roosevelt": "0.31.4",
     "semantic-forms": "../",
-    "sass": "1.89.2",
+    "sass": "1.90.0",
     "teddy": "1.1.4",
     "webpack": "5.101.0"
   },
@@ -17,7 +17,7 @@
     "http-server": "14.1.1",
     "nodemon": "3.1.10",
     "standard": "17.1.2",
-    "stylelint": "16.23.0",
+    "stylelint": "16.23.1",
     "stylelint-config-standard-scss": "15.0.1"
   },
   "nodemonConfig": {

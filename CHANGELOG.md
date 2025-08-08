@@ -1,3 +1,13 @@
+## 5.1.2
+
+- Added a search icon to search inputs.
+- Added support for select elements with the multiple attribute.
+- Added styling to tables within a form, or tables with the `semanticForm` class.
+- Fixed missing styles to single radios.
+- Fixed a bug that caused additional text labels to not work on checkbox groups, single checkboxes, and radios.
+- Fixed alignment issues on checkbox and radio groups.
+- Updated dependencies.
+
 ## 5.1.1
 
 - Fixed broken low flow styling.
