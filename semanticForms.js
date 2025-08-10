@@ -149,7 +149,7 @@ const semanticForms = () => {
             clearBtn.innerHTML = '<svg viewBox="0 0 16 16" width="18" height="18"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />'
             clearBtn.classList.add('clear')
             clearBtn.id = `semanticFormsClearButton_${input.id}`
-            clearBtn.addEventListener('click', (event) => {
+            clearBtn.addEventListener('click', () => {
               input.previousValue = input.value
               input.value = ''
               input.focus()
@@ -157,7 +157,7 @@ const semanticForms = () => {
             })
             insertAfter(clearBtn, dd.querySelector('label'))
           }
-          input.addEventListener('focus', (event) => {
+          input.addEventListener('focus', event => {
             if (event.target.nodeName === 'INPUT') lastFocusedInput = event.target
           })
           // #endregion
@@ -179,11 +179,23 @@ const semanticForms = () => {
         // handle file input clear btn, cannot be handled with CSS
         if (type === 'file') {
           const clearBtn = input.parentElement.querySelector('.clear')
-          input.addEventListener('input', e => {
-            clearBtn.style.display = e.target.files.length ? 'flex' : 'none'
+          input.addEventListener('input', event => {
+            clearBtn.style.display = event.target.files.length ? 'flex' : 'none'
           })
           clearBtn.addEventListener('click', () => {
             clearBtn.style.display = 'none'
+          })
+        }
+
+        // handle range inputs with a class to display the value
+        console.log('yo', input.classList.contains('displayValue'))
+        if (type === 'range' && input.classList.contains('displayValue')) {
+          console.log('uh')
+          const label = input.parentNode.parentNode.querySelector('dd label')
+          label.innerHTML += `<span class="seperator">: </span><output>${input.value}</output>`
+          input.addEventListener('input', event => {
+            const output = event.target.parentNode.parentNode.querySelector('output')
+            output.innerHTML = event.target.value
           })
         }
 
@@ -202,7 +214,7 @@ const semanticForms = () => {
             console.error(`semantic-forms: Found an input (${input.id || input.getAttribute('name')}) that is not inside a <dd> element.`)
             continue
           }
-          showBtn.addEventListener('click', (event) => {
+          showBtn.addEventListener('click', () => {
             if (input.type === 'password') {
               showBtn.innerHTML = passwordHide
               showBtn.title = input.getAttribute('data-hide-password-text') || 'Hide password'
@@ -248,7 +260,7 @@ const semanticForms = () => {
   // handle undo/redo
   let lastFocusedInput
   let lastClearFieldPressed
-  document.addEventListener('keydown', (event) => {
+  document.addEventListener('keydown', event => {
     if ((event.ctrlKey || event.metaKey) && event.key === 'z' && !event.shiftKey) {
       // undo clearing a field
       if (lastFocusedInput) {
@@ -274,7 +286,7 @@ const semanticForms = () => {
 
   // monitor changes to the DOM and enhance new semanticForms forms that get added
   if (!window.semanticFormsObserver) {
-    window.semanticFormsObserver = new window.MutationObserver((mutations) => {
+    window.semanticFormsObserver = new window.MutationObserver(mutations => {
       let stop = false
       for (const mutation of mutations) {
         for (const node of mutation.addedNodes) {
@@ -289,7 +301,7 @@ const semanticForms = () => {
     window.semanticFormsObserver.observe(document.body, { attributes: false, childList: true, characterData: false, subtree: true })
   }
 
-  semanticForms.reinitialize = (form) => {
+  semanticForms.reinitialize = form => {
     form.classList.remove('semanticFormsActive')
     semanticForms()
   }

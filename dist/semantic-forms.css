@@ -488,6 +488,7 @@ table.semanticForms.light button:not(.clear):not(.show) {
   padding: 5px 25px;
   font-size: 100%;
   line-height: 1;
+  user-select: none;
 }
 form.semanticForms input[type=submit]:active,
 form.semanticForms input[type=reset]:active,
