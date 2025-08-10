@@ -188,9 +188,7 @@ const semanticForms = () => {
         }
 
         // handle range inputs with a class to display the value
-        console.log('yo', input.classList.contains('displayValue'))
         if (type === 'range' && input.classList.contains('displayValue')) {
-          console.log('uh')
           const label = input.parentNode.parentNode.querySelector('dd label')
           label.innerHTML += `<span class="seperator">: </span><output>${input.value}</output>`
           input.addEventListener('input', event => {
