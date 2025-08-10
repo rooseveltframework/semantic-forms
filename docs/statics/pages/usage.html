@@ -503,6 +503,26 @@
         </dl>
       </form>
 
+      <h4 id="rangeInputsThatDisplayValues">Range inputs that display values</h4>
+
+      <p>Add a class of <code>displayValue</code> to any <code><!--#<input type="range">--></code> element to make its value display on the label:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <dt><label for="rangeValue">Range value</label></dt>
+    <dd><input id="rangeValue" name="rangeValue" type="range" class="displayValue"></dd>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <dt><label for="rangeValue">Range value</label></dt>
+          <dd><input id="rangeValue" name="rangeValue" type="range" class="displayValue"></dd>
+        </dl>
+      </form>
+
       <h3 id="lightanddarkmode">Light mode and dark mode</h3>
 
       <p>Light mode and dark mode will be detected automatically based on operating system preference. To set it manually, you can apply an additional class of <code>light</code> or <code>dark</code> to your <code><!--#<form>--></code> elements to force the mode.</p>

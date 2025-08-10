@@ -81,9 +81,9 @@ html:not(.light) {
 }
 // #endregion
 
-form.semanticForms, 
-form.semanticForms.light, 
-table.semanticForms, 
+form.semanticForms,
+form.semanticForms.light,
+table.semanticForms,
 table.semanticForms.light {
   font-family: var(--semanticFormsFontFamily);
   width: 100%;
@@ -193,7 +193,7 @@ table.semanticForms.light {
 
   select {
     cursor: pointer;
-    
+
     &:not([multiple]) {
       // custom dropdown graphic on select element
       background-image: var(--semanticFormsSelectIcon);
@@ -240,7 +240,7 @@ table.semanticForms.light {
     & + label.floatLabelFormAnimatedLabel {
       left: 32px !important; // override float label
     }
-    
+
     &:focus,
     &:not(:placeholder-shown) {
       & + label.floatLabelFormAnimatedLabel {
@@ -310,6 +310,7 @@ table.semanticForms.light {
     padding: 5px 25px;
     font-size: 100%;
     line-height: 1;
+    user-select: none;
 
     &:active {
       background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientDark) 0%, var(--semanticFormsButtonGradientLight) 100%);
@@ -409,7 +410,7 @@ table.semanticForms.light {
   @supports (scrollbar-color: auto) {
     textarea {
       scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
-      
+
       &::-webkit-resizer {
         border: none;
         background-image: var(--semanticFormsCustomResizer);
@@ -419,7 +420,7 @@ table.semanticForms.light {
         margin: 0 2px 2px 0;
       }
     }
-    
+
     select[multiple] {
       scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
     }
@@ -1167,7 +1168,7 @@ table.semanticForms {
   th:last-of-type, td:last-of-type {
     border-right: none;
   }
-  
+
   tbody {
     tr:last-of-type {
       th, td {
@@ -1180,6 +1181,6 @@ table.semanticForms {
   menu:has(li > input, li > label, li > button, li > select, li > textarea) {
     width: max-content;
   }
-  
+
 }
 // #endregion
