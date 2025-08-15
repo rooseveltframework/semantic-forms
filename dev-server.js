@@ -26,5 +26,6 @@ spawnSync('node', ['build.js', '--development-mode'], {
 
 spawn('http-server', ['public/'], {
   stdio: 'inherit',
-  cwd: 'docs'
+  cwd: 'docs',
+  shell: true
 })
