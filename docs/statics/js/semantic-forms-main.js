@@ -14,7 +14,10 @@ require('semantic-forms')()
 
 // dark mode / light mode
 function toggleDarkMode (mode) {
+  document.body.classList.remove('light', 'dark')
+
   if (mode === 'light' || document.querySelector('html').className === 'dark') {
+    document.body.classList.toggle('light', true)
     document.querySelector('html').className = 'light'
     document.querySelector('link[href="/css/highlight.js.dark.css"]')?.remove()
     document.querySelector('link[href="/css/highlight.js.light.css"]')?.remove()
@@ -26,6 +29,7 @@ function toggleDarkMode (mode) {
       form.classList.remove('dark')
     }
   } else {
+    document.body.classList.toggle('dark', true)
     document.querySelector('html').className = 'dark'
     document.querySelector('link[href="/css/highlight.js.dark.css"]')?.remove()
     document.querySelector('link[href="/css/highlight.js.light.css"]')?.remove()

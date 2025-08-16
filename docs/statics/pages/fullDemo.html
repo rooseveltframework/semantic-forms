@@ -1232,11 +1232,6 @@
     </main>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        document.body.insertAdjacentHTML('afterbegin', '<p id="mode"><button></button></p>')
-        document.querySelector('#mode button').addEventListener('click', (event) => toggleDarkMode())
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) toggleDarkMode('dark')
-        else toggleDarkMode('light')
-
         const forms = document.querySelectorAll('form')
         for (const form of forms) {
           form.addEventListener('submit', e => e.preventDefault())
@@ -1250,28 +1245,6 @@
           })
         }
       })
-
-      function toggleDarkMode (mode) {
-        if (mode === 'light' || document.body.className === 'dark') {
-          document.documentElement.className = 'light'
-          document.body.className = 'light'
-          document.querySelector('#mode button').innerHTML = 'Switch to dark mode'
-          const forms = document.querySelectorAll('form')
-          for (const form of forms) {
-            form.classList.add('light')
-            form.classList.remove('dark')
-          }
-        } else {
-          document.documentElement.className = 'dark'
-          document.body.className = 'dark'
-          document.querySelector('#mode button').innerHTML = 'Switch to light mode'
-          const forms = document.querySelectorAll('form')
-          for (const form of forms) {
-            form.classList.add('dark')
-            form.classList.remove('light')
-          }
-        }
-      }
     </script>
   </body>
 </html>
