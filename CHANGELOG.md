@@ -1,3 +1,8 @@
+## 5.1.4
+
+- Fixed clipped help icon on Firefox.
+- Updated dependencies.
+
 ## 5.1.3
 
 - Added support for range inputs that display their value as you slide it around.
