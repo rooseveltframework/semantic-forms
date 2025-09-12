@@ -1,3 +1,8 @@
+## 5.1.5
+
+- Added `no-float-label` class to disable float labels on a per input basis.
+- Updated dependencies.
+
 ## 5.1.4
 
 - Fixed clipped help icon on Firefox.
