@@ -564,8 +564,8 @@ table.semanticForms.light {
         input:not([type='submit'], [type='reset'], [type='image']),
         select,
         textarea {
-          &:focus:not([type=checkbox], [type=radio]) ~ label:first-of-type,
-          &:not(:placeholder-shown, [type=checkbox], [type=radio]) ~ label:first-of-type {
+          &:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
+          &:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
             color: var(--semanticFormsTextColor) !important;
             // TODO: finish this work on making the help icon responsive
             // width: 100%;
@@ -577,6 +577,16 @@ table.semanticForms.light {
             //   position: static;
             //   right: auto;
             // }
+          }
+        }
+
+        // hide float label if no-float-label class is present
+        input:not([type='submit'], [type='reset'], [type='image']),
+        select,
+        textarea {
+          &:focus.no-float-label ~ label:first-of-type,
+          &:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
+            display: none;
           }
         }
 

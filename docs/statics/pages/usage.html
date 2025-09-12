@@ -121,6 +121,24 @@
         </li>
       </ul>
 
+      <p>You can also disable float labels on a per-field basis with the <code>no-float-label</code> class:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <dt><label for="search">Search</label></dt>
+    <dd><input id="search" name="search" type="search" placeholder="e.g. cool stuff" class="no-float-label"></dd>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <dt><label for="search">Search</label></dt>
+          <dd><input id="search" name="search" type="search" placeholder="e.g. cool stuff" class="no-float-label"></dd>
+        </dl>
+      </form>
+
       <h4 id="responsivecolumns">Responsive columns</h4>
 
       <p>This feature makes it so the form fields will grow, shrink, expand the number of columns, or reduce the number of columns based on how much space exists in the container. You can customize it by applying various <code>colspan-#</code> classes to various elements in the form markup structure.</p>
