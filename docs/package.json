@@ -9,16 +9,16 @@
     "highlight.js": "11.11.1",
     "roosevelt": "0.31.4",
     "semantic-forms": "../",
-    "sass": "1.90.0",
+    "sass": "1.92.1",
     "teddy": "1.1.4",
-    "webpack": "5.101.2"
+    "webpack": "5.101.3"
   },
   "devDependencies": {
     "http-server": "14.1.1",
     "nodemon": "3.1.10",
     "standard": "17.1.2",
-    "stylelint": "16.23.1",
-    "stylelint-config-standard-scss": "15.0.1"
+    "stylelint": "16.24.0",
+    "stylelint-config-standard-scss": "16.0.0"
   },
   "nodemonConfig": {
     "ignore": [
