@@ -551,7 +551,8 @@ table.semanticForms.light button:not(.clear):not(.show) {
   max-width: max-content;
   background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
   background-origin: border-box;
-  border: 2px var(--semanticFormsButtonGradientDark) solid;
+  border: 1px var(--semanticFormsButtonGradientDark) solid;
+  corner-shape: squircle;
   border-radius: 20px;
   padding: 5px 25px;
   font-size: 100%;

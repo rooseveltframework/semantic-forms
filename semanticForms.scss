@@ -135,7 +135,7 @@ table.semanticForms.light {
     &:not([type="range"]):placeholder-shown {
       padding: 6px 20px;
     }
-    
+
     &:not([type="range"]) {
       padding: 6px 30px 6px 20px;
     }
@@ -318,7 +318,8 @@ table.semanticForms.light {
     max-width: max-content;
     background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
     background-origin: border-box; // prevents graphical errors in Firefox
-    border: 2px var(--semanticFormsButtonGradientDark) solid;
+    border: 1px var(--semanticFormsButtonGradientDark) solid;
+    corner-shape: squircle;
     border-radius: 20px;
     padding: 5px 25px;
     font-size: 100%;
