@@ -244,7 +244,17 @@ const semanticForms = () => {
   
             const handleInput = () => {
               // reset rows attribute to get accurate scrollHeight
-              input.setAttribute('rows', '1')
+              let maxRows = input.getAttribute('data-max-rows')
+
+              if (maxRows) {
+                if (isNaN(maxRows) || Number(maxRows) <= 0) {
+                  console.warn(`An invalid value was passed to the "data-max-rows" attribute. This value will be ignored.\n\nProvided value: ${input.getAttribute('data-max-rows')}`, )
+                  maxRows = null
+                }
+              }
+
+              const minRows = input.getAttribute('data-max-rows') && Number(input.getAttribute('data-max-rows')) < 5 ? input.getAttribute('data-max-rows') : '5'
+              input.setAttribute('rows', minRows)
   
               // get the computed values object reference
               const style = window.getComputedStyle(input)
@@ -278,8 +288,8 @@ const semanticForms = () => {
               const rows = Math.round((scrollHeight - blockPadding) / lineHeight)
   
               // set the calculated rows attribute (limited by rowLimit)
-              if (input.getAttribute('data-max-rows') !== null && Number(input.getAttribute('data-max-rows'))) {
-                input.setAttribute("rows", "" + Math.min(rows, Number(input.getAttribute('data-max-rows'))))
+              if (maxRows) {
+                input.setAttribute("rows", "" + Math.min(rows, Number(maxRows)))
               } else {
                 input.setAttribute("rows", "" + rows)
               }

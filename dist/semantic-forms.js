@@ -42,7 +42,7 @@ if(input.nodeName==="TEXTAREA"){if(input.getAttribute("data-disable-autosize")==
 // add auto-sizing
 input.style.setProperty("resize","none");input.style.setProperty("min-height","0");input.style.setProperty("max-height","none");input.style.setProperty("height","auto");const handleInput=()=>{
 // reset rows attribute to get accurate scrollHeight
-input.setAttribute("rows","1");
+let maxRows=input.getAttribute("data-max-rows");if(maxRows)if(isNaN(maxRows)||Number(maxRows)<=0){console.warn(`An invalid value was passed to the "data-max-rows" attribute. This value will be ignored.\n\nProvided value: ${input.getAttribute("data-max-rows")}`);maxRows=null}const minRows=input.getAttribute("data-max-rows")&&Number(input.getAttribute("data-max-rows"))<5?input.getAttribute("data-max-rows"):"5";input.setAttribute("rows",minRows);
 // get the computed values object reference
 const style=window.getComputedStyle(input);
 // force content-box for size accurate line-height calculation, remove scrollbars, lock width (subtract inline padding and inline border widths), and remove inline padding and borders to keep width consistent (for text wrapping accuracy)
@@ -56,7 +56,7 @@ input.style.removeProperty("width");input.style.removeProperty("box-sizing");inp
 // subtract blockPadding from scrollHeight and divide that by our lineHeight to get the row count, round to nearest integer as it will always be within ~.1 of the correct whole number
 const rows=Math.round((scrollHeight-blockPadding)/lineHeight);
 // set the calculated rows attribute (limited by rowLimit)
-if(input.getAttribute("data-max-rows")!==null&&Number(input.getAttribute("data-max-rows")))input.setAttribute("rows",""+Math.min(rows,Number(input.getAttribute("data-max-rows"))));else input.setAttribute("rows",""+rows)};input.addEventListener("input",handleInput);
+if(maxRows)input.setAttribute("rows",""+Math.min(rows,Number(maxRows)));else input.setAttribute("rows",""+rows)};input.addEventListener("input",handleInput);
 // trigger the event to set the initial rows value
 input.dispatchEvent(new Event("input",{bubbles:true}))}
 // shifts the clear button to the right if a scrollbar is present
