@@ -65,7 +65,7 @@ form.semanticForms, form.semanticForms.light, table.semanticForms {
 @media (prefers-color-scheme: dark) {
   html:not(.light) {
     body:not(.light) {
-      form.semanticForms, table.semanticForms {
+      form.semanticForms:not(.light), table.semanticForms:not(.light) {
         @include dark-mode;
       }
     }
@@ -78,6 +78,10 @@ html:not(.light) {
       @include dark-mode;
     }
   }
+}
+
+form.semanticForms.dark, table.semanticForms.dark {
+  @include dark-mode;
 }
 // #endregion
 
