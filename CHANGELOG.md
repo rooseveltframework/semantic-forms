@@ -1,3 +1,9 @@
+## Next version
+
+- Updated textarea elements to autosize based on input text, can be disabled with `data-no-autosize` attribute. Row count can be limited with `data-max-rows` attribute.
+- Fixed a visual bug where number input up/down arrows would be shifted when the clear button was not visible.
+- Fixed a bug where forms with an explicit light/dark class would be overwritten by the system preference.
+
 ## 5.1.5
 
 - Added `no-float-label` class to disable float labels on a per input basis.

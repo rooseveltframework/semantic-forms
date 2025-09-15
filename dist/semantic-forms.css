@@ -32,7 +32,7 @@ form.semanticForms, form.semanticForms.light, table.semanticForms {
 }
 
 @media (prefers-color-scheme: dark) {
-  html:not(.light) body:not(.light) form.semanticForms, html:not(.light) body:not(.light) table.semanticForms {
+  html:not(.light) body:not(.light) form.semanticForms:not(.light), html:not(.light) body:not(.light) table.semanticForms:not(.light) {
     --semanticFormsFormBgColor: #555;
     --inputBackgroudColor: rgba(85,85,85,0.1);
     --semanticFormsFormSubBgColor: #2f2f2f;
@@ -57,7 +57,7 @@ form.semanticForms, form.semanticForms.light, table.semanticForms {
     --semanticFormsCustomResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
     --semanticFormsSearchIcon: url("data:image/svg+xml,%3Csvg%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.7955%2015.8111L21%2021M18%2010.5C18%2014.6421%2014.6421%2018%2010.5%2018C6.35786%2018%203%2014.6421%203%2010.5C3%206.35786%206.35786%203%2010.5%203C14.6421%203%2018%206.35786%2018%2010.5Z%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
   }
-  html:not(.light) body:not(.light) form.semanticForms input::-webkit-calendar-picker-indicator, html:not(.light) body:not(.light) table.semanticForms input::-webkit-calendar-picker-indicator {
+  html:not(.light) body:not(.light) form.semanticForms:not(.light) input::-webkit-calendar-picker-indicator, html:not(.light) body:not(.light) table.semanticForms:not(.light) input::-webkit-calendar-picker-indicator {
     filter: invert(100%);
   }
 }
@@ -87,6 +87,35 @@ html:not(.light) body:not(.light) form.semanticForms.dark, html:not(.light) body
   --semanticFormsSearchIcon: url("data:image/svg+xml,%3Csvg%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.7955%2015.8111L21%2021M18%2010.5C18%2014.6421%2014.6421%2018%2010.5%2018C6.35786%2018%203%2014.6421%203%2010.5C3%206.35786%206.35786%203%2010.5%203C14.6421%203%2018%206.35786%2018%2010.5Z%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
 }
 html:not(.light) body:not(.light) form.semanticForms.dark input::-webkit-calendar-picker-indicator, html:not(.light) body:not(.light) table.semanticForms.dark input::-webkit-calendar-picker-indicator {
+  filter: invert(100%);
+}
+
+form.semanticForms.dark, table.semanticForms.dark {
+  --semanticFormsFormBgColor: #555;
+  --inputBackgroudColor: rgba(85,85,85,0.1);
+  --semanticFormsFormSubBgColor: #2f2f2f;
+  --semanticFormsTextColor: #fff;
+  --semanticFormsBorderColor: #656565;
+  --semanticFormsSubBorderColor: #3f3f3f;
+  --semanticFormsPlaceholderColor: rgba(255, 255, 255, 0.85);
+  --semanticFormsScrollbarColor: #373737;
+  --semanticFormsClearButtonColor: #fff;
+  --semanticFormsButtonGradientLight: #6f6f6f;
+  --semanticFormsButtonGradientDark: #373737;
+  --semanticFormsNestedFieldsetBgColor: rgba(255, 255, 255, .05);
+  --semanticFormsNestedFieldsetBorder: 1px rgba(255, 255, 255, .1) solid;
+  --semanticFormsNestedInputBgColor: rgba(255, 255, 255, .15);
+  --semanticFormsBorder: none;
+  --semanticFormsTableTitleColor: #3f3f3f;
+  --semanticFormsTableHeaderColor: #4f4f4f;
+  --semanticFormsTableOddColor: #3f3f3f;
+  --semanticFormsTableEvenColor: #4f4f4f;
+  --semanticFormsTableBorder: 1px #656565 solid;
+  --semanticFormsSelectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
+  --semanticFormsCustomResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
+  --semanticFormsSearchIcon: url("data:image/svg+xml,%3Csvg%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.7955%2015.8111L21%2021M18%2010.5C18%2014.6421%2014.6421%2018%2010.5%2018C6.35786%2018%203%2014.6421%203%2010.5C3%206.35786%206.35786%203%2010.5%203C14.6421%203%2018%206.35786%2018%2010.5Z%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+}
+form.semanticForms.dark input::-webkit-calendar-picker-indicator, table.semanticForms.dark input::-webkit-calendar-picker-indicator {
   filter: invert(100%);
 }
 
@@ -181,6 +210,20 @@ table.semanticForms.light textarea {
   touch-action: manipulation;
   outline: none;
 }
+form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]):placeholder-shown,
+form.semanticForms select:not([type=range]):placeholder-shown,
+form.semanticForms textarea:not([type=range]):placeholder-shown,
+form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]):placeholder-shown,
+form.semanticForms.light select:not([type=range]):placeholder-shown,
+form.semanticForms.light textarea:not([type=range]):placeholder-shown,
+table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]):placeholder-shown,
+table.semanticForms select:not([type=range]):placeholder-shown,
+table.semanticForms textarea:not([type=range]):placeholder-shown,
+table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]):placeholder-shown,
+table.semanticForms.light select:not([type=range]):placeholder-shown,
+table.semanticForms.light textarea:not([type=range]):placeholder-shown {
+  padding: 6px 20px;
+}
 form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]),
 form.semanticForms select:not([type=range]),
 form.semanticForms textarea:not([type=range]),
@@ -219,6 +262,31 @@ table.semanticForms.light select[type=text]:has(~ button.show),
 table.semanticForms.light textarea[type=password],
 table.semanticForms.light textarea[type=text]:has(~ button.show) {
   padding: 6px 55px 6px 20px;
+}
+form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=range], form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
+form.semanticForms select[type=range],
+form.semanticForms select[type=color],
+form.semanticForms textarea[type=range],
+form.semanticForms textarea[type=color],
+form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=range],
+form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
+form.semanticForms.light select[type=range],
+form.semanticForms.light select[type=color],
+form.semanticForms.light textarea[type=range],
+form.semanticForms.light textarea[type=color],
+table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=range],
+table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
+table.semanticForms select[type=range],
+table.semanticForms select[type=color],
+table.semanticForms textarea[type=range],
+table.semanticForms textarea[type=color],
+table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=range],
+table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
+table.semanticForms.light select[type=range],
+table.semanticForms.light select[type=color],
+table.semanticForms.light textarea[type=range],
+table.semanticForms.light textarea[type=color] {
+  cursor: pointer;
 }
 form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled],
 form.semanticForms select[disabled],
@@ -375,9 +443,9 @@ form.semanticForms.light textarea,
 table.semanticForms textarea,
 table.semanticForms.light textarea {
   resize: vertical;
+  line-height: 1.5;
   width: 100%;
   min-height: 38px;
-  height: 100px;
 }
 form.semanticForms input[type=search],
 form.semanticForms.light input[type=search],
@@ -905,6 +973,10 @@ table.semanticForms.light input[type=checkbox] + label:first-of-type,
 table.semanticForms.light input[type=radio] + label:first-of-type {
   padding-top: 2px;
   font-size: var(--semanticFormsInputFontSize);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 form.semanticForms input[type=checkbox] + label:first-of-type span.required,
 form.semanticForms input[type=radio] + label:first-of-type span.required,
@@ -928,6 +1000,16 @@ table.semanticForms.light input[type=checkbox] + label:first-of-type span.help,
 table.semanticForms.light input[type=radio] + label:first-of-type span.help {
   cursor: help;
   pointer-events: auto;
+}
+form.semanticForms input[type=checkbox] + label:first-of-type span.help svg,
+form.semanticForms input[type=radio] + label:first-of-type span.help svg,
+form.semanticForms.light input[type=checkbox] + label:first-of-type span.help svg,
+form.semanticForms.light input[type=radio] + label:first-of-type span.help svg,
+table.semanticForms input[type=checkbox] + label:first-of-type span.help svg,
+table.semanticForms input[type=radio] + label:first-of-type span.help svg,
+table.semanticForms.light input[type=checkbox] + label:first-of-type span.help svg,
+table.semanticForms.light input[type=radio] + label:first-of-type span.help svg {
+  width: 80%;
 }
 form.semanticForms .floatLabelForm,
 form.semanticForms.light .floatLabelForm,
@@ -1146,6 +1228,9 @@ table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRad
   user-select: none;
   color: var(--semanticFormsPlaceholderColor);
   touch-action: manipulation;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.required,
 form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.required,
@@ -1161,6 +1246,12 @@ table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .c
 table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help {
   cursor: help;
   pointer-events: auto;
+}
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help svg,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help svg,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help svg,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help svg {
+  width: 80%;
 }
 form.semanticForms .floatLabelForm div dt,
 form.semanticForms.light .floatLabelForm div dt,
