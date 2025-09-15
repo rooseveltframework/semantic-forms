@@ -1,8 +1,12 @@
-## Next version
+## 5.1.6
 
-- Updated textarea elements to autosize based on input text, can be disabled with `data-no-autosize` attribute. Row count can be limited with `data-max-rows` attribute.
-- Fixed a visual bug where number input up/down arrows would be shifted when the clear button was not visible.
+- Added feature to autosize textareas based on input text. This can be disabled with `data-no-autosize` attribute. The row count can also be limited with `data-max-rows` attribute.
+- Altered button aesthetics.
+- Adjusted the size and placement of help icons.
+- Added pointer cursor styling to range and color inputs.
+- Fixed a visual bug where the clear field displaced input typing areas even when it was not visible.
 - Fixed a bug where forms with an explicit light/dark class would be overwritten by the system preference.
+- Updated dependencies.
 
 ## 5.1.5
 
