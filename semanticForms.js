@@ -154,6 +154,9 @@ const semanticForms = () => {
               input.value = ''
               input.focus()
               lastClearFieldPressed = input.id
+
+              // used for any other updates required by various inputs
+              input.dispatchEvent(new Event('input', { bubbles: true }))
             })
             insertAfter(clearBtn, dd.querySelector('label'))
           }
@@ -231,15 +234,71 @@ const semanticForms = () => {
         // #endregion
 
         // add listener to shift clear button when scrollbar present
-        for (const textarea of document.querySelectorAll('textarea')) {
-          // shifts the close button to the right if a scrollbar is present
-          const shiftCloseBtn = () => {
-            const clearBtn = textarea.parentElement?.querySelector('button.clear')
-            if (clearBtn) clearBtn.style.marginRight = textarea.clientHeight < textarea.scrollHeight ? '15px' : ''
+        if (input.nodeName === 'TEXTAREA') {
+          if (input.getAttribute('data-disable-autosize') === null) {
+            // add auto-sizing
+            input.style.setProperty('resize', 'none')
+            input.style.setProperty('min-height', '0')
+            input.style.setProperty('max-height', 'none')
+            input.style.setProperty('height', 'auto')
+  
+            const handleInput = () => {
+              // reset rows attribute to get accurate scrollHeight
+              input.setAttribute('rows', '1')
+  
+              // get the computed values object reference
+              const style = window.getComputedStyle(input)
+  
+              // force content-box for size accurate line-height calculation, remove scrollbars, lock width (subtract inline padding and inline border widths), and remove inline padding and borders to keep width consistent (for text wrapping accuracy)
+              const inlinePadding = parseFloat(style['padding-left']) + parseFloat(style['padding-right'])
+              const inlineBorderWidth = parseFloat(style['border-left-width']) + parseFloat(style['border-right-width'])
+              input.style.setProperty('overflow', 'hidden', 'important')
+              input.style.setProperty('width', (parseFloat(style['width']) - inlinePadding - inlineBorderWidth) + 'px')
+              input.style.setProperty('box-sizing', 'content-box')
+              input.style.setProperty('padding-inline', '0')
+              input.style.setProperty('border-width', '0')
+              
+              // get the base line height, and top / bottom padding
+              const blockPadding = parseFloat(style['padding-top']) + parseFloat(style['padding-bottom'])
+              const lineHeight = style['line-height'] === 'normal' 
+                ? parseFloat(style['height']) // if line-height is not explicitly set, use the computed height value (ignore padding due to content-box)
+                : parseFloat(style['line-height']) // otherwise (line-height is explicitly set), use the computed line-height value
+  
+              // get the scroll height (rounding to be safe to ensure cross browser consistency)
+              const scrollHeight = Math.round(input.scrollHeight)
+  
+              // undo overflow, width, border-width, box-sizing & inline padding overrides
+              input.style.removeProperty('width')
+              input.style.removeProperty('box-sizing')
+              input.style.removeProperty('padding-inline')
+              input.style.removeProperty('border-width')
+              input.style.removeProperty('overflow')
+  
+              // subtract blockPadding from scrollHeight and divide that by our lineHeight to get the row count, round to nearest integer as it will always be within ~.1 of the correct whole number
+              const rows = Math.round((scrollHeight - blockPadding) / lineHeight)
+  
+              // set the calculated rows attribute (limited by rowLimit)
+              if (input.getAttribute('data-max-rows') !== null && Number(input.getAttribute('data-max-rows'))) {
+                input.setAttribute("rows", "" + Math.min(rows, Number(input.getAttribute('data-max-rows'))))
+              } else {
+                input.setAttribute("rows", "" + rows)
+              }
+            }
+  
+            input.addEventListener('input', handleInput)
+  
+            // trigger the event to set the initial rows value
+            input.dispatchEvent(new Event('input', { bubbles: true }))
           }
 
-          textarea.addEventListener('input', shiftCloseBtn)
-          textarea.addEventListener('mouseup', shiftCloseBtn)
+          // shifts the clear button to the right if a scrollbar is present
+          const shiftClearBtn = () => {
+            const clearBtn = input.parentElement?.querySelector('button.clear')
+            if (clearBtn) clearBtn.style.marginRight = input.clientHeight < input.scrollHeight ? '15px' : ''
+          }
+          input.addEventListener('input', shiftClearBtn)
+          input.addEventListener('mouseup', shiftClearBtn)
+          shiftClearBtn()
         }
       }
     }

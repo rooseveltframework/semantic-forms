@@ -132,12 +132,21 @@ table.semanticForms.light {
     touch-action: manipulation;
     outline: none;
 
+    &:not([type="range"]):placeholder-shown {
+      padding: 6px 20px;
+    }
+    
     &:not([type="range"]) {
       padding: 6px 30px 6px 20px;
     }
 
     &[type="password"], &[type="text"]:has(~ button.show) {
       padding: 6px 55px 6px 20px;
+    }
+
+    &[type="range"],
+    &[type="color"] {
+      cursor: pointer;
     }
 
     &[disabled] {
@@ -230,9 +239,9 @@ table.semanticForms.light {
 
   textarea {
     resize: vertical;
+    line-height: 1.5;
     width: 100%;
     min-height: 38px;
-    height: 100px;
   }
 
   input[type="search"] {
@@ -541,6 +550,10 @@ table.semanticForms.light {
     // shift text down to match center
     padding-top: 2px;
     font-size: var(--semanticFormsInputFontSize);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 
     span.required {
       cursor: help;
@@ -551,6 +564,10 @@ table.semanticForms.light {
     span.help {
       cursor: help;
       pointer-events: auto;
+
+      svg {
+        width: 80%;
+      }
     }
   }
 
@@ -680,6 +697,9 @@ table.semanticForms.light {
           user-select: none;
           color: var(--semanticFormsPlaceholderColor);
           touch-action: manipulation;
+          display: flex;
+          align-items: center;
+          gap: 5px;
 
           // TODO: same as below
           // &:has(span.help) {
@@ -707,6 +727,10 @@ table.semanticForms.light {
             // right: 0;
             cursor: help;
             pointer-events: auto;
+
+            svg {
+              width: 80%;
+            }
           }
 
           // // TODO: cover the case where an input is required AND has help text

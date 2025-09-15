@@ -23,7 +23,7 @@ function toggleDarkMode (mode) {
     document.querySelector('link[href="/css/highlight.js.light.css"]')?.remove()
     document.querySelector('head').insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="/css/highlight.js.light.css">')
     document.querySelector('#mode button').innerHTML = 'Switch to dark mode'
-    const forms = document.querySelectorAll('form')
+    const forms = document.querySelectorAll('.semanticForms')
     for (const form of forms) {
       form.classList.add('light')
       form.classList.remove('dark')
@@ -35,7 +35,7 @@ function toggleDarkMode (mode) {
     document.querySelector('link[href="/css/highlight.js.light.css"]')?.remove()
     document.querySelector('head').insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="/css/highlight.js.dark.css">')
     document.querySelector('#mode button').innerHTML = 'Switch to light mode'
-    const forms = document.querySelectorAll('form')
+    const forms = document.querySelectorAll('.semanticForms')
     for (const form of forms) {
       form.classList.add('dark')
       form.classList.remove('light')

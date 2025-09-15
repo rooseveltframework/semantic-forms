@@ -22,7 +22,9 @@ if(dd.parentElement.nodeName==="DIV")dd.parentElement.remove();const div=documen
 // standard inputs
 if(type!=="checkbox"&&type!=="radio"){if(!input.getAttribute("placeholder"))input.setAttribute("placeholder"," ");const div=document.createElement("div");const dt=label.closest("dt");const dd=input.closest("dd");if(!dt){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that does not have a corresponding <dt> element.`);continue}if(!dd){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that does not have a corresponding <dd> element.`);continue}
 // #region clear button
-if(input.nodeName!=="SELECT"&&type!=="range"){const clearBtn=document.createElement("button");clearBtn.type="button";clearBtn.title=input.getAttribute("data-clear-field-text")||"Clear field";clearBtn.ariaLabel=input.getAttribute("data-clear-field-text")||"Clear field";clearBtn.tabIndex=-1;clearBtn.innerHTML='<svg viewBox="0 0 16 16" width="18" height="18"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />';clearBtn.classList.add("clear");clearBtn.id=`semanticFormsClearButton_${input.id}`;clearBtn.addEventListener("click",()=>{input.previousValue=input.value;input.value="";input.focus();lastClearFieldPressed=input.id});insertAfter(clearBtn,dd.querySelector("label"))}input.addEventListener("focus",event=>{if(event.target.nodeName==="INPUT")lastFocusedInput=event.target});
+if(input.nodeName!=="SELECT"&&type!=="range"){const clearBtn=document.createElement("button");clearBtn.type="button";clearBtn.title=input.getAttribute("data-clear-field-text")||"Clear field";clearBtn.ariaLabel=input.getAttribute("data-clear-field-text")||"Clear field";clearBtn.tabIndex=-1;clearBtn.innerHTML='<svg viewBox="0 0 16 16" width="18" height="18"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />';clearBtn.classList.add("clear");clearBtn.id=`semanticFormsClearButton_${input.id}`;clearBtn.addEventListener("click",()=>{input.previousValue=input.value;input.value="";input.focus();lastClearFieldPressed=input.id;
+// used for any other updates required by various inputs
+input.dispatchEvent(new Event("input",{bubbles:true}))});insertAfter(clearBtn,dd.querySelector("label"))}input.addEventListener("focus",event=>{if(event.target.nodeName==="INPUT")lastFocusedInput=event.target});
 // #endregion
 // check for colspan- utility class
 if(/colspan-/.test(dd.className)){const match=dd.className.match(/colspan-([0-9]|full)/)[0];dd.classList.remove(match);div.classList.add(match)}div.append(dt,dd);dl.append(div);
@@ -36,9 +38,29 @@ if(type==="range"&&input.classList.contains("displayValue")){const label=input.p
 if(type==="password"&&input.getAttribute("data-no-reveal")===null){const showBtn=document.createElement("button");showBtn.type="button";showBtn.title=input.getAttribute("data-show-password-text")||"Show password";showBtn.ariaLabel=input.getAttribute("data-show-password-text")||"Show password";showBtn.tabIndex=-1;showBtn.innerHTML=passwordShow;showBtn.classList.add("show");showBtn.id=`semanticFormsShowButton_${input.id}`;const dd=input.closest("dd");if(!dd){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that is not inside a <dd> element.`);continue}showBtn.addEventListener("click",()=>{if(input.type==="password"){showBtn.innerHTML=passwordHide;showBtn.title=input.getAttribute("data-hide-password-text")||"Hide password";showBtn.ariaLabel=input.getAttribute("data-hide-password-text")||"Hide password";input.type="text"}else{showBtn.innerHTML=passwordShow;showBtn.title=input.getAttribute("data-show-password-text")||"Show password";showBtn.ariaLabel=input.getAttribute("data-show-password-text")||"Show password";input.type="password"}input.focus()});insertAfter(showBtn,dd.querySelector("label"))}
 // #endregion
 // add listener to shift clear button when scrollbar present
-for(const textarea of document.querySelectorAll("textarea")){
-// shifts the close button to the right if a scrollbar is present
-const shiftCloseBtn=()=>{const clearBtn=textarea.parentElement?.querySelector("button.clear");if(clearBtn)clearBtn.style.marginRight=textarea.clientHeight<textarea.scrollHeight?"15px":""};textarea.addEventListener("input",shiftCloseBtn);textarea.addEventListener("mouseup",shiftCloseBtn)}}}}
+if(input.nodeName==="TEXTAREA"){if(input.getAttribute("data-disable-autosize")===null){
+// add auto-sizing
+input.style.setProperty("resize","none");input.style.setProperty("min-height","0");input.style.setProperty("max-height","none");input.style.setProperty("height","auto");const handleInput=()=>{
+// reset rows attribute to get accurate scrollHeight
+input.setAttribute("rows","1");
+// get the computed values object reference
+const style=window.getComputedStyle(input);
+// force content-box for size accurate line-height calculation, remove scrollbars, lock width (subtract inline padding and inline border widths), and remove inline padding and borders to keep width consistent (for text wrapping accuracy)
+const inlinePadding=parseFloat(style["padding-left"])+parseFloat(style["padding-right"]);const inlineBorderWidth=parseFloat(style["border-left-width"])+parseFloat(style["border-right-width"]);input.style.setProperty("overflow","hidden","important");input.style.setProperty("width",parseFloat(style["width"])-inlinePadding-inlineBorderWidth+"px");input.style.setProperty("box-sizing","content-box");input.style.setProperty("padding-inline","0");input.style.setProperty("border-width","0");
+// get the base line height, and top / bottom padding
+const blockPadding=parseFloat(style["padding-top"])+parseFloat(style["padding-bottom"]);const lineHeight=style["line-height"]==="normal"?parseFloat(style["height"]):parseFloat(style["line-height"]);// otherwise (line-height is explicitly set), use the computed line-height value
+// get the scroll height (rounding to be safe to ensure cross browser consistency)
+const scrollHeight=Math.round(input.scrollHeight);
+// undo overflow, width, border-width, box-sizing & inline padding overrides
+input.style.removeProperty("width");input.style.removeProperty("box-sizing");input.style.removeProperty("padding-inline");input.style.removeProperty("border-width");input.style.removeProperty("overflow");
+// subtract blockPadding from scrollHeight and divide that by our lineHeight to get the row count, round to nearest integer as it will always be within ~.1 of the correct whole number
+const rows=Math.round((scrollHeight-blockPadding)/lineHeight);
+// set the calculated rows attribute (limited by rowLimit)
+if(input.getAttribute("data-max-rows")!==null&&Number(input.getAttribute("data-max-rows")))input.setAttribute("rows",""+Math.min(rows,Number(input.getAttribute("data-max-rows"))));else input.setAttribute("rows",""+rows)};input.addEventListener("input",handleInput);
+// trigger the event to set the initial rows value
+input.dispatchEvent(new Event("input",{bubbles:true}))}
+// shifts the clear button to the right if a scrollbar is present
+const shiftClearBtn=()=>{const clearBtn=input.parentElement?.querySelector("button.clear");if(clearBtn)clearBtn.style.marginRight=input.clientHeight<input.scrollHeight?"15px":""};input.addEventListener("input",shiftClearBtn);input.addEventListener("mouseup",shiftClearBtn);shiftClearBtn()}}}}
 /**
    * Places an element immediately after another element
    * @param {Object} newNode element being placed after the reference node
