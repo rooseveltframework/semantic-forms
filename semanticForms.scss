@@ -1,6 +1,7 @@
 // #region global styles
 form.semanticForms, form.semanticForms.light, table.semanticForms {
   --semanticFormsFontFamily: sans-serif;
+  --semanticFormsFontSize: 16px;
   --semanticFormsFormBgColor: #fff;
   --semanticFormsFormSubBgColor: #f5f5f5;
   --semanticFormsTextColor: #000;
@@ -90,6 +91,7 @@ form.semanticForms.light,
 table.semanticForms,
 table.semanticForms.light {
   font-family: var(--semanticFormsFontFamily);
+  font-size: var(--semanticFormsFontSize);
   width: 100%;
   container-type: inline-size;
   container-name: semanticForm;
@@ -325,9 +327,11 @@ table.semanticForms.light {
     font-size: 100%;
     line-height: 1;
     user-select: none;
+    transform: scale(1);
+    transition: transform 180ms;
 
     &:active {
-      background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientDark) 0%, var(--semanticFormsButtonGradientLight) 100%);
+      transform: scale(0.97);
     }
   }
 
@@ -412,6 +416,72 @@ table.semanticForms.light {
     }
   }
 
+  // #region summary
+  details {
+    box-sizing: border-box; // ensure sizings match across browsers
+    position: relative;
+    background-color: var(--semanticFormsNestedFieldsetBgColor); // TODO: check if this is right
+    border: var(--semanticFormsNestedFieldsetBorder);
+    border-radius: var(--semanticFormsBorderRadius);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px 10px 10px 10px;
+    margin-bottom: 15px;
+    min-height: calc(var(--semanticFormsFontSize) + 20px);
+    
+    &::details-content {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
+    }
+
+    summary {
+      margin: 0;
+      line-height: 1;
+      position: absolute;
+      top: 10px;
+      left: 22px;
+      transition: top 250ms;
+
+      &::-webkit-details-marker,
+      &::marker {
+        content: ''; // hide default arrow, as it cannot be animated
+      }
+
+      &::after {
+        // custom arrow
+        content: '';
+        border-width: .4rem;
+        border-style: solid;
+        border-color: transparent transparent transparent var(--semanticFormsTextColor);
+        position: absolute;
+        top: 0;
+        left: -10px;
+        transform: rotate(0);
+        transform-origin: .2rem 50%;
+        transition: 250ms transform ease;
+      }
+    }
+  }
+
+  details[open] {
+    &::details-content {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
+    }
+
+    summary {
+      // shift summary to match position on fieldsets
+      top: -8px;
+
+      &::after {
+        transform: rotate(90deg);
+      }
+    }
+  }
+  
   details[open], summary {
     margin-bottom: 10px;
   }
@@ -419,6 +489,7 @@ table.semanticForms.light {
   summary {
     cursor: pointer;
   }
+  // #endregion
 
   // update for scrollbars
   @supports (scrollbar-color: auto) {
