@@ -850,12 +850,6 @@ table.semanticForms.light details[open]::details-content {
   opacity: 1;
   transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
 }
-form.semanticForms details[open] summary,
-form.semanticForms.light details[open] summary,
-table.semanticForms details[open] summary,
-table.semanticForms.light details[open] summary {
-  top: -8px;
-}
 form.semanticForms details[open] summary::after,
 form.semanticForms.light details[open] summary::after,
 table.semanticForms details[open] summary::after,

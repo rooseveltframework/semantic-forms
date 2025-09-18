@@ -1,7 +1,8 @@
-## Next version
+## 5.1.7
 
 - Added styling to details elements.
 - Added a "scale down" effect to pressed buttons.
+- Updated dependencies.
 
 ## 5.1.6
 

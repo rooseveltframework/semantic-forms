@@ -429,7 +429,7 @@ table.semanticForms.light {
     padding: 20px 10px 10px 10px;
     margin-bottom: 15px;
     min-height: calc(var(--semanticFormsFontSize) + 20px);
-    
+
     &::details-content {
       visibility: hidden;
       opacity: 0;
@@ -473,15 +473,12 @@ table.semanticForms.light {
     }
 
     summary {
-      // shift summary to match position on fieldsets
-      top: -8px;
-
       &::after {
         transform: rotate(90deg);
       }
     }
   }
-  
+
   details[open], summary {
     margin-bottom: 10px;
   }
