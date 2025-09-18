@@ -1,3 +1,8 @@
+## Next version
+
+- Added styling to details elements.
+- Added a "scale down" effect to pressed buttons.
+
 ## 5.1.6
 
 - Added feature to autosize textareas based on input text. This can be disabled with `data-no-autosize` attribute. The row count can also be limited with `data-max-rows` attribute.

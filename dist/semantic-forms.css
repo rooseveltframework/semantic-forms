@@ -1,5 +1,6 @@
 form.semanticForms, form.semanticForms.light, table.semanticForms {
   --semanticFormsFontFamily: sans-serif;
+  --semanticFormsFontSize: 16px;
   --semanticFormsFormBgColor: #fff;
   --semanticFormsFormSubBgColor: #f5f5f5;
   --semanticFormsTextColor: #000;
@@ -124,6 +125,7 @@ form.semanticForms.light,
 table.semanticForms,
 table.semanticForms.light {
   font-family: var(--semanticFormsFontFamily);
+  font-size: var(--semanticFormsFontSize);
   width: 100%;
   container-type: inline-size;
   container-name: semanticForm;
@@ -558,6 +560,8 @@ table.semanticForms.light button:not(.clear):not(.show) {
   font-size: 100%;
   line-height: 1;
   user-select: none;
+  transform: scale(1);
+  transition: transform 180ms;
 }
 form.semanticForms input[type=submit]:active,
 form.semanticForms input[type=reset]:active,
@@ -571,7 +575,7 @@ table.semanticForms button:not(.clear):not(.show):active,
 table.semanticForms.light input[type=submit]:active,
 table.semanticForms.light input[type=reset]:active,
 table.semanticForms.light button:not(.clear):not(.show):active {
-  background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientDark) 0%, var(--semanticFormsButtonGradientLight) 100%);
+  transform: scale(0.97);
 }
 form.semanticForms input[type=submit],
 form.semanticForms input[type=reset],
@@ -778,6 +782,85 @@ table.semanticForms.light fieldset fieldset input:not([type=submit], [type=reset
 table.semanticForms.light fieldset fieldset select,
 table.semanticForms.light fieldset fieldset textarea {
   background-color: var(--semanticFormsNestedInputBgColor);
+}
+form.semanticForms details,
+form.semanticForms.light details,
+table.semanticForms details,
+table.semanticForms.light details {
+  box-sizing: border-box;
+  position: relative;
+  background-color: var(--semanticFormsNestedFieldsetBgColor);
+  border: var(--semanticFormsNestedFieldsetBorder);
+  border-radius: var(--semanticFormsBorderRadius);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px 10px 10px 10px;
+  margin-bottom: 15px;
+  min-height: calc(var(--semanticFormsFontSize) + 20px);
+}
+form.semanticForms details::details-content,
+form.semanticForms.light details::details-content,
+table.semanticForms details::details-content,
+table.semanticForms.light details::details-content {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
+}
+form.semanticForms details summary,
+form.semanticForms.light details summary,
+table.semanticForms details summary,
+table.semanticForms.light details summary {
+  margin: 0;
+  line-height: 1;
+  position: absolute;
+  top: 10px;
+  left: 22px;
+  transition: top 250ms;
+}
+form.semanticForms details summary::-webkit-details-marker, form.semanticForms details summary::marker,
+form.semanticForms.light details summary::-webkit-details-marker,
+form.semanticForms.light details summary::marker,
+table.semanticForms details summary::-webkit-details-marker,
+table.semanticForms details summary::marker,
+table.semanticForms.light details summary::-webkit-details-marker,
+table.semanticForms.light details summary::marker {
+  content: "";
+}
+form.semanticForms details summary::after,
+form.semanticForms.light details summary::after,
+table.semanticForms details summary::after,
+table.semanticForms.light details summary::after {
+  content: "";
+  border-width: 0.4rem;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--semanticFormsTextColor);
+  position: absolute;
+  top: 0;
+  left: -10px;
+  transform: rotate(0);
+  transform-origin: 0.2rem 50%;
+  transition: 250ms transform ease;
+}
+form.semanticForms details[open]::details-content,
+form.semanticForms.light details[open]::details-content,
+table.semanticForms details[open]::details-content,
+table.semanticForms.light details[open]::details-content {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
+}
+form.semanticForms details[open] summary,
+form.semanticForms.light details[open] summary,
+table.semanticForms details[open] summary,
+table.semanticForms.light details[open] summary {
+  top: -8px;
+}
+form.semanticForms details[open] summary::after,
+form.semanticForms.light details[open] summary::after,
+table.semanticForms details[open] summary::after,
+table.semanticForms.light details[open] summary::after {
+  transform: rotate(90deg);
 }
 form.semanticForms details[open], form.semanticForms summary,
 form.semanticForms.light details[open],
