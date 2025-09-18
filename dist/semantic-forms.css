@@ -842,6 +842,12 @@ table.semanticForms.light details summary::after {
   transform-origin: 0.2rem 50%;
   transition: 250ms transform ease;
 }
+form.semanticForms details[open],
+form.semanticForms.light details[open],
+table.semanticForms details[open],
+table.semanticForms.light details[open] {
+  padding-top: 35px;
+}
 form.semanticForms details[open]::details-content,
 form.semanticForms.light details[open]::details-content,
 table.semanticForms details[open]::details-content,

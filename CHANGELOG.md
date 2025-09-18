@@ -1,3 +1,7 @@
+## 5.1.8
+
+- Fixed padding on details element contents.
+
 ## 5.1.7
 
 - Added styling to details elements.

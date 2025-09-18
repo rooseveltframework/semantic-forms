@@ -466,6 +466,8 @@ table.semanticForms.light {
   }
 
   details[open] {
+    padding-top: 35px; // TODO: remove this when animated detail label is reintroduced
+
     &::details-content {
       visibility: visible;
       opacity: 1;
