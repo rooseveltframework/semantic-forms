@@ -46,9 +46,9 @@ let maxRows=input.getAttribute("data-max-rows");if(maxRows)if(isNaN(maxRows)||Nu
 // get the computed values object reference
 const style=window.getComputedStyle(input);
 // force content-box for size accurate line-height calculation, remove scrollbars, lock width (subtract inline padding and inline border widths), and remove inline padding and borders to keep width consistent (for text wrapping accuracy)
-const inlinePadding=parseFloat(style["padding-left"])+parseFloat(style["padding-right"]);const inlineBorderWidth=parseFloat(style["border-left-width"])+parseFloat(style["border-right-width"]);input.style.setProperty("overflow","hidden","important");input.style.setProperty("width",parseFloat(style["width"])-inlinePadding-inlineBorderWidth+"px");input.style.setProperty("box-sizing","content-box");input.style.setProperty("padding-inline","0");input.style.setProperty("border-width","0");
+const inlinePadding=parseFloat(style["padding-left"])+parseFloat(style["padding-right"]);const inlineBorderWidth=parseFloat(style["border-left-width"])+parseFloat(style["border-right-width"]);input.style.setProperty("overflow","hidden","important");input.style.setProperty("width",parseFloat(style.width)-inlinePadding-inlineBorderWidth+"px");input.style.setProperty("box-sizing","content-box");input.style.setProperty("padding-inline","0");input.style.setProperty("border-width","0");
 // get the base line height, and top / bottom padding
-const blockPadding=parseFloat(style["padding-top"])+parseFloat(style["padding-bottom"]);const lineHeight=style["line-height"]==="normal"?parseFloat(style["height"]):parseFloat(style["line-height"]);// otherwise (line-height is explicitly set), use the computed line-height value
+const blockPadding=parseFloat(style["padding-top"])+parseFloat(style["padding-bottom"]);const lineHeight=style["line-height"]==="normal"?parseFloat(style.height):parseFloat(style["line-height"]);// otherwise (line-height is explicitly set), use the computed line-height value
 // get the scroll height (rounding to be safe to ensure cross browser consistency)
 const scrollHeight=Math.round(input.scrollHeight);
 // undo overflow, width, border-width, box-sizing & inline padding overrides
