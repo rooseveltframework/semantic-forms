@@ -1,3 +1,8 @@
+## 5.1.9
+
+- Fixed issues related to adding `hidden` attributes to Semantic Forms elements.
+- Updated dependencies.
+
 ## 5.1.8
 
 - Fixed padding on details element contents.

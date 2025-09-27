@@ -130,6 +130,18 @@ table.semanticForms.light {
   container-type: inline-size;
   container-name: semanticForm;
 }
+form.semanticForms [hidden],
+form.semanticForms.light [hidden],
+table.semanticForms [hidden],
+table.semanticForms.light [hidden] {
+  display: none !important;
+}
+form.semanticForms div:has(dd[hidden]),
+form.semanticForms.light div:has(dd[hidden]),
+table.semanticForms div:has(dd[hidden]),
+table.semanticForms.light div:has(dd[hidden]) {
+  display: none !important;
+}
 form.semanticForms:not(table),
 form.semanticForms.light:not(table),
 table.semanticForms:not(table),
