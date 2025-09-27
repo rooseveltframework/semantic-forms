@@ -96,6 +96,16 @@ table.semanticForms.light {
   container-type: inline-size;
   container-name: semanticForm;
 
+  // due to the specificity of some of these rules, [hidden] won't actually hide things, so we're forcing the issue
+  [hidden] {
+    display: none !important;
+  }
+
+  // hides semantic forms divs if the field itself is hidden
+  div:has(dd[hidden]) {
+    display: none !important;
+  }
+
   &:not(table) {
     display: flex;
     flex-direction: column;
