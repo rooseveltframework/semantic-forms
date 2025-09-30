@@ -839,10 +839,10 @@ table.semanticForms.light details summary::-webkit-details-marker,
 table.semanticForms.light details summary::marker {
   content: "";
 }
-form.semanticForms details summary::after,
-form.semanticForms.light details summary::after,
-table.semanticForms details summary::after,
-table.semanticForms.light details summary::after {
+form.semanticForms details summary::before,
+form.semanticForms.light details summary::before,
+table.semanticForms details summary::before,
+table.semanticForms.light details summary::before {
   content: "";
   border-width: 0.4rem;
   border-style: solid;
