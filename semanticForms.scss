@@ -459,7 +459,7 @@ table.semanticForms.light {
         content: ''; // hide default arrow, as it cannot be animated
       }
 
-      &::after {
+      &::before {
         // custom arrow
         content: '';
         border-width: .4rem;
