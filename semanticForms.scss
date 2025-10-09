@@ -359,6 +359,15 @@ table.semanticForms.light {
       filter: brightness(1.05);
     }
   }
+
+  .button-link {
+    display: block;
+
+    &:visited,
+    &:link {
+      color: var(--semanticFormsTextColor) !important;
+    }
+  }
   // #endregion
 
   // #region invalid styling
@@ -1301,9 +1310,8 @@ table.semanticForms {
   }
 
   // adjust styling of button menus in tables
-  menu:has(li > input, li > label, li > button, li > select, li > textarea) {
+  menu:has(li > input, li > label, li > button, li > select, li > textarea, li > a) {
     width: max-content;
   }
-
 }
 // #endregion

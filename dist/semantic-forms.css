@@ -643,6 +643,21 @@ table.semanticForms.light button:not(.clear):not(.show):hover,
 table.semanticForms.light .button-link:hover {
   filter: brightness(1.05);
 }
+form.semanticForms .button-link,
+form.semanticForms.light .button-link,
+table.semanticForms .button-link,
+table.semanticForms.light .button-link {
+  display: block;
+}
+form.semanticForms .button-link:visited, form.semanticForms .button-link:link,
+form.semanticForms.light .button-link:visited,
+form.semanticForms.light .button-link:link,
+table.semanticForms .button-link:visited,
+table.semanticForms .button-link:link,
+table.semanticForms.light .button-link:visited,
+table.semanticForms.light .button-link:link {
+  color: var(--semanticFormsTextColor) !important;
+}
 form.semanticForms [data-invalid-text],
 form.semanticForms.light [data-invalid-text],
 table.semanticForms [data-invalid-text],
@@ -2487,8 +2502,8 @@ table.semanticForms tbody tr:last-of-type th,
 table.semanticForms tbody tr:last-of-type td {
   border-bottom: none;
 }
-.semanticForms table menu:has(li > input, li > label, li > button, li > select, li > textarea),
-table.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea) {
+.semanticForms table menu:has(li > input, li > label, li > button, li > select, li > textarea, li > a),
+table.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea, li > a) {
   width: max-content;
 }
 
