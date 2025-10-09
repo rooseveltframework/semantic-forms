@@ -649,10 +649,13 @@ table.semanticForms .button-link,
 table.semanticForms.light .button-link {
   display: block;
 }
-form.semanticForms .button-link:visited,
+form.semanticForms .button-link:visited, form.semanticForms .button-link:link,
 form.semanticForms.light .button-link:visited,
+form.semanticForms.light .button-link:link,
 table.semanticForms .button-link:visited,
-table.semanticForms.light .button-link:visited {
+table.semanticForms .button-link:link,
+table.semanticForms.light .button-link:visited,
+table.semanticForms.light .button-link:link {
   color: var(--semanticFormsTextColor) !important;
 }
 form.semanticForms [data-invalid-text],

@@ -363,7 +363,8 @@ table.semanticForms.light {
   .button-link {
     display: block;
 
-    &:visited {
+    &:visited,
+    &:link {
       color: var(--semanticFormsTextColor) !important;
     }
   }
