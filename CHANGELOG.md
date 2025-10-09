@@ -1,3 +1,7 @@
+## 5.1.11
+
+- Fixed offset of `button-link` elements when in menus.
+
 ## 5.1.10
 
 - Added ability to style links to look like Semantic Forms buttons using the `button-link` class.
