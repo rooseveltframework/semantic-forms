@@ -1,3 +1,8 @@
+## 5.1.10
+
+- Added ability to style links to look like Semantic Forms buttons using the `button-link` class.
+- Updated dependencies.
+
 ## 5.1.9
 
 - Fixed issues related to adding `hidden` attributes to Semantic Forms elements.

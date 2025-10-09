@@ -549,15 +549,19 @@ table.semanticForms.light input[type=file] ~ .clear {
 form.semanticForms input[type=submit],
 form.semanticForms input[type=reset],
 form.semanticForms button:not(.clear):not(.show),
+form.semanticForms .button-link,
 form.semanticForms.light input[type=submit],
 form.semanticForms.light input[type=reset],
 form.semanticForms.light button:not(.clear):not(.show),
+form.semanticForms.light .button-link,
 table.semanticForms input[type=submit],
 table.semanticForms input[type=reset],
 table.semanticForms button:not(.clear):not(.show),
+table.semanticForms .button-link,
 table.semanticForms.light input[type=submit],
 table.semanticForms.light input[type=reset],
-table.semanticForms.light button:not(.clear):not(.show) {
+table.semanticForms.light button:not(.clear):not(.show),
+table.semanticForms.light .button-link {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -574,55 +578,69 @@ table.semanticForms.light button:not(.clear):not(.show) {
   user-select: none;
   transform: scale(1);
   transition: transform 180ms;
+  text-decoration: none;
+  color: var(--semanticFormsTextColor);
 }
 form.semanticForms input[type=submit]:active,
 form.semanticForms input[type=reset]:active,
 form.semanticForms button:not(.clear):not(.show):active,
+form.semanticForms .button-link:active,
 form.semanticForms.light input[type=submit]:active,
 form.semanticForms.light input[type=reset]:active,
 form.semanticForms.light button:not(.clear):not(.show):active,
+form.semanticForms.light .button-link:active,
 table.semanticForms input[type=submit]:active,
 table.semanticForms input[type=reset]:active,
 table.semanticForms button:not(.clear):not(.show):active,
+table.semanticForms .button-link:active,
 table.semanticForms.light input[type=submit]:active,
 table.semanticForms.light input[type=reset]:active,
-table.semanticForms.light button:not(.clear):not(.show):active {
+table.semanticForms.light button:not(.clear):not(.show):active,
+table.semanticForms.light .button-link:active {
   transform: scale(0.97);
 }
 form.semanticForms input[type=submit],
 form.semanticForms input[type=reset],
 form.semanticForms input[type=image],
 form.semanticForms button:not(.clear):not(.show),
+form.semanticForms .button-link,
 form.semanticForms.light input[type=submit],
 form.semanticForms.light input[type=reset],
 form.semanticForms.light input[type=image],
 form.semanticForms.light button:not(.clear):not(.show),
+form.semanticForms.light .button-link,
 table.semanticForms input[type=submit],
 table.semanticForms input[type=reset],
 table.semanticForms input[type=image],
 table.semanticForms button:not(.clear):not(.show),
+table.semanticForms .button-link,
 table.semanticForms.light input[type=submit],
 table.semanticForms.light input[type=reset],
 table.semanticForms.light input[type=image],
-table.semanticForms.light button:not(.clear):not(.show) {
+table.semanticForms.light button:not(.clear):not(.show),
+table.semanticForms.light .button-link {
   transition: filter 0.1s;
 }
 form.semanticForms input[type=submit]:hover,
 form.semanticForms input[type=reset]:hover,
 form.semanticForms input[type=image]:hover,
 form.semanticForms button:not(.clear):not(.show):hover,
+form.semanticForms .button-link:hover,
 form.semanticForms.light input[type=submit]:hover,
 form.semanticForms.light input[type=reset]:hover,
 form.semanticForms.light input[type=image]:hover,
 form.semanticForms.light button:not(.clear):not(.show):hover,
+form.semanticForms.light .button-link:hover,
 table.semanticForms input[type=submit]:hover,
 table.semanticForms input[type=reset]:hover,
 table.semanticForms input[type=image]:hover,
 table.semanticForms button:not(.clear):not(.show):hover,
+table.semanticForms .button-link:hover,
 table.semanticForms.light input[type=submit]:hover,
 table.semanticForms.light input[type=reset]:hover,
 table.semanticForms.light input[type=image]:hover,
-table.semanticForms.light button:not(.clear):not(.show):hover {
+table.semanticForms.light button:not(.clear):not(.show):hover,
+table.semanticForms.light .button-link:hover {
   filter: brightness(1.05);
 }
 form.semanticForms [data-invalid-text],
