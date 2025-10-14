@@ -887,6 +887,21 @@ table.semanticForms.light {
 
         }
       }
+
+      &.grow {
+        max-width: max-content;
+        min-width: 150px;
+
+        dd {
+          width: max-content;
+
+          input, select {
+            field-sizing: content;
+            min-width: 150px;
+            max-width: max-content;
+          }
+        }
+      }
     }
 
     input, textarea {

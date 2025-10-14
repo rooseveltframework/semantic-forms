@@ -122,7 +122,7 @@ const semanticForms = () => {
         }
         // #endregion
 
-        // standard inputs
+        // #region standard inputs
         if (type !== 'checkbox' && type !== 'radio') {
           if (!input.getAttribute('placeholder')) input.setAttribute('placeholder', ' ')
 
@@ -139,7 +139,7 @@ const semanticForms = () => {
             continue
           }
 
-          // #region clear button
+          // #region input clear button
           if (input.nodeName !== 'SELECT' && type !== 'range') {
             const clearBtn = document.createElement('button')
             clearBtn.type = 'button'
@@ -171,6 +171,11 @@ const semanticForms = () => {
             dd.classList.remove(match)
             div.classList.add(match)
           }
+          
+          // check for max-content attribute
+          if (input.getAttribute('data-max-content') !== null) {
+            div.classList.add('grow')
+          }
 
           div.append(dt, dd)
           dl.append(div)
@@ -178,6 +183,7 @@ const semanticForms = () => {
           // determine visibility of newly created <div>
           if (dt.style.display === 'none' && dd.style.display === 'none') div.style.display = 'none'
         }
+        // #endregion
 
         // handle file input clear btn, cannot be handled with CSS
         if (type === 'file') {

@@ -1420,6 +1420,30 @@ table.semanticForms.light .floatLabelForm div:has(dd input:required) dt label > 
   pointer-events: auto;
   color: red;
 }
+form.semanticForms .floatLabelForm div.grow,
+form.semanticForms.light .floatLabelForm div.grow,
+table.semanticForms .floatLabelForm div.grow,
+table.semanticForms.light .floatLabelForm div.grow {
+  max-width: max-content;
+  min-width: 150px;
+}
+form.semanticForms .floatLabelForm div.grow dd,
+form.semanticForms.light .floatLabelForm div.grow dd,
+table.semanticForms .floatLabelForm div.grow dd,
+table.semanticForms.light .floatLabelForm div.grow dd {
+  width: max-content;
+}
+form.semanticForms .floatLabelForm div.grow dd input, form.semanticForms .floatLabelForm div.grow dd select,
+form.semanticForms.light .floatLabelForm div.grow dd input,
+form.semanticForms.light .floatLabelForm div.grow dd select,
+table.semanticForms .floatLabelForm div.grow dd input,
+table.semanticForms .floatLabelForm div.grow dd select,
+table.semanticForms.light .floatLabelForm div.grow dd input,
+table.semanticForms.light .floatLabelForm div.grow dd select {
+  field-sizing: content;
+  min-width: 150px;
+  max-width: max-content;
+}
 form.semanticForms .floatLabelForm input::placeholder, form.semanticForms .floatLabelForm textarea::placeholder,
 form.semanticForms.light .floatLabelForm input::placeholder,
 form.semanticForms.light .floatLabelForm textarea::placeholder,

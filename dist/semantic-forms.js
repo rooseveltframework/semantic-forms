@@ -19,17 +19,20 @@ let dd=input.parentNode;while(dd&&dd.nodeName!=="DD")dd=dd.parentNode;if(!dd){co
 // removes old div that a radio or checkbox may have been added to
 if(dd.parentElement.nodeName==="DIV")dd.parentElement.remove();const div=document.createElement("div");div.append(label.closest("dt"),dd);dl.append(div)}else{const newLabel=document.createElement("label");newLabel.setAttribute("for",input.id);newLabel.className="floatLabelFormAnimatedLabel";newLabel.innerHTML=label.innerHTML;if(input.hasAttribute("title")&&label.getAttribute("data-show-help-icon")!==null&&!label.querySelector("span.help")){const text=input.getAttribute("title");newLabel.innerHTML+=` <span title="${text}" class="help">${helpTextIcon}</span>`}if(input.hasAttribute("required")&&label.getAttribute("data-no-asterisk")===null&&!label.querySelector("span.required")){const text=label.getAttribute("data-asterisk-text")||"This field is required.";newLabel.innerHTML+=` <span title="${text}" class="required">*</span>`}label.setAttribute("hidden","hidden");insertAfter(newLabel,input)}
 // #endregion
-// standard inputs
+// #region standard inputs
 if(type!=="checkbox"&&type!=="radio"){if(!input.getAttribute("placeholder"))input.setAttribute("placeholder"," ");const div=document.createElement("div");const dt=label.closest("dt");const dd=input.closest("dd");if(!dt){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that does not have a corresponding <dt> element.`);continue}if(!dd){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that does not have a corresponding <dd> element.`);continue}
-// #region clear button
+// #region input clear button
 if(input.nodeName!=="SELECT"&&type!=="range"){const clearBtn=document.createElement("button");clearBtn.type="button";clearBtn.title=input.getAttribute("data-clear-field-text")||"Clear field";clearBtn.ariaLabel=input.getAttribute("data-clear-field-text")||"Clear field";clearBtn.tabIndex=-1;clearBtn.innerHTML='<svg viewBox="0 0 16 16" width="18" height="18"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />';clearBtn.classList.add("clear");clearBtn.id=`semanticFormsClearButton_${input.id}`;clearBtn.addEventListener("click",()=>{input.previousValue=input.value;input.value="";input.focus();lastClearFieldPressed=input.id;
 // used for any other updates required by various inputs
 input.dispatchEvent(new Event("input",{bubbles:true}))});insertAfter(clearBtn,dd.querySelector("label"))}input.addEventListener("focus",event=>{if(event.target.nodeName==="INPUT")lastFocusedInput=event.target});
 // #endregion
 // check for colspan- utility class
-if(/colspan-/.test(dd.className)){const match=dd.className.match(/colspan-([0-9]|full)/)[0];dd.classList.remove(match);div.classList.add(match)}div.append(dt,dd);dl.append(div);
+if(/colspan-/.test(dd.className)){const match=dd.className.match(/colspan-([0-9]|full)/)[0];dd.classList.remove(match);div.classList.add(match)}
+// check for max-content attribute
+if(input.getAttribute("data-max-content")!==null)div.classList.add("grow");div.append(dt,dd);dl.append(div);
 // determine visibility of newly created <div>
 if(dt.style.display==="none"&&dd.style.display==="none")div.style.display="none"}
+// #endregion
 // handle file input clear btn, cannot be handled with CSS
 if(type==="file"){const clearBtn=input.parentElement.querySelector(".clear");input.addEventListener("input",event=>{clearBtn.style.display=event.target.files.length?"flex":"none"});clearBtn.addEventListener("click",()=>{clearBtn.style.display="none"})}
 // handle range inputs with a class to display the value

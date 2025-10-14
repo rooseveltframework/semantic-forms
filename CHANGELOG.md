@@ -1,3 +1,8 @@
+## 5.1.12
+
+- Fixed a visual bug with detail element arrows.
+- Added the ability to allow fixed-width form elements to grow with their content using the `data-max-content` attribute.
+
 ## 5.1.11
 
 - Fixed offset of `button-link` elements when in menus.
