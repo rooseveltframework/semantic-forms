@@ -129,6 +129,7 @@ table.semanticForms.light {
   width: 100%;
   container-type: inline-size;
   container-name: semanticForm;
+  interpolate-size: allow-keywords;
 }
 form.semanticForms [hidden],
 form.semanticForms.light [hidden],
@@ -843,19 +844,22 @@ table.semanticForms.light details {
   padding: 20px 10px 10px 10px;
   margin-bottom: 15px;
   min-height: calc(var(--semanticFormsFontSize) + 20px);
+  transition: height 0.2s;
 }
 form.semanticForms details::details-content,
 form.semanticForms.light details::details-content,
 table.semanticForms details::details-content,
 table.semanticForms.light details::details-content {
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.2s, content-visibility 0.2s;
+  transition-behavior: allow-discrete;
 }
 form.semanticForms details summary,
 form.semanticForms.light details summary,
 table.semanticForms details summary,
 table.semanticForms.light details summary {
+  cursor: pointer;
   margin: 0;
   line-height: 1;
   position: absolute;
@@ -887,24 +891,16 @@ table.semanticForms.light details summary::before {
   transform-origin: 0.2rem 50%;
   transition: 250ms transform ease;
 }
-form.semanticForms details[open],
-form.semanticForms.light details[open],
-table.semanticForms details[open],
-table.semanticForms.light details[open] {
-  padding-top: 35px;
-}
 form.semanticForms details[open]::details-content,
 form.semanticForms.light details[open]::details-content,
 table.semanticForms details[open]::details-content,
 table.semanticForms.light details[open]::details-content {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
+  height: auto;
 }
-form.semanticForms details[open] summary::after,
-form.semanticForms.light details[open] summary::after,
-table.semanticForms details[open] summary::after,
-table.semanticForms.light details[open] summary::after {
+form.semanticForms details[open] summary::before,
+form.semanticForms.light details[open] summary::before,
+table.semanticForms details[open] summary::before,
+table.semanticForms.light details[open] summary::before {
   transform: rotate(90deg);
 }
 form.semanticForms details[open], form.semanticForms summary,
@@ -915,12 +911,6 @@ table.semanticForms summary,
 table.semanticForms.light details[open],
 table.semanticForms.light summary {
   margin-bottom: 10px;
-}
-form.semanticForms summary,
-form.semanticForms.light summary,
-table.semanticForms summary,
-table.semanticForms.light summary {
-  cursor: pointer;
 }
 @supports (scrollbar-color: auto) {
   form.semanticForms textarea,

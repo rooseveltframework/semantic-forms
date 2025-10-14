@@ -95,6 +95,7 @@ table.semanticForms.light {
   width: 100%;
   container-type: inline-size;
   container-name: semanticForm;
+  interpolate-size: allow-keywords;
 
   // due to the specificity of some of these rules, [hidden] won't actually hide things, so we're forcing the issue
   [hidden] {
@@ -452,14 +453,17 @@ table.semanticForms.light {
     padding: 20px 10px 10px 10px;
     margin-bottom: 15px;
     min-height: calc(var(--semanticFormsFontSize) + 20px);
+    transition: height 0.2s;
 
     &::details-content {
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
+      height: 0;
+      overflow: hidden;
+      transition: height 0.2s, content-visibility 0.2s;
+      transition-behavior: allow-discrete;
     }
 
     summary {
+      cursor: pointer;
       margin: 0;
       line-height: 1;
       position: absolute;
@@ -486,30 +490,22 @@ table.semanticForms.light {
         transition: 250ms transform ease;
       }
     }
-  }
 
-  details[open] {
-    padding-top: 35px; // TODO: remove this when animated detail label is reintroduced
+    &[open] {
+      &::details-content {
+        height: auto;
+      }
 
-    &::details-content {
-      visibility: visible;
-      opacity: 1;
-      transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
-    }
-
-    summary {
-      &::after {
-        transform: rotate(90deg);
+      summary {
+        &::before {
+          transform: rotate(90deg);
+        }
       }
     }
   }
 
   details[open], summary {
     margin-bottom: 10px;
-  }
-
-  summary {
-    cursor: pointer;
   }
   // #endregion
 
