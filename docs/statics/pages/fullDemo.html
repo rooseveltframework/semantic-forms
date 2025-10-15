@@ -61,6 +61,12 @@
               <input id="customize-password" name="customize-password" type="password" minlength="8" required data-clear-field-text="Vaporize this text" data-show-password-text="Reveal this password" data-hide-password-text="omg no hide it again!">
               <p data-invalid-text>Password should be at least 8 characters long.</p>
             </dd>
+
+            <dt><label for="input-button-1">Input with button</label></dt>
+            <dd>
+              <input type="text" id="input-button-1" name="input-button-1" placeholder="This input has a button">
+              <button type="button">Go</button>
+            </dd>
           </dl>
 
           <dl>
@@ -158,6 +164,13 @@
 
               <dt><label for="file">File field</label></dt>
               <dd><input id="file" name="file" type="file"></dd>
+
+              <dt><label for="input-button-2">Input with button</label></dt>
+              <dd>
+                <input type="text" id="input-button-2" name="input-button-2" placeholder="This input has a button" value="John Doe">
+                <label for="input-button-2">Some help text that should span the entire width of the input/button combo.</label>
+                <input type="submit" value="Submit">
+              </dd>
 
               <dt><label for="range">Range field</label></dt>
               <dd><input id="range" name="range" type="range"></dd>

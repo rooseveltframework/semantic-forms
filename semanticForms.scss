@@ -561,6 +561,42 @@ table.semanticForms.light {
         &:not(.singleCheckbox, .singleRadio) {
           display: flex;
           flex-direction: column;
+
+          // unless there is a button present, which will be placed beside the input
+          &:has(button:not(.clear, .show), input[type="submit"]:not(.clear, .show)) {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            button.clear, button.show {
+              right: 36%; // adjust clear/show button to grid
+            }
+
+            input:not([type="submit"]), select, textarea {
+              grid-row: 1 / 2;
+              grid-column: 1 / 2;
+            }
+
+            button:not(.clear, .show),
+            input[type="submit"]:not(.clear, .show) {
+              grid-row: 1 / 2;
+              grid-column: 2 / 3;
+              width: 100%;
+              max-width: 100%;
+              padding: 10px; // reduce default padding to allow more button text to show
+              margin-top: var(--semanticFormsInputTopMargin);
+              height: var(--semanticFormsInputHeight);
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+              display: inline-block;
+            }
+
+            // TODO: handle help text as well (will need to be grid-columns: 0 2 or whatever it is)
+            label:nth-of-type(2) {
+              grid-row: 2 / 3;
+              grid-column: 1 / -1;
+            }
+          }
         }
 
         &.singleCheckbox,
@@ -577,7 +613,7 @@ table.semanticForms.light {
           // single checkbox subtext
           label:nth-of-type(2) {
             grid-column: 1 / -1;
-            padding-left: 20px;
+            padding: 0 10px;
             font-size: small;
             color: var(--semanticFormsTextColor);
           }
@@ -721,7 +757,7 @@ table.semanticForms.light {
         // subtext
         label:nth-of-type(2) {
           margin-top: -5px;
-          padding-left: 20px;
+          padding: 0 10px;
           font-size: small;
           color: var(--semanticFormsTextColor);
         }

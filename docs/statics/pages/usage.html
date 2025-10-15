@@ -106,6 +106,32 @@
         </dl>
       </form>
 
+      <h5>Add inline buttons</h5>
+
+      <p>Include a button or input with the type "submit" in the <code><!--#<dd>--></code> element to place it next to the input:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms" method="post">
+  <dl>
+    <dt><label for="email">Email address</label></dt>
+    <dd>
+      <input id="email" name="email" type="email" placeholder="Enter an email address" autocomplete="off">
+      <button type="submit">Sign up</button>
+    </dd>
+  </dl>
+</form>
+</escape></code></pre>
+      
+      <form class="semanticForms" method="post">
+        <dl>
+          <dt><label for="email">Email address</label></dt>
+          <dd>
+            <input id="email" name="email" type="email" placeholder="Enter an email address" autocomplete="off">
+            <button type="submit">Sign up!</button>
+          </dd>
+        </dl>
+      </form>
+
       <h5 id="custominputfields">Customizing input fields</h5>
 
       <p>By default, input fields will display an X icon to clear the text and password fields will also display a show/hide toggle for displaying the password in plain text. You can customize this behavior as follows:</p>

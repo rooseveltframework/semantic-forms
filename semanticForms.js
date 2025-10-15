@@ -176,6 +176,7 @@ const semanticForms = () => {
           if (input.getAttribute('data-max-content') !== null) {
             div.classList.add('grow')
 
+            // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
             if (!('fieldSizing' in document.createElement('input').style)) {
               const adjustWidth = () => {
                 const value = input.value !== '' ? input.value : input.placeholder
