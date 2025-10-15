@@ -652,6 +652,8 @@ table.semanticForms.light {
     }
 
     span.help {
+      display: grid;
+      place-items: center;
       cursor: help;
       pointer-events: auto;
 
@@ -678,16 +680,7 @@ table.semanticForms.light {
           &:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
           &:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
             color: var(--semanticFormsTextColor) !important;
-            // TODO: finish this work on making the help icon responsive
-            // width: 100%;
-            // width: calc(100% + 20px);
             transform: translateY(-150%) scale(0.7);
-
-            // span.required,
-            // span.help {
-            //   position: static;
-            //   right: auto;
-            // }
           }
         }
 
@@ -722,7 +715,7 @@ table.semanticForms.light {
           overflow: hidden;
           text-overflow: ellipsis;
           min-width: 0;
-          width: calc(100% - 35px);
+          width: 100%;
         }
 
         // subtext
@@ -791,30 +784,15 @@ table.semanticForms.light {
           align-items: center;
           gap: 5px;
 
-          // TODO: same as below
-          // &:has(span.help) {
-          //   width: 80%;
-          //   padding-right: 20px;
-          // }
-
-          // &:has(span.required) {
-          //   width: 80%;
-          //   padding-right: 10px;
-          // }
-
           span.required {
-            // TODO: this places the required asterisk too far to the right when the float label is shrunk
-            // position: absolute;
-            // right: 0;
             cursor: help;
             pointer-events: auto;
             color: red;
           }
 
           span.help {
-            // TODO: this places the help icon too far to the right when the float label is shrunk
-            // position: absolute;
-            // right: 0;
+            display: grid;
+            place-items: center;
             cursor: help;
             pointer-events: auto;
 
@@ -822,16 +800,6 @@ table.semanticForms.light {
               width: 80%;
             }
           }
-
-          // // TODO: cover the case where an input is required AND has help text
-          // &:has(span.required, span.help) {
-          //   width: 80%;
-          //   padding-right: 30px;
-
-          //   span.required {
-          //     right: 18px;
-          //   }
-          // }
         }
       }
 
@@ -840,6 +808,9 @@ table.semanticForms.light {
         position: relative;
 
         label {
+          display: flex;
+          align-items: center;
+          gap: 5px;
           z-index: 2; // ensure the hoverable icon is interactable
           user-select: auto;
           color: var(--semanticFormsTextColor);
@@ -853,16 +824,11 @@ table.semanticForms.light {
           overflow: hidden;
           text-overflow: ellipsis;
           min-width: 0;
-          width: calc(100% + 20px);
-
-          // TODO: remove this? // &:has(span.help) {
-            // width: 100%;
-            // padding-right: 20px;
-          // }
+          width: 100%;
 
           span.help {
-            // TODO: remove this? // position: absolute;
-            // right: 0;
+            display: grid;
+            place-items: center;
             cursor: help;
             pointer-events: auto;
           }
@@ -877,8 +843,6 @@ table.semanticForms.light {
           }
 
           label > span {
-            // TODO: remove this? // position: absolute;
-            // right: 0;
             margin-left: 5px;
             cursor: help;
             pointer-events: auto;
@@ -888,6 +852,7 @@ table.semanticForms.light {
         }
       }
 
+      // data-max-content CSS
       &.grow {
         max-width: max-content;
         min-width: 150px;
@@ -896,7 +861,8 @@ table.semanticForms.light {
           width: max-content;
 
           input, select {
-            field-sizing: content;
+            // this is not currently supported in FireFox or Safari, and is progressively enhanced with JS
+            field-sizing: content; 
             min-width: 150px;
             max-width: max-content;
           }
