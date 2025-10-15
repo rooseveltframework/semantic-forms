@@ -29,9 +29,8 @@ input.dispatchEvent(new Event("input",{bubbles:true}))});insertAfter(clearBtn,dd
 // check for colspan- utility class
 if(/colspan-/.test(dd.className)){const match=dd.className.match(/colspan-([0-9]|full)/)[0];dd.classList.remove(match);div.classList.add(match)}
 // check for max-content attribute
-if(input.getAttribute("data-max-content")!==null){div.classList.add("grow");
 // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
-if(!("fieldSizing"in document.createElement("input").style)){const adjustWidth=()=>{const value=input.value!==""?input.value:input.placeholder;const width=value.length*8+40;input.style.width=width+"px";input.style.maxWidth="100%";div.style.width=width+"px"};adjustWidth();input.addEventListener("input",adjustWidth)}}div.append(dt,dd);dl.append(div);
+if(input.getAttribute("data-max-content")!==null)if(!("fieldSizing"in document.createElement("input").style)){const adjustWidth=()=>{const value=input.value!==""?input.value:input.placeholder;const width=value.length*8+40;input.style.width=width+"px";input.style.maxWidth="100%";div.style.width=width+"px"};adjustWidth();input.addEventListener("input",adjustWidth)}div.append(dt,dd);dl.append(div);
 // determine visibility of newly created <div>
 if(dt.style.display==="none"&&dd.style.display==="none")div.style.display="none"}
 // #endregion
@@ -64,6 +63,15 @@ const rows=Math.round((scrollHeight-blockPadding)/lineHeight);
 if(maxRows)input.setAttribute("rows",""+Math.min(rows,Number(maxRows)));else input.setAttribute("rows",""+rows)};input.addEventListener("input",handleInput);
 // trigger the event to set the initial rows value
 input.dispatchEvent(new Event("input",{bubbles:true}))}
+// check for auto-grow attribute on textareas
+if(input.getAttribute("data-auto-grow")!==null){if(input.nodeName!=="TEXTAREA")return;
+// when pressing enter while this input is focused, we want to submit
+input.addEventListener("keypress",e=>{if(e.key!=="Enter"||e.key==="Enter"&&e.shiftKey)return;e.preventDefault();form.requestSubmit()});
+// progressively enhance textarea for Firefox and Safari
+// this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
+if(!("fieldSizing"in document.createElement("input").style)){const adjustHeight=()=>{if(input.value.length)input.style.height=input.scrollHeight+"px";else input.style.height=window.getComputedStyle(form).getPropertyValue("--semanticFormsInputHeight")};
+// set initial height to semantic-forms CSS variable
+input.style.height=window.getComputedStyle(form).getPropertyValue("--semanticFormsInputHeight");adjustHeight();input.addEventListener("input",adjustHeight)}}
 // shifts the clear button to the right if a scrollbar is present
 const shiftClearBtn=()=>{const clearBtn=input.parentElement?.querySelector("button.clear");if(clearBtn)clearBtn.style.marginRight=input.clientHeight<input.scrollHeight?"15px":""};input.addEventListener("input",shiftClearBtn);input.addEventListener("mouseup",shiftClearBtn);shiftClearBtn()}}}}
 /**

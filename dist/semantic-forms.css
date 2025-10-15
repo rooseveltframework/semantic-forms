@@ -462,6 +462,12 @@ table.semanticForms.light textarea {
   width: 100%;
   min-height: 38px;
 }
+form.semanticForms textarea[data-auto-grow],
+form.semanticForms.light textarea[data-auto-grow],
+table.semanticForms textarea[data-auto-grow],
+table.semanticForms.light textarea[data-auto-grow] {
+  field-sizing: content;
+}
 form.semanticForms input[type=search],
 form.semanticForms.light input[type=search],
 table.semanticForms input[type=search],
@@ -1229,6 +1235,7 @@ table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRad
 table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
   color: var(--semanticFormsTextColor) !important;
   transform: translateY(-150%) scale(0.7);
+  width: 100%;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus.no-float-label ~ label:first-of-type, form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus.no-float-label ~ label:first-of-type,
@@ -1279,7 +1286,7 @@ table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRad
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
-  width: 100%;
+  width: calc(100% - 35px);
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:nth-of-type(2),
 form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:nth-of-type(2),
@@ -1485,26 +1492,26 @@ table.semanticForms.light .floatLabelForm div:has(dd input:required) dt label > 
   pointer-events: auto;
   color: red;
 }
-form.semanticForms .floatLabelForm div.grow,
-form.semanticForms.light .floatLabelForm div.grow,
-table.semanticForms .floatLabelForm div.grow,
-table.semanticForms.light .floatLabelForm div.grow {
+form.semanticForms .floatLabelForm div:has([data-max-content]),
+form.semanticForms.light .floatLabelForm div:has([data-max-content]),
+table.semanticForms .floatLabelForm div:has([data-max-content]),
+table.semanticForms.light .floatLabelForm div:has([data-max-content]) {
   max-width: max-content;
   min-width: 150px;
 }
-form.semanticForms .floatLabelForm div.grow dd,
-form.semanticForms.light .floatLabelForm div.grow dd,
-table.semanticForms .floatLabelForm div.grow dd,
-table.semanticForms.light .floatLabelForm div.grow dd {
+form.semanticForms .floatLabelForm div:has([data-max-content]) dd,
+form.semanticForms.light .floatLabelForm div:has([data-max-content]) dd,
+table.semanticForms .floatLabelForm div:has([data-max-content]) dd,
+table.semanticForms.light .floatLabelForm div:has([data-max-content]) dd {
   width: max-content;
 }
-form.semanticForms .floatLabelForm div.grow dd input, form.semanticForms .floatLabelForm div.grow dd select,
-form.semanticForms.light .floatLabelForm div.grow dd input,
-form.semanticForms.light .floatLabelForm div.grow dd select,
-table.semanticForms .floatLabelForm div.grow dd input,
-table.semanticForms .floatLabelForm div.grow dd select,
-table.semanticForms.light .floatLabelForm div.grow dd input,
-table.semanticForms.light .floatLabelForm div.grow dd select {
+form.semanticForms .floatLabelForm div:has([data-max-content]) dd input, form.semanticForms .floatLabelForm div:has([data-max-content]) dd select,
+form.semanticForms.light .floatLabelForm div:has([data-max-content]) dd input,
+form.semanticForms.light .floatLabelForm div:has([data-max-content]) dd select,
+table.semanticForms .floatLabelForm div:has([data-max-content]) dd input,
+table.semanticForms .floatLabelForm div:has([data-max-content]) dd select,
+table.semanticForms.light .floatLabelForm div:has([data-max-content]) dd input,
+table.semanticForms.light .floatLabelForm div:has([data-max-content]) dd select {
   field-sizing: content;
   min-width: 150px;
   max-width: max-content;

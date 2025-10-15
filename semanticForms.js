@@ -173,10 +173,8 @@ const semanticForms = () => {
           }
           
           // check for max-content attribute
+          // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
           if (input.getAttribute('data-max-content') !== null) {
-            div.classList.add('grow')
-
-            // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
             if (!('fieldSizing' in document.createElement('input').style)) {
               const adjustWidth = () => {
                 const value = input.value !== '' ? input.value : input.placeholder
@@ -318,6 +316,36 @@ const semanticForms = () => {
 
             // trigger the event to set the initial rows value
             input.dispatchEvent(new Event('input', { bubbles: true }))
+          }
+
+          // check for auto-grow attribute on textareas
+          if (input.getAttribute('data-auto-grow') !== null) {
+            if (input.nodeName !== 'TEXTAREA') return
+
+            // when pressing enter while this input is focused, we want to submit
+            input.addEventListener('keypress', (e) => {
+              if (e.key !== 'Enter' || (e.key === 'Enter' && e.shiftKey)) return
+              e.preventDefault()
+              form.requestSubmit()
+            })
+
+            // progressively enhance textarea for Firefox and Safari
+            // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
+            if (!('fieldSizing' in document.createElement('input').style)) {
+              const adjustHeight = () => {
+                if (input.value.length) {
+                  input.style.height = input.scrollHeight + 'px'
+                } else {
+                  input.style.height = window.getComputedStyle(form).getPropertyValue('--semanticFormsInputHeight')
+                }
+              }
+
+              // set initial height to semantic-forms CSS variable
+              input.style.height = window.getComputedStyle(form).getPropertyValue('--semanticFormsInputHeight')
+
+              adjustHeight()
+              input.addEventListener('input', adjustHeight)
+            }
           }
 
           // shifts the clear button to the right if a scrollbar is present

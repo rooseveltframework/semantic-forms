@@ -255,7 +255,11 @@ table.semanticForms.light {
     line-height: 1.5;
     width: 100%;
     min-height: 38px;
-  }
+
+    &[data-auto-grow] {
+      field-sizing: content;
+    }
+   }
 
   input[type="search"] {
     background: var(--semanticFormsSearchIcon) no-repeat 10px;
@@ -717,6 +721,7 @@ table.semanticForms.light {
           &:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
             color: var(--semanticFormsTextColor) !important;
             transform: translateY(-150%) scale(0.7);
+            width: 100%;
           }
         }
 
@@ -751,7 +756,7 @@ table.semanticForms.light {
           overflow: hidden;
           text-overflow: ellipsis;
           min-width: 0;
-          width: 100%;
+          width: calc(100% - 35px);
         }
 
         // subtext
@@ -889,7 +894,7 @@ table.semanticForms.light {
       }
 
       // data-max-content CSS
-      &.grow {
+      &:has([data-max-content]) {
         max-width: max-content;
         min-width: 150px;
 
