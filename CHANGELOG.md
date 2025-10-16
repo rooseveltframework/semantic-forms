@@ -1,3 +1,10 @@
+## 5.1.12
+
+- Fixed a visual bug with details element arrows.
+- Added the ability to place buttons and submit inputs next to other form inputs.
+- Added the ability to allow fixed-width form elements to grow with their content using the `data-max-content` attribute.
+- Added the ability to create one-line textareas that grow in height using the `data-auto-grow` attribute.
+
 ## 5.1.11
 
 - Fixed offset of `button-link` elements when in menus.

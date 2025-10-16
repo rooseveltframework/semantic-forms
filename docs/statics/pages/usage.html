@@ -106,6 +106,32 @@
         </dl>
       </form>
 
+      <h5>Add inline buttons</h5>
+
+      <p>Include a button or input with the type "submit" in the <code><!--#<dd>--></code> element to place it next to the input:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms" method="post">
+  <dl>
+    <dt><label for="email">Email address</label></dt>
+    <dd>
+      <input id="email" name="email" type="email" placeholder="Enter an email address" autocomplete="off">
+      <button type="submit">Sign up</button>
+    </dd>
+  </dl>
+</form>
+</escape></code></pre>
+      
+      <form class="semanticForms" method="post">
+        <dl>
+          <dt><label for="email">Email address</label></dt>
+          <dd>
+            <input id="email" name="email" type="email" placeholder="Enter an email address" autocomplete="off">
+            <button type="submit">Sign up!</button>
+          </dd>
+        </dl>
+      </form>
+
       <h5 id="custominputfields">Customizing input fields</h5>
 
       <p>By default, input fields will display an X icon to clear the text and password fields will also display a show/hide toggle for displaying the password in plain text. You can customize this behavior as follows:</p>
@@ -119,6 +145,13 @@
           <p>Show a help text icon next to labels of inputs that contain a <code>title</code> attribute by applying a <code>data-show-help-icon</code> attribute to the label.</p>
           <ul>
             <li>Note that checkboxes and radios should have a <code>title</code> attribute on the label instead of the inputs.</li>
+          </ul>
+        </li>
+        <li><p>Allow fixed-width inputs to grow/shrink to their longest content by applying a <code>data-max-content</code> attribute to the input.</p></li>
+        <li>
+          <p>Create a one-line text input that grows in height by applying a <code>data-auto-grow</code> attribute to a <code>textarea</code> or <code>input</code> (with type "text") element.</p>
+          <ul>
+            <li>Note that pressing <kbd>Enter</kbd> with this attribute will attempt to submit the form. Use <kbd>Shift + Enter</kbd> to add new lines.</li>
           </ul>
         </li>
       </ul>

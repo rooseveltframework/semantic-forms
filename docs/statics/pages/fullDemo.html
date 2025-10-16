@@ -61,11 +61,31 @@
               <input id="customize-password" name="customize-password" type="password" minlength="8" required data-clear-field-text="Vaporize this text" data-show-password-text="Reveal this password" data-hide-password-text="omg no hide it again!">
               <p data-invalid-text>Password should be at least 8 characters long.</p>
             </dd>
+
+            <dt><label for="input-button-1">Input with button</label></dt>
+            <dd>
+              <input type="text" id="input-button-1" name="input-button-1" placeholder="This input has a button">
+              <button type="button">Go</button>
+            </dd>
           </dl>
 
           <dl>
             <dt><label for="single-input">Single form input</label></dt>
             <dd><input type="text" name="single-input" id="single-input"></dd>
+          </dl>
+
+          <dl class="colspan-1">
+            <dt><label for="max-content-input"><code>data-max-content</code>text input</label></dt>
+            <dd><input type="text" name="max-content-input" id="max-content-input" placeholder="This is a placeholder." value="This is some text." data-max-content></dd>
+
+            <dt><label for="max-content-select"><code>data-max-content</code> select</label></dt>
+            <dd>
+              <select name="max-content-select" id="max-content-select" data-max-content>
+                <option>Short</option>
+                <option>Some really really really really really really really really long text</option>
+                <option>This is some medium text</option>
+              </select>
+            </dd>
           </dl>
 
           <fieldset class="colspan-full">
@@ -144,6 +164,23 @@
 
               <dt><label for="file">File field</label></dt>
               <dd><input id="file" name="file" type="file"></dd>
+
+              <dt><label for="input-button-2">Input with button</label></dt>
+              <dd>
+                <input type="text" id="input-button-2" name="input-button-2" placeholder="This input has a button" value="John Doe">
+                <label for="input-button-2">Some help text that should span the entire width of the input/button combo.</label>
+                <input type="submit" value="Submit">
+              </dd>
+
+              <dt><label for="select-button">Select with button</label></dt>
+              <dd>
+                <select id="select-button" name="select-button">
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                </select>
+                <button type="submit">Pick</button>
+              </dd>
 
               <dt><label for="range">Range field</label></dt>
               <dd><input id="range" name="range" type="range"></dd>
@@ -365,6 +402,16 @@
               <dd>
                 <textarea name="disable-autosize-textarea" id="disable-autosize-textarea" rows="5" placeholder="e.g. He just kept talking in one incredibly unbroken sentence moving from topic to topic so that no one had a chance to interrupt it was really quite hypnotic." data-disable-autosize>Row 1&#10;Row 2&#10;Row 3&#10;Row 4&#10;Row 5&#10;Row 6</textarea>
                 <label for="disable-autosize-textarea">This <code>textarea</code> element has the <code>data-disable-autosize</code> attribute applied, and has <code>rows</code> set to 5.</label>
+              </dd>
+
+              <dt><label for="auto-grow-textarea">Auto-grow textarea</label></dt>
+              <dd>
+                <textarea name="auto-grow-textarea" id="auto-grow-textarea"data-auto-grow>Start typing to see me grow</textarea>
+              </dd>
+
+              <dt><label for="auto-grow-input">Auto-grow input</label></dt>
+              <dd>
+                <input type="text" name="auto-grow-input" id="auto-grow-input" value="Start typing to see me grow" data-auto-grow>
               </dd>
             </dl>
 

@@ -96,6 +96,10 @@ table.semanticForms.light {
   container-type: inline-size;
   container-name: semanticForm;
 
+  @supports (interpolate-size: allow-keywords) { // https://caniuse.com/wf-interpolate-size
+    interpolate-size: allow-keywords;
+  }
+
   // due to the specificity of some of these rules, [hidden] won't actually hide things, so we're forcing the issue
   [hidden] {
     display: none !important;
@@ -254,6 +258,10 @@ table.semanticForms.light {
     line-height: 1.5;
     width: 100%;
     min-height: 38px;
+
+    &[data-auto-grow] {
+      field-sizing: content;
+    }
   }
 
   input[type="search"] {
@@ -439,7 +447,7 @@ table.semanticForms.light {
     }
   }
 
-  // #region summary
+  // #region details
   details {
     box-sizing: border-box; // ensure sizings match across browsers
     position: relative;
@@ -452,14 +460,26 @@ table.semanticForms.light {
     padding: 20px 10px 10px 10px;
     margin-bottom: 15px;
     min-height: calc(var(--semanticFormsFontSize) + 20px);
-
+    
     &::details-content {
       visibility: hidden;
       opacity: 0;
       transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
     }
+    
+    @supports (interpolate-size: allow-keywords) { // https://caniuse.com/wf-interpolate-size
+      transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms, height 250ms;
+
+      &::details-content {
+        height: 0;
+        overflow: hidden;
+        transition: height 250ms, content-visibility 250ms;
+        transition-behavior: allow-discrete;
+      }
+    }
 
     summary {
+      cursor: pointer;
       margin: 0;
       line-height: 1;
       position: absolute;
@@ -486,30 +506,30 @@ table.semanticForms.light {
         transition: 250ms transform ease;
       }
     }
-  }
 
-  details[open] {
-    padding-top: 35px; // TODO: remove this when animated detail label is reintroduced
+    &[open] {
+      &::details-content {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
+      }
 
-    &::details-content {
-      visibility: visible;
-      opacity: 1;
-      transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
-    }
+      @supports (interpolate-size: allow-keywords) {
+        &::details-content {
+          height: auto;
+        }
+      }
 
-    summary {
-      &::after {
-        transform: rotate(90deg);
+      summary {
+        &::before {
+          transform: rotate(90deg);
+        }
       }
     }
   }
 
   details[open], summary {
     margin-bottom: 10px;
-  }
-
-  summary {
-    cursor: pointer;
   }
   // #endregion
 
@@ -565,6 +585,42 @@ table.semanticForms.light {
         &:not(.singleCheckbox, .singleRadio) {
           display: flex;
           flex-direction: column;
+
+          // unless there is a button present, which will be placed beside the input
+          &:has(button:not(.clear, .show), input[type="submit"]:not(.clear, .show)) {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            button.clear, button.show {
+              right: 36%; // adjust clear/show button to grid
+            }
+
+            input:not([type="submit"]), select, textarea {
+              grid-row: 1 / 2;
+              grid-column: 1 / 2;
+            }
+
+            button:not(.clear, .show),
+            input[type="submit"]:not(.clear, .show) {
+              grid-row: 1 / 2;
+              grid-column: 2 / 3;
+              width: 100%;
+              max-width: 100%;
+              padding: 10px; // reduce default padding to allow more button text to show
+              margin-top: var(--semanticFormsInputTopMargin);
+              height: var(--semanticFormsInputHeight);
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+              display: inline-block;
+            }
+
+            // TODO: handle help text as well (will need to be grid-columns: 0 2 or whatever it is)
+            label:nth-of-type(2) {
+              grid-row: 2 / 3;
+              grid-column: 1 / -1;
+            }
+          }
         }
 
         &.singleCheckbox,
@@ -581,7 +637,7 @@ table.semanticForms.light {
           // single checkbox subtext
           label:nth-of-type(2) {
             grid-column: 1 / -1;
-            padding-left: 20px;
+            padding: 0 10px;
             font-size: small;
             color: var(--semanticFormsTextColor);
           }
@@ -656,6 +712,8 @@ table.semanticForms.light {
     }
 
     span.help {
+      display: grid;
+      place-items: center;
       cursor: help;
       pointer-events: auto;
 
@@ -682,16 +740,8 @@ table.semanticForms.light {
           &:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
           &:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
             color: var(--semanticFormsTextColor) !important;
-            // TODO: finish this work on making the help icon responsive
-            // width: 100%;
-            // width: calc(100% + 20px);
             transform: translateY(-150%) scale(0.7);
-
-            // span.required,
-            // span.help {
-            //   position: static;
-            //   right: auto;
-            // }
+            width: 100%;
           }
         }
 
@@ -732,7 +782,7 @@ table.semanticForms.light {
         // subtext
         label:nth-of-type(2) {
           margin-top: -5px;
-          padding-left: 20px;
+          padding: 0 10px;
           font-size: small;
           color: var(--semanticFormsTextColor);
         }
@@ -795,30 +845,15 @@ table.semanticForms.light {
           align-items: center;
           gap: 5px;
 
-          // TODO: same as below
-          // &:has(span.help) {
-          //   width: 80%;
-          //   padding-right: 20px;
-          // }
-
-          // &:has(span.required) {
-          //   width: 80%;
-          //   padding-right: 10px;
-          // }
-
           span.required {
-            // TODO: this places the required asterisk too far to the right when the float label is shrunk
-            // position: absolute;
-            // right: 0;
             cursor: help;
             pointer-events: auto;
             color: red;
           }
 
           span.help {
-            // TODO: this places the help icon too far to the right when the float label is shrunk
-            // position: absolute;
-            // right: 0;
+            display: grid;
+            place-items: center;
             cursor: help;
             pointer-events: auto;
 
@@ -826,16 +861,6 @@ table.semanticForms.light {
               width: 80%;
             }
           }
-
-          // // TODO: cover the case where an input is required AND has help text
-          // &:has(span.required, span.help) {
-          //   width: 80%;
-          //   padding-right: 30px;
-
-          //   span.required {
-          //     right: 18px;
-          //   }
-          // }
         }
       }
 
@@ -844,6 +869,9 @@ table.semanticForms.light {
         position: relative;
 
         label {
+          display: flex;
+          align-items: center;
+          gap: 5px;
           z-index: 2; // ensure the hoverable icon is interactable
           user-select: auto;
           color: var(--semanticFormsTextColor);
@@ -857,16 +885,11 @@ table.semanticForms.light {
           overflow: hidden;
           text-overflow: ellipsis;
           min-width: 0;
-          width: calc(100% + 20px);
-
-          // TODO: remove this? // &:has(span.help) {
-            // width: 100%;
-            // padding-right: 20px;
-          // }
+          width: 100%;
 
           span.help {
-            // TODO: remove this? // position: absolute;
-            // right: 0;
+            display: grid;
+            place-items: center;
             cursor: help;
             pointer-events: auto;
           }
@@ -881,14 +904,28 @@ table.semanticForms.light {
           }
 
           label > span {
-            // TODO: remove this? // position: absolute;
-            // right: 0;
             margin-left: 5px;
             cursor: help;
             pointer-events: auto;
             color: red;
           }
+        }
+      }
 
+      // data-max-content CSS
+      &:has([data-max-content]) {
+        max-width: max-content;
+        min-width: 150px;
+
+        dd {
+          width: max-content;
+
+          input, select {
+            // this is not currently supported in FireFox or Safari, and is progressively enhanced with JS
+            field-sizing: content; 
+            min-width: 150px;
+            max-width: max-content;
+          }
         }
       }
     }
@@ -1196,71 +1233,71 @@ table.semanticForms.light {
 
     // #region low flow form
     &.lowFlow {
-        gap: 5px;
+      gap: 5px;
 
-        dl {
-          grid-auto-flow: dense;
-        }
+      dl {
+        grid-auto-flow: dense;
+      }
 
-        // 1, 4, 7, ...
-        & > dt:nth-of-type(2n + 1),
-        & > dd:nth-of-type(2n + 1) {
-          grid-column: 1;
-        }
+      // 1, 4, 7, ...
+      & > dt:nth-of-type(2n + 1),
+      & > dd:nth-of-type(2n + 1) {
+        grid-column: 1;
+      }
 
-        // 2, 5, 8, ...
-        & > dt:nth-of-type(2n + 2),
-        & > dd:nth-of-type(2n + 2) {
-          grid-column: 2;
-        }
+      // 2, 5, 8, ...
+      & > dt:nth-of-type(2n + 2),
+      & > dd:nth-of-type(2n + 2) {
+        grid-column: 2;
+      }
 
-        dt {
-           min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
-
-          // add required asterisk
-          &:has(+ dd input:required) {
-            label::after {
-              content: ' *';
-              color: red;
-            }
-          }
-        }
-
-
-        dd {
-          margin-bottom: 10px;
+      dt {
           min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
 
-          // nudge single checkboxes to match checkbox groups
-          &:not(.checkboxes) {
-            input[type=checkbox] {
-              margin-left: 10px;
-            }
-          }
-
-          // remove "x" padding
-          input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
-          select,
-          textarea {
-            padding-right: 6px;
-          }
-
-          // subtext
-          label {
-            margin-top: -5px;
-            font-size: small;
-            color: var(--semanticFormsPlaceholderColor);
+        // add required asterisk
+        &:has(+ dd input:required) {
+          label::after {
+            content: ' *';
+            color: red;
           }
         }
       }
 
-      .checkboxes ul,
-      .radios ul {
-        margin-top: var(--semanticFormsInputTopMargin);
+
+      dd {
+        margin-bottom: 10px;
+        min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+
+        // nudge single checkboxes to match checkbox groups
+        &:not(.checkboxes) {
+          input[type=checkbox] {
+            margin-left: 10px;
+          }
+        }
+
+        // remove "x" padding
+        input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
+        select,
+        textarea {
+          padding-right: 6px;
+        }
+
+        // subtext
+        label {
+          margin-top: -5px;
+          font-size: small;
+          color: var(--semanticFormsPlaceholderColor);
+        }
       }
     }
-    // #endregion
+
+    .checkboxes ul,
+    .radios ul {
+      margin-top: var(--semanticFormsInputTopMargin);
+    }
   }
+  // #endregion
+}
 
 // #region tables
 
