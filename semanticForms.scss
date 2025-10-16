@@ -95,7 +95,10 @@ table.semanticForms.light {
   width: 100%;
   container-type: inline-size;
   container-name: semanticForm;
-  interpolate-size: allow-keywords;
+
+  @supports (interpolate-size: allow-keywords) { // https://caniuse.com/wf-interpolate-size
+    interpolate-size: allow-keywords;
+  }
 
   // due to the specificity of some of these rules, [hidden] won't actually hide things, so we're forcing the issue
   [hidden] {
@@ -259,7 +262,7 @@ table.semanticForms.light {
     &[data-auto-grow] {
       field-sizing: content;
     }
-   }
+  }
 
   input[type="search"] {
     background: var(--semanticFormsSearchIcon) no-repeat 10px;
@@ -444,7 +447,7 @@ table.semanticForms.light {
     }
   }
 
-  // #region summary
+  // #region details
   details {
     box-sizing: border-box; // ensure sizings match across browsers
     position: relative;
@@ -457,13 +460,22 @@ table.semanticForms.light {
     padding: 20px 10px 10px 10px;
     margin-bottom: 15px;
     min-height: calc(var(--semanticFormsFontSize) + 20px);
-    transition: height 0.2s;
-
+    
     &::details-content {
-      height: 0;
-      overflow: hidden;
-      transition: height 0.2s, content-visibility 0.2s;
-      transition-behavior: allow-discrete;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
+    }
+    
+    @supports (interpolate-size: allow-keywords) { // https://caniuse.com/wf-interpolate-size
+      transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms, height 250ms;
+
+      &::details-content {
+        height: 0;
+        overflow: hidden;
+        transition: height 250ms, content-visibility 250ms;
+        transition-behavior: allow-discrete;
+      }
     }
 
     summary {
@@ -497,7 +509,15 @@ table.semanticForms.light {
 
     &[open] {
       &::details-content {
-        height: auto;
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
+      }
+
+      @supports (interpolate-size: allow-keywords) {
+        &::details-content {
+          height: auto;
+        }
       }
 
       summary {
@@ -889,7 +909,6 @@ table.semanticForms.light {
             pointer-events: auto;
             color: red;
           }
-
         }
       }
 
@@ -1214,71 +1233,71 @@ table.semanticForms.light {
 
     // #region low flow form
     &.lowFlow {
-        gap: 5px;
+      gap: 5px;
 
-        dl {
-          grid-auto-flow: dense;
-        }
+      dl {
+        grid-auto-flow: dense;
+      }
 
-        // 1, 4, 7, ...
-        & > dt:nth-of-type(2n + 1),
-        & > dd:nth-of-type(2n + 1) {
-          grid-column: 1;
-        }
+      // 1, 4, 7, ...
+      & > dt:nth-of-type(2n + 1),
+      & > dd:nth-of-type(2n + 1) {
+        grid-column: 1;
+      }
 
-        // 2, 5, 8, ...
-        & > dt:nth-of-type(2n + 2),
-        & > dd:nth-of-type(2n + 2) {
-          grid-column: 2;
-        }
+      // 2, 5, 8, ...
+      & > dt:nth-of-type(2n + 2),
+      & > dd:nth-of-type(2n + 2) {
+        grid-column: 2;
+      }
 
-        dt {
-           min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
-
-          // add required asterisk
-          &:has(+ dd input:required) {
-            label::after {
-              content: ' *';
-              color: red;
-            }
-          }
-        }
-
-
-        dd {
-          margin-bottom: 10px;
+      dt {
           min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
 
-          // nudge single checkboxes to match checkbox groups
-          &:not(.checkboxes) {
-            input[type=checkbox] {
-              margin-left: 10px;
-            }
-          }
-
-          // remove "x" padding
-          input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
-          select,
-          textarea {
-            padding-right: 6px;
-          }
-
-          // subtext
-          label {
-            margin-top: -5px;
-            font-size: small;
-            color: var(--semanticFormsPlaceholderColor);
+        // add required asterisk
+        &:has(+ dd input:required) {
+          label::after {
+            content: ' *';
+            color: red;
           }
         }
       }
 
-      .checkboxes ul,
-      .radios ul {
-        margin-top: var(--semanticFormsInputTopMargin);
+
+      dd {
+        margin-bottom: 10px;
+        min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+
+        // nudge single checkboxes to match checkbox groups
+        &:not(.checkboxes) {
+          input[type=checkbox] {
+            margin-left: 10px;
+          }
+        }
+
+        // remove "x" padding
+        input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
+        select,
+        textarea {
+          padding-right: 6px;
+        }
+
+        // subtext
+        label {
+          margin-top: -5px;
+          font-size: small;
+          color: var(--semanticFormsPlaceholderColor);
+        }
       }
     }
-    // #endregion
+
+    .checkboxes ul,
+    .radios ul {
+      margin-top: var(--semanticFormsInputTopMargin);
+    }
   }
+  // #endregion
+}
 
 // #region tables
 

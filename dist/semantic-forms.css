@@ -129,7 +129,14 @@ table.semanticForms.light {
   width: 100%;
   container-type: inline-size;
   container-name: semanticForm;
-  interpolate-size: allow-keywords;
+}
+@supports (interpolate-size: allow-keywords) {
+  form.semanticForms,
+  form.semanticForms.light,
+  table.semanticForms,
+  table.semanticForms.light {
+    interpolate-size: allow-keywords;
+  }
 }
 form.semanticForms [hidden],
 form.semanticForms.light [hidden],
@@ -850,16 +857,31 @@ table.semanticForms.light details {
   padding: 20px 10px 10px 10px;
   margin-bottom: 15px;
   min-height: calc(var(--semanticFormsFontSize) + 20px);
-  transition: height 0.2s;
 }
 form.semanticForms details::details-content,
 form.semanticForms.light details::details-content,
 table.semanticForms details::details-content,
 table.semanticForms.light details::details-content {
-  height: 0;
-  overflow: hidden;
-  transition: height 0.2s, content-visibility 0.2s;
-  transition-behavior: allow-discrete;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
+}
+@supports (interpolate-size: allow-keywords) {
+  form.semanticForms details,
+  form.semanticForms.light details,
+  table.semanticForms details,
+  table.semanticForms.light details {
+    transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms, height 250ms;
+  }
+  form.semanticForms details::details-content,
+  form.semanticForms.light details::details-content,
+  table.semanticForms details::details-content,
+  table.semanticForms.light details::details-content {
+    height: 0;
+    overflow: hidden;
+    transition: height 250ms, content-visibility 250ms;
+    transition-behavior: allow-discrete;
+  }
 }
 form.semanticForms details summary,
 form.semanticForms.light details summary,
@@ -901,7 +923,17 @@ form.semanticForms details[open]::details-content,
 form.semanticForms.light details[open]::details-content,
 table.semanticForms details[open]::details-content,
 table.semanticForms.light details[open]::details-content {
-  height: auto;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
+}
+@supports (interpolate-size: allow-keywords) {
+  form.semanticForms details[open]::details-content,
+  form.semanticForms.light details[open]::details-content,
+  table.semanticForms details[open]::details-content,
+  table.semanticForms.light details[open]::details-content {
+    height: auto;
+  }
 }
 form.semanticForms details[open] summary::before,
 form.semanticForms.light details[open] summary::before,
