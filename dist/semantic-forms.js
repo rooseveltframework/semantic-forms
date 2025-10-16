@@ -23,14 +23,9 @@ if(dd.parentElement.nodeName==="DIV")dd.parentElement.remove();const div=documen
 // check for auto-grow attribute on textareas
 if(input.getAttribute("data-auto-grow")!==null){
 // progressively enhance inputs into textareas
-if(input.nodeName==="INPUT"&&input.type==="text"){const newInput=document.createElement("textarea");newInput.id=input.id;newInput.class=input.class;newInput.innerText=input.value;newInput.setAttribute("data-auto-grow","");input.replaceWith(newInput);input=newInput}if(input.nodeName!=="TEXTAREA")return;
+if(input.nodeName==="INPUT"&&input.type==="text"){const newInput=document.createElement("textarea");newInput.id=input.id;newInput.class=input.class;newInput.innerText=input.value;newInput.setAttribute("data-auto-grow","");input.replaceWith(newInput);input=newInput}if(input.nodeName==="TEXTAREA")
 // when pressing enter while this input is focused, we want to submit
-input.addEventListener("keypress",e=>{if(e.key!=="Enter"||e.key==="Enter"&&e.shiftKey)return;e.preventDefault();form.requestSubmit()});
-// progressively enhance textarea for Firefox and Safari
-// this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
-if(!("fieldSizing"in document.createElement("input").style)){const adjustHeight=()=>{if(input.value.length)input.style.height=input.scrollHeight+"px";else input.style.height=window.getComputedStyle(form).getPropertyValue("--semanticFormsInputHeight")};
-// set initial height to semantic-forms CSS variable
-input.style.height=window.getComputedStyle(form).getPropertyValue("--semanticFormsInputHeight");adjustHeight();input.addEventListener("input",adjustHeight)}}if(type!=="checkbox"&&type!=="radio"){if(!input.getAttribute("placeholder"))input.setAttribute("placeholder"," ");const div=document.createElement("div");const dt=label.closest("dt");const dd=input.closest("dd");if(!dt){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that does not have a corresponding <dt> element.`);continue}if(!dd){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that does not have a corresponding <dd> element.`);continue}
+input.addEventListener("keypress",e=>{if(e.key!=="Enter"||e.key==="Enter"&&e.shiftKey)return;e.preventDefault();form.requestSubmit()})}if(type!=="checkbox"&&type!=="radio"){if(!input.getAttribute("placeholder"))input.setAttribute("placeholder"," ");const div=document.createElement("div");const dt=label.closest("dt");const dd=input.closest("dd");if(!dt){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that does not have a corresponding <dt> element.`);continue}if(!dd){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that does not have a corresponding <dd> element.`);continue}
 // #region input clear button
 if(input.nodeName!=="SELECT"&&type!=="range"){const clearBtn=document.createElement("button");clearBtn.type="button";clearBtn.title=input.getAttribute("data-clear-field-text")||"Clear field";clearBtn.ariaLabel=input.getAttribute("data-clear-field-text")||"Clear field";clearBtn.tabIndex=-1;clearBtn.innerHTML='<svg viewBox="0 0 16 16" width="18" height="18"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />';clearBtn.classList.add("clear");clearBtn.id=`semanticFormsClearButton_${input.id}`;clearBtn.addEventListener("click",()=>{input.previousValue=input.value;input.value="";input.focus();lastClearFieldPressed=input.id;
 // used for any other updates required by various inputs
@@ -73,6 +68,11 @@ const rows=Math.round((scrollHeight-blockPadding)/lineHeight);
 if(maxRows)input.setAttribute("rows",""+Math.min(rows,Number(maxRows)));else input.setAttribute("rows",""+rows)};input.addEventListener("input",handleInput);
 // trigger the event to set the initial rows value
 input.dispatchEvent(new Event("input",{bubbles:true}))}
+// progressively enhance textarea for Firefox and Safari
+// this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
+if(input.getAttribute("data-auto-grow")!==null){const adjustHeight=()=>{if(input.value.length)input.style.height=input.scrollHeight+"px";else input.style.height=window.getComputedStyle(form).getPropertyValue("--semanticFormsInputHeight")};
+// set initial height to semantic-forms CSS variable
+input.style.height=window.getComputedStyle(form).getPropertyValue("--semanticFormsInputHeight");input.addEventListener("input",adjustHeight)}
 // shifts the clear button to the right if a scrollbar is present
 const shiftClearBtn=()=>{const clearBtn=input.parentElement?.querySelector("button.clear");if(clearBtn)clearBtn.style.marginRight=input.clientHeight<input.scrollHeight?"15px":""};input.addEventListener("input",shiftClearBtn);input.addEventListener("mouseup",shiftClearBtn);shiftClearBtn()}}}}
 /**
