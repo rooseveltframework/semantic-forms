@@ -21,7 +21,7 @@ const semanticForms = () => {
 
     // update each input in the semantic form
     const inputs = Array.from(form.querySelectorAll('input, textarea, select'))
-    for (const input of inputs) {
+    for (let input of inputs) {
       // ignore input if it has previously been formatted
       if (input.classList.contains('semanticform') || !input.id) continue
 
@@ -45,7 +45,6 @@ const semanticForms = () => {
         input.classList.add('semanticform')
 
         // #region create labels
-
         if (type === 'checkbox' || type === 'radio') {
           // recursively find <dd> element
           let dd = input.parentNode
@@ -123,6 +122,30 @@ const semanticForms = () => {
         // #endregion
 
         // #region standard inputs
+        // check for auto-grow attribute on textareas
+        if (input.getAttribute('data-auto-grow') !== null) {
+          // progressively enhance inputs into textareas
+          if (input.nodeName === 'INPUT' && input.type === 'text') {
+            const newInput = document.createElement('textarea')
+            newInput.id = input.id
+            newInput.class = input.class
+            newInput.innerText = input.value
+            newInput.setAttribute('data-auto-grow', '')
+            input.replaceWith(newInput)
+            input = newInput
+
+          }
+
+          if (input.nodeName === 'TEXTAREA') {
+            // when pressing enter while this input is focused, we want to submit
+            input.addEventListener('keypress', (e) => {
+              if (e.key !== 'Enter' || (e.key === 'Enter' && e.shiftKey)) return
+              e.preventDefault()
+              form.requestSubmit()
+            })
+          }
+        }
+
         if (type !== 'checkbox' && type !== 'radio') {
           if (!input.getAttribute('placeholder')) input.setAttribute('placeholder', ' ')
 
@@ -318,34 +341,20 @@ const semanticForms = () => {
             input.dispatchEvent(new Event('input', { bubbles: true }))
           }
 
-          // check for auto-grow attribute on textareas
+          // progressively enhance textarea for Firefox and Safari
+          // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
           if (input.getAttribute('data-auto-grow') !== null) {
-            if (input.nodeName !== 'TEXTAREA') return
-
-            // when pressing enter while this input is focused, we want to submit
-            input.addEventListener('keypress', (e) => {
-              if (e.key !== 'Enter' || (e.key === 'Enter' && e.shiftKey)) return
-              e.preventDefault()
-              form.requestSubmit()
-            })
-
-            // progressively enhance textarea for Firefox and Safari
-            // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
-            if (!('fieldSizing' in document.createElement('input').style)) {
-              const adjustHeight = () => {
-                if (input.value.length) {
-                  input.style.height = input.scrollHeight + 'px'
-                } else {
-                  input.style.height = window.getComputedStyle(form).getPropertyValue('--semanticFormsInputHeight')
-                }
+            const adjustHeight = () => {
+              if (input.value.length) {
+                input.style.height = input.scrollHeight + 'px'
+              } else {
+                input.style.height = window.getComputedStyle(form).getPropertyValue('--semanticFormsInputHeight')
               }
-
-              // set initial height to semantic-forms CSS variable
-              input.style.height = window.getComputedStyle(form).getPropertyValue('--semanticFormsInputHeight')
-
-              adjustHeight()
-              input.addEventListener('input', adjustHeight)
             }
+
+            // set initial height to semantic-forms CSS variable
+            input.style.height = window.getComputedStyle(form).getPropertyValue('--semanticFormsInputHeight')
+            input.addEventListener('input', adjustHeight)
           }
 
           // shifts the clear button to the right if a scrollbar is present
