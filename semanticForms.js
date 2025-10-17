@@ -20,9 +20,10 @@ const semanticForms = () => {
         const matchesKey = command.key.toLowerCase() === e.key.toLowerCase()
         let matchesModifier
         if (command.modifier) {
-          if (command.modifier === 'alt') {
+          const metaModifiers = ['ctrl', 'control', 'cmd', 'command', 'meta']
+          if (command.modifier.toLowerCase() === 'alt') {
             matchesModifier = e.altKey
-          } else if (command.modifier === 'ctrl' || command.modifier === 'meta') {
+          } else if (metaModifiers.includes(command.modifier.toLowerCase())) {
             matchesModifier = e.ctrlKey || e.metaKey
           }
         } else {
@@ -147,24 +148,35 @@ const semanticForms = () => {
 
         // handle keyboard commands
         if (input.getAttribute('data-focus-key') !== null) {
-          const key = input.getAttribute('data-focus-key')
-          const modifier = input.getAttribute('data-focus-modifier')
+          // get focus key
+          let key = input.getAttribute('data-focus-key')
+          if (key.length > 1) {
+            console.error(`Provided focus key "${key}" is not valid. Using first character only.`)
+            key = key.toString()[0]
+          }
+
+          // get focus modifier
+          let modifier = input.getAttribute('data-focus-modifier')
+          if (modifier) modifier = modifier.toLowerCase()
+          const validModifiers = [null, 'alt', 'ctrl', 'control', 'cmd', 'command', 'meta']
+          if (!validModifiers.includes(modifier)) {
+            console.error(`Provided modifier key "${modifier}" is not valid. Defaulting to control/command.`)
+            modifier = 'meta'
+          }
           keyCommands.push({ key, modifier, input })
 
+          // create focus indicator for input
           const indicator = document.createElement('span')
           indicator.classList.add('focus-key')
-          let spanText = ''
+          let html = ''
           if (modifier === 'alt') {
-            // keyCodes.altKey = true
-            spanText += navigator.userAgent.indexOf('Mac') != -1 ? '⌥' : 'alt'
+            html += `<kbd>${navigator.userAgent.indexOf('Mac') != -1 ? '⌥' : 'alt'}</kbd>`
           } else {
-            // keyCodes.ctrlKey = true
-            // keyCodes.metaKey = true
-            spanText += navigator.userAgent.indexOf('Mac') != -1 ? '⌘' : 'ctrl'
+            html += `<kbd>${navigator.userAgent.indexOf('Mac') != -1 ? '⌘' : 'ctrl'}</kbd>`
           }
-          spanText += ` ${key}`
+          html += ` ${key.toUpperCase()}`
 
-          indicator.innerText = spanText
+          indicator.innerHTML = html
           insertAfter(indicator, newLabel)
         }
         // #endregion

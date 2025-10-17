@@ -668,6 +668,24 @@ table.semanticForms.light {
           gap: 5px;
         }
       }
+
+      // focus-key styles
+      &:has(span.focus-key) {
+        // make room for focus key span
+        label:first-of-type {
+          width: calc(100% - 95px) !important;
+        }
+
+        span.focus-key {
+          display: block;
+        }
+
+        &:has(input:focus) {
+          span.focus-key {
+            display: none;
+          }
+        }
+      }
     }
   }
 

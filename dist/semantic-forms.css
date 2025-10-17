@@ -1148,6 +1148,24 @@ table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > texta
   align-items: center;
   gap: 5px;
 }
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) label:first-of-type,
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) label:first-of-type,
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) label:first-of-type,
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) label:first-of-type {
+  width: calc(100% - 95px) !important;
+}
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key,
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key,
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key,
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key {
+  display: block;
+}
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus) span.focus-key,
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus) span.focus-key,
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus) span.focus-key,
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus) span.focus-key {
+  display: none;
+}
 form.semanticForms p:has(input:not([type=checkbox], [type=radio]), textarea, label),
 form.semanticForms.light p:has(input:not([type=checkbox], [type=radio]), textarea, label),
 table.semanticForms p:has(input:not([type=checkbox], [type=radio]), textarea, label),
