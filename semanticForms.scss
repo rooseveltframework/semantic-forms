@@ -90,13 +90,18 @@ form.semanticForms,
 form.semanticForms.light,
 table.semanticForms,
 table.semanticForms.light {
+  // visibility and opacity prevents FOUC, transition eases the sudden flash
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.1s;
   font-family: var(--semanticFormsFontFamily);
   font-size: var(--semanticFormsFontSize);
   width: 100%;
   container-type: inline-size;
   container-name: semanticForm;
 
-  @supports (interpolate-size: allow-keywords) { // https://caniuse.com/wf-interpolate-size
+  // https://caniuse.com/wf-interpolate-size
+  @supports (interpolate-size: allow-keywords) {
     interpolate-size: allow-keywords;
   }
 
@@ -862,6 +867,13 @@ table.semanticForms.light {
             }
           }
         }
+
+        .focus-key {
+          color: var(--semanticFormsPlaceholderColor);
+          position: absolute;
+          top: calc(var(--semanticFormsInputTopMargin) + 11px);
+          right: 20px;
+        }
       }
 
       // top level label for checkbox and radio groups
@@ -940,6 +952,10 @@ table.semanticForms.light {
   }
 
   &.semanticFormsActive {
+    // this will show once JS has been loaded, preventing FOUC
+    visibility: visible;
+    opacity: 1;
+
     // #region colspan classes
     div {
       &[class^='colspan-'] {
@@ -1231,70 +1247,71 @@ table.semanticForms.light {
     }
     // #endregion
 
-    // #region low flow form
-    &.lowFlow {
-      gap: 5px;
+  }
 
-      dl {
-        grid-auto-flow: dense;
-      }
+  // #region low flow form
+  &.lowFlow {
+    gap: 5px;
 
-      // 1, 4, 7, ...
-      & > dt:nth-of-type(2n + 1),
-      & > dd:nth-of-type(2n + 1) {
-        grid-column: 1;
-      }
+    dl {
+      grid-auto-flow: dense;
+    }
 
-      // 2, 5, 8, ...
-      & > dt:nth-of-type(2n + 2),
-      & > dd:nth-of-type(2n + 2) {
-        grid-column: 2;
-      }
+    // 1, 4, 7, ...
+    & > dt:nth-of-type(2n + 1),
+    & > dd:nth-of-type(2n + 1) {
+      grid-column: 1;
+    }
 
-      dt {
-          min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+    // 2, 5, 8, ...
+    & > dt:nth-of-type(2n + 2),
+    & > dd:nth-of-type(2n + 2) {
+      grid-column: 2;
+    }
 
-        // add required asterisk
-        &:has(+ dd input:required) {
-          label::after {
-            content: ' *';
-            color: red;
-          }
-        }
-      }
-
-
-      dd {
-        margin-bottom: 10px;
+    dt {
         min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
 
-        // nudge single checkboxes to match checkbox groups
-        &:not(.checkboxes) {
-          input[type=checkbox] {
-            margin-left: 10px;
-          }
-        }
-
-        // remove "x" padding
-        input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
-        select,
-        textarea {
-          padding-right: 6px;
-        }
-
-        // subtext
-        label {
-          margin-top: -5px;
-          font-size: small;
-          color: var(--semanticFormsPlaceholderColor);
+      // add required asterisk
+      &:has(+ dd input:required) {
+        label::after {
+          content: ' *';
+          color: red;
         }
       }
     }
 
-    .checkboxes ul,
-    .radios ul {
-      margin-top: var(--semanticFormsInputTopMargin);
+
+    dd {
+      margin-bottom: 10px;
+      min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+
+      // nudge single checkboxes to match checkbox groups
+      &:not(.checkboxes) {
+        input[type=checkbox] {
+          margin-left: 10px;
+        }
+      }
+
+      // remove "x" padding
+      input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
+      select,
+      textarea {
+        padding-right: 6px;
+      }
+
+      // subtext
+      label {
+        margin-top: -5px;
+        font-size: small;
+        color: var(--semanticFormsPlaceholderColor);
+      }
     }
+  }
+
+  .checkboxes ul,
+  .radios ul {
+    margin-top: var(--semanticFormsInputTopMargin);
   }
   // #endregion
 }

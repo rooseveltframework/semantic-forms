@@ -124,6 +124,9 @@ form.semanticForms,
 form.semanticForms.light,
 table.semanticForms,
 table.semanticForms.light {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.1s;
   font-family: var(--semanticFormsFontFamily);
   font-size: var(--semanticFormsFontSize);
   width: 100%;
@@ -1471,6 +1474,15 @@ table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .c
 table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help svg {
   width: 80%;
 }
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) .focus-key,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) .focus-key,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) .focus-key,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) .focus-key {
+  color: var(--semanticFormsPlaceholderColor);
+  position: absolute;
+  top: calc(var(--semanticFormsInputTopMargin) + 11px);
+  right: 20px;
+}
 form.semanticForms .floatLabelForm div dt,
 form.semanticForms.light .floatLabelForm div dt,
 table.semanticForms .floatLabelForm div dt,
@@ -1556,6 +1568,13 @@ table.semanticForms .floatLabelForm textarea::placeholder,
 table.semanticForms.light .floatLabelForm input::placeholder,
 table.semanticForms.light .floatLabelForm textarea::placeholder {
   color: var(--semanticFormsPlaceholderColor);
+  opacity: 1;
+}
+form.semanticForms.semanticFormsActive,
+form.semanticForms.light.semanticFormsActive,
+table.semanticForms.semanticFormsActive,
+table.semanticForms.light.semanticFormsActive {
+  visibility: visible;
   opacity: 1;
 }
 form.semanticForms.semanticFormsActive div[class^=colspan-],
@@ -2487,92 +2506,92 @@ table.semanticForms.light.semanticFormsActive dl.colspan-1 {
     grid-column: 1;
   }
 }
-form.semanticForms.semanticFormsActive.lowFlow,
-form.semanticForms.light.semanticFormsActive.lowFlow,
-table.semanticForms.semanticFormsActive.lowFlow,
-table.semanticForms.light.semanticFormsActive.lowFlow {
+form.semanticForms.lowFlow,
+form.semanticForms.light.lowFlow,
+table.semanticForms.lowFlow,
+table.semanticForms.light.lowFlow {
   gap: 5px;
 }
-form.semanticForms.semanticFormsActive.lowFlow dl,
-form.semanticForms.light.semanticFormsActive.lowFlow dl,
-table.semanticForms.semanticFormsActive.lowFlow dl,
-table.semanticForms.light.semanticFormsActive.lowFlow dl {
+form.semanticForms.lowFlow dl,
+form.semanticForms.light.lowFlow dl,
+table.semanticForms.lowFlow dl,
+table.semanticForms.light.lowFlow dl {
   grid-auto-flow: dense;
 }
-form.semanticForms.semanticFormsActive.lowFlow > dt:nth-of-type(2n + 1), form.semanticForms.semanticFormsActive.lowFlow > dd:nth-of-type(2n + 1),
-form.semanticForms.light.semanticFormsActive.lowFlow > dt:nth-of-type(2n + 1),
-form.semanticForms.light.semanticFormsActive.lowFlow > dd:nth-of-type(2n + 1),
-table.semanticForms.semanticFormsActive.lowFlow > dt:nth-of-type(2n + 1),
-table.semanticForms.semanticFormsActive.lowFlow > dd:nth-of-type(2n + 1),
-table.semanticForms.light.semanticFormsActive.lowFlow > dt:nth-of-type(2n + 1),
-table.semanticForms.light.semanticFormsActive.lowFlow > dd:nth-of-type(2n + 1) {
+form.semanticForms.lowFlow > dt:nth-of-type(2n + 1), form.semanticForms.lowFlow > dd:nth-of-type(2n + 1),
+form.semanticForms.light.lowFlow > dt:nth-of-type(2n + 1),
+form.semanticForms.light.lowFlow > dd:nth-of-type(2n + 1),
+table.semanticForms.lowFlow > dt:nth-of-type(2n + 1),
+table.semanticForms.lowFlow > dd:nth-of-type(2n + 1),
+table.semanticForms.light.lowFlow > dt:nth-of-type(2n + 1),
+table.semanticForms.light.lowFlow > dd:nth-of-type(2n + 1) {
   grid-column: 1;
 }
-form.semanticForms.semanticFormsActive.lowFlow > dt:nth-of-type(2n + 2), form.semanticForms.semanticFormsActive.lowFlow > dd:nth-of-type(2n + 2),
-form.semanticForms.light.semanticFormsActive.lowFlow > dt:nth-of-type(2n + 2),
-form.semanticForms.light.semanticFormsActive.lowFlow > dd:nth-of-type(2n + 2),
-table.semanticForms.semanticFormsActive.lowFlow > dt:nth-of-type(2n + 2),
-table.semanticForms.semanticFormsActive.lowFlow > dd:nth-of-type(2n + 2),
-table.semanticForms.light.semanticFormsActive.lowFlow > dt:nth-of-type(2n + 2),
-table.semanticForms.light.semanticFormsActive.lowFlow > dd:nth-of-type(2n + 2) {
+form.semanticForms.lowFlow > dt:nth-of-type(2n + 2), form.semanticForms.lowFlow > dd:nth-of-type(2n + 2),
+form.semanticForms.light.lowFlow > dt:nth-of-type(2n + 2),
+form.semanticForms.light.lowFlow > dd:nth-of-type(2n + 2),
+table.semanticForms.lowFlow > dt:nth-of-type(2n + 2),
+table.semanticForms.lowFlow > dd:nth-of-type(2n + 2),
+table.semanticForms.light.lowFlow > dt:nth-of-type(2n + 2),
+table.semanticForms.light.lowFlow > dd:nth-of-type(2n + 2) {
   grid-column: 2;
 }
-form.semanticForms.semanticFormsActive.lowFlow dt,
-form.semanticForms.light.semanticFormsActive.lowFlow dt,
-table.semanticForms.semanticFormsActive.lowFlow dt,
-table.semanticForms.light.semanticFormsActive.lowFlow dt {
+form.semanticForms.lowFlow dt,
+form.semanticForms.light.lowFlow dt,
+table.semanticForms.lowFlow dt,
+table.semanticForms.light.lowFlow dt {
   min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
 }
-form.semanticForms.semanticFormsActive.lowFlow dt:has(+ dd input:required) label::after,
-form.semanticForms.light.semanticFormsActive.lowFlow dt:has(+ dd input:required) label::after,
-table.semanticForms.semanticFormsActive.lowFlow dt:has(+ dd input:required) label::after,
-table.semanticForms.light.semanticFormsActive.lowFlow dt:has(+ dd input:required) label::after {
+form.semanticForms.lowFlow dt:has(+ dd input:required) label::after,
+form.semanticForms.light.lowFlow dt:has(+ dd input:required) label::after,
+table.semanticForms.lowFlow dt:has(+ dd input:required) label::after,
+table.semanticForms.light.lowFlow dt:has(+ dd input:required) label::after {
   content: " *";
   color: red;
 }
-form.semanticForms.semanticFormsActive.lowFlow dd,
-form.semanticForms.light.semanticFormsActive.lowFlow dd,
-table.semanticForms.semanticFormsActive.lowFlow dd,
-table.semanticForms.light.semanticFormsActive.lowFlow dd {
+form.semanticForms.lowFlow dd,
+form.semanticForms.light.lowFlow dd,
+table.semanticForms.lowFlow dd,
+table.semanticForms.light.lowFlow dd {
   margin-bottom: 10px;
   min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
 }
-form.semanticForms.semanticFormsActive.lowFlow dd:not(.checkboxes) input[type=checkbox],
-form.semanticForms.light.semanticFormsActive.lowFlow dd:not(.checkboxes) input[type=checkbox],
-table.semanticForms.semanticFormsActive.lowFlow dd:not(.checkboxes) input[type=checkbox],
-table.semanticForms.light.semanticFormsActive.lowFlow dd:not(.checkboxes) input[type=checkbox] {
+form.semanticForms.lowFlow dd:not(.checkboxes) input[type=checkbox],
+form.semanticForms.light.lowFlow dd:not(.checkboxes) input[type=checkbox],
+table.semanticForms.lowFlow dd:not(.checkboxes) input[type=checkbox],
+table.semanticForms.light.lowFlow dd:not(.checkboxes) input[type=checkbox] {
   margin-left: 10px;
 }
-form.semanticForms.semanticFormsActive.lowFlow dd input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
-form.semanticForms.semanticFormsActive.lowFlow dd select,
-form.semanticForms.semanticFormsActive.lowFlow dd textarea,
-form.semanticForms.light.semanticFormsActive.lowFlow dd input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
-form.semanticForms.light.semanticFormsActive.lowFlow dd select,
-form.semanticForms.light.semanticFormsActive.lowFlow dd textarea,
-table.semanticForms.semanticFormsActive.lowFlow dd input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
-table.semanticForms.semanticFormsActive.lowFlow dd select,
-table.semanticForms.semanticFormsActive.lowFlow dd textarea,
-table.semanticForms.light.semanticFormsActive.lowFlow dd input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
-table.semanticForms.light.semanticFormsActive.lowFlow dd select,
-table.semanticForms.light.semanticFormsActive.lowFlow dd textarea {
+form.semanticForms.lowFlow dd input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
+form.semanticForms.lowFlow dd select,
+form.semanticForms.lowFlow dd textarea,
+form.semanticForms.light.lowFlow dd input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
+form.semanticForms.light.lowFlow dd select,
+form.semanticForms.light.lowFlow dd textarea,
+table.semanticForms.lowFlow dd input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
+table.semanticForms.lowFlow dd select,
+table.semanticForms.lowFlow dd textarea,
+table.semanticForms.light.lowFlow dd input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
+table.semanticForms.light.lowFlow dd select,
+table.semanticForms.light.lowFlow dd textarea {
   padding-right: 6px;
 }
-form.semanticForms.semanticFormsActive.lowFlow dd label,
-form.semanticForms.light.semanticFormsActive.lowFlow dd label,
-table.semanticForms.semanticFormsActive.lowFlow dd label,
-table.semanticForms.light.semanticFormsActive.lowFlow dd label {
+form.semanticForms.lowFlow dd label,
+form.semanticForms.light.lowFlow dd label,
+table.semanticForms.lowFlow dd label,
+table.semanticForms.light.lowFlow dd label {
   margin-top: -5px;
   font-size: small;
   color: var(--semanticFormsPlaceholderColor);
 }
-form.semanticForms.semanticFormsActive .checkboxes ul,
-form.semanticForms.semanticFormsActive .radios ul,
-form.semanticForms.light.semanticFormsActive .checkboxes ul,
-form.semanticForms.light.semanticFormsActive .radios ul,
-table.semanticForms.semanticFormsActive .checkboxes ul,
-table.semanticForms.semanticFormsActive .radios ul,
-table.semanticForms.light.semanticFormsActive .checkboxes ul,
-table.semanticForms.light.semanticFormsActive .radios ul {
+form.semanticForms .checkboxes ul,
+form.semanticForms .radios ul,
+form.semanticForms.light .checkboxes ul,
+form.semanticForms.light .radios ul,
+table.semanticForms .checkboxes ul,
+table.semanticForms .radios ul,
+table.semanticForms.light .checkboxes ul,
+table.semanticForms.light .radios ul {
   margin-top: var(--semanticFormsInputTopMargin);
 }
 

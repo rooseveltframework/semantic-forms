@@ -11,6 +11,33 @@ const semanticForms = () => {
 
   const nodeNameLookup = ['TEXTAREA', 'SELECT']
   const inputTypeLookup = ['checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'image', 'month', 'number', 'password', 'radio', 'range', 'search', 'tel', 'text', 'time', 'url', 'week']
+  const keyCommands = []
+
+  // custom key-command listener
+  document.addEventListener('keydown', (e) => {
+    if (keyCommands.some(command => command.key.toLowerCase() === e.key.toLowerCase())) {
+      const command = keyCommands.find(command => {
+        const matchesKey = command.key.toLowerCase() === e.key.toLowerCase()
+        let matchesModifier
+        if (command.modifier) {
+          if (command.modifier === 'alt') {
+            matchesModifier = e.altKey
+          } else if (command.modifier === 'ctrl' || command.modifier === 'meta') {
+            matchesModifier = e.ctrlKey || e.metaKey
+          }
+        } else {
+          matchesModifier = e.ctrlKey || e.metaKey
+        }
+
+        return matchesKey && matchesModifier
+      })
+
+      if (command && (command.modifier === 'alt' && e.altKey) || (e.ctrlKey || e.metaKey)) {
+        e.preventDefault()
+        command.input.focus()
+      }
+    }
+  })
 
   // progressively enhance form elements that have the semanticForms class
   const forms = document.querySelectorAll('form.semanticForms:not(.semanticFormsActive)')
@@ -45,6 +72,10 @@ const semanticForms = () => {
         input.classList.add('semanticform')
 
         // #region create labels
+
+        const newLabel = document.createElement('label')
+        newLabel.className = 'floatLabelFormAnimatedLabel'
+        
         if (type === 'checkbox' || type === 'radio') {
           // recursively find <dd> element
           let dd = input.parentNode
@@ -56,9 +87,6 @@ const semanticForms = () => {
           }
 
           if (dd.firstChild.nodeName !== 'LABEL') {
-            const newLabel = document.createElement('label')
-            newLabel.className = 'floatLabelFormAnimatedLabel'
-
             if (type === 'checkbox' && input.parentNode.nodeName === 'DD') {
               newLabel.setAttribute('for', input.id)
               input.parentNode.classList.add('singleCheckbox')
@@ -99,10 +127,7 @@ const semanticForms = () => {
           div.append(label.closest('dt'), dd)
           dl.append(div)
         } else {
-          const newLabel = document.createElement('label')
           newLabel.setAttribute('for', input.id)
-          newLabel.className = 'floatLabelFormAnimatedLabel'
-
           newLabel.innerHTML = label.innerHTML
 
           if (input.hasAttribute('title') && label.getAttribute('data-show-help-icon') !== null && !label.querySelector('span.help')) {
@@ -118,6 +143,29 @@ const semanticForms = () => {
           label.setAttribute('hidden', 'hidden')
 
           insertAfter(newLabel, input)
+        }
+
+        // handle keyboard commands
+        if (input.getAttribute('data-focus-key') !== null) {
+          const key = input.getAttribute('data-focus-key')
+          const modifier = input.getAttribute('data-focus-modifier')
+          keyCommands.push({ key, modifier, input })
+
+          const indicator = document.createElement('span')
+          indicator.classList.add('focus-key')
+          let spanText = ''
+          if (modifier === 'alt') {
+            // keyCodes.altKey = true
+            spanText += navigator.userAgent.indexOf('Mac') != -1 ? '⌥' : 'alt'
+          } else {
+            // keyCodes.ctrlKey = true
+            // keyCodes.metaKey = true
+            spanText += navigator.userAgent.indexOf('Mac') != -1 ? '⌘' : 'ctrl'
+          }
+          spanText += ` ${key}`
+
+          indicator.innerText = spanText
+          insertAfter(indicator, newLabel)
         }
         // #endregion
 
