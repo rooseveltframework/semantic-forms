@@ -1,3 +1,8 @@
+## 5.1.13
+
+- Added the ability to set custom keyboard focus commands using the `data-focus-key` and `data-focus-modifier` attributes.
+- Fixed a visual bug where unstyled content would flash on initial load.
+
 ## 5.1.12
 
 - Fixed a visual bug with details element arrows.
