@@ -33,7 +33,7 @@ const semanticForms = () => {
         return matchesKey && matchesModifier
       })
 
-      if (command && (command.modifier === 'alt' && e.altKey) || (e.ctrlKey || e.metaKey)) {
+      if (command && ((command.modifier === 'alt' && e.altKey) || (e.ctrlKey || e.metaKey))) {
         e.preventDefault()
         command.input.focus()
       }
@@ -76,7 +76,7 @@ const semanticForms = () => {
 
         const newLabel = document.createElement('label')
         newLabel.className = 'floatLabelFormAnimatedLabel'
-        
+
         if (type === 'checkbox' || type === 'radio') {
           // recursively find <dd> element
           let dd = input.parentNode
@@ -170,9 +170,9 @@ const semanticForms = () => {
           indicator.classList.add('focus-key')
           let html = ''
           if (modifier === 'alt') {
-            html += `<kbd>${navigator.userAgent.indexOf('Mac') != -1 ? '⌥' : 'alt'}</kbd>`
+            html += `<kbd>${navigator.userAgent.indexOf('Mac') !== -1 ? '⌥' : 'alt'}</kbd>`
           } else {
-            html += `<kbd>${navigator.userAgent.indexOf('Mac') != -1 ? '⌘' : 'ctrl'}</kbd>`
+            html += `<kbd>${navigator.userAgent.indexOf('Mac') !== -1 ? '⌘' : 'ctrl'}</kbd>`
           }
           html += ` ${key.toUpperCase()}`
 
@@ -193,7 +193,6 @@ const semanticForms = () => {
             newInput.setAttribute('data-auto-grow', '')
             input.replaceWith(newInput)
             input = newInput
-
           }
 
           if (input.nodeName === 'TEXTAREA') {
@@ -254,9 +253,9 @@ const semanticForms = () => {
             dd.classList.remove(match)
             div.classList.add(match)
           }
-          
+
           // check for max-content attribute
-          // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
+          // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing
           if (input.getAttribute('data-max-content') !== null) {
             if (!('fieldSizing' in document.createElement('input').style)) {
               const adjustWidth = () => {
@@ -402,7 +401,7 @@ const semanticForms = () => {
           }
 
           // progressively enhance textarea for Firefox and Safari
-          // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
+          // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing
           if (input.getAttribute('data-auto-grow') !== null) {
             const adjustHeight = () => {
               if (input.value.length) {

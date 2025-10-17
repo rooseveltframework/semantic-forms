@@ -19,7 +19,7 @@ form.semanticForms, form.semanticForms.light, table.semanticForms {
   --semanticFormsInputTopMargin: 15px;
   --semanticFormsInputMinWidth: 250px;
   --semanticFormsBorderRadius: 10px;
-  --semanticFormsNestedFieldsetBgColor: rgba(0, 0, 0, .05);
+  --semanticFormsNestedFieldsetBgColor: oklch(from var(--semanticFormsFormSubBgColor) 0.3 c h / 0.05);
   --semanticFormsNestedFieldsetBorder: 1px rgba(0, 0, 0, .2) solid;
   --semanticFormsNestedInputBgColor: #fff;
   --semanticFormsBorder: 1px var(--semanticFormsBorderColor) solid;
@@ -45,7 +45,7 @@ form.semanticForms, form.semanticForms.light, table.semanticForms {
   --semanticFormsClearButtonColor: #fff;
   --semanticFormsButtonGradientLight: #6f6f6f;
   --semanticFormsButtonGradientDark: #373737;
-  --semanticFormsNestedFieldsetBgColor: rgba(255, 255, 255, .05);
+  --semanticFormsNestedFieldsetBgColor: oklch(from var(--semanticFormsFormSubBgColor) 0.9 c h / 0.05);
   --semanticFormsNestedFieldsetBorder: 1px rgba(255, 255, 255, .1) solid;
   --semanticFormsNestedInputBgColor: rgba(255, 255, 255, .15);
   --semanticFormsBorder: none;
