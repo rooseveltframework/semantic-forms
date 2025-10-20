@@ -67,12 +67,6 @@
               <input type="text" id="input-button-1" name="input-button-1" placeholder="This input has a button">
               <button type="button">Go</button>
             </dd>
-
-            <dt><label for="custom-focus-input">Focus</label></dt>
-            <dd><input type="text" name="custom-focus-input" id="custom-focus-input" data-focus-key="K"></dd>
-
-            <dt><label for="custom-focus-modifier-input">Focus (custom modifier)</label></dt>
-            <dd><input type="text" name="custom-focus-modifier-input" id="custom-focus-modifier-input" data-focus-modifier="alt" data-focus-key="K"></dd>
           </dl>
 
           <dl>
@@ -419,6 +413,40 @@
               <dd>
                 <input type="text" name="auto-grow-input" id="auto-grow-input" value="Start typing to see me grow" data-auto-grow>
               </dd>
+            </dl>
+
+            <h3>Keyboard Commands</h3>
+            <dl>
+              <dt><label for="custom-focus-input">Ctrl Input focus</label></dt>
+              <dd><input type="text" name="custom-focus-input" id="custom-focus-input" data-focus-key="P"></dd>
+
+              <dt><label for="custom-focus-alt-input">Alt Input focus</label></dt>
+              <dd><input type="text" name="custom-focus-alt-input" id="custom-focus-alt-input" data-focus-modifier="alt" data-focus-key="P"></dd>
+
+              <dt><label for="custom-focus-meta-input">Meta Input focus</label></dt>
+              <dd><input type="text" name="custom-focus-meta-input" id="custom-focus-meta-input" data-focus-modifier="meta" data-focus-key="C"></dd>
+
+              <dt><label for="custom-focus-number">Number focus</label></dt>
+              <dd><input type="number" name="custom-focus-number" id="custom-focus-number" data-focus-key="L"></dd>
+
+              <dt><label for="custom-focus-textarea">Textarea focus</label></dt>
+              <dd><textarea name="custom-focus-textarea" id="custom-focus-textarea" data-focus-key="Q"></textarea></dd>
+
+              <dt><label for="custom-focus-date">Date focus</label></dt>
+              <dd><input type="date" name="custom-focus-date" id="custom-focus-date" data-focus-key="D"></dd>
+
+              <dt><label for="custom-focus-color">Color focus</label></dt>
+              <dd><input type="color" name="custom-focus-color" id="custom-focus-color" title="This input has a key command!" data-focus-key="C"></dd>
+
+              <dt><label for="custom-focus-range">Range focus</label></dt>
+              <dd><input type="range" name="custom-focus-range" id="custom-focus-range" data-focus-key="U"></dd>
+
+              <dt><label for="custom-focus-select">Select focus</label></dt>
+              <dd><select name="custom-focus-select" id="custom-focus-select" data-focus-key="K">
+                <option value="1">Value 1</option>
+                <option value="2">Value 2</option>
+                <option value="3">Value 3</option>
+              </select></dd>
             </dl>
 
             <h3>Tables</h3>

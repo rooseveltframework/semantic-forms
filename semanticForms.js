@@ -17,23 +17,19 @@ const semanticForms = () => {
   document.addEventListener('keydown', (e) => {
     if (keyCommands.some(command => command.key.toLowerCase() === e.key.toLowerCase())) {
       const command = keyCommands.find(command => {
-        const matchesKey = command.key.toLowerCase() === e.key.toLowerCase()
+        if (command.key.toLowerCase() !== e.key.toLowerCase()) return false
         let matchesModifier
+
         if (command.modifier) {
-          const metaModifiers = ['ctrl', 'control', 'cmd', 'command', 'meta']
-          if (command.modifier.toLowerCase() === 'alt') {
-            matchesModifier = e.altKey
-          } else if (metaModifiers.includes(command.modifier.toLowerCase())) {
-            matchesModifier = e.ctrlKey || e.metaKey
-          }
-        } else {
-          matchesModifier = e.ctrlKey || e.metaKey
+          if (command.modifier === 'meta') matchesModifier = e.metaKey
+          if (command.modifier === 'alt') matchesModifier = e.altKey
+          if (command.modifier === 'ctrl') matchesModifier = e.ctrlKey
         }
 
-        return matchesKey && matchesModifier
+        return matchesModifier
       })
 
-      if (command && ((command.modifier === 'alt' && e.altKey) || (e.ctrlKey || e.metaKey))) {
+      if (command) {
         e.preventDefault()
         command.input.focus()
       }
@@ -145,9 +141,15 @@ const semanticForms = () => {
 
           insertAfter(newLabel, input)
         }
+        // #endregion
 
-        // handle keyboard commands
+        // #region keyboard commands
         if (input.getAttribute('data-focus-key') !== null) {
+          // // these are keys that cannot be overwritten
+          // const invalidCombinations = [
+          //   { modifier: 'ctrl', key: ['n', 't', 'w'] }
+          // ]
+
           // get focus key
           let key = input.getAttribute('data-focus-key')
           if (key.length > 1) {
@@ -156,28 +158,66 @@ const semanticForms = () => {
           }
 
           // get focus modifier
-          let modifier = input.getAttribute('data-focus-modifier')
-          if (modifier) modifier = modifier.toLowerCase()
-          const validModifiers = [null, 'alt', 'ctrl', 'control', 'cmd', 'command', 'meta']
-          if (!validModifiers.includes(modifier)) {
-            console.error(`Provided modifier key "${modifier}" is not valid. Defaulting to control/command.`)
-            modifier = 'meta'
+          const os = getOS()
+          let modifierSymbol
+          const modifier = {
+            default: input.getAttribute('data-focus-modifier') || 'metaCtrl',
+            linux: input.getAttribute('data-focus-modifier-linux'),
+            mac: input.getAttribute('data-focus-modifier-mac'),
+            windows: input.getAttribute('data-focus-modifier-win')
           }
-          keyCommands.push({ key, modifier, input })
+          let modifierKey = 'metaCrl'
 
-          // create focus indicator for input
-          const indicator = document.createElement('span')
-          indicator.classList.add('focus-key')
-          let html = ''
-          if (modifier === 'alt') {
-            html += `<kbd>${navigator.userAgent.indexOf('Mac') !== -1 ? '⌥' : 'alt'}</kbd>`
+          if (os && modifier[os]) {
+            // a specific modifier key has been set
+            modifierKey = modifier[os]
+          }
+
+          const ctrlModifiers = ['ctrl']
+          const optModifiers = ['alt', 'opt']
+          const metaModifiers = ['meta', 'win', 'cmd', 'metactrl']
+
+          if (optModifiers.includes(modifierKey)) {
+            // modifier = 'alt'
+            modifierSymbol = os === 'mac' || os === 'ios' ? '⌥' : '⎇'
+          } else if (metaModifiers.includes(modifierKey)) {
+            // modifier = 'meta'
+            if (os === 'mac' || os === 'ios') {
+              modifierSymbol = '⌘'
+            } else if (os === 'linux') {
+              modifierSymbol = '◆'
+            } else {
+              modifierSymbol = 'Ctrl'
+            }
           } else {
-            html += `<kbd>${navigator.userAgent.indexOf('Mac') !== -1 ? '⌘' : 'ctrl'}</kbd>`
+            if (!ctrlModifiers.includes(modifierKey)) {
+              console.error(`Provided modifier key "${modifierKey}" is not valid, defaulting to ctrl.`, input)
+            }
+            // modifier = 'ctrl'
+            modifierSymbol = 'Ctrl'
           }
-          html += ` ${key.toUpperCase()}`
 
-          indicator.innerHTML = html
-          insertAfter(indicator, newLabel)
+          if (keyCommands.some(command => command.key === key && command.modifier === modifierKey)) {
+            console.error(`Duplicate key command "${modifierKey} + ${key}" detected. Only the first input will be focusable using this key command.`, input)
+          } else {
+            keyCommands.push({ key, modifier: modifierKey, input })
+          }
+
+          // set the indicator
+          if (input.nodeName === 'TEXTAREA' || input.type === 'text' || input.type === 'number') {
+            // create focus indicator for valid inputs
+            const indicator = document.createElement('span')
+            indicator.classList.add('focus-key')
+            indicator.innerHTML = `<kbd>${modifierSymbol} ${key.toUpperCase()}</kbd>`
+            insertAfter(indicator, newLabel)
+          } else {
+            // update the input title
+            if (input.getAttribute('title')) {
+              input.setAttribute('title', input.getAttribute('title') + ` (${modifierSymbol} + ${key})`)
+            } else {
+              input.setAttribute('title', `Focus with ${modifierSymbol} + ${key}`)
+            }
+          }
         }
         // #endregion
 
@@ -437,6 +477,29 @@ const semanticForms = () => {
   function insertAfter (newNode, referenceNode) {
     if (referenceNode.nextSibling) referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
     else referenceNode.parentNode.appendChild(newNode)
+  }
+
+  /**
+   * Uses the navigator to best determine the clients operating system.
+   * @returns Operating system string (`mac`, `windows`, `linux`)
+   */
+  function getOS () {
+    let os = null
+    const userAgent = window.navigator.userAgent
+    const platform = window.navigator?.userAgentData?.platform
+    const macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K']
+    const windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE']
+    const iosPlatforms = ['iPhone', 'iPad', 'iPod']
+
+    if (macosPlatforms.indexOf(platform) !== -1 || iosPlatforms.indexOf(platform) !== -1) {
+      os = 'mac'
+    } else if (windowsPlatforms.indexOf(platform) !== -1 || /Android/.test(userAgent)) {
+      os = 'windows'
+    } else if (/Linux/.test(platform)) {
+      os = 'linux'
+    }
+
+    return os
   }
 
   // handle undo/redo

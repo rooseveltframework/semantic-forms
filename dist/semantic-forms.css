@@ -1160,10 +1160,19 @@ table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) d
 table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key {
   display: block;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus) span.focus-key,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus) span.focus-key,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus) span.focus-key,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus) span.focus-key {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key kbd,
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key kbd,
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key kbd,
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key kbd {
+  font-family: sans-serif;
+}
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus, select:focus, textarea:focus) span.focus-key, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):not(:has(input:placeholder-shown, textarea:placeholder-shown)) span.focus-key,
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus, select:focus, textarea:focus) span.focus-key,
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):not(:has(input:placeholder-shown, textarea:placeholder-shown)) span.focus-key,
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus, select:focus, textarea:focus) span.focus-key,
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):not(:has(input:placeholder-shown, textarea:placeholder-shown)) span.focus-key,
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus, select:focus, textarea:focus) span.focus-key,
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):not(:has(input:placeholder-shown, textarea:placeholder-shown)) span.focus-key {
   display: none;
 }
 form.semanticForms p:has(input:not([type=checkbox], [type=radio]), textarea, label),

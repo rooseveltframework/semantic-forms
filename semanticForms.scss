@@ -678,9 +678,14 @@ table.semanticForms.light {
 
         span.focus-key {
           display: block;
+          
+          kbd {
+            font-family: sans-serif;
+          }
         }
 
-        &:has(input:focus) {
+        &:has(input:focus, select:focus, textarea:focus),
+        &:not(:has(input:placeholder-shown, textarea:placeholder-shown)) {
           span.focus-key {
             display: none;
           }

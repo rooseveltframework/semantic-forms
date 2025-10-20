@@ -154,6 +154,13 @@
             <li>Note that pressing <kbd>Enter</kbd> with this attribute will attempt to submit the form. Use <kbd>Shift + Enter</kbd> to add new lines.</li>
           </ul>
         </li>
+        <li>
+          <p>Create a custom keyboard command that may be used to focus an input by applying a <code>data-focus-key=&quot;some key&quot;</code> attribute with an optional <code>data-focus-modifier=&quot;some modifier key&quot;</code> attribute to the input.</p>
+          <ul>
+            <li><p>The focus key should be a single character, and is not case-sensitive. If multiple characters are detected, only the first one will be used. Special characters (!, @, #, etc.) will require <kbd>Shift</kbd> to be pressed with the key command.</p></li> 
+            <li><p>The modifier key value may be "ctrl," "cmd," "meta," or "alt." The default value is "meta" and will automatically be applied if the <code>data-focus-modifier</code> attribute is not present.</p></li>
+          </ul>
+        </li>
       </ul>
 
       <p>You can also disable float labels on a per-field basis with the <code>no-float-label</code> class:</p>
