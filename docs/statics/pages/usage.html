@@ -158,7 +158,12 @@
           <p>Create a custom keyboard command that may be used to focus an input by applying a <code>data-focus-key=&quot;some key&quot;</code> attribute with an optional <code>data-focus-modifier=&quot;some modifier key&quot;</code> attribute to the input.</p>
           <ul>
             <li><p>The focus key should be a single character, and is not case-sensitive. If multiple characters are detected, only the first one will be used. Special characters (!, @, #, etc.) will require <kbd>Shift</kbd> to be pressed with the key command.</p></li> 
-            <li><p>The modifier key value may be "ctrl," "cmd," "meta," or "alt." The default value is "meta" and will automatically be applied if the <code>data-focus-modifier</code> attribute is not present.</p></li>
+            <li><p>The modifier key value may be "metactrl," "ctrl," "cmd," "meta," or "alt." The default value is "metactrl" and will automatically be applied if the <code>data-focus-modifier</code> attribute is not present.</p></li>
+            <ul>
+              <li><p>OS-specific modifier keys can be set with <code>data-focus-modifier-win</code> (Windows), <code>data-focus-modifier-linux</code> (Linux) and <code>data-focus-modifier-mac</code>(Mac).</p></li>
+              <li><p>The "Start" key on Windows is always ignored, and will be replaced with "Ctrl."</p></li>
+              <li><p>Some combinations are unable to be used due to conflicts with browser and OS key commands.</p></li>
+            </ul>
           </ul>
         </li>
       </ul>

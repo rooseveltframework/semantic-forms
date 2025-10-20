@@ -417,26 +417,35 @@
 
             <h3>Keyboard Commands</h3>
             <dl>
-              <dt><label for="custom-focus-input">Ctrl Input focus</label></dt>
+              <dt><label for="custom-focus-input">Default Input focus</label></dt>
               <dd><input type="text" name="custom-focus-input" id="custom-focus-input" data-focus-key="P"></dd>
+
+              <dt><label for="custom-focus-ctrl-input">Ctrl Input focus</label></dt>
+              <dd><input type="text" name="custom-focus-ctrl-input" id="custom-focus-ctrl-input" data-focus-modifier="ctrl" data-focus-key="P"></dd>
 
               <dt><label for="custom-focus-alt-input">Alt Input focus</label></dt>
               <dd><input type="text" name="custom-focus-alt-input" id="custom-focus-alt-input" data-focus-modifier="alt" data-focus-key="P"></dd>
 
               <dt><label for="custom-focus-meta-input">Meta Input focus</label></dt>
-              <dd><input type="text" name="custom-focus-meta-input" id="custom-focus-meta-input" data-focus-modifier="meta" data-focus-key="C"></dd>
+              <dd>
+                <input type="text" name="custom-focus-meta-input" id="custom-focus-meta-input" data-focus-modifier-win="ctrl" data-focus-modifier-mac="meta" data-focus-modifier-linux="meta" data-focus-key="C">
+                <label for="custom-focus-meta-input">The "meta" keyword will use <kbd>⌘</kbd> for Mac, <kbd>◆</kbd> for linux, and <kbd>Ctrl</kbd> for Windows.</label>
+              </dd>
 
               <dt><label for="custom-focus-number">Number focus</label></dt>
               <dd><input type="number" name="custom-focus-number" id="custom-focus-number" data-focus-key="L"></dd>
 
               <dt><label for="custom-focus-textarea">Textarea focus</label></dt>
-              <dd><textarea name="custom-focus-textarea" id="custom-focus-textarea" data-focus-key="Q"></textarea></dd>
+              <dd>
+                <textarea name="custom-focus-textarea" id="custom-focus-textarea" data-focus-key="!"></textarea>
+                <label for="custom-focus-textarea">Special character key commands also require <kbd>Shift</kbd> to be pressed.</label>
+              </dd>
 
               <dt><label for="custom-focus-date">Date focus</label></dt>
               <dd><input type="date" name="custom-focus-date" id="custom-focus-date" data-focus-key="D"></dd>
 
               <dt><label for="custom-focus-color">Color focus</label></dt>
-              <dd><input type="color" name="custom-focus-color" id="custom-focus-color" title="This input has a key command!" data-focus-key="C"></dd>
+              <dd><input type="color" name="custom-focus-color" id="custom-focus-color" title="This input has a key command!" data-focus-key="$" data-focus-modifier-mac="alt"></dd>
 
               <dt><label for="custom-focus-range">Range focus</label></dt>
               <dd><input type="range" name="custom-focus-range" id="custom-focus-range" data-focus-key="U"></dd>

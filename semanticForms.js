@@ -15,24 +15,62 @@ const semanticForms = () => {
 
   // custom key-command listener
   document.addEventListener('keydown', (e) => {
-    if (keyCommands.some(command => command.key.toLowerCase() === e.key.toLowerCase())) {
-      const command = keyCommands.find(command => {
-        if (command.key.toLowerCase() !== e.key.toLowerCase()) return false
-        let matchesModifier
+    const specialCharacterMap = {
+      '`': '~',
+      '1': '!',
+      '2': '@',
+      '3': '#',
+      '4': '$',
+      '5': '%',
+      '6': '^',
+      '7': '&',
+      '8': '*',
+      '9': '(',
+      '0': ')',
+      '-': '_',
+      '=': '+',
+      ',': '<',
+      '.': '>',
+      '/': '?',
+      ';': ':',
+      '\'': '"',
+      '[': '{',
+      ']': '}',
+      '\\': '|'
+    }
 
-        if (command.modifier) {
-          if (command.modifier === 'meta') matchesModifier = e.metaKey
-          if (command.modifier === 'alt') matchesModifier = e.altKey
-          if (command.modifier === 'ctrl') matchesModifier = e.ctrlKey
+    const command = keyCommands.find(command => {
+      let matchesKey = false
+      if (e.altKey && !e.shiftKey) { 
+        // mac adjusts the key value if altKey is pressed
+        matchesKey = 'Key' + command.key.toUpperCase() === e.code || 'Digit' + command.key.toUpperCase() === e.code || command.key === e.key
+      } else if (e.shiftKey) {
+        // check special character map
+        if (e.altKey) {
+          const code = e.code.replace(/Key|Digit/, '')
+          const specialCharKeys = Object.keys(specialCharacterMap)
+          matchesKey = (specialCharKeys.includes(code) || specialCharKeys.includes(e.key)) && specialCharacterMap[code] === command.key || specialCharKeys[e.key] === command.key
+        } else {
+          matchesKey = Object.keys(specialCharacterMap).includes(e.key) && specialCharacterMap[e.key] === command.key
         }
-
-        return matchesModifier
-      })
-
-      if (command) {
-        e.preventDefault()
-        command.input.focus()
+      } else {
+        matchesKey = command.key.toUpperCase() === e.key.toUpperCase()
       }
+      if (!matchesKey) return false
+
+      let matchesModifier
+      if (command.modifier) {
+        if (command.modifier === command.defaultModifier) matchesModifier = command.os === 'windows' ? e.ctrlKey : e.metaKey
+        if (command.modifier === 'meta') matchesModifier = e.metaKey
+        if (command.modifier === 'alt') matchesModifier = e.altKey
+        if (command.modifier === 'ctrl') matchesModifier = e.ctrlKey
+      }
+      return matchesModifier
+    })
+
+    if (command) {
+      e.preventDefault()
+      command.input.focus()
     }
   })
 
@@ -145,79 +183,104 @@ const semanticForms = () => {
 
         // #region keyboard commands
         if (input.getAttribute('data-focus-key') !== null) {
-          // // these are keys that cannot be overwritten
-          // const invalidCombinations = [
-          //   { modifier: 'ctrl', key: ['n', 't', 'w'] }
-          // ]
+          function handleKeyboardCommand () {
+            const os = getOS()
+            // this is the custom keyword for meta on linux/mac, ctrl on windows
+            const defaultModifier = 'metactrl' 
 
-          // get focus key
-          let key = input.getAttribute('data-focus-key')
-          if (key.length > 1) {
-            console.error(`Provided focus key "${key}" is not valid. Using first character only.`)
-            key = key.toString()[0]
-          }
+            // get focus key value
+            let focusKey = input.getAttribute('data-focus-key')
+            if (focusKey.length > 1) {
+              console.error(`Provided focus key "${focusKey}" is more than one character. Using first character only.`)
+              focusKey = focusKey.toString()[0]
+            }
 
-          // get focus modifier
-          const os = getOS()
-          let modifierSymbol
-          const modifier = {
-            default: input.getAttribute('data-focus-modifier') || 'metaCtrl',
-            linux: input.getAttribute('data-focus-modifier-linux'),
-            mac: input.getAttribute('data-focus-modifier-mac'),
-            windows: input.getAttribute('data-focus-modifier-win')
-          }
-          let modifierKey = 'metaCrl'
-
-          if (os && modifier[os]) {
-            // a specific modifier key has been set
-            modifierKey = modifier[os]
-          }
-
-          const ctrlModifiers = ['ctrl']
-          const optModifiers = ['alt', 'opt']
-          const metaModifiers = ['meta', 'win', 'cmd', 'metactrl']
-
-          if (optModifiers.includes(modifierKey)) {
-            // modifier = 'alt'
-            modifierSymbol = os === 'mac' || os === 'ios' ? '⌥' : '⎇'
-          } else if (metaModifiers.includes(modifierKey)) {
-            // modifier = 'meta'
-            if (os === 'mac' || os === 'ios') {
-              modifierSymbol = '⌘'
-            } else if (os === 'linux') {
-              modifierSymbol = '◆'
+            // get focus modifier value
+            let modifierSymbol
+            let modifierKey = defaultModifier
+            const modifierAttr = {
+              default: input.getAttribute('data-focus-modifier') || defaultModifier,
+              linux: input.getAttribute('data-focus-modifier-linux'),
+              mac: input.getAttribute('data-focus-modifier-mac'),
+              windows: input.getAttribute('data-focus-modifier-win')
+            }
+            if (os && modifierAttr[os]) {
+              // a specific modifier key has been set by the user
+              modifierKey = modifierAttr[os]
             } else {
-              modifierSymbol = 'Ctrl'
-            }
-          } else {
-            if (!ctrlModifiers.includes(modifierKey)) {
-              console.error(`Provided modifier key "${modifierKey}" is not valid, defaulting to ctrl.`, input)
-            }
-            // modifier = 'ctrl'
-            modifierSymbol = 'Ctrl'
-          }
+              modifierKey = modifierAttr.default
 
-          if (keyCommands.some(command => command.key === key && command.modifier === modifierKey)) {
-            console.error(`Duplicate key command "${modifierKey} + ${key}" detected. Only the first input will be focusable using this key command.`, input)
-          } else {
-            keyCommands.push({ key, modifier: modifierKey, input })
-          }
+            }
 
-          // set the indicator
-          if (input.nodeName === 'TEXTAREA' || input.type === 'text' || input.type === 'number') {
-            // create focus indicator for valid inputs
-            const indicator = document.createElement('span')
-            indicator.classList.add('focus-key')
-            indicator.innerHTML = `<kbd>${modifierSymbol} ${key.toUpperCase()}</kbd>`
-            insertAfter(indicator, newLabel)
-          } else {
-            // update the input title
-            if (input.getAttribute('title')) {
-              input.setAttribute('title', input.getAttribute('title') + ` (${modifierSymbol} + ${key})`)
+            // validate passed in modifier
+            const recognizedModifiers = ['ctrl', 'alt', 'opt', 'meta', 'cmd', defaultModifier]
+            if (!recognizedModifiers.includes(modifierKey) || (os === 'windows' && modifierKey === 'meta')) {
+              console.error(`Received an unrecognized modifier, "${modifierKey}," defaulting to "${defaultModifier}."`, input)
+              modifierKey = defaultModifier
+            }
+
+            // check for key combinations that cannot be overwritten (they are reserved in the browser)
+            // TODO: these need to be browser-tested along with OS-tested
+            const invalidCommands = {
+              modifiers: ['ctrl', 'meta', defaultModifier],
+              keys: ['n', 'o', 'q', 'r', 't', 'w', 'y']
+            }
+            if (invalidCommands.modifiers.includes(modifierKey) && invalidCommands.keys.includes(focusKey)) {
+              console.error(`Provided key command (${modifierKey} + ${focusKey}) cannot be used, as it is a reserved browser command.`, input)
+              return
+            }
+
+            // retrieve modifier symbol
+            if (['alt', 'opt'].includes(modifierKey)) {
+              modifierSymbol = os === 'mac' ? '⌥' : '⎇'
+            } else if (['meta', 'win', 'cmd', defaultModifier].includes(modifierKey)) {
+              if (os === 'mac') {
+                modifierSymbol = '⌘'
+              } else if (os === 'linux') {
+                modifierSymbol = '◆'
+              } else {
+                modifierSymbol = 'Ctrl'
+              }
+            } else if (modifierKey === 'ctrl') {
+              if (os === 'mac') {
+                modifierSymbol = '⌃'
+              } else [
+                modifierSymbol = 'Ctrl'
+              ]
+            }
+
+            // add the key command to the cached array, if not a duplicate
+            if (keyCommands.some(command => command.key === focusKey && command.modifier === modifierKey)) {
+              console.error(`Duplicate key command "${modifierKey} + ${focusKey}" detected. Only the first input will be focusable using this key command.`, input)
             } else {
-              input.setAttribute('title', `Focus with ${modifierSymbol} + ${key}`)
+              keyCommands.push({
+                key: focusKey,
+                modifier: modifierKey,
+                input,
+                os,
+                defaultModifier
+              })
+            }
+
+            // set the key command indicator/title
+            if (input.nodeName === 'TEXTAREA' || input.type === 'text' || input.type === 'number') {
+              // create focus indicator for valid inputs
+              const indicator = document.createElement('span')
+              indicator.classList.add('focus-key')
+              indicator.innerHTML = `<kbd>${modifierSymbol} ${focusKey.toUpperCase()}</kbd>`
+              insertAfter(indicator, newLabel)
+            } else {
+              // update the input title
+              if (input.getAttribute('title')) {
+                input.setAttribute('title', input.getAttribute('title') + ` (${modifierSymbol} + ${focusKey})`)
+              } else {
+                input.setAttribute('title', `Focus with ${modifierSymbol} + ${focusKey}`)
+              }
             }
           }
+
+          // placed in a function so that it may exit while still completing other semantic-form enhancements
+          handleKeyboardCommand()
         }
         // #endregion
 
@@ -484,21 +547,17 @@ const semanticForms = () => {
    * @returns Operating system string (`mac`, `windows`, `linux`)
    */
   function getOS () {
-    let os = null
     const userAgent = window.navigator.userAgent
-    const platform = window.navigator?.userAgentData?.platform
-    const macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K']
-    const windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE']
-    const iosPlatforms = ['iPhone', 'iPad', 'iPod']
+    const platform = window.navigator.platform
+    let os = null
 
-    if (macosPlatforms.indexOf(platform) !== -1 || iosPlatforms.indexOf(platform) !== -1) {
-      os = 'mac'
-    } else if (windowsPlatforms.indexOf(platform) !== -1 || /Android/.test(userAgent)) {
+    if (platform.includes('Win') || /Android/.test(userAgent)) {
       os = 'windows'
-    } else if (/Linux/.test(platform)) {
+    } else if (platform.includes('Mac') || /iPhone|iPad|iPod/.test(userAgent)) {
+      os = 'mac'
+    } else if (platform.includes('Linux')) {
       os = 'linux'
     }
-
     return os
   }
 

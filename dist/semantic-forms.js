@@ -5,7 +5,11 @@
 // do some feature detection so none of the JS executes if the browser is too old
 if(typeof document.getElementsByClassName!=="function"||typeof document.querySelector!=="function"||!document.body.classList||!window.MutationObserver){console.warn("semantic-forms was loaded into an unsupported browser and will not execute.");return}const passwordShow='<svg fill="none" height="256" viewBox="0 0 24 24" width="256" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m1 12s4-8 11-8 11 8 11 8"/><path d="m1 12s4 8 11 8 11-8 11-8"/><circle cx="12" cy="12" r="3"/></g></svg>';const passwordHide='<svg fill="none" height="256" viewBox="0 0 24 24" width="256" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m2 2 20 20"/><path d="m6.71277 6.7226c-3.04798 2.07267-4.71277 5.2774-4.71277 5.2774s3.63636 7 10 7c2.0503 0 3.8174-.7266 5.2711-1.7116m-6.2711-12.23018c.3254-.03809.6588-.05822 1-.05822 6.3636 0 10 7 10 7s-.6918 1.3317-2 2.8335"/><path d="m14 14.2362c-.5308.475-1.2316.7639-2 .7639-1.6569 0-3-1.3431-3-3 0-.8237.33193-1.5698.86932-2.11192"/></g></svg>';const helpTextIcon='<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" version="1.1" style="overflow:visible;"><rect width="16" height="16" fill="none"/><path fill="currentColor" d="M8,10.5c-0.552,0-1,0.448-1,1c0,0.552,0.448,1,1,1c0.552,0,1-0.448,1-1C9,10.948,8.552,10.5,8,10.5z M8,0 C3.582,0,0,3.582,0,8c0,4.418,3.582,8,8,8s8-3.582,8-8C16,3.582,12.418,0,8,0z M12.243,12.243C11.109,13.376,9.603,14,8,14 s-3.109-0.624-4.243-1.757C2.624,11.109,2,9.603,2,8s0.624-3.109,1.757-4.243C4.891,2.624,6.397,2,8,2s3.109,0.624,4.243,1.757 C13.376,4.891,14,6.397,14,8C14,9.603,13.376,11.109,12.243,12.243z M7.927,3.755c-2.248,0-2.76,1.695-2.802,2.906h1.571 c0.028-0.256,0.101-1.418,1.221-1.418c0.672,0,1.206,0.406,1.206,1.175c0,0.695-0.724,1.155-1.303,1.711 C7.241,8.685,7.168,9.325,7.168,9.824V10c0.146,0,1.615,0,1.615,0V9.824c0-1.256,1.967-1.594,1.967-3.541 C10.75,5.059,9.874,3.755,7.927,3.755z"/></svg>';const nodeNameLookup=["TEXTAREA","SELECT"];const inputTypeLookup=["checkbox","color","date","datetime-local","email","file","image","month","number","password","radio","range","search","tel","text","time","url","week"];const keyCommands=[];
 // custom key-command listener
-document.addEventListener("keydown",e=>{if(keyCommands.some(command=>command.key.toLowerCase()===e.key.toLowerCase())){const command=keyCommands.find(command=>{const matchesKey=command.key.toLowerCase()===e.key.toLowerCase();let matchesModifier;if(command.modifier){const metaModifiers=["ctrl","control","cmd","command","meta"];if(command.modifier.toLowerCase()==="alt")matchesModifier=e.altKey;else if(metaModifiers.includes(command.modifier.toLowerCase()))matchesModifier=e.ctrlKey||e.metaKey}else matchesModifier=e.ctrlKey||e.metaKey;return matchesKey&&matchesModifier});if(command&&(command.modifier==="alt"&&e.altKey||e.ctrlKey||e.metaKey)){e.preventDefault();command.input.focus()}}});
+document.addEventListener("keydown",e=>{const specialCharacterMap={"`":"~",1:"!",2:"@",3:"#",4:"$",5:"%",6:"^",7:"&",8:"*",9:"(",0:")","-":"_","=":"+",",":"<",".":">","/":"?",";":":","'":'"',"[":"{","]":"}","\\":"|"};const command=keyCommands.find(command=>{let matchesKey=false;if(e.altKey&&!e.shiftKey)
+// mac adjusts the key value if altKey is pressed
+matchesKey="Key"+command.key.toUpperCase()===e.code||"Digit"+command.key.toUpperCase()===e.code||command.key===e.key;else if(e.shiftKey)
+// check special character map
+if(e.altKey){const code=e.code.replace(/Key|Digit/,"");const specialCharKeys=Object.keys(specialCharacterMap);matchesKey=(specialCharKeys.includes(code)||specialCharKeys.includes(e.key))&&specialCharacterMap[code]===command.key||specialCharKeys[e.key]===command.key}else matchesKey=Object.keys(specialCharacterMap).includes(e.key)&&specialCharacterMap[e.key]===command.key;else matchesKey=command.key.toUpperCase()===e.key.toUpperCase();if(!matchesKey)return false;let matchesModifier;if(command.modifier){if(command.modifier===command.defaultModifier)matchesModifier=command.os==="windows"?e.ctrlKey:e.metaKey;if(command.modifier==="meta")matchesModifier=e.metaKey;if(command.modifier==="alt")matchesModifier=e.altKey;if(command.modifier==="ctrl")matchesModifier=e.ctrlKey}return matchesModifier});if(command){e.preventDefault();command.input.focus()}});
 // progressively enhance form elements that have the semanticForms class
 const forms=document.querySelectorAll("form.semanticForms:not(.semanticFormsActive)");for(const form of forms){form.classList.add("semanticFormsActive");if(form.classList.contains("lowFlow"))continue;
 // update each input in the semantic form
@@ -20,15 +24,34 @@ const newLabel=document.createElement("label");newLabel.className="floatLabelFor
 let dd=input.parentNode;while(dd&&dd.nodeName!=="DD")dd=dd.parentNode;if(!dd){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that is not inside a <dd> element.`);continue}if(dd.firstChild.nodeName!=="LABEL"){if(type==="checkbox"&&input.parentNode.nodeName==="DD"){newLabel.setAttribute("for",input.id);input.parentNode.classList.add("singleCheckbox");newLabel.className="";label.setAttribute("hidden","hidden");insertAfter(newLabel,input)}if(type==="radio"&&input.parentNode.nodeName==="DD"){newLabel.setAttribute("for",input.id);input.parentNode.classList.add("singleRadio");newLabel.className="";label.setAttribute("hidden","hidden");insertAfter(newLabel,input)}newLabel.innerHTML=label.innerHTML;if(label.hasAttribute("title")&&label.getAttribute("data-show-help-icon")!==null&&!label.querySelector("span.help")){const text=label.getAttribute("title");label.innerHTML+=` <span title="${text}" class="help">${helpTextIcon}</span>`;newLabel.innerHTML+=` <span title="${text}" class="help">${helpTextIcon}</span>`}if(dd.querySelector(":required")&&label.getAttribute("data-no-asterisk")===null&&!label.querySelector("span.required")){const text=label.getAttribute("data-asterisk-text")||"This field is required.";label.innerHTML+=` <span title="${text}" class="required">*</span>`;newLabel.innerHTML+=` <span title="${text}" class="required">*</span>`}if(!dd.querySelector("label"))dd.append(newLabel)}
 // removes old div that a radio or checkbox may have been added to
 if(dd.parentElement.nodeName==="DIV")dd.parentElement.remove();const div=document.createElement("div");div.append(label.closest("dt"),dd);dl.append(div)}else{newLabel.setAttribute("for",input.id);newLabel.innerHTML=label.innerHTML;if(input.hasAttribute("title")&&label.getAttribute("data-show-help-icon")!==null&&!label.querySelector("span.help")){const text=input.getAttribute("title");newLabel.innerHTML+=` <span title="${text}" class="help">${helpTextIcon}</span>`}if(input.hasAttribute("required")&&label.getAttribute("data-no-asterisk")===null&&!label.querySelector("span.required")){const text=label.getAttribute("data-asterisk-text")||"This field is required.";newLabel.innerHTML+=` <span title="${text}" class="required">*</span>`}label.setAttribute("hidden","hidden");insertAfter(newLabel,input)}
-// handle keyboard commands
-if(input.getAttribute("data-focus-key")!==null){
-// TODO: Find out what keys may NOT be used (N, T, W, ...)
-// get focus key
-let key=input.getAttribute("data-focus-key");if(key.length>1){console.error(`Provided focus key "${key}" is not valid. Using first character only.`);key=key.toString()[0]}
-// get focus modifier
-let modifier=input.getAttribute("data-focus-modifier");if(modifier)modifier=modifier.toLowerCase();else modifier="meta";const metaModifiers=["ctrl","control","cmd","command","meta"];if(metaModifiers.includes(modifier))modifier="meta";else if(modifier!=="alt"){console.error(`Provided modifier key "${modifier}" is not valid, defaulting to ctrl/cmd.`,`\nValid modifiers include: alt, ${metaModifiers.join(", ")}`,input);modifier="meta"}if(keyCommands.some(command=>command.key===key&&command.modifier===modifier))console.error(`Duplicate key command "${modifier?modifier:"ctrl/cmd"} + ${key}" detected. Only the first input will be focusable using this key command.`,input);else keyCommands.push({key,modifier,input});
-// create focus indicator for input
-const indicator=document.createElement("span");indicator.classList.add("focus-key");let html="";if(modifier==="alt")html+=`<kbd>${navigator.userAgent.indexOf("Mac")!==-1?"⌥":"Alt"}`;else html+=`<kbd>${navigator.userAgent.indexOf("Mac")!==-1?"⌘":"Ctrl"}`;html+=` ${key.toUpperCase()}</kbd>`;indicator.innerHTML=html;insertAfter(indicator,newLabel)}
+// #endregion
+// #region keyboard commands
+if(input.getAttribute("data-focus-key")!==null){function handleKeyboardCommand(){const os=getOS();
+// this is the custom keyword for meta on linux/mac, ctrl on windows
+const defaultModifier="metactrl";
+// get focus key value
+let focusKey=input.getAttribute("data-focus-key");if(focusKey.length>1){console.error(`Provided focus key "${focusKey}" is more than one character. Using first character only.`);focusKey=focusKey.toString()[0]}
+// get focus modifier value
+let modifierSymbol;let modifierKey=defaultModifier;const modifierAttr={default:input.getAttribute("data-focus-modifier")||defaultModifier,linux:input.getAttribute("data-focus-modifier-linux"),mac:input.getAttribute("data-focus-modifier-mac"),windows:input.getAttribute("data-focus-modifier-win")};if(os&&modifierAttr[os])
+// a specific modifier key has been set by the user
+modifierKey=modifierAttr[os];else modifierKey=modifierAttr.default;
+// validate passed in modifier
+const recognizedModifiers=["ctrl","alt","opt","meta","cmd",defaultModifier];if(!recognizedModifiers.includes(modifierKey)||os==="windows"&&modifierKey==="meta"){console.error(`Received an unrecognized modifier, "${modifierKey}," defaulting to "${defaultModifier}."`,input);modifierKey=defaultModifier}
+// check for key combinations that cannot be overwritten (they are reserved in the browser)
+// TODO: these need to be browser-tested along with OS-tested
+const invalidCommands={modifiers:["ctrl","meta",defaultModifier],keys:["n","o","q","r","t","w","y"]};if(invalidCommands.modifiers.includes(modifierKey)&&invalidCommands.keys.includes(focusKey)){console.error(`Provided key command (${modifierKey} + ${focusKey}) cannot be used, as it is a reserved browser command.`,input);return}
+// retrieve modifier symbol
+if(["alt","opt"].includes(modifierKey))modifierSymbol=os==="mac"?"⌥":"⎇";else if(["meta","win","cmd",defaultModifier].includes(modifierKey))if(os==="mac")modifierSymbol="⌘";else if(os==="linux")modifierSymbol="◆";else modifierSymbol="Ctrl";else if(modifierKey==="ctrl")if(os==="mac")modifierSymbol="⌃";else[modifierSymbol="Ctrl"];
+// add the key command to the cached array, if not a duplicate
+if(keyCommands.some(command=>command.key===focusKey&&command.modifier===modifierKey))console.error(`Duplicate key command "${modifierKey} + ${focusKey}" detected. Only the first input will be focusable using this key command.`,input);else keyCommands.push({key:focusKey,modifier:modifierKey,input,os,defaultModifier});
+// set the key command indicator/title
+if(input.nodeName==="TEXTAREA"||input.type==="text"||input.type==="number"){
+// create focus indicator for valid inputs
+const indicator=document.createElement("span");indicator.classList.add("focus-key");indicator.innerHTML=`<kbd>${modifierSymbol} ${focusKey.toUpperCase()}</kbd>`;insertAfter(indicator,newLabel)}else
+// update the input title
+if(input.getAttribute("title"))input.setAttribute("title",input.getAttribute("title")+` (${modifierSymbol} + ${focusKey})`);else input.setAttribute("title",`Focus with ${modifierSymbol} + ${focusKey}`)}
+// placed in a function so that it may exit while still completing other semantic-form enhancements
+handleKeyboardCommand()}
 // #endregion
 // #region standard inputs
 // check for auto-grow attribute on textareas
@@ -91,6 +114,10 @@ const shiftClearBtn=()=>{const clearBtn=input.parentElement?.querySelector("butt
    * @param {Object} newNode element being placed after the reference node
    * @param {*} referenceNode element to be used as reference for new node
    */function insertAfter(newNode,referenceNode){if(referenceNode.nextSibling)referenceNode.parentNode.insertBefore(newNode,referenceNode.nextSibling);else referenceNode.parentNode.appendChild(newNode)}
+/**
+   * Uses the navigator to best determine the clients operating system.
+   * @returns Operating system string (`mac`, `windows`, `linux`)
+   */function getOS(){const userAgent=window.navigator.userAgent;const platform=window.navigator.platform;let os=null;if(platform.includes("Win")||/Android/.test(userAgent))os="windows";else if(platform.includes("Mac")||/iPhone|iPad|iPod/.test(userAgent))os="mac";else if(platform.includes("Linux"))os="linux";return os}
 // handle undo/redo
 let lastFocusedInput;let lastClearFieldPressed;document.addEventListener("keydown",event=>{if((event.ctrlKey||event.metaKey)&&event.key==="z"&&!event.shiftKey){
 // undo clearing a field
