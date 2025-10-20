@@ -17,16 +17,16 @@ const semanticForms = () => {
   document.addEventListener('keydown', (e) => {
     const specialCharacterMap = {
       '`': '~',
-      '1': '!',
-      '2': '@',
-      '3': '#',
-      '4': '$',
-      '5': '%',
-      '6': '^',
-      '7': '&',
-      '8': '*',
-      '9': '(',
-      '0': ')',
+      1: '!',
+      2: '@',
+      3: '#',
+      4: '$',
+      5: '%',
+      6: '^',
+      7: '&',
+      8: '*',
+      9: '(',
+      0: ')',
       '-': '_',
       '=': '+',
       ',': '<',
@@ -41,7 +41,7 @@ const semanticForms = () => {
 
     const command = keyCommands.find(command => {
       let matchesKey = false
-      if (e.altKey && !e.shiftKey) { 
+      if (e.altKey && !e.shiftKey) {
         // mac adjusts the key value if altKey is pressed
         matchesKey = 'Key' + command.key.toUpperCase() === e.code || 'Digit' + command.key.toUpperCase() === e.code || command.key === e.key
       } else if (e.shiftKey) {
@@ -49,7 +49,7 @@ const semanticForms = () => {
         if (e.altKey) {
           const code = e.code.replace(/Key|Digit/, '')
           const specialCharKeys = Object.keys(specialCharacterMap)
-          matchesKey = (specialCharKeys.includes(code) || specialCharKeys.includes(e.key)) && specialCharacterMap[code] === command.key || specialCharKeys[e.key] === command.key
+          matchesKey = (specialCharKeys.includes(code) || specialCharKeys.includes(e.key)) && (specialCharacterMap[code] === command.key || specialCharKeys[e.key] === command.key)
         } else {
           matchesKey = Object.keys(specialCharacterMap).includes(e.key) && specialCharacterMap[e.key] === command.key
         }
@@ -186,7 +186,7 @@ const semanticForms = () => {
           function handleKeyboardCommand () {
             const os = getOS()
             // this is the custom keyword for meta on linux/mac, ctrl on windows
-            const defaultModifier = 'metactrl' 
+            const defaultModifier = 'metactrl'
 
             // get focus key value
             let focusKey = input.getAttribute('data-focus-key')
@@ -209,7 +209,6 @@ const semanticForms = () => {
               modifierKey = modifierAttr[os]
             } else {
               modifierKey = modifierAttr.default
-
             }
 
             // validate passed in modifier
@@ -244,9 +243,9 @@ const semanticForms = () => {
             } else if (modifierKey === 'ctrl') {
               if (os === 'mac') {
                 modifierSymbol = '⌃'
-              } else [
+              } else {
                 modifierSymbol = 'Ctrl'
-              ]
+              }
             }
 
             // add the key command to the cached array, if not a duplicate
