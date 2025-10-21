@@ -1,7 +1,8 @@
 ## 5.2.0
 
-- Added the ability to set custom keyboard focus commands using the `data-focus-key` and `data-focus-modifier` attributes.
+- Added the ability to set input focus keyboard shortcuts using the `data-focus-key` and `data-focus-modifier` attributes.
 - Fixed a visual bug where unstyled content would flash on initial load.
+- Nested fieldsets now use relative colors.
 
 ## 5.1.12
 

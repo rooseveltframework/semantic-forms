@@ -132,9 +132,9 @@
         </dl>
       </form>
 
-      <h5>Add custom key commands</h5>
+      <h5>Add custom keyboard shortcuts</h5>
 
-      <p>Add key commands to specific inputs to focus them by adding a <code>data-focus-key</code> attribute and optional <code>data-focus-modifier</code> attribute.</p>
+      <p>Add keyboard shortcuts on specific inputs to focus them by adding a <code>data-focus-key</code> attribute and optional <code>data-focus-modifier</code> attribute.</p>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms" method="post">
@@ -169,13 +169,13 @@
       </form>
 
       <ul>
-        <li><p>The focus key should be a single character, and is not case-sensitive. If multiple characters are detected, only the first one will be used. Special characters (!, @, #, etc.) will require <kbd>Shift</kbd> to be pressed with the key command.</p></li>
+        <li><p>The focus key should be a single character, and is not case-sensitive. If multiple characters are detected, only the first one will be used. Special characters (!, @, #, etc.) will require <kbd>Shift</kbd> to be pressed with the keyboard shortcut.</p></li>
         <li>
           <p>The modifier key value may be "metactrl," "ctrl," "cmd," "meta," or "alt." The default value is "metactrl" and will automatically be applied if the <code>data-focus-modifier</code> attribute is not present.</p>
           <ul>
-            <li><p>OS-specific modifier keys can be set with <code>data-focus-modifier-win</code> (Windows), <code>data-focus-modifier-linux</code> (Linux) and <code>data-focus-modifier-mac</code>(Mac).</p></li>
-            <li><p>The "Start" (win) key on Windows is always ignored, and will be replaced with "Ctrl."</p></li>
-            <li><p>Some combinations are unable to be used due to conflicts with browser and OS key commands. See <a href="/keyCommands.html">Key Commands</a> for a full overview.</p></li>
+            <li>Some combinations are unable to be used due to conflicts with browser and OS key commands. See <a href="https://rooseveltframework.org/docs/semantic-forms/latest/reservedKeyboardShortcuts">reserved keyboard shortcuts</a> for a full overview.</li>
+            <li><p>OS-specific modifier keys can be set with <code>data-focus-modifier-win</code> (Windows), <code>data-focus-modifier-linux</code> (Linux) and <code>data-focus-modifier-mac</code> (Mac).</p></li>
+            <li><p>Due to a limited range of available shortcuts, the "Start" (win) key on Windows will be replaced with "Ctrl."</p></li>
           </ul>
         </li>
       </ul>

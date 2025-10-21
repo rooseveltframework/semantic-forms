@@ -914,7 +914,7 @@ table.semanticForms.light {
         .focus-key {
           color: var(--semanticFormsPlaceholderColor);
           position: absolute;
-          top: calc(var(--semanticFormsInputTopMargin) + 10px);
+          top: calc(var(--semanticFormsInputTopMargin) + 11px);
           right: 20px;
 
           kbd {

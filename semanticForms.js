@@ -11,9 +11,9 @@ const semanticForms = () => {
 
   const nodeNameLookup = ['TEXTAREA', 'SELECT']
   const inputTypeLookup = ['checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'image', 'month', 'number', 'password', 'radio', 'range', 'search', 'tel', 'text', 'time', 'url', 'week']
-  const keyCommands = []
+  const keyboardShortcuts = []
 
-  // custom key-command listener
+  // custom keyboard shortcut listener
   document.addEventListener('keydown', (e) => {
     const specialCharMap = {
       Minus: '-',
@@ -53,37 +53,37 @@ const semanticForms = () => {
       Backquote: '~'
     }
 
-    const command = keyCommands.find(command => {
+    const shortcut = keyboardShortcuts.find(shortcut => {
       let matchesKey = false
       if (e.altKey && !e.shiftKey) {
         // mac adjusts the key value if altKey is pressed
-        matchesKey = 'Key' + command.key.toUpperCase() === e.code ||
-          'Digit' + command.key.toUpperCase() === e.code ||
-          command.key === e.key ||
-          specialCharMap[e.code] === command.key
+        matchesKey = 'Key' + shortcut.key.toUpperCase() === e.code ||
+          'Digit' + shortcut.key.toUpperCase() === e.code ||
+          shortcut.key === e.key ||
+          specialCharMap[e.code] === shortcut.key
       } else if (e.shiftKey) {
         // check shift special character map
         const code = e.code.replace(/Key|Digit/, '')
         matchesKey = (shiftSpecialCharMap[code] || shiftSpecialCharMap[e.key]) &&
-          (shiftSpecialCharMap[code] === command.key || shiftSpecialCharMap[e.key] === command.key)
+          (shiftSpecialCharMap[code] === shortcut.key || shiftSpecialCharMap[e.key] === shortcut.key)
       } else {
-        matchesKey = command.key.toUpperCase() === e.key.toUpperCase()
+        matchesKey = shortcut.key.toUpperCase() === e.key.toUpperCase()
       }
       if (!matchesKey) return false
 
       let matchesModifier
-      if (command.modifier) {
-        if (command.modifier === command.defaultModifier) matchesModifier = command.os === 'windows' ? e.ctrlKey : e.metaKey
-        if (command.modifier === 'meta') matchesModifier = e.metaKey
-        if (command.modifier === 'alt') matchesModifier = e.altKey
-        if (command.modifier === 'ctrl') matchesModifier = e.ctrlKey
+      if (shortcut.modifier) {
+        if (shortcut.modifier === shortcut.defaultModifier) matchesModifier = shortcut.os === 'windows' ? e.ctrlKey : e.metaKey
+        if (shortcut.modifier === 'meta') matchesModifier = e.metaKey
+        if (shortcut.modifier === 'alt') matchesModifier = e.altKey
+        if (shortcut.modifier === 'ctrl') matchesModifier = e.ctrlKey
       }
       return matchesModifier
     })
 
-    if (command) {
+    if (shortcut) {
       e.preventDefault()
-      command.input.focus()
+      shortcut.input.focus()
     }
   })
 
@@ -194,9 +194,9 @@ const semanticForms = () => {
         }
         // #endregion
 
-        // #region keyboard commands
+        // #region keyboard shortcuts
         if (input.getAttribute('data-focus-key') !== null) {
-          function handleKeyboardCommand () {
+          function handleKeyboardShortcut () {
             const os = getOS()
             // this is the custom keyword for meta on linux/mac, ctrl on windows
             const defaultModifier = 'metactrl'
@@ -226,7 +226,7 @@ const semanticForms = () => {
 
             // validate passed in modifier
             const recognizedModifiers = ['ctrl', 'alt', 'opt', 'meta', 'cmd', defaultModifier]
-            if (!recognizedModifiers.includes(modifierKey) || (os === 'windows' && modifierKey === 'meta')) {
+            if (!recognizedModifiers.includes(modifierKey)) {
               console.error(`Received an unrecognized modifier, "${modifierKey}," defaulting to "${defaultModifier}."`, input)
               modifierKey = defaultModifier
             }
@@ -234,15 +234,15 @@ const semanticForms = () => {
             // retrieve modifier symbol
             if (['alt', 'opt'].includes(modifierKey)) {
               modifierSymbol = os === 'mac' ? '⌥' : '⎇'
-            } else if (['meta', 'win', 'cmd', defaultModifier].includes(modifierKey)) {
+            } else if (['meta', 'win', 'cmd'].includes(modifierKey) || (modifierKey === defaultModifier && os !== 'windows')) {
               if (os === 'mac') {
                 modifierSymbol = '⌘'
               } else if (os === 'linux') {
                 modifierSymbol = '◆'
               } else {
-                modifierSymbol = 'Ctrl'
+                modifierSymbol = '⊞'
               }
-            } else if (modifierKey === 'ctrl') {
+            } else if (modifierKey === 'ctrl' || (modifierKey === defaultModifier && os === 'windows')) {
               if (os === 'mac') {
                 modifierSymbol = '⌃'
               } else {
@@ -250,11 +250,11 @@ const semanticForms = () => {
               }
             }
 
-            // add the key command to the cached array, if not a duplicate
-            if (keyCommands.some(command => command.key === focusKey && command.modifier === modifierKey)) {
-              console.error(`Duplicate key command "${modifierKey} + ${focusKey}" detected. Only the first input will be focusable using this key command.`, input)
+            // add the shortcut to the cached array, if not a duplicate
+            if (keyboardShortcuts.some(shortcut => shortcut.key === focusKey && shortcut.modifier === modifierKey)) {
+              console.error(`Duplicate keyboard shortcut "${modifierKey} + ${focusKey}" detected. Only the first input will be focusable using this keyboard shortcut.`, input)
             } else {
-              keyCommands.push({
+              keyboardShortcuts.push({
                 key: focusKey,
                 modifier: modifierKey,
                 input,
@@ -281,7 +281,7 @@ const semanticForms = () => {
           }
 
           // placed in a function so that it may exit while still completing other semantic-form enhancements
-          handleKeyboardCommand()
+          handleKeyboardShortcut()
         }
         // #endregion
 
