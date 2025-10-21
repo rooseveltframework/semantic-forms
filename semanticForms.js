@@ -73,7 +73,7 @@ const semanticForms = () => {
 
       let matchesModifier
       if (shortcut.modifier) {
-        if (shortcut.modifier === shortcut.defaultModifier) matchesModifier = shortcut.os === 'windows' ? e.ctrlKey : e.metaKey
+        if (shortcut.modifier === shortcut.defaultModifier) matchesModifier = shortcut.os === 'windows' || shortcut.os === 'linux' ? e.ctrlKey : e.metaKey
         if (shortcut.modifier === 'meta') matchesModifier = e.metaKey
         if (shortcut.modifier === 'alt') matchesModifier = e.altKey
         if (shortcut.modifier === 'ctrl') matchesModifier = e.ctrlKey
@@ -234,7 +234,7 @@ const semanticForms = () => {
             // retrieve modifier symbol
             if (['alt', 'opt'].includes(modifierKey)) {
               modifierSymbol = os === 'mac' ? '⌥' : '⎇'
-            } else if (['meta', 'win', 'cmd'].includes(modifierKey) || (modifierKey === defaultModifier && os !== 'windows')) {
+            } else if (['meta', 'win', 'cmd'].includes(modifierKey) || (modifierKey === defaultModifier && os === 'mac')) {
               if (os === 'mac') {
                 modifierSymbol = '⌘'
               } else if (os === 'linux') {
@@ -242,7 +242,7 @@ const semanticForms = () => {
               } else {
                 modifierSymbol = '⊞'
               }
-            } else if (modifierKey === 'ctrl' || (modifierKey === defaultModifier && os === 'windows')) {
+            } else if (modifierKey === 'ctrl' || (modifierKey === defaultModifier && (os === 'windows' || os === 'linux'))) {
               if (os === 'mac') {
                 modifierSymbol = '⌃'
               } else {
