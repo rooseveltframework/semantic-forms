@@ -14,6 +14,8 @@ form.semanticForms, form.semanticForms.light, table.semanticForms {
   --semanticFormsButtonGradientDark: #c0c0c0;
   --semanticFormsInvalid: #f00;
   --semanticFormsInvalidBorder: 1px solid var(--semanticFormsInvalid);
+  --semanticFormsWarn: #ffdd00;
+  --semanticFormsWarnBorder: 1px solid var(--semanticFormsWarn);
   --semanticFormsInputHeight: 38px;
   --semanticFormsInputFontSize: 16px;
   --semanticFormsInputTopMargin: 15px;
@@ -406,6 +408,18 @@ table.semanticForms.light {
       }
     }
 
+    &.warn {
+      border: var(--semanticFormsWarnBorder) !important;
+
+      ~ label:nth-of-type(2) {
+        color: var(--semanticFormsWarn) !important;
+      }
+
+      ~ [data-invalid-text] {
+        font-size: small;
+        display: flex;
+      }
+    }
   }
   // #endregion
 
