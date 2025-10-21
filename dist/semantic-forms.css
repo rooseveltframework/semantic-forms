@@ -135,6 +135,13 @@ table.semanticForms.light {
   container-type: inline-size;
   container-name: semanticForm;
 }
+form.semanticForms.semanticFormsActive,
+form.semanticForms.light.semanticFormsActive,
+table.semanticForms.semanticFormsActive,
+table.semanticForms.light.semanticFormsActive {
+  visibility: visible;
+  opacity: 1;
+}
 @supports (interpolate-size: allow-keywords) {
   form.semanticForms,
   form.semanticForms.light,
@@ -1552,8 +1559,20 @@ table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .c
 table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) .focus-key {
   color: var(--semanticFormsPlaceholderColor);
   position: absolute;
-  top: calc(var(--semanticFormsInputTopMargin) + 11px);
+  top: calc(var(--semanticFormsInputTopMargin) + 10px);
   right: 20px;
+}
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) .focus-key kbd,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) .focus-key kbd,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) .focus-key kbd,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) .focus-key kbd {
+  line-height: 1;
+}
+form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=number]) .focus-key,
+form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=number]) .focus-key,
+table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=number]) .focus-key,
+table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=number]) .focus-key {
+  right: 45px;
 }
 form.semanticForms .floatLabelForm div dt,
 form.semanticForms.light .floatLabelForm div dt,
@@ -1640,13 +1659,6 @@ table.semanticForms .floatLabelForm textarea::placeholder,
 table.semanticForms.light .floatLabelForm input::placeholder,
 table.semanticForms.light .floatLabelForm textarea::placeholder {
   color: var(--semanticFormsPlaceholderColor);
-  opacity: 1;
-}
-form.semanticForms.semanticFormsActive,
-form.semanticForms.light.semanticFormsActive,
-table.semanticForms.semanticFormsActive,
-table.semanticForms.light.semanticFormsActive {
-  visibility: visible;
   opacity: 1;
 }
 form.semanticForms.semanticFormsActive div[class^=colspan-],

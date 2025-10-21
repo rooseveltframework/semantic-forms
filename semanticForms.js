@@ -88,7 +88,7 @@ const semanticForms = () => {
   })
 
   // progressively enhance form elements that have the semanticForms class
-  const forms = document.querySelectorAll('form.semanticForms:not(.semanticFormsActive)')
+  const forms = document.querySelectorAll('form.semanticForms:not(.semanticFormsActive), table.semanticForms:not(.semanticFormsActive)')
 
   for (const form of forms) {
     form.classList.add('semanticFormsActive')

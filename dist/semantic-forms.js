@@ -11,7 +11,7 @@ matchesKey="Key"+command.key.toUpperCase()===e.code||"Digit"+command.key.toUpper
 // check shift special character map
 const code=e.code.replace(/Key|Digit/,"");matchesKey=(shiftSpecialCharMap[code]||shiftSpecialCharMap[e.key])&&(shiftSpecialCharMap[code]===command.key||shiftSpecialCharMap[e.key]===command.key)}else matchesKey=command.key.toUpperCase()===e.key.toUpperCase();if(!matchesKey)return false;let matchesModifier;if(command.modifier){if(command.modifier===command.defaultModifier)matchesModifier=command.os==="windows"?e.ctrlKey:e.metaKey;if(command.modifier==="meta")matchesModifier=e.metaKey;if(command.modifier==="alt")matchesModifier=e.altKey;if(command.modifier==="ctrl")matchesModifier=e.ctrlKey}return matchesModifier});if(command){e.preventDefault();command.input.focus()}});
 // progressively enhance form elements that have the semanticForms class
-const forms=document.querySelectorAll("form.semanticForms:not(.semanticFormsActive)");for(const form of forms){form.classList.add("semanticFormsActive");if(form.classList.contains("lowFlow"))continue;
+const forms=document.querySelectorAll("form.semanticForms:not(.semanticFormsActive), table.semanticForms:not(.semanticFormsActive)");for(const form of forms){form.classList.add("semanticFormsActive");if(form.classList.contains("lowFlow"))continue;
 // update each input in the semantic form
 const inputs=Array.from(form.querySelectorAll("input, textarea, select"));for(let input of inputs){
 // ignore input if it has previously been formatted
@@ -37,12 +37,6 @@ let modifierSymbol;let modifierKey=defaultModifier;const modifierAttr={default:i
 modifierKey=modifierAttr[os];else modifierKey=modifierAttr.default;
 // validate passed in modifier
 const recognizedModifiers=["ctrl","alt","opt","meta","cmd",defaultModifier];if(!recognizedModifiers.includes(modifierKey)||os==="windows"&&modifierKey==="meta"){console.error(`Received an unrecognized modifier, "${modifierKey}," defaulting to "${defaultModifier}."`,input);modifierKey=defaultModifier}
-// check for key combinations that cannot be overwritten (they are reserved in the browser)
-// TODO: these need to be browser-tested along with OS-tested
-// 'o', 'r', 'y' works on mac (FF, Chrome)
-// 'y' works on mac (Safari) ('o', 'r' does not)
-// mac add ctrl + #, $, %, (, {, }, `
-const invalidCommands={modifiers:["ctrl","meta",defaultModifier],keys:["n","o","q","r","t","w","y"]};if(invalidCommands.modifiers.includes(modifierKey)&&invalidCommands.keys.includes(focusKey)){console.error(`Provided key command (${modifierKey} + ${focusKey}) cannot be used, as it is a reserved browser command.`,input);return}
 // retrieve modifier symbol
 if(["alt","opt"].includes(modifierKey))modifierSymbol=os==="mac"?"⌥":"⎇";else if(["meta","win","cmd",defaultModifier].includes(modifierKey))if(os==="mac")modifierSymbol="⌘";else if(os==="linux")modifierSymbol="◆";else modifierSymbol="Ctrl";else if(modifierKey==="ctrl")if(os==="mac")modifierSymbol="⌃";else modifierSymbol="Ctrl";
 // add the key command to the cached array, if not a duplicate
@@ -120,7 +114,7 @@ const shiftClearBtn=()=>{const clearBtn=input.parentElement?.querySelector("butt
 /**
    * Uses the navigator to best determine the clients operating system.
    * @returns Operating system string (`mac`, `windows`, `linux`)
-   */function getOS(){const userAgent=window.navigator.userAgent;const platform=window.navigator.platform;let os=null;if(platform.includes("Win")||/Android/.test(userAgent))os="windows";else if(platform.includes("Mac")||/iPhone|iPad|iPod/.test(userAgent))os="mac";else if(platform.includes("Linux"))os="linux";return os}
+   */function getOS(){const userAgent=window.navigator.userAgent;const platform=window.navigator.platform;let os=null;if(platform.includes("Win"))os="windows";else if(platform.includes("Mac")||/iPhone|iPad|iPod/.test(userAgent))os="mac";else if(platform.includes("Linux")||/Android/.test(userAgent))os="linux";return os}
 // handle undo/redo
 let lastFocusedInput;let lastClearFieldPressed;document.addEventListener("keydown",event=>{if((event.ctrlKey||event.metaKey)&&event.key==="z"&&!event.shiftKey){
 // undo clearing a field

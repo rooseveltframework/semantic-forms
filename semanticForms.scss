@@ -102,6 +102,12 @@ table.semanticForms.light {
   container-type: inline-size;
   container-name: semanticForm;
 
+  &.semanticFormsActive {
+    // this will show once JS has been loaded, preventing FOUC
+    visibility: visible;
+    opacity: 1;
+  }
+
   // https://caniuse.com/wf-interpolate-size
   @supports (interpolate-size: allow-keywords) {
     interpolate-size: allow-keywords;
@@ -908,8 +914,18 @@ table.semanticForms.light {
         .focus-key {
           color: var(--semanticFormsPlaceholderColor);
           position: absolute;
-          top: calc(var(--semanticFormsInputTopMargin) + 11px);
+          top: calc(var(--semanticFormsInputTopMargin) + 10px);
           right: 20px;
+
+          kbd {
+            line-height: 1;
+          }
+        }
+
+        &:has(input[type="number"]) {
+          .focus-key {
+            right: 45px;
+          }
         }
       }
 
@@ -989,10 +1005,6 @@ table.semanticForms.light {
   }
 
   &.semanticFormsActive {
-    // this will show once JS has been loaded, preventing FOUC
-    visibility: visible;
-    opacity: 1;
-
     // #region colspan classes
     div {
       &[class^='colspan-'] {
