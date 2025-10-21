@@ -552,11 +552,11 @@ const semanticForms = () => {
     const platform = window.navigator.platform
     let os = null
 
-    if (platform.includes('Win') || /Android/.test(userAgent)) {
+    if (platform.includes('Win')) {
       os = 'windows'
     } else if (platform.includes('Mac') || /iPhone|iPad|iPod/.test(userAgent)) {
       os = 'mac'
-    } else if (platform.includes('Linux')) {
+    } else if (platform.includes('Linux') || /Android/.test(userAgent)) {
       os = 'linux'
     }
     return os
