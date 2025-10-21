@@ -1559,7 +1559,7 @@ table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .c
 table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) .focus-key {
   color: var(--semanticFormsPlaceholderColor);
   position: absolute;
-  top: calc(var(--semanticFormsInputTopMargin) + 10px);
+  top: calc(var(--semanticFormsInputTopMargin) + 11px);
   right: 20px;
 }
 form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) .focus-key kbd,
