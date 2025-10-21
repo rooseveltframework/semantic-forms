@@ -231,20 +231,6 @@ const semanticForms = () => {
               modifierKey = defaultModifier
             }
 
-            // check for key combinations that cannot be overwritten (they are reserved in the browser)
-            // TODO: these need to be browser-tested along with OS-tested
-            // 'o', 'r', 'y' works on mac (FF, Chrome)
-            // 'y' works on mac (Safari) ('o', 'r' does not)
-            // mac add ctrl + #, $, %, (, {, }, `
-            const invalidCommands = {
-              modifiers: ['ctrl', 'meta', defaultModifier],
-              keys: ['n', 'o', 'q', 'r', 't', 'w', 'y']
-            }
-            if (invalidCommands.modifiers.includes(modifierKey) && invalidCommands.keys.includes(focusKey)) {
-              console.error(`Provided key command (${modifierKey} + ${focusKey}) cannot be used, as it is a reserved browser command.`, input)
-              return
-            }
-
             // retrieve modifier symbol
             if (['alt', 'opt'].includes(modifierKey)) {
               modifierSymbol = os === 'mac' ? '⌥' : '⎇'
