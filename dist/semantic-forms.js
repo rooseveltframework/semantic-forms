@@ -44,7 +44,7 @@ const recognizedModifiers=["ctrl","alt","opt","meta","cmd",defaultModifier];if(!
 // mac add ctrl + #, $, %, (, {, }, `
 const invalidCommands={modifiers:["ctrl","meta",defaultModifier],keys:["n","o","q","r","t","w","y"]};if(invalidCommands.modifiers.includes(modifierKey)&&invalidCommands.keys.includes(focusKey)){console.error(`Provided key command (${modifierKey} + ${focusKey}) cannot be used, as it is a reserved browser command.`,input);return}
 // retrieve modifier symbol
-if(["alt","opt"].includes(modifierKey))modifierSymbol=os==="mac"?"⌥":"⎇";else if(["meta","win","cmd",defaultModifier].includes(modifierKey))if(os==="mac")modifierSymbol="⌘";else if(os==="linux")modifierSymbol="◆";else modifierSymbol="Ctrl";else if(modifierKey==="ctrl")if(os==="mac")modifierSymbol="⌃";else[modifierSymbol="Ctrl"];
+if(["alt","opt"].includes(modifierKey))modifierSymbol=os==="mac"?"⌥":"⎇";else if(["meta","win","cmd",defaultModifier].includes(modifierKey))if(os==="mac")modifierSymbol="⌘";else if(os==="linux")modifierSymbol="◆";else modifierSymbol="Ctrl";else if(modifierKey==="ctrl")if(os==="mac")modifierSymbol="⌃";else modifierSymbol="Ctrl";
 // add the key command to the cached array, if not a duplicate
 if(keyCommands.some(command=>command.key===focusKey&&command.modifier===modifierKey))console.error(`Duplicate key command "${modifierKey} + ${focusKey}" detected. Only the first input will be focusable using this key command.`,input);else keyCommands.push({key:focusKey,modifier:modifierKey,input,os,defaultModifier});
 // set the key command indicator/title
