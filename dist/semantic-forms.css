@@ -13,6 +13,8 @@ form.semanticForms, form.semanticForms.light, table.semanticForms {
   --semanticFormsButtonGradientDark: #c0c0c0;
   --semanticFormsInvalid: #f00;
   --semanticFormsInvalidBorder: 1px solid var(--semanticFormsInvalid);
+  --semanticFormsWarn: #ffdd00;
+  --semanticFormsWarnBorder: 1px solid var(--semanticFormsWarn);
   --semanticFormsInputHeight: 38px;
   --semanticFormsInputFontSize: 16px;
   --semanticFormsInputTopMargin: 15px;
@@ -755,6 +757,49 @@ table.semanticForms.light select.invalid ~ [data-invalid-text],
 table.semanticForms.light select:user-invalid ~ [data-invalid-text],
 table.semanticForms.light textarea.invalid ~ [data-invalid-text],
 table.semanticForms.light textarea:user-invalid ~ [data-invalid-text] {
+  font-size: small;
+  display: flex;
+}
+form.semanticForms input:not([type=submit], [type=reset], [type=image]).warn,
+form.semanticForms select.warn,
+form.semanticForms textarea.warn,
+form.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn,
+form.semanticForms.light select.warn,
+form.semanticForms.light textarea.warn,
+table.semanticForms input:not([type=submit], [type=reset], [type=image]).warn,
+table.semanticForms select.warn,
+table.semanticForms textarea.warn,
+table.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn,
+table.semanticForms.light select.warn,
+table.semanticForms.light textarea.warn {
+  border: var(--semanticFormsWarnBorder) !important;
+}
+form.semanticForms input:not([type=submit], [type=reset], [type=image]).warn ~ label:nth-of-type(2),
+form.semanticForms select.warn ~ label:nth-of-type(2),
+form.semanticForms textarea.warn ~ label:nth-of-type(2),
+form.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn ~ label:nth-of-type(2),
+form.semanticForms.light select.warn ~ label:nth-of-type(2),
+form.semanticForms.light textarea.warn ~ label:nth-of-type(2),
+table.semanticForms input:not([type=submit], [type=reset], [type=image]).warn ~ label:nth-of-type(2),
+table.semanticForms select.warn ~ label:nth-of-type(2),
+table.semanticForms textarea.warn ~ label:nth-of-type(2),
+table.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn ~ label:nth-of-type(2),
+table.semanticForms.light select.warn ~ label:nth-of-type(2),
+table.semanticForms.light textarea.warn ~ label:nth-of-type(2) {
+  color: var(--semanticFormsWarn) !important;
+}
+form.semanticForms input:not([type=submit], [type=reset], [type=image]).warn ~ [data-invalid-text],
+form.semanticForms select.warn ~ [data-invalid-text],
+form.semanticForms textarea.warn ~ [data-invalid-text],
+form.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn ~ [data-invalid-text],
+form.semanticForms.light select.warn ~ [data-invalid-text],
+form.semanticForms.light textarea.warn ~ [data-invalid-text],
+table.semanticForms input:not([type=submit], [type=reset], [type=image]).warn ~ [data-invalid-text],
+table.semanticForms select.warn ~ [data-invalid-text],
+table.semanticForms textarea.warn ~ [data-invalid-text],
+table.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn ~ [data-invalid-text],
+table.semanticForms.light select.warn ~ [data-invalid-text],
+table.semanticForms.light textarea.warn ~ [data-invalid-text] {
   font-size: small;
   display: flex;
 }

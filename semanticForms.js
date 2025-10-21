@@ -15,44 +15,57 @@ const semanticForms = () => {
 
   // custom key-command listener
   document.addEventListener('keydown', (e) => {
-    const specialCharacterMap = {
-      '`': '~',
-      '1': '!',
-      '2': '@',
-      '3': '#',
-      '4': '$',
-      '5': '%',
-      '6': '^',
-      '7': '&',
-      '8': '*',
-      '9': '(',
-      '0': ')',
-      '-': '_',
-      '=': '+',
-      ',': '<',
-      '.': '>',
-      '/': '?',
-      ';': ':',
-      '\'': '"',
-      '[': '{',
-      ']': '}',
-      '\\': '|'
+    const specialCharMap = {
+      'Minus': '-',
+      'Equal': '=',
+      'BracketLeft': '[',
+      'BracketRight': ']',
+      'Backslash': '\\',
+      'Semicolon': ';',
+      'Quote': '\'',
+      'Comma': ',',
+      'Period': '.',
+      'Slash': '/',
+      'Backquote': '`'
+    }
+
+    const shiftSpecialCharMap = {
+      1: '!',
+      2: '@',
+      3: '#',
+      4: '$',
+      5: '%',
+      6: '^',
+      7: '&',
+      8: '*',
+      9: '(',
+      0: ')',
+      'Minus': '_',
+      'Equal': '+',
+      'BracketLeft': '{',
+      'BracketRight': '}',
+      'Backslash': '|',
+      'Semicolon': ':',
+      'Quote': '"',
+      'Comma': '<',
+      'Period': '>',
+      'Slash': '?',
+      'Backquote': '~',
     }
 
     const command = keyCommands.find(command => {
       let matchesKey = false
-      if (e.altKey && !e.shiftKey) { 
+      if (e.altKey && !e.shiftKey) {
         // mac adjusts the key value if altKey is pressed
-        matchesKey = 'Key' + command.key.toUpperCase() === e.code || 'Digit' + command.key.toUpperCase() === e.code || command.key === e.key
+        matchesKey = 'Key' + command.key.toUpperCase() === e.code || 
+          'Digit' + command.key.toUpperCase() === e.code || 
+          command.key === e.key || 
+          specialCharMap[e.code] === command.key
       } else if (e.shiftKey) {
-        // check special character map
-        if (e.altKey) {
-          const code = e.code.replace(/Key|Digit/, '')
-          const specialCharKeys = Object.keys(specialCharacterMap)
-          matchesKey = (specialCharKeys.includes(code) || specialCharKeys.includes(e.key)) && specialCharacterMap[code] === command.key || specialCharKeys[e.key] === command.key
-        } else {
-          matchesKey = Object.keys(specialCharacterMap).includes(e.key) && specialCharacterMap[e.key] === command.key
-        }
+        // check shift special character map
+        const code = e.code.replace(/Key|Digit/, '')
+        matchesKey = (shiftSpecialCharMap[code] || shiftSpecialCharMap[e.key]) && 
+          (shiftSpecialCharMap[code] === command.key || shiftSpecialCharMap[e.key] === command.key)
       } else {
         matchesKey = command.key.toUpperCase() === e.key.toUpperCase()
       }
@@ -186,7 +199,7 @@ const semanticForms = () => {
           function handleKeyboardCommand () {
             const os = getOS()
             // this is the custom keyword for meta on linux/mac, ctrl on windows
-            const defaultModifier = 'metactrl' 
+            const defaultModifier = 'metactrl'
 
             // get focus key value
             let focusKey = input.getAttribute('data-focus-key')
@@ -209,7 +222,6 @@ const semanticForms = () => {
               modifierKey = modifierAttr[os]
             } else {
               modifierKey = modifierAttr.default
-
             }
 
             // validate passed in modifier
@@ -221,6 +233,9 @@ const semanticForms = () => {
 
             // check for key combinations that cannot be overwritten (they are reserved in the browser)
             // TODO: these need to be browser-tested along with OS-tested
+            // 'o', 'r', 'y' works on mac (FF, Chrome)
+            // 'y' works on mac (Safari) ('o', 'r' does not)
+            // mac add ctrl + #, $, %, (, {, }, `
             const invalidCommands = {
               modifiers: ['ctrl', 'meta', defaultModifier],
               keys: ['n', 'o', 'q', 'r', 't', 'w', 'y']
@@ -244,9 +259,11 @@ const semanticForms = () => {
             } else if (modifierKey === 'ctrl') {
               if (os === 'mac') {
                 modifierSymbol = '⌃'
-              } else [
-                modifierSymbol = 'Ctrl'
-              ]
+              } else {
+                [
+                  modifierSymbol = 'Ctrl'
+                ]
+              }
             }
 
             // add the key command to the cached array, if not a duplicate
