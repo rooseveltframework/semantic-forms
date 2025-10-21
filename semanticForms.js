@@ -16,17 +16,17 @@ const semanticForms = () => {
   // custom key-command listener
   document.addEventListener('keydown', (e) => {
     const specialCharMap = {
-      'Minus': '-',
-      'Equal': '=',
-      'BracketLeft': '[',
-      'BracketRight': ']',
-      'Backslash': '\\',
-      'Semicolon': ';',
-      'Quote': '\'',
-      'Comma': ',',
-      'Period': '.',
-      'Slash': '/',
-      'Backquote': '`'
+      Minus: '-',
+      Equal: '=',
+      BracketLeft: '[',
+      BracketRight: ']',
+      Backslash: '\\',
+      Semicolon: ';',
+      Quote: '\'',
+      Comma: ',',
+      Period: '.',
+      Slash: '/',
+      Backquote: '`'
     }
 
     const shiftSpecialCharMap = {
@@ -40,31 +40,31 @@ const semanticForms = () => {
       8: '*',
       9: '(',
       0: ')',
-      'Minus': '_',
-      'Equal': '+',
-      'BracketLeft': '{',
-      'BracketRight': '}',
-      'Backslash': '|',
-      'Semicolon': ':',
-      'Quote': '"',
-      'Comma': '<',
-      'Period': '>',
-      'Slash': '?',
-      'Backquote': '~',
+      Minus: '_',
+      Equal: '+',
+      BracketLeft: '{',
+      BracketRight: '}',
+      Backslash: '|',
+      Semicolon: ':',
+      Quote: '"',
+      Comma: '<',
+      Period: '>',
+      Slash: '?',
+      Backquote: '~'
     }
 
     const command = keyCommands.find(command => {
       let matchesKey = false
       if (e.altKey && !e.shiftKey) {
         // mac adjusts the key value if altKey is pressed
-        matchesKey = 'Key' + command.key.toUpperCase() === e.code || 
-          'Digit' + command.key.toUpperCase() === e.code || 
-          command.key === e.key || 
+        matchesKey = 'Key' + command.key.toUpperCase() === e.code ||
+          'Digit' + command.key.toUpperCase() === e.code ||
+          command.key === e.key ||
           specialCharMap[e.code] === command.key
       } else if (e.shiftKey) {
         // check shift special character map
         const code = e.code.replace(/Key|Digit/, '')
-        matchesKey = (shiftSpecialCharMap[code] || shiftSpecialCharMap[e.key]) && 
+        matchesKey = (shiftSpecialCharMap[code] || shiftSpecialCharMap[e.key]) &&
           (shiftSpecialCharMap[code] === command.key || shiftSpecialCharMap[e.key] === command.key)
       } else {
         matchesKey = command.key.toUpperCase() === e.key.toUpperCase()
