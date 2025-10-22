@@ -41,7 +41,7 @@ const recognizedModifiers=["ctrl","alt","opt","meta","cmd",defaultModifier];if(!
 if(["alt","opt"].includes(modifierKey))modifierSymbol=os==="mac"?"⌥":"⎇";else if(["meta","win","cmd"].includes(modifierKey)||modifierKey===defaultModifier&&os==="mac")if(os==="mac")modifierSymbol="⌘";else if(os==="linux")modifierSymbol="◆";else modifierSymbol="⊞";else if(modifierKey==="ctrl"||modifierKey===defaultModifier&&(os==="windows"||os==="linux"))if(os==="mac")modifierSymbol="⌃";else modifierSymbol="Ctrl";
 // add the shortcut to the cached array, if not a duplicate
 if(keyboardShortcuts.some(shortcut=>shortcut.key===focusKey&&shortcut.modifier===modifierKey))console.error(`Duplicate keyboard shortcut "${modifierKey} + ${focusKey}" detected. Only the first input will be focusable using this keyboard shortcut.`,input);else keyboardShortcuts.push({key:focusKey,modifier:modifierKey,input,os,defaultModifier});
-// set the key command indicator/title
+// set the shortcut indicator/title
 if(input.nodeName==="TEXTAREA"||input.type==="text"||input.type==="number"){
 // create focus indicator for valid inputs
 const indicator=document.createElement("span");indicator.classList.add("focus-key");indicator.innerHTML=`<kbd>${modifierSymbol} ${focusKey.toUpperCase()}</kbd>`;insertAfter(indicator,newLabel)}else

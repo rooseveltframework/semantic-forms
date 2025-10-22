@@ -263,7 +263,7 @@ const semanticForms = () => {
               })
             }
 
-            // set the key command indicator/title
+            // set the shortcut indicator/title
             if (input.nodeName === 'TEXTAREA' || input.type === 'text' || input.type === 'number') {
               // create focus indicator for valid inputs
               const indicator = document.createElement('span')
