@@ -1772,20 +1772,25 @@ table.semanticForms.light dl.colspan-1 {
   grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
 }
 @container semanticForm (width > 2250px) {
-  form.semanticForms.lowFlow fieldset dl, form.semanticForms.lowFlow dl, form.semanticForms:not(.semanticFormsActive) fieldset dl, form.semanticForms:not(.semanticFormsActive) dl,
-  form.semanticForms.light.lowFlow fieldset dl,
-  form.semanticForms.light.lowFlow dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  form.semanticForms.light:not(.semanticFormsActive) dl,
-  table.semanticForms.lowFlow fieldset dl,
-  table.semanticForms.lowFlow dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms:not(.semanticFormsActive) dl,
-  table.semanticForms.light.lowFlow fieldset dl,
-  table.semanticForms.light.lowFlow dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms.light:not(.semanticFormsActive) dl {
-    grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  form.semanticForms fieldset dl,
+  form.semanticForms dl,
+  form.semanticForms.light fieldset dl,
+  form.semanticForms.light dl,
+  table.semanticForms fieldset dl,
+  table.semanticForms dl,
+  table.semanticForms.light fieldset dl,
+  table.semanticForms.light dl {
+    grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+  }
+  form.semanticForms fieldset dl div,
+  form.semanticForms dl div,
+  form.semanticForms.light fieldset dl div,
+  form.semanticForms.light dl div,
+  table.semanticForms fieldset dl div,
+  table.semanticForms dl div,
+  table.semanticForms.light fieldset dl div,
+  table.semanticForms.light dl div {
+    max-width: 100% !important;
   }
   form.semanticForms.lowFlow fieldset dl dt:nth-of-type(6n + 1), form.semanticForms.lowFlow fieldset dl dd:nth-of-type(6n + 1), form.semanticForms.lowFlow dl dt:nth-of-type(6n + 1), form.semanticForms.lowFlow dl dd:nth-of-type(6n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dt:nth-of-type(6n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dd:nth-of-type(6n + 1), form.semanticForms:not(.semanticFormsActive) dl dt:nth-of-type(6n + 1), form.semanticForms:not(.semanticFormsActive) dl dd:nth-of-type(6n + 1),
   form.semanticForms.light.lowFlow fieldset dl dt:nth-of-type(6n + 1),
@@ -1951,20 +1956,25 @@ table.semanticForms.light dl.colspan-1 {
   }
 }
 @container semanticForm (width < 2250px) {
-  form.semanticForms.lowFlow fieldset dl, form.semanticForms.lowFlow dl, form.semanticForms:not(.semanticFormsActive) fieldset dl, form.semanticForms:not(.semanticFormsActive) dl,
-  form.semanticForms.light.lowFlow fieldset dl,
-  form.semanticForms.light.lowFlow dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  form.semanticForms.light:not(.semanticFormsActive) dl,
-  table.semanticForms.lowFlow fieldset dl,
-  table.semanticForms.lowFlow dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms:not(.semanticFormsActive) dl,
-  table.semanticForms.light.lowFlow fieldset dl,
-  table.semanticForms.light.lowFlow dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms.light:not(.semanticFormsActive) dl {
-    grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  form.semanticForms fieldset dl,
+  form.semanticForms dl,
+  form.semanticForms.light fieldset dl,
+  form.semanticForms.light dl,
+  table.semanticForms fieldset dl,
+  table.semanticForms dl,
+  table.semanticForms.light fieldset dl,
+  table.semanticForms.light dl {
+    grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+  }
+  form.semanticForms fieldset dl div,
+  form.semanticForms dl div,
+  form.semanticForms.light fieldset dl div,
+  form.semanticForms.light dl div,
+  table.semanticForms fieldset dl div,
+  table.semanticForms dl div,
+  table.semanticForms.light fieldset dl div,
+  table.semanticForms.light dl div {
+    max-width: 100% !important;
   }
   form.semanticForms.lowFlow fieldset dl dt:nth-of-type(5n + 1), form.semanticForms.lowFlow fieldset dl dd:nth-of-type(5n + 1), form.semanticForms.lowFlow dl dt:nth-of-type(5n + 1), form.semanticForms.lowFlow dl dd:nth-of-type(5n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dt:nth-of-type(5n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dd:nth-of-type(5n + 1), form.semanticForms:not(.semanticFormsActive) dl dt:nth-of-type(5n + 1), form.semanticForms:not(.semanticFormsActive) dl dd:nth-of-type(5n + 1),
   form.semanticForms.light.lowFlow fieldset dl dt:nth-of-type(5n + 1),
@@ -2102,13 +2112,21 @@ table.semanticForms.light dl.colspan-1 {
     grid-column: 5;
   }
 }
-@container semanticForm (width < 1300px) {
+@container semanticForm (width < 1400px) {
+  form.semanticForms fieldset dl,
+  form.semanticForms dl,
   form.semanticForms fieldset.colspan-5 dl,
   form.semanticForms dl.colspan-5,
+  form.semanticForms.light fieldset dl,
+  form.semanticForms.light dl,
   form.semanticForms.light fieldset.colspan-5 dl,
   form.semanticForms.light dl.colspan-5,
+  table.semanticForms fieldset dl,
+  table.semanticForms dl,
   table.semanticForms fieldset.colspan-5 dl,
   table.semanticForms dl.colspan-5,
+  table.semanticForms.light fieldset dl,
+  table.semanticForms.light dl,
   table.semanticForms.light fieldset.colspan-5 dl,
   table.semanticForms.light dl.colspan-5 {
     grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
@@ -2118,33 +2136,6 @@ table.semanticForms.light dl.colspan-1 {
   table.semanticForms div.colspan-5,
   table.semanticForms.light div.colspan-5 {
     grid-column: span 4 !important;
-  }
-  form.semanticForms.lowFlow fieldset dl, form.semanticForms.lowFlow fieldset.colspan-5 dl, form.semanticForms.lowFlow dl, form.semanticForms.lowFlow dl.colspan-5, form.semanticForms:not(.semanticFormsActive) fieldset dl, form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl, form.semanticForms:not(.semanticFormsActive) dl, form.semanticForms:not(.semanticFormsActive) dl.colspan-5,
-  form.semanticForms.light.lowFlow fieldset dl,
-  form.semanticForms.light.lowFlow fieldset.colspan-5 dl,
-  form.semanticForms.light.lowFlow dl,
-  form.semanticForms.light.lowFlow dl.colspan-5,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  form.semanticForms.light:not(.semanticFormsActive) dl,
-  form.semanticForms.light:not(.semanticFormsActive) dl.colspan-5,
-  table.semanticForms.lowFlow fieldset dl,
-  table.semanticForms.lowFlow fieldset.colspan-5 dl,
-  table.semanticForms.lowFlow dl,
-  table.semanticForms.lowFlow dl.colspan-5,
-  table.semanticForms:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  table.semanticForms:not(.semanticFormsActive) dl,
-  table.semanticForms:not(.semanticFormsActive) dl.colspan-5,
-  table.semanticForms.light.lowFlow fieldset dl,
-  table.semanticForms.light.lowFlow fieldset.colspan-5 dl,
-  table.semanticForms.light.lowFlow dl,
-  table.semanticForms.light.lowFlow dl.colspan-5,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  table.semanticForms.light:not(.semanticFormsActive) dl,
-  table.semanticForms.light:not(.semanticFormsActive) dl.colspan-5 {
-    grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
   }
   form.semanticForms.lowFlow fieldset dl dt:nth-of-type(4n + 1), form.semanticForms.lowFlow fieldset dl dd:nth-of-type(4n + 1), form.semanticForms.lowFlow fieldset.colspan-5 dl dt:nth-of-type(4n + 1), form.semanticForms.lowFlow fieldset.colspan-5 dl dd:nth-of-type(4n + 1), form.semanticForms.lowFlow dl dt:nth-of-type(4n + 1), form.semanticForms.lowFlow dl dd:nth-of-type(4n + 1), form.semanticForms.lowFlow dl.colspan-5 dt:nth-of-type(4n + 1), form.semanticForms.lowFlow dl.colspan-5 dd:nth-of-type(4n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dt:nth-of-type(4n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dd:nth-of-type(4n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl dt:nth-of-type(4n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl dd:nth-of-type(4n + 1), form.semanticForms:not(.semanticFormsActive) dl dt:nth-of-type(4n + 1), form.semanticForms:not(.semanticFormsActive) dl dd:nth-of-type(4n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-5 dt:nth-of-type(4n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-5 dd:nth-of-type(4n + 1),
   form.semanticForms.light.lowFlow fieldset dl dt:nth-of-type(4n + 1),
@@ -2351,21 +2342,29 @@ table.semanticForms.light dl.colspan-1 {
     grid-column: 4;
   }
 }
-@container semanticForm (width < 1050px) {
+@container semanticForm (width < 1120px) {
+  form.semanticForms fieldset dl,
   form.semanticForms fieldset.colspan-4 dl,
   form.semanticForms fieldset.colspan-5 dl,
+  form.semanticForms dl,
   form.semanticForms dl.colspan-4,
   form.semanticForms dl.colspan-5,
+  form.semanticForms.light fieldset dl,
   form.semanticForms.light fieldset.colspan-4 dl,
   form.semanticForms.light fieldset.colspan-5 dl,
+  form.semanticForms.light dl,
   form.semanticForms.light dl.colspan-4,
   form.semanticForms.light dl.colspan-5,
+  table.semanticForms fieldset dl,
   table.semanticForms fieldset.colspan-4 dl,
   table.semanticForms fieldset.colspan-5 dl,
+  table.semanticForms dl,
   table.semanticForms dl.colspan-4,
   table.semanticForms dl.colspan-5,
+  table.semanticForms.light fieldset dl,
   table.semanticForms.light fieldset.colspan-4 dl,
   table.semanticForms.light fieldset.colspan-5 dl,
+  table.semanticForms.light dl,
   table.semanticForms.light dl.colspan-4,
   table.semanticForms.light dl.colspan-5 {
     grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
@@ -2378,45 +2377,6 @@ table.semanticForms.light dl.colspan-1 {
   table.semanticForms.light div.colspan-4,
   table.semanticForms.light div.colspan-5 {
     grid-column: span 3 !important;
-  }
-  form.semanticForms.lowFlow fieldset dl, form.semanticForms.lowFlow fieldset.colspan-4 dl, form.semanticForms.lowFlow fieldset.colspan-5 dl, form.semanticForms.lowFlow dl, form.semanticForms.lowFlow dl.colspan-4, form.semanticForms.lowFlow dl.colspan-5, form.semanticForms:not(.semanticFormsActive) fieldset dl, form.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl, form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl, form.semanticForms:not(.semanticFormsActive) dl, form.semanticForms:not(.semanticFormsActive) dl.colspan-4, form.semanticForms:not(.semanticFormsActive) dl.colspan-5,
-  form.semanticForms.light.lowFlow fieldset dl,
-  form.semanticForms.light.lowFlow fieldset.colspan-4 dl,
-  form.semanticForms.light.lowFlow fieldset.colspan-5 dl,
-  form.semanticForms.light.lowFlow dl,
-  form.semanticForms.light.lowFlow dl.colspan-4,
-  form.semanticForms.light.lowFlow dl.colspan-5,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-4 dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  form.semanticForms.light:not(.semanticFormsActive) dl,
-  form.semanticForms.light:not(.semanticFormsActive) dl.colspan-4,
-  form.semanticForms.light:not(.semanticFormsActive) dl.colspan-5,
-  table.semanticForms.lowFlow fieldset dl,
-  table.semanticForms.lowFlow fieldset.colspan-4 dl,
-  table.semanticForms.lowFlow fieldset.colspan-5 dl,
-  table.semanticForms.lowFlow dl,
-  table.semanticForms.lowFlow dl.colspan-4,
-  table.semanticForms.lowFlow dl.colspan-5,
-  table.semanticForms:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  table.semanticForms:not(.semanticFormsActive) dl,
-  table.semanticForms:not(.semanticFormsActive) dl.colspan-4,
-  table.semanticForms:not(.semanticFormsActive) dl.colspan-5,
-  table.semanticForms.light.lowFlow fieldset dl,
-  table.semanticForms.light.lowFlow fieldset.colspan-4 dl,
-  table.semanticForms.light.lowFlow fieldset.colspan-5 dl,
-  table.semanticForms.light.lowFlow dl,
-  table.semanticForms.light.lowFlow dl.colspan-4,
-  table.semanticForms.light.lowFlow dl.colspan-5,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-4 dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  table.semanticForms.light:not(.semanticFormsActive) dl,
-  table.semanticForms.light:not(.semanticFormsActive) dl.colspan-4,
-  table.semanticForms.light:not(.semanticFormsActive) dl.colspan-5 {
-    grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
   }
   form.semanticForms.lowFlow fieldset dl dt:nth-of-type(3n + 1), form.semanticForms.lowFlow fieldset dl dd:nth-of-type(3n + 1), form.semanticForms.lowFlow fieldset.colspan-4 dl dt:nth-of-type(3n + 1), form.semanticForms.lowFlow fieldset.colspan-4 dl dd:nth-of-type(3n + 1), form.semanticForms.lowFlow fieldset.colspan-5 dl dt:nth-of-type(3n + 1), form.semanticForms.lowFlow fieldset.colspan-5 dl dd:nth-of-type(3n + 1), form.semanticForms.lowFlow dl dt:nth-of-type(3n + 1), form.semanticForms.lowFlow dl dd:nth-of-type(3n + 1), form.semanticForms.lowFlow dl.colspan-4 dt:nth-of-type(3n + 1), form.semanticForms.lowFlow dl.colspan-4 dd:nth-of-type(3n + 1), form.semanticForms.lowFlow dl.colspan-5 dt:nth-of-type(3n + 1), form.semanticForms.lowFlow dl.colspan-5 dd:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dt:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dd:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl dt:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl dd:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl dt:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl dd:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) dl dt:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) dl dd:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-4 dt:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-4 dd:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-5 dt:nth-of-type(3n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-5 dd:nth-of-type(3n + 1),
   form.semanticForms.light.lowFlow fieldset dl dt:nth-of-type(3n + 1),
@@ -2644,32 +2604,46 @@ table.semanticForms.light dl.colspan-1 {
     grid-column: 3;
   }
 }
-@container semanticForm (width < 800px) {
+@container semanticForm (width < 850px) {
+  form.semanticForms fieldset dl,
   form.semanticForms fieldset.colspan-3 dl,
   form.semanticForms fieldset.colspan-4 dl,
   form.semanticForms fieldset.colspan-5 dl,
+  form.semanticForms dl,
   form.semanticForms dl.colspan-3,
   form.semanticForms dl.colspan-4,
   form.semanticForms dl.colspan-5,
+  form.semanticForms.light fieldset dl,
   form.semanticForms.light fieldset.colspan-3 dl,
   form.semanticForms.light fieldset.colspan-4 dl,
   form.semanticForms.light fieldset.colspan-5 dl,
+  form.semanticForms.light dl,
   form.semanticForms.light dl.colspan-3,
   form.semanticForms.light dl.colspan-4,
   form.semanticForms.light dl.colspan-5,
+  table.semanticForms fieldset dl,
   table.semanticForms fieldset.colspan-3 dl,
   table.semanticForms fieldset.colspan-4 dl,
   table.semanticForms fieldset.colspan-5 dl,
+  table.semanticForms dl,
   table.semanticForms dl.colspan-3,
   table.semanticForms dl.colspan-4,
   table.semanticForms dl.colspan-5,
+  table.semanticForms.light fieldset dl,
   table.semanticForms.light fieldset.colspan-3 dl,
   table.semanticForms.light fieldset.colspan-4 dl,
   table.semanticForms.light fieldset.colspan-5 dl,
+  table.semanticForms.light dl,
   table.semanticForms.light dl.colspan-3,
   table.semanticForms.light dl.colspan-4,
   table.semanticForms.light dl.colspan-5 {
     grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+  }
+  form.semanticForms div,
+  form.semanticForms.light div,
+  table.semanticForms div,
+  table.semanticForms.light div {
+    max-width: 100% !important;
   }
   form.semanticForms div.colspan-3,
   form.semanticForms div.colspan-4,
@@ -2684,57 +2658,6 @@ table.semanticForms.light dl.colspan-1 {
   table.semanticForms.light div.colspan-4,
   table.semanticForms.light div.colspan-5 {
     grid-column: span 2 !important;
-  }
-  form.semanticForms.lowFlow fieldset dl, form.semanticForms.lowFlow fieldset.colspan-3 dl, form.semanticForms.lowFlow fieldset.colspan-4 dl, form.semanticForms.lowFlow fieldset.colspan-5 dl, form.semanticForms.lowFlow dl, form.semanticForms.lowFlow dl.colspan-3, form.semanticForms.lowFlow dl.colspan-4, form.semanticForms.lowFlow dl.colspan-5, form.semanticForms:not(.semanticFormsActive) fieldset dl, form.semanticForms:not(.semanticFormsActive) fieldset.colspan-3 dl, form.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl, form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl, form.semanticForms:not(.semanticFormsActive) dl, form.semanticForms:not(.semanticFormsActive) dl.colspan-3, form.semanticForms:not(.semanticFormsActive) dl.colspan-4, form.semanticForms:not(.semanticFormsActive) dl.colspan-5,
-  form.semanticForms.light.lowFlow fieldset dl,
-  form.semanticForms.light.lowFlow fieldset.colspan-3 dl,
-  form.semanticForms.light.lowFlow fieldset.colspan-4 dl,
-  form.semanticForms.light.lowFlow fieldset.colspan-5 dl,
-  form.semanticForms.light.lowFlow dl,
-  form.semanticForms.light.lowFlow dl.colspan-3,
-  form.semanticForms.light.lowFlow dl.colspan-4,
-  form.semanticForms.light.lowFlow dl.colspan-5,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-3 dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-4 dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  form.semanticForms.light:not(.semanticFormsActive) dl,
-  form.semanticForms.light:not(.semanticFormsActive) dl.colspan-3,
-  form.semanticForms.light:not(.semanticFormsActive) dl.colspan-4,
-  form.semanticForms.light:not(.semanticFormsActive) dl.colspan-5,
-  table.semanticForms.lowFlow fieldset dl,
-  table.semanticForms.lowFlow fieldset.colspan-3 dl,
-  table.semanticForms.lowFlow fieldset.colspan-4 dl,
-  table.semanticForms.lowFlow fieldset.colspan-5 dl,
-  table.semanticForms.lowFlow dl,
-  table.semanticForms.lowFlow dl.colspan-3,
-  table.semanticForms.lowFlow dl.colspan-4,
-  table.semanticForms.lowFlow dl.colspan-5,
-  table.semanticForms:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset.colspan-3 dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  table.semanticForms:not(.semanticFormsActive) dl,
-  table.semanticForms:not(.semanticFormsActive) dl.colspan-3,
-  table.semanticForms:not(.semanticFormsActive) dl.colspan-4,
-  table.semanticForms:not(.semanticFormsActive) dl.colspan-5,
-  table.semanticForms.light.lowFlow fieldset dl,
-  table.semanticForms.light.lowFlow fieldset.colspan-3 dl,
-  table.semanticForms.light.lowFlow fieldset.colspan-4 dl,
-  table.semanticForms.light.lowFlow fieldset.colspan-5 dl,
-  table.semanticForms.light.lowFlow dl,
-  table.semanticForms.light.lowFlow dl.colspan-3,
-  table.semanticForms.light.lowFlow dl.colspan-4,
-  table.semanticForms.light.lowFlow dl.colspan-5,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-3 dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-4 dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  table.semanticForms.light:not(.semanticFormsActive) dl,
-  table.semanticForms.light:not(.semanticFormsActive) dl.colspan-3,
-  table.semanticForms.light:not(.semanticFormsActive) dl.colspan-4,
-  table.semanticForms.light:not(.semanticFormsActive) dl.colspan-5 {
-    grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
   }
   form.semanticForms.lowFlow fieldset dl dt:nth-of-type(2n + 1), form.semanticForms.lowFlow fieldset dl dd:nth-of-type(2n + 1), form.semanticForms.lowFlow fieldset.colspan-3 dl dt:nth-of-type(2n + 1), form.semanticForms.lowFlow fieldset.colspan-3 dl dd:nth-of-type(2n + 1), form.semanticForms.lowFlow fieldset.colspan-4 dl dt:nth-of-type(2n + 1), form.semanticForms.lowFlow fieldset.colspan-4 dl dd:nth-of-type(2n + 1), form.semanticForms.lowFlow fieldset.colspan-5 dl dt:nth-of-type(2n + 1), form.semanticForms.lowFlow fieldset.colspan-5 dl dd:nth-of-type(2n + 1), form.semanticForms.lowFlow dl dt:nth-of-type(2n + 1), form.semanticForms.lowFlow dl dd:nth-of-type(2n + 1), form.semanticForms.lowFlow dl.colspan-3 dt:nth-of-type(2n + 1), form.semanticForms.lowFlow dl.colspan-3 dd:nth-of-type(2n + 1), form.semanticForms.lowFlow dl.colspan-4 dt:nth-of-type(2n + 1), form.semanticForms.lowFlow dl.colspan-4 dd:nth-of-type(2n + 1), form.semanticForms.lowFlow dl.colspan-5 dt:nth-of-type(2n + 1), form.semanticForms.lowFlow dl.colspan-5 dd:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dt:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dd:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-3 dl dt:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-3 dl dd:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl dt:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl dd:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl dt:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl dd:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) dl dt:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) dl dd:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-3 dt:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-3 dd:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-4 dt:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-4 dd:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-5 dt:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-5 dd:nth-of-type(2n + 1),
   form.semanticForms.light.lowFlow fieldset dl dt:nth-of-type(2n + 1),
@@ -2935,44 +2858,58 @@ table.semanticForms.light dl.colspan-1 {
     grid-column: 2;
   }
 }
-@container semanticForm (width < 550px) {
+@container semanticForm (width < 615px) {
+  form.semanticForms fieldset dl,
   form.semanticForms fieldset.colspan-2 dl,
   form.semanticForms fieldset.colspan-3 dl,
   form.semanticForms fieldset.colspan-4 dl,
   form.semanticForms fieldset.colspan-5 dl,
+  form.semanticForms dl,
   form.semanticForms dl.colspan-2,
   form.semanticForms dl.colspan-3,
   form.semanticForms dl.colspan-4,
   form.semanticForms dl.colspan-5,
   form.semanticForms dl,
+  form.semanticForms.light fieldset dl,
   form.semanticForms.light fieldset.colspan-2 dl,
   form.semanticForms.light fieldset.colspan-3 dl,
   form.semanticForms.light fieldset.colspan-4 dl,
   form.semanticForms.light fieldset.colspan-5 dl,
+  form.semanticForms.light dl,
   form.semanticForms.light dl.colspan-2,
   form.semanticForms.light dl.colspan-3,
   form.semanticForms.light dl.colspan-4,
   form.semanticForms.light dl.colspan-5,
   form.semanticForms.light dl,
+  table.semanticForms fieldset dl,
   table.semanticForms fieldset.colspan-2 dl,
   table.semanticForms fieldset.colspan-3 dl,
   table.semanticForms fieldset.colspan-4 dl,
   table.semanticForms fieldset.colspan-5 dl,
+  table.semanticForms dl,
   table.semanticForms dl.colspan-2,
   table.semanticForms dl.colspan-3,
   table.semanticForms dl.colspan-4,
   table.semanticForms dl.colspan-5,
   table.semanticForms dl,
+  table.semanticForms.light fieldset dl,
   table.semanticForms.light fieldset.colspan-2 dl,
   table.semanticForms.light fieldset.colspan-3 dl,
   table.semanticForms.light fieldset.colspan-4 dl,
   table.semanticForms.light fieldset.colspan-5 dl,
+  table.semanticForms.light dl,
   table.semanticForms.light dl.colspan-2,
   table.semanticForms.light dl.colspan-3,
   table.semanticForms.light dl.colspan-4,
   table.semanticForms.light dl.colspan-5,
   table.semanticForms.light dl {
     grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+  }
+  form.semanticForms div,
+  form.semanticForms.light div,
+  table.semanticForms div,
+  table.semanticForms.light div {
+    max-width: 100% !important;
   }
   form.semanticForms div.colspan-2, form.semanticForms div.colspan-3, form.semanticForms div.colspan-4, form.semanticForms div.colspan-5,
   form.semanticForms.light div.colspan-2,
@@ -2988,69 +2925,6 @@ table.semanticForms.light dl.colspan-1 {
   table.semanticForms.light div.colspan-4,
   table.semanticForms.light div.colspan-5 {
     grid-column: span 1 !important;
-  }
-  form.semanticForms.lowFlow fieldset dl, form.semanticForms.lowFlow fieldset.colspan-2 dl, form.semanticForms.lowFlow fieldset.colspan-3 dl, form.semanticForms.lowFlow fieldset.colspan-4 dl, form.semanticForms.lowFlow fieldset.colspan-5 dl, form.semanticForms.lowFlow dl, form.semanticForms.lowFlow dl.colspan-2, form.semanticForms.lowFlow dl.colspan-3, form.semanticForms.lowFlow dl.colspan-4, form.semanticForms.lowFlow dl.colspan-5, form.semanticForms:not(.semanticFormsActive) fieldset dl, form.semanticForms:not(.semanticFormsActive) fieldset.colspan-2 dl, form.semanticForms:not(.semanticFormsActive) fieldset.colspan-3 dl, form.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl, form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl, form.semanticForms:not(.semanticFormsActive) dl, form.semanticForms:not(.semanticFormsActive) dl.colspan-2, form.semanticForms:not(.semanticFormsActive) dl.colspan-3, form.semanticForms:not(.semanticFormsActive) dl.colspan-4, form.semanticForms:not(.semanticFormsActive) dl.colspan-5,
-  form.semanticForms.light.lowFlow fieldset dl,
-  form.semanticForms.light.lowFlow fieldset.colspan-2 dl,
-  form.semanticForms.light.lowFlow fieldset.colspan-3 dl,
-  form.semanticForms.light.lowFlow fieldset.colspan-4 dl,
-  form.semanticForms.light.lowFlow fieldset.colspan-5 dl,
-  form.semanticForms.light.lowFlow dl,
-  form.semanticForms.light.lowFlow dl.colspan-2,
-  form.semanticForms.light.lowFlow dl.colspan-3,
-  form.semanticForms.light.lowFlow dl.colspan-4,
-  form.semanticForms.light.lowFlow dl.colspan-5,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-2 dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-3 dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-4 dl,
-  form.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  form.semanticForms.light:not(.semanticFormsActive) dl,
-  form.semanticForms.light:not(.semanticFormsActive) dl.colspan-2,
-  form.semanticForms.light:not(.semanticFormsActive) dl.colspan-3,
-  form.semanticForms.light:not(.semanticFormsActive) dl.colspan-4,
-  form.semanticForms.light:not(.semanticFormsActive) dl.colspan-5,
-  table.semanticForms.lowFlow fieldset dl,
-  table.semanticForms.lowFlow fieldset.colspan-2 dl,
-  table.semanticForms.lowFlow fieldset.colspan-3 dl,
-  table.semanticForms.lowFlow fieldset.colspan-4 dl,
-  table.semanticForms.lowFlow fieldset.colspan-5 dl,
-  table.semanticForms.lowFlow dl,
-  table.semanticForms.lowFlow dl.colspan-2,
-  table.semanticForms.lowFlow dl.colspan-3,
-  table.semanticForms.lowFlow dl.colspan-4,
-  table.semanticForms.lowFlow dl.colspan-5,
-  table.semanticForms:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset.colspan-2 dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset.colspan-3 dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl,
-  table.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  table.semanticForms:not(.semanticFormsActive) dl,
-  table.semanticForms:not(.semanticFormsActive) dl.colspan-2,
-  table.semanticForms:not(.semanticFormsActive) dl.colspan-3,
-  table.semanticForms:not(.semanticFormsActive) dl.colspan-4,
-  table.semanticForms:not(.semanticFormsActive) dl.colspan-5,
-  table.semanticForms.light.lowFlow fieldset dl,
-  table.semanticForms.light.lowFlow fieldset.colspan-2 dl,
-  table.semanticForms.light.lowFlow fieldset.colspan-3 dl,
-  table.semanticForms.light.lowFlow fieldset.colspan-4 dl,
-  table.semanticForms.light.lowFlow fieldset.colspan-5 dl,
-  table.semanticForms.light.lowFlow dl,
-  table.semanticForms.light.lowFlow dl.colspan-2,
-  table.semanticForms.light.lowFlow dl.colspan-3,
-  table.semanticForms.light.lowFlow dl.colspan-4,
-  table.semanticForms.light.lowFlow dl.colspan-5,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-2 dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-3 dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-4 dl,
-  table.semanticForms.light:not(.semanticFormsActive) fieldset.colspan-5 dl,
-  table.semanticForms.light:not(.semanticFormsActive) dl,
-  table.semanticForms.light:not(.semanticFormsActive) dl.colspan-2,
-  table.semanticForms.light:not(.semanticFormsActive) dl.colspan-3,
-  table.semanticForms.light:not(.semanticFormsActive) dl.colspan-4,
-  table.semanticForms.light:not(.semanticFormsActive) dl.colspan-5 {
-    grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
   }
   form.semanticForms.lowFlow fieldset dl dt:nth-of-type(n + 1), form.semanticForms.lowFlow fieldset dl dd:nth-of-type(n + 1), form.semanticForms.lowFlow fieldset.colspan-2 dl dt:nth-of-type(n + 1), form.semanticForms.lowFlow fieldset.colspan-2 dl dd:nth-of-type(n + 1), form.semanticForms.lowFlow fieldset.colspan-3 dl dt:nth-of-type(n + 1), form.semanticForms.lowFlow fieldset.colspan-3 dl dd:nth-of-type(n + 1), form.semanticForms.lowFlow fieldset.colspan-4 dl dt:nth-of-type(n + 1), form.semanticForms.lowFlow fieldset.colspan-4 dl dd:nth-of-type(n + 1), form.semanticForms.lowFlow fieldset.colspan-5 dl dt:nth-of-type(n + 1), form.semanticForms.lowFlow fieldset.colspan-5 dl dd:nth-of-type(n + 1), form.semanticForms.lowFlow dl dt:nth-of-type(n + 1), form.semanticForms.lowFlow dl dd:nth-of-type(n + 1), form.semanticForms.lowFlow dl.colspan-2 dt:nth-of-type(n + 1), form.semanticForms.lowFlow dl.colspan-2 dd:nth-of-type(n + 1), form.semanticForms.lowFlow dl.colspan-3 dt:nth-of-type(n + 1), form.semanticForms.lowFlow dl.colspan-3 dd:nth-of-type(n + 1), form.semanticForms.lowFlow dl.colspan-4 dt:nth-of-type(n + 1), form.semanticForms.lowFlow dl.colspan-4 dd:nth-of-type(n + 1), form.semanticForms.lowFlow dl.colspan-5 dt:nth-of-type(n + 1), form.semanticForms.lowFlow dl.colspan-5 dd:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dt:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) fieldset dl dd:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-2 dl dt:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-2 dl dd:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-3 dl dt:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-3 dl dd:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl dt:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-4 dl dd:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl dt:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) fieldset.colspan-5 dl dd:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) dl dt:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) dl dd:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-2 dt:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-2 dd:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-3 dt:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-3 dd:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-4 dt:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-4 dd:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-5 dt:nth-of-type(n + 1), form.semanticForms:not(.semanticFormsActive) dl.colspan-5 dd:nth-of-type(n + 1),
   form.semanticForms.light.lowFlow fieldset dl dt:nth-of-type(n + 1),
@@ -3193,6 +3067,7 @@ table.semanticForms:not(.semanticFormsActive) dl,
 table.semanticForms.light.lowFlow dl,
 table.semanticForms.light:not(.semanticFormsActive) dl {
   grid-auto-flow: dense;
+  gap: 0 10px;
 }
 form.semanticForms.lowFlow > dt:nth-of-type(2n + 1), form.semanticForms.lowFlow > dd:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) > dt:nth-of-type(2n + 1), form.semanticForms:not(.semanticFormsActive) > dd:nth-of-type(2n + 1),
 form.semanticForms.light.lowFlow > dt:nth-of-type(2n + 1),
@@ -3232,6 +3107,19 @@ table.semanticForms:not(.semanticFormsActive) dt,
 table.semanticForms.light.lowFlow dt,
 table.semanticForms.light:not(.semanticFormsActive) dt {
   min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+}
+form.semanticForms.lowFlow dt label, form.semanticForms:not(.semanticFormsActive) dt label,
+form.semanticForms.light.lowFlow dt label,
+form.semanticForms.light:not(.semanticFormsActive) dt label,
+table.semanticForms.lowFlow dt label,
+table.semanticForms:not(.semanticFormsActive) dt label,
+table.semanticForms.light.lowFlow dt label,
+table.semanticForms.light:not(.semanticFormsActive) dt label {
+  display: block;
+  height: 12px;
+  font-size: 11px;
+  padding-left: 20px;
+  margin-bottom: 1px;
 }
 form.semanticForms.lowFlow dt:has(+ dd input:required) label::after, form.semanticForms:not(.semanticFormsActive) dt:has(+ dd input:required) label::after,
 form.semanticForms.light.lowFlow dt:has(+ dd input:required) label::after,

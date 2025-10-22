@@ -1068,12 +1068,19 @@ table.semanticForms.light {
   // #region container queries
   // The container is the <fieldset> element
   @container semanticForm (width > 2250px) {
+    fieldset dl,
+    dl {
+      grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+
+      div {
+        max-width: 100% !important;
+      }
+    }
+
     &.lowFlow,
     &:not(.semanticFormsActive) {
       & fieldset dl,
       & dl {
-        grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
         & dt:nth-of-type(6n + 1),
         & dd:nth-of-type(6n + 1) {
           grid-column: 1;
@@ -1107,13 +1114,21 @@ table.semanticForms.light {
     }
   }
 
+  // max 5 columns
   @container semanticForm (width < 2250px) {
+    fieldset dl,
+    dl {
+      grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+
+      div {
+        max-width: 100% !important;
+      }
+    }
+    
     &.lowFlow,
     &:not(.semanticFormsActive) {
       & fieldset dl,
       & dl {
-        grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
         & dt:nth-of-type(5n + 1),
         & dd:nth-of-type(5n + 1) {
           grid-column: 1;
@@ -1142,7 +1157,9 @@ table.semanticForms.light {
     }
   }
 
-  @container semanticForm (width < 1300px) {
+  @container semanticForm (width < 1400px) {
+    fieldset dl,
+    dl,
     fieldset.colspan-5 dl,
     dl.colspan-5 {
       grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
@@ -1158,8 +1175,6 @@ table.semanticForms.light {
       & fieldset.colspan-5 dl,
       & dl,
       & dl.colspan-5 {
-        grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
         & dt:nth-of-type(4n + 1),
         & dd:nth-of-type(4n + 1) {
           grid-column: 1;
@@ -1183,13 +1198,17 @@ table.semanticForms.light {
     }
   }
 
-  @container semanticForm (width < 1050px) {
+  // max 3 columns
+  @container semanticForm (width < 1120px) {
+    fieldset dl, 
     fieldset.colspan-4 dl,
     fieldset.colspan-5 dl,
+    dl,
     dl.colspan-4,
     dl.colspan-5 {
       grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
     }
+
 
     div.colspan-4, div.colspan-5 {
       grid-column: span 3 !important;
@@ -1203,8 +1222,6 @@ table.semanticForms.light {
       & dl,
       & dl.colspan-4,
       & dl.colspan-5 {
-        grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
         & dt:nth-of-type(3n + 1),
         & dd:nth-of-type(3n + 1) {
           grid-column: 1;
@@ -1223,14 +1240,21 @@ table.semanticForms.light {
     }
   }
 
-  @container semanticForm (width < 800px) {
+  // max 2 columns
+  @container semanticForm (width < 850px) {
+    fieldset dl,
     fieldset.colspan-3 dl,
     fieldset.colspan-4 dl,
     fieldset.colspan-5 dl,
+    dl,
     dl.colspan-3,
     dl.colspan-4,
     dl.colspan-5 {
       grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+    }
+
+    div {
+      max-width: 100% !important;
     }
 
     div.colspan-3,
@@ -1249,8 +1273,6 @@ table.semanticForms.light {
       & dl.colspan-3,
       & dl.colspan-4,
       & dl.colspan-5 {
-        grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
         & dt:nth-of-type(2n + 1),
         & dd:nth-of-type(2n + 1) {
           grid-column: 1;
@@ -1264,17 +1286,24 @@ table.semanticForms.light {
     }
   }
 
-  @container semanticForm (width < 550px) {
+  // max 1 column
+  @container semanticForm (width < 615px) {
+    fieldset dl,
     fieldset.colspan-2 dl,
     fieldset.colspan-3 dl,
     fieldset.colspan-4 dl,
     fieldset.colspan-5 dl,
+    dl,
     dl.colspan-2,
     dl.colspan-3,
     dl.colspan-4,
     dl.colspan-5,
     dl {
       grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+    }
+
+    div {
+      max-width: 100% !important;
     }
 
     div.colspan-2, div.colspan-3, div.colspan-4, div.colspan-5 {
@@ -1293,8 +1322,6 @@ table.semanticForms.light {
       & dl.colspan-3,
       & dl.colspan-4,
       & dl.colspan-5 {
-        grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
         & dt:nth-of-type(n + 1),
         & dd:nth-of-type(n + 1) {
           grid-column: 1;
@@ -1311,6 +1338,7 @@ table.semanticForms.light {
 
     dl {
       grid-auto-flow: dense;
+      gap: 0 10px;
     }
 
     // 1, 4, 7, ...
@@ -1326,7 +1354,15 @@ table.semanticForms.light {
     }
 
     dt {
-        min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+      min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+
+      label {
+        display: block;
+        height: 12px;
+        font-size: 11px;
+        padding-left: 20px;
+        margin-bottom: 1px;
+      }
 
       // add required asterisk
       &:has(+ dd input:required) {
