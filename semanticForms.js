@@ -11,9 +11,84 @@ const semanticForms = () => {
 
   const nodeNameLookup = ['TEXTAREA', 'SELECT']
   const inputTypeLookup = ['checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'image', 'month', 'number', 'password', 'radio', 'range', 'search', 'tel', 'text', 'time', 'url', 'week']
+  const keyboardShortcuts = []
+
+  // custom keyboard shortcut listener
+  document.addEventListener('keydown', (e) => {
+    const specialCharMap = {
+      Minus: '-',
+      Equal: '=',
+      BracketLeft: '[',
+      BracketRight: ']',
+      Backslash: '\\',
+      Semicolon: ';',
+      Quote: '\'',
+      Comma: ',',
+      Period: '.',
+      Slash: '/',
+      Backquote: '`'
+    }
+
+    const shiftSpecialCharMap = {
+      1: '!',
+      2: '@',
+      3: '#',
+      4: '$',
+      5: '%',
+      6: '^',
+      7: '&',
+      8: '*',
+      9: '(',
+      0: ')',
+      Minus: '_',
+      Equal: '+',
+      BracketLeft: '{',
+      BracketRight: '}',
+      Backslash: '|',
+      Semicolon: ':',
+      Quote: '"',
+      Comma: '<',
+      Period: '>',
+      Slash: '?',
+      Backquote: '~'
+    }
+
+    const shortcut = keyboardShortcuts.find(shortcut => {
+      let matchesKey = false
+      if (e.altKey && !e.shiftKey) {
+        // mac adjusts the key value if altKey is pressed
+        matchesKey = 'Key' + shortcut.key.toUpperCase() === e.code ||
+          'Digit' + shortcut.key.toUpperCase() === e.code ||
+          shortcut.key === e.key ||
+          specialCharMap[e.code] === shortcut.key
+      } else if (e.shiftKey) {
+        // check shift special character map
+        const code = e.code.replace(/Key|Digit/, '')
+        matchesKey = (shiftSpecialCharMap[code] || shiftSpecialCharMap[e.key]) &&
+          (shiftSpecialCharMap[code] === shortcut.key || shiftSpecialCharMap[e.key] === shortcut.key)
+      } else {
+        matchesKey = shortcut.key.toUpperCase() === e.key.toUpperCase()
+      }
+      if (!matchesKey) return false
+
+      let matchesModifier
+      if (shortcut.modifier) {
+        if (shortcut.modifier === shortcut.defaultModifier) matchesModifier = shortcut.os === 'windows' || shortcut.os === 'linux' ? e.ctrlKey : e.metaKey
+        if (shortcut.modifier === 'meta') matchesModifier = e.metaKey
+        if (shortcut.modifier === 'alt') matchesModifier = e.altKey
+        if (shortcut.modifier === 'ctrl') matchesModifier = e.ctrlKey
+      }
+      return matchesModifier
+    })
+
+    if (shortcut) {
+      e.preventDefault()
+      shortcut.input.focus()
+    }
+  })
 
   // progressively enhance form elements that have the semanticForms class
-  const forms = document.querySelectorAll('form.semanticForms:not(.semanticFormsActive)')
+  const forms = document.querySelectorAll('form.semanticForms:not(.semanticFormsActive), table.semanticForms:not(.semanticFormsActive)')
 
   for (const form of forms) {
     form.classList.add('semanticFormsActive')
@@ -45,6 +120,10 @@ const semanticForms = () => {
         input.classList.add('semanticform')
 
         // #region create labels
+
+        const newLabel = document.createElement('label')
+        newLabel.className = 'floatLabelFormAnimatedLabel'
+
         if (type === 'checkbox' || type === 'radio') {
           // recursively find <dd> element
           let dd = input.parentNode
@@ -56,9 +135,6 @@ const semanticForms = () => {
           }
 
           if (dd.firstChild.nodeName !== 'LABEL') {
-            const newLabel = document.createElement('label')
-            newLabel.className = 'floatLabelFormAnimatedLabel'
-
             if (type === 'checkbox' && input.parentNode.nodeName === 'DD') {
               newLabel.setAttribute('for', input.id)
               input.parentNode.classList.add('singleCheckbox')
@@ -99,10 +175,7 @@ const semanticForms = () => {
           div.append(label.closest('dt'), dd)
           dl.append(div)
         } else {
-          const newLabel = document.createElement('label')
           newLabel.setAttribute('for', input.id)
-          newLabel.className = 'floatLabelFormAnimatedLabel'
-
           newLabel.innerHTML = label.innerHTML
 
           if (input.hasAttribute('title') && label.getAttribute('data-show-help-icon') !== null && !label.querySelector('span.help')) {
@@ -121,6 +194,97 @@ const semanticForms = () => {
         }
         // #endregion
 
+        // #region keyboard shortcuts
+        if (input.getAttribute('data-focus-key') !== null) {
+          function handleKeyboardShortcut () {
+            const os = getOS()
+            // this is the custom keyword for meta on linux/mac, ctrl on windows
+            const defaultModifier = 'metactrl'
+
+            // get focus key value
+            let focusKey = input.getAttribute('data-focus-key')
+            if (focusKey.length > 1) {
+              console.error(`Provided focus key "${focusKey}" is more than one character. Using first character only.`)
+              focusKey = focusKey.toString()[0]
+            }
+
+            // get focus modifier value
+            let modifierSymbol
+            let modifierKey = defaultModifier
+            const modifierAttr = {
+              default: input.getAttribute('data-focus-modifier') || defaultModifier,
+              linux: input.getAttribute('data-focus-modifier-linux'),
+              mac: input.getAttribute('data-focus-modifier-mac'),
+              windows: input.getAttribute('data-focus-modifier-win')
+            }
+            if (os && modifierAttr[os]) {
+              // a specific modifier key has been set by the user
+              modifierKey = modifierAttr[os]
+            } else {
+              modifierKey = modifierAttr.default
+            }
+
+            // validate passed in modifier
+            const recognizedModifiers = ['ctrl', 'alt', 'opt', 'meta', 'cmd', defaultModifier]
+            if (!recognizedModifiers.includes(modifierKey)) {
+              console.error(`Received an unrecognized modifier, "${modifierKey}," defaulting to "${defaultModifier}."`, input)
+              modifierKey = defaultModifier
+            }
+
+            // retrieve modifier symbol
+            if (['alt', 'opt'].includes(modifierKey)) {
+              modifierSymbol = os === 'mac' ? '⌥' : '⎇'
+            } else if (['meta', 'win', 'cmd'].includes(modifierKey) || (modifierKey === defaultModifier && os === 'mac')) {
+              if (os === 'mac') {
+                modifierSymbol = '⌘'
+              } else if (os === 'linux') {
+                modifierSymbol = '◆'
+              } else {
+                modifierSymbol = '⊞'
+              }
+            } else if (modifierKey === 'ctrl' || (modifierKey === defaultModifier && (os === 'windows' || os === 'linux'))) {
+              if (os === 'mac') {
+                modifierSymbol = '⌃'
+              } else {
+                modifierSymbol = 'Ctrl'
+              }
+            }
+
+            // add the shortcut to the cached array, if not a duplicate
+            if (keyboardShortcuts.some(shortcut => shortcut.key === focusKey && shortcut.modifier === modifierKey)) {
+              console.error(`Duplicate keyboard shortcut "${modifierKey} + ${focusKey}" detected. Only the first input will be focusable using this keyboard shortcut.`, input)
+            } else {
+              keyboardShortcuts.push({
+                key: focusKey,
+                modifier: modifierKey,
+                input,
+                os,
+                defaultModifier
+              })
+            }
+
+            // set the shortcut indicator/title
+            if (input.nodeName === 'TEXTAREA' || input.type === 'text' || input.type === 'number') {
+              // create focus indicator for valid inputs
+              const indicator = document.createElement('span')
+              indicator.classList.add('focus-key')
+              indicator.innerHTML = `<kbd>${modifierSymbol} ${focusKey.toUpperCase()}</kbd>`
+              insertAfter(indicator, newLabel)
+            } else {
+              // update the input title
+              if (input.getAttribute('title')) {
+                input.setAttribute('title', input.getAttribute('title') + ` (${modifierSymbol} + ${focusKey})`)
+              } else {
+                input.setAttribute('title', `Focus with ${modifierSymbol} + ${focusKey}`)
+              }
+            }
+          }
+
+          // placed in a function so that it may exit while still completing other semantic-form enhancements
+          handleKeyboardShortcut()
+        }
+        // #endregion
+
         // #region standard inputs
         // check for auto-grow attribute on textareas
         if (input.getAttribute('data-auto-grow') !== null) {
@@ -133,7 +297,6 @@ const semanticForms = () => {
             newInput.setAttribute('data-auto-grow', '')
             input.replaceWith(newInput)
             input = newInput
-
           }
 
           if (input.nodeName === 'TEXTAREA') {
@@ -194,9 +357,9 @@ const semanticForms = () => {
             dd.classList.remove(match)
             div.classList.add(match)
           }
-          
+
           // check for max-content attribute
-          // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
+          // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing
           if (input.getAttribute('data-max-content') !== null) {
             if (!('fieldSizing' in document.createElement('input').style)) {
               const adjustWidth = () => {
@@ -342,7 +505,7 @@ const semanticForms = () => {
           }
 
           // progressively enhance textarea for Firefox and Safari
-          // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing 
+          // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing
           if (input.getAttribute('data-auto-grow') !== null) {
             const adjustHeight = () => {
               if (input.value.length) {
@@ -378,6 +541,25 @@ const semanticForms = () => {
   function insertAfter (newNode, referenceNode) {
     if (referenceNode.nextSibling) referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
     else referenceNode.parentNode.appendChild(newNode)
+  }
+
+  /**
+   * Uses the navigator to best determine the clients operating system.
+   * @returns Operating system string (`mac`, `windows`, `linux`)
+   */
+  function getOS () {
+    const userAgent = window.navigator.userAgent
+    const platform = window.navigator.platform
+    let os = null
+
+    if (platform.includes('Win')) {
+      os = 'windows'
+    } else if (platform.includes('Mac') || /iPhone|iPad|iPod/.test(userAgent)) {
+      os = 'mac'
+    } else if (platform.includes('Linux') || /Android/.test(userAgent)) {
+      os = 'linux'
+    }
+    return os
   }
 
   // handle undo/redo
