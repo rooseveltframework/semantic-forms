@@ -540,6 +540,10 @@ table.semanticForms.light {
           transform: rotate(90deg);
         }
       }
+
+      & > dl:first-of-type {
+        margin-top: 15px;
+      }
     }
   }
 
@@ -1035,33 +1039,33 @@ table.semanticForms.light {
 
   fieldset.colspan-full dl,
   dl.colspan-full {
-    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
   }
 
   fieldset.colspan-5 dl,
   dl.colspan-5 {
-    grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
   }
 
   fieldset.colspan-4 dl,
   dl.colspan-4 {
-    grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
   }
 
 
   fieldset.colspan-3 dl,
   dl.colspan-3 {
-    grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
   }
 
   fieldset.colspan-2 dl,
   dl.colspan-2 {
-    grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
   }
 
   fieldset.colspan-1 dl,
   dl.colspan-1 {
-    grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
   }
   // #endregion
 
@@ -1166,7 +1170,7 @@ table.semanticForms.light {
     }
 
     div.colspan-5 {
-      grid-column: span 4 !important;
+      grid-column: span 4;
     }
 
     &.lowFlow,
@@ -1210,8 +1214,9 @@ table.semanticForms.light {
     }
 
 
-    div.colspan-4, div.colspan-5 {
-      grid-column: span 3 !important;
+    div.colspan-4, 
+    div.colspan-5 {
+      grid-column: span 3;
     }
 
     &.lowFlow,
@@ -1255,12 +1260,12 @@ table.semanticForms.light {
 
     div {
       max-width: 100% !important;
-    }
 
-    div.colspan-3,
-    div.colspan-4,
-    div.colspan-5 {
-      grid-column: span 2 !important;
+      &.colspan-3,
+      &.colspan-4,
+      &.colspan-5 {
+        grid-column: span 2;
+      }
     }
 
     &.lowFlow,
@@ -1304,10 +1309,14 @@ table.semanticForms.light {
 
     div {
       max-width: 100% !important;
-    }
 
-    div.colspan-2, div.colspan-3, div.colspan-4, div.colspan-5 {
-      grid-column: span 1 !important;
+      &.colspan-2,
+      &.colspan-3,
+      &.colspan-4,
+      &.colspan-5 {
+        grid-column: span 1;
+      }
+
     }
 
     &.lowFlow,

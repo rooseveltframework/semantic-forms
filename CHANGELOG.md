@@ -1,3 +1,8 @@
+## 5.2.1
+
+- Fixed a bug where `colspan-` classes were not working as expected.
+- Fixed a bug where `<dl>` elements did not have enough space above them when nested in a `<details>` element.
+
 ## 5.2.0
 
 - Added the ability to set input focus keyboard shortcuts using the `data-focus-key` and `data-focus-modifier` attributes.
