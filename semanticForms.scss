@@ -208,8 +208,8 @@ table.semanticForms.light {
   input[type=checkbox],
   input[type=radio] {
     // 30% larger based on parent font size
-    width: 1.4em;
-    height: 1.4em;
+    width: 18px;
+    height: 18px;
     margin: 3px 0;
     cursor: pointer;
 
@@ -1334,11 +1334,12 @@ table.semanticForms.light {
   // #region low flow form
   &.lowFlow,
   &:not(.semanticFormsActive) {
-    gap: 5px;
+    gap: 10px;
 
     dl {
       grid-auto-flow: dense;
       gap: 0 10px;
+      margin-bottom: 0px;
     }
 
     // 1, 4, 7, ...
@@ -1357,11 +1358,13 @@ table.semanticForms.light {
       min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
 
       label {
+        position: absolute;
         display: block;
-        height: 12px;
-        font-size: 11px;
-        padding-left: 20px;
-        margin-bottom: 1px;
+        height: 11px;
+        transform: scale(0.7);
+        transform-origin: left center;
+        padding-left: 29px;
+        margin-top: -1px;
       }
 
       // add required asterisk
@@ -1373,15 +1376,94 @@ table.semanticForms.light {
       }
     }
 
+    // checkbox/radio groups
+    dt {
+      &:has(+ dd.checkboxes),
+      &:has(+ dd.radios) {
+        label {
+          padding-left: 15px;
+        }
+      }
+    }
+
+    // single checkbox label
+    dt {
+      &:not(:has(+ dd ul)){
+        &:has(+ dd input[type=checkbox]) {
+          label {
+            transform: scale(1);
+            margin-top: 4px;
+            margin-left: 8px;
+          }
+        }
+
+        &:has(+ dd input[type=radio]) {
+          label {
+            transform: scale(1);
+            margin-top: 2px;
+            margin-left: 8px;
+          }
+        }
+      }
+    } 
+
 
     dd {
+      // margin-bottom: 10px;
+      margin-top: var(--semanticFormsInputTopMargin);
       margin-bottom: 10px;
       min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
 
-      // nudge single checkboxes to match checkbox groups
-      &:not(.checkboxes) {
-        input[type=checkbox] {
-          margin-left: 10px;
+      // checkbox/radio groups
+      &.checkboxes,
+      &.radios {
+        margin-top: 0;
+
+        ul {
+          input[type=radio] {
+            margin-top: 3px;
+          }
+
+          label {
+            padding-top: 7px;
+            padding-left: 0;
+            font-size: var(--semanticFormsFontSize);
+          }
+        }
+
+        // additional text
+        ul + label {
+          margin-top: 0;
+          font-size: small;
+        }
+      }
+
+      // single checkbox/radio
+      &:not(:has(ul)){
+        &:has(input[type=checkbox], input[type=radio]) {
+          margin-top: 0;
+          padding-left: 10px;
+
+          input[type=checkbox] {
+            margin-left: 1px;
+            margin-top: 2px;
+          }
+
+          input[type=radio] {
+            margin-left: 1px;
+            margin-top: 1px;
+          }
+
+          // additional info text
+          label {
+            font-size: small;
+            margin-top: -1px;
+            padding-left: 11px;
+          }
+
+          input[type=radio] + label {
+            margin-top: -4px;
+          }
         }
       }
 
@@ -1394,6 +1476,7 @@ table.semanticForms.light {
 
       // subtext
       label {
+        padding-left: 10px;
         margin-top: -5px;
         font-size: small;
         color: var(--semanticFormsPlaceholderColor);
