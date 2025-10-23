@@ -97,6 +97,10 @@ table.semanticForms.light {
   width: 100%;
   container-type: inline-size;
   container-name: semanticForm;
+  max-width: calc(
+    (7 * var(--semanticFormsInputMinWidth)) +
+    ((7 - 1) * 10px) - 1px
+  );
 
   // https://caniuse.com/wf-interpolate-size
   @supports (interpolate-size: allow-keywords) {
@@ -201,8 +205,8 @@ table.semanticForms.light {
   // specific styling for color input
   input[type=color] {
     height: var(--semanticFormsInputHeight);
-    padding: 4px !important;
-    padding-right: 30px !important;
+    padding: 4px;
+    padding-right: 30px;
   }
 
   input[type=checkbox],
@@ -214,7 +218,7 @@ table.semanticForms.light {
     cursor: pointer;
 
     & ~ label:first-of-type {
-      color: var(--semanticFormsTextColor) !important;
+      color: var(--semanticFormsTextColor);
     }
   }
 
@@ -226,6 +230,7 @@ table.semanticForms.light {
   select {
     cursor: pointer;
 
+    // single selects
     &:not([multiple]) {
       // custom dropdown graphic on select element
       background-image: var(--semanticFormsSelectIcon);
@@ -237,10 +242,11 @@ table.semanticForms.light {
       appearance: none;
     }
 
+    // multi-selects
     &[multiple] {
       min-height: 38px;
       height: 100px;
-      padding: 0 !important;
+      padding: 0;
 
       option {
         padding: 6px 20px;
@@ -271,16 +277,16 @@ table.semanticForms.light {
     background: var(--semanticFormsSearchIcon) no-repeat 10px;
     background-color: var(--semanticFormsFormBgColor);
     background-size: 18px;
-    padding-left: 32px !important; // shift values to the right
+    padding-left: 32px; // shift values to the right
 
     & + label.floatLabelFormAnimatedLabel {
-      left: 32px !important; // override float label
+      left: 32px; // override float label
     }
 
     &:focus,
     &:not(:placeholder-shown) {
       & + label.floatLabelFormAnimatedLabel {
-        left: 20px !important;
+        left: 20px;
       }
     }
 
@@ -333,7 +339,7 @@ table.semanticForms.light {
   // button styling
   input[type='submit'],
   input[type='reset'],
-  button:not(.clear):not(.show),
+  button:not(.clear, .show),
   .button-link {
     appearance: none;
     -moz-appearance: none;
@@ -376,7 +382,7 @@ table.semanticForms.light {
 
     &:visited,
     &:link {
-      color: var(--semanticFormsTextColor) !important;
+      color: var(--semanticFormsTextColor);
     }
   }
   // #endregion
@@ -392,10 +398,10 @@ table.semanticForms.light {
   textarea {
     &.invalid,
     &:user-invalid {
-      border: var(--semanticFormsInvalidBorder) !important;
+      border: var(--semanticFormsInvalidBorder);
 
       ~ label:nth-of-type(2) {
-        color: var(--semanticFormsInvalid) !important;
+        color: var(--semanticFormsInvalid);
       }
 
       ~ [data-invalid-text] {
@@ -405,10 +411,10 @@ table.semanticForms.light {
     }
 
     &.warn {
-      border: var(--semanticFormsWarnBorder) !important;
+      border: var(--semanticFormsWarnBorder);
 
       ~ label:nth-of-type(2) {
-        color: var(--semanticFormsWarn) !important;
+        color: var(--semanticFormsWarn);
       }
 
       ~ [data-invalid-text] {
@@ -582,11 +588,52 @@ table.semanticForms.light {
 
     dd {
       position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 100%;
 
+      // checkbox/radio
+      &.singleCheckbox, 
+      &.singleRadio {
+        display: grid;
+        grid-template-columns: 15px 1fr;
+        align-items: center;
+        padding-left: 11px;
+
+        // anything that is not the radio/checkbox and its label
+        & > :not(input[type='checkbox'], input[type='radio'], label) {
+          grid-column: 1 / -1;
+        }
+
+        // additional label takes up entire width
+        label:nth-of-type(2) {
+          grid-column: 1 / -1;
+          padding: 0 10px;
+          font-size: small;
+          color: var(--semanticFormsTextColor);
+        }
+      }
+
+      &.singleRadio > input {
+        margin: 0;
+      }
+
+      // checkbox/radio groups
       &.checkboxes, &.radios {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        ul {
+          display: flex;
+          flex-direction: column;
+          margin-top: var(--semanticFormsInputTopMargin);
+          padding-left: 10px;
+          gap: 5px;
+
+          li {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+          }
+        }
 
         // checkbox subtext
         & > label {
@@ -596,91 +643,39 @@ table.semanticForms.light {
         }
       }
 
-      &:not(.checkboxes, .radios) {
-        gap: 10px;
-        max-width: 100%;
+      // place buttons next to input
+      &:has(button:not(.clear, .show), input[type="submit"]:not(.clear, .show)) {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
 
-        // places all items within the <dd> vertically
-        &:not(.singleCheckbox, .singleRadio) {
-          display: flex;
-          flex-direction: column;
-
-          // unless there is a button present, which will be placed beside the input
-          &:has(button:not(.clear, .show), input[type="submit"]:not(.clear, .show)) {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-
-            button.clear, button.show {
-              right: 36%; // adjust clear/show button to grid
-            }
-
-            input:not([type="submit"]), select, textarea {
-              grid-row: 1 / 2;
-              grid-column: 1 / 2;
-            }
-
-            button:not(.clear, .show),
-            input[type="submit"]:not(.clear, .show), 
-            input[type="button"]:not(.clear, .show) {
-              grid-row: 1 / 2;
-              grid-column: 2 / 3;
-              width: 100%;
-              max-width: 100%;
-              padding: 10px; // reduce default padding to allow more button text to show
-              margin-top: var(--semanticFormsInputTopMargin);
-              height: var(--semanticFormsInputHeight);
-              text-overflow: ellipsis;
-              white-space: nowrap;
-              overflow: hidden;
-              display: inline-block;
-            }
-
-            label:nth-of-type(2),
-            label:not(.floatLabelFormAnimatedLabel) {
-              grid-row: 2 / 3;
-              grid-column: 1 / -1;
-            }
-          }
+        button.clear, button.show {
+          right: 36%; // adjust clear/show button to grid
         }
 
-        &.singleCheckbox,
-        &.singleRadio {
-          display: grid;
-          grid-template-columns: 15px 1fr;
-          align-items: center;
-          padding-left: 11px;
-
-          & > :not(input[type='checkbox'], input[type='radio'], label) {
-            grid-column: 1 / -1;
-          }
-
-          // single checkbox subtext
-          label:nth-of-type(2) {
-            grid-column: 1 / -1;
-            padding: 0 10px;
-            font-size: small;
-            color: var(--semanticFormsTextColor);
-          }
+        input:not([type="submit"]), select, textarea {
+          grid-row: 1 / 2;
+          grid-column: 1 / 2;
         }
 
-        &.singleRadio {
-          input {
-            margin: 0;
-          }
+        button:not(.clear, .show),
+        input[type="submit"]:not(.clear, .show), 
+        input[type="button"]:not(.clear, .show) {
+          grid-row: 1 / 2;
+          grid-column: 2 / 3;
+          width: 100%;
+          max-width: 100%;
+          padding: 10px; // reduce default padding to allow more button text to show
+          height: var(--semanticFormsInputHeight);
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          display: inline-block;
         }
-      }
 
-      &.checkboxes ul, &.radios ul {
-        display: flex;
-        flex-direction: column;
-        margin-top: var(--semanticFormsInputTopMargin);
-        padding-left: 10px;
-        gap: 5px;
-
-        li {
-          display: flex;
-          align-items: center;
-          gap: 5px;
+        label:nth-of-type(2),
+        label:not(.floatLabelFormAnimatedLabel) {
+          grid-row: 2 / 3;
+          grid-column: 1 / -1;
         }
       }
 
@@ -688,7 +683,7 @@ table.semanticForms.light {
       &:has(span.focus-key) {
         // make room for focus key span
         label:first-of-type {
-          width: calc(100% - 95px) !important;
+          width: calc(100% - 95px);
         }
 
         span.focus-key {
@@ -782,7 +777,7 @@ table.semanticForms.light {
         textarea {
           &:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
           &:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
-            color: var(--semanticFormsTextColor) !important;
+            color: var(--semanticFormsTextColor);
             transform: translateY(-150%) scale(0.7);
             width: 100%;
           }
@@ -800,18 +795,26 @@ table.semanticForms.light {
 
         select ~ label:first-of-type {
           // force label to be correct color
-          color: var(--semanticFormsTextColor) !important;
+          color: var(--semanticFormsTextColor);
         }
 
+        button:not(.clear, .show), 
+        input[type=submit]:not(.clear, .show) {
+          margin-top: var(--semanticFormsInputTopMargin);
+        }
+
+        // input label
         label:first-of-type {
-          line-height: 1.2;
-          font-size: var(--semanticFormsInputFontSize);
           position: absolute;
-          transform-origin: left center;
-          pointer-events: none;
-          // when the label is positioned within the input it needs a buffer
           top: calc(var(--semanticFormsInputTopMargin) + 10px);
           left: 20px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          line-height: 1.2;
+          font-size: var(--semanticFormsInputFontSize);
+          transform-origin: left center;
+          pointer-events: none;
           transition: transform 250ms;
           cursor: text;
           flex: 1;
@@ -820,9 +823,29 @@ table.semanticForms.light {
           text-overflow: ellipsis;
           min-width: 0;
           width: calc(100% - 35px);
+          user-select: none;
+          color: var(--semanticFormsPlaceholderColor);
+          touch-action: manipulation;
+
+          span.required {
+            cursor: help;
+            pointer-events: auto;
+            color: red;
+          }
+
+          span.help {
+            display: grid;
+            place-items: center;
+            cursor: help;
+            pointer-events: auto;
+
+            svg {
+              width: 80%;
+            }
+          }
         }
 
-        // subtext
+        // subtext label
         label:nth-of-type(2) {
           margin-top: -5px;
           padding: 0 10px;
@@ -839,6 +862,7 @@ table.semanticForms.light {
         input,
         textarea {
           transition: opacity 250ms;
+
           // hide placeholder content until input is focused
           &::placeholder {
             opacity: 0;
@@ -880,33 +904,8 @@ table.semanticForms.light {
           }
         }
 
-        label:first-of-type {
-          user-select: none;
-          color: var(--semanticFormsPlaceholderColor);
-          touch-action: manipulation;
-          display: flex;
-          align-items: center;
-          gap: 5px;
-
-          span.required {
-            cursor: help;
-            pointer-events: auto;
-            color: red;
-          }
-
-          span.help {
-            display: grid;
-            place-items: center;
-            cursor: help;
-            pointer-events: auto;
-
-            svg {
-              width: 80%;
-            }
-          }
-        }
-
-        .focus-key {
+        // keyboard shortcut indicator
+        span.focus-key {
           color: var(--semanticFormsPlaceholderColor);
           position: absolute;
           top: calc(var(--semanticFormsInputTopMargin) + 11px);
@@ -1039,50 +1038,52 @@ table.semanticForms.light {
 
   fieldset.colspan-full dl,
   dl.colspan-full {
-    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
   }
 
   fieldset.colspan-5 dl,
   dl.colspan-5 {
-    grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+    grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
   }
 
   fieldset.colspan-4 dl,
   dl.colspan-4 {
-    grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+    grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
   }
 
 
   fieldset.colspan-3 dl,
   dl.colspan-3 {
-    grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+    grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
   }
 
   fieldset.colspan-2 dl,
   dl.colspan-2 {
-    grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+    grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
   }
 
   fieldset.colspan-1 dl,
   dl.colspan-1 {
-    grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+    grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
   }
   // #endregion
 
   // #region container queries
-  // The container is the <fieldset> element
-  @container semanticForm (width > 2250px) {
-    fieldset dl,
-    dl {
-      grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+  // @container semanticForm (width > 2250px) {
+  @container semanticForm (width >= 1550px) {
+  //   fieldset dl,
+  //   dl {
+  //     grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
-      div {
-        max-width: 100% !important;
-      }
-    }
+  //     div {
+  //       max-width: 100%;
+  //     }
+  //   }
 
     &.lowFlow,
     &:not(.semanticFormsActive) {
+      background: red;
+
       & fieldset dl,
       & dl {
         & dt:nth-of-type(6n + 1),
@@ -1119,15 +1120,16 @@ table.semanticForms.light {
   }
 
   // max 5 columns
-  @container semanticForm (width < 2250px) {
-    fieldset dl,
-    dl {
-      grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
+  // @container semanticForm (width < 2250px) {
+  @container semanticForm (width < 1550px) {
+  //   fieldset dl,
+  //   dl {
+  //     grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
-      div {
-        max-width: 100% !important;
-      }
-    }
+  //     div {
+  //       max-width: 100%;
+  //     }
+  //   }
     
     &.lowFlow,
     &:not(.semanticFormsActive) {
@@ -1161,17 +1163,19 @@ table.semanticForms.light {
     }
   }
 
-  @container semanticForm (width < 1400px) {
-    fieldset dl,
-    dl,
-    fieldset.colspan-5 dl,
-    dl.colspan-5 {
-      grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
-    }
+  // max 4 columns
+  // @container semanticForm (width < 1400px) {
+  @container semanticForm (width < 1290px) {
+  //   fieldset dl,
+  //   dl,
+  //   fieldset.colspan-5 dl,
+  //   dl.colspan-5 {
+  //     grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  //   }
 
-    div.colspan-5 {
-      grid-column: span 4;
-    }
+  //   div.colspan-5 {
+  //     grid-column: span 4;
+  //   }
 
     &.lowFlow,
     &:not(.semanticFormsActive) {
@@ -1203,21 +1207,22 @@ table.semanticForms.light {
   }
 
   // max 3 columns
-  @container semanticForm (width < 1120px) {
-    fieldset dl, 
-    fieldset.colspan-4 dl,
-    fieldset.colspan-5 dl,
-    dl,
-    dl.colspan-4,
-    dl.colspan-5 {
-      grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
-    }
+  // @container semanticForm (width < 1120px) {
+  @container semanticForm (width < 1030px) {
+  //   fieldset dl, 
+  //   fieldset.colspan-4 dl,
+  //   fieldset.colspan-5 dl,
+  //   dl,
+  //   dl.colspan-4,
+  //   dl.colspan-5 {
+  //     grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  //   }
 
 
-    div.colspan-4, 
-    div.colspan-5 {
-      grid-column: span 3;
-    }
+  //   div.colspan-4, 
+  //   div.colspan-5 {
+  //     grid-column: span 3;
+  //   }
 
     &.lowFlow,
     &:not(.semanticFormsActive) {
@@ -1247,26 +1252,26 @@ table.semanticForms.light {
 
   // max 2 columns
   @container semanticForm (width < 850px) {
-    fieldset dl,
-    fieldset.colspan-3 dl,
-    fieldset.colspan-4 dl,
-    fieldset.colspan-5 dl,
-    dl,
-    dl.colspan-3,
-    dl.colspan-4,
-    dl.colspan-5 {
-      grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
-    }
+  //   fieldset dl,
+  //   fieldset.colspan-3 dl,
+  //   fieldset.colspan-4 dl,
+  //   fieldset.colspan-5 dl,
+  //   dl,
+  //   dl.colspan-3,
+  //   dl.colspan-4,
+  //   dl.colspan-5 {
+  //     grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  //   }
 
-    div {
-      max-width: 100% !important;
+  //   div {
+  //     max-width: 100%;
 
-      &.colspan-3,
-      &.colspan-4,
-      &.colspan-5 {
-        grid-column: span 2;
-      }
-    }
+  //     &.colspan-3,
+  //     &.colspan-4,
+  //     &.colspan-5 {
+  //       grid-column: span 2;
+  //     }
+  //   }
 
     &.lowFlow,
     &:not(.semanticFormsActive) {
@@ -1293,31 +1298,31 @@ table.semanticForms.light {
 
   // max 1 column
   @container semanticForm (width < 615px) {
-    fieldset dl,
-    fieldset.colspan-2 dl,
-    fieldset.colspan-3 dl,
-    fieldset.colspan-4 dl,
-    fieldset.colspan-5 dl,
-    dl,
-    dl.colspan-2,
-    dl.colspan-3,
-    dl.colspan-4,
-    dl.colspan-5,
-    dl {
-      grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr)) !important;
-    }
+  //   fieldset dl,
+  //   fieldset.colspan-2 dl,
+  //   fieldset.colspan-3 dl,
+  //   fieldset.colspan-4 dl,
+  //   fieldset.colspan-5 dl,
+  //   dl,
+  //   dl.colspan-2,
+  //   dl.colspan-3,
+  //   dl.colspan-4,
+  //   dl.colspan-5,
+  //   dl {
+  //     grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  //   }
 
-    div {
-      max-width: 100% !important;
+  //   div {
+  //     max-width: 100%;
 
-      &.colspan-2,
-      &.colspan-3,
-      &.colspan-4,
-      &.colspan-5 {
-        grid-column: span 1;
-      }
+  //     &.colspan-2,
+  //     &.colspan-3,
+  //     &.colspan-4,
+  //     &.colspan-5 {
+  //       grid-column: span 1;
+  //     }
 
-    }
+  //   }
 
     &.lowFlow,
     &:not(.semanticFormsActive) {
@@ -1364,7 +1369,7 @@ table.semanticForms.light {
     }
 
     dt {
-      min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+      min-width: var(--semanticFormsInputMinWidth); /* this matches the max-width of js-enabled inputs */
 
       label {
         position: absolute;
@@ -1421,7 +1426,7 @@ table.semanticForms.light {
       // margin-bottom: 10px;
       margin-top: var(--semanticFormsInputTopMargin);
       margin-bottom: 10px;
-      min-width: var(--semanticFormsInputMinWidth) !important; /* this matches the max-width of js-enabled inputs */
+      min-width: var(--semanticFormsInputMinWidth); /* this matches the max-width of js-enabled inputs */
 
       // checkbox/radio groups
       &.checkboxes,
@@ -1495,7 +1500,7 @@ table.semanticForms.light {
       button:not(.clear, .show),
       input[type="submit"]:not(.clear, .show), 
       input[type="button"]:not(.clear, .show)  {
-        margin-top: 0 !important;
+        margin-top: 0;
       }
     }
   }
