@@ -575,20 +575,11 @@ table.semanticForms.light {
   }
 
   // #region container layout
-
-  dl {
+  dl:has(dt > label, dd > input, dd > select, dd > textarea) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
     gap: 10px;
     margin-bottom: 10px;
-  }
-
-  dl:has(dt > label, dd > input, dd > select, dd > textarea) {
-    // display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
-    // gap: 10px;
-    // margin-bottom: 10px;
-    // container: inputs / inline-size;
 
     dd {
       position: relative;

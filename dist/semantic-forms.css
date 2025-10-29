@@ -1024,10 +1024,10 @@ table.semanticForms.light summary {
     scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
   }
 }
-form.semanticForms dl,
-form.semanticForms.light dl,
-table.semanticForms dl,
-table.semanticForms.light dl {
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea),
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
+table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
   gap: 10px;
