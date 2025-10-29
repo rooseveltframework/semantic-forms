@@ -95,6 +95,7 @@ table.semanticForms.light {
   font-family: var(--semanticFormsFontFamily);
   font-size: var(--semanticFormsFontSize);
   width: 100%;
+  // container: semanticForm / inline-size;
 
   // https://caniuse.com/wf-interpolate-size
   @supports (interpolate-size: allow-keywords) {
@@ -447,7 +448,7 @@ table.semanticForms.light {
     gap: 5px;
     padding: 10px 10px 20px 10px;
     margin-bottom: 15px;
-    // container: inputs / inline-size;
+    // container: semanticForm / inline-size;
 
     // nested fieldsets are darkened
     fieldset {
@@ -575,12 +576,19 @@ table.semanticForms.light {
 
   // #region container layout
 
-  dl:has(dt > label, dd > input, dd > select, dd > textarea) {
+  dl {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
     gap: 10px;
     margin-bottom: 10px;
-    container: inputs / inline-size;
+  }
+
+  dl:has(dt > label, dd > input, dd > select, dd > textarea) {
+    // display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    // gap: 10px;
+    // margin-bottom: 10px;
+    // container: inputs / inline-size;
 
     dd {
       position: relative;
@@ -1153,156 +1161,6 @@ table.semanticForms.light {
   }
   // #endregion
 
-
-  // #region container queries
-
-  // max 6 columns (do we want to support more?)
-  dl {
-    @container inputs (width >= 1550px) {
-      &:has(:not(div)) {
-        & dt:nth-of-type(6n + 1), 
-        & dd:nth-of-type(6n + 1) {
-          grid-column: 1;
-        }
-
-        & dt:nth-of-type(6n + 2), 
-        & dd:nth-of-type(6n + 2) {
-          grid-column: 2;
-        }
-
-        & dt:nth-of-type(6n + 3), 
-        & dd:nth-of-type(6n + 3) {
-          grid-column: 3;
-        }
-
-        & dt:nth-of-type(6n + 4), 
-        & dd:nth-of-type(6n + 4) {
-          grid-column: 4;
-        }
-
-        & dt:nth-of-type(6n + 5), 
-        & dd:nth-of-type(6n + 5) {
-          grid-column: 5;
-        }
-
-        & dt:nth-of-type(6n + 6), 
-        & dd:nth-of-type(6n + 6) {
-          grid-column: 6;
-        }
-      }
-    }
-
-    // max 5 columns
-    // @container inputs (width < 1550px) and (width >= 1290px) {   
-    @container inputs (width >= 1290px) {   
-      &:has(:not(div)) {
-        & dt:nth-of-type(5n + 1), 
-        & dd:nth-of-type(5n + 1) {
-          grid-column: 1;
-        }
-
-        & dt:nth-of-type(5n + 2), 
-        & dd:nth-of-type(5n + 2) {
-          grid-column: 2;
-        }
-
-        & dt:nth-of-type(5n + 3), 
-        & dd:nth-of-type(5n + 3) {
-          grid-column: 3;
-        }
-
-        & dt:nth-of-type(5n + 4), 
-        & dd:nth-of-type(5n + 4) {
-          grid-column: 4;
-        }
-
-        & dt:nth-of-type(5n + 5), 
-        & dd:nth-of-type(5n + 5) {
-          grid-column: 5;
-        }
-      }
-    }
-  
-    // max 4 columns
-    // @container inputs (width < 1290px) and (width >= 1030px) {
-    @container inputs (width >= 1030px) {
-      &.colspan-5 {
-        grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
-      }
-
-      &:has(:not(div)) { 
-        & dt:nth-of-type(4n + 1), 
-        & dd:nth-of-type(4n + 1) {
-          grid-column: 1;
-        }
-
-        & dt:nth-of-type(4n + 2), 
-        & dd:nth-of-type(4n + 2) {
-          grid-column: 2;
-        }
-
-        & dt:nth-of-type(4n + 3), 
-        & dd:nth-of-type(4n + 3) {
-          grid-column: 3;
-        }
-
-        & dt:nth-of-type(4n + 4), 
-        & dd:nth-of-type(4n + 4) {
-          grid-column: 4;
-        }
-      }
-    }
-
-    // max 3 columns
-    // @container inputs (width < 1030px) and (width >= 850px) {
-    @container inputs (width >= 850px) {  
-      &:has(:not(div)) { 
-        & dt:nth-of-type(3n + 1), 
-        & dd:nth-of-type(3n + 1) {
-          grid-column: 1;
-        }
-
-        & dt:nth-of-type(3n + 2), 
-        & dd:nth-of-type(3n + 2) {
-          grid-column: 2;
-        }
-
-        & dt:nth-of-type(3n + 3), 
-        & dd:nth-of-type(3n + 3) {
-          grid-column: 3;
-        }
-      }
-    }
-
-    // max 2 columns
-    // @container inputs (width < 850px) and (width >= 510px) {
-    @container inputs (width >= 510px) {
-      &:has(:not(div)) { 
-        & dt:nth-of-type(2n + 1), 
-        & dd:nth-of-type(2n + 1) {
-          grid-column: 1;
-        }
-
-        & dt:nth-of-type(2n + 2), 
-        & dd:nth-of-type(2n + 2) {
-          grid-column: 2;
-        }
-      }
-    }
-
-    // max 1 column
-    @container inputs (width < 510px) {
-      &:has(:not(div)) {
-        & dt:nth-of-type(n + 1),
-        & dd:nth-of-type(n + 1) {
-          grid-column: 1;
-        }
-      }
-    }
-  }
-
-  // #endregion
-
   // #region low flow form
   &.lowFlow,
   &:not(.semanticFormsActive) {
@@ -1523,3 +1381,300 @@ table.semanticForms {
   }
 }
 // #endregion
+
+form.semanticForms,
+fieldset {
+  container: semanticForm / inline-size;
+
+  // max 6 columns (do we want to support more?)
+  @container semanticForm (width >= 1550px) {
+    & fieldset dl,
+    & dl {
+      grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr));
+
+      &:has(:not(div)) {
+        & dt:nth-of-type(6n + 1), 
+        & dd:nth-of-type(6n + 1) {
+          grid-column: 1;
+        }
+  
+        & dt:nth-of-type(6n + 2), 
+        & dd:nth-of-type(6n + 2) {
+          grid-column: 2;
+        }
+  
+        & dt:nth-of-type(6n + 3), 
+        & dd:nth-of-type(6n + 3) {
+          grid-column: 3;
+        }
+  
+        & dt:nth-of-type(6n + 4), 
+        & dd:nth-of-type(6n + 4) {
+          grid-column: 4;
+        }
+  
+        & dt:nth-of-type(6n + 5), 
+        & dd:nth-of-type(6n + 5) {
+          grid-column: 5;
+        }
+  
+        & dt:nth-of-type(6n + 6), 
+        & dd:nth-of-type(6n + 6) {
+          grid-column: 6;
+        }
+
+        & dt:has(+ dd.colspan-5),
+        & dt:has(+ dd.colspan-full),
+        & dd.colspan-5,
+        & dd.colspan-full {
+          grid-column: span 5;
+        }
+
+        & dt:has(+ dd.colspan-4), 
+        & dd.colspan-4 {
+          grid-column: span 4;
+        }
+
+        & dt:has(+ dd.colspan-3), 
+        & dd.colspan-3 {
+          grid-column: span 3;
+        }
+
+        & dt:has(+ dd.colspan-2), 
+        & dd.colspan-2 {
+          grid-column: span 2;
+        }
+      }
+    }
+  }
+
+  // max 5 columns
+  @container semanticForm (width >= 1290px) and (width < 1550px) {
+    & fieldset dl,
+    & dl {
+      grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
+
+      &:has(:not(div)) {
+        & dt:nth-of-type(5n + 1), 
+        & dd:nth-of-type(5n + 1) {
+          grid-column: 1;
+        }
+  
+        & dt:nth-of-type(5n + 2), 
+        & dd:nth-of-type(5n + 2) {
+          grid-column: 2;
+        }
+  
+        & dt:nth-of-type(5n + 3), 
+        & dd:nth-of-type(5n + 3) {
+          grid-column: 3;
+        }
+  
+        & dt:nth-of-type(5n + 4), 
+        & dd:nth-of-type(5n + 4) {
+          grid-column: 4;
+        }
+  
+        & dt:nth-of-type(5n + 5), 
+        & dd:nth-of-type(5n + 5) {
+          grid-column: 5;
+        }
+
+        & dt:has(+ dd.colspan-5),
+        & dt:has(+ dd.colspan-full),
+        & dd.colspan-5,
+        & dd.colspan-full {
+          grid-column: span 5;
+        }
+
+        & dt:has(+ dd.colspan-4), 
+        & dd.colspan-4 {
+          grid-column: span 4;
+        }
+
+        & dt:has(+ dd.colspan-3), 
+        & dd.colspan-3 {
+          grid-column: span 3;
+        }
+
+        & dt:has(+ dd.colspan-2), 
+        & dd.colspan-2 {
+          grid-column: span 2;
+        }
+      }
+    }
+  }
+
+  // max 4 columns
+  @container semanticForm (width >= 1030px) and (width < 1290px) {
+    & fieldset dl,
+    & fieldset.colspan-5 dl,
+    & dl,
+    & dl.colspan-5 {
+      grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
+
+      &:has(:not(div)) { 
+        & dt:nth-of-type(4n + 1), 
+        & dd:nth-of-type(4n + 1) {
+          grid-column: 1;
+        }
+  
+        & dt:nth-of-type(4n + 2), 
+        & dd:nth-of-type(4n + 2) {
+          grid-column: 2;
+        }
+  
+        & dt:nth-of-type(4n + 3), 
+        & dd:nth-of-type(4n + 3) {
+          grid-column: 3;
+        }
+  
+        & dt:nth-of-type(4n + 4), 
+        & dd:nth-of-type(4n + 4) {
+          grid-column: 4;
+        }
+
+        & dt:has(+ dd.colspan-4), 
+        & dt:has(+ dd.colspan-5),
+        & dt:has(+ dd.colspan-full),
+        & dd.colspan-4,
+        & dd.colspan-5,
+        & dd.colspan-full {
+          grid-column: span 4;
+        }
+
+        & dt:has(+ dd.colspan-3), 
+        & dd.colspan-3 {
+          grid-column: span 3;
+        }
+
+        & dt:has(+ dd.colspan-2), 
+        & dd.colspan-2 {
+          grid-column: span 2;
+        }
+      }
+    }
+  }
+
+  // max 3 columns
+  @container semanticForm (width >= 850px) and (width < 1030px) {  
+    & fieldset dl,
+    & fieldset.colspan-4 dl,
+    & fieldset.colspan-5 dl,
+    & dl,
+    & dl.colspan-4,
+    & dl.colspan-5 {
+      grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
+
+      &:has(:not(div)) { 
+        & dt:nth-of-type(3n + 1), 
+        & dd:nth-of-type(3n + 1) {
+          grid-column: 1;
+        }
+        
+        & dt:nth-of-type(3n + 2), 
+        & dd:nth-of-type(3n + 2) {
+          grid-column: 2;
+        }
+        
+        & dt:nth-of-type(3n + 3), 
+        & dd:nth-of-type(3n + 3) {
+          grid-column: 3;
+        }
+
+        & dt:has(+ dd.colspan-3), 
+        & dt:has(+ dd.colspan-4), 
+        & dt:has(+ dd.colspan-5),
+        & dt:has(+ dd.colspan-full),
+        & dd.colspan-3,
+        & dd.colspan-4,
+        & dd.colspan-5,
+        & dd.colspan-full {
+          grid-column: span 3;
+        }
+
+        & dt:has(+ dd.colspan-2), 
+        & dd.colspan-2 {
+          grid-column: span 2;
+        }
+      }
+    }
+  }
+
+  // max 2 columns
+  @container semanticForm (width >= 510px) and (width < 850px) {
+    & fieldset dl,
+    & fieldset.colspan-3 dl,
+    & fieldset.colspan-4 dl,
+    & fieldset.colspan-5 dl,
+    & dl,
+    & dl.colspan-3,
+    & dl.colspan-4,
+    & dl.colspan-5 {
+      grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
+
+      &:has(:not(div)) { 
+        & dt:nth-of-type(2n + 1), 
+        & dd:nth-of-type(2n + 1) {
+          grid-column: 1;
+        }
+  
+        & dt:nth-of-type(2n + 2), 
+        & dd:nth-of-type(2n + 2) {
+          grid-column: 2;
+        }
+
+        & dt:has(+ dd.colspan-2),
+        & dt:has(+ dd.colspan-3), 
+        & dt:has(+ dd.colspan-4), 
+        & dt:has(+ dd.colspan-5),
+        & dt:has(+ dd.colspan-full),
+        & dd.colspan-2,
+        & dd.colspan-3,
+        & dd.colspan-4,
+        & dd.colspan-5,
+        & dd.colspan-full {
+          grid-column: span 2;
+        }
+      }
+    }
+  }
+
+  // max 1 column
+  @container semanticForm (width < 510px) {
+    & fieldset dl,
+    & fieldset.colspan-2 dl,
+    & fieldset.colspan-3 dl,
+    & fieldset.colspan-4 dl,
+    & fieldset.colspan-5 dl,
+    & dl,
+    & dl.colspan-2,
+    & dl.colspan-3,
+    & dl.colspan-4,
+    & dl.colspan-5 {
+      grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
+
+      &:has(:not(div)) {
+        & dt:nth-of-type(n + 1),
+        & dd:nth-of-type(n + 1) {
+          grid-column: 1;
+        }
+
+        & dt:has(+ dd.colspan-1),
+        & dt:has(+ dd.colspan-2),
+        & dt:has(+ dd.colspan-3), 
+        & dt:has(+ dd.colspan-4), 
+        & dt:has(+ dd.colspan-5),
+        & dt:has(+ dd.colspan-full),
+        & dd.colspan-1,
+        & dd.colspan-2,
+        & dd.colspan-3,
+        & dd.colspan-4,
+        & dd.colspan-5,
+        & dd.colspan-full {
+          grid-column: span 1;
+        }
+      }
+    }
+  }
+}
