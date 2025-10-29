@@ -95,7 +95,6 @@ table.semanticForms.light {
   font-family: var(--semanticFormsFontFamily);
   font-size: var(--semanticFormsFontSize);
   width: 100%;
-  // container: semanticForm / inline-size;
 
   // https://caniuse.com/wf-interpolate-size
   @supports (interpolate-size: allow-keywords) {
@@ -140,6 +139,11 @@ table.semanticForms.light {
 
   // #region input styling
   input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
+  select {
+    height: var(--semanticFormsInputHeight);
+  }
+
+  input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
   select,
   textarea {
     font-size: var(--semanticFormsInputFontSize);
@@ -150,21 +154,69 @@ table.semanticForms.light {
     touch-action: manipulation;
     outline: none;
 
-    &:not([type="range"]):placeholder-shown {
-      padding: 6px 20px;
-    }
-
     &:not([type="range"]) {
       padding: 6px 30px 6px 20px;
     }
 
+    // custom focus highlight
+    input:not([type='submit'], [type='reset'], [type='image']),
+    select,
+    textarea {
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 1px var(--semanticFormsBorderColor);
+      }
+    }
+
+    // input type styling
     &[type="password"], &[type="text"]:has(~ button.show) {
       padding: 6px 55px 6px 20px;
+    }
+
+    &[type="search"] {
+      padding: 6px 20px 6px 32px;
+      background: var(--semanticFormsSearchIcon) no-repeat 10px;
+      background-color: var(--semanticFormsFormBgColor);
+      background-size: 18px;
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        & + label.floatLabelFormAnimatedLabel {
+          left: 20px;
+        }
+      }
+
+      // hide native cancel button
+      &::-webkit-search-cancel-button {
+        display: none;
+      }
+    }
+
+    &[type="checkbox"],
+    &[type="radio"] {
+      width: 18px;
+      height: 18px;
+      margin: 3px 0;
+      cursor: pointer;
+
+      & ~ label:first-of-type {
+        color: var(--semanticFormsTextColor);
+      }
     }
 
     &[type="range"],
     &[type="color"] {
       cursor: pointer;
+    }
+
+    &[type="color"] {
+      height: var(--semanticFormsInputHeight);
+      padding: 4px 30px 4px 10px;
+    }
+
+    &[type="file"] {
+      cursor: pointer;
+      font-size: var(--semanticFormsInputFontSize);
     }
 
     &[disabled] {
@@ -179,47 +231,6 @@ table.semanticForms.light {
         display: none;
       }
     }
-  }
-
-  // focused styles
-  input:not([type='submit'], [type='reset'], [type='image']),
-  select,
-  textarea {
-    // custom focus highlight
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 1px var(--semanticFormsBorderColor);
-    }
-  }
-
-  input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
-  select {
-    height: var(--semanticFormsInputHeight);
-  }
-
-  // specific styling for color input
-  input[type=color] {
-    height: var(--semanticFormsInputHeight);
-    padding: 4px;
-    padding-right: 30px;
-  }
-
-  input[type=checkbox],
-  input[type=radio] {
-    // 30% larger based on parent font size
-    width: 18px;
-    height: 18px;
-    margin: 3px 0;
-    cursor: pointer;
-
-    & ~ label:first-of-type {
-      color: var(--semanticFormsTextColor);
-    }
-  }
-
-  input[type=file] {
-    cursor: pointer;
-    font-size: var(--semanticFormsInputFontSize);
   }
 
   select {
@@ -265,29 +276,6 @@ table.semanticForms.light {
 
     &[data-auto-grow] {
       field-sizing: content;
-    }
-  }
-
-  input[type="search"] {
-    background: var(--semanticFormsSearchIcon) no-repeat 10px;
-    background-color: var(--semanticFormsFormBgColor);
-    background-size: 18px;
-    padding-left: 32px; // shift values to the right
-
-    & + label.floatLabelFormAnimatedLabel {
-      left: 32px; // override float label
-    }
-
-    &:focus,
-    &:not(:placeholder-shown) {
-      & + label.floatLabelFormAnimatedLabel {
-        left: 20px;
-      }
-    }
-
-    // hide native cancel button
-    &::-webkit-search-cancel-button {
-      display: none;
     }
   }
   // #endregion
@@ -439,6 +427,7 @@ table.semanticForms.light {
     transition-property: background-color, color;
   }
 
+  // #region fieldset
   fieldset {
     border-radius: var(--semanticFormsBorderRadius);
     background: var(--semanticFormsFormSubBgColor);
@@ -448,7 +437,6 @@ table.semanticForms.light {
     gap: 5px;
     padding: 10px 10px 20px 10px;
     margin-bottom: 15px;
-    // container: semanticForm / inline-size;
 
     // nested fieldsets are darkened
     fieldset {
@@ -463,6 +451,7 @@ table.semanticForms.light {
       }
     }
   }
+  // #endregion
 
   // #region details
   details {
@@ -914,6 +903,12 @@ table.semanticForms.light {
         &:has(input[type="number"]) {
           .focus-key {
             right: 45px;
+          }
+        }
+
+        &:has(input[type="search"]) {
+          label:first-of-type {
+            left: 32px;
           }
         }
       }
@@ -1373,6 +1368,7 @@ table.semanticForms {
 }
 // #endregion
 
+// #region container queries
 form.semanticForms,
 fieldset {
   container: semanticForm / inline-size;
@@ -1691,3 +1687,4 @@ fieldset {
     }
   }
 }
+// #endregion
