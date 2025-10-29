@@ -2186,7 +2186,7 @@ table.semanticForms.light:not(.semanticFormsActive) dt label {
   height: 11px;
   transform: scale(0.7);
   transform-origin: left center;
-  padding-left: 29px;
+  padding-left: 22px;
   margin-top: -1px;
 }
 form.semanticForms.lowFlow dt:has(+ dd input:required) label::after, form.semanticForms:not(.semanticFormsActive) dt:has(+ dd input:required) label::after,
@@ -2222,7 +2222,7 @@ table.semanticForms:not(.semanticFormsActive) dt:not(:has(+ dd ul)):has(+ dd inp
 table.semanticForms.light.lowFlow dt:not(:has(+ dd ul)):has(+ dd input[type=checkbox]) label,
 table.semanticForms.light:not(.semanticFormsActive) dt:not(:has(+ dd ul)):has(+ dd input[type=checkbox]) label {
   transform: scale(1);
-  margin-top: 4px;
+  margin-top: 0;
   margin-left: 8px;
 }
 form.semanticForms.lowFlow dt:not(:has(+ dd ul)):has(+ dd input[type=radio]) label, form.semanticForms:not(.semanticFormsActive) dt:not(:has(+ dd ul)):has(+ dd input[type=radio]) label,
@@ -2233,7 +2233,7 @@ table.semanticForms:not(.semanticFormsActive) dt:not(:has(+ dd ul)):has(+ dd inp
 table.semanticForms.light.lowFlow dt:not(:has(+ dd ul)):has(+ dd input[type=radio]) label,
 table.semanticForms.light:not(.semanticFormsActive) dt:not(:has(+ dd ul)):has(+ dd input[type=radio]) label {
   transform: scale(1);
-  margin-top: 2px;
+  margin-top: 0;
   margin-left: 8px;
 }
 form.semanticForms.lowFlow dd, form.semanticForms:not(.semanticFormsActive) dd,
@@ -2320,25 +2320,24 @@ table.semanticForms.light:not(.semanticFormsActive) dd:not(:has(ul)):has(input[t
   margin-top: 0;
   padding-left: 10px;
 }
-form.semanticForms.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox], form.semanticForms:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
+form.semanticForms.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
+form.semanticForms.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=radio], form.semanticForms:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
+form.semanticForms:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=radio],
 form.semanticForms.light.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
-form.semanticForms.light:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
-table.semanticForms.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
-table.semanticForms:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
-table.semanticForms.light.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
-table.semanticForms.light:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox] {
-  margin-left: 1px;
-  margin-top: 2px;
-}
-form.semanticForms.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=radio], form.semanticForms:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=radio],
 form.semanticForms.light.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=radio],
+form.semanticForms.light:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
 form.semanticForms.light:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=radio],
+table.semanticForms.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
 table.semanticForms.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=radio],
+table.semanticForms:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
 table.semanticForms:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=radio],
+table.semanticForms.light.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
 table.semanticForms.light.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=radio],
+table.semanticForms.light:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=checkbox],
 table.semanticForms.light:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) input[type=radio] {
   margin-left: 1px;
   margin-top: 1px;
+  margin-right: auto;
 }
 form.semanticForms.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) label, form.semanticForms:not(.semanticFormsActive) dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) label,
 form.semanticForms.light.lowFlow dd:not(:has(ul)):has(input[type=checkbox], input[type=radio]) label,
@@ -2486,7 +2485,95 @@ form.semanticForms,
 fieldset {
   container: semanticForm/inline-size;
 }
-@container semanticForm (width >= 1550px) {
+@container semanticForm (width >= 1810px) {
+  form.semanticForms fieldset dl, form.semanticForms dl,
+  fieldset fieldset dl,
+  fieldset dl {
+    grid-template-columns: repeat(7, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+  form.semanticForms fieldset dl:has(:not(div)) dt:nth-of-type(7n + 1), form.semanticForms fieldset dl:has(:not(div)) dd:nth-of-type(7n + 1), form.semanticForms dl:has(:not(div)) dt:nth-of-type(7n + 1), form.semanticForms dl:has(:not(div)) dd:nth-of-type(7n + 1),
+  fieldset fieldset dl:has(:not(div)) dt:nth-of-type(7n + 1),
+  fieldset fieldset dl:has(:not(div)) dd:nth-of-type(7n + 1),
+  fieldset dl:has(:not(div)) dt:nth-of-type(7n + 1),
+  fieldset dl:has(:not(div)) dd:nth-of-type(7n + 1) {
+    grid-column: 1;
+  }
+  form.semanticForms fieldset dl:has(:not(div)) dt:nth-of-type(7n + 2), form.semanticForms fieldset dl:has(:not(div)) dd:nth-of-type(7n + 2), form.semanticForms dl:has(:not(div)) dt:nth-of-type(7n + 2), form.semanticForms dl:has(:not(div)) dd:nth-of-type(7n + 2),
+  fieldset fieldset dl:has(:not(div)) dt:nth-of-type(7n + 2),
+  fieldset fieldset dl:has(:not(div)) dd:nth-of-type(7n + 2),
+  fieldset dl:has(:not(div)) dt:nth-of-type(7n + 2),
+  fieldset dl:has(:not(div)) dd:nth-of-type(7n + 2) {
+    grid-column: 2;
+  }
+  form.semanticForms fieldset dl:has(:not(div)) dt:nth-of-type(7n + 3), form.semanticForms fieldset dl:has(:not(div)) dd:nth-of-type(7n + 3), form.semanticForms dl:has(:not(div)) dt:nth-of-type(7n + 3), form.semanticForms dl:has(:not(div)) dd:nth-of-type(7n + 3),
+  fieldset fieldset dl:has(:not(div)) dt:nth-of-type(7n + 3),
+  fieldset fieldset dl:has(:not(div)) dd:nth-of-type(7n + 3),
+  fieldset dl:has(:not(div)) dt:nth-of-type(7n + 3),
+  fieldset dl:has(:not(div)) dd:nth-of-type(7n + 3) {
+    grid-column: 3;
+  }
+  form.semanticForms fieldset dl:has(:not(div)) dt:nth-of-type(7n + 4), form.semanticForms fieldset dl:has(:not(div)) dd:nth-of-type(7n + 4), form.semanticForms dl:has(:not(div)) dt:nth-of-type(7n + 4), form.semanticForms dl:has(:not(div)) dd:nth-of-type(7n + 4),
+  fieldset fieldset dl:has(:not(div)) dt:nth-of-type(7n + 4),
+  fieldset fieldset dl:has(:not(div)) dd:nth-of-type(7n + 4),
+  fieldset dl:has(:not(div)) dt:nth-of-type(7n + 4),
+  fieldset dl:has(:not(div)) dd:nth-of-type(7n + 4) {
+    grid-column: 4;
+  }
+  form.semanticForms fieldset dl:has(:not(div)) dt:nth-of-type(7n + 5), form.semanticForms fieldset dl:has(:not(div)) dd:nth-of-type(7n + 5), form.semanticForms dl:has(:not(div)) dt:nth-of-type(7n + 5), form.semanticForms dl:has(:not(div)) dd:nth-of-type(7n + 5),
+  fieldset fieldset dl:has(:not(div)) dt:nth-of-type(7n + 5),
+  fieldset fieldset dl:has(:not(div)) dd:nth-of-type(7n + 5),
+  fieldset dl:has(:not(div)) dt:nth-of-type(7n + 5),
+  fieldset dl:has(:not(div)) dd:nth-of-type(7n + 5) {
+    grid-column: 5;
+  }
+  form.semanticForms fieldset dl:has(:not(div)) dt:nth-of-type(7n + 6), form.semanticForms fieldset dl:has(:not(div)) dd:nth-of-type(7n + 6), form.semanticForms dl:has(:not(div)) dt:nth-of-type(7n + 6), form.semanticForms dl:has(:not(div)) dd:nth-of-type(7n + 6),
+  fieldset fieldset dl:has(:not(div)) dt:nth-of-type(7n + 6),
+  fieldset fieldset dl:has(:not(div)) dd:nth-of-type(7n + 6),
+  fieldset dl:has(:not(div)) dt:nth-of-type(7n + 6),
+  fieldset dl:has(:not(div)) dd:nth-of-type(7n + 6) {
+    grid-column: 6;
+  }
+  form.semanticForms fieldset dl:has(:not(div)) dt:nth-of-type(7n + 7), form.semanticForms fieldset dl:has(:not(div)) dd:nth-of-type(7n + 7), form.semanticForms dl:has(:not(div)) dt:nth-of-type(7n + 7), form.semanticForms dl:has(:not(div)) dd:nth-of-type(7n + 7),
+  fieldset fieldset dl:has(:not(div)) dt:nth-of-type(7n + 7),
+  fieldset fieldset dl:has(:not(div)) dd:nth-of-type(7n + 7),
+  fieldset dl:has(:not(div)) dt:nth-of-type(7n + 7),
+  fieldset dl:has(:not(div)) dd:nth-of-type(7n + 7) {
+    grid-column: 7;
+  }
+  form.semanticForms fieldset dl:has(:not(div)) dt:has(+ dd.colspan-5), form.semanticForms fieldset dl:has(:not(div)) dt:has(+ dd.colspan-full), form.semanticForms fieldset dl:has(:not(div)) dd.colspan-5, form.semanticForms fieldset dl:has(:not(div)) dd.colspan-full, form.semanticForms dl:has(:not(div)) dt:has(+ dd.colspan-5), form.semanticForms dl:has(:not(div)) dt:has(+ dd.colspan-full), form.semanticForms dl:has(:not(div)) dd.colspan-5, form.semanticForms dl:has(:not(div)) dd.colspan-full,
+  fieldset fieldset dl:has(:not(div)) dt:has(+ dd.colspan-5),
+  fieldset fieldset dl:has(:not(div)) dt:has(+ dd.colspan-full),
+  fieldset fieldset dl:has(:not(div)) dd.colspan-5,
+  fieldset fieldset dl:has(:not(div)) dd.colspan-full,
+  fieldset dl:has(:not(div)) dt:has(+ dd.colspan-5),
+  fieldset dl:has(:not(div)) dt:has(+ dd.colspan-full),
+  fieldset dl:has(:not(div)) dd.colspan-5,
+  fieldset dl:has(:not(div)) dd.colspan-full {
+    grid-column: span 5;
+  }
+  form.semanticForms fieldset dl:has(:not(div)) dt:has(+ dd.colspan-4), form.semanticForms fieldset dl:has(:not(div)) dd.colspan-4, form.semanticForms dl:has(:not(div)) dt:has(+ dd.colspan-4), form.semanticForms dl:has(:not(div)) dd.colspan-4,
+  fieldset fieldset dl:has(:not(div)) dt:has(+ dd.colspan-4),
+  fieldset fieldset dl:has(:not(div)) dd.colspan-4,
+  fieldset dl:has(:not(div)) dt:has(+ dd.colspan-4),
+  fieldset dl:has(:not(div)) dd.colspan-4 {
+    grid-column: span 4;
+  }
+  form.semanticForms fieldset dl:has(:not(div)) dt:has(+ dd.colspan-3), form.semanticForms fieldset dl:has(:not(div)) dd.colspan-3, form.semanticForms dl:has(:not(div)) dt:has(+ dd.colspan-3), form.semanticForms dl:has(:not(div)) dd.colspan-3,
+  fieldset fieldset dl:has(:not(div)) dt:has(+ dd.colspan-3),
+  fieldset fieldset dl:has(:not(div)) dd.colspan-3,
+  fieldset dl:has(:not(div)) dt:has(+ dd.colspan-3),
+  fieldset dl:has(:not(div)) dd.colspan-3 {
+    grid-column: span 3;
+  }
+  form.semanticForms fieldset dl:has(:not(div)) dt:has(+ dd.colspan-2), form.semanticForms fieldset dl:has(:not(div)) dd.colspan-2, form.semanticForms dl:has(:not(div)) dt:has(+ dd.colspan-2), form.semanticForms dl:has(:not(div)) dd.colspan-2,
+  fieldset fieldset dl:has(:not(div)) dt:has(+ dd.colspan-2),
+  fieldset fieldset dl:has(:not(div)) dd.colspan-2,
+  fieldset dl:has(:not(div)) dt:has(+ dd.colspan-2),
+  fieldset dl:has(:not(div)) dd.colspan-2 {
+    grid-column: span 2;
+  }
+}
+@container semanticForm (width >= 1550px) and (width < 1810px) {
   form.semanticForms fieldset dl, form.semanticForms dl,
   fieldset fieldset dl,
   fieldset dl {
