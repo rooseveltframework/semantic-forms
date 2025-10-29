@@ -1386,7 +1386,7 @@ form.semanticForms,
 fieldset {
   container: semanticForm / inline-size;
 
-  // max 6 columns (do we want to support more?)
+  // max 6 columns
   @container semanticForm (width >= 1550px) {
     & fieldset dl,
     & dl {
@@ -1513,6 +1513,10 @@ fieldset {
     & dl.colspan-5 {
       grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
+      div.colspan-5 {
+        grid-column: span 4;
+      }
+
       &:has(:not(div)) { 
         & dt:nth-of-type(4n + 1), 
         & dd:nth-of-type(4n + 1) {
@@ -1566,6 +1570,11 @@ fieldset {
     & dl.colspan-5 {
       grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
+      div.colspan-4,
+      div.colspan-5 {
+        grid-column: span 3;
+      }
+
       &:has(:not(div)) { 
         & dt:nth-of-type(3n + 1), 
         & dd:nth-of-type(3n + 1) {
@@ -1613,6 +1622,12 @@ fieldset {
     & dl.colspan-5 {
       grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
+      div.colspan-3,
+      div.colspan-4,
+      div.colspan-5 {
+        grid-column: span 2;
+      }
+
       &:has(:not(div)) { 
         & dt:nth-of-type(2n + 1), 
         & dd:nth-of-type(2n + 1) {
@@ -1653,6 +1668,13 @@ fieldset {
     & dl.colspan-4,
     & dl.colspan-5 {
       grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
+
+      div.colspan-2,
+      div.colspan-3,
+      div.colspan-4,
+      div.colspan-5 {
+        grid-column: span 1;
+      }
 
       &:has(:not(div)) {
         & dt:nth-of-type(n + 1),
