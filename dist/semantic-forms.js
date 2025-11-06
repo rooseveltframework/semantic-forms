@@ -101,7 +101,7 @@ if(maxRows)input.setAttribute("rows",""+Math.min(rows,Number(maxRows)));else inp
 input.dispatchEvent(new Event("input",{bubbles:true}))}
 // progressively enhance textarea for Firefox and Safari
 // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing
-if(input.getAttribute("data-auto-grow")!==null){const adjustHeight=()=>{if(input.value.length)input.style.height=input.scrollHeight+"px";else input.style.height=window.getComputedStyle(form).getPropertyValue("--semanticFormsInputHeight")};
+if(input.getAttribute("data-auto-grow")!==null){const adjustHeight=()=>{if(input.value.length){const borderWidth=parseInt(window.getComputedStyle(input).getPropertyValue("border-width"));input.style.height=input.scrollHeight+borderWidth*2+"px"}else input.style.height=window.getComputedStyle(form).getPropertyValue("--semanticFormsInputHeight")};
 // set initial height to semantic-forms CSS variable
 input.style.height=window.getComputedStyle(form).getPropertyValue("--semanticFormsInputHeight");input.addEventListener("input",adjustHeight)}
 // shifts the clear button to the right if a scrollbar is present
