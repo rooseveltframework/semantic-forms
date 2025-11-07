@@ -24,7 +24,9 @@ if(!window.semanticFormsObserver){window.semanticFormsObserver=new window.Mutati
 /***/497:
 /***/(module,__unused_webpack_exports,__webpack_require__)=>{const{getOS,insertAfter}=__webpack_require__(584);const specialCharMap={Minus:"-",Equal:"=",BracketLeft:"[",BracketRight:"]",Backslash:"\\",Semicolon:";",Quote:"'",Comma:",",Period:".",Slash:"/",Backquote:"`"};const shiftSpecialCharMap={1:"!",2:"@",3:"#",4:"$",5:"%",6:"^",7:"&",8:"*",9:"(",0:")",Minus:"_",Equal:"+",BracketLeft:"{",BracketRight:"}",Backslash:"|",Semicolon:":",Quote:'"',Comma:"<",Period:">",Slash:"?",Backquote:"~"};
 // handles keyboard shortcut events
-const shortcutListener=(e,shortcuts)=>{const shortcut=shortcuts.find(shortcut=>{let matchesKey=false;if(e.altKey&&!e.shiftKey)
+const shortcutListener=(e,shortcuts)=>{
+// search for matching shortcut from cached shortcut configs
+const shortcut=shortcuts.find(shortcut=>{let matchesKey=false;if(e.altKey&&!e.shiftKey)
 // mac adjusts the key value if altKey is pressed
 matchesKey="Key"+shortcut.key.toUpperCase()===e.code||"Digit"+shortcut.key.toUpperCase()===e.code||shortcut.key===e.key||specialCharMap[e.code]===shortcut.key;else if(e.shiftKey){
 // check shift special character map
@@ -77,6 +79,7 @@ let dd=input.parentNode;while(dd&&dd.nodeName!=="DD")dd=dd.parentNode;if(!dd){co
 if(dd.parentElement.nodeName==="DIV")dd.parentElement.remove();const div=document.createElement("div");div.append(label.closest("dt"),dd);dl.append(div)}else{newLabel.setAttribute("for",input.id);newLabel.innerHTML=label.innerHTML;if(input.hasAttribute("title")&&label.getAttribute("data-show-help-icon")!==null&&!label.querySelector("span.help")){const text=input.getAttribute("title");newLabel.innerHTML+=` <span title="${text}" class="help">${helpTextIcon}</span>`}if(input.hasAttribute("required")&&label.getAttribute("data-no-asterisk")===null&&!label.querySelector("span.required")){const text=label.getAttribute("data-asterisk-text")||"This field is required.";newLabel.innerHTML+=` <span title="${text}" class="required">*</span>`}label.setAttribute("hidden","hidden");insertAfter(newLabel,input)}
 // #endregion
 // #region standard inputs
+const isWrapped=input.closest("dd").parentElement.nodeName==="DIV";
 // check for auto-grow attribute on textareas
 if(input.getAttribute("data-auto-grow")!==null){
 // progressively enhance inputs into textareas
@@ -92,7 +95,7 @@ input.dispatchEvent(new Event("input",{bubbles:true}))});insertAfter(clearBtn,dd
 if(/colspan-/.test(dd.className)){const match=dd.className.match(/colspan-([0-9]|full)/)[0];dd.classList.remove(match);div.classList.add(match)}
 // check for max-content attribute
 // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing
-if(input.getAttribute("data-max-content")!==null)if(!("fieldSizing"in document.createElement("input").style)){const adjustWidth=()=>{const value=input.value!==""?input.value:input.placeholder;const width=value.length*8+40;input.style.width=width+"px";input.style.maxWidth="100%";div.style.width=width+"px"};adjustWidth();input.addEventListener("input",adjustWidth)}div.append(dt,dd);dl.append(div);
+if(input.getAttribute("data-max-content")!==null)if(!("fieldSizing"in document.createElement("input").style)){const adjustWidth=()=>{const value=input.value!==""?input.value:input.placeholder;const width=value.length*8+40;input.style.width=width+"px";input.style.maxWidth="100%";div.style.width=width+"px"};adjustWidth();input.addEventListener("input",adjustWidth)}if(!isWrapped){div.append(dt,dd);dl.append(div)}
 // determine visibility of newly created <div>
 if(dt.style.display==="none"&&dd.style.display==="none")div.style.display="none"}
 // #endregion
