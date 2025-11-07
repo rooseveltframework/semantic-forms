@@ -1,3 +1,8 @@
+## 5.2.2
+
+- Fixed a bug in `data-auto-grow` fields that would apply a scrollbar inappropriately.
+- Updated dependencies.
+
 ## 5.2.1
 
 - Fixed a bug where `colspan-` classes were not working as expected.

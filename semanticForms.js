@@ -509,7 +509,8 @@ const semanticForms = () => {
           if (input.getAttribute('data-auto-grow') !== null) {
             const adjustHeight = () => {
               if (input.value.length) {
-                input.style.height = input.scrollHeight + 'px'
+                const borderWidth = parseInt(window.getComputedStyle(input).getPropertyValue('border-width'))
+                input.style.height = (input.scrollHeight + (borderWidth * 2)) + 'px'
               } else {
                 input.style.height = window.getComputedStyle(form).getPropertyValue('--semanticFormsInputHeight')
               }
