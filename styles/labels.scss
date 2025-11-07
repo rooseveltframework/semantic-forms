@@ -1,0 +1,295 @@
+.semanticForms {
+  input[type=checkbox] + label:first-of-type,
+  input[type=radio] + label:first-of-type {
+    // shift text down to match center
+    padding-top: 2px;
+    font-size: var(--semanticFormsInputFontSize);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  
+    span.required {
+      cursor: help;
+      pointer-events: auto;
+      color: red;
+    }
+  
+    span.help {
+      display: grid;
+      place-items: center;
+      cursor: help;
+      pointer-events: auto;
+  
+      svg {
+        width: 80%;
+      }
+    }
+  }
+  
+  .floatLabelForm {
+    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  
+    div {
+      // position: relative;
+      // width: 100%;
+      // min-width: var(--semanticFormsInputMinWidth);
+      // max-width: 100%;
+      // max-width: 365px;
+      // top level label for checkbox and radio groups
+
+      dt {
+        position: relative;
+    
+        label {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          z-index: 2; // ensure the hoverable icon is interactable
+          user-select: auto;
+          color: var(--semanticFormsTextColor);
+          font-size: var(--semanticFormsInputFontSize);
+          position: absolute;
+          transform-origin: left center;
+          transform: translateY(-100%) scale(0.7);
+          top: var(--semanticFormsInputTopMargin);
+          left: 10px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          min-width: 0;
+          width: 100%;
+    
+          span.help {
+            display: grid;
+            place-items: center;
+            cursor: help;
+            pointer-events: auto;
+          }
+        }
+      }
+
+      &:has(dd input:required) {
+        dt {
+          label {
+            width: 100%;
+            padding-right: 10px;
+          }
+
+          label > span {
+            margin-left: 5px;
+            cursor: help;
+            pointer-events: auto;
+            color: red;
+          }
+        }
+      }
+  
+      // TODO: wtf is this
+      dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) {
+        input:not([type=submit], [type=reset], [type=image]),
+        select,
+        textarea {
+          &:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
+          &:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
+            color: var(--semanticFormsTextColor);
+            transform: translateY(-150%) scale(0.7);
+            width: 100%;
+          }
+        }
+  
+        // hide float label if no-float-label class is present
+        input:not([type=submit], [type=reset], [type=image]),
+        select,
+        textarea {
+          &:focus.no-float-label ~ label:first-of-type,
+          &:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
+            display: none;
+          }
+        }
+  
+        select ~ label:first-of-type {
+          // force label to be correct color
+          color: var(--semanticFormsTextColor);
+        }
+  
+        button:not(.clear, .show), 
+        input[type=submit]:not(.clear, .show) {
+          margin-top: var(--semanticFormsInputTopMargin);
+        }
+  
+        // input label
+        label:first-of-type {
+          position: absolute;
+          top: calc(var(--semanticFormsInputTopMargin) + 10px);
+          left: 20px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          line-height: 1.2;
+          font-size: var(--semanticFormsInputFontSize);
+          transform-origin: left center;
+          pointer-events: none;
+          transition: transform 250ms;
+          cursor: text;
+          flex: 1;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          min-width: 0;
+          width: calc(100% - 35px);
+          user-select: none;
+          color: var(--semanticFormsPlaceholderColor);
+          touch-action: manipulation;
+  
+          span.required {
+            cursor: help;
+            pointer-events: auto;
+            color: red;
+          }
+  
+          span.help {
+            display: grid;
+            place-items: center;
+            cursor: help;
+            pointer-events: auto;
+  
+            svg {
+              width: 80%;
+            }
+          }
+        }
+
+        // focus-key styles
+        &:has(span.focus-key) {
+          // make room for focus key span
+          label:first-of-type {
+            width: calc(100% - 95px);
+          }
+
+          span.focus-key {
+            display: block;
+            
+            kbd {
+              font-family: sans-serif;
+            }
+          }
+
+          &:has(input:focus, select:focus, textarea:focus),
+          &:not(:has(input:placeholder-shown, textarea:placeholder-shown)) {
+            span.focus-key {
+              display: none;
+            }
+          }
+        }
+  
+        // subtext label
+        label:nth-of-type(2) {
+          margin-top: -5px;
+          padding: 0 10px;
+          font-size: small;
+          color: var(--semanticFormsTextColor);
+        }
+  
+        input,
+        textarea,
+        select {
+          margin-top: var(--semanticFormsInputTopMargin);
+        }
+  
+        input,
+        textarea {
+          transition: opacity 250ms;
+  
+          // hide placeholder content until input is focused
+          &::placeholder {
+            opacity: 0;
+            transition: opacity 250ms;
+          }
+  
+          &::-moz-placeholder {
+            opacity: 0;
+            transition: opacity 250ms;
+          }
+  
+          &::-webkit-input-placeholder {
+            opacity: 0;
+            transition: opacity 250ms;
+          }
+  
+          &:-ms-input-placeholder {
+            opacity: 0;
+            transition: opacity 250ms;
+          }
+  
+          // show placeholder content when focused
+          &:focus {
+            &::placeholder {
+              opacity: 1;
+            }
+  
+            &::-moz-placeholder {
+              opacity: 1;
+            }
+  
+            &::-webkit-input-placeholder {
+              opacity: 1;
+            }
+  
+            &:-ms-input-placeholder {
+              opacity: 1;
+            }
+          }
+        }
+  
+        // keyboard shortcut indicator
+        span.focus-key {
+          color: var(--semanticFormsPlaceholderColor);
+          position: absolute;
+          top: calc(var(--semanticFormsInputTopMargin) + 11px);
+          right: 20px;
+  
+          kbd {
+            line-height: 1;
+          }
+        }
+  
+        &:has(input[type=number]) {
+          .focus-key {
+            right: 45px;
+          }
+        }
+  
+        &:has(input[type=search]) {
+          label:first-of-type {
+            left: 32px;
+          }
+        }
+      }
+  
+      // data-max-content CSS
+      &:has([data-max-content]) {
+        max-width: max-content;
+        min-width: 150px;
+  
+        dd {
+          width: max-content;
+  
+          input, select {
+            // this is not currently supported in FireFox or Safari, and is progressively enhanced with JS
+            field-sizing: content; 
+            min-width: 150px;
+            max-width: max-content;
+          }
+        }
+      }
+    }
+  
+    input, textarea {
+      &::placeholder {
+        color: var(--semanticFormsPlaceholderColor);
+        opacity: 1;
+      }
+    }
+  }
+}

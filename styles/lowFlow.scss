@@ -7,18 +7,6 @@ form.semanticForms:not(.semanticFormsActive) {
     margin-bottom: 0px;
   }
 
-  // 1, 4, 7, ...
-  & > dt:nth-of-type(2n + 1),
-  & > dd:nth-of-type(2n + 1) {
-    grid-column: 1;
-  }
-
-  // 2, 5, 8, ...
-  & > dt:nth-of-type(2n + 2),
-  & > dd:nth-of-type(2n + 2) {
-    grid-column: 2;
-  }
-
   dt {
     min-width: var(--semanticFormsInputMinWidth); /* this matches the max-width of js-enabled inputs */
 
@@ -146,8 +134,8 @@ form.semanticForms:not(.semanticFormsActive) {
 
     // inline buttons
     button:not(.clear, .show),
-    input[type="submit"]:not(.clear, .show), 
-    input[type="button"]:not(.clear, .show)  {
+    input[type=submit]:not(.clear, .show), 
+    input[type=button]:not(.clear, .show)  {
       margin-top: 0;
     }
   }

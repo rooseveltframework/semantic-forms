@@ -1,156 +1,261 @@
-div {
-  &[class^='colspan-'] {
-    max-width: 100%;
-  }
-
-  &.colspan-full {
-    grid-column: 1 / -1;
-  }
-
-  &.colspan-5 {
-    grid-column: span 5;
-  }
-
-  &.colspan-4 {
-    grid-column: span 4;
-  }
-
-  &.colspan-3 {
-    grid-column: span 3;
-  }
-
-  &.colspan-2 {
-    grid-column: span 2;
-  }
-
-  &.colspan-1 {
-    grid-column: span 1;
-  }
-}
-
-fieldset[class^='colspan-'] dl,
-dl[class^='colspan-'] {
+.semanticForms {
   div {
-    max-width: 100%;
+    &[class^=colspan-] {
+      max-width: 100% !important;
+    }
+  
+    &.colspan-full {
+      grid-column: 1 / -1;
+    }
+  
+    &.colspan-5 {
+      grid-column: span 5;
+    }
+  
+    &.colspan-4 {
+      grid-column: span 4;
+    }
+  
+    &.colspan-3 {
+      grid-column: span 3;
+    }
+  
+    &.colspan-2 {
+      grid-column: span 2;
+    }
+  
+    &.colspan-1 {
+      grid-column: span 1;
+    }
+  }
+  
+  fieldset[class^=colspan-] dl,
+  dl[class^='colspan-'] {
+    div {
+      max-width: 100% !important;
+    }
+  }
+  
+  fieldset.colspan-full dl,
+  dl.colspan-full {
+    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+  
+  fieldset.colspan-5 dl,
+  dl.colspan-5 {
+    grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+  
+  fieldset.colspan-4 dl,
+  dl.colspan-4 {
+    grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+  
+  fieldset.colspan-3 dl,
+  dl.colspan-3 {
+    grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+  
+  fieldset.colspan-2 dl,
+  dl.colspan-2 {
+    grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+  
+  fieldset.colspan-1 dl,
+  dl.colspan-1 {
+    grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+  
+  fieldset.colspan-1 dl,
+  dl.colspan-1 {
+    dt:nth-of-type(n + 1),
+    dd:nth-of-type(n + 1) {
+      grid-column: 1;
+    }
+  }
+  
+  fieldset.colspan-2 dl,
+  dl.colspan-2 {
+    dt:nth-of-type(2n + 1),
+    dd:nth-of-type(2n + 1) {
+      grid-column: 1;
+    }
+  
+    dt:nth-of-type(2n + 2),
+    dd:nth-of-type(2n + 2) {
+      grid-column: 2;
+    }
+  }
+  
+  fieldset.colspan-3 dl,
+  dl.colspan-3 {
+    dt:nth-of-type(3n + 1),
+    dd:nth-of-type(3n + 1) {
+      grid-column: 1;
+    }
+  
+    dt:nth-of-type(3n + 2),
+    dd:nth-of-type(3n + 2) {
+      grid-column: 2;
+    }
+  
+    dt:nth-of-type(3n + 3),
+    dd:nth-of-type(3n + 3) {
+      grid-column: 3;
+    }
+  }
+  
+  fieldset.colspan-4 dl,
+  dl.colspan-4 {
+    dt:nth-of-type(4n + 1),
+    dd:nth-of-type(4n + 1) {
+      grid-column: 1;
+    }
+  
+    dt:nth-of-type(4n + 2),
+    dd:nth-of-type(4n + 2) {
+      grid-column: 2;
+    }
+  
+    dt:nth-of-type(4n + 3),
+    dd:nth-of-type(4n + 3) {
+      grid-column: 3;
+    }
+  
+    dt:nth-of-type(4n + 4),
+    dd:nth-of-type(4n + 4) {
+      grid-column: 4;
+    }
+  }
+  
+  fieldset.colspan-5 dl,
+  dl.colspan-5 {
+    dt:nth-of-type(5n + 1),
+    dd:nth-of-type(5n + 1) {
+      grid-column: 1;
+    }
+  
+    dt:nth-of-type(5n + 2),
+    dd:nth-of-type(5n + 2) {
+      grid-column: 2;
+    }
+  
+    dt:nth-of-type(5n + 3),
+    dd:nth-of-type(5n + 3) {
+      grid-column: 3;
+    }
+  
+    dt:nth-of-type(5n + 4),
+    dd:nth-of-type(5n + 4) {
+      grid-column: 4;
+    }
+  
+    dt:nth-of-type(5n + 5),
+    dd:nth-of-type(5n + 5) {
+      grid-column: 5;
+    }
   }
 }
 
-fieldset.colspan-full dl,
-dl.colspan-full {
-  grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
+form.semanticForms,
+fieldset {
+  container: semanticForm / inline-size;
 
-fieldset.colspan-5 dl,
-dl.colspan-5 {
-  grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-
-fieldset.colspan-4 dl,
-dl.colspan-4 {
-  grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-
-fieldset.colspan-3 dl,
-dl.colspan-3 {
-  grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-
-fieldset.colspan-2 dl,
-dl.colspan-2 {
-  grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-
-fieldset.colspan-1 dl,
-dl.colspan-1 {
-  grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-
-fieldset.colspan-1 dl,
-dl.colspan-1 {
-  dt:nth-of-type(n + 1),
-  dd:nth-of-type(n + 1) {
-    grid-column: 1;
-  }
-}
-
-fieldset.colspan-2 dl,
-dl.colspan-2 {
-  dt:nth-of-type(2n + 1),
-  dd:nth-of-type(2n + 1) {
-    grid-column: 1;
+  // max 7 columns
+  @container semanticForm (width >= 1810px) {
+    & fieldset dl,
+    & dl {
+      grid-template-columns: repeat(7, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    }
   }
 
-  dt:nth-of-type(2n + 2),
-  dd:nth-of-type(2n + 2) {
-    grid-column: 2;
-  }
-}
-
-fieldset.colspan-3 dl,
-dl.colspan-3 {
-  dt:nth-of-type(3n + 1),
-  dd:nth-of-type(3n + 1) {
-    grid-column: 1;
+  // max 6 columns
+  @container semanticForm (width >= 1550px) and (width < 1810px) {
+    & fieldset dl,
+    & dl {
+      grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    }
   }
 
-  dt:nth-of-type(3n + 2),
-  dd:nth-of-type(3n + 2) {
-    grid-column: 2;
+  // max 5 columns
+  @container semanticForm (width >= 1290px) and (width < 1550px) {
+    & fieldset dl,
+    & dl {
+      grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    }
   }
 
-  dt:nth-of-type(3n + 3),
-  dd:nth-of-type(3n + 3) {
-    grid-column: 3;
-  }
-}
+  // max 4 columns
+  @container semanticForm (width >= 1030px) and (width < 1290px) {
+    & fieldset dl,
+    & fieldset.colspan-5 dl,
+    & dl,
+    & dl.colspan-5 {
+      grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
-fieldset.colspan-4 dl,
-dl.colspan-4 {
-  dt:nth-of-type(4n + 1),
-  dd:nth-of-type(4n + 1) {
-    grid-column: 1;
-  }
-
-  dt:nth-of-type(4n + 2),
-  dd:nth-of-type(4n + 2) {
-    grid-column: 2;
+      div.colspan-5 {
+        grid-column: span 4;
+      }
+    }
   }
 
-  dt:nth-of-type(4n + 3),
-  dd:nth-of-type(4n + 3) {
-    grid-column: 3;
+  // max 3 columns
+  @container semanticForm (width >= 850px) and (width < 1030px) {  
+    & fieldset dl,
+    & fieldset.colspan-4 dl,
+    & fieldset.colspan-5 dl,
+    & dl,
+    & dl.colspan-4,
+    & dl.colspan-5 {
+      grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
+
+      div.colspan-4,
+      div.colspan-5 {
+        grid-column: span 3;
+      }
+    }
   }
 
-  dt:nth-of-type(4n + 4),
-  dd:nth-of-type(4n + 4) {
-    grid-column: 4;
-  }
-}
+  // max 2 columns
+  @container semanticForm (width >= 510px) and (width < 850px) {
+    & fieldset dl,
+    & fieldset.colspan-3 dl,
+    & fieldset.colspan-4 dl,
+    & fieldset.colspan-5 dl,
+    & dl,
+    & dl.colspan-3,
+    & dl.colspan-4,
+    & dl.colspan-5 {
+      grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
-fieldset.colspan-5 dl,
-dl.colspan-5 {
-  dt:nth-of-type(5n + 1),
-  dd:nth-of-type(5n + 1) {
-    grid-column: 1;
-  }
-
-  dt:nth-of-type(5n + 2),
-  dd:nth-of-type(5n + 2) {
-    grid-column: 2;
-  }
-
-  dt:nth-of-type(5n + 3),
-  dd:nth-of-type(5n + 3) {
-    grid-column: 3;
+      div.colspan-3,
+      div.colspan-4,
+      div.colspan-5 {
+        grid-column: span 2;
+      }
+    }
   }
 
-  dt:nth-of-type(5n + 4),
-  dd:nth-of-type(5n + 4) {
-    grid-column: 4;
-  }
+  // max 1 column
+  @container semanticForm (width < 510px) {
+    & fieldset dl,
+    & fieldset.colspan-2 dl,
+    & fieldset.colspan-3 dl,
+    & fieldset.colspan-4 dl,
+    & fieldset.colspan-5 dl,
+    & dl,
+    & dl.colspan-2,
+    & dl.colspan-3,
+    & dl.colspan-4,
+    & dl.colspan-5 {
+      grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
 
-  dt:nth-of-type(5n + 5),
-  dd:nth-of-type(5n + 5) {
-    grid-column: 5;
+      div.colspan-2,
+      div.colspan-3,
+      div.colspan-4,
+      div.colspan-5 {
+        grid-column: span 1;
+      }
+    }
   }
 }

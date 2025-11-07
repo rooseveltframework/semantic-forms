@@ -1,0 +1,307 @@
+.semanticForms {
+  input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
+  select {
+    height: var(--semanticFormsInputHeight);
+  }
+  
+  input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
+  select,
+  textarea {
+    font-size: var(--semanticFormsInputFontSize);
+    background: var(--semanticFormsFormBgColor);
+    border: var(--semanticFormsBorder);
+    border-radius: var(--semanticFormsBorderRadius);
+    width: 100%;
+    touch-action: manipulation;
+    outline: none;
+  
+    &:not([type=range]) {
+      padding: 6px 30px 6px 20px;
+    }
+  
+    // custom focus highlight
+    input:not([type=submit], [type=reset], [type=image]),
+    select,
+    textarea {
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 1px var(--semanticFormsBorderColor);
+      }
+    }
+  
+    // input type styling
+    &[type=password], &[type=text]:has(~ button.show) {
+      padding: 6px 55px 6px 20px;
+    }
+  
+    &[type=search] {
+      padding: 6px 20px 6px 32px;
+      background: var(--semanticFormsSearchIcon) no-repeat 10px;
+      background-color: var(--semanticFormsFormBgColor);
+      background-size: 18px;
+  
+      &:focus,
+      &:not(:placeholder-shown) {
+        & + label.floatLabelFormAnimatedLabel {
+          left: 20px;
+        }
+      }
+  
+      // hide native cancel button
+      &::-webkit-search-cancel-button {
+        display: none;
+      }
+    }
+  
+    &[type=checkbox],
+    &[type=radio] {
+      width: 18px;
+      height: 18px;
+      margin: 3px 0;
+      cursor: pointer;
+  
+      & ~ label:first-of-type {
+        color: var(--semanticFormsTextColor);
+      }
+    }
+  
+    &[type=range],
+    &[type=color] {
+      cursor: pointer;
+    }
+  
+    &[type=color] {
+      height: var(--semanticFormsInputHeight);
+      padding: 4px 30px 4px 10px;
+    }
+  
+    &[type=file] {
+      cursor: pointer;
+      font-size: var(--semanticFormsInputFontSize);
+    }
+  
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: 0.5;
+  
+      ~ label:first-of-type {
+        opacity: 0.5;
+      }
+  
+      ~ label + button {
+        display: none;
+      }
+    }
+  }
+  
+  select {
+    cursor: pointer;
+  
+    // single selects
+    &:not([multiple]) {
+      // custom dropdown graphic on select element
+      background-image: var(--semanticFormsSelectIcon);
+      background-size: 14px;
+      background-position: calc(100% - 8px) 16px;
+      background-repeat: no-repeat;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+  
+    // multi-selects
+    &[multiple] {
+      min-height: 38px;
+      height: 100px;
+      padding: 0;
+  
+      option {
+        padding: 6px 20px;
+  
+        &:first-of-type {
+          border-top-left-radius: var(--semanticFormsBorderRadius);
+        }
+  
+        &:last-of-type {
+          border-bottom-left-radius: var(--semanticFormsBorderRadius);
+        }
+      }
+    }
+  }
+  
+  textarea {
+    resize: vertical;
+    line-height: 1.5;
+    width: 100%;
+    min-height: 38px;
+  
+    &[data-auto-grow] {
+      field-sizing: content;
+    }
+  }
+  
+  // buttons
+  button.clear, button.show {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    height: min-content;
+    // account for margin above each input
+    top: calc(var(--semanticFormsInputTopMargin) + 6px);
+    right: 0;
+    width: 25px;
+    height: 25px;
+    margin: auto 6px;
+    padding: 5px;
+    background: none;
+    border: none;
+    color: var(--semanticFormsClearButtonColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  button.show {
+    right: 25px;
+  }
+  
+  // custom styling of clear button on textarea
+  textarea ~ .clear {
+    bottom: auto;
+  }
+  
+  // hide clear/show button while placeholder text is visible
+  input:placeholder-shown ~ .clear,
+  input:placeholder-shown ~ .show,
+  textarea:placeholder-shown ~ .clear,
+  input[type=file] ~ .clear {
+    display: none;
+  }
+  
+  // button styling
+  input[type=submit],
+  input[type=reset],
+  button:not(.clear, .show),
+  .button-link {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    max-width: max-content;
+    background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
+    background-origin: border-box; // prevents graphical errors in Firefox
+    border: 1px var(--semanticFormsButtonGradientDark) solid;
+    corner-shape: squircle;
+    border-radius: 20px;
+    padding: 5px 25px;
+    font-size: 100%;
+    line-height: 1;
+    user-select: none;
+    transform: scale(1);
+    transition: transform 180ms;
+    text-decoration: none;
+    color: var(--semanticFormsTextColor);
+  
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+  
+  input[type=submit],
+  input[type=reset],
+  input[type=image],
+  button:not(.clear):not(.show),
+  .button-link {
+    transition: filter 0.1s;
+  
+    &:hover {
+      filter: brightness(1.05);
+    }
+  }
+  
+  .button-link {
+    display: block;
+  
+    &:visited,
+    &:link {
+      color: var(--semanticFormsTextColor);
+    }
+  }
+  
+  // invalid styling
+  [data-invalid-text] {
+    display: none;
+    color: var(--semanticFormsInvalid);
+  }
+  
+  input:not([type=submit], [type=reset], [type=image]),
+  select,
+  textarea {
+    &.invalid,
+    &:user-invalid {
+      border: var(--semanticFormsInvalidBorder);
+  
+      ~ label:nth-of-type(2) {
+        color: var(--semanticFormsInvalid);
+      }
+  
+      ~ [data-invalid-text] {
+        font-size: small;
+        display: flex;
+      }
+    }
+  
+    &.warn {
+      border: var(--semanticFormsWarnBorder);
+  
+      ~ label:nth-of-type(2) {
+        color: var(--semanticFormsWarn);
+      }
+  
+      ~ [data-invalid-text] {
+        font-size: small;
+        display: flex;
+      }
+    }
+  }
+  
+  // disable autofill yellow
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  textarea:-webkit-autofill:active,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus,
+  select:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--semanticFormsFormBgColor) inset;
+    transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+    transition-delay: 5000s;
+    transition-property: background-color, color;
+  }
+  
+  // update for scrollbars
+  @supports (scrollbar-color: auto) {
+    textarea {
+      scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
+  
+      &::-webkit-resizer {
+        border: none;
+        background-image: var(--semanticFormsCustomResizer);
+        background-size: 14px;
+        background-repeat: no-repeat;
+        background-position: 100%;
+        margin: 0 2px 2px 0;
+      }
+    }
+  
+    select[multiple] {
+      scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
+    }
+  }
+}

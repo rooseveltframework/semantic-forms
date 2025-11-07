@@ -1,4 +1,6 @@
-form.semanticForms, form.semanticForms.light, table.semanticForms {
+form.semanticForms,
+form.semanticForms.light,
+table.semanticForms {
   --semanticFormsFontFamily: sans-serif;
   --semanticFormsFontSize: 16px;
   --semanticFormsFormBgColor: #fff;
@@ -32,6 +34,75 @@ form.semanticForms, form.semanticForms.light, table.semanticForms {
   --semanticFormsSelectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --semanticFormsCustomResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
   --semanticFormsSearchIcon: url("data:image/svg+xml,%3Csvg%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.7955%2015.8111L21%2021M18%2010.5C18%2014.6421%2014.6421%2018%2010.5%2018C6.35786%2018%203%2014.6421%203%2010.5C3%206.35786%206.35786%203%2010.5%203C14.6421%203%2018%206.35786%2018%2010.5Z%22%20stroke%3D%22%23000000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  font-family: var(--semanticFormsFontFamily);
+  font-size: var(--semanticFormsFontSize);
+  width: 100%;
+}
+form.semanticForms:not(table),
+form.semanticForms.light:not(table),
+table.semanticForms:not(table) {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@supports (interpolate-size: allow-keywords) {
+  form.semanticForms,
+  form.semanticForms.light,
+  table.semanticForms {
+    interpolate-size: allow-keywords;
+  }
+}
+form.semanticForms [hidden],
+form.semanticForms.light [hidden],
+table.semanticForms [hidden] {
+  display: none !important;
+}
+form.semanticForms div:has(dd[hidden]),
+form.semanticForms.light div:has(dd[hidden]),
+table.semanticForms div:has(dd[hidden]) {
+  display: none !important;
+}
+form.semanticForms fieldset,
+form.semanticForms label,
+form.semanticForms input,
+form.semanticForms select,
+form.semanticForms textarea,
+form.semanticForms button,
+form.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
+form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
+form.semanticForms dt:has(> input, > select, > textarea),
+form.semanticForms dd:has(> input, > select, > textarea, > ul, > menu),
+form.semanticForms div:has(dt, dd),
+form.semanticForms dd > p,
+form.semanticForms.light fieldset,
+form.semanticForms.light label,
+form.semanticForms.light input,
+form.semanticForms.light select,
+form.semanticForms.light textarea,
+form.semanticForms.light button,
+form.semanticForms.light menu:has(li > input, li > label, li > button, li > select, li > textarea),
+form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea),
+form.semanticForms.light dt:has(> input, > select, > textarea),
+form.semanticForms.light dd:has(> input, > select, > textarea, > ul, > menu),
+form.semanticForms.light div:has(dt, dd),
+form.semanticForms.light dd > p,
+table.semanticForms fieldset,
+table.semanticForms label,
+table.semanticForms input,
+table.semanticForms select,
+table.semanticForms textarea,
+table.semanticForms button,
+table.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
+table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
+table.semanticForms dt:has(> input, > select, > textarea),
+table.semanticForms dd:has(> input, > select, > textarea, > ul, > menu),
+table.semanticForms div:has(dt, dd),
+table.semanticForms dd > p {
+  color: var(--semanticFormsTextColor);
+  font-family: var(--semanticFormsFontFamily);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -93,7 +164,8 @@ html:not(.light) body:not(.light) form.semanticForms.dark input::-webkit-calenda
   filter: invert(100%);
 }
 
-form.semanticForms.dark, table.semanticForms.dark {
+form.semanticForms.dark,
+table.semanticForms.dark {
   --semanticFormsFormBgColor: #555;
   --inputBackgroudColor: rgba(85,85,85,0.1);
   --semanticFormsFormSubBgColor: #2f2f2f;
@@ -118,8 +190,891 @@ form.semanticForms.dark, table.semanticForms.dark {
   --semanticFormsCustomResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
   --semanticFormsSearchIcon: url("data:image/svg+xml,%3Csvg%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.7955%2015.8111L21%2021M18%2010.5C18%2014.6421%2014.6421%2018%2010.5%2018C6.35786%2018%203%2014.6421%203%2010.5C3%206.35786%206.35786%203%2010.5%203C14.6421%203%2018%206.35786%2018%2010.5Z%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
 }
-form.semanticForms.dark input::-webkit-calendar-picker-indicator, table.semanticForms.dark input::-webkit-calendar-picker-indicator {
+form.semanticForms.dark input::-webkit-calendar-picker-indicator,
+table.semanticForms.dark input::-webkit-calendar-picker-indicator {
   filter: invert(100%);
+}
+
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
+.semanticForms select {
+  height: var(--semanticFormsInputHeight);
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
+.semanticForms select,
+.semanticForms textarea {
+  font-size: var(--semanticFormsInputFontSize);
+  background: var(--semanticFormsFormBgColor);
+  border: var(--semanticFormsBorder);
+  border-radius: var(--semanticFormsBorderRadius);
+  width: 100%;
+  touch-action: manipulation;
+  outline: none;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]),
+.semanticForms select:not([type=range]),
+.semanticForms textarea:not([type=range]) {
+  padding: 6px 30px 6px 20px;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) input:not([type=submit], [type=reset], [type=image]):focus,
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) select:focus,
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) textarea:focus,
+.semanticForms select input:not([type=submit], [type=reset], [type=image]):focus,
+.semanticForms select select:focus,
+.semanticForms select textarea:focus,
+.semanticForms textarea input:not([type=submit], [type=reset], [type=image]):focus,
+.semanticForms textarea select:focus,
+.semanticForms textarea textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--semanticFormsBorderColor);
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=password], .semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=text]:has(~ button.show),
+.semanticForms select[type=password],
+.semanticForms select[type=text]:has(~ button.show),
+.semanticForms textarea[type=password],
+.semanticForms textarea[type=text]:has(~ button.show) {
+  padding: 6px 55px 6px 20px;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search],
+.semanticForms select[type=search],
+.semanticForms textarea[type=search] {
+  padding: 6px 20px 6px 32px;
+  background: var(--semanticFormsSearchIcon) no-repeat 10px;
+  background-color: var(--semanticFormsFormBgColor);
+  background-size: 18px;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]:focus + label.floatLabelFormAnimatedLabel, .semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
+.semanticForms select[type=search]:focus + label.floatLabelFormAnimatedLabel,
+.semanticForms select[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
+.semanticForms textarea[type=search]:focus + label.floatLabelFormAnimatedLabel,
+.semanticForms textarea[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel {
+  left: 20px;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]::-webkit-search-cancel-button,
+.semanticForms select[type=search]::-webkit-search-cancel-button,
+.semanticForms textarea[type=search]::-webkit-search-cancel-button {
+  display: none;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=checkbox], .semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=radio],
+.semanticForms select[type=checkbox],
+.semanticForms select[type=radio],
+.semanticForms textarea[type=checkbox],
+.semanticForms textarea[type=radio] {
+  width: 18px;
+  height: 18px;
+  margin: 3px 0;
+  cursor: pointer;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=checkbox] ~ label:first-of-type, .semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=radio] ~ label:first-of-type,
+.semanticForms select[type=checkbox] ~ label:first-of-type,
+.semanticForms select[type=radio] ~ label:first-of-type,
+.semanticForms textarea[type=checkbox] ~ label:first-of-type,
+.semanticForms textarea[type=radio] ~ label:first-of-type {
+  color: var(--semanticFormsTextColor);
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=range], .semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
+.semanticForms select[type=range],
+.semanticForms select[type=color],
+.semanticForms textarea[type=range],
+.semanticForms textarea[type=color] {
+  cursor: pointer;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
+.semanticForms select[type=color],
+.semanticForms textarea[type=color] {
+  height: var(--semanticFormsInputHeight);
+  padding: 4px 30px 4px 10px;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=file],
+.semanticForms select[type=file],
+.semanticForms textarea[type=file] {
+  cursor: pointer;
+  font-size: var(--semanticFormsInputFontSize);
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled],
+.semanticForms select[disabled],
+.semanticForms textarea[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] ~ label:first-of-type,
+.semanticForms select[disabled] ~ label:first-of-type,
+.semanticForms textarea[disabled] ~ label:first-of-type {
+  opacity: 0.5;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] ~ label + button,
+.semanticForms select[disabled] ~ label + button,
+.semanticForms textarea[disabled] ~ label + button {
+  display: none;
+}
+.semanticForms select {
+  cursor: pointer;
+}
+.semanticForms select:not([multiple]) {
+  background-image: var(--semanticFormsSelectIcon);
+  background-size: 14px;
+  background-position: calc(100% - 8px) 16px;
+  background-repeat: no-repeat;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.semanticForms select[multiple] {
+  min-height: 38px;
+  height: 100px;
+  padding: 0;
+}
+.semanticForms select[multiple] option {
+  padding: 6px 20px;
+}
+.semanticForms select[multiple] option:first-of-type {
+  border-top-left-radius: var(--semanticFormsBorderRadius);
+}
+.semanticForms select[multiple] option:last-of-type {
+  border-bottom-left-radius: var(--semanticFormsBorderRadius);
+}
+.semanticForms textarea {
+  resize: vertical;
+  line-height: 1.5;
+  width: 100%;
+  min-height: 38px;
+}
+.semanticForms textarea[data-auto-grow] {
+  field-sizing: content;
+}
+.semanticForms button.clear, .semanticForms button.show {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  position: absolute;
+  height: min-content;
+  top: calc(var(--semanticFormsInputTopMargin) + 6px);
+  right: 0;
+  width: 25px;
+  height: 25px;
+  margin: auto 6px;
+  padding: 5px;
+  background: none;
+  border: none;
+  color: var(--semanticFormsClearButtonColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.semanticForms button.show {
+  right: 25px;
+}
+.semanticForms textarea ~ .clear {
+  bottom: auto;
+}
+.semanticForms input:placeholder-shown ~ .clear,
+.semanticForms input:placeholder-shown ~ .show,
+.semanticForms textarea:placeholder-shown ~ .clear,
+.semanticForms input[type=file] ~ .clear {
+  display: none;
+}
+.semanticForms input[type=submit],
+.semanticForms input[type=reset],
+.semanticForms button:not(.clear, .show),
+.semanticForms .button-link {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  max-width: max-content;
+  background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
+  background-origin: border-box;
+  border: 1px var(--semanticFormsButtonGradientDark) solid;
+  corner-shape: squircle;
+  border-radius: 20px;
+  padding: 5px 25px;
+  font-size: 100%;
+  line-height: 1;
+  user-select: none;
+  transform: scale(1);
+  transition: transform 180ms;
+  text-decoration: none;
+  color: var(--semanticFormsTextColor);
+}
+.semanticForms input[type=submit]:active,
+.semanticForms input[type=reset]:active,
+.semanticForms button:not(.clear, .show):active,
+.semanticForms .button-link:active {
+  transform: scale(0.97);
+}
+.semanticForms input[type=submit],
+.semanticForms input[type=reset],
+.semanticForms input[type=image],
+.semanticForms button:not(.clear):not(.show),
+.semanticForms .button-link {
+  transition: filter 0.1s;
+}
+.semanticForms input[type=submit]:hover,
+.semanticForms input[type=reset]:hover,
+.semanticForms input[type=image]:hover,
+.semanticForms button:not(.clear):not(.show):hover,
+.semanticForms .button-link:hover {
+  filter: brightness(1.05);
+}
+.semanticForms .button-link {
+  display: block;
+}
+.semanticForms .button-link:visited, .semanticForms .button-link:link {
+  color: var(--semanticFormsTextColor);
+}
+.semanticForms [data-invalid-text] {
+  display: none;
+  color: var(--semanticFormsInvalid);
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image]).invalid, .semanticForms input:not([type=submit], [type=reset], [type=image]):user-invalid,
+.semanticForms select.invalid,
+.semanticForms select:user-invalid,
+.semanticForms textarea.invalid,
+.semanticForms textarea:user-invalid {
+  border: var(--semanticFormsInvalidBorder);
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image]).invalid ~ label:nth-of-type(2), .semanticForms input:not([type=submit], [type=reset], [type=image]):user-invalid ~ label:nth-of-type(2),
+.semanticForms select.invalid ~ label:nth-of-type(2),
+.semanticForms select:user-invalid ~ label:nth-of-type(2),
+.semanticForms textarea.invalid ~ label:nth-of-type(2),
+.semanticForms textarea:user-invalid ~ label:nth-of-type(2) {
+  color: var(--semanticFormsInvalid);
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image]).invalid ~ [data-invalid-text], .semanticForms input:not([type=submit], [type=reset], [type=image]):user-invalid ~ [data-invalid-text],
+.semanticForms select.invalid ~ [data-invalid-text],
+.semanticForms select:user-invalid ~ [data-invalid-text],
+.semanticForms textarea.invalid ~ [data-invalid-text],
+.semanticForms textarea:user-invalid ~ [data-invalid-text] {
+  font-size: small;
+  display: flex;
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image]).warn,
+.semanticForms select.warn,
+.semanticForms textarea.warn {
+  border: var(--semanticFormsWarnBorder);
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image]).warn ~ label:nth-of-type(2),
+.semanticForms select.warn ~ label:nth-of-type(2),
+.semanticForms textarea.warn ~ label:nth-of-type(2) {
+  color: var(--semanticFormsWarn);
+}
+.semanticForms input:not([type=submit], [type=reset], [type=image]).warn ~ [data-invalid-text],
+.semanticForms select.warn ~ [data-invalid-text],
+.semanticForms textarea.warn ~ [data-invalid-text] {
+  font-size: small;
+  display: flex;
+}
+.semanticForms input:-webkit-autofill,
+.semanticForms input:-webkit-autofill:hover,
+.semanticForms input:-webkit-autofill:focus,
+.semanticForms input:-webkit-autofill:active,
+.semanticForms textarea:-webkit-autofill,
+.semanticForms textarea:-webkit-autofill:hover,
+.semanticForms textarea:-webkit-autofill:focus,
+.semanticForms textarea:-webkit-autofill:active,
+.semanticForms select:-webkit-autofill,
+.semanticForms select:-webkit-autofill:hover,
+.semanticForms select:-webkit-autofill:focus,
+.semanticForms select:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--semanticFormsFormBgColor) inset;
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+  transition-delay: 5000s;
+  transition-property: background-color, color;
+}
+@supports (scrollbar-color: auto) {
+  .semanticForms textarea {
+    scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
+  }
+  .semanticForms textarea::-webkit-resizer {
+    border: none;
+    background-image: var(--semanticFormsCustomResizer);
+    background-size: 14px;
+    background-repeat: no-repeat;
+    background-position: 100%;
+    margin: 0 2px 2px 0;
+  }
+  .semanticForms select[multiple] {
+    scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
+  }
+}
+
+.semanticForms input[type=checkbox] + label:first-of-type,
+.semanticForms input[type=radio] + label:first-of-type {
+  padding-top: 2px;
+  font-size: var(--semanticFormsInputFontSize);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.semanticForms input[type=checkbox] + label:first-of-type span.required,
+.semanticForms input[type=radio] + label:first-of-type span.required {
+  cursor: help;
+  pointer-events: auto;
+  color: red;
+}
+.semanticForms input[type=checkbox] + label:first-of-type span.help,
+.semanticForms input[type=radio] + label:first-of-type span.help {
+  display: grid;
+  place-items: center;
+  cursor: help;
+  pointer-events: auto;
+}
+.semanticForms input[type=checkbox] + label:first-of-type span.help svg,
+.semanticForms input[type=radio] + label:first-of-type span.help svg {
+  width: 80%;
+}
+.semanticForms .floatLabelForm {
+  grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
+}
+.semanticForms .floatLabelForm div dt {
+  position: relative;
+}
+.semanticForms .floatLabelForm div dt label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 2;
+  user-select: auto;
+  color: var(--semanticFormsTextColor);
+  font-size: var(--semanticFormsInputFontSize);
+  position: absolute;
+  transform-origin: left center;
+  transform: translateY(-100%) scale(0.7);
+  top: var(--semanticFormsInputTopMargin);
+  left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  width: 100%;
+}
+.semanticForms .floatLabelForm div dt label span.help {
+  display: grid;
+  place-items: center;
+  cursor: help;
+  pointer-events: auto;
+}
+.semanticForms .floatLabelForm div:has(dd input:required) dt label {
+  width: 100%;
+  padding-right: 10px;
+}
+.semanticForms .floatLabelForm div:has(dd input:required) dt label > span {
+  margin-left: 5px;
+  cursor: help;
+  pointer-events: auto;
+  color: red;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type, .semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
+  color: var(--semanticFormsTextColor);
+  transform: translateY(-150%) scale(0.7);
+  width: 100%;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus.no-float-label ~ label:first-of-type, .semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus.no-float-label ~ label:first-of-type,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus.no-float-label ~ label:first-of-type,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
+  display: none;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select ~ label:first-of-type {
+  color: var(--semanticFormsTextColor);
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) button:not(.clear, .show),
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input[type=submit]:not(.clear, .show) {
+  margin-top: var(--semanticFormsInputTopMargin);
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type {
+  position: absolute;
+  top: calc(var(--semanticFormsInputTopMargin) + 10px);
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1.2;
+  font-size: var(--semanticFormsInputFontSize);
+  transform-origin: left center;
+  pointer-events: none;
+  transition: transform 250ms;
+  cursor: text;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  width: calc(100% - 35px);
+  user-select: none;
+  color: var(--semanticFormsPlaceholderColor);
+  touch-action: manipulation;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.required {
+  cursor: help;
+  pointer-events: auto;
+  color: red;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help {
+  display: grid;
+  place-items: center;
+  cursor: help;
+  pointer-events: auto;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help svg {
+  width: 80%;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(span.focus-key) label:first-of-type {
+  width: calc(100% - 95px);
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(span.focus-key) span.focus-key {
+  display: block;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(span.focus-key) span.focus-key kbd {
+  font-family: sans-serif;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(span.focus-key):has(input:focus, select:focus, textarea:focus) span.focus-key, .semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(span.focus-key):not(:has(input:placeholder-shown, textarea:placeholder-shown)) span.focus-key {
+  display: none;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:nth-of-type(2) {
+  margin-top: -5px;
+  padding: 0 10px;
+  font-size: small;
+  color: var(--semanticFormsTextColor);
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select {
+  margin-top: var(--semanticFormsInputTopMargin);
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea {
+  transition: opacity 250ms;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::placeholder,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::placeholder {
+  opacity: 0;
+  transition: opacity 250ms;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-moz-placeholder,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-moz-placeholder {
+  opacity: 0;
+  transition: opacity 250ms;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-webkit-input-placeholder,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-webkit-input-placeholder {
+  opacity: 0;
+  transition: opacity 250ms;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:-ms-input-placeholder,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:-ms-input-placeholder {
+  opacity: 0;
+  transition: opacity 250ms;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::placeholder,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-moz-placeholder,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-moz-placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus:-ms-input-placeholder,
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:-ms-input-placeholder {
+  opacity: 1;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) span.focus-key {
+  color: var(--semanticFormsPlaceholderColor);
+  position: absolute;
+  top: calc(var(--semanticFormsInputTopMargin) + 11px);
+  right: 20px;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) span.focus-key kbd {
+  line-height: 1;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=number]) .focus-key {
+  right: 45px;
+}
+.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=search]) label:first-of-type {
+  left: 32px;
+}
+.semanticForms .floatLabelForm div:has([data-max-content]) {
+  max-width: max-content;
+  min-width: 150px;
+}
+.semanticForms .floatLabelForm div:has([data-max-content]) dd {
+  width: max-content;
+}
+.semanticForms .floatLabelForm div:has([data-max-content]) dd input, .semanticForms .floatLabelForm div:has([data-max-content]) dd select {
+  field-sizing: content;
+  min-width: 150px;
+  max-width: max-content;
+}
+.semanticForms .floatLabelForm input::placeholder, .semanticForms .floatLabelForm textarea::placeholder {
+  color: var(--semanticFormsPlaceholderColor);
+  opacity: 1;
+}
+
+.semanticForms div[class^=colspan-] {
+  max-width: 100% !important;
+}
+.semanticForms div.colspan-full {
+  grid-column: 1/-1;
+}
+.semanticForms div.colspan-5 {
+  grid-column: span 5;
+}
+.semanticForms div.colspan-4 {
+  grid-column: span 4;
+}
+.semanticForms div.colspan-3 {
+  grid-column: span 3;
+}
+.semanticForms div.colspan-2 {
+  grid-column: span 2;
+}
+.semanticForms div.colspan-1 {
+  grid-column: span 1;
+}
+.semanticForms fieldset[class^=colspan-] dl div,
+.semanticForms dl[class^=colspan-] div {
+  max-width: 100% !important;
+}
+.semanticForms fieldset.colspan-full dl,
+.semanticForms dl.colspan-full {
+  grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
+}
+.semanticForms fieldset.colspan-5 dl,
+.semanticForms dl.colspan-5 {
+  grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
+}
+.semanticForms fieldset.colspan-4 dl,
+.semanticForms dl.colspan-4 {
+  grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
+}
+.semanticForms fieldset.colspan-3 dl,
+.semanticForms dl.colspan-3 {
+  grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
+}
+.semanticForms fieldset.colspan-2 dl,
+.semanticForms dl.colspan-2 {
+  grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
+}
+.semanticForms fieldset.colspan-1 dl,
+.semanticForms dl.colspan-1 {
+  grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
+}
+.semanticForms fieldset.colspan-1 dl dt:nth-of-type(n + 1),
+.semanticForms fieldset.colspan-1 dl dd:nth-of-type(n + 1),
+.semanticForms dl.colspan-1 dt:nth-of-type(n + 1),
+.semanticForms dl.colspan-1 dd:nth-of-type(n + 1) {
+  grid-column: 1;
+}
+.semanticForms fieldset.colspan-2 dl dt:nth-of-type(2n + 1),
+.semanticForms fieldset.colspan-2 dl dd:nth-of-type(2n + 1),
+.semanticForms dl.colspan-2 dt:nth-of-type(2n + 1),
+.semanticForms dl.colspan-2 dd:nth-of-type(2n + 1) {
+  grid-column: 1;
+}
+.semanticForms fieldset.colspan-2 dl dt:nth-of-type(2n + 2),
+.semanticForms fieldset.colspan-2 dl dd:nth-of-type(2n + 2),
+.semanticForms dl.colspan-2 dt:nth-of-type(2n + 2),
+.semanticForms dl.colspan-2 dd:nth-of-type(2n + 2) {
+  grid-column: 2;
+}
+.semanticForms fieldset.colspan-3 dl dt:nth-of-type(3n + 1),
+.semanticForms fieldset.colspan-3 dl dd:nth-of-type(3n + 1),
+.semanticForms dl.colspan-3 dt:nth-of-type(3n + 1),
+.semanticForms dl.colspan-3 dd:nth-of-type(3n + 1) {
+  grid-column: 1;
+}
+.semanticForms fieldset.colspan-3 dl dt:nth-of-type(3n + 2),
+.semanticForms fieldset.colspan-3 dl dd:nth-of-type(3n + 2),
+.semanticForms dl.colspan-3 dt:nth-of-type(3n + 2),
+.semanticForms dl.colspan-3 dd:nth-of-type(3n + 2) {
+  grid-column: 2;
+}
+.semanticForms fieldset.colspan-3 dl dt:nth-of-type(3n + 3),
+.semanticForms fieldset.colspan-3 dl dd:nth-of-type(3n + 3),
+.semanticForms dl.colspan-3 dt:nth-of-type(3n + 3),
+.semanticForms dl.colspan-3 dd:nth-of-type(3n + 3) {
+  grid-column: 3;
+}
+.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 1),
+.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 1),
+.semanticForms dl.colspan-4 dt:nth-of-type(4n + 1),
+.semanticForms dl.colspan-4 dd:nth-of-type(4n + 1) {
+  grid-column: 1;
+}
+.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 2),
+.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 2),
+.semanticForms dl.colspan-4 dt:nth-of-type(4n + 2),
+.semanticForms dl.colspan-4 dd:nth-of-type(4n + 2) {
+  grid-column: 2;
+}
+.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 3),
+.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 3),
+.semanticForms dl.colspan-4 dt:nth-of-type(4n + 3),
+.semanticForms dl.colspan-4 dd:nth-of-type(4n + 3) {
+  grid-column: 3;
+}
+.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 4),
+.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 4),
+.semanticForms dl.colspan-4 dt:nth-of-type(4n + 4),
+.semanticForms dl.colspan-4 dd:nth-of-type(4n + 4) {
+  grid-column: 4;
+}
+.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 1),
+.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 1),
+.semanticForms dl.colspan-5 dt:nth-of-type(5n + 1),
+.semanticForms dl.colspan-5 dd:nth-of-type(5n + 1) {
+  grid-column: 1;
+}
+.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 2),
+.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 2),
+.semanticForms dl.colspan-5 dt:nth-of-type(5n + 2),
+.semanticForms dl.colspan-5 dd:nth-of-type(5n + 2) {
+  grid-column: 2;
+}
+.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 3),
+.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 3),
+.semanticForms dl.colspan-5 dt:nth-of-type(5n + 3),
+.semanticForms dl.colspan-5 dd:nth-of-type(5n + 3) {
+  grid-column: 3;
+}
+.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 4),
+.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 4),
+.semanticForms dl.colspan-5 dt:nth-of-type(5n + 4),
+.semanticForms dl.colspan-5 dd:nth-of-type(5n + 4) {
+  grid-column: 4;
+}
+.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 5),
+.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 5),
+.semanticForms dl.colspan-5 dt:nth-of-type(5n + 5),
+.semanticForms dl.colspan-5 dd:nth-of-type(5n + 5) {
+  grid-column: 5;
+}
+
+form.semanticForms,
+fieldset {
+  container: semanticForm/inline-size;
+}
+@container semanticForm (width >= 1810px) {
+  form.semanticForms fieldset dl, form.semanticForms dl,
+  fieldset fieldset dl,
+  fieldset dl {
+    grid-template-columns: repeat(7, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+}
+@container semanticForm (width >= 1550px) and (width < 1810px) {
+  form.semanticForms fieldset dl, form.semanticForms dl,
+  fieldset fieldset dl,
+  fieldset dl {
+    grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+}
+@container semanticForm (width >= 1290px) and (width < 1550px) {
+  form.semanticForms fieldset dl, form.semanticForms dl,
+  fieldset fieldset dl,
+  fieldset dl {
+    grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+}
+@container semanticForm (width >= 1030px) and (width < 1290px) {
+  form.semanticForms fieldset dl, form.semanticForms fieldset.colspan-5 dl, form.semanticForms dl, form.semanticForms dl.colspan-5,
+  fieldset fieldset dl,
+  fieldset fieldset.colspan-5 dl,
+  fieldset dl,
+  fieldset dl.colspan-5 {
+    grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+  form.semanticForms fieldset dl div.colspan-5, form.semanticForms fieldset.colspan-5 dl div.colspan-5, form.semanticForms dl div.colspan-5, form.semanticForms dl.colspan-5 div.colspan-5,
+  fieldset fieldset dl div.colspan-5,
+  fieldset fieldset.colspan-5 dl div.colspan-5,
+  fieldset dl div.colspan-5,
+  fieldset dl.colspan-5 div.colspan-5 {
+    grid-column: span 4;
+  }
+}
+@container semanticForm (width >= 850px) and (width < 1030px) {
+  form.semanticForms fieldset dl, form.semanticForms fieldset.colspan-4 dl, form.semanticForms fieldset.colspan-5 dl, form.semanticForms dl, form.semanticForms dl.colspan-4, form.semanticForms dl.colspan-5,
+  fieldset fieldset dl,
+  fieldset fieldset.colspan-4 dl,
+  fieldset fieldset.colspan-5 dl,
+  fieldset dl,
+  fieldset dl.colspan-4,
+  fieldset dl.colspan-5 {
+    grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+  form.semanticForms fieldset dl div.colspan-4,
+  form.semanticForms fieldset dl div.colspan-5, form.semanticForms fieldset.colspan-4 dl div.colspan-4,
+  form.semanticForms fieldset.colspan-4 dl div.colspan-5, form.semanticForms fieldset.colspan-5 dl div.colspan-4,
+  form.semanticForms fieldset.colspan-5 dl div.colspan-5, form.semanticForms dl div.colspan-4,
+  form.semanticForms dl div.colspan-5, form.semanticForms dl.colspan-4 div.colspan-4,
+  form.semanticForms dl.colspan-4 div.colspan-5, form.semanticForms dl.colspan-5 div.colspan-4,
+  form.semanticForms dl.colspan-5 div.colspan-5,
+  fieldset fieldset dl div.colspan-4,
+  fieldset fieldset dl div.colspan-5,
+  fieldset fieldset.colspan-4 dl div.colspan-4,
+  fieldset fieldset.colspan-4 dl div.colspan-5,
+  fieldset fieldset.colspan-5 dl div.colspan-4,
+  fieldset fieldset.colspan-5 dl div.colspan-5,
+  fieldset dl div.colspan-4,
+  fieldset dl div.colspan-5,
+  fieldset dl.colspan-4 div.colspan-4,
+  fieldset dl.colspan-4 div.colspan-5,
+  fieldset dl.colspan-5 div.colspan-4,
+  fieldset dl.colspan-5 div.colspan-5 {
+    grid-column: span 3;
+  }
+}
+@container semanticForm (width >= 510px) and (width < 850px) {
+  form.semanticForms fieldset dl, form.semanticForms fieldset.colspan-3 dl, form.semanticForms fieldset.colspan-4 dl, form.semanticForms fieldset.colspan-5 dl, form.semanticForms dl, form.semanticForms dl.colspan-3, form.semanticForms dl.colspan-4, form.semanticForms dl.colspan-5,
+  fieldset fieldset dl,
+  fieldset fieldset.colspan-3 dl,
+  fieldset fieldset.colspan-4 dl,
+  fieldset fieldset.colspan-5 dl,
+  fieldset dl,
+  fieldset dl.colspan-3,
+  fieldset dl.colspan-4,
+  fieldset dl.colspan-5 {
+    grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+  form.semanticForms fieldset dl div.colspan-3,
+  form.semanticForms fieldset dl div.colspan-4,
+  form.semanticForms fieldset dl div.colspan-5, form.semanticForms fieldset.colspan-3 dl div.colspan-3,
+  form.semanticForms fieldset.colspan-3 dl div.colspan-4,
+  form.semanticForms fieldset.colspan-3 dl div.colspan-5, form.semanticForms fieldset.colspan-4 dl div.colspan-3,
+  form.semanticForms fieldset.colspan-4 dl div.colspan-4,
+  form.semanticForms fieldset.colspan-4 dl div.colspan-5, form.semanticForms fieldset.colspan-5 dl div.colspan-3,
+  form.semanticForms fieldset.colspan-5 dl div.colspan-4,
+  form.semanticForms fieldset.colspan-5 dl div.colspan-5, form.semanticForms dl div.colspan-3,
+  form.semanticForms dl div.colspan-4,
+  form.semanticForms dl div.colspan-5, form.semanticForms dl.colspan-3 div.colspan-3,
+  form.semanticForms dl.colspan-3 div.colspan-4,
+  form.semanticForms dl.colspan-3 div.colspan-5, form.semanticForms dl.colspan-4 div.colspan-3,
+  form.semanticForms dl.colspan-4 div.colspan-4,
+  form.semanticForms dl.colspan-4 div.colspan-5, form.semanticForms dl.colspan-5 div.colspan-3,
+  form.semanticForms dl.colspan-5 div.colspan-4,
+  form.semanticForms dl.colspan-5 div.colspan-5,
+  fieldset fieldset dl div.colspan-3,
+  fieldset fieldset dl div.colspan-4,
+  fieldset fieldset dl div.colspan-5,
+  fieldset fieldset.colspan-3 dl div.colspan-3,
+  fieldset fieldset.colspan-3 dl div.colspan-4,
+  fieldset fieldset.colspan-3 dl div.colspan-5,
+  fieldset fieldset.colspan-4 dl div.colspan-3,
+  fieldset fieldset.colspan-4 dl div.colspan-4,
+  fieldset fieldset.colspan-4 dl div.colspan-5,
+  fieldset fieldset.colspan-5 dl div.colspan-3,
+  fieldset fieldset.colspan-5 dl div.colspan-4,
+  fieldset fieldset.colspan-5 dl div.colspan-5,
+  fieldset dl div.colspan-3,
+  fieldset dl div.colspan-4,
+  fieldset dl div.colspan-5,
+  fieldset dl.colspan-3 div.colspan-3,
+  fieldset dl.colspan-3 div.colspan-4,
+  fieldset dl.colspan-3 div.colspan-5,
+  fieldset dl.colspan-4 div.colspan-3,
+  fieldset dl.colspan-4 div.colspan-4,
+  fieldset dl.colspan-4 div.colspan-5,
+  fieldset dl.colspan-5 div.colspan-3,
+  fieldset dl.colspan-5 div.colspan-4,
+  fieldset dl.colspan-5 div.colspan-5 {
+    grid-column: span 2;
+  }
+}
+@container semanticForm (width < 510px) {
+  form.semanticForms fieldset dl, form.semanticForms fieldset.colspan-2 dl, form.semanticForms fieldset.colspan-3 dl, form.semanticForms fieldset.colspan-4 dl, form.semanticForms fieldset.colspan-5 dl, form.semanticForms dl, form.semanticForms dl.colspan-2, form.semanticForms dl.colspan-3, form.semanticForms dl.colspan-4, form.semanticForms dl.colspan-5,
+  fieldset fieldset dl,
+  fieldset fieldset.colspan-2 dl,
+  fieldset fieldset.colspan-3 dl,
+  fieldset fieldset.colspan-4 dl,
+  fieldset fieldset.colspan-5 dl,
+  fieldset dl,
+  fieldset dl.colspan-2,
+  fieldset dl.colspan-3,
+  fieldset dl.colspan-4,
+  fieldset dl.colspan-5 {
+    grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
+  }
+  form.semanticForms fieldset dl div.colspan-2,
+  form.semanticForms fieldset dl div.colspan-3,
+  form.semanticForms fieldset dl div.colspan-4,
+  form.semanticForms fieldset dl div.colspan-5, form.semanticForms fieldset.colspan-2 dl div.colspan-2,
+  form.semanticForms fieldset.colspan-2 dl div.colspan-3,
+  form.semanticForms fieldset.colspan-2 dl div.colspan-4,
+  form.semanticForms fieldset.colspan-2 dl div.colspan-5, form.semanticForms fieldset.colspan-3 dl div.colspan-2,
+  form.semanticForms fieldset.colspan-3 dl div.colspan-3,
+  form.semanticForms fieldset.colspan-3 dl div.colspan-4,
+  form.semanticForms fieldset.colspan-3 dl div.colspan-5, form.semanticForms fieldset.colspan-4 dl div.colspan-2,
+  form.semanticForms fieldset.colspan-4 dl div.colspan-3,
+  form.semanticForms fieldset.colspan-4 dl div.colspan-4,
+  form.semanticForms fieldset.colspan-4 dl div.colspan-5, form.semanticForms fieldset.colspan-5 dl div.colspan-2,
+  form.semanticForms fieldset.colspan-5 dl div.colspan-3,
+  form.semanticForms fieldset.colspan-5 dl div.colspan-4,
+  form.semanticForms fieldset.colspan-5 dl div.colspan-5, form.semanticForms dl div.colspan-2,
+  form.semanticForms dl div.colspan-3,
+  form.semanticForms dl div.colspan-4,
+  form.semanticForms dl div.colspan-5, form.semanticForms dl.colspan-2 div.colspan-2,
+  form.semanticForms dl.colspan-2 div.colspan-3,
+  form.semanticForms dl.colspan-2 div.colspan-4,
+  form.semanticForms dl.colspan-2 div.colspan-5, form.semanticForms dl.colspan-3 div.colspan-2,
+  form.semanticForms dl.colspan-3 div.colspan-3,
+  form.semanticForms dl.colspan-3 div.colspan-4,
+  form.semanticForms dl.colspan-3 div.colspan-5, form.semanticForms dl.colspan-4 div.colspan-2,
+  form.semanticForms dl.colspan-4 div.colspan-3,
+  form.semanticForms dl.colspan-4 div.colspan-4,
+  form.semanticForms dl.colspan-4 div.colspan-5, form.semanticForms dl.colspan-5 div.colspan-2,
+  form.semanticForms dl.colspan-5 div.colspan-3,
+  form.semanticForms dl.colspan-5 div.colspan-4,
+  form.semanticForms dl.colspan-5 div.colspan-5,
+  fieldset fieldset dl div.colspan-2,
+  fieldset fieldset dl div.colspan-3,
+  fieldset fieldset dl div.colspan-4,
+  fieldset fieldset dl div.colspan-5,
+  fieldset fieldset.colspan-2 dl div.colspan-2,
+  fieldset fieldset.colspan-2 dl div.colspan-3,
+  fieldset fieldset.colspan-2 dl div.colspan-4,
+  fieldset fieldset.colspan-2 dl div.colspan-5,
+  fieldset fieldset.colspan-3 dl div.colspan-2,
+  fieldset fieldset.colspan-3 dl div.colspan-3,
+  fieldset fieldset.colspan-3 dl div.colspan-4,
+  fieldset fieldset.colspan-3 dl div.colspan-5,
+  fieldset fieldset.colspan-4 dl div.colspan-2,
+  fieldset fieldset.colspan-4 dl div.colspan-3,
+  fieldset fieldset.colspan-4 dl div.colspan-4,
+  fieldset fieldset.colspan-4 dl div.colspan-5,
+  fieldset fieldset.colspan-5 dl div.colspan-2,
+  fieldset fieldset.colspan-5 dl div.colspan-3,
+  fieldset fieldset.colspan-5 dl div.colspan-4,
+  fieldset fieldset.colspan-5 dl div.colspan-5,
+  fieldset dl div.colspan-2,
+  fieldset dl div.colspan-3,
+  fieldset dl div.colspan-4,
+  fieldset dl div.colspan-5,
+  fieldset dl.colspan-2 div.colspan-2,
+  fieldset dl.colspan-2 div.colspan-3,
+  fieldset dl.colspan-2 div.colspan-4,
+  fieldset dl.colspan-2 div.colspan-5,
+  fieldset dl.colspan-3 div.colspan-2,
+  fieldset dl.colspan-3 div.colspan-3,
+  fieldset dl.colspan-3 div.colspan-4,
+  fieldset dl.colspan-3 div.colspan-5,
+  fieldset dl.colspan-4 div.colspan-2,
+  fieldset dl.colspan-4 div.colspan-3,
+  fieldset dl.colspan-4 div.colspan-4,
+  fieldset dl.colspan-4 div.colspan-5,
+  fieldset dl.colspan-5 div.colspan-2,
+  fieldset dl.colspan-5 div.colspan-3,
+  fieldset dl.colspan-5 div.colspan-4,
+  fieldset dl.colspan-5 div.colspan-5 {
+    grid-column: span 1;
+  }
 }
 
 form.semanticForms.lowFlow,
@@ -130,16 +1085,6 @@ form.semanticForms.lowFlow dl,
 form.semanticForms:not(.semanticFormsActive) dl {
   gap: 0 10px;
   margin-bottom: 0px;
-}
-form.semanticForms.lowFlow > dt:nth-of-type(2n + 1), form.semanticForms.lowFlow > dd:nth-of-type(2n + 1),
-form.semanticForms:not(.semanticFormsActive) > dt:nth-of-type(2n + 1),
-form.semanticForms:not(.semanticFormsActive) > dd:nth-of-type(2n + 1) {
-  grid-column: 1;
-}
-form.semanticForms.lowFlow > dt:nth-of-type(2n + 2), form.semanticForms.lowFlow > dd:nth-of-type(2n + 2),
-form.semanticForms:not(.semanticFormsActive) > dt:nth-of-type(2n + 2),
-form.semanticForms:not(.semanticFormsActive) > dd:nth-of-type(2n + 2) {
-  grid-column: 2;
 }
 form.semanticForms.lowFlow dt,
 form.semanticForms:not(.semanticFormsActive) dt {
@@ -258,820 +1203,8 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   margin-top: var(--semanticFormsInputTopMargin);
 }
 
-form.semanticForms,
-form.semanticForms.light,
-table.semanticForms,
-table.semanticForms.light {
-  font-family: var(--semanticFormsFontFamily);
-  font-size: var(--semanticFormsFontSize);
-  width: 100%;
-}
-@supports (interpolate-size: allow-keywords) {
-  form.semanticForms,
-  form.semanticForms.light,
-  table.semanticForms,
-  table.semanticForms.light {
-    interpolate-size: allow-keywords;
-  }
-}
-form.semanticForms [hidden],
-form.semanticForms.light [hidden],
-table.semanticForms [hidden],
-table.semanticForms.light [hidden] {
-  display: none !important;
-}
-form.semanticForms div:has(dd[hidden]),
-form.semanticForms.light div:has(dd[hidden]),
-table.semanticForms div:has(dd[hidden]),
-table.semanticForms.light div:has(dd[hidden]) {
-  display: none !important;
-}
-form.semanticForms:not(table),
-form.semanticForms.light:not(table),
-table.semanticForms:not(table),
-table.semanticForms.light:not(table) {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 form.semanticForms fieldset,
-form.semanticForms label,
-form.semanticForms input,
-form.semanticForms select,
-form.semanticForms textarea,
-form.semanticForms button,
-form.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
-form.semanticForms dt:has(> input, > select, > textarea),
-form.semanticForms dd:has(> input, > select, > textarea, > ul, > menu),
-form.semanticForms div:has(dt, dd),
-form.semanticForms dd > p,
-form.semanticForms.light fieldset,
-form.semanticForms.light label,
-form.semanticForms.light input,
-form.semanticForms.light select,
-form.semanticForms.light textarea,
-form.semanticForms.light button,
-form.semanticForms.light menu:has(li > input, li > label, li > button, li > select, li > textarea),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea),
-form.semanticForms.light dt:has(> input, > select, > textarea),
-form.semanticForms.light dd:has(> input, > select, > textarea, > ul, > menu),
-form.semanticForms.light div:has(dt, dd),
-form.semanticForms.light dd > p,
-table.semanticForms fieldset,
-table.semanticForms label,
-table.semanticForms input,
-table.semanticForms select,
-table.semanticForms textarea,
-table.semanticForms button,
-table.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
-table.semanticForms dt:has(> input, > select, > textarea),
-table.semanticForms dd:has(> input, > select, > textarea, > ul, > menu),
-table.semanticForms div:has(dt, dd),
-table.semanticForms dd > p,
-table.semanticForms.light fieldset,
-table.semanticForms.light label,
-table.semanticForms.light input,
-table.semanticForms.light select,
-table.semanticForms.light textarea,
-table.semanticForms.light button,
-table.semanticForms.light menu:has(li > input, li > label, li > button, li > select, li > textarea),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea),
-table.semanticForms.light dt:has(> input, > select, > textarea),
-table.semanticForms.light dd:has(> input, > select, > textarea, > ul, > menu),
-table.semanticForms.light div:has(dt, dd),
-table.semanticForms.light dd > p {
-  color: var(--semanticFormsTextColor);
-  font-family: var(--semanticFormsFontFamily);
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
-form.semanticForms select,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
-form.semanticForms.light select,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
-table.semanticForms select,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
-table.semanticForms.light select {
-  height: var(--semanticFormsInputHeight);
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
-form.semanticForms select,
-form.semanticForms textarea,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
-form.semanticForms.light select,
-form.semanticForms.light textarea,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
-table.semanticForms select,
-table.semanticForms textarea,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
-table.semanticForms.light select,
-table.semanticForms.light textarea {
-  font-size: var(--semanticFormsInputFontSize);
-  background: var(--semanticFormsFormBgColor);
-  border: var(--semanticFormsBorder);
-  border-radius: var(--semanticFormsBorderRadius);
-  width: 100%;
-  touch-action: manipulation;
-  outline: none;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]),
-form.semanticForms select:not([type=range]),
-form.semanticForms textarea:not([type=range]),
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]),
-form.semanticForms.light select:not([type=range]),
-form.semanticForms.light textarea:not([type=range]),
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]),
-table.semanticForms select:not([type=range]),
-table.semanticForms textarea:not([type=range]),
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]):not([type=range]),
-table.semanticForms.light select:not([type=range]),
-table.semanticForms.light textarea:not([type=range]) {
-  padding: 6px 30px 6px 20px;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) input:not([type=submit], [type=reset], [type=image]):focus,
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) select:focus,
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) textarea:focus,
-form.semanticForms select input:not([type=submit], [type=reset], [type=image]):focus,
-form.semanticForms select select:focus,
-form.semanticForms select textarea:focus,
-form.semanticForms textarea input:not([type=submit], [type=reset], [type=image]):focus,
-form.semanticForms textarea select:focus,
-form.semanticForms textarea textarea:focus,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) input:not([type=submit], [type=reset], [type=image]):focus,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) select:focus,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) textarea:focus,
-form.semanticForms.light select input:not([type=submit], [type=reset], [type=image]):focus,
-form.semanticForms.light select select:focus,
-form.semanticForms.light select textarea:focus,
-form.semanticForms.light textarea input:not([type=submit], [type=reset], [type=image]):focus,
-form.semanticForms.light textarea select:focus,
-form.semanticForms.light textarea textarea:focus,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) input:not([type=submit], [type=reset], [type=image]):focus,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) select:focus,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) textarea:focus,
-table.semanticForms select input:not([type=submit], [type=reset], [type=image]):focus,
-table.semanticForms select select:focus,
-table.semanticForms select textarea:focus,
-table.semanticForms textarea input:not([type=submit], [type=reset], [type=image]):focus,
-table.semanticForms textarea select:focus,
-table.semanticForms textarea textarea:focus,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) input:not([type=submit], [type=reset], [type=image]):focus,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) select:focus,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]) textarea:focus,
-table.semanticForms.light select input:not([type=submit], [type=reset], [type=image]):focus,
-table.semanticForms.light select select:focus,
-table.semanticForms.light select textarea:focus,
-table.semanticForms.light textarea input:not([type=submit], [type=reset], [type=image]):focus,
-table.semanticForms.light textarea select:focus,
-table.semanticForms.light textarea textarea:focus {
-  outline: none;
-  box-shadow: 0 0 0 1px var(--semanticFormsBorderColor);
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=password], form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=text]:has(~ button.show),
-form.semanticForms select[type=password],
-form.semanticForms select[type=text]:has(~ button.show),
-form.semanticForms textarea[type=password],
-form.semanticForms textarea[type=text]:has(~ button.show),
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=password],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=text]:has(~ button.show),
-form.semanticForms.light select[type=password],
-form.semanticForms.light select[type=text]:has(~ button.show),
-form.semanticForms.light textarea[type=password],
-form.semanticForms.light textarea[type=text]:has(~ button.show),
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=password],
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=text]:has(~ button.show),
-table.semanticForms select[type=password],
-table.semanticForms select[type=text]:has(~ button.show),
-table.semanticForms textarea[type=password],
-table.semanticForms textarea[type=text]:has(~ button.show),
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=password],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=text]:has(~ button.show),
-table.semanticForms.light select[type=password],
-table.semanticForms.light select[type=text]:has(~ button.show),
-table.semanticForms.light textarea[type=password],
-table.semanticForms.light textarea[type=text]:has(~ button.show) {
-  padding: 6px 55px 6px 20px;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search],
-form.semanticForms select[type=search],
-form.semanticForms textarea[type=search],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search],
-form.semanticForms.light select[type=search],
-form.semanticForms.light textarea[type=search],
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search],
-table.semanticForms select[type=search],
-table.semanticForms textarea[type=search],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search],
-table.semanticForms.light select[type=search],
-table.semanticForms.light textarea[type=search] {
-  padding: 6px 20px 6px 32px;
-  background: var(--semanticFormsSearchIcon) no-repeat 10px;
-  background-color: var(--semanticFormsFormBgColor);
-  background-size: 18px;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]:focus + label.floatLabelFormAnimatedLabel, form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
-form.semanticForms select[type=search]:focus + label.floatLabelFormAnimatedLabel,
-form.semanticForms select[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
-form.semanticForms textarea[type=search]:focus + label.floatLabelFormAnimatedLabel,
-form.semanticForms textarea[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]:focus + label.floatLabelFormAnimatedLabel,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
-form.semanticForms.light select[type=search]:focus + label.floatLabelFormAnimatedLabel,
-form.semanticForms.light select[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
-form.semanticForms.light textarea[type=search]:focus + label.floatLabelFormAnimatedLabel,
-form.semanticForms.light textarea[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]:focus + label.floatLabelFormAnimatedLabel,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
-table.semanticForms select[type=search]:focus + label.floatLabelFormAnimatedLabel,
-table.semanticForms select[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
-table.semanticForms textarea[type=search]:focus + label.floatLabelFormAnimatedLabel,
-table.semanticForms textarea[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]:focus + label.floatLabelFormAnimatedLabel,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
-table.semanticForms.light select[type=search]:focus + label.floatLabelFormAnimatedLabel,
-table.semanticForms.light select[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel,
-table.semanticForms.light textarea[type=search]:focus + label.floatLabelFormAnimatedLabel,
-table.semanticForms.light textarea[type=search]:not(:placeholder-shown) + label.floatLabelFormAnimatedLabel {
-  left: 20px;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]::-webkit-search-cancel-button,
-form.semanticForms select[type=search]::-webkit-search-cancel-button,
-form.semanticForms textarea[type=search]::-webkit-search-cancel-button,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]::-webkit-search-cancel-button,
-form.semanticForms.light select[type=search]::-webkit-search-cancel-button,
-form.semanticForms.light textarea[type=search]::-webkit-search-cancel-button,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]::-webkit-search-cancel-button,
-table.semanticForms select[type=search]::-webkit-search-cancel-button,
-table.semanticForms textarea[type=search]::-webkit-search-cancel-button,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=search]::-webkit-search-cancel-button,
-table.semanticForms.light select[type=search]::-webkit-search-cancel-button,
-table.semanticForms.light textarea[type=search]::-webkit-search-cancel-button {
-  display: none;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=checkbox], form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=radio],
-form.semanticForms select[type=checkbox],
-form.semanticForms select[type=radio],
-form.semanticForms textarea[type=checkbox],
-form.semanticForms textarea[type=radio],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=checkbox],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=radio],
-form.semanticForms.light select[type=checkbox],
-form.semanticForms.light select[type=radio],
-form.semanticForms.light textarea[type=checkbox],
-form.semanticForms.light textarea[type=radio],
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=checkbox],
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=radio],
-table.semanticForms select[type=checkbox],
-table.semanticForms select[type=radio],
-table.semanticForms textarea[type=checkbox],
-table.semanticForms textarea[type=radio],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=checkbox],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=radio],
-table.semanticForms.light select[type=checkbox],
-table.semanticForms.light select[type=radio],
-table.semanticForms.light textarea[type=checkbox],
-table.semanticForms.light textarea[type=radio] {
-  width: 18px;
-  height: 18px;
-  margin: 3px 0;
-  cursor: pointer;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=checkbox] ~ label:first-of-type, form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=radio] ~ label:first-of-type,
-form.semanticForms select[type=checkbox] ~ label:first-of-type,
-form.semanticForms select[type=radio] ~ label:first-of-type,
-form.semanticForms textarea[type=checkbox] ~ label:first-of-type,
-form.semanticForms textarea[type=radio] ~ label:first-of-type,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=checkbox] ~ label:first-of-type,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=radio] ~ label:first-of-type,
-form.semanticForms.light select[type=checkbox] ~ label:first-of-type,
-form.semanticForms.light select[type=radio] ~ label:first-of-type,
-form.semanticForms.light textarea[type=checkbox] ~ label:first-of-type,
-form.semanticForms.light textarea[type=radio] ~ label:first-of-type,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=checkbox] ~ label:first-of-type,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=radio] ~ label:first-of-type,
-table.semanticForms select[type=checkbox] ~ label:first-of-type,
-table.semanticForms select[type=radio] ~ label:first-of-type,
-table.semanticForms textarea[type=checkbox] ~ label:first-of-type,
-table.semanticForms textarea[type=radio] ~ label:first-of-type,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=checkbox] ~ label:first-of-type,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=radio] ~ label:first-of-type,
-table.semanticForms.light select[type=checkbox] ~ label:first-of-type,
-table.semanticForms.light select[type=radio] ~ label:first-of-type,
-table.semanticForms.light textarea[type=checkbox] ~ label:first-of-type,
-table.semanticForms.light textarea[type=radio] ~ label:first-of-type {
-  color: var(--semanticFormsTextColor);
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=range], form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
-form.semanticForms select[type=range],
-form.semanticForms select[type=color],
-form.semanticForms textarea[type=range],
-form.semanticForms textarea[type=color],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=range],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
-form.semanticForms.light select[type=range],
-form.semanticForms.light select[type=color],
-form.semanticForms.light textarea[type=range],
-form.semanticForms.light textarea[type=color],
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=range],
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
-table.semanticForms select[type=range],
-table.semanticForms select[type=color],
-table.semanticForms textarea[type=range],
-table.semanticForms textarea[type=color],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=range],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
-table.semanticForms.light select[type=range],
-table.semanticForms.light select[type=color],
-table.semanticForms.light textarea[type=range],
-table.semanticForms.light textarea[type=color] {
-  cursor: pointer;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
-form.semanticForms select[type=color],
-form.semanticForms textarea[type=color],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
-form.semanticForms.light select[type=color],
-form.semanticForms.light textarea[type=color],
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
-table.semanticForms select[type=color],
-table.semanticForms textarea[type=color],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=color],
-table.semanticForms.light select[type=color],
-table.semanticForms.light textarea[type=color] {
-  height: var(--semanticFormsInputHeight);
-  padding: 4px 30px 4px 10px;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=file],
-form.semanticForms select[type=file],
-form.semanticForms textarea[type=file],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=file],
-form.semanticForms.light select[type=file],
-form.semanticForms.light textarea[type=file],
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=file],
-table.semanticForms select[type=file],
-table.semanticForms textarea[type=file],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[type=file],
-table.semanticForms.light select[type=file],
-table.semanticForms.light textarea[type=file] {
-  cursor: pointer;
-  font-size: var(--semanticFormsInputFontSize);
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled],
-form.semanticForms select[disabled],
-form.semanticForms textarea[disabled],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled],
-form.semanticForms.light select[disabled],
-form.semanticForms.light textarea[disabled],
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled],
-table.semanticForms select[disabled],
-table.semanticForms textarea[disabled],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled],
-table.semanticForms.light select[disabled],
-table.semanticForms.light textarea[disabled] {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] ~ label:first-of-type,
-form.semanticForms select[disabled] ~ label:first-of-type,
-form.semanticForms textarea[disabled] ~ label:first-of-type,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] ~ label:first-of-type,
-form.semanticForms.light select[disabled] ~ label:first-of-type,
-form.semanticForms.light textarea[disabled] ~ label:first-of-type,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] ~ label:first-of-type,
-table.semanticForms select[disabled] ~ label:first-of-type,
-table.semanticForms textarea[disabled] ~ label:first-of-type,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] ~ label:first-of-type,
-table.semanticForms.light select[disabled] ~ label:first-of-type,
-table.semanticForms.light textarea[disabled] ~ label:first-of-type {
-  opacity: 0.5;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] ~ label + button,
-form.semanticForms select[disabled] ~ label + button,
-form.semanticForms textarea[disabled] ~ label + button,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] ~ label + button,
-form.semanticForms.light select[disabled] ~ label + button,
-form.semanticForms.light textarea[disabled] ~ label + button,
-table.semanticForms input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] ~ label + button,
-table.semanticForms select[disabled] ~ label + button,
-table.semanticForms textarea[disabled] ~ label + button,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio])[disabled] ~ label + button,
-table.semanticForms.light select[disabled] ~ label + button,
-table.semanticForms.light textarea[disabled] ~ label + button {
-  display: none;
-}
-form.semanticForms select,
-form.semanticForms.light select,
-table.semanticForms select,
-table.semanticForms.light select {
-  cursor: pointer;
-}
-form.semanticForms select:not([multiple]),
-form.semanticForms.light select:not([multiple]),
-table.semanticForms select:not([multiple]),
-table.semanticForms.light select:not([multiple]) {
-  background-image: var(--semanticFormsSelectIcon);
-  background-size: 14px;
-  background-position: calc(100% - 8px) 16px;
-  background-repeat: no-repeat;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-form.semanticForms select[multiple],
-form.semanticForms.light select[multiple],
-table.semanticForms select[multiple],
-table.semanticForms.light select[multiple] {
-  min-height: 38px;
-  height: 100px;
-  padding: 0;
-}
-form.semanticForms select[multiple] option,
-form.semanticForms.light select[multiple] option,
-table.semanticForms select[multiple] option,
-table.semanticForms.light select[multiple] option {
-  padding: 6px 20px;
-}
-form.semanticForms select[multiple] option:first-of-type,
-form.semanticForms.light select[multiple] option:first-of-type,
-table.semanticForms select[multiple] option:first-of-type,
-table.semanticForms.light select[multiple] option:first-of-type {
-  border-top-left-radius: var(--semanticFormsBorderRadius);
-}
-form.semanticForms select[multiple] option:last-of-type,
-form.semanticForms.light select[multiple] option:last-of-type,
-table.semanticForms select[multiple] option:last-of-type,
-table.semanticForms.light select[multiple] option:last-of-type {
-  border-bottom-left-radius: var(--semanticFormsBorderRadius);
-}
-form.semanticForms textarea,
-form.semanticForms.light textarea,
-table.semanticForms textarea,
-table.semanticForms.light textarea {
-  resize: vertical;
-  line-height: 1.5;
-  width: 100%;
-  min-height: 38px;
-}
-form.semanticForms textarea[data-auto-grow],
-form.semanticForms.light textarea[data-auto-grow],
-table.semanticForms textarea[data-auto-grow],
-table.semanticForms.light textarea[data-auto-grow] {
-  field-sizing: content;
-}
-form.semanticForms button.clear, form.semanticForms button.show,
-form.semanticForms.light button.clear,
-form.semanticForms.light button.show,
-table.semanticForms button.clear,
-table.semanticForms button.show,
-table.semanticForms.light button.clear,
-table.semanticForms.light button.show {
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  position: absolute;
-  height: min-content;
-  top: calc(var(--semanticFormsInputTopMargin) + 6px);
-  right: 0;
-  width: 25px;
-  height: 25px;
-  margin: auto 6px;
-  padding: 5px;
-  background: none;
-  border: none;
-  color: var(--semanticFormsClearButtonColor);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-form.semanticForms button.show,
-form.semanticForms.light button.show,
-table.semanticForms button.show,
-table.semanticForms.light button.show {
-  right: 25px;
-}
-form.semanticForms textarea ~ .clear,
-form.semanticForms.light textarea ~ .clear,
-table.semanticForms textarea ~ .clear,
-table.semanticForms.light textarea ~ .clear {
-  bottom: auto;
-}
-form.semanticForms input:placeholder-shown ~ .clear,
-form.semanticForms input:placeholder-shown ~ .show,
-form.semanticForms textarea:placeholder-shown ~ .clear,
-form.semanticForms input[type=file] ~ .clear,
-form.semanticForms.light input:placeholder-shown ~ .clear,
-form.semanticForms.light input:placeholder-shown ~ .show,
-form.semanticForms.light textarea:placeholder-shown ~ .clear,
-form.semanticForms.light input[type=file] ~ .clear,
-table.semanticForms input:placeholder-shown ~ .clear,
-table.semanticForms input:placeholder-shown ~ .show,
-table.semanticForms textarea:placeholder-shown ~ .clear,
-table.semanticForms input[type=file] ~ .clear,
-table.semanticForms.light input:placeholder-shown ~ .clear,
-table.semanticForms.light input:placeholder-shown ~ .show,
-table.semanticForms.light textarea:placeholder-shown ~ .clear,
-table.semanticForms.light input[type=file] ~ .clear {
-  display: none;
-}
-form.semanticForms input[type=submit],
-form.semanticForms input[type=reset],
-form.semanticForms button:not(.clear, .show),
-form.semanticForms .button-link,
-form.semanticForms.light input[type=submit],
-form.semanticForms.light input[type=reset],
-form.semanticForms.light button:not(.clear, .show),
-form.semanticForms.light .button-link,
-table.semanticForms input[type=submit],
-table.semanticForms input[type=reset],
-table.semanticForms button:not(.clear, .show),
-table.semanticForms .button-link,
-table.semanticForms.light input[type=submit],
-table.semanticForms.light input[type=reset],
-table.semanticForms.light button:not(.clear, .show),
-table.semanticForms.light .button-link {
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  max-width: max-content;
-  background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
-  background-origin: border-box;
-  border: 1px var(--semanticFormsButtonGradientDark) solid;
-  corner-shape: squircle;
-  border-radius: 20px;
-  padding: 5px 25px;
-  font-size: 100%;
-  line-height: 1;
-  user-select: none;
-  transform: scale(1);
-  transition: transform 180ms;
-  text-decoration: none;
-  color: var(--semanticFormsTextColor);
-}
-form.semanticForms input[type=submit]:active,
-form.semanticForms input[type=reset]:active,
-form.semanticForms button:not(.clear, .show):active,
-form.semanticForms .button-link:active,
-form.semanticForms.light input[type=submit]:active,
-form.semanticForms.light input[type=reset]:active,
-form.semanticForms.light button:not(.clear, .show):active,
-form.semanticForms.light .button-link:active,
-table.semanticForms input[type=submit]:active,
-table.semanticForms input[type=reset]:active,
-table.semanticForms button:not(.clear, .show):active,
-table.semanticForms .button-link:active,
-table.semanticForms.light input[type=submit]:active,
-table.semanticForms.light input[type=reset]:active,
-table.semanticForms.light button:not(.clear, .show):active,
-table.semanticForms.light .button-link:active {
-  transform: scale(0.97);
-}
-form.semanticForms input[type=submit],
-form.semanticForms input[type=reset],
-form.semanticForms input[type=image],
-form.semanticForms button:not(.clear):not(.show),
-form.semanticForms .button-link,
-form.semanticForms.light input[type=submit],
-form.semanticForms.light input[type=reset],
-form.semanticForms.light input[type=image],
-form.semanticForms.light button:not(.clear):not(.show),
-form.semanticForms.light .button-link,
-table.semanticForms input[type=submit],
-table.semanticForms input[type=reset],
-table.semanticForms input[type=image],
-table.semanticForms button:not(.clear):not(.show),
-table.semanticForms .button-link,
-table.semanticForms.light input[type=submit],
-table.semanticForms.light input[type=reset],
-table.semanticForms.light input[type=image],
-table.semanticForms.light button:not(.clear):not(.show),
-table.semanticForms.light .button-link {
-  transition: filter 0.1s;
-}
-form.semanticForms input[type=submit]:hover,
-form.semanticForms input[type=reset]:hover,
-form.semanticForms input[type=image]:hover,
-form.semanticForms button:not(.clear):not(.show):hover,
-form.semanticForms .button-link:hover,
-form.semanticForms.light input[type=submit]:hover,
-form.semanticForms.light input[type=reset]:hover,
-form.semanticForms.light input[type=image]:hover,
-form.semanticForms.light button:not(.clear):not(.show):hover,
-form.semanticForms.light .button-link:hover,
-table.semanticForms input[type=submit]:hover,
-table.semanticForms input[type=reset]:hover,
-table.semanticForms input[type=image]:hover,
-table.semanticForms button:not(.clear):not(.show):hover,
-table.semanticForms .button-link:hover,
-table.semanticForms.light input[type=submit]:hover,
-table.semanticForms.light input[type=reset]:hover,
-table.semanticForms.light input[type=image]:hover,
-table.semanticForms.light button:not(.clear):not(.show):hover,
-table.semanticForms.light .button-link:hover {
-  filter: brightness(1.05);
-}
-form.semanticForms .button-link,
-form.semanticForms.light .button-link,
-table.semanticForms .button-link,
-table.semanticForms.light .button-link {
-  display: block;
-}
-form.semanticForms .button-link:visited, form.semanticForms .button-link:link,
-form.semanticForms.light .button-link:visited,
-form.semanticForms.light .button-link:link,
-table.semanticForms .button-link:visited,
-table.semanticForms .button-link:link,
-table.semanticForms.light .button-link:visited,
-table.semanticForms.light .button-link:link {
-  color: var(--semanticFormsTextColor);
-}
-form.semanticForms [data-invalid-text],
-form.semanticForms.light [data-invalid-text],
-table.semanticForms [data-invalid-text],
-table.semanticForms.light [data-invalid-text] {
-  display: none;
-  color: var(--semanticFormsInvalid);
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image]).invalid, form.semanticForms input:not([type=submit], [type=reset], [type=image]):user-invalid,
-form.semanticForms select.invalid,
-form.semanticForms select:user-invalid,
-form.semanticForms textarea.invalid,
-form.semanticForms textarea:user-invalid,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image]).invalid,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image]):user-invalid,
-form.semanticForms.light select.invalid,
-form.semanticForms.light select:user-invalid,
-form.semanticForms.light textarea.invalid,
-form.semanticForms.light textarea:user-invalid,
-table.semanticForms input:not([type=submit], [type=reset], [type=image]).invalid,
-table.semanticForms input:not([type=submit], [type=reset], [type=image]):user-invalid,
-table.semanticForms select.invalid,
-table.semanticForms select:user-invalid,
-table.semanticForms textarea.invalid,
-table.semanticForms textarea:user-invalid,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image]).invalid,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image]):user-invalid,
-table.semanticForms.light select.invalid,
-table.semanticForms.light select:user-invalid,
-table.semanticForms.light textarea.invalid,
-table.semanticForms.light textarea:user-invalid {
-  border: var(--semanticFormsInvalidBorder);
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image]).invalid ~ label:nth-of-type(2), form.semanticForms input:not([type=submit], [type=reset], [type=image]):user-invalid ~ label:nth-of-type(2),
-form.semanticForms select.invalid ~ label:nth-of-type(2),
-form.semanticForms select:user-invalid ~ label:nth-of-type(2),
-form.semanticForms textarea.invalid ~ label:nth-of-type(2),
-form.semanticForms textarea:user-invalid ~ label:nth-of-type(2),
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image]).invalid ~ label:nth-of-type(2),
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image]):user-invalid ~ label:nth-of-type(2),
-form.semanticForms.light select.invalid ~ label:nth-of-type(2),
-form.semanticForms.light select:user-invalid ~ label:nth-of-type(2),
-form.semanticForms.light textarea.invalid ~ label:nth-of-type(2),
-form.semanticForms.light textarea:user-invalid ~ label:nth-of-type(2),
-table.semanticForms input:not([type=submit], [type=reset], [type=image]).invalid ~ label:nth-of-type(2),
-table.semanticForms input:not([type=submit], [type=reset], [type=image]):user-invalid ~ label:nth-of-type(2),
-table.semanticForms select.invalid ~ label:nth-of-type(2),
-table.semanticForms select:user-invalid ~ label:nth-of-type(2),
-table.semanticForms textarea.invalid ~ label:nth-of-type(2),
-table.semanticForms textarea:user-invalid ~ label:nth-of-type(2),
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image]).invalid ~ label:nth-of-type(2),
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image]):user-invalid ~ label:nth-of-type(2),
-table.semanticForms.light select.invalid ~ label:nth-of-type(2),
-table.semanticForms.light select:user-invalid ~ label:nth-of-type(2),
-table.semanticForms.light textarea.invalid ~ label:nth-of-type(2),
-table.semanticForms.light textarea:user-invalid ~ label:nth-of-type(2) {
-  color: var(--semanticFormsInvalid);
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image]).invalid ~ [data-invalid-text], form.semanticForms input:not([type=submit], [type=reset], [type=image]):user-invalid ~ [data-invalid-text],
-form.semanticForms select.invalid ~ [data-invalid-text],
-form.semanticForms select:user-invalid ~ [data-invalid-text],
-form.semanticForms textarea.invalid ~ [data-invalid-text],
-form.semanticForms textarea:user-invalid ~ [data-invalid-text],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image]).invalid ~ [data-invalid-text],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image]):user-invalid ~ [data-invalid-text],
-form.semanticForms.light select.invalid ~ [data-invalid-text],
-form.semanticForms.light select:user-invalid ~ [data-invalid-text],
-form.semanticForms.light textarea.invalid ~ [data-invalid-text],
-form.semanticForms.light textarea:user-invalid ~ [data-invalid-text],
-table.semanticForms input:not([type=submit], [type=reset], [type=image]).invalid ~ [data-invalid-text],
-table.semanticForms input:not([type=submit], [type=reset], [type=image]):user-invalid ~ [data-invalid-text],
-table.semanticForms select.invalid ~ [data-invalid-text],
-table.semanticForms select:user-invalid ~ [data-invalid-text],
-table.semanticForms textarea.invalid ~ [data-invalid-text],
-table.semanticForms textarea:user-invalid ~ [data-invalid-text],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image]).invalid ~ [data-invalid-text],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image]):user-invalid ~ [data-invalid-text],
-table.semanticForms.light select.invalid ~ [data-invalid-text],
-table.semanticForms.light select:user-invalid ~ [data-invalid-text],
-table.semanticForms.light textarea.invalid ~ [data-invalid-text],
-table.semanticForms.light textarea:user-invalid ~ [data-invalid-text] {
-  font-size: small;
-  display: flex;
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image]).warn,
-form.semanticForms select.warn,
-form.semanticForms textarea.warn,
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn,
-form.semanticForms.light select.warn,
-form.semanticForms.light textarea.warn,
-table.semanticForms input:not([type=submit], [type=reset], [type=image]).warn,
-table.semanticForms select.warn,
-table.semanticForms textarea.warn,
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn,
-table.semanticForms.light select.warn,
-table.semanticForms.light textarea.warn {
-  border: var(--semanticFormsWarnBorder);
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image]).warn ~ label:nth-of-type(2),
-form.semanticForms select.warn ~ label:nth-of-type(2),
-form.semanticForms textarea.warn ~ label:nth-of-type(2),
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn ~ label:nth-of-type(2),
-form.semanticForms.light select.warn ~ label:nth-of-type(2),
-form.semanticForms.light textarea.warn ~ label:nth-of-type(2),
-table.semanticForms input:not([type=submit], [type=reset], [type=image]).warn ~ label:nth-of-type(2),
-table.semanticForms select.warn ~ label:nth-of-type(2),
-table.semanticForms textarea.warn ~ label:nth-of-type(2),
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn ~ label:nth-of-type(2),
-table.semanticForms.light select.warn ~ label:nth-of-type(2),
-table.semanticForms.light textarea.warn ~ label:nth-of-type(2) {
-  color: var(--semanticFormsWarn);
-}
-form.semanticForms input:not([type=submit], [type=reset], [type=image]).warn ~ [data-invalid-text],
-form.semanticForms select.warn ~ [data-invalid-text],
-form.semanticForms textarea.warn ~ [data-invalid-text],
-form.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn ~ [data-invalid-text],
-form.semanticForms.light select.warn ~ [data-invalid-text],
-form.semanticForms.light textarea.warn ~ [data-invalid-text],
-table.semanticForms input:not([type=submit], [type=reset], [type=image]).warn ~ [data-invalid-text],
-table.semanticForms select.warn ~ [data-invalid-text],
-table.semanticForms textarea.warn ~ [data-invalid-text],
-table.semanticForms.light input:not([type=submit], [type=reset], [type=image]).warn ~ [data-invalid-text],
-table.semanticForms.light select.warn ~ [data-invalid-text],
-table.semanticForms.light textarea.warn ~ [data-invalid-text] {
-  font-size: small;
-  display: flex;
-}
-form.semanticForms input:-webkit-autofill,
-form.semanticForms input:-webkit-autofill:hover,
-form.semanticForms input:-webkit-autofill:focus,
-form.semanticForms input:-webkit-autofill:active,
-form.semanticForms textarea:-webkit-autofill,
-form.semanticForms textarea:-webkit-autofill:hover,
-form.semanticForms textarea:-webkit-autofill:focus,
-form.semanticForms textarea:-webkit-autofill:active,
-form.semanticForms select:-webkit-autofill,
-form.semanticForms select:-webkit-autofill:hover,
-form.semanticForms select:-webkit-autofill:focus,
-form.semanticForms select:-webkit-autofill:active,
-form.semanticForms.light input:-webkit-autofill,
-form.semanticForms.light input:-webkit-autofill:hover,
-form.semanticForms.light input:-webkit-autofill:focus,
-form.semanticForms.light input:-webkit-autofill:active,
-form.semanticForms.light textarea:-webkit-autofill,
-form.semanticForms.light textarea:-webkit-autofill:hover,
-form.semanticForms.light textarea:-webkit-autofill:focus,
-form.semanticForms.light textarea:-webkit-autofill:active,
-form.semanticForms.light select:-webkit-autofill,
-form.semanticForms.light select:-webkit-autofill:hover,
-form.semanticForms.light select:-webkit-autofill:focus,
-form.semanticForms.light select:-webkit-autofill:active,
-table.semanticForms input:-webkit-autofill,
-table.semanticForms input:-webkit-autofill:hover,
-table.semanticForms input:-webkit-autofill:focus,
-table.semanticForms input:-webkit-autofill:active,
-table.semanticForms textarea:-webkit-autofill,
-table.semanticForms textarea:-webkit-autofill:hover,
-table.semanticForms textarea:-webkit-autofill:focus,
-table.semanticForms textarea:-webkit-autofill:active,
-table.semanticForms select:-webkit-autofill,
-table.semanticForms select:-webkit-autofill:hover,
-table.semanticForms select:-webkit-autofill:focus,
-table.semanticForms select:-webkit-autofill:active,
-table.semanticForms.light input:-webkit-autofill,
-table.semanticForms.light input:-webkit-autofill:hover,
-table.semanticForms.light input:-webkit-autofill:focus,
-table.semanticForms.light input:-webkit-autofill:active,
-table.semanticForms.light textarea:-webkit-autofill,
-table.semanticForms.light textarea:-webkit-autofill:hover,
-table.semanticForms.light textarea:-webkit-autofill:focus,
-table.semanticForms.light textarea:-webkit-autofill:active,
-table.semanticForms.light select:-webkit-autofill,
-table.semanticForms.light select:-webkit-autofill:hover,
-table.semanticForms.light select:-webkit-autofill:focus,
-table.semanticForms.light select:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px var(--semanticFormsFormBgColor) inset;
-  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
-  transition-delay: 5000s;
-  transition-property: background-color, color;
-}
-form.semanticForms fieldset,
-form.semanticForms.light fieldset,
-table.semanticForms fieldset,
-table.semanticForms.light fieldset {
+table.semanticForms fieldset {
   border-radius: var(--semanticFormsBorderRadius);
   background: var(--semanticFormsFormSubBgColor);
   border: 1px var(--semanticFormsSubBorderColor) solid;
@@ -1082,30 +1215,20 @@ table.semanticForms.light fieldset {
   margin-bottom: 15px;
 }
 form.semanticForms fieldset fieldset,
-form.semanticForms.light fieldset fieldset,
-table.semanticForms fieldset fieldset,
-table.semanticForms.light fieldset fieldset {
+table.semanticForms fieldset fieldset {
   background-color: var(--semanticFormsNestedFieldsetBgColor);
   border: var(--semanticFormsNestedFieldsetBorder);
 }
 form.semanticForms fieldset fieldset input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
 form.semanticForms fieldset fieldset select,
 form.semanticForms fieldset fieldset textarea,
-form.semanticForms.light fieldset fieldset input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
-form.semanticForms.light fieldset fieldset select,
-form.semanticForms.light fieldset fieldset textarea,
 table.semanticForms fieldset fieldset input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
 table.semanticForms fieldset fieldset select,
-table.semanticForms fieldset fieldset textarea,
-table.semanticForms.light fieldset fieldset input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
-table.semanticForms.light fieldset fieldset select,
-table.semanticForms.light fieldset fieldset textarea {
+table.semanticForms fieldset fieldset textarea {
   background-color: var(--semanticFormsNestedInputBgColor);
 }
 form.semanticForms details,
-form.semanticForms.light details,
-table.semanticForms details,
-table.semanticForms.light details {
+table.semanticForms details {
   box-sizing: border-box;
   position: relative;
   background-color: var(--semanticFormsNestedFieldsetBgColor);
@@ -1119,24 +1242,18 @@ table.semanticForms.light details {
   min-height: calc(var(--semanticFormsFontSize) + 20px);
 }
 form.semanticForms details::details-content,
-form.semanticForms.light details::details-content,
-table.semanticForms details::details-content,
-table.semanticForms.light details::details-content {
+table.semanticForms details::details-content {
   visibility: hidden;
   opacity: 0;
   transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
 }
 @supports (interpolate-size: allow-keywords) {
   form.semanticForms details,
-  form.semanticForms.light details,
-  table.semanticForms details,
-  table.semanticForms.light details {
+  table.semanticForms details {
     transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms, height 250ms;
   }
   form.semanticForms details::details-content,
-  form.semanticForms.light details::details-content,
-  table.semanticForms details::details-content,
-  table.semanticForms.light details::details-content {
+  table.semanticForms details::details-content {
     height: 0;
     overflow: hidden;
     transition: height 250ms, content-visibility 250ms;
@@ -1144,11 +1261,10 @@ table.semanticForms.light details::details-content {
   }
 }
 form.semanticForms details summary,
-form.semanticForms.light details summary,
-table.semanticForms details summary,
-table.semanticForms.light details summary {
+table.semanticForms details summary {
   cursor: pointer;
   margin: 0;
+  margin-bottom: 10px;
   line-height: 1;
   position: absolute;
   top: 10px;
@@ -1156,18 +1272,12 @@ table.semanticForms.light details summary {
   transition: top 250ms;
 }
 form.semanticForms details summary::-webkit-details-marker, form.semanticForms details summary::marker,
-form.semanticForms.light details summary::-webkit-details-marker,
-form.semanticForms.light details summary::marker,
 table.semanticForms details summary::-webkit-details-marker,
-table.semanticForms details summary::marker,
-table.semanticForms.light details summary::-webkit-details-marker,
-table.semanticForms.light details summary::marker {
+table.semanticForms details summary::marker {
   content: "";
 }
 form.semanticForms details summary::before,
-form.semanticForms.light details summary::before,
-table.semanticForms details summary::before,
-table.semanticForms.light details summary::before {
+table.semanticForms details summary::before {
   content: "";
   border-width: 0.4rem;
   border-style: solid;
@@ -1179,202 +1289,139 @@ table.semanticForms.light details summary::before {
   transform-origin: 0.2rem 50%;
   transition: 250ms transform ease;
 }
+form.semanticForms details[open],
+table.semanticForms details[open] {
+  margin-bottom: 10px;
+}
 form.semanticForms details[open]::details-content,
-form.semanticForms.light details[open]::details-content,
-table.semanticForms details[open]::details-content,
-table.semanticForms.light details[open]::details-content {
+table.semanticForms details[open]::details-content {
   visibility: visible;
   opacity: 1;
   transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
 }
 @supports (interpolate-size: allow-keywords) {
   form.semanticForms details[open]::details-content,
-  form.semanticForms.light details[open]::details-content,
-  table.semanticForms details[open]::details-content,
-  table.semanticForms.light details[open]::details-content {
+  table.semanticForms details[open]::details-content {
     height: auto;
   }
 }
 form.semanticForms details[open] summary::before,
-form.semanticForms.light details[open] summary::before,
-table.semanticForms details[open] summary::before,
-table.semanticForms.light details[open] summary::before {
+table.semanticForms details[open] summary::before {
   transform: rotate(90deg);
 }
 form.semanticForms details[open] > dl:first-of-type,
-form.semanticForms.light details[open] > dl:first-of-type,
-table.semanticForms details[open] > dl:first-of-type,
-table.semanticForms.light details[open] > dl:first-of-type {
+table.semanticForms details[open] > dl:first-of-type {
   margin-top: 15px;
 }
-form.semanticForms details[open], form.semanticForms summary,
-form.semanticForms.light details[open],
-form.semanticForms.light summary,
-table.semanticForms details[open],
-table.semanticForms summary,
-table.semanticForms.light details[open],
-table.semanticForms.light summary {
-  margin-bottom: 10px;
-}
-@supports (scrollbar-color: auto) {
-  form.semanticForms textarea,
-  form.semanticForms.light textarea,
-  table.semanticForms textarea,
-  table.semanticForms.light textarea {
-    scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
-  }
-  form.semanticForms textarea::-webkit-resizer,
-  form.semanticForms.light textarea::-webkit-resizer,
-  table.semanticForms textarea::-webkit-resizer,
-  table.semanticForms.light textarea::-webkit-resizer {
-    border: none;
-    background-image: var(--semanticFormsCustomResizer);
-    background-size: 14px;
-    background-repeat: no-repeat;
-    background-position: 100%;
-    margin: 0 2px 2px 0;
-  }
-  form.semanticForms select[multiple],
-  form.semanticForms.light select[multiple],
-  table.semanticForms select[multiple],
-  table.semanticForms.light select[multiple] {
-    scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
-  }
-}
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) {
+form.semanticForms dl,
+table.semanticForms dl {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd {
+form.semanticForms dl div,
+table.semanticForms dl div {
+  position: relative;
+  width: 100%;
+  min-width: var(--semanticFormsInputMinWidth);
+  max-width: 365px;
+}
+form.semanticForms dl div:has([data-max-content]),
+table.semanticForms dl div:has([data-max-content]) {
+  min-width: 150px;
+  max-width: max-content;
+}
+form.semanticForms dl div:has([data-max-content]) dd,
+table.semanticForms dl div:has([data-max-content]) dd {
+  width: max-content;
+}
+form.semanticForms dl div:has([data-max-content]) dd input, form.semanticForms dl div:has([data-max-content]) dd select,
+table.semanticForms dl div:has([data-max-content]) dd input,
+table.semanticForms dl div:has([data-max-content]) dd select {
+  field-sizing: content;
+  min-width: 150px;
+  max-width: max-content;
+}
+form.semanticForms dl dd,
+table.semanticForms dl dd {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
   max-width: 100%;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio {
+form.semanticForms dl dd.singleCheckbox, form.semanticForms dl dd.singleRadio,
+table.semanticForms dl dd.singleCheckbox,
+table.semanticForms dl dd.singleRadio {
   display: grid;
   grid-template-columns: 15px 1fr;
   align-items: center;
   padding-left: 11px;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox > :not(input[type=checkbox], input[type=radio], label), form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio > :not(input[type=checkbox], input[type=radio], label),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox > :not(input[type=checkbox], input[type=radio], label),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio > :not(input[type=checkbox], input[type=radio], label),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox > :not(input[type=checkbox], input[type=radio], label),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio > :not(input[type=checkbox], input[type=radio], label),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox > :not(input[type=checkbox], input[type=radio], label),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio > :not(input[type=checkbox], input[type=radio], label) {
+form.semanticForms dl dd.singleCheckbox > :not(input[type=checkbox], input[type=radio], label), form.semanticForms dl dd.singleRadio > :not(input[type=checkbox], input[type=radio], label),
+table.semanticForms dl dd.singleCheckbox > :not(input[type=checkbox], input[type=radio], label),
+table.semanticForms dl dd.singleRadio > :not(input[type=checkbox], input[type=radio], label) {
   grid-column: 1/-1;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox label:nth-of-type(2), form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio label:nth-of-type(2),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox label:nth-of-type(2),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio label:nth-of-type(2),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox label:nth-of-type(2),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio label:nth-of-type(2),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleCheckbox label:nth-of-type(2),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio label:nth-of-type(2) {
+form.semanticForms dl dd.singleCheckbox label:nth-of-type(2), form.semanticForms dl dd.singleRadio label:nth-of-type(2),
+table.semanticForms dl dd.singleCheckbox label:nth-of-type(2),
+table.semanticForms dl dd.singleRadio label:nth-of-type(2) {
   grid-column: 1/-1;
   padding: 0 10px;
   font-size: small;
   color: var(--semanticFormsTextColor);
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio > input,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio > input,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio > input,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.singleRadio > input {
+form.semanticForms dl dd.singleRadio > input,
+table.semanticForms dl dd.singleRadio > input {
   margin: 0;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul {
+form.semanticForms dl dd.checkboxes ul, form.semanticForms dl dd.radios ul,
+table.semanticForms dl dd.checkboxes ul,
+table.semanticForms dl dd.radios ul {
   display: flex;
   flex-direction: column;
   margin-top: var(--semanticFormsInputTopMargin);
   padding-left: 10px;
   gap: 5px;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul li, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul li,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul li,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul li,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul li,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul li,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes ul li,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios ul li {
+form.semanticForms dl dd.checkboxes ul li, form.semanticForms dl dd.radios ul li,
+table.semanticForms dl dd.checkboxes ul li,
+table.semanticForms dl dd.radios ul li {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes > label, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios > label,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes > label,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios > label,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes > label,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios > label,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.checkboxes > label,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd.radios > label {
+form.semanticForms dl dd.checkboxes > label, form.semanticForms dl dd.radios > label,
+table.semanticForms dl dd.checkboxes > label,
+table.semanticForms dl dd.radios > label {
   padding-left: 20px;
   font-size: small;
   color: var(--semanticFormsTextColor);
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) {
+form.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)),
+table.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) {
   display: grid;
   grid-template-columns: 2fr 1fr;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.clear, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.show,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.clear,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.show,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.clear,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.show,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.clear,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.show {
+form.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.clear, form.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.show,
+table.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.clear,
+table.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button.show {
   right: 36%;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input:not([type=submit]), form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) select, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) textarea,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input:not([type=submit]),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) select,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) textarea,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input:not([type=submit]),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) select,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) textarea,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input:not([type=submit]),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) select,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) textarea {
+form.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input:not([type=submit]), form.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) select, form.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) textarea,
+table.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input:not([type=submit]),
+table.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) select,
+table.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) textarea {
   grid-row: 1/2;
   grid-column: 1/2;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button:not(.clear, .show),
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=submit]:not(.clear, .show),
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=button]:not(.clear, .show),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button:not(.clear, .show),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=submit]:not(.clear, .show),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=button]:not(.clear, .show),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button:not(.clear, .show),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=submit]:not(.clear, .show),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=button]:not(.clear, .show),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button:not(.clear, .show),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=submit]:not(.clear, .show),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=button]:not(.clear, .show) {
+form.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button:not(.clear, .show),
+form.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=submit]:not(.clear, .show),
+form.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=button]:not(.clear, .show),
+table.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) button:not(.clear, .show),
+table.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=submit]:not(.clear, .show),
+table.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) input[type=button]:not(.clear, .show) {
   grid-row: 1/2;
   grid-column: 2/3;
   width: 100%;
@@ -1386,56 +1433,21 @@ table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > texta
   overflow: hidden;
   display: inline-block;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:nth-of-type(2),
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:not(.floatLabelFormAnimatedLabel),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:nth-of-type(2),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:not(.floatLabelFormAnimatedLabel),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:nth-of-type(2),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:not(.floatLabelFormAnimatedLabel),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:nth-of-type(2),
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:not(.floatLabelFormAnimatedLabel) {
+form.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:nth-of-type(2),
+form.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:not(.floatLabelFormAnimatedLabel),
+table.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:nth-of-type(2),
+table.semanticForms dl dd:has(button:not(.clear, .show), input[type=submit]:not(.clear, .show)) label:not(.floatLabelFormAnimatedLabel) {
   grid-row: 2/3;
   grid-column: 1/-1;
 }
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) label:first-of-type,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) label:first-of-type,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) label:first-of-type,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) label:first-of-type {
-  width: calc(100% - 95px);
-}
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key {
-  display: block;
-}
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key kbd,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key kbd,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key kbd,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key) span.focus-key kbd {
-  font-family: sans-serif;
-}
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus, select:focus, textarea:focus) span.focus-key, form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):not(:has(input:placeholder-shown, textarea:placeholder-shown)) span.focus-key,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus, select:focus, textarea:focus) span.focus-key,
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):not(:has(input:placeholder-shown, textarea:placeholder-shown)) span.focus-key,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus, select:focus, textarea:focus) span.focus-key,
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):not(:has(input:placeholder-shown, textarea:placeholder-shown)) span.focus-key,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):has(input:focus, select:focus, textarea:focus) span.focus-key,
-table.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea) dd:has(span.focus-key):not(:has(input:placeholder-shown, textarea:placeholder-shown)) span.focus-key {
-  display: none;
-}
 form.semanticForms p:has(input:not([type=checkbox], [type=radio]), textarea, label),
-form.semanticForms.light p:has(input:not([type=checkbox], [type=radio]), textarea, label),
-table.semanticForms p:has(input:not([type=checkbox], [type=radio]), textarea, label),
-table.semanticForms.light p:has(input:not([type=checkbox], [type=radio]), textarea, label) {
+table.semanticForms p:has(input:not([type=checkbox], [type=radio]), textarea, label) {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 form.semanticForms p:has(input[type=checkbox], input[type=radio]),
-form.semanticForms.light p:has(input[type=checkbox], input[type=radio]),
-table.semanticForms p:has(input[type=checkbox], input[type=radio]),
-table.semanticForms.light p:has(input[type=checkbox], input[type=radio]) {
+table.semanticForms p:has(input[type=checkbox], input[type=radio]) {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -1443,813 +1455,13 @@ table.semanticForms.light p:has(input[type=checkbox], input[type=radio]) {
 }
 form.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
 form.semanticForms ul:has(li > input, li > label, li > button, li > select, li > textarea),
-form.semanticForms.light menu:has(li > input, li > label, li > button, li > select, li > textarea),
-form.semanticForms.light ul:has(li > input, li > label, li > button, li > select, li > textarea),
 table.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
-table.semanticForms ul:has(li > input, li > label, li > button, li > select, li > textarea),
-table.semanticForms.light menu:has(li > input, li > label, li > button, li > select, li > textarea),
-table.semanticForms.light ul:has(li > input, li > label, li > button, li > select, li > textarea) {
+table.semanticForms ul:has(li > input, li > label, li > button, li > select, li > textarea) {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
   list-style-type: none;
-}
-form.semanticForms input[type=checkbox] + label:first-of-type,
-form.semanticForms input[type=radio] + label:first-of-type,
-form.semanticForms.light input[type=checkbox] + label:first-of-type,
-form.semanticForms.light input[type=radio] + label:first-of-type,
-table.semanticForms input[type=checkbox] + label:first-of-type,
-table.semanticForms input[type=radio] + label:first-of-type,
-table.semanticForms.light input[type=checkbox] + label:first-of-type,
-table.semanticForms.light input[type=radio] + label:first-of-type {
-  padding-top: 2px;
-  font-size: var(--semanticFormsInputFontSize);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-form.semanticForms input[type=checkbox] + label:first-of-type span.required,
-form.semanticForms input[type=radio] + label:first-of-type span.required,
-form.semanticForms.light input[type=checkbox] + label:first-of-type span.required,
-form.semanticForms.light input[type=radio] + label:first-of-type span.required,
-table.semanticForms input[type=checkbox] + label:first-of-type span.required,
-table.semanticForms input[type=radio] + label:first-of-type span.required,
-table.semanticForms.light input[type=checkbox] + label:first-of-type span.required,
-table.semanticForms.light input[type=radio] + label:first-of-type span.required {
-  cursor: help;
-  pointer-events: auto;
-  color: red;
-}
-form.semanticForms input[type=checkbox] + label:first-of-type span.help,
-form.semanticForms input[type=radio] + label:first-of-type span.help,
-form.semanticForms.light input[type=checkbox] + label:first-of-type span.help,
-form.semanticForms.light input[type=radio] + label:first-of-type span.help,
-table.semanticForms input[type=checkbox] + label:first-of-type span.help,
-table.semanticForms input[type=radio] + label:first-of-type span.help,
-table.semanticForms.light input[type=checkbox] + label:first-of-type span.help,
-table.semanticForms.light input[type=radio] + label:first-of-type span.help {
-  display: grid;
-  place-items: center;
-  cursor: help;
-  pointer-events: auto;
-}
-form.semanticForms input[type=checkbox] + label:first-of-type span.help svg,
-form.semanticForms input[type=radio] + label:first-of-type span.help svg,
-form.semanticForms.light input[type=checkbox] + label:first-of-type span.help svg,
-form.semanticForms.light input[type=radio] + label:first-of-type span.help svg,
-table.semanticForms input[type=checkbox] + label:first-of-type span.help svg,
-table.semanticForms input[type=radio] + label:first-of-type span.help svg,
-table.semanticForms.light input[type=checkbox] + label:first-of-type span.help svg,
-table.semanticForms.light input[type=radio] + label:first-of-type span.help svg {
-  width: 80%;
-}
-form.semanticForms .floatLabelForm,
-form.semanticForms.light .floatLabelForm,
-table.semanticForms .floatLabelForm,
-table.semanticForms.light .floatLabelForm {
-  grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-form.semanticForms .floatLabelForm div,
-form.semanticForms.light .floatLabelForm div,
-table.semanticForms .floatLabelForm div,
-table.semanticForms.light .floatLabelForm div {
-  position: relative;
-  width: 100%;
-  min-width: var(--semanticFormsInputMinWidth);
-  max-width: 100%;
-  max-width: 365px;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type, form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
-  color: var(--semanticFormsTextColor);
-  transform: translateY(-150%) scale(0.7);
-  width: 100%;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus.no-float-label ~ label:first-of-type, form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus.no-float-label ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus.no-float-label ~ label:first-of-type,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus.no-float-label ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus.no-float-label ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus.no-float-label ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus.no-float-label ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus.no-float-label ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus.no-float-label ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):focus.no-float-label ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:not([type=submit], [type=reset], [type=image]):not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:focus.no-float-label ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus.no-float-label ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
-  display: none;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select ~ label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select ~ label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select ~ label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select ~ label:first-of-type {
-  color: var(--semanticFormsTextColor);
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) button:not(.clear, .show),
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input[type=submit]:not(.clear, .show),
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) button:not(.clear, .show),
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input[type=submit]:not(.clear, .show),
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) button:not(.clear, .show),
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input[type=submit]:not(.clear, .show),
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) button:not(.clear, .show),
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input[type=submit]:not(.clear, .show) {
-  margin-top: var(--semanticFormsInputTopMargin);
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type {
-  position: absolute;
-  top: calc(var(--semanticFormsInputTopMargin) + 10px);
-  left: 20px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  line-height: 1.2;
-  font-size: var(--semanticFormsInputFontSize);
-  transform-origin: left center;
-  pointer-events: none;
-  transition: transform 250ms;
-  cursor: text;
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-  width: calc(100% - 35px);
-  user-select: none;
-  color: var(--semanticFormsPlaceholderColor);
-  touch-action: manipulation;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.required,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.required,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.required,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.required {
-  cursor: help;
-  pointer-events: auto;
-  color: red;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help {
-  display: grid;
-  place-items: center;
-  cursor: help;
-  pointer-events: auto;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help svg,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help svg,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help svg,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:first-of-type span.help svg {
-  width: 80%;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:nth-of-type(2),
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:nth-of-type(2),
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:nth-of-type(2),
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) label:nth-of-type(2) {
-  margin-top: -5px;
-  padding: 0 10px;
-  font-size: small;
-  color: var(--semanticFormsTextColor);
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) select {
-  margin-top: var(--semanticFormsInputTopMargin);
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea {
-  transition: opacity 250ms;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::placeholder {
-  opacity: 0;
-  transition: opacity 250ms;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-moz-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-moz-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-moz-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-moz-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-moz-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-moz-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-moz-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-moz-placeholder {
-  opacity: 0;
-  transition: opacity 250ms;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-webkit-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-webkit-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-webkit-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-webkit-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-webkit-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-webkit-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input::-webkit-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea::-webkit-input-placeholder {
-  opacity: 0;
-  transition: opacity 250ms;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:-ms-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:-ms-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:-ms-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:-ms-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:-ms-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:-ms-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:-ms-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:-ms-input-placeholder {
-  opacity: 0;
-  transition: opacity 250ms;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::placeholder {
-  opacity: 1;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-moz-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-moz-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-moz-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-moz-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-moz-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-moz-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-moz-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-moz-placeholder {
-  opacity: 1;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus::-webkit-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus:-ms-input-placeholder,
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:-ms-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus:-ms-input-placeholder,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:-ms-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus:-ms-input-placeholder,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:-ms-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) input:focus:-ms-input-placeholder,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) textarea:focus:-ms-input-placeholder {
-  opacity: 1;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) span.focus-key,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) span.focus-key,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) span.focus-key,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) span.focus-key {
-  color: var(--semanticFormsPlaceholderColor);
-  position: absolute;
-  top: calc(var(--semanticFormsInputTopMargin) + 11px);
-  right: 20px;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) span.focus-key kbd,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) span.focus-key kbd,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) span.focus-key kbd,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) span.focus-key kbd {
-  line-height: 1;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=number]) .focus-key,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=number]) .focus-key,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=number]) .focus-key,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=number]) .focus-key {
-  right: 45px;
-}
-form.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=search]) label:first-of-type,
-form.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=search]) label:first-of-type,
-table.semanticForms .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=search]) label:first-of-type,
-table.semanticForms.light .floatLabelForm div dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios):has(input[type=search]) label:first-of-type {
-  left: 32px;
-}
-form.semanticForms .floatLabelForm div dt,
-form.semanticForms.light .floatLabelForm div dt,
-table.semanticForms .floatLabelForm div dt,
-table.semanticForms.light .floatLabelForm div dt {
-  position: relative;
-}
-form.semanticForms .floatLabelForm div dt label,
-form.semanticForms.light .floatLabelForm div dt label,
-table.semanticForms .floatLabelForm div dt label,
-table.semanticForms.light .floatLabelForm div dt label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  z-index: 2;
-  user-select: auto;
-  color: var(--semanticFormsTextColor);
-  font-size: var(--semanticFormsInputFontSize);
-  position: absolute;
-  transform-origin: left center;
-  transform: translateY(-100%) scale(0.7);
-  top: var(--semanticFormsInputTopMargin);
-  left: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
-  width: 100%;
-}
-form.semanticForms .floatLabelForm div dt label span.help,
-form.semanticForms.light .floatLabelForm div dt label span.help,
-table.semanticForms .floatLabelForm div dt label span.help,
-table.semanticForms.light .floatLabelForm div dt label span.help {
-  display: grid;
-  place-items: center;
-  cursor: help;
-  pointer-events: auto;
-}
-form.semanticForms .floatLabelForm div:has(dd input:required) dt label,
-form.semanticForms.light .floatLabelForm div:has(dd input:required) dt label,
-table.semanticForms .floatLabelForm div:has(dd input:required) dt label,
-table.semanticForms.light .floatLabelForm div:has(dd input:required) dt label {
-  width: 100%;
-  padding-right: 10px;
-}
-form.semanticForms .floatLabelForm div:has(dd input:required) dt label > span,
-form.semanticForms.light .floatLabelForm div:has(dd input:required) dt label > span,
-table.semanticForms .floatLabelForm div:has(dd input:required) dt label > span,
-table.semanticForms.light .floatLabelForm div:has(dd input:required) dt label > span {
-  margin-left: 5px;
-  cursor: help;
-  pointer-events: auto;
-  color: red;
-}
-form.semanticForms .floatLabelForm div:has([data-max-content]),
-form.semanticForms.light .floatLabelForm div:has([data-max-content]),
-table.semanticForms .floatLabelForm div:has([data-max-content]),
-table.semanticForms.light .floatLabelForm div:has([data-max-content]) {
-  max-width: max-content;
-  min-width: 150px;
-}
-form.semanticForms .floatLabelForm div:has([data-max-content]) dd,
-form.semanticForms.light .floatLabelForm div:has([data-max-content]) dd,
-table.semanticForms .floatLabelForm div:has([data-max-content]) dd,
-table.semanticForms.light .floatLabelForm div:has([data-max-content]) dd {
-  width: max-content;
-}
-form.semanticForms .floatLabelForm div:has([data-max-content]) dd input, form.semanticForms .floatLabelForm div:has([data-max-content]) dd select,
-form.semanticForms.light .floatLabelForm div:has([data-max-content]) dd input,
-form.semanticForms.light .floatLabelForm div:has([data-max-content]) dd select,
-table.semanticForms .floatLabelForm div:has([data-max-content]) dd input,
-table.semanticForms .floatLabelForm div:has([data-max-content]) dd select,
-table.semanticForms.light .floatLabelForm div:has([data-max-content]) dd input,
-table.semanticForms.light .floatLabelForm div:has([data-max-content]) dd select {
-  field-sizing: content;
-  min-width: 150px;
-  max-width: max-content;
-}
-form.semanticForms .floatLabelForm input::placeholder, form.semanticForms .floatLabelForm textarea::placeholder,
-form.semanticForms.light .floatLabelForm input::placeholder,
-form.semanticForms.light .floatLabelForm textarea::placeholder,
-table.semanticForms .floatLabelForm input::placeholder,
-table.semanticForms .floatLabelForm textarea::placeholder,
-table.semanticForms.light .floatLabelForm input::placeholder,
-table.semanticForms.light .floatLabelForm textarea::placeholder {
-  color: var(--semanticFormsPlaceholderColor);
-  opacity: 1;
-}
-form.semanticForms div[class^=colspan-],
-form.semanticForms.light div[class^=colspan-],
-table.semanticForms div[class^=colspan-],
-table.semanticForms.light div[class^=colspan-] {
-  max-width: 100%;
-}
-form.semanticForms div.colspan-full,
-form.semanticForms.light div.colspan-full,
-table.semanticForms div.colspan-full,
-table.semanticForms.light div.colspan-full {
-  grid-column: 1/-1;
-}
-form.semanticForms div.colspan-5,
-form.semanticForms.light div.colspan-5,
-table.semanticForms div.colspan-5,
-table.semanticForms.light div.colspan-5 {
-  grid-column: span 5;
-}
-form.semanticForms div.colspan-4,
-form.semanticForms.light div.colspan-4,
-table.semanticForms div.colspan-4,
-table.semanticForms.light div.colspan-4 {
-  grid-column: span 4;
-}
-form.semanticForms div.colspan-3,
-form.semanticForms.light div.colspan-3,
-table.semanticForms div.colspan-3,
-table.semanticForms.light div.colspan-3 {
-  grid-column: span 3;
-}
-form.semanticForms div.colspan-2,
-form.semanticForms.light div.colspan-2,
-table.semanticForms div.colspan-2,
-table.semanticForms.light div.colspan-2 {
-  grid-column: span 2;
-}
-form.semanticForms div.colspan-1,
-form.semanticForms.light div.colspan-1,
-table.semanticForms div.colspan-1,
-table.semanticForms.light div.colspan-1 {
-  grid-column: span 1;
-}
-form.semanticForms fieldset[class^=colspan-] dl div,
-form.semanticForms dl[class^=colspan-] div,
-form.semanticForms.light fieldset[class^=colspan-] dl div,
-form.semanticForms.light dl[class^=colspan-] div,
-table.semanticForms fieldset[class^=colspan-] dl div,
-table.semanticForms dl[class^=colspan-] div,
-table.semanticForms.light fieldset[class^=colspan-] dl div,
-table.semanticForms.light dl[class^=colspan-] div {
-  max-width: 100%;
-}
-form.semanticForms fieldset.colspan-full dl,
-form.semanticForms dl.colspan-full,
-form.semanticForms.light fieldset.colspan-full dl,
-form.semanticForms.light dl.colspan-full,
-table.semanticForms fieldset.colspan-full dl,
-table.semanticForms dl.colspan-full,
-table.semanticForms.light fieldset.colspan-full dl,
-table.semanticForms.light dl.colspan-full {
-  grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-form.semanticForms fieldset.colspan-5 dl,
-form.semanticForms dl.colspan-5,
-form.semanticForms.light fieldset.colspan-5 dl,
-form.semanticForms.light dl.colspan-5,
-table.semanticForms fieldset.colspan-5 dl,
-table.semanticForms dl.colspan-5,
-table.semanticForms.light fieldset.colspan-5 dl,
-table.semanticForms.light dl.colspan-5 {
-  grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-form.semanticForms fieldset.colspan-4 dl,
-form.semanticForms dl.colspan-4,
-form.semanticForms.light fieldset.colspan-4 dl,
-form.semanticForms.light dl.colspan-4,
-table.semanticForms fieldset.colspan-4 dl,
-table.semanticForms dl.colspan-4,
-table.semanticForms.light fieldset.colspan-4 dl,
-table.semanticForms.light dl.colspan-4 {
-  grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-form.semanticForms fieldset.colspan-3 dl,
-form.semanticForms dl.colspan-3,
-form.semanticForms.light fieldset.colspan-3 dl,
-form.semanticForms.light dl.colspan-3,
-table.semanticForms fieldset.colspan-3 dl,
-table.semanticForms dl.colspan-3,
-table.semanticForms.light fieldset.colspan-3 dl,
-table.semanticForms.light dl.colspan-3 {
-  grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-form.semanticForms fieldset.colspan-2 dl,
-form.semanticForms dl.colspan-2,
-form.semanticForms.light fieldset.colspan-2 dl,
-form.semanticForms.light dl.colspan-2,
-table.semanticForms fieldset.colspan-2 dl,
-table.semanticForms dl.colspan-2,
-table.semanticForms.light fieldset.colspan-2 dl,
-table.semanticForms.light dl.colspan-2 {
-  grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-form.semanticForms fieldset.colspan-1 dl,
-form.semanticForms dl.colspan-1,
-form.semanticForms.light fieldset.colspan-1 dl,
-form.semanticForms.light dl.colspan-1,
-table.semanticForms fieldset.colspan-1 dl,
-table.semanticForms dl.colspan-1,
-table.semanticForms.light fieldset.colspan-1 dl,
-table.semanticForms.light dl.colspan-1 {
-  grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
-}
-form.semanticForms fieldset.colspan-1 dl dt:nth-of-type(n + 1),
-form.semanticForms fieldset.colspan-1 dl dd:nth-of-type(n + 1),
-form.semanticForms dl.colspan-1 dt:nth-of-type(n + 1),
-form.semanticForms dl.colspan-1 dd:nth-of-type(n + 1),
-form.semanticForms.light fieldset.colspan-1 dl dt:nth-of-type(n + 1),
-form.semanticForms.light fieldset.colspan-1 dl dd:nth-of-type(n + 1),
-form.semanticForms.light dl.colspan-1 dt:nth-of-type(n + 1),
-form.semanticForms.light dl.colspan-1 dd:nth-of-type(n + 1),
-table.semanticForms fieldset.colspan-1 dl dt:nth-of-type(n + 1),
-table.semanticForms fieldset.colspan-1 dl dd:nth-of-type(n + 1),
-table.semanticForms dl.colspan-1 dt:nth-of-type(n + 1),
-table.semanticForms dl.colspan-1 dd:nth-of-type(n + 1),
-table.semanticForms.light fieldset.colspan-1 dl dt:nth-of-type(n + 1),
-table.semanticForms.light fieldset.colspan-1 dl dd:nth-of-type(n + 1),
-table.semanticForms.light dl.colspan-1 dt:nth-of-type(n + 1),
-table.semanticForms.light dl.colspan-1 dd:nth-of-type(n + 1) {
-  grid-column: 1;
-}
-form.semanticForms fieldset.colspan-2 dl dt:nth-of-type(2n + 1),
-form.semanticForms fieldset.colspan-2 dl dd:nth-of-type(2n + 1),
-form.semanticForms dl.colspan-2 dt:nth-of-type(2n + 1),
-form.semanticForms dl.colspan-2 dd:nth-of-type(2n + 1),
-form.semanticForms.light fieldset.colspan-2 dl dt:nth-of-type(2n + 1),
-form.semanticForms.light fieldset.colspan-2 dl dd:nth-of-type(2n + 1),
-form.semanticForms.light dl.colspan-2 dt:nth-of-type(2n + 1),
-form.semanticForms.light dl.colspan-2 dd:nth-of-type(2n + 1),
-table.semanticForms fieldset.colspan-2 dl dt:nth-of-type(2n + 1),
-table.semanticForms fieldset.colspan-2 dl dd:nth-of-type(2n + 1),
-table.semanticForms dl.colspan-2 dt:nth-of-type(2n + 1),
-table.semanticForms dl.colspan-2 dd:nth-of-type(2n + 1),
-table.semanticForms.light fieldset.colspan-2 dl dt:nth-of-type(2n + 1),
-table.semanticForms.light fieldset.colspan-2 dl dd:nth-of-type(2n + 1),
-table.semanticForms.light dl.colspan-2 dt:nth-of-type(2n + 1),
-table.semanticForms.light dl.colspan-2 dd:nth-of-type(2n + 1) {
-  grid-column: 1;
-}
-form.semanticForms fieldset.colspan-2 dl dt:nth-of-type(2n + 2),
-form.semanticForms fieldset.colspan-2 dl dd:nth-of-type(2n + 2),
-form.semanticForms dl.colspan-2 dt:nth-of-type(2n + 2),
-form.semanticForms dl.colspan-2 dd:nth-of-type(2n + 2),
-form.semanticForms.light fieldset.colspan-2 dl dt:nth-of-type(2n + 2),
-form.semanticForms.light fieldset.colspan-2 dl dd:nth-of-type(2n + 2),
-form.semanticForms.light dl.colspan-2 dt:nth-of-type(2n + 2),
-form.semanticForms.light dl.colspan-2 dd:nth-of-type(2n + 2),
-table.semanticForms fieldset.colspan-2 dl dt:nth-of-type(2n + 2),
-table.semanticForms fieldset.colspan-2 dl dd:nth-of-type(2n + 2),
-table.semanticForms dl.colspan-2 dt:nth-of-type(2n + 2),
-table.semanticForms dl.colspan-2 dd:nth-of-type(2n + 2),
-table.semanticForms.light fieldset.colspan-2 dl dt:nth-of-type(2n + 2),
-table.semanticForms.light fieldset.colspan-2 dl dd:nth-of-type(2n + 2),
-table.semanticForms.light dl.colspan-2 dt:nth-of-type(2n + 2),
-table.semanticForms.light dl.colspan-2 dd:nth-of-type(2n + 2) {
-  grid-column: 2;
-}
-form.semanticForms fieldset.colspan-3 dl dt:nth-of-type(3n + 1),
-form.semanticForms fieldset.colspan-3 dl dd:nth-of-type(3n + 1),
-form.semanticForms dl.colspan-3 dt:nth-of-type(3n + 1),
-form.semanticForms dl.colspan-3 dd:nth-of-type(3n + 1),
-form.semanticForms.light fieldset.colspan-3 dl dt:nth-of-type(3n + 1),
-form.semanticForms.light fieldset.colspan-3 dl dd:nth-of-type(3n + 1),
-form.semanticForms.light dl.colspan-3 dt:nth-of-type(3n + 1),
-form.semanticForms.light dl.colspan-3 dd:nth-of-type(3n + 1),
-table.semanticForms fieldset.colspan-3 dl dt:nth-of-type(3n + 1),
-table.semanticForms fieldset.colspan-3 dl dd:nth-of-type(3n + 1),
-table.semanticForms dl.colspan-3 dt:nth-of-type(3n + 1),
-table.semanticForms dl.colspan-3 dd:nth-of-type(3n + 1),
-table.semanticForms.light fieldset.colspan-3 dl dt:nth-of-type(3n + 1),
-table.semanticForms.light fieldset.colspan-3 dl dd:nth-of-type(3n + 1),
-table.semanticForms.light dl.colspan-3 dt:nth-of-type(3n + 1),
-table.semanticForms.light dl.colspan-3 dd:nth-of-type(3n + 1) {
-  grid-column: 1;
-}
-form.semanticForms fieldset.colspan-3 dl dt:nth-of-type(3n + 2),
-form.semanticForms fieldset.colspan-3 dl dd:nth-of-type(3n + 2),
-form.semanticForms dl.colspan-3 dt:nth-of-type(3n + 2),
-form.semanticForms dl.colspan-3 dd:nth-of-type(3n + 2),
-form.semanticForms.light fieldset.colspan-3 dl dt:nth-of-type(3n + 2),
-form.semanticForms.light fieldset.colspan-3 dl dd:nth-of-type(3n + 2),
-form.semanticForms.light dl.colspan-3 dt:nth-of-type(3n + 2),
-form.semanticForms.light dl.colspan-3 dd:nth-of-type(3n + 2),
-table.semanticForms fieldset.colspan-3 dl dt:nth-of-type(3n + 2),
-table.semanticForms fieldset.colspan-3 dl dd:nth-of-type(3n + 2),
-table.semanticForms dl.colspan-3 dt:nth-of-type(3n + 2),
-table.semanticForms dl.colspan-3 dd:nth-of-type(3n + 2),
-table.semanticForms.light fieldset.colspan-3 dl dt:nth-of-type(3n + 2),
-table.semanticForms.light fieldset.colspan-3 dl dd:nth-of-type(3n + 2),
-table.semanticForms.light dl.colspan-3 dt:nth-of-type(3n + 2),
-table.semanticForms.light dl.colspan-3 dd:nth-of-type(3n + 2) {
-  grid-column: 2;
-}
-form.semanticForms fieldset.colspan-3 dl dt:nth-of-type(3n + 3),
-form.semanticForms fieldset.colspan-3 dl dd:nth-of-type(3n + 3),
-form.semanticForms dl.colspan-3 dt:nth-of-type(3n + 3),
-form.semanticForms dl.colspan-3 dd:nth-of-type(3n + 3),
-form.semanticForms.light fieldset.colspan-3 dl dt:nth-of-type(3n + 3),
-form.semanticForms.light fieldset.colspan-3 dl dd:nth-of-type(3n + 3),
-form.semanticForms.light dl.colspan-3 dt:nth-of-type(3n + 3),
-form.semanticForms.light dl.colspan-3 dd:nth-of-type(3n + 3),
-table.semanticForms fieldset.colspan-3 dl dt:nth-of-type(3n + 3),
-table.semanticForms fieldset.colspan-3 dl dd:nth-of-type(3n + 3),
-table.semanticForms dl.colspan-3 dt:nth-of-type(3n + 3),
-table.semanticForms dl.colspan-3 dd:nth-of-type(3n + 3),
-table.semanticForms.light fieldset.colspan-3 dl dt:nth-of-type(3n + 3),
-table.semanticForms.light fieldset.colspan-3 dl dd:nth-of-type(3n + 3),
-table.semanticForms.light dl.colspan-3 dt:nth-of-type(3n + 3),
-table.semanticForms.light dl.colspan-3 dd:nth-of-type(3n + 3) {
-  grid-column: 3;
-}
-form.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 1),
-form.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 1),
-form.semanticForms dl.colspan-4 dt:nth-of-type(4n + 1),
-form.semanticForms dl.colspan-4 dd:nth-of-type(4n + 1),
-form.semanticForms.light fieldset.colspan-4 dl dt:nth-of-type(4n + 1),
-form.semanticForms.light fieldset.colspan-4 dl dd:nth-of-type(4n + 1),
-form.semanticForms.light dl.colspan-4 dt:nth-of-type(4n + 1),
-form.semanticForms.light dl.colspan-4 dd:nth-of-type(4n + 1),
-table.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 1),
-table.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 1),
-table.semanticForms dl.colspan-4 dt:nth-of-type(4n + 1),
-table.semanticForms dl.colspan-4 dd:nth-of-type(4n + 1),
-table.semanticForms.light fieldset.colspan-4 dl dt:nth-of-type(4n + 1),
-table.semanticForms.light fieldset.colspan-4 dl dd:nth-of-type(4n + 1),
-table.semanticForms.light dl.colspan-4 dt:nth-of-type(4n + 1),
-table.semanticForms.light dl.colspan-4 dd:nth-of-type(4n + 1) {
-  grid-column: 1;
-}
-form.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 2),
-form.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 2),
-form.semanticForms dl.colspan-4 dt:nth-of-type(4n + 2),
-form.semanticForms dl.colspan-4 dd:nth-of-type(4n + 2),
-form.semanticForms.light fieldset.colspan-4 dl dt:nth-of-type(4n + 2),
-form.semanticForms.light fieldset.colspan-4 dl dd:nth-of-type(4n + 2),
-form.semanticForms.light dl.colspan-4 dt:nth-of-type(4n + 2),
-form.semanticForms.light dl.colspan-4 dd:nth-of-type(4n + 2),
-table.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 2),
-table.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 2),
-table.semanticForms dl.colspan-4 dt:nth-of-type(4n + 2),
-table.semanticForms dl.colspan-4 dd:nth-of-type(4n + 2),
-table.semanticForms.light fieldset.colspan-4 dl dt:nth-of-type(4n + 2),
-table.semanticForms.light fieldset.colspan-4 dl dd:nth-of-type(4n + 2),
-table.semanticForms.light dl.colspan-4 dt:nth-of-type(4n + 2),
-table.semanticForms.light dl.colspan-4 dd:nth-of-type(4n + 2) {
-  grid-column: 2;
-}
-form.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 3),
-form.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 3),
-form.semanticForms dl.colspan-4 dt:nth-of-type(4n + 3),
-form.semanticForms dl.colspan-4 dd:nth-of-type(4n + 3),
-form.semanticForms.light fieldset.colspan-4 dl dt:nth-of-type(4n + 3),
-form.semanticForms.light fieldset.colspan-4 dl dd:nth-of-type(4n + 3),
-form.semanticForms.light dl.colspan-4 dt:nth-of-type(4n + 3),
-form.semanticForms.light dl.colspan-4 dd:nth-of-type(4n + 3),
-table.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 3),
-table.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 3),
-table.semanticForms dl.colspan-4 dt:nth-of-type(4n + 3),
-table.semanticForms dl.colspan-4 dd:nth-of-type(4n + 3),
-table.semanticForms.light fieldset.colspan-4 dl dt:nth-of-type(4n + 3),
-table.semanticForms.light fieldset.colspan-4 dl dd:nth-of-type(4n + 3),
-table.semanticForms.light dl.colspan-4 dt:nth-of-type(4n + 3),
-table.semanticForms.light dl.colspan-4 dd:nth-of-type(4n + 3) {
-  grid-column: 3;
-}
-form.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 4),
-form.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 4),
-form.semanticForms dl.colspan-4 dt:nth-of-type(4n + 4),
-form.semanticForms dl.colspan-4 dd:nth-of-type(4n + 4),
-form.semanticForms.light fieldset.colspan-4 dl dt:nth-of-type(4n + 4),
-form.semanticForms.light fieldset.colspan-4 dl dd:nth-of-type(4n + 4),
-form.semanticForms.light dl.colspan-4 dt:nth-of-type(4n + 4),
-form.semanticForms.light dl.colspan-4 dd:nth-of-type(4n + 4),
-table.semanticForms fieldset.colspan-4 dl dt:nth-of-type(4n + 4),
-table.semanticForms fieldset.colspan-4 dl dd:nth-of-type(4n + 4),
-table.semanticForms dl.colspan-4 dt:nth-of-type(4n + 4),
-table.semanticForms dl.colspan-4 dd:nth-of-type(4n + 4),
-table.semanticForms.light fieldset.colspan-4 dl dt:nth-of-type(4n + 4),
-table.semanticForms.light fieldset.colspan-4 dl dd:nth-of-type(4n + 4),
-table.semanticForms.light dl.colspan-4 dt:nth-of-type(4n + 4),
-table.semanticForms.light dl.colspan-4 dd:nth-of-type(4n + 4) {
-  grid-column: 4;
-}
-form.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 1),
-form.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 1),
-form.semanticForms dl.colspan-5 dt:nth-of-type(5n + 1),
-form.semanticForms dl.colspan-5 dd:nth-of-type(5n + 1),
-form.semanticForms.light fieldset.colspan-5 dl dt:nth-of-type(5n + 1),
-form.semanticForms.light fieldset.colspan-5 dl dd:nth-of-type(5n + 1),
-form.semanticForms.light dl.colspan-5 dt:nth-of-type(5n + 1),
-form.semanticForms.light dl.colspan-5 dd:nth-of-type(5n + 1),
-table.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 1),
-table.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 1),
-table.semanticForms dl.colspan-5 dt:nth-of-type(5n + 1),
-table.semanticForms dl.colspan-5 dd:nth-of-type(5n + 1),
-table.semanticForms.light fieldset.colspan-5 dl dt:nth-of-type(5n + 1),
-table.semanticForms.light fieldset.colspan-5 dl dd:nth-of-type(5n + 1),
-table.semanticForms.light dl.colspan-5 dt:nth-of-type(5n + 1),
-table.semanticForms.light dl.colspan-5 dd:nth-of-type(5n + 1) {
-  grid-column: 1;
-}
-form.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 2),
-form.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 2),
-form.semanticForms dl.colspan-5 dt:nth-of-type(5n + 2),
-form.semanticForms dl.colspan-5 dd:nth-of-type(5n + 2),
-form.semanticForms.light fieldset.colspan-5 dl dt:nth-of-type(5n + 2),
-form.semanticForms.light fieldset.colspan-5 dl dd:nth-of-type(5n + 2),
-form.semanticForms.light dl.colspan-5 dt:nth-of-type(5n + 2),
-form.semanticForms.light dl.colspan-5 dd:nth-of-type(5n + 2),
-table.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 2),
-table.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 2),
-table.semanticForms dl.colspan-5 dt:nth-of-type(5n + 2),
-table.semanticForms dl.colspan-5 dd:nth-of-type(5n + 2),
-table.semanticForms.light fieldset.colspan-5 dl dt:nth-of-type(5n + 2),
-table.semanticForms.light fieldset.colspan-5 dl dd:nth-of-type(5n + 2),
-table.semanticForms.light dl.colspan-5 dt:nth-of-type(5n + 2),
-table.semanticForms.light dl.colspan-5 dd:nth-of-type(5n + 2) {
-  grid-column: 2;
-}
-form.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 3),
-form.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 3),
-form.semanticForms dl.colspan-5 dt:nth-of-type(5n + 3),
-form.semanticForms dl.colspan-5 dd:nth-of-type(5n + 3),
-form.semanticForms.light fieldset.colspan-5 dl dt:nth-of-type(5n + 3),
-form.semanticForms.light fieldset.colspan-5 dl dd:nth-of-type(5n + 3),
-form.semanticForms.light dl.colspan-5 dt:nth-of-type(5n + 3),
-form.semanticForms.light dl.colspan-5 dd:nth-of-type(5n + 3),
-table.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 3),
-table.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 3),
-table.semanticForms dl.colspan-5 dt:nth-of-type(5n + 3),
-table.semanticForms dl.colspan-5 dd:nth-of-type(5n + 3),
-table.semanticForms.light fieldset.colspan-5 dl dt:nth-of-type(5n + 3),
-table.semanticForms.light fieldset.colspan-5 dl dd:nth-of-type(5n + 3),
-table.semanticForms.light dl.colspan-5 dt:nth-of-type(5n + 3),
-table.semanticForms.light dl.colspan-5 dd:nth-of-type(5n + 3) {
-  grid-column: 3;
-}
-form.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 4),
-form.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 4),
-form.semanticForms dl.colspan-5 dt:nth-of-type(5n + 4),
-form.semanticForms dl.colspan-5 dd:nth-of-type(5n + 4),
-form.semanticForms.light fieldset.colspan-5 dl dt:nth-of-type(5n + 4),
-form.semanticForms.light fieldset.colspan-5 dl dd:nth-of-type(5n + 4),
-form.semanticForms.light dl.colspan-5 dt:nth-of-type(5n + 4),
-form.semanticForms.light dl.colspan-5 dd:nth-of-type(5n + 4),
-table.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 4),
-table.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 4),
-table.semanticForms dl.colspan-5 dt:nth-of-type(5n + 4),
-table.semanticForms dl.colspan-5 dd:nth-of-type(5n + 4),
-table.semanticForms.light fieldset.colspan-5 dl dt:nth-of-type(5n + 4),
-table.semanticForms.light fieldset.colspan-5 dl dd:nth-of-type(5n + 4),
-table.semanticForms.light dl.colspan-5 dt:nth-of-type(5n + 4),
-table.semanticForms.light dl.colspan-5 dd:nth-of-type(5n + 4) {
-  grid-column: 4;
-}
-form.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 5),
-form.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 5),
-form.semanticForms dl.colspan-5 dt:nth-of-type(5n + 5),
-form.semanticForms dl.colspan-5 dd:nth-of-type(5n + 5),
-form.semanticForms.light fieldset.colspan-5 dl dt:nth-of-type(5n + 5),
-form.semanticForms.light fieldset.colspan-5 dl dd:nth-of-type(5n + 5),
-form.semanticForms.light dl.colspan-5 dt:nth-of-type(5n + 5),
-form.semanticForms.light dl.colspan-5 dd:nth-of-type(5n + 5),
-table.semanticForms fieldset.colspan-5 dl dt:nth-of-type(5n + 5),
-table.semanticForms fieldset.colspan-5 dl dd:nth-of-type(5n + 5),
-table.semanticForms dl.colspan-5 dt:nth-of-type(5n + 5),
-table.semanticForms dl.colspan-5 dd:nth-of-type(5n + 5),
-table.semanticForms.light fieldset.colspan-5 dl dt:nth-of-type(5n + 5),
-table.semanticForms.light fieldset.colspan-5 dl dd:nth-of-type(5n + 5),
-table.semanticForms.light dl.colspan-5 dt:nth-of-type(5n + 5),
-table.semanticForms.light dl.colspan-5 dd:nth-of-type(5n + 5) {
-  grid-column: 5;
 }
 
 .semanticForms table,
