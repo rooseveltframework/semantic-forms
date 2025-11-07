@@ -22,7 +22,7 @@ const semanticForms = () => {
     // update each input in the semantic form
     const inputs = Array.from(form.querySelectorAll('input, textarea, select'))
     for (const input of inputs) {
-      enhanceInput(input)
+      enhanceInput(input, form)
 
       // handle keyboard shortcuts
       if (input.getAttribute('data-focus-key') !== null) {
@@ -31,33 +31,6 @@ const semanticForms = () => {
       }
     }
   }
-
-  // handle undo/redo
-  let lastFocusedInput
-  let lastClearFieldPressed
-  document.addEventListener('keydown', event => {
-    if ((event.ctrlKey || event.metaKey) && event.key === 'z' && !event.shiftKey) {
-      // undo clearing a field
-      if (lastFocusedInput) {
-        if (lastFocusedInput?.parentNode?.querySelector('button.clear').id === `semanticFormsClearButton_${lastClearFieldPressed}` || lastFocusedInput?.parentNode?.querySelector('button.clear').name === `semanticFormsClearButton_${lastClearFieldPressed}`) {
-          if (lastFocusedInput.previousValue) {
-            lastFocusedInput.redoValue = lastFocusedInput.value
-            lastFocusedInput.value = lastFocusedInput.previousValue
-          }
-        }
-      }
-    } else if ((event.ctrlKey && event.key === 'y') || (event.metaKey && event.shiftKey && event.key === 'z')) {
-      // redo clearing a field
-      if (lastFocusedInput) {
-        if (lastFocusedInput?.parentNode?.querySelector('button.clear').id === `semanticFormsClearButton_${lastClearFieldPressed}` || lastFocusedInput?.parentNode?.querySelector('button.clear').name === `semanticFormsClearButton_${lastClearFieldPressed}`) {
-          if (lastFocusedInput.redoValue) {
-            lastFocusedInput.previousValue = lastFocusedInput.value
-            lastFocusedInput.value = lastFocusedInput.redoValue
-          }
-        }
-      }
-    }
-  })
 
   // monitor changes to the DOM and enhance new semanticForms forms that get added
   if (!window.semanticFormsObserver) {
