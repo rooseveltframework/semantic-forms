@@ -28,16 +28,7 @@
   }
   
   .floatLabelForm {
-    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
-  
     div {
-      // position: relative;
-      // width: 100%;
-      // min-width: var(--semanticFormsInputMinWidth);
-      // max-width: 100%;
-      // max-width: 365px;
-      // top level label for checkbox and radio groups
-
       dt {
         position: relative;
     
@@ -85,7 +76,6 @@
         }
       }
   
-      // TODO: wtf is this
       dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) {
         input:not([type=submit], [type=reset], [type=image]),
         select,

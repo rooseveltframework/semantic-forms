@@ -80,16 +80,17 @@ if(input.getAttribute("data-auto-grow")!==null){
 if(input.nodeName==="INPUT"&&input.type==="text"){const newInput=document.createElement("textarea");newInput.id=input.id;newInput.class=input.class;newInput.innerText=input.value;newInput.setAttribute("data-auto-grow","");input.replaceWith(newInput);input=newInput}if(input.nodeName==="TEXTAREA")
 // when pressing enter while this input is focused, we want to submit
 input.addEventListener("keypress",e=>{if(e.key!=="Enter"||e.key==="Enter"&&e.shiftKey)return;e.preventDefault();form.requestSubmit()})}if(type!=="checkbox"&&type!=="radio"){if(!input.getAttribute("placeholder"))input.setAttribute("placeholder"," ");const div=isWrapped?input.closest("dd").parentElement:document.createElement("div");const dt=label.closest("dt");const dd=input.closest("dd");if(!dt||!dd){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that does not have a corresponding ${!dt?"<dt>":"<dd>"} element.`);return}
-// #region input clear button
+// input clear button
 if(input.nodeName!=="SELECT"&&type!=="range"){const clearBtn=document.createElement("button");clearBtn.type="button";clearBtn.title=input.getAttribute("data-clear-field-text")||"Clear field";clearBtn.ariaLabel=input.getAttribute("data-clear-field-text")||"Clear field";clearBtn.tabIndex=-1;clearBtn.innerHTML='<svg viewBox="0 0 16 16" width="18" height="18"><path d="M 1 1 L 15 15 M 1 15 L 15 1" fill="none" stroke-width="2" stroke="currentColor" />';clearBtn.classList.add("clear");clearBtn.id=`semanticFormsClearButton_${input.id}`;clearBtn.addEventListener("click",()=>{input.previousValue=input.value;input.value="";input.focus();lastClearFieldPressed=input.id;
 // used for any other updates required by various inputs
 input.dispatchEvent(new Event("input",{bubbles:true}))});insertAfter(clearBtn,dd.querySelector("label"))}input.addEventListener("focus",event=>{if(event.target.nodeName==="INPUT")lastFocusedInput=event.target});
-// #endregion
-// check for colspan- utility class
+// check for colspan- utility class on dd, and move to div
 if(/colspan-/.test(dd.className)){const match=dd.className.match(/colspan-([0-9]|full)/)[0];dd.classList.remove(match);div.classList.add(match)}
 // check for max-content attribute
 // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing
-if(input.getAttribute("data-max-content")!==null)if(!("fieldSizing"in document.createElement("input").style)){const adjustWidth=()=>{const value=input.value!==""?input.value:input.placeholder;const width=value.length*8+40;input.style.width=width+"px";input.style.maxWidth="100%";div.style.width=width+"px"};adjustWidth();input.addEventListener("input",adjustWidth)}if(!isWrapped){div.append(dt,dd);dl.append(div);
+if(input.getAttribute("data-max-content")!==null)if(!("fieldSizing"in document.createElement("input").style)){const adjustWidth=()=>{const value=input.value!==""?input.value:input.placeholder;const width=value.length*8+40;input.style.width=width+"px";input.style.maxWidth="100%";div.style.width=width+"px"};adjustWidth();input.addEventListener("input",adjustWidth)}
+// if the user did not wrap the input in a div, do it for them
+if(!isWrapped){div.append(dt,dd);dl.append(div);
 // determine visibility of newly created <div>
 if(dt.style.display==="none"&&dd.style.display==="none")div.style.display="none"}}
 // #endregion
@@ -97,9 +98,8 @@ if(dt.style.display==="none"&&dd.style.display==="none")div.style.display="none"
 if(type==="file"){const clearBtn=input.parentElement.querySelector(".clear");input.addEventListener("input",event=>{clearBtn.style.display=event.target.files.length?"flex":"none"});clearBtn.addEventListener("click",()=>{clearBtn.style.display="none"})}
 // handle range inputs with a class to display the value
 if(type==="range"&&input.classList.contains("displayValue")){const label=input.parentNode.parentNode.querySelector("dd label");label.innerHTML+=`<span class="seperator">: </span><output>${input.value}</output>`;input.addEventListener("input",event=>{const output=event.target.parentNode.parentNode.querySelector("output");output.innerHTML=event.target.value})}
-// #region show password button
+// show password button
 if(type==="password"&&input.getAttribute("data-no-reveal")===null){const showBtn=document.createElement("button");showBtn.type="button";showBtn.title=input.getAttribute("data-show-password-text")||"Show password";showBtn.ariaLabel=input.getAttribute("data-show-password-text")||"Show password";showBtn.tabIndex=-1;showBtn.innerHTML=icons.passwordShow;showBtn.classList.add("show");showBtn.id=`semanticFormsShowButton_${input.id}`;const dd=input.closest("dd");if(!dd){console.error(`semantic-forms: Found an input (${input.id||input.getAttribute("name")}) that is not inside a <dd> element.`);return}showBtn.addEventListener("click",()=>{if(input.type==="password"){showBtn.innerHTML=icons.passwordHide;showBtn.title=input.getAttribute("data-hide-password-text")||"Hide password";showBtn.ariaLabel=input.getAttribute("data-hide-password-text")||"Hide password";input.type="text"}else{showBtn.innerHTML=icons.passwordShow;showBtn.title=input.getAttribute("data-show-password-text")||"Show password";showBtn.ariaLabel=input.getAttribute("data-show-password-text")||"Show password";input.type="password"}input.focus()});insertAfter(showBtn,dd.querySelector("label"))}
-// #endregion
 // add listener to shift clear button when scrollbar present
 if(input.nodeName==="TEXTAREA"){if(input.getAttribute("data-disable-autosize")===null){
 // add auto-sizing

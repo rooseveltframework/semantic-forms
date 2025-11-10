@@ -3,8 +3,36 @@ form.semanticForms:not(.semanticFormsActive) {
   gap: 10px;
 
   dl {
-    gap: 0 10px;
+    gap: 10px;
     margin-bottom: 0px;
+  }
+
+  // single checkbox/radios
+  div:not(:has(dd > ul)):has(dd > input[type=checkbox], dd > input[type=radio]) {
+    padding-left: 11px;
+
+    &:has(dd > input[type=radio]) {
+      margin-top: -2px;
+    }
+
+    dt {
+      label {
+        transform: scale(1);
+        margin-top: 4px;
+        margin-left: -4px;
+      }
+    }
+
+    dd {
+      margin-top: 0;
+    
+      // additional info text
+      label {
+        font-size: small;
+        margin-top: -2px;
+        padding-left: 10px;
+      }
+    }
   }
 
   dt {
@@ -16,8 +44,8 @@ form.semanticForms:not(.semanticFormsActive) {
       height: 11px;
       transform: scale(0.7);
       transform-origin: left center;
-      padding-left: 22px;
-      margin-top: -1px;
+      padding-left: 29px;
+      margin-top: -2px;
     }
 
     // add required asterisk
@@ -39,32 +67,8 @@ form.semanticForms:not(.semanticFormsActive) {
     }
   }
 
-  // single checkbox label
-  dt {
-    &:not(:has(+ dd ul)){
-      &:has(+ dd input[type=checkbox]) {
-        label {
-          transform: scale(1);
-          margin-top: 0;
-          margin-left: 8px;
-        }
-      }
-
-      &:has(+ dd input[type=radio]) {
-        label {
-          transform: scale(1);
-          margin-top: 0;
-          margin-left: 8px;
-        }
-      }
-    }
-  } 
-
-
   dd {
-    // margin-bottom: 10px;
     margin-top: var(--semanticFormsInputTopMargin);
-    margin-bottom: 10px;
     min-width: var(--semanticFormsInputMinWidth); /* this matches the max-width of js-enabled inputs */
 
     // checkbox/radio groups
@@ -88,32 +92,6 @@ form.semanticForms:not(.semanticFormsActive) {
       ul + label {
         margin-top: 0;
         font-size: small;
-      }
-    }
-
-    // single checkbox/radio
-    &:not(:has(ul)){
-      &:has(input[type=checkbox], input[type=radio]) {
-        margin-top: 0;
-        padding-left: 10px;
-
-        input[type=checkbox],
-        input[type=radio] {
-          margin-left: 1px;
-          margin-top: 1px;
-          margin-right: auto;
-        }
-
-        // additional info text
-        label {
-          font-size: small;
-          margin-top: -1px;
-          padding-left: 11px;
-        }
-
-        input[type=radio] + label {
-          margin-top: -4px;
-        }
       }
     }
 

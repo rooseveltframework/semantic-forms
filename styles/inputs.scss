@@ -3,6 +3,18 @@
   select {
     height: var(--semanticFormsInputHeight);
   }
+
+  input[type=checkbox],
+  input[type=radio] {
+    width: 18px;
+    height: 18px;
+    margin: 3px 0;
+    cursor: pointer;
+
+    & ~ label:first-of-type {
+      color: var(--semanticFormsTextColor);
+    }
+  }
   
   input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
   select,
@@ -14,19 +26,15 @@
     width: 100%;
     touch-action: manipulation;
     outline: none;
-  
+
+    // custom focus highlight
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 1px var(--semanticFormsBorderColor);
+    }
+
     &:not([type=range]) {
       padding: 6px 30px 6px 20px;
-    }
-  
-    // custom focus highlight
-    input:not([type=submit], [type=reset], [type=image]),
-    select,
-    textarea {
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 1px var(--semanticFormsBorderColor);
-      }
     }
   
     // input type styling
@@ -50,18 +58,6 @@
       // hide native cancel button
       &::-webkit-search-cancel-button {
         display: none;
-      }
-    }
-  
-    &[type=checkbox],
-    &[type=radio] {
-      width: 18px;
-      height: 18px;
-      margin: 3px 0;
-      cursor: pointer;
-  
-      & ~ label:first-of-type {
-        color: var(--semanticFormsTextColor);
       }
     }
   

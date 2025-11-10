@@ -23,18 +23,6 @@
         margin-block: 0.67em;
         font-size: 2em;
       }
-      h2 {
-        position: sticky;
-        top: 0;
-        padding: 10px 5px;
-        z-index: 5;
-      }
-      body.light h2 {
-        background-color: #fff;
-      }
-      body.dark h2 {
-        background-color: #000;
-      }
     </style>
   </head>
   <body>
@@ -159,6 +147,11 @@
                 </select>
               </dd>
             </div>
+          </dl>
+
+          <dl>
+            <dt><label for="non-div-input">Non-div wrapped input</label></dt>
+            <dd><input type="text" id="non-div-input" name="non-div-input"></dd>
           </dl>
 
           <fieldset class="colspan-full">
