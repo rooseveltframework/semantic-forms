@@ -7,6 +7,7 @@ table.semanticForms {
   --semanticFormsFormSubBgColor: #f5f5f5;
   --semanticFormsTextColor: #000;
   --semanticFormsBorderColor: #c0c0c0;
+  --semanticFormsFocusColor: #c0c0c0;
   --semanticFormsSubBorderColor: #c0c0c0;
   --semanticFormsPlaceholderColor: rgba(0, 0, 0, 0.75);
   --semanticFormsScrollbarColor: #c0c0c0;
@@ -38,6 +39,7 @@ table.semanticForms {
   font-family: var(--semanticFormsFontFamily);
   font-size: var(--semanticFormsFontSize);
   width: 100%;
+  overflow-x: hidden;
 
   &:not(table) {
     display: flex;
@@ -87,6 +89,7 @@ table.semanticForms {
   --semanticFormsFormSubBgColor: #2f2f2f;
   --semanticFormsTextColor: #fff;
   --semanticFormsBorderColor: #656565;
+  --semanticFormsFocusColor: #656565;
   --semanticFormsSubBorderColor: #3f3f3f;
   --semanticFormsPlaceholderColor: rgba(255, 255, 255, 0.85);
   --semanticFormsScrollbarColor: #373737;

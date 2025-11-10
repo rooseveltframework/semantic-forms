@@ -30,7 +30,7 @@
     // custom focus highlight
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 1px var(--semanticFormsBorderColor);
+      box-shadow: 0 0 0 1px var(--semanticFormsFocusColor);
     }
 
     &:not([type=range]) {
