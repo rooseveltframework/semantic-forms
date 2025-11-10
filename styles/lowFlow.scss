@@ -96,7 +96,7 @@ form.semanticForms:not(.semanticFormsActive) {
     }
 
     // remove "x" padding
-    input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
+    input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio], [type=range]),
     select,
     textarea {
       padding-right: 6px;

@@ -22,7 +22,7 @@ table.semanticForms {
       border: var(--semanticFormsNestedFieldsetBorder);
 
       // add opacity to styled inputs to prevent blending with background
-      input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
+      input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
       select,
       textarea {
         background-color: var(--semanticFormsNestedInputBgColor);
@@ -127,7 +127,7 @@ table.semanticForms {
       position: relative;
       width: 100%;
       min-width: var(--semanticFormsInputMinWidth);
-      max-width: 365px;
+      max-width: var(--semanticFormsInputMaxWidth);
 
       &:has([data-max-content]) {
         min-width: 150px;
@@ -144,101 +144,116 @@ table.semanticForms {
           }
         }
       }
-    }
 
-    dd {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-width: 100%;
-
-      // checkbox/radio
-      &.singleCheckbox, 
-      &.singleRadio {
-        display: grid;
-        grid-template-columns: 15px 1fr;
-        align-items: center;
-        padding-left: 11px;
-
-        // anything that is not the radio/checkbox and its label
-        & > :not(input[type='checkbox'], input[type='radio'], label) {
-          grid-column: 1 / -1;
-        }
-
-        // additional label takes up entire width
-        label:nth-of-type(2) {
-          grid-column: 1 / -1;
-          padding: 0 10px;
-          font-size: small;
-          color: var(--semanticFormsTextColor);
+      // hide labels for singular buttons
+      &:has(dd > button:only-child, dd > input[type=button]:only-child, dd > input[type=submit]:only-child, dd > input[type=reset]:only-child) {
+        dt label {
+          display: none;
         }
       }
 
-      &.singleRadio > input {
-        margin: 0;
-      }
-
-      // checkbox/radio groups
-      &.checkboxes, &.radios {
-        ul {
-          display: flex;
-          flex-direction: column;
-          margin-top: var(--semanticFormsInputTopMargin);
-          padding-left: 10px;
-          gap: 5px;
-
-          li {
-            display: flex;
-            align-items: center;
-            gap: 5px;
+      dd {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 100%;
+  
+        // checkbox/radio
+        &.singleCheckbox, 
+        &.singleRadio {
+          display: grid;
+          grid-template-columns: 15px 1fr;
+          align-items: center;
+          padding-left: 11px;
+  
+          // anything that is not the radio/checkbox and its label
+          & > :not(input[type='checkbox'], input[type='radio'], label) {
+            grid-column: 1 / -1;
+          }
+  
+          // additional label takes up entire width
+          label:nth-of-type(2) {
+            grid-column: 1 / -1;
+            padding: 0 10px;
+            font-size: small;
+            color: var(--semanticFormsTextColor);
           }
         }
-
-        // checkbox subtext
-        & > label {
-          padding-left: 20px;
-          font-size: small;
-          color: var(--semanticFormsTextColor);
+  
+        &.singleRadio > input {
+          margin: 0;
         }
-      }
-
-      // place buttons next to input
-      // TODO: this will need to be changed when we allow buttons to be the only input
-      &:has(button:not(.clear, .show), input[type="submit"]:not(.clear, .show)) {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-
-        button.clear, button.show {
-          right: 36%; // adjust clear/show button to grid
+  
+        // checkbox/radio groups
+        &.checkboxes, &.radios {
+          ul {
+            display: flex;
+            flex-direction: column;
+            margin-top: var(--semanticFormsInputTopMargin);
+            padding-left: 10px;
+            gap: 5px;
+  
+            li {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+            }
+          }
+  
+          // checkbox subtext
+          & > label {
+            padding-left: 20px;
+            font-size: small;
+            color: var(--semanticFormsTextColor);
+          }
         }
-
-        // inputs take up first section of columns
-        input:not([type="submit"]), select, textarea {
-          grid-row: 1 / 2;
-          grid-column: 1 / 2;
+  
+        // singular button
+        &:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]) {
+          margin-left: 0;
+  
+          button, input[type=button], input[type=submit], input[type=reset] {
+            height: var(--semanticFormsInputHeight);
+          }
         }
-
-        // buttons take up second section of columns
-        button:not(.clear, .show),
-        input[type="submit"]:not(.clear, .show), 
-        input[type="button"]:not(.clear, .show) {
-          grid-row: 1 / 2;
-          grid-column: 2 / 3;
-          width: 100%;
-          max-width: 100%;
-          padding: 10px; // reduce default padding to allow more button text to show
-          height: var(--semanticFormsInputHeight);
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-          display: inline-block;
-        }
-
-        label:nth-of-type(2),
-        label:not(.floatLabelFormAnimatedLabel) {
-          grid-row: 2 / 3;
-          grid-column: 1 / -1;
+  
+        // place buttons next to input
+        &:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show),select ~ input[type=submit],select ~ input[type=reset],select ~ input[type=button]) {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+  
+          button.clear, button.show {
+            right: 36%; // adjust clear/show button to grid
+          }
+  
+          // inputs take up first section of columns
+          input:not([type="submit"]), select, textarea {
+            grid-row: 1 / 2;
+            grid-column: 1 / 2;
+          }
+  
+          // buttons take up second section of columns
+          button:not(.clear, .show),
+          input[type="submit"]:not(.clear, .show), 
+          input[type="button"]:not(.clear, .show) {
+            grid-row: 1 / 2;
+            grid-column: 2 / 3;
+            width: 100%;
+            max-width: 100%;
+            padding: 10px; // reduce default padding to allow more button text to show
+            height: var(--semanticFormsInputHeight);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+          }
+  
+          label:nth-of-type(2),
+          label:not(.floatLabelFormAnimatedLabel) {
+            grid-row: 2 / 3;
+            grid-column: 1 / -1;
+          }
         }
       }
     }
@@ -268,6 +283,18 @@ table.semanticForms {
     flex-wrap: wrap;
     gap: 10px;
     list-style-type: none;
+  }
+
+  .align-start {
+    justify-self: start;
+  }
+
+  .align-center {
+    justify-self: center;
+  }
+
+  .align-end {
+    justify-self: end;
   }
 }
 

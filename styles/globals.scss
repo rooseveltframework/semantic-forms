@@ -22,6 +22,7 @@ table.semanticForms {
   --semanticFormsInputFontSize: 16px;
   --semanticFormsInputTopMargin: 15px;
   --semanticFormsInputMinWidth: 250px;
+  --semanticFormsInputMaxWidth: 365px;
   --semanticFormsBorderRadius: 10px;
   --semanticFormsNestedFieldsetBgColor: oklch(from var(--semanticFormsFormSubBgColor) 0.3 c h / 0.05);
   --semanticFormsNestedFieldsetBorder: 1px rgba(0, 0, 0, .2) solid;
@@ -78,6 +79,14 @@ table.semanticForms {
     color: var(--semanticFormsTextColor);
     font-family: var(--semanticFormsFontFamily);
     box-sizing: border-box;
+  }
+
+  menu:has(li > input, li > label, li > button, li > select, li > textarea),
+  dl:has(dt > label, dd > input, dd > select, dd > textarea),
+  dt:has(> input, > select, > textarea),
+  dd:has(> input, > select, > textarea, > ul, > menu),
+  div:has(dt, dd),
+  dd > p {
     margin: 0;
     padding: 0;
   }

@@ -1,5 +1,5 @@
 .semanticForms {
-  input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
+  input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
   select {
     height: var(--semanticFormsInputHeight);
   }
@@ -16,7 +16,7 @@
     }
   }
   
-  input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio]),
+  input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
   select,
   textarea {
     font-size: var(--semanticFormsInputFontSize);
@@ -178,6 +178,7 @@
   // button styling
   input[type=submit],
   input[type=reset],
+  input[type=button],
   button:not(.clear, .show),
   .button-link {
     appearance: none;
@@ -206,6 +207,7 @@
   
   input[type=submit],
   input[type=reset],
+  input[type=button],
   input[type=image],
   button:not(.clear):not(.show),
   .button-link {
@@ -231,7 +233,7 @@
     color: var(--semanticFormsInvalid);
   }
   
-  input:not([type=submit], [type=reset], [type=image]),
+  input:not([type=submit], [type=reset], [type=button], [type=image]),
   select,
   textarea {
     &.invalid,

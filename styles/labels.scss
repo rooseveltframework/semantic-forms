@@ -77,7 +77,7 @@
       }
   
       dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) {
-        input:not([type=submit], [type=reset], [type=image]),
+        input:not([type=submit], [type=reset], [type=button], [type=image]),
         select,
         textarea {
           &:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
@@ -89,7 +89,7 @@
         }
   
         // hide float label if no-float-label class is present
-        input:not([type=submit], [type=reset], [type=image]),
+        input:not([type=submit], [type=reset], [type=button], [type=image]),
         select,
         textarea {
           &:focus.no-float-label ~ label:first-of-type,
