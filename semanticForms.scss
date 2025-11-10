@@ -20,6 +20,7 @@ table.semanticForms {
     fieldset {
       background-color: var(--semanticFormsNestedFieldsetBgColor);
       border: var(--semanticFormsNestedFieldsetBorder);
+      margin-top: 15px;
 
       // add opacity to styled inputs to prevent blending with background
       input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
@@ -113,6 +114,7 @@ table.semanticForms {
 
       & > dl:first-of-type {
         margin-top: 15px;
+        margin-bottom: 15px;
       }
     }
   }

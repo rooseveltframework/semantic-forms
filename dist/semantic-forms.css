@@ -1220,6 +1220,7 @@ form.semanticForms fieldset fieldset,
 table.semanticForms fieldset fieldset {
   background-color: var(--semanticFormsNestedFieldsetBgColor);
   border: var(--semanticFormsNestedFieldsetBorder);
+  margin-top: 15px;
 }
 form.semanticForms fieldset fieldset input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
 form.semanticForms fieldset fieldset select,
@@ -1314,6 +1315,7 @@ table.semanticForms details[open] summary::before {
 form.semanticForms details[open] > dl:first-of-type,
 table.semanticForms details[open] > dl:first-of-type {
   margin-top: 15px;
+  margin-bottom: 15px;
 }
 form.semanticForms dl,
 table.semanticForms dl {

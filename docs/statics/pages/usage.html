@@ -596,6 +596,38 @@
         </menu>
       </form>
 
+      <p>Buttons may also be integrated into the responsive grid by treating it like a standard form input.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms" method="post">
+  <dl>
+    <div>
+      <dt><label for="inline-btn-input">Some input</label></dt>
+      <dd><input type="text" name="inline-btn-input" id="inline-btn-input"></dd>
+    </div>
+
+    <div>
+      <dt><label for="inline-btn">Inline button</label></dt>
+      <dd><button id="inline-btn">Inline button</button></dd>
+    </div>
+  </dl>
+</form>
+</escape></code></pre>
+      
+      <form class="semanticForms" method="post">
+        <dl>
+          <div>
+            <dt><label for="inline-btn-input">Some input</label></dt>
+            <dd><input type="text" name="inline-btn-input" id="inline-btn-input"></dd>
+          </div>
+        
+          <div>
+            <dt><label for="inline-btn">Inline button</label></dt>
+            <dd><button id="inline-btn">Inline button</button></dd>
+          </div>
+        </dl>
+      </form>
+
       <p>You can also style a link like a Semantic Forms button by applying a class of <code>button-link</code> to it.</p>
 
       <h4 id="checkboxesandradios">Checkboxes and radio buttons</h4>
