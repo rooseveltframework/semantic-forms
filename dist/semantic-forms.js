@@ -1,19 +1,22 @@
 (function(root,factory){if(typeof exports==="object"&&typeof module==="object")module.exports=factory();else if(typeof define==="function"&&define.amd)define("semanticForms",[],factory);else if(typeof exports==="object")exports["semanticForms"]=factory();else root["semanticForms"]=factory()})(this,()=>/******/(()=>{// webpackBootstrap
-/******/"use strict";
 /******/var __webpack_modules__={
-/***/356:
-/***/(module,__unused_webpack___webpack_exports__,__webpack_require__)=>{// ./lib/helpers.js
-/**
- * Uses the navigator to best determine the clients operating system.
- * @returns Operating system string (`mac`, `windows`, `linux`)
- */
-const getOS=()=>{const userAgent=window.navigator.userAgent;const platform=window.navigator.platform;let os=null;if(platform.includes("Win"))os="windows";else if(platform.includes("Mac")||/iPhone|iPad|iPod/.test(userAgent))os="mac";else if(platform.includes("Linux")||/Android/.test(userAgent))os="linux";return os}
-/**
- * Places an element immediately after another element
- * @param {Object} newNode element being placed after the reference node
- * @param {*} referenceNode element to be used as reference for new node
- */;const insertAfter=(newNode,referenceNode)=>{if(referenceNode.nextSibling)referenceNode.parentNode.insertBefore(newNode,referenceNode.nextSibling);else referenceNode.parentNode.appendChild(newNode)};// ./lib/keyboardShortcuts.js
-const specialCharMap={Minus:"-",Equal:"=",BracketLeft:"[",BracketRight:"]",Backslash:"\\",Semicolon:";",Quote:"'",Comma:",",Period:".",Slash:"/",Backquote:"`"};const shiftSpecialCharMap={1:"!",2:"@",3:"#",4:"$",5:"%",6:"^",7:"&",8:"*",9:"(",0:")",Minus:"_",Equal:"+",BracketLeft:"{",BracketRight:"}",Backslash:"|",Semicolon:":",Quote:'"',Comma:"<",Period:">",Slash:"?",Backquote:"~"};
+/***/90:
+/***/(module,__unused_webpack_exports,__webpack_require__)=>{const{createKeyboardShortcut,shortcutListener}=__webpack_require__(497);const{enhanceInput}=__webpack_require__(866);const semanticForms=()=>{
+// do some feature detection so none of the JS executes if the browser is too old
+if(typeof document.getElementsByClassName!=="function"||typeof document.querySelector!=="function"||!document.body.classList||!window.MutationObserver){console.warn("semantic-forms was loaded into an unsupported browser and will not execute.");return}
+// custom keyboard shortcut listener
+const keyboardShortcuts=[];document.addEventListener("keydown",e=>shortcutListener(e,keyboardShortcuts));
+// progressively enhance form elements that have the semanticForms class
+const forms=document.querySelectorAll("form.semanticForms:not(.semanticFormsActive), table.semanticForms:not(.semanticFormsActive)");for(const form of forms){form.classList.add("semanticFormsActive");if(form.classList.contains("lowFlow"))continue;
+// update each input in the semantic form
+const inputs=Array.from(form.querySelectorAll("input, textarea, select"));for(const input of inputs){enhanceInput(input,form);
+// handle keyboard shortcuts
+if(input.getAttribute("data-focus-key")!==null){const shortcut=createKeyboardShortcut(input,keyboardShortcuts);keyboardShortcuts.push(shortcut)}}}
+// monitor changes to the DOM and enhance new semanticForms forms that get added
+if(!window.semanticFormsObserver){window.semanticFormsObserver=new window.MutationObserver(mutations=>{let stop=false;for(const mutation of mutations){for(const node of mutation.addedNodes)if(node.nodeName==="FORM"||node?.querySelector?.("form")){semanticForms();stop=true}if(stop)break}});window.semanticFormsObserver.observe(document.body,{attributes:false,childList:true,characterData:false,subtree:true})}semanticForms.reinitialize=form=>{form.classList.remove("semanticFormsActive");semanticForms()}};module.exports=semanticForms
+/***/},
+/***/497:
+/***/(module,__unused_webpack_exports,__webpack_require__)=>{const{getOS,insertAfter}=__webpack_require__(584);const specialCharMap={Minus:"-",Equal:"=",BracketLeft:"[",BracketRight:"]",Backslash:"\\",Semicolon:";",Quote:"'",Comma:",",Period:".",Slash:"/",Backquote:"`"};const shiftSpecialCharMap={1:"!",2:"@",3:"#",4:"$",5:"%",6:"^",7:"&",8:"*",9:"(",0:")",Minus:"_",Equal:"+",BracketLeft:"{",BracketRight:"}",Backslash:"|",Semicolon:":",Quote:'"',Comma:"<",Period:">",Slash:"?",Backquote:"~"};
 // handles keyboard shortcut events
 const shortcutListener=(e,shortcuts)=>{
 // search for matching shortcut from cached shortcut configs
@@ -41,8 +44,23 @@ if(input.nodeName==="TEXTAREA"||input.type==="text"||input.type==="number"){
 // create focus indicator for valid inputs
 const indicator=document.createElement("span");indicator.classList.add("focus-key");indicator.innerHTML=`<kbd>${modifierSymbol} ${focusKey.toUpperCase()}</kbd>`;const label=input.nextSibling;insertAfter(indicator,label)}else
 // update the input title
-if(input.getAttribute("title"))input.setAttribute("title",input.getAttribute("title")+` (${modifierSymbol} + ${focusKey})`);else input.setAttribute("title",`Focus with ${modifierSymbol} + ${focusKey}`);return{key:focusKey,modifier:modifierKey,input,os,defaultModifier}};// ./lib/inputEnhancements.js
-const icons={passwordShow:'<svg fill="none" height="256" viewBox="0 0 24 24" width="256" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m1 12s4-8 11-8 11 8 11 8"/><path d="m1 12s4 8 11 8 11-8 11-8"/><circle cx="12" cy="12" r="3"/></g></svg>',passwordHide:'<svg fill="none" height="256" viewBox="0 0 24 24" width="256" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m2 2 20 20"/><path d="m6.71277 6.7226c-3.04798 2.07267-4.71277 5.2774-4.71277 5.2774s3.63636 7 10 7c2.0503 0 3.8174-.7266 5.2711-1.7116m-6.2711-12.23018c.3254-.03809.6588-.05822 1-.05822 6.3636 0 10 7 10 7s-.6918 1.3317-2 2.8335"/><path d="m14 14.2362c-.5308.475-1.2316.7639-2 .7639-1.6569 0-3-1.3431-3-3 0-.8237.33193-1.5698.86932-2.11192"/></g></svg>',helpIcon:'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" version="1.1" style="overflow:visible;"><rect width="16" height="16" fill="none"/><path fill="currentColor" d="M8,10.5c-0.552,0-1,0.448-1,1c0,0.552,0.448,1,1,1c0.552,0,1-0.448,1-1C9,10.948,8.552,10.5,8,10.5z M8,0 C3.582,0,0,3.582,0,8c0,4.418,3.582,8,8,8s8-3.582,8-8C16,3.582,12.418,0,8,0z M12.243,12.243C11.109,13.376,9.603,14,8,14 s-3.109-0.624-4.243-1.757C2.624,11.109,2,9.603,2,8s0.624-3.109,1.757-4.243C4.891,2.624,6.397,2,8,2s3.109,0.624,4.243,1.757 C13.376,4.891,14,6.397,14,8C14,9.603,13.376,11.109,12.243,12.243z M7.927,3.755c-2.248,0-2.76,1.695-2.802,2.906h1.571 c0.028-0.256,0.101-1.418,1.221-1.418c0.672,0,1.206,0.406,1.206,1.175c0,0.695-0.724,1.155-1.303,1.711 C7.241,8.685,7.168,9.325,7.168,9.824V10c0.146,0,1.615,0,1.615,0V9.824c0-1.256,1.967-1.594,1.967-3.541 C10.75,5.059,9.874,3.755,7.927,3.755z"/></svg>'};const lookups={nodeName:["TEXTAREA","SELECT"],inputType:["checkbox","color","date","datetime-local","email","file","image","month","number","password","radio","range","search","tel","text","time","url","week"]};let lastFocusedInput;let lastClearFieldPressed;const enhanceInput=(input,form)=>{
+if(input.getAttribute("title"))input.setAttribute("title",input.getAttribute("title")+` (${modifierSymbol} + ${focusKey})`);else input.setAttribute("title",`Focus with ${modifierSymbol} + ${focusKey}`);return{key:focusKey,modifier:modifierKey,input,os,defaultModifier}};module.exports={shortcutListener,createKeyboardShortcut}
+/***/},
+/***/584:
+/***/module=>{
+/**
+ * Uses the navigator to best determine the clients operating system.
+ * @returns Operating system string (`mac`, `windows`, `linux`)
+ */
+const getOS=()=>{const userAgent=window.navigator.userAgent;const platform=window.navigator.platform;let os=null;if(platform.includes("Win"))os="windows";else if(platform.includes("Mac")||/iPhone|iPad|iPod/.test(userAgent))os="mac";else if(platform.includes("Linux")||/Android/.test(userAgent))os="linux";return os}
+/**
+ * Places an element immediately after another element
+ * @param {Object} newNode element being placed after the reference node
+ * @param {*} referenceNode element to be used as reference for new node
+ */;const insertAfter=(newNode,referenceNode)=>{if(referenceNode.nextSibling)referenceNode.parentNode.insertBefore(newNode,referenceNode.nextSibling);else referenceNode.parentNode.appendChild(newNode)};module.exports={getOS,insertAfter}
+/***/},
+/***/866:
+/***/(module,__unused_webpack_exports,__webpack_require__)=>{const{insertAfter}=__webpack_require__(584);const icons={passwordShow:'<svg fill="none" height="256" viewBox="0 0 24 24" width="256" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m1 12s4-8 11-8 11 8 11 8"/><path d="m1 12s4 8 11 8 11-8 11-8"/><circle cx="12" cy="12" r="3"/></g></svg>',passwordHide:'<svg fill="none" height="256" viewBox="0 0 24 24" width="256" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m2 2 20 20"/><path d="m6.71277 6.7226c-3.04798 2.07267-4.71277 5.2774-4.71277 5.2774s3.63636 7 10 7c2.0503 0 3.8174-.7266 5.2711-1.7116m-6.2711-12.23018c.3254-.03809.6588-.05822 1-.05822 6.3636 0 10 7 10 7s-.6918 1.3317-2 2.8335"/><path d="m14 14.2362c-.5308.475-1.2316.7639-2 .7639-1.6569 0-3-1.3431-3-3 0-.8237.33193-1.5698.86932-2.11192"/></g></svg>',helpIcon:'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16" version="1.1" style="overflow:visible;"><rect width="16" height="16" fill="none"/><path fill="currentColor" d="M8,10.5c-0.552,0-1,0.448-1,1c0,0.552,0.448,1,1,1c0.552,0,1-0.448,1-1C9,10.948,8.552,10.5,8,10.5z M8,0 C3.582,0,0,3.582,0,8c0,4.418,3.582,8,8,8s8-3.582,8-8C16,3.582,12.418,0,8,0z M12.243,12.243C11.109,13.376,9.603,14,8,14 s-3.109-0.624-4.243-1.757C2.624,11.109,2,9.603,2,8s0.624-3.109,1.757-4.243C4.891,2.624,6.397,2,8,2s3.109,0.624,4.243,1.757 C13.376,4.891,14,6.397,14,8C14,9.603,13.376,11.109,12.243,12.243z M7.927,3.755c-2.248,0-2.76,1.695-2.802,2.906h1.571 c0.028-0.256,0.101-1.418,1.221-1.418c0.672,0,1.206,0.406,1.206,1.175c0,0.695-0.724,1.155-1.303,1.711 C7.241,8.685,7.168,9.325,7.168,9.824V10c0.146,0,1.615,0,1.615,0V9.824c0-1.256,1.967-1.594,1.967-3.541 C10.75,5.059,9.874,3.755,7.927,3.755z"/></svg>'};const lookups={nodeName:["TEXTAREA","SELECT"],inputType:["checkbox","color","date","datetime-local","email","file","image","month","number","password","radio","range","search","tel","text","time","url","week"]};let lastFocusedInput;let lastClearFieldPressed;const enhanceInput=(input,form)=>{
 // ignore input if it has previously been formatted
 if(input.classList.contains("semanticform")||!input.id)return;const type=input.getAttribute("type");if(!lookups.nodeName.includes(input.nodeName)&&!lookups.inputType.includes(type))return;
 // recursively find <dl> element
@@ -116,20 +134,7 @@ document.addEventListener("keydown",event=>{if((event.ctrlKey||event.metaKey)&&e
 // undo clearing a field
 if(lastFocusedInput)if(lastFocusedInput?.parentNode?.querySelector("button.clear").id===`semanticFormsClearButton_${lastClearFieldPressed}`||lastFocusedInput?.parentNode?.querySelector("button.clear").name===`semanticFormsClearButton_${lastClearFieldPressed}`)if(lastFocusedInput.previousValue){lastFocusedInput.redoValue=lastFocusedInput.value;lastFocusedInput.value=lastFocusedInput.previousValue}}else if(event.ctrlKey&&event.key==="y"||event.metaKey&&event.shiftKey&&event.key==="z")
 // redo clearing a field
-if(lastFocusedInput)if(lastFocusedInput?.parentNode?.querySelector("button.clear").id===`semanticFormsClearButton_${lastClearFieldPressed}`||lastFocusedInput?.parentNode?.querySelector("button.clear").name===`semanticFormsClearButton_${lastClearFieldPressed}`)if(lastFocusedInput.redoValue){lastFocusedInput.previousValue=lastFocusedInput.value;lastFocusedInput.value=lastFocusedInput.redoValue}})};// ./semanticForms.js
-/* module decorator */module=__webpack_require__.hmd(module);const semanticForms=()=>{
-// do some feature detection so none of the JS executes if the browser is too old
-if(typeof document.getElementsByClassName!=="function"||typeof document.querySelector!=="function"||!document.body.classList||!window.MutationObserver){console.warn("semantic-forms was loaded into an unsupported browser and will not execute.");return}
-// custom keyboard shortcut listener
-const keyboardShortcuts=[];document.addEventListener("keydown",e=>shortcutListener(e,keyboardShortcuts));
-// progressively enhance form elements that have the semanticForms class
-const forms=document.querySelectorAll("form.semanticForms:not(.semanticFormsActive), table.semanticForms:not(.semanticFormsActive)");for(const form of forms){form.classList.add("semanticFormsActive");if(form.classList.contains("lowFlow"))continue;
-// update each input in the semantic form
-const inputs=Array.from(form.querySelectorAll("input, textarea, select"));for(const input of inputs){enhanceInput(input,form);
-// handle keyboard shortcuts
-if(input.getAttribute("data-focus-key")!==null){const shortcut=createKeyboardShortcut(input,keyboardShortcuts);keyboardShortcuts.push(shortcut)}}}
-// monitor changes to the DOM and enhance new semanticForms forms that get added
-if(!window.semanticFormsObserver){window.semanticFormsObserver=new window.MutationObserver(mutations=>{let stop=false;for(const mutation of mutations){for(const node of mutation.addedNodes)if(node.nodeName==="FORM"||node?.querySelector?.("form")){semanticForms();stop=true}if(stop)break}});window.semanticFormsObserver.observe(document.body,{attributes:false,childList:true,characterData:false,subtree:true})}semanticForms.reinitialize=form=>{form.classList.remove("semanticFormsActive");semanticForms()}};module.exports=semanticForms
+if(lastFocusedInput)if(lastFocusedInput?.parentNode?.querySelector("button.clear").id===`semanticFormsClearButton_${lastClearFieldPressed}`||lastFocusedInput?.parentNode?.querySelector("button.clear").name===`semanticFormsClearButton_${lastClearFieldPressed}`)if(lastFocusedInput.redoValue){lastFocusedInput.previousValue=lastFocusedInput.value;lastFocusedInput.value=lastFocusedInput.redoValue}})};module.exports={enhanceInput}
 /***/}
 /******/};
 /************************************************************************/
@@ -145,43 +150,24 @@ if(!window.semanticFormsObserver){window.semanticFormsObserver=new window.Mutati
 /******/
 /******/ // Create a new module (and put it into the cache)
 /******/var module=__webpack_module_cache__[moduleId]={
-/******/id:moduleId,
-/******/loaded:false,
+/******/ // no module.id needed
+/******/ // no module.loaded needed
 /******/exports:{}
 /******/};
 /******/
 /******/ // Execute the module function
 /******/__webpack_modules__[moduleId](module,module.exports,__webpack_require__);
 /******/
-/******/ // Flag the module as loaded
-/******/module.loaded=true;
-/******/
 /******/ // Return the exports of the module
 /******/return module.exports;
 /******/}
-/******/
-/************************************************************************/
-/******/ /* webpack/runtime/harmony module decorator */
-/******/(()=>{
-/******/__webpack_require__.hmd=module=>{
-/******/module=Object.create(module);
-/******/if(!module.children)module.children=[];
-/******/Object.defineProperty(module,"exports",{
-/******/enumerable:true,
-/******/set:()=>{
-/******/throw new Error("ES Modules may not assign module.exports or exports.*, Use ESM export syntax, instead: "+module.id);
-/******/}
-/******/});
-/******/return module;
-/******/};
-/******/})();
 /******/
 /************************************************************************/
 /******/
 /******/ // startup
 /******/ // Load entry module and return exports
 /******/ // This entry module is referenced by other modules so it can't be inlined
-/******/var __webpack_exports__=__webpack_require__(356);
+/******/var __webpack_exports__=__webpack_require__(90);
 /******/
 /******/return __webpack_exports__;
 /******/})());

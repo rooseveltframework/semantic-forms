@@ -1,5 +1,5 @@
-import { shortcutListener, createKeyboardShortcut } from './lib/keyboardShortcuts.js'
-import { enhanceInput } from './lib/inputEnhancements.js'
+const { createKeyboardShortcut, shortcutListener } = require('./lib/keyboardShortcuts.js')
+const { enhanceInput } = require('./lib/inputEnhancements.js')
 
 const semanticForms = () => {
   // do some feature detection so none of the JS executes if the browser is too old
