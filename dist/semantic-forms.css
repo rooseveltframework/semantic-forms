@@ -376,6 +376,9 @@ table.semanticForms.dark input::-webkit-calendar-picker-indicator {
 .semanticForms button.show {
   right: 25px;
 }
+.semanticForms button.show svg {
+  height: 100%;
+}
 .semanticForms textarea ~ .clear {
   bottom: auto;
 }
@@ -1205,8 +1208,7 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   margin-top: var(--semanticFormsInputTopMargin);
 }
 
-form.semanticForms fieldset,
-table.semanticForms fieldset {
+.semanticForms fieldset {
   border-radius: var(--semanticFormsBorderRadius);
   background: var(--semanticFormsFormSubBgColor);
   border: 1px var(--semanticFormsSubBorderColor) solid;
@@ -1216,22 +1218,17 @@ table.semanticForms fieldset {
   padding: 10px 10px 20px 10px;
   margin-bottom: 15px;
 }
-form.semanticForms fieldset fieldset,
-table.semanticForms fieldset fieldset {
+.semanticForms fieldset fieldset {
   background-color: var(--semanticFormsNestedFieldsetBgColor);
   border: var(--semanticFormsNestedFieldsetBorder);
   margin-top: 15px;
 }
-form.semanticForms fieldset fieldset input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
-form.semanticForms fieldset fieldset select,
-form.semanticForms fieldset fieldset textarea,
-table.semanticForms fieldset fieldset input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
-table.semanticForms fieldset fieldset select,
-table.semanticForms fieldset fieldset textarea {
+.semanticForms fieldset fieldset input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
+.semanticForms fieldset fieldset select,
+.semanticForms fieldset fieldset textarea {
   background-color: var(--semanticFormsNestedInputBgColor);
 }
-form.semanticForms details,
-table.semanticForms details {
+.semanticForms details {
   box-sizing: border-box;
   position: relative;
   background-color: var(--semanticFormsNestedFieldsetBgColor);
@@ -1244,27 +1241,23 @@ table.semanticForms details {
   margin-bottom: 15px;
   min-height: calc(var(--semanticFormsFontSize) + 20px);
 }
-form.semanticForms details::details-content,
-table.semanticForms details::details-content {
+.semanticForms details::details-content {
   visibility: hidden;
   opacity: 0;
   transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
 }
 @supports (interpolate-size: allow-keywords) {
-  form.semanticForms details,
-  table.semanticForms details {
+  .semanticForms details {
     transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms, height 250ms;
   }
-  form.semanticForms details::details-content,
-  table.semanticForms details::details-content {
+  .semanticForms details::details-content {
     height: 0;
     overflow: hidden;
     transition: height 250ms, content-visibility 250ms;
     transition-behavior: allow-discrete;
   }
 }
-form.semanticForms details summary,
-table.semanticForms details summary {
+.semanticForms details summary {
   cursor: pointer;
   margin: 0;
   margin-bottom: 10px;
@@ -1274,13 +1267,10 @@ table.semanticForms details summary {
   left: 22px;
   transition: top 250ms;
 }
-form.semanticForms details summary::-webkit-details-marker, form.semanticForms details summary::marker,
-table.semanticForms details summary::-webkit-details-marker,
-table.semanticForms details summary::marker {
+.semanticForms details summary::-webkit-details-marker, .semanticForms details summary::marker {
   content: "";
 }
-form.semanticForms details summary::before,
-table.semanticForms details summary::before {
+.semanticForms details summary::before {
   content: "";
   border-width: 0.4rem;
   border-style: solid;
@@ -1292,155 +1282,115 @@ table.semanticForms details summary::before {
   transform-origin: 0.2rem 50%;
   transition: 250ms transform ease;
 }
-form.semanticForms details[open],
-table.semanticForms details[open] {
+.semanticForms details[open] {
   margin-bottom: 10px;
 }
-form.semanticForms details[open]::details-content,
-table.semanticForms details[open]::details-content {
+.semanticForms details[open]::details-content {
   visibility: visible;
   opacity: 1;
   transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
 }
 @supports (interpolate-size: allow-keywords) {
-  form.semanticForms details[open]::details-content,
-  table.semanticForms details[open]::details-content {
+  .semanticForms details[open]::details-content {
     height: auto;
   }
 }
-form.semanticForms details[open] summary::before,
-table.semanticForms details[open] summary::before {
+.semanticForms details[open] summary::before {
   transform: rotate(90deg);
 }
-form.semanticForms details[open] > dl:first-of-type,
-table.semanticForms details[open] > dl:first-of-type {
+.semanticForms details[open] > dl:first-of-type {
   margin-top: 15px;
   margin-bottom: 15px;
 }
-form.semanticForms dl,
-table.semanticForms dl {
+.semanticForms dl {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
   gap: 10px;
   margin-bottom: 10px;
 }
-form.semanticForms dl div,
-table.semanticForms dl div {
+.semanticForms dl div {
   position: relative;
   width: 100%;
   min-width: var(--semanticFormsInputMinWidth);
   max-width: var(--semanticFormsInputMaxWidth);
 }
-form.semanticForms dl div:has([data-max-content]),
-table.semanticForms dl div:has([data-max-content]) {
+.semanticForms dl div:has([data-max-content]) {
   min-width: 150px;
   max-width: max-content;
 }
-form.semanticForms dl div:has([data-max-content]) dd,
-table.semanticForms dl div:has([data-max-content]) dd {
+.semanticForms dl div:has([data-max-content]) dd {
   width: max-content;
 }
-form.semanticForms dl div:has([data-max-content]) dd input, form.semanticForms dl div:has([data-max-content]) dd select,
-table.semanticForms dl div:has([data-max-content]) dd input,
-table.semanticForms dl div:has([data-max-content]) dd select {
+.semanticForms dl div:has([data-max-content]) dd input, .semanticForms dl div:has([data-max-content]) dd select {
   field-sizing: content;
   min-width: 150px;
   max-width: max-content;
 }
-form.semanticForms dl div:has(dd > button:only-child, dd > input[type=button]:only-child, dd > input[type=submit]:only-child, dd > input[type=reset]:only-child) dt label,
-table.semanticForms dl div:has(dd > button:only-child, dd > input[type=button]:only-child, dd > input[type=submit]:only-child, dd > input[type=reset]:only-child) dt label {
+.semanticForms dl div:has(dd > button:only-child, dd > input[type=button]:only-child, dd > input[type=submit]:only-child, dd > input[type=reset]:only-child) dt label {
   display: none;
 }
-form.semanticForms dl div dd,
-table.semanticForms dl div dd {
+.semanticForms dl div dd {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
   max-width: 100%;
 }
-form.semanticForms dl div dd.singleCheckbox, form.semanticForms dl div dd.singleRadio,
-table.semanticForms dl div dd.singleCheckbox,
-table.semanticForms dl div dd.singleRadio {
+.semanticForms dl div dd.singleCheckbox, .semanticForms dl div dd.singleRadio {
   display: grid;
   grid-template-columns: 15px 1fr;
   align-items: center;
   padding-left: 11px;
 }
-form.semanticForms dl div dd.singleCheckbox > :not(input[type=checkbox], input[type=radio], label), form.semanticForms dl div dd.singleRadio > :not(input[type=checkbox], input[type=radio], label),
-table.semanticForms dl div dd.singleCheckbox > :not(input[type=checkbox], input[type=radio], label),
-table.semanticForms dl div dd.singleRadio > :not(input[type=checkbox], input[type=radio], label) {
+.semanticForms dl div dd.singleCheckbox > :not(input[type=checkbox], input[type=radio], label), .semanticForms dl div dd.singleRadio > :not(input[type=checkbox], input[type=radio], label) {
   grid-column: 1/-1;
 }
-form.semanticForms dl div dd.singleCheckbox label:nth-of-type(2), form.semanticForms dl div dd.singleRadio label:nth-of-type(2),
-table.semanticForms dl div dd.singleCheckbox label:nth-of-type(2),
-table.semanticForms dl div dd.singleRadio label:nth-of-type(2) {
+.semanticForms dl div dd.singleCheckbox label:nth-of-type(2), .semanticForms dl div dd.singleRadio label:nth-of-type(2) {
   grid-column: 1/-1;
   padding: 0 10px;
   font-size: small;
   color: var(--semanticFormsTextColor);
 }
-form.semanticForms dl div dd.singleRadio > input,
-table.semanticForms dl div dd.singleRadio > input {
+.semanticForms dl div dd.singleRadio > input {
   margin: 0;
 }
-form.semanticForms dl div dd.checkboxes ul, form.semanticForms dl div dd.radios ul,
-table.semanticForms dl div dd.checkboxes ul,
-table.semanticForms dl div dd.radios ul {
+.semanticForms dl div dd.checkboxes ul, .semanticForms dl div dd.radios ul {
   display: flex;
   flex-direction: column;
   margin-top: var(--semanticFormsInputTopMargin);
   padding-left: 10px;
   gap: 5px;
 }
-form.semanticForms dl div dd.checkboxes ul li, form.semanticForms dl div dd.radios ul li,
-table.semanticForms dl div dd.checkboxes ul li,
-table.semanticForms dl div dd.radios ul li {
+.semanticForms dl div dd.checkboxes ul li, .semanticForms dl div dd.radios ul li {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-form.semanticForms dl div dd.checkboxes > label, form.semanticForms dl div dd.radios > label,
-table.semanticForms dl div dd.checkboxes > label,
-table.semanticForms dl div dd.radios > label {
+.semanticForms dl div dd.checkboxes > label, .semanticForms dl div dd.radios > label {
   padding-left: 20px;
   font-size: small;
   color: var(--semanticFormsTextColor);
 }
-form.semanticForms dl div dd:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]),
-table.semanticForms dl div dd:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]) {
+.semanticForms dl div dd:has(button:only-child, input[type=button]:only-child, input[type=submit]:only-child, input[type=reset]:only-child) {
   margin-left: 0;
 }
-form.semanticForms dl div dd:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]) button, form.semanticForms dl div dd:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]) input[type=button], form.semanticForms dl div dd:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]) input[type=submit], form.semanticForms dl div dd:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]) input[type=reset],
-table.semanticForms dl div dd:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]) button,
-table.semanticForms dl div dd:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]) input[type=button],
-table.semanticForms dl div dd:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]) input[type=submit],
-table.semanticForms dl div dd:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]) input[type=reset] {
+.semanticForms dl div dd:has(button:only-child, input[type=button]:only-child, input[type=submit]:only-child, input[type=reset]:only-child) button, .semanticForms dl div dd:has(button:only-child, input[type=button]:only-child, input[type=submit]:only-child, input[type=reset]:only-child) input[type=button], .semanticForms dl div dd:has(button:only-child, input[type=button]:only-child, input[type=submit]:only-child, input[type=reset]:only-child) input[type=submit], .semanticForms dl div dd:has(button:only-child, input[type=button]:only-child, input[type=submit]:only-child, input[type=reset]:only-child) input[type=reset] {
   height: var(--semanticFormsInputHeight);
 }
-form.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]),
-table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) {
+.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) {
   display: grid;
   grid-template-columns: 2fr 1fr;
 }
-form.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) button.clear, form.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) button.show,
-table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) button.clear,
-table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) button.show {
+.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) button.clear, .semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) button.show {
   right: 36%;
 }
-form.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) input:not([type=submit]), form.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) select, form.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) textarea,
-table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) input:not([type=submit]),
-table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) select,
-table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) textarea {
+.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) input:not([type=submit]), .semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) select, .semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) textarea {
   grid-row: 1/2;
   grid-column: 1/2;
 }
-form.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) button:not(.clear, .show),
-form.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) input[type=submit]:not(.clear, .show),
-form.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) input[type=button]:not(.clear, .show),
-table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) button:not(.clear, .show),
-table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) input[type=submit]:not(.clear, .show),
-table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) input[type=button]:not(.clear, .show) {
+.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) button:not(.clear, .show),
+.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) input[type=submit]:not(.clear, .show),
+.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) input[type=button]:not(.clear, .show) {
   grid-row: 1/2;
   grid-column: 2/3;
   width: 100%;
@@ -1452,46 +1402,37 @@ table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ inp
   overflow: hidden;
   display: inline-block;
 }
-form.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) label:nth-of-type(2),
-form.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) label:not(.floatLabelFormAnimatedLabel),
-table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) label:nth-of-type(2),
-table.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) label:not(.floatLabelFormAnimatedLabel) {
+.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) label:nth-of-type(2),
+.semanticForms dl div dd:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show), select ~ input[type=submit], select ~ input[type=reset], select ~ input[type=button]) label:not(.floatLabelFormAnimatedLabel) {
   grid-row: 2/3;
   grid-column: 1/-1;
 }
-form.semanticForms p:has(input:not([type=checkbox], [type=radio]), textarea, label),
-table.semanticForms p:has(input:not([type=checkbox], [type=radio]), textarea, label) {
+.semanticForms p:has(input:not([type=checkbox], [type=radio]), textarea, label) {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-form.semanticForms p:has(input[type=checkbox], input[type=radio]),
-table.semanticForms p:has(input[type=checkbox], input[type=radio]) {
+.semanticForms p:has(input[type=checkbox], input[type=radio]) {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 5px;
 }
-form.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
-form.semanticForms ul:has(li > input, li > label, li > button, li > select, li > textarea),
-table.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
-table.semanticForms ul:has(li > input, li > label, li > button, li > select, li > textarea) {
+.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
+.semanticForms ul:has(li > input, li > label, li > button, li > select, li > textarea) {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
   list-style-type: none;
 }
-form.semanticForms .align-start,
-table.semanticForms .align-start {
+.semanticForms .align-start {
   justify-self: start;
 }
-form.semanticForms .align-center,
-table.semanticForms .align-center {
+.semanticForms .align-center {
   justify-self: center;
 }
-form.semanticForms .align-end,
-table.semanticForms .align-end {
+.semanticForms .align-end {
   justify-self: end;
 }
 

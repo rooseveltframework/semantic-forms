@@ -160,6 +160,10 @@
   
   button.show {
     right: 25px;
+
+    svg {
+      height: 100%;
+    }
   }
   
   // custom styling of clear button on textarea

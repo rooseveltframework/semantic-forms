@@ -4,8 +4,7 @@
 @use 'styles/colspan.scss';
 @use 'styles/lowFlow.scss';
 
-form.semanticForms,
-table.semanticForms {
+.semanticForms {
   fieldset {
     border-radius: var(--semanticFormsBorderRadius);
     background: var(--semanticFormsFormSubBgColor);
@@ -212,7 +211,7 @@ table.semanticForms {
         }
   
         // singular button
-        &:not(:has(input[type=text], input[type=range], input[type=number], input[type=date], input[type=radio], input[type=checkbox], select, textarea)):has(button, input[type=button], input[type=submit], input[type=reset]) {
+        &:has(button:only-child, input[type=button]:only-child, input[type=submit]:only-child, input[type=reset]:only-child) {
           margin-left: 0;
   
           button, input[type=button], input[type=submit], input[type=reset] {
