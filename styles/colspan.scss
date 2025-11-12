@@ -248,7 +248,7 @@ fieldset {
     & dl.colspan-3,
     & dl.colspan-4,
     & dl.colspan-5 {
-      grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
+      grid-template-columns: 1fr;
 
       div.colspan-2,
       div.colspan-3,
