@@ -19,7 +19,7 @@ test.describe('semantic forms', () => {
       if (coverage) fs.writeFileSync(path.join(process.cwd(), '.nyc_output', `coverage-${test.info().testId}.json`), JSON.stringify(coverage))
     }
 
-    await page.close()
+    // await page.close()
   })
 
   test('should progressively enhance semantic forms', async ({ page }) => {
@@ -29,23 +29,21 @@ test.describe('semantic forms', () => {
     }
   })
 
-  test('should not enhance forms with the .lowFlow class', async ({ page }) => {})
-
   test.describe('labels', () => {
     test('should apply float labels to forms', async ({ page }) => {
       // class should be applied
       await expect(page.locator('article form').nth(0).locator('dl').nth(0)).toContainClass('floatLabelForm')
-  
+
       // <dt> labels should not be visible
       for (const dt of await page.locator('article form').nth(0).locator('dl').nth(0).locator('dt').all()) {
         await expect(dt).not.toBeVisible()
       }
-  
+
       // a float label should be added to the <dd>
       for (const dt of await page.locator('article form').nth(0).locator('dl').nth(0).locator('dd').all()) {
         await expect(dt.locator('label.floatLabelFormAnimatedLabel')).toBeVisible()
       }
-  
+
       // focusing the element should float the label above the input
       await expect(page.locator('dd label[for="name"]')).toHaveCSS('transform', 'none')
       await page.locator('[name="name"]').focus()
@@ -261,6 +259,14 @@ test.describe('semantic forms', () => {
 
       await expect(page.locator('#max-content-input')).toHaveCSS('field-sizing', 'content')
       await expect(page.locator('#max-content-input')).toHaveCSS('max-width', 'max-content')
+
+      // capture initial width to be compared with after typing
+      const initialWidth = await page.evaluate(() => parseInt(window.getComputedStyle(document.querySelector('#max-content-input')).width))
+
+      await page.locator('#max-content-input').fill('This is some text that is longer than the previous text.')
+      const longerWidth = await page.evaluate(() => parseInt(window.getComputedStyle(document.querySelector('#max-content-input')).width))
+
+      expect(initialWidth).toBeLessThan(longerWidth)
     })
 
     test('should enhance selects with the [data-max-content] attribute', async ({ page, browserName }) => {
@@ -269,12 +275,20 @@ test.describe('semantic forms', () => {
 
       await expect(page.locator('#max-content-select')).toHaveCSS('field-sizing', 'content')
       await expect(page.locator('#max-content-select')).toHaveCSS('max-width', 'max-content')
+
+      // capture initial width before switching to a longer text option
+      const initialWidth = await page.evaluate(() => parseInt(window.getComputedStyle(document.querySelector('#max-content-select')).width))
+
+      await page.locator('#max-content-select').selectOption({ index: 1 })
+      const longerWidth = await page.evaluate(() => parseInt(window.getComputedStyle(document.querySelector('#max-content-select')).width))
+
+      expect(initialWidth).toBeLessThan(longerWidth)
     })
-    
+
     test('should enhance textareas with the [data-auto-grow] attribute', async ({ page, browserName }) => {
       // TODO: remove this once firefox supports field sizing https://caniuse.com/wf-field-sizing
       if (browserName === 'firefox') test.skip()
-        
+
       await expect(page.locator('#auto-grow-textarea')).toHaveCSS('field-sizing', 'content')
 
       // begins with 1 line
@@ -291,7 +305,7 @@ test.describe('semantic forms', () => {
       // replace with 3 lines of text
       await page.locator('#auto-grow-textarea').fill('1\n2\n3')
       await expect(page.locator('#auto-grow-textarea')).toHaveCSS('height', '86px')
-      
+
       // pressing Shift+Enter should add a new line
       await page.locator('#auto-grow-textarea').press('Shift+Enter')
       await expect(page.locator('#auto-grow-textarea')).toHaveCSS('height', '110px')
@@ -351,7 +365,7 @@ test.describe('semantic forms', () => {
       await expect(container.locator('div').nth(0).locator('dd .focus-key kbd')).toHaveText(/(⌘|◆|Ctrl) P/)
       await page.keyboard.press('ControlOrMeta+P')
       await expect(page.locator('#custom-focus-input')).toBeFocused()
-      
+
       // ctrl+P
       await expect(container.locator('div').nth(1).locator('dd .focus-key')).toBeVisible()
       await expect(container.locator('div').nth(1).locator('dd .focus-key kbd')).toHaveText(/(⌃|Ctrl) P/)
@@ -402,13 +416,62 @@ test.describe('semantic forms', () => {
     })
   })
 
-  test.describe('tables', () => {})
+  // TODO: the visual tests require more consideration for running within the CI
+  test.describe.skip('visual tests', () => {
+    test('input section should match visually', async ({ page }) => {
+      await expect(page.locator('#inputs + dl')).toHaveScreenshot('inputs_section.png')
+    })
 
-  test.describe('nested fields', () => {})
+    test('select section should match visually', async ({ page }) => {
+      await expect(page.locator('#selects + dl')).toHaveScreenshot('select_section.png')
+    })
 
-  test.describe('detail elements', () => {})
+    test('checkboxes section should match visually', async ({ page }) => {
+      await expect(page.locator('#checkboxes + section')).toHaveScreenshot('checkboxes_section.png')
+    })
 
-  test.describe('button elements', () => {})
+    test('radios section should match visually', async ({ page }) => {
+      await expect(page.locator('#radios + section')).toHaveScreenshot('radios_section.png')
+    })
 
-  test.describe('colspan classes', () => {})
+    test('other section should match visually', async ({ page }) => {
+      await expect(page.locator('#other + dl')).toHaveScreenshot('other_section.png')
+    })
+
+    test('alignment section should match visually', async ({ page }) => {
+      await expect(page.locator('#alignment_classes + section')).toHaveScreenshot('alignment_section.png')
+    })
+
+    test('keyboard shortcuts section should match visually', async ({ page }) => {
+      await expect(page.locator('#keyboard_shortcuts + dl')).toHaveScreenshot('keyboard_shortcuts_section.png')
+    })
+
+    test('tables should match visually', async ({ page }) => {
+      await expect(page.locator('#tables + section')).toHaveScreenshot('table_with_inputs.png')
+
+      await expect(page.locator('#semantic_table + section')).toHaveScreenshot('semantic_table.png')
+    })
+
+    test('nested fieldsets should match visually', async ({ page }) => {
+      await expect(page.locator('#nested_fieldsets + fieldset')).toHaveScreenshot('nested_fieldsets.png')
+    })
+
+    test('details should match visually', async ({ page }) => {
+      const details = page.locator('#details + details + details')
+      await details.locator('summary').click()
+      await expect(details).toHaveScreenshot('details.png')
+    })
+
+    test('buttons should match visually', async ({ page }) => {
+      await expect(page.locator('#buttons + section')).toHaveScreenshot('buttons.png')
+    })
+
+    test('colspan- classes should match visually', async ({ page }) => {
+      await expect(page.locator('#colspan_classes + section')).toHaveScreenshot('colspan_classes.png')
+    })
+
+    test('p tag elements should match visually', async ({ page }) => {
+      await expect(page.locator('#p_tag_elements + section')).toHaveScreenshot('p_tag_elements.png')
+    })
+  })
 })
