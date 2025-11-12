@@ -1312,7 +1312,6 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
 .semanticForms dl div {
   position: relative;
   width: 100%;
-  min-width: var(--semanticFormsInputMinWidth);
   max-width: var(--semanticFormsInputMaxWidth);
 }
 .semanticForms dl div:has([data-max-content]) {

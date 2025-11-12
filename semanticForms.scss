@@ -128,7 +128,6 @@
     div {
       position: relative;
       width: 100%;
-      min-width: var(--semanticFormsInputMinWidth);
       max-width: var(--semanticFormsInputMaxWidth);
 
       &:has([data-max-content]) {
