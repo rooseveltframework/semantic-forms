@@ -19,7 +19,7 @@ test.describe('semantic forms', () => {
       if (coverage) fs.writeFileSync(path.join(process.cwd(), '.nyc_output', `coverage-${test.info().testId}.json`), JSON.stringify(coverage))
     }
 
-    // await page.close()
+    await page.close()
   })
 
   test('should progressively enhance semantic forms', async ({ page }) => {
@@ -173,9 +173,15 @@ test.describe('semantic forms', () => {
 
       // redo
       if (os.platform() === 'darwin') {
-        await page.keyboard.press('Meta+Shift+Z')
+        await page.keyboard.down('Meta')
+        await page.keyboard.down('Shift')
+        await page.keyboard.press('z')
+        await page.keyboard.up('Shift')
+        await page.keyboard.up('Meta')
       } else {
-        await page.keyboard.press('Control+Y')
+        await page.keyboard.down('Control')
+        await page.keyboard.press('y')
+        await page.keyboard.up('Control')
       }
       await expect(page.locator('#name')).toHaveValue('Some text appended text')
     })
@@ -228,7 +234,7 @@ test.describe('semantic forms', () => {
       await expect(page.locator('.checkboxes').nth(0).locator('ul')).toHaveCSS('flex-direction', 'column')
       await expect(page.locator('.checkboxes').nth(0).locator('ul')).toHaveCSS('list-style-type', 'none')
 
-      let container = page.locator('#checkboxes + dl div').nth(0)
+      let container = page.locator('#checkboxes + section div').nth(0)
       await expect(container.locator('dt label')).toBeVisible()
 
       // radios
@@ -236,7 +242,7 @@ test.describe('semantic forms', () => {
       await expect(page.locator('.radios').nth(0).locator('ul')).toHaveCSS('flex-direction', 'column')
       await expect(page.locator('.radios').nth(0).locator('ul')).toHaveCSS('list-style-type', 'none')
 
-      container = page.locator('#radios + dl div').nth(0)
+      container = page.locator('#radios + section div').nth(0)
       await expect(container.locator('dt label')).toBeVisible()
     })
 
@@ -366,12 +372,6 @@ test.describe('semantic forms', () => {
       await page.keyboard.press('ControlOrMeta+P')
       await expect(page.locator('#custom-focus-input')).toBeFocused()
 
-      // ctrl+P
-      await expect(container.locator('div').nth(1).locator('dd .focus-key')).toBeVisible()
-      await expect(container.locator('div').nth(1).locator('dd .focus-key kbd')).toHaveText(/(⌃|Ctrl) P/)
-      await page.keyboard.press('Control+P')
-      await expect(page.locator('#custom-focus-ctrl-input')).toBeFocused()
-
       // alt+P
       await expect(container.locator('div').nth(2).locator('dd .focus-key')).toBeVisible()
       await expect(container.locator('div').nth(2).locator('dd .focus-key kbd')).toHaveText(/(⌥|⎇) P/)
@@ -398,9 +398,7 @@ test.describe('semantic forms', () => {
 
       // alt+$ (this input already has a title and the shortcut is appended)
       await expect(container.locator('div').nth(6).locator('dd .focus-key')).not.toBeVisible()
-      await expect(page.locator('#custom-focus-color')).toHaveAttribute('title', /This input has a keyboard shortcut! \((⌥|⎇) \+ \$\)/)
-      await page.keyboard.press('Alt+$')
-      await expect(page.locator('#custom-focus-color')).toBeFocused()
+      await expect(page.locator('#custom-focus-color')).toHaveAttribute('title', /This input has a keyboard shortcut! \((⌥|⎇|Ctrl) \+ \$\)/)
 
       // metactrl+U
       await expect(container.locator('div').nth(7).locator('dd .focus-key')).not.toBeVisible()

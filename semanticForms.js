@@ -1,5 +1,5 @@
 const { createKeyboardShortcut, shortcutListener } = require('./lib/keyboardShortcuts.js')
-const { enhanceInput } = require('./lib/inputEnhancements.js')
+const { enhanceInput, handleUndoRedo } = require('./lib/inputEnhancements.js')
 
 const semanticForms = () => {
   // do some feature detection so none of the JS executes if the browser is too old
@@ -31,6 +31,10 @@ const semanticForms = () => {
       }
     }
   }
+
+  // prevents multiple listeners
+  document.removeEventListener('keydown', handleUndoRedo)
+  document.addEventListener('keydown', handleUndoRedo)
 
   // monitor changes to the DOM and enhance new semanticForms forms that get added
   if (!window.semanticFormsObserver) {

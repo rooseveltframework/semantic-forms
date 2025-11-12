@@ -1,7 +1,7 @@
 (function(root,factory){if(typeof exports==="object"&&typeof module==="object")module.exports=factory();else if(typeof define==="function"&&define.amd)define("semanticForms",[],factory);else if(typeof exports==="object")exports["semanticForms"]=factory();else root["semanticForms"]=factory()})(this,()=>/******/(()=>{// webpackBootstrap
 /******/var __webpack_modules__={
 /***/90:
-/***/(module,__unused_webpack_exports,__webpack_require__)=>{const{createKeyboardShortcut,shortcutListener}=__webpack_require__(497);const{enhanceInput}=__webpack_require__(866);const semanticForms=()=>{
+/***/(module,__unused_webpack_exports,__webpack_require__)=>{const{createKeyboardShortcut,shortcutListener}=__webpack_require__(497);const{enhanceInput,handleUndoRedo}=__webpack_require__(866);const semanticForms=()=>{
 // do some feature detection so none of the JS executes if the browser is too old
 if(typeof document.getElementsByClassName!=="function"||typeof document.querySelector!=="function"||!document.body.classList||!window.MutationObserver){console.warn("semantic-forms was loaded into an unsupported browser and will not execute.");return}
 // custom keyboard shortcut listener
@@ -12,6 +12,8 @@ const forms=document.querySelectorAll("form.semanticForms:not(.semanticFormsActi
 const inputs=Array.from(form.querySelectorAll("input, textarea, select"));for(const input of inputs){enhanceInput(input,form);
 // handle keyboard shortcuts
 if(input.getAttribute("data-focus-key")!==null){const shortcut=createKeyboardShortcut(input,keyboardShortcuts);keyboardShortcuts.push(shortcut)}}}
+// prevents multiple listeners from occurring
+document.removeEventListener("keydown",handleUndoRedo);document.addEventListener("keydown",handleUndoRedo);
 // monitor changes to the DOM and enhance new semanticForms forms that get added
 if(!window.semanticFormsObserver){window.semanticFormsObserver=new window.MutationObserver(mutations=>{let stop=false;for(const mutation of mutations){for(const node of mutation.addedNodes)if(node.nodeName==="FORM"||node?.querySelector?.("form")){semanticForms();stop=true}if(stop)break}});window.semanticFormsObserver.observe(document.body,{attributes:false,childList:true,characterData:false,subtree:true})}semanticForms.reinitialize=form=>{form.classList.remove("semanticFormsActive");semanticForms()}};module.exports=semanticForms
 /***/},
@@ -129,13 +131,13 @@ if(input.getAttribute("data-auto-grow")!==null)if(!("fieldSizing"in document.cre
 // set initial height to semantic-forms CSS variable
 input.style.height=window.getComputedStyle(form).getPropertyValue("--semanticFormsInputHeight");input.addEventListener("input",adjustHeight)}
 // shifts the clear button to the right if a scrollbar is present
-const shiftClearBtn=()=>{const clearBtn=input.parentElement?.querySelector("button.clear");if(clearBtn)clearBtn.style.marginRight=input.clientHeight<input.scrollHeight?"15px":""};input.addEventListener("input",shiftClearBtn);input.addEventListener("mouseup",shiftClearBtn);shiftClearBtn()}
+const shiftClearBtn=()=>{const clearBtn=input.parentElement?.querySelector("button.clear");if(clearBtn)clearBtn.style.marginRight=input.clientHeight<input.scrollHeight?"15px":""};input.addEventListener("input",shiftClearBtn);input.addEventListener("mouseup",shiftClearBtn);shiftClearBtn()}};const handleUndoRedo=event=>{
 // handle undo/redo
-document.addEventListener("keydown",event=>{if((event.ctrlKey||event.metaKey)&&event.key==="z"&&!event.shiftKey){
+if((event.ctrlKey||event.metaKey)&&event.key==="z"&&!event.shiftKey){
 // undo clearing a field
-if(lastFocusedInput)if(lastFocusedInput?.parentNode?.querySelector("button.clear").id===`semanticFormsClearButton_${lastClearFieldPressed}`||lastFocusedInput?.parentNode?.querySelector("button.clear").name===`semanticFormsClearButton_${lastClearFieldPressed}`)if(lastFocusedInput.previousValue){lastFocusedInput.redoValue=lastFocusedInput.value;lastFocusedInput.value=lastFocusedInput.previousValue}}else if(event.ctrlKey&&event.key==="y"||event.metaKey&&event.shiftKey&&event.key==="z")
+if(lastFocusedInput)if(lastFocusedInput?.parentNode?.querySelector("button.clear").id===`semanticFormsClearButton_${lastClearFieldPressed}`||lastFocusedInput?.parentNode?.querySelector("button.clear").name===`semanticFormsClearButton_${lastClearFieldPressed}`)if(lastFocusedInput.previousValue){console.log("update redo value",lastFocusedInput.value);lastFocusedInput.redoValue=lastFocusedInput.value;lastFocusedInput.value=lastFocusedInput.previousValue}}else if(event.ctrlKey&&event.key==="y"||event.metaKey&&event.shiftKey&&event.key==="z")
 // redo clearing a field
-if(lastFocusedInput)if(lastFocusedInput?.parentNode?.querySelector("button.clear").id===`semanticFormsClearButton_${lastClearFieldPressed}`||lastFocusedInput?.parentNode?.querySelector("button.clear").name===`semanticFormsClearButton_${lastClearFieldPressed}`)if(lastFocusedInput.redoValue){lastFocusedInput.previousValue=lastFocusedInput.value;lastFocusedInput.value=lastFocusedInput.redoValue}})};module.exports={enhanceInput}
+if(lastFocusedInput)if(lastFocusedInput?.parentNode?.querySelector("button.clear").id===`semanticFormsClearButton_${lastClearFieldPressed}`||lastFocusedInput?.parentNode?.querySelector("button.clear").name===`semanticFormsClearButton_${lastClearFieldPressed}`)if(lastFocusedInput.redoValue){lastFocusedInput.previousValue=lastFocusedInput.value;lastFocusedInput.value=lastFocusedInput.redoValue}};module.exports={enhanceInput,handleUndoRedo}
 /***/}
 /******/};
 /************************************************************************/
