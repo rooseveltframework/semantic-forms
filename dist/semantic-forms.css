@@ -1238,6 +1238,7 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   flex-direction: column;
   gap: 5px;
   padding: 20px 10px 10px 10px;
+  margin-top: 10px;
   margin-bottom: 15px;
   min-height: calc(var(--semanticFormsFontSize) + 20px);
 }

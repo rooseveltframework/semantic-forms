@@ -25,7 +25,7 @@ form.semanticForms:not(.semanticFormsActive) {
 
     dd {
       margin-top: 0;
-    
+
       // additional info text
       label {
         font-size: small;
@@ -112,7 +112,7 @@ form.semanticForms:not(.semanticFormsActive) {
 
     // inline buttons
     button:not(.clear, .show),
-    input[type=submit]:not(.clear, .show), 
+    input[type=submit]:not(.clear, .show),
     input[type=button]:not(.clear, .show)  {
       margin-top: 0;
     }

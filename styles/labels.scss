@@ -8,30 +8,30 @@
     display: flex;
     align-items: center;
     gap: 5px;
-  
+
     span.required {
       cursor: help;
       pointer-events: auto;
       color: red;
     }
-  
+
     span.help {
       display: grid;
       place-items: center;
       cursor: help;
       pointer-events: auto;
-  
+
       svg {
         width: 80%;
       }
     }
   }
-  
+
   .floatLabelForm {
     div {
       dt {
         position: relative;
-    
+
         label {
           display: flex;
           align-items: center;
@@ -50,7 +50,7 @@
           text-overflow: ellipsis;
           min-width: 0;
           width: 100%;
-    
+
           span.help {
             display: grid;
             place-items: center;
@@ -75,7 +75,7 @@
           }
         }
       }
-  
+
       dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) {
         input:not([type=submit], [type=reset], [type=button], [type=image]),
         select,
@@ -87,7 +87,7 @@
             width: 100%;
           }
         }
-  
+
         // hide float label if no-float-label class is present
         input:not([type=submit], [type=reset], [type=button], [type=image]),
         select,
@@ -97,17 +97,17 @@
             display: none;
           }
         }
-  
+
         select ~ label:first-of-type {
           // force label to be correct color
           color: var(--semanticFormsTextColor);
         }
-  
-        button:not(.clear, .show), 
+
+        button:not(.clear, .show),
         input[type=submit]:not(.clear, .show) {
           margin-top: var(--semanticFormsInputTopMargin);
         }
-  
+
         // input label
         label:first-of-type {
           position: absolute;
@@ -131,19 +131,19 @@
           user-select: none;
           color: var(--semanticFormsPlaceholderColor);
           touch-action: manipulation;
-  
+
           span.required {
             cursor: help;
             pointer-events: auto;
             color: red;
           }
-  
+
           span.help {
             display: grid;
             place-items: center;
             cursor: help;
             pointer-events: auto;
-  
+
             svg {
               width: 80%;
             }
@@ -159,7 +159,7 @@
 
           span.focus-key {
             display: block;
-            
+
             kbd {
               font-family: sans-serif;
             }
@@ -172,7 +172,7 @@
             }
           }
         }
-  
+
         // subtext label
         label:nth-of-type(2) {
           margin-top: -5px;
@@ -180,101 +180,101 @@
           font-size: small;
           color: var(--semanticFormsTextColor);
         }
-  
+
         input,
         textarea,
         select {
           margin-top: var(--semanticFormsInputTopMargin);
         }
-  
+
         input,
         textarea {
           transition: opacity 250ms;
-  
+
           // hide placeholder content until input is focused
           &::placeholder {
             opacity: 0;
             transition: opacity 250ms;
           }
-  
+
           &::-moz-placeholder {
             opacity: 0;
             transition: opacity 250ms;
           }
-  
+
           &::-webkit-input-placeholder {
             opacity: 0;
             transition: opacity 250ms;
           }
-  
+
           &:-ms-input-placeholder {
             opacity: 0;
             transition: opacity 250ms;
           }
-  
+
           // show placeholder content when focused
           &:focus {
             &::placeholder {
               opacity: 1;
             }
-  
+
             &::-moz-placeholder {
               opacity: 1;
             }
-  
+
             &::-webkit-input-placeholder {
               opacity: 1;
             }
-  
+
             &:-ms-input-placeholder {
               opacity: 1;
             }
           }
         }
-  
+
         // keyboard shortcut indicator
         span.focus-key {
           color: var(--semanticFormsPlaceholderColor);
           position: absolute;
           top: calc(var(--semanticFormsInputTopMargin) + 11px);
           right: 20px;
-  
+
           kbd {
             line-height: 1;
           }
         }
-  
+
         &:has(input[type=number]) {
           .focus-key {
             right: 45px;
           }
         }
-  
+
         &:has(input[type=search]) {
           label:first-of-type {
             left: 32px;
           }
         }
       }
-  
+
       // data-max-content CSS
       &:has([data-max-content]) {
         max-width: max-content;
         min-width: 150px;
-  
+
         dd {
           width: max-content;
-  
+
           input, select {
             // this is not currently supported in FireFox or Safari, and is progressively enhanced with JS
-            field-sizing: content; 
+            field-sizing: content;
             min-width: 150px;
             max-width: max-content;
           }
         }
       }
     }
-  
+
     input, textarea {
       &::placeholder {
         color: var(--semanticFormsPlaceholderColor);
