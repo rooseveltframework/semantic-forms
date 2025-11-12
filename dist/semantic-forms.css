@@ -1239,7 +1239,6 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   gap: 5px;
   padding: 20px 10px 10px 10px;
   margin-top: 10px;
-  margin-bottom: 15px;
   min-height: calc(var(--semanticFormsFontSize) + 20px);
 }
 .semanticForms details::details-content {
@@ -1282,9 +1281,6 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   transform: rotate(0);
   transform-origin: 0.2rem 50%;
   transition: 250ms transform ease;
-}
-.semanticForms details[open] {
-  margin-bottom: 10px;
 }
 .semanticForms details[open]::details-content {
   visibility: visible;
