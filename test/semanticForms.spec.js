@@ -234,7 +234,7 @@ test.describe('semantic forms', () => {
       await expect(page.locator('.checkboxes').nth(0).locator('ul')).toHaveCSS('flex-direction', 'column')
       await expect(page.locator('.checkboxes').nth(0).locator('ul')).toHaveCSS('list-style-type', 'none')
 
-      let container = page.locator('#checkboxes + section div').nth(0)
+      let container = page.locator('#checkboxes div').nth(0)
       await expect(container.locator('dt label')).toBeVisible()
 
       // radios
@@ -242,7 +242,7 @@ test.describe('semantic forms', () => {
       await expect(page.locator('.radios').nth(0).locator('ul')).toHaveCSS('flex-direction', 'column')
       await expect(page.locator('.radios').nth(0).locator('ul')).toHaveCSS('list-style-type', 'none')
 
-      container = page.locator('#radios + section div').nth(0)
+      container = page.locator('#radios div').nth(0)
       await expect(container.locator('dt label')).toBeVisible()
     })
 
@@ -353,18 +353,18 @@ test.describe('semantic forms', () => {
 
     test('should enhance inputs with .align- classes', async ({ page }) => {
       // inputs
-      await expect(page.locator('.align-start').nth(0)).toHaveCSS('justify-self', 'start')
-      await expect(page.locator('.align-center').nth(0)).toHaveCSS('justify-self', 'center')
-      await expect(page.locator('.align-end').nth(0)).toHaveCSS('justify-self', 'end')
+      await expect(page.locator('div:has(.align-start)').nth(0)).toHaveCSS('justify-content', 'start')
+      await expect(page.locator('div:has(.align-center)').nth(0)).toHaveCSS('justify-content', 'center')
+      await expect(page.locator('div:has(.align-end)').nth(0)).toHaveCSS('justify-content', 'end')
 
       // buttons
-      await expect(page.locator('.align-start').nth(1)).toHaveCSS('justify-self', 'start')
-      await expect(page.locator('.align-center').nth(1)).toHaveCSS('justify-self', 'center')
-      await expect(page.locator('.align-end').nth(1)).toHaveCSS('justify-self', 'end')
+      await expect(page.locator('div:has(.align-start)').nth(1)).toHaveCSS('justify-content', 'start')
+      await expect(page.locator('div:has(.align-center)').nth(1)).toHaveCSS('justify-content', 'center')
+      await expect(page.locator('div:has(.align-end)').nth(1)).toHaveCSS('justify-content', 'end')
     })
 
     test('should allow custom keyboard shortcuts that focus inputs when pressed', async ({ page }) => {
-      const container = page.locator('#keyboard_shortcuts + dl')
+      const container = page.locator('#keyboard_shortcuts dl')
 
       // metactrl+P
       await expect(container.locator('div').nth(0).locator('dd .focus-key')).toBeVisible()
