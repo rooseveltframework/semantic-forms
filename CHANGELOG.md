@@ -1,3 +1,8 @@
+## 5.3.1
+
+- Fixed broken exports.
+- Updated dependencies.
+
 ## 5.3.0
 
 - Added `align-start`, `align-center`, and `align-end` classes that align form inputs within their available space.
