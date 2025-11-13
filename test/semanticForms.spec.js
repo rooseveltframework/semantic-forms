@@ -5,7 +5,7 @@ const fs = require('fs')
 
 test.describe('semantic forms', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:43711/fullDemo.html')
+    await page.goto('http://localhost:6588/fullDemo.html')
 
     // uncomment this to reveal client-side console messages
     // page.on('console', msg => console.log(msg.text()))

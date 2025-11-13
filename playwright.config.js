@@ -18,7 +18,7 @@ module.exports = {
   workers: 1,
   webServer: {
     command: 'npm run dev',
-    url: 'http://127.0.0.1:43711',
+    url: 'http://127.0.0.1:6588',
     reuseExistingServer: !process.env.CI,
     stderr: 'pipe'
   }
