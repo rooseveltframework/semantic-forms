@@ -1214,7 +1214,7 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   border: 1px var(--semanticFormsSubBorderColor) solid;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   padding: 10px 10px 20px 10px;
   margin-bottom: 15px;
 }
