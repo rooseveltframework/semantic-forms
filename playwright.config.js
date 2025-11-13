@@ -14,5 +14,12 @@ module.exports = {
       use: { browserName: 'firefox' }
     }
   ],
-  workers: 1
+  reporter: 'line',
+  workers: 1,
+  webServer: {
+    command: 'npm run dev',
+    url: 'http://127.0.0.1:6588',
+    reuseExistingServer: !process.env.CI,
+    stderr: 'pipe'
+  }
 }

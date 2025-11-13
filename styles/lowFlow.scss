@@ -1,0 +1,125 @@
+form.semanticForms.lowFlow,
+form.semanticForms:not(.semanticFormsActive) {
+  gap: 10px;
+
+  dl {
+    gap: 10px;
+    margin-bottom: 0px;
+  }
+
+  // single checkbox/radios
+  div:not(:has(dd > ul)):has(dd > input[type=checkbox], dd > input[type=radio]) {
+    padding-left: 11px;
+
+    &:has(dd > input[type=radio]) {
+      margin-top: -2px;
+    }
+
+    dt {
+      label {
+        transform: scale(1);
+        margin-top: 4px;
+        margin-left: -4px;
+      }
+    }
+
+    dd {
+      margin-top: 0;
+
+      // additional info text
+      label {
+        font-size: small;
+        margin-top: -2px;
+        padding-left: 10px;
+      }
+    }
+  }
+
+  dt {
+    min-width: var(--semanticFormsInputMinWidth); /* this matches the max-width of js-enabled inputs */
+
+    label {
+      position: absolute;
+      display: block;
+      height: 11px;
+      transform: scale(0.7);
+      transform-origin: left center;
+      padding-left: 29px;
+      margin-top: -2px;
+    }
+
+    // add required asterisk
+    &:has(+ dd input:required) {
+      label::after {
+        content: ' *';
+        color: red;
+      }
+    }
+  }
+
+  // checkbox/radio groups
+  dt {
+    &:has(+ dd.checkboxes),
+    &:has(+ dd.radios) {
+      label {
+        padding-left: 15px;
+      }
+    }
+  }
+
+  dd {
+    margin-top: var(--semanticFormsInputTopMargin);
+    min-width: var(--semanticFormsInputMinWidth); /* this matches the max-width of js-enabled inputs */
+
+    // checkbox/radio groups
+    &.checkboxes,
+    &.radios {
+      margin-top: 0;
+
+      ul {
+        input[type=radio] {
+          margin-top: 3px;
+        }
+
+        label {
+          padding-top: 7px;
+          padding-left: 0;
+          font-size: var(--semanticFormsFontSize);
+        }
+      }
+
+      // additional text
+      ul + label {
+        margin-top: 0;
+        font-size: small;
+      }
+    }
+
+    // remove "x" padding
+    input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio], [type=range]),
+    select,
+    textarea {
+      padding-right: 6px;
+    }
+
+    // subtext
+    label {
+      padding-left: 10px;
+      margin-top: -5px;
+      font-size: small;
+      color: var(--semanticFormsPlaceholderColor);
+    }
+
+    // inline buttons
+    button:not(.clear, .show),
+    input[type=submit]:not(.clear, .show),
+    input[type=button]:not(.clear, .show)  {
+      margin-top: 0;
+    }
+  }
+}
+
+.checkboxes ul,
+.radios ul {
+  margin-top: var(--semanticFormsInputTopMargin);
+}

@@ -1,440 +1,17 @@
-// #region global styles
-form.semanticForms, form.semanticForms.light, table.semanticForms {
-  --semanticFormsFontFamily: sans-serif;
-  --semanticFormsFontSize: 16px;
-  --semanticFormsFormBgColor: #fff;
-  --semanticFormsFormSubBgColor: #f5f5f5;
-  --semanticFormsTextColor: #000;
-  --semanticFormsBorderColor: #c0c0c0;
-  --semanticFormsSubBorderColor: #c0c0c0;
-  --semanticFormsPlaceholderColor: rgba(0, 0, 0, 0.75);
-  --semanticFormsScrollbarColor: #c0c0c0;
-  --semanticFormsClearButtonColor: #000;
-  --semanticFormsButtonGradientLight: #fff;
-  --semanticFormsButtonGradientDark: #c0c0c0;
-  --semanticFormsInvalid: #f00;
-  --semanticFormsInvalidBorder: 1px solid var(--semanticFormsInvalid);
-  --semanticFormsWarn: #ffdd00;
-  --semanticFormsWarnBorder: 1px solid var(--semanticFormsWarn);
-  --semanticFormsInputHeight: 38px;
-  --semanticFormsInputFontSize: 16px;
-  --semanticFormsInputTopMargin: 15px;
-  --semanticFormsInputMinWidth: 250px;
-  --semanticFormsBorderRadius: 10px;
-  --semanticFormsNestedFieldsetBgColor: oklch(from var(--semanticFormsFormSubBgColor) 0.3 c h / 0.05);
-  --semanticFormsNestedFieldsetBorder: 1px rgba(0, 0, 0, .2) solid;
-  --semanticFormsNestedInputBgColor: #fff;
-  --semanticFormsBorder: 1px var(--semanticFormsBorderColor) solid;
-  --semanticFormsTableTitleColor: #fcfcfc;
-  --semanticFormsTableHeaderColor: #eeeeee;
-  --semanticFormsTableOddColor: #dddddd;
-  --semanticFormsTableEvenColor: #cccccc;
-  --semanticFormsTableBorder: 1px #c0c0c0 solid;
-  --semanticFormsSelectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
-  --semanticFormsCustomResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
-  --semanticFormsSearchIcon: url("data:image/svg+xml,%3Csvg%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.7955%2015.8111L21%2021M18%2010.5C18%2014.6421%2014.6421%2018%2010.5%2018C6.35786%2018%203%2014.6421%203%2010.5C3%206.35786%206.35786%203%2010.5%203C14.6421%203%2018%206.35786%2018%2010.5Z%22%20stroke%3D%22%23000000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
-}
+@use 'styles/globals.scss';
+@use 'styles/inputs.scss';
+@use 'styles/labels.scss';
+@use 'styles/colspan.scss';
+@use 'styles/lowFlow.scss';
 
-@mixin dark-mode {
-  --semanticFormsFormBgColor: #555;
-  --inputBackgroudColor: rgba(85,85,85,0.1);
-  --semanticFormsFormSubBgColor: #2f2f2f;
-  --semanticFormsTextColor: #fff;
-  --semanticFormsBorderColor: #656565;
-  --semanticFormsSubBorderColor: #3f3f3f;
-  --semanticFormsPlaceholderColor: rgba(255, 255, 255, 0.85);
-  --semanticFormsScrollbarColor: #373737;
-  --semanticFormsClearButtonColor: #fff;
-  --semanticFormsButtonGradientLight: #6f6f6f;
-  --semanticFormsButtonGradientDark: #373737;
-  --semanticFormsNestedFieldsetBgColor: oklch(from var(--semanticFormsFormSubBgColor) 0.9 c h / 0.05);
-  --semanticFormsNestedFieldsetBorder: 1px rgba(255, 255, 255, .1) solid;
-  --semanticFormsNestedInputBgColor: rgba(255, 255, 255, .15);
-  --semanticFormsBorder: none;
-  --semanticFormsTableTitleColor: #3f3f3f;
-  --semanticFormsTableHeaderColor: #4f4f4f;
-  --semanticFormsTableOddColor: #3f3f3f;
-  --semanticFormsTableEvenColor: #4f4f4f;
-  --semanticFormsTableBorder: 1px #656565 solid;
-  --semanticFormsSelectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
-  --semanticFormsCustomResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
-  --semanticFormsSearchIcon: url("data:image/svg+xml,%3Csvg%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.7955%2015.8111L21%2021M18%2010.5C18%2014.6421%2014.6421%2018%2010.5%2018C6.35786%2018%203%2014.6421%203%2010.5C3%206.35786%206.35786%203%2010.5%203C14.6421%203%2018%206.35786%2018%2010.5Z%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
-
-  input::-webkit-calendar-picker-indicator {
-    filter: invert(100%);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not(.light) {
-    body:not(.light) {
-      form.semanticForms:not(.light), table.semanticForms:not(.light) {
-        @include dark-mode;
-      }
-    }
-  }
-}
-
-html:not(.light) {
-  body:not(.light) {
-    form.semanticForms.dark, table.semanticForms.dark {
-      @include dark-mode;
-    }
-  }
-}
-
-form.semanticForms.dark, table.semanticForms.dark {
-  @include dark-mode;
-}
-// #endregion
-
-form.semanticForms,
-form.semanticForms.light,
-table.semanticForms,
-table.semanticForms.light {
-  font-family: var(--semanticFormsFontFamily);
-  font-size: var(--semanticFormsFontSize);
-  width: 100%;
-
-  // https://caniuse.com/wf-interpolate-size
-  @supports (interpolate-size: allow-keywords) {
-    interpolate-size: allow-keywords;
-  }
-
-  // due to the specificity of some of these rules, [hidden] won't actually hide things, so we're forcing the issue
-  [hidden] {
-    display: none !important;
-  }
-
-  // hides semantic forms divs if the field itself is hidden
-  div:has(dd[hidden]) {
-    display: none !important;
-  }
-
-  &:not(table) {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  // style reset
-  fieldset,
-  label,
-  input,
-  select,
-  textarea,
-  button,
-  menu:has(li > input, li > label, li > button, li > select, li > textarea),
-  dl:has(dt > label, dd > input, dd > select, dd > textarea),
-  dt:has(> input, > select, > textarea),
-  dd:has(> input, > select, > textarea, > ul, > menu),
-  div:has(dt, dd),
-  dd > p {
-    color: var(--semanticFormsTextColor);
-    font-family: var(--semanticFormsFontFamily);
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  // #region input styling
-  input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
-  select {
-    height: var(--semanticFormsInputHeight);
-  }
-
-  input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
-  select,
-  textarea {
-    font-size: var(--semanticFormsInputFontSize);
-    background: var(--semanticFormsFormBgColor);
-    border: var(--semanticFormsBorder);
-    border-radius: var(--semanticFormsBorderRadius);
-    width: 100%;
-    touch-action: manipulation;
-    outline: none;
-
-    &:not([type="range"]) {
-      padding: 6px 30px 6px 20px;
-    }
-
-    // custom focus highlight
-    input:not([type='submit'], [type='reset'], [type='image']),
-    select,
-    textarea {
-      &:focus {
-        outline: none;
-        box-shadow: 0 0 0 1px var(--semanticFormsBorderColor);
-      }
-    }
-
-    // input type styling
-    &[type="password"], &[type="text"]:has(~ button.show) {
-      padding: 6px 55px 6px 20px;
-    }
-
-    &[type="search"] {
-      padding: 6px 20px 6px 32px;
-      background: var(--semanticFormsSearchIcon) no-repeat 10px;
-      background-color: var(--semanticFormsFormBgColor);
-      background-size: 18px;
-
-      &:focus,
-      &:not(:placeholder-shown) {
-        & + label.floatLabelFormAnimatedLabel {
-          left: 20px;
-        }
-      }
-
-      // hide native cancel button
-      &::-webkit-search-cancel-button {
-        display: none;
-      }
-    }
-
-    &[type="checkbox"],
-    &[type="radio"] {
-      width: 18px;
-      height: 18px;
-      margin: 3px 0;
-      cursor: pointer;
-
-      & ~ label:first-of-type {
-        color: var(--semanticFormsTextColor);
-      }
-    }
-
-    &[type="range"],
-    &[type="color"] {
-      cursor: pointer;
-    }
-
-    &[type="color"] {
-      height: var(--semanticFormsInputHeight);
-      padding: 4px 30px 4px 10px;
-    }
-
-    &[type="file"] {
-      cursor: pointer;
-      font-size: var(--semanticFormsInputFontSize);
-    }
-
-    &[disabled] {
-      cursor: not-allowed;
-      opacity: 0.5;
-
-      ~ label:first-of-type {
-        opacity: 0.5;
-      }
-
-      ~ label + button {
-        display: none;
-      }
-    }
-  }
-
-  select {
-    cursor: pointer;
-
-    // single selects
-    &:not([multiple]) {
-      // custom dropdown graphic on select element
-      background-image: var(--semanticFormsSelectIcon);
-      background-size: 14px;
-      background-position: calc(100% - 8px) 16px;
-      background-repeat: no-repeat;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-    }
-
-    // multi-selects
-    &[multiple] {
-      min-height: 38px;
-      height: 100px;
-      padding: 0;
-
-      option {
-        padding: 6px 20px;
-
-        &:first-of-type {
-          border-top-left-radius: var(--semanticFormsBorderRadius);
-        }
-
-        &:last-of-type {
-          border-bottom-left-radius: var(--semanticFormsBorderRadius);
-        }
-      }
-    }
-  }
-
-  textarea {
-    resize: vertical;
-    line-height: 1.5;
-    width: 100%;
-    min-height: 38px;
-
-    &[data-auto-grow] {
-      field-sizing: content;
-    }
-  }
-  // #endregion
-
-  // #region buttons
-  button.clear, button.show {
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    position: absolute;
-    height: min-content;
-    // account for margin above each input
-    top: calc(var(--semanticFormsInputTopMargin) + 6px);
-    right: 0;
-    width: 25px;
-    height: 25px;
-    margin: auto 6px;
-    padding: 5px;
-    background: none;
-    border: none;
-    color: var(--semanticFormsClearButtonColor);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  button.show {
-    right: 25px;
-  }
-
-  // custom styling of clear button on textarea
-  textarea ~ .clear {
-    bottom: auto;
-  }
-
-  // hide clear/show button while placeholder text is visible
-  input:placeholder-shown ~ .clear,
-  input:placeholder-shown ~ .show,
-  textarea:placeholder-shown ~ .clear,
-  input[type=file] ~ .clear {
-    display: none;
-  }
-
-  // button styling
-  input[type='submit'],
-  input[type='reset'],
-  button:not(.clear, .show),
-  .button-link {
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    cursor: pointer;
-    max-width: max-content;
-    background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
-    background-origin: border-box; // prevents graphical errors in Firefox
-    border: 1px var(--semanticFormsButtonGradientDark) solid;
-    corner-shape: squircle;
-    border-radius: 20px;
-    padding: 5px 25px;
-    font-size: 100%;
-    line-height: 1;
-    user-select: none;
-    transform: scale(1);
-    transition: transform 180ms;
-    text-decoration: none;
-    color: var(--semanticFormsTextColor);
-
-    &:active {
-      transform: scale(0.97);
-    }
-  }
-
-  input[type='submit'],
-  input[type='reset'],
-  input[type='image'],
-  button:not(.clear):not(.show),
-  .button-link {
-    transition: filter 0.1s;
-
-    &:hover {
-      filter: brightness(1.05);
-    }
-  }
-
-  .button-link {
-    display: block;
-
-    &:visited,
-    &:link {
-      color: var(--semanticFormsTextColor);
-    }
-  }
-  // #endregion
-
-  // #region invalid styling
-  [data-invalid-text] {
-    display: none;
-    color: var(--semanticFormsInvalid);
-  }
-
-  input:not([type='submit'], [type='reset'], [type='image']),
-  select,
-  textarea {
-    &.invalid,
-    &:user-invalid {
-      border: var(--semanticFormsInvalidBorder);
-
-      ~ label:nth-of-type(2) {
-        color: var(--semanticFormsInvalid);
-      }
-
-      ~ [data-invalid-text] {
-        font-size: small;
-        display: flex;
-      }
-    }
-
-    &.warn {
-      border: var(--semanticFormsWarnBorder);
-
-      ~ label:nth-of-type(2) {
-        color: var(--semanticFormsWarn);
-      }
-
-      ~ [data-invalid-text] {
-        font-size: small;
-        display: flex;
-      }
-    }
-  }
-  // #endregion
-
-  // disable autofill yellow
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active,
-  textarea:-webkit-autofill,
-  textarea:-webkit-autofill:hover,
-  textarea:-webkit-autofill:focus,
-  textarea:-webkit-autofill:active,
-  select:-webkit-autofill,
-  select:-webkit-autofill:hover,
-  select:-webkit-autofill:focus,
-  select:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 1000px var(--semanticFormsFormBgColor) inset;
-    transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
-    transition-delay: 5000s;
-    transition-property: background-color, color;
-  }
-
-  // #region fieldset
+.semanticForms {
   fieldset {
     border-radius: var(--semanticFormsBorderRadius);
     background: var(--semanticFormsFormSubBgColor);
     border: 1px var(--semanticFormsSubBorderColor) solid;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     padding: 10px 10px 20px 10px;
     margin-bottom: 15px;
 
@@ -442,18 +19,17 @@ table.semanticForms.light {
     fieldset {
       background-color: var(--semanticFormsNestedFieldsetBgColor);
       border: var(--semanticFormsNestedFieldsetBorder);
+      margin-top: 15px;
 
       // add opacity to styled inputs to prevent blending with background
-      input:not([type='submit'], [type='reset'], [type='image'], [type=checkbox], [type=radio]),
+      input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
       select,
       textarea {
         background-color: var(--semanticFormsNestedInputBgColor);
       }
     }
   }
-  // #endregion
 
-  // #region details
   details {
     box-sizing: border-box; // ensure sizings match across browsers
     position: relative;
@@ -464,15 +40,15 @@ table.semanticForms.light {
     flex-direction: column;
     gap: 5px;
     padding: 20px 10px 10px 10px;
-    margin-bottom: 15px;
+    margin-top: 10px;
     min-height: calc(var(--semanticFormsFontSize) + 20px);
-    
+
     &::details-content {
       visibility: hidden;
       opacity: 0;
       transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
     }
-    
+
     @supports (interpolate-size: allow-keywords) { // https://caniuse.com/wf-interpolate-size
       transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms, height 250ms;
 
@@ -487,6 +63,7 @@ table.semanticForms.light {
     summary {
       cursor: pointer;
       margin: 0;
+      margin-bottom: 10px;
       line-height: 1;
       position: absolute;
       top: 10px;
@@ -534,154 +111,146 @@ table.semanticForms.light {
 
       & > dl:first-of-type {
         margin-top: 15px;
+        margin-bottom: 15px;
       }
     }
   }
 
-  details[open], summary {
-    margin-bottom: 10px;
-  }
-  // #endregion
-
-  // update for scrollbars
-  @supports (scrollbar-color: auto) {
-    textarea {
-      scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
-
-      &::-webkit-resizer {
-        border: none;
-        background-image: var(--semanticFormsCustomResizer);
-        background-size: 14px;
-        background-repeat: no-repeat;
-        background-position: 100%;
-        margin: 0 2px 2px 0;
-      }
-    }
-
-    select[multiple] {
-      scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
-    }
-  }
-
-  // #region container layout
-  dl:has(dt > label, dd > input, dd > select, dd > textarea) {
+  dl {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
     gap: 10px;
     margin-bottom: 10px;
 
-    dd {
+    div {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-width: 100%;
+      width: 100%;
+      max-width: var(--semanticFormsInputMaxWidth);
 
-      // checkbox/radio
-      &.singleCheckbox, 
-      &.singleRadio {
-        display: grid;
-        grid-template-columns: 15px 1fr;
-        align-items: center;
-        padding-left: 11px;
+      &:has([data-max-content]) {
+        min-width: 150px;
+        max-width: max-content;
 
-        // anything that is not the radio/checkbox and its label
-        & > :not(input[type='checkbox'], input[type='radio'], label) {
-          grid-column: 1 / -1;
-        }
+        dd {
+          width: max-content;
 
-        // additional label takes up entire width
-        label:nth-of-type(2) {
-          grid-column: 1 / -1;
-          padding: 0 10px;
-          font-size: small;
-          color: var(--semanticFormsTextColor);
+          input, select {
+            // this is not currently supported in FireFox or Safari, and is progressively enhanced with JS
+            field-sizing: content;
+            min-width: 150px;
+            max-width: max-content;
+          }
         }
       }
 
-      &.singleRadio > input {
-        margin: 0;
+      // hide labels for singular buttons
+      &:has(dd > button:only-child, dd > input[type=button]:only-child, dd > input[type=submit]:only-child, dd > input[type=reset]:only-child) {
+        dt label {
+          display: none;
+        }
       }
 
-      // checkbox/radio groups
-      &.checkboxes, &.radios {
-        ul {
-          display: flex;
-          flex-direction: column;
-          margin-top: var(--semanticFormsInputTopMargin);
-          padding-left: 10px;
-          gap: 5px;
+      dd {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 100%;
 
-          li {
+        // checkbox/radio
+        &.singleCheckbox,
+        &.singleRadio {
+          display: grid;
+          grid-template-columns: 15px 1fr;
+          align-items: center;
+          padding-left: 11px;
+
+          // anything that is not the radio/checkbox and its label
+          & > :not(input[type='checkbox'], input[type='radio'], label) {
+            grid-column: 1 / -1;
+          }
+
+          // additional label takes up entire width
+          label:nth-of-type(2) {
+            grid-column: 1 / -1;
+            padding: 0 10px;
+            font-size: small;
+            color: var(--semanticFormsTextColor);
+          }
+        }
+
+        &.singleRadio > input {
+          margin: 0;
+        }
+
+        // checkbox/radio groups
+        &.checkboxes, &.radios {
+          ul {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            margin-top: var(--semanticFormsInputTopMargin);
+            padding-left: 10px;
             gap: 5px;
+
+            li {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+            }
+          }
+
+          // checkbox subtext
+          & > label {
+            padding-left: 20px;
+            font-size: small;
+            color: var(--semanticFormsTextColor);
           }
         }
 
-        // checkbox subtext
-        & > label {
-          padding-left: 20px;
-          font-size: small;
-          color: var(--semanticFormsTextColor);
-        }
-      }
+        // singular button
+        &:has(button:only-child, input[type=button]:only-child, input[type=submit]:only-child, input[type=reset]:only-child) {
+          margin-left: 0;
 
-      // place buttons next to input
-      &:has(button:not(.clear, .show), input[type="submit"]:not(.clear, .show)) {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-
-        button.clear, button.show {
-          right: 36%; // adjust clear/show button to grid
-        }
-
-        input:not([type="submit"]), select, textarea {
-          grid-row: 1 / 2;
-          grid-column: 1 / 2;
-        }
-
-        button:not(.clear, .show),
-        input[type="submit"]:not(.clear, .show), 
-        input[type="button"]:not(.clear, .show) {
-          grid-row: 1 / 2;
-          grid-column: 2 / 3;
-          width: 100%;
-          max-width: 100%;
-          padding: 10px; // reduce default padding to allow more button text to show
-          height: var(--semanticFormsInputHeight);
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-          display: inline-block;
-        }
-
-        label:nth-of-type(2),
-        label:not(.floatLabelFormAnimatedLabel) {
-          grid-row: 2 / 3;
-          grid-column: 1 / -1;
-        }
-      }
-
-      // focus-key styles
-      &:has(span.focus-key) {
-        // make room for focus key span
-        label:first-of-type {
-          width: calc(100% - 95px);
-        }
-
-        span.focus-key {
-          display: block;
-          
-          kbd {
-            font-family: sans-serif;
+          button, input[type=button], input[type=submit], input[type=reset] {
+            height: var(--semanticFormsInputHeight);
           }
         }
 
-        &:has(input:focus, select:focus, textarea:focus),
-        &:not(:has(input:placeholder-shown, textarea:placeholder-shown)) {
-          span.focus-key {
-            display: none;
+        // place buttons next to input
+        &:has(input ~ button:not(.clear, .show), input ~ input[type=submit], input ~ input[type=reset], input ~ input[type=button], select ~ button:not(.clear, .show),select ~ input[type=submit],select ~ input[type=reset],select ~ input[type=button]) {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+
+          button.clear, button.show {
+            right: 36%; // adjust clear/show button to grid
+          }
+
+          // inputs take up first section of columns
+          input:not([type="submit"]), select, textarea {
+            grid-row: 1 / 2;
+            grid-column: 1 / 2;
+          }
+
+          // buttons take up second section of columns
+          button:not(.clear, .show),
+          input[type="submit"]:not(.clear, .show),
+          input[type="button"]:not(.clear, .show) {
+            grid-row: 1 / 2;
+            grid-column: 2 / 3;
+            width: 100%;
+            max-width: 100%;
+            padding: 10px; // reduce default padding to allow more button text to show
+            height: var(--semanticFormsInputHeight);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+          }
+
+          label:nth-of-type(2),
+          label:not(.floatLabelFormAnimatedLabel) {
+            grid-row: 2 / 3;
+            grid-column: 1 / -1;
           }
         }
       }
@@ -713,605 +282,22 @@ table.semanticForms.light {
     gap: 10px;
     list-style-type: none;
   }
-  // #endregion
 
-  // #region labels
-
-  input[type=checkbox] + label:first-of-type,
-  input[type=radio] + label:first-of-type {
-    // shift text down to match center
-    padding-top: 2px;
-    font-size: var(--semanticFormsInputFontSize);
-    cursor: pointer;
+  div:has(.align-start) {
     display: flex;
-    align-items: center;
-    gap: 5px;
-
-    span.required {
-      cursor: help;
-      pointer-events: auto;
-      color: red;
-    }
-
-    span.help {
-      display: grid;
-      place-items: center;
-      cursor: help;
-      pointer-events: auto;
-
-      svg {
-        width: 80%;
-      }
-    }
+    justify-content: start;
   }
 
-  .floatLabelForm {
-    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
-    div {
-      position: relative;
-      width: 100%;
-      min-width: var(--semanticFormsInputMinWidth);
-      max-width: 100%;
-      max-width: 365px;
-
-      dd:not(.singleCheckbox, .singleRadio, .checkboxes, .radios) {
-        input:not([type='submit'], [type='reset'], [type='image']),
-        select,
-        textarea {
-          &:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
-          &:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
-            color: var(--semanticFormsTextColor);
-            transform: translateY(-150%) scale(0.7);
-            width: 100%;
-          }
-        }
-
-        // hide float label if no-float-label class is present
-        input:not([type='submit'], [type='reset'], [type='image']),
-        select,
-        textarea {
-          &:focus.no-float-label ~ label:first-of-type,
-          &:not(:placeholder-shown).no-float-label:not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
-            display: none;
-          }
-        }
-
-        select ~ label:first-of-type {
-          // force label to be correct color
-          color: var(--semanticFormsTextColor);
-        }
-
-        button:not(.clear, .show), 
-        input[type=submit]:not(.clear, .show) {
-          margin-top: var(--semanticFormsInputTopMargin);
-        }
-
-        // input label
-        label:first-of-type {
-          position: absolute;
-          top: calc(var(--semanticFormsInputTopMargin) + 10px);
-          left: 20px;
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          line-height: 1.2;
-          font-size: var(--semanticFormsInputFontSize);
-          transform-origin: left center;
-          pointer-events: none;
-          transition: transform 250ms;
-          cursor: text;
-          flex: 1;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          min-width: 0;
-          width: calc(100% - 35px);
-          user-select: none;
-          color: var(--semanticFormsPlaceholderColor);
-          touch-action: manipulation;
-
-          span.required {
-            cursor: help;
-            pointer-events: auto;
-            color: red;
-          }
-
-          span.help {
-            display: grid;
-            place-items: center;
-            cursor: help;
-            pointer-events: auto;
-
-            svg {
-              width: 80%;
-            }
-          }
-        }
-
-        // subtext label
-        label:nth-of-type(2) {
-          margin-top: -5px;
-          padding: 0 10px;
-          font-size: small;
-          color: var(--semanticFormsTextColor);
-        }
-
-        input,
-        textarea,
-        select {
-          margin-top: var(--semanticFormsInputTopMargin);
-        }
-
-        input,
-        textarea {
-          transition: opacity 250ms;
-
-          // hide placeholder content until input is focused
-          &::placeholder {
-            opacity: 0;
-            transition: opacity 250ms;
-          }
-
-          &::-moz-placeholder {
-            opacity: 0;
-            transition: opacity 250ms;
-          }
-
-          &::-webkit-input-placeholder {
-            opacity: 0;
-            transition: opacity 250ms;
-          }
-
-          &:-ms-input-placeholder {
-            opacity: 0;
-            transition: opacity 250ms;
-          }
-
-          // show placeholder content when focused
-          &:focus {
-            &::placeholder {
-              opacity: 1;
-            }
-
-            &::-moz-placeholder {
-              opacity: 1;
-            }
-
-            &::-webkit-input-placeholder {
-              opacity: 1;
-            }
-
-            &:-ms-input-placeholder {
-              opacity: 1;
-            }
-          }
-        }
-
-        // keyboard shortcut indicator
-        span.focus-key {
-          color: var(--semanticFormsPlaceholderColor);
-          position: absolute;
-          top: calc(var(--semanticFormsInputTopMargin) + 11px);
-          right: 20px;
-
-          kbd {
-            line-height: 1;
-          }
-        }
-
-        &:has(input[type="number"]) {
-          .focus-key {
-            right: 45px;
-          }
-        }
-
-        &:has(input[type="search"]) {
-          label:first-of-type {
-            left: 32px;
-          }
-        }
-      }
-
-      // top level label for checkbox and radio groups
-      dt {
-        position: relative;
-
-        label {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          z-index: 2; // ensure the hoverable icon is interactable
-          user-select: auto;
-          color: var(--semanticFormsTextColor);
-          font-size: var(--semanticFormsInputFontSize);
-          position: absolute;
-          transform-origin: left center;
-          transform: translateY(-100%) scale(0.7);
-          top: var(--semanticFormsInputTopMargin);
-          left: 10px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          min-width: 0;
-          width: 100%;
-
-          span.help {
-            display: grid;
-            place-items: center;
-            cursor: help;
-            pointer-events: auto;
-          }
-        }
-      }
-
-      &:has(dd input:required) {
-        dt {
-          label {
-            width: 100%;
-            padding-right:10px;
-          }
-
-          label > span {
-            margin-left: 5px;
-            cursor: help;
-            pointer-events: auto;
-            color: red;
-          }
-        }
-      }
-
-      // data-max-content CSS
-      &:has([data-max-content]) {
-        max-width: max-content;
-        min-width: 150px;
-
-        dd {
-          width: max-content;
-
-          input, select {
-            // this is not currently supported in FireFox or Safari, and is progressively enhanced with JS
-            field-sizing: content; 
-            min-width: 150px;
-            max-width: max-content;
-          }
-        }
-      }
-    }
-
-    input, textarea {
-      &::placeholder {
-        color: var(--semanticFormsPlaceholderColor);
-        opacity: 1;
-      }
-    }
-    // #endregion
+  div:has(.align-center) {
+    display: flex;
+    justify-content: center;
   }
 
-  // #region colspan classes
-  div {
-    &[class^='colspan-'] {
-      max-width: 100%;
-    }
-
-    &.colspan-full {
-      grid-column: 1 / -1;
-    }
-
-    &.colspan-5 {
-      grid-column: span 5;
-    }
-
-    &.colspan-4 {
-      grid-column: span 4;
-    }
-
-    &.colspan-3 {
-      grid-column: span 3;
-    }
-
-    &.colspan-2 {
-      grid-column: span 2;
-    }
-
-    &.colspan-1 {
-      grid-column: span 1;
-    }
+  div:has(.align-end) {
+    display: flex;
+    justify-content: end;
   }
-
-  fieldset[class^='colspan-'] dl,
-  dl[class^='colspan-'] {
-    div {
-      max-width: 100%;
-    }
-  }
-
-  fieldset.colspan-full dl,
-  dl.colspan-full {
-    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
-  }
-
-  fieldset.colspan-5 dl,
-  dl.colspan-5 {
-    grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
-  }
-
-  fieldset.colspan-4 dl,
-  dl.colspan-4 {
-    grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
-  }
-
-  fieldset.colspan-3 dl,
-  dl.colspan-3 {
-    grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
-  }
-
-  fieldset.colspan-2 dl,
-  dl.colspan-2 {
-    grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
-  }
-
-  fieldset.colspan-1 dl,
-  dl.colspan-1 {
-    grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
-  }
-
-  fieldset.colspan-1 dl,
-  dl.colspan-1 {
-    dt:nth-of-type(n + 1),
-    dd:nth-of-type(n + 1) {
-      grid-column: 1;
-    }
-  }
-
-  fieldset.colspan-2 dl,
-  dl.colspan-2 {
-    dt:nth-of-type(2n + 1),
-    dd:nth-of-type(2n + 1) {
-      grid-column: 1;
-    }
-
-    dt:nth-of-type(2n + 2),
-    dd:nth-of-type(2n + 2) {
-      grid-column: 2;
-    }
-  }
-
-  fieldset.colspan-3 dl,
-  dl.colspan-3 {
-    dt:nth-of-type(3n + 1),
-    dd:nth-of-type(3n + 1) {
-      grid-column: 1;
-    }
-
-    dt:nth-of-type(3n + 2),
-    dd:nth-of-type(3n + 2) {
-      grid-column: 2;
-    }
-
-    dt:nth-of-type(3n + 3),
-    dd:nth-of-type(3n + 3) {
-      grid-column: 3;
-    }
-  }
-
-  fieldset.colspan-4 dl,
-  dl.colspan-4 {
-    dt:nth-of-type(4n + 1),
-    dd:nth-of-type(4n + 1) {
-      grid-column: 1;
-    }
-
-    dt:nth-of-type(4n + 2),
-    dd:nth-of-type(4n + 2) {
-      grid-column: 2;
-    }
-
-    dt:nth-of-type(4n + 3),
-    dd:nth-of-type(4n + 3) {
-      grid-column: 3;
-    }
-
-    dt:nth-of-type(4n + 4),
-    dd:nth-of-type(4n + 4) {
-      grid-column: 4;
-    }
-  }
-
-  fieldset.colspan-5 dl,
-  dl.colspan-5 {
-    dt:nth-of-type(5n + 1),
-    dd:nth-of-type(5n + 1) {
-      grid-column: 1;
-    }
-
-    dt:nth-of-type(5n + 2),
-    dd:nth-of-type(5n + 2) {
-      grid-column: 2;
-    }
-
-    dt:nth-of-type(5n + 3),
-    dd:nth-of-type(5n + 3) {
-      grid-column: 3;
-    }
-
-    dt:nth-of-type(5n + 4),
-    dd:nth-of-type(5n + 4) {
-      grid-column: 4;
-    }
-
-    dt:nth-of-type(5n + 5),
-    dd:nth-of-type(5n + 5) {
-      grid-column: 5;
-    }
-  }
-  // #endregion
-
-  // #region low flow form
-  &.lowFlow,
-  &:not(.semanticFormsActive) {
-    gap: 10px;
-
-    dl {
-      grid-auto-flow: dense;
-      gap: 0 10px;
-      margin-bottom: 0px;
-    }
-
-    // 1, 4, 7, ...
-    & > dt:nth-of-type(2n + 1),
-    & > dd:nth-of-type(2n + 1) {
-      grid-column: 1;
-    }
-
-    // 2, 5, 8, ...
-    & > dt:nth-of-type(2n + 2),
-    & > dd:nth-of-type(2n + 2) {
-      grid-column: 2;
-    }
-
-    dt {
-      min-width: var(--semanticFormsInputMinWidth); /* this matches the max-width of js-enabled inputs */
-
-      label {
-        position: absolute;
-        display: block;
-        height: 11px;
-        transform: scale(0.7);
-        transform-origin: left center;
-        padding-left: 22px;
-        margin-top: -1px;
-      }
-
-      // add required asterisk
-      &:has(+ dd input:required) {
-        label::after {
-          content: ' *';
-          color: red;
-        }
-      }
-    }
-
-    // checkbox/radio groups
-    dt {
-      &:has(+ dd.checkboxes),
-      &:has(+ dd.radios) {
-        label {
-          padding-left: 15px;
-        }
-      }
-    }
-
-    // single checkbox label
-    dt {
-      &:not(:has(+ dd ul)){
-        &:has(+ dd input[type=checkbox]) {
-          label {
-            transform: scale(1);
-            margin-top: 0;
-            margin-left: 8px;
-          }
-        }
-
-        &:has(+ dd input[type=radio]) {
-          label {
-            transform: scale(1);
-            margin-top: 0;
-            margin-left: 8px;
-          }
-        }
-      }
-    } 
-
-
-    dd {
-      // margin-bottom: 10px;
-      margin-top: var(--semanticFormsInputTopMargin);
-      margin-bottom: 10px;
-      min-width: var(--semanticFormsInputMinWidth); /* this matches the max-width of js-enabled inputs */
-
-      // checkbox/radio groups
-      &.checkboxes,
-      &.radios {
-        margin-top: 0;
-
-        ul {
-          input[type=radio] {
-            margin-top: 3px;
-          }
-
-          label {
-            padding-top: 7px;
-            padding-left: 0;
-            font-size: var(--semanticFormsFontSize);
-          }
-        }
-
-        // additional text
-        ul + label {
-          margin-top: 0;
-          font-size: small;
-        }
-      }
-
-      // single checkbox/radio
-      &:not(:has(ul)){
-        &:has(input[type=checkbox], input[type=radio]) {
-          margin-top: 0;
-          padding-left: 10px;
-
-          input[type=checkbox],
-          input[type=radio] {
-            margin-left: 1px;
-            margin-top: 1px;
-            margin-right: auto;
-          }
-
-          // additional info text
-          label {
-            font-size: small;
-            margin-top: -1px;
-            padding-left: 11px;
-          }
-
-          input[type=radio] + label {
-            margin-top: -4px;
-          }
-        }
-      }
-
-      // remove "x" padding
-      input:not([type=submit], [type=reset], [type=image], [type=checkbox], [type=radio], [type=range]),
-      select,
-      textarea {
-        padding-right: 6px;
-      }
-
-      // subtext
-      label {
-        padding-left: 10px;
-        margin-top: -5px;
-        font-size: small;
-        color: var(--semanticFormsPlaceholderColor);
-      }
-
-      // inline buttons
-      button:not(.clear, .show),
-      input[type="submit"]:not(.clear, .show), 
-      input[type="button"]:not(.clear, .show)  {
-        margin-top: 0;
-      }
-    }
-  }
-
-  .checkboxes ul,
-  .radios ul {
-    margin-top: var(--semanticFormsInputTopMargin);
-  }
-  // #endregion
 }
-
-// #region tables
 
 .semanticForms table,
 table.semanticForms {
@@ -1363,392 +349,3 @@ table.semanticForms {
     width: max-content;
   }
 }
-// #endregion
-
-// #region container queries
-form.semanticForms,
-fieldset {
-  container: semanticForm / inline-size;
-
-  // max 7 columns
-  @container semanticForm (width >= 1810px) {
-    & fieldset dl,
-    & dl {
-      grid-template-columns: repeat(7, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
-      &:has(:not(div)) {
-        & dt:nth-of-type(7n + 1), 
-        & dd:nth-of-type(7n + 1) {
-          grid-column: 1;
-        }
-
-        & dt:nth-of-type(7n + 2), 
-        & dd:nth-of-type(7n + 2) {
-          grid-column: 2;
-        }
-
-        & dt:nth-of-type(7n + 3), 
-        & dd:nth-of-type(7n + 3) {
-          grid-column: 3;
-        }
-
-        & dt:nth-of-type(7n + 4), 
-        & dd:nth-of-type(7n + 4) {
-          grid-column: 4;
-        }
-
-        & dt:nth-of-type(7n + 5), 
-        & dd:nth-of-type(7n + 5) {
-          grid-column: 5;
-        }
-
-        & dt:nth-of-type(7n + 6), 
-        & dd:nth-of-type(7n + 6) {
-          grid-column: 6;
-        }
-
-        & dt:nth-of-type(7n + 7), 
-        & dd:nth-of-type(7n + 7) {
-          grid-column: 7;
-        }
-
-        & dt:has(+ dd.colspan-5),
-        & dt:has(+ dd.colspan-full),
-        & dd.colspan-5,
-        & dd.colspan-full {
-          grid-column: span 5;
-        }
-
-        & dt:has(+ dd.colspan-4), 
-        & dd.colspan-4 {
-          grid-column: span 4;
-        }
-
-        & dt:has(+ dd.colspan-3), 
-        & dd.colspan-3 {
-          grid-column: span 3;
-        }
-
-        & dt:has(+ dd.colspan-2), 
-        & dd.colspan-2 {
-          grid-column: span 2;
-        }
-      }
-    }
-  }
-
-  // max 6 columns
-  @container semanticForm (width >= 1550px) and (width < 1810px) {
-    & fieldset dl,
-    & dl {
-      grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
-      &:has(:not(div)) {
-        & dt:nth-of-type(6n + 1), 
-        & dd:nth-of-type(6n + 1) {
-          grid-column: 1;
-        }
-  
-        & dt:nth-of-type(6n + 2), 
-        & dd:nth-of-type(6n + 2) {
-          grid-column: 2;
-        }
-  
-        & dt:nth-of-type(6n + 3), 
-        & dd:nth-of-type(6n + 3) {
-          grid-column: 3;
-        }
-  
-        & dt:nth-of-type(6n + 4), 
-        & dd:nth-of-type(6n + 4) {
-          grid-column: 4;
-        }
-  
-        & dt:nth-of-type(6n + 5), 
-        & dd:nth-of-type(6n + 5) {
-          grid-column: 5;
-        }
-  
-        & dt:nth-of-type(6n + 6), 
-        & dd:nth-of-type(6n + 6) {
-          grid-column: 6;
-        }
-
-        & dt:has(+ dd.colspan-5),
-        & dt:has(+ dd.colspan-full),
-        & dd.colspan-5,
-        & dd.colspan-full {
-          grid-column: span 5;
-        }
-
-        & dt:has(+ dd.colspan-4), 
-        & dd.colspan-4 {
-          grid-column: span 4;
-        }
-
-        & dt:has(+ dd.colspan-3), 
-        & dd.colspan-3 {
-          grid-column: span 3;
-        }
-
-        & dt:has(+ dd.colspan-2), 
-        & dd.colspan-2 {
-          grid-column: span 2;
-        }
-      }
-    }
-  }
-
-  // max 5 columns
-  @container semanticForm (width >= 1290px) and (width < 1550px) {
-    & fieldset dl,
-    & dl {
-      grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
-      &:has(:not(div)) {
-        & dt:nth-of-type(5n + 1), 
-        & dd:nth-of-type(5n + 1) {
-          grid-column: 1;
-        }
-  
-        & dt:nth-of-type(5n + 2), 
-        & dd:nth-of-type(5n + 2) {
-          grid-column: 2;
-        }
-  
-        & dt:nth-of-type(5n + 3), 
-        & dd:nth-of-type(5n + 3) {
-          grid-column: 3;
-        }
-  
-        & dt:nth-of-type(5n + 4), 
-        & dd:nth-of-type(5n + 4) {
-          grid-column: 4;
-        }
-  
-        & dt:nth-of-type(5n + 5), 
-        & dd:nth-of-type(5n + 5) {
-          grid-column: 5;
-        }
-
-        & dt:has(+ dd.colspan-5),
-        & dt:has(+ dd.colspan-full),
-        & dd.colspan-5,
-        & dd.colspan-full {
-          grid-column: span 5;
-        }
-
-        & dt:has(+ dd.colspan-4), 
-        & dd.colspan-4 {
-          grid-column: span 4;
-        }
-
-        & dt:has(+ dd.colspan-3), 
-        & dd.colspan-3 {
-          grid-column: span 3;
-        }
-
-        & dt:has(+ dd.colspan-2), 
-        & dd.colspan-2 {
-          grid-column: span 2;
-        }
-      }
-    }
-  }
-
-  // max 4 columns
-  @container semanticForm (width >= 1030px) and (width < 1290px) {
-    & fieldset dl,
-    & fieldset.colspan-5 dl,
-    & dl,
-    & dl.colspan-5 {
-      grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
-      div.colspan-5 {
-        grid-column: span 4;
-      }
-
-      &:has(:not(div)) { 
-        & dt:nth-of-type(4n + 1), 
-        & dd:nth-of-type(4n + 1) {
-          grid-column: 1;
-        }
-  
-        & dt:nth-of-type(4n + 2), 
-        & dd:nth-of-type(4n + 2) {
-          grid-column: 2;
-        }
-  
-        & dt:nth-of-type(4n + 3), 
-        & dd:nth-of-type(4n + 3) {
-          grid-column: 3;
-        }
-  
-        & dt:nth-of-type(4n + 4), 
-        & dd:nth-of-type(4n + 4) {
-          grid-column: 4;
-        }
-
-        & dt:has(+ dd.colspan-4), 
-        & dt:has(+ dd.colspan-5),
-        & dt:has(+ dd.colspan-full),
-        & dd.colspan-4,
-        & dd.colspan-5,
-        & dd.colspan-full {
-          grid-column: span 4;
-        }
-
-        & dt:has(+ dd.colspan-3), 
-        & dd.colspan-3 {
-          grid-column: span 3;
-        }
-
-        & dt:has(+ dd.colspan-2), 
-        & dd.colspan-2 {
-          grid-column: span 2;
-        }
-      }
-    }
-  }
-
-  // max 3 columns
-  @container semanticForm (width >= 850px) and (width < 1030px) {  
-    & fieldset dl,
-    & fieldset.colspan-4 dl,
-    & fieldset.colspan-5 dl,
-    & dl,
-    & dl.colspan-4,
-    & dl.colspan-5 {
-      grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
-      div.colspan-4,
-      div.colspan-5 {
-        grid-column: span 3;
-      }
-
-      &:has(:not(div)) { 
-        & dt:nth-of-type(3n + 1), 
-        & dd:nth-of-type(3n + 1) {
-          grid-column: 1;
-        }
-        
-        & dt:nth-of-type(3n + 2), 
-        & dd:nth-of-type(3n + 2) {
-          grid-column: 2;
-        }
-        
-        & dt:nth-of-type(3n + 3), 
-        & dd:nth-of-type(3n + 3) {
-          grid-column: 3;
-        }
-
-        & dt:has(+ dd.colspan-3), 
-        & dt:has(+ dd.colspan-4), 
-        & dt:has(+ dd.colspan-5),
-        & dt:has(+ dd.colspan-full),
-        & dd.colspan-3,
-        & dd.colspan-4,
-        & dd.colspan-5,
-        & dd.colspan-full {
-          grid-column: span 3;
-        }
-
-        & dt:has(+ dd.colspan-2), 
-        & dd.colspan-2 {
-          grid-column: span 2;
-        }
-      }
-    }
-  }
-
-  // max 2 columns
-  @container semanticForm (width >= 510px) and (width < 850px) {
-    & fieldset dl,
-    & fieldset.colspan-3 dl,
-    & fieldset.colspan-4 dl,
-    & fieldset.colspan-5 dl,
-    & dl,
-    & dl.colspan-3,
-    & dl.colspan-4,
-    & dl.colspan-5 {
-      grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
-      div.colspan-3,
-      div.colspan-4,
-      div.colspan-5 {
-        grid-column: span 2;
-      }
-
-      &:has(:not(div)) { 
-        & dt:nth-of-type(2n + 1), 
-        & dd:nth-of-type(2n + 1) {
-          grid-column: 1;
-        }
-  
-        & dt:nth-of-type(2n + 2), 
-        & dd:nth-of-type(2n + 2) {
-          grid-column: 2;
-        }
-
-        & dt:has(+ dd.colspan-2),
-        & dt:has(+ dd.colspan-3), 
-        & dt:has(+ dd.colspan-4), 
-        & dt:has(+ dd.colspan-5),
-        & dt:has(+ dd.colspan-full),
-        & dd.colspan-2,
-        & dd.colspan-3,
-        & dd.colspan-4,
-        & dd.colspan-5,
-        & dd.colspan-full {
-          grid-column: span 2;
-        }
-      }
-    }
-  }
-
-  // max 1 column
-  @container semanticForm (width < 510px) {
-    & fieldset dl,
-    & fieldset.colspan-2 dl,
-    & fieldset.colspan-3 dl,
-    & fieldset.colspan-4 dl,
-    & fieldset.colspan-5 dl,
-    & dl,
-    & dl.colspan-2,
-    & dl.colspan-3,
-    & dl.colspan-4,
-    & dl.colspan-5 {
-      grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
-
-      div.colspan-2,
-      div.colspan-3,
-      div.colspan-4,
-      div.colspan-5 {
-        grid-column: span 1;
-      }
-
-      &:has(:not(div)) {
-        & dt:nth-of-type(n + 1),
-        & dd:nth-of-type(n + 1) {
-          grid-column: 1;
-        }
-
-        & dt:has(+ dd.colspan-1),
-        & dt:has(+ dd.colspan-2),
-        & dt:has(+ dd.colspan-3), 
-        & dt:has(+ dd.colspan-4), 
-        & dt:has(+ dd.colspan-5),
-        & dt:has(+ dd.colspan-full),
-        & dd.colspan-1,
-        & dd.colspan-2,
-        & dd.colspan-3,
-        & dd.colspan-4,
-        & dd.colspan-5,
-        & dd.colspan-full {
-          grid-column: span 1;
-        }
-      }
-    }
-  }
-}
-// #endregion

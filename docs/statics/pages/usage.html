@@ -42,21 +42,27 @@
 
       <p>The float label input pattern is notoriously difficult to implement in a fashion that doesn't degrade HTML semantics or accessibility. This pattern library implements a solution that solves that problem. Your label doesn't need to be a sibling of your input like with other implementations. This implementation also has a custom clear button for each input.</p>
 
+      <p>Note: Although wrapping the input and label elements in a <code><!--#<div>--></code> is not required, it is highly recommended as it reduces <a href="https://en.wikipedia.org/wiki/Flash_of_unstyled_content"><abbr>FOUC</abbr></a>.</p>
+
       <h5 id="floatlabelex">Example</h5>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
   <dl>
-    <dt><label for="name">Name</label></dt>
-    <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+    <div>
+      <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+      <dt><label for="name">Name</label></dt>
+    </div>
   </dl>
 </form>
 </escape></code></pre>
 
       <form class="semanticForms">
         <dl>
-          <dt><label for="name">Name</label></dt>
-          <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+          <div>
+            <dt><label for="name">Name</label></dt>
+            <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+          </div>
         </dl>
       </form>
 
@@ -65,16 +71,20 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
   <dl>
-    <dt><label for="textarea">Textarea</label></dt>
-    <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. Long string of text"></textarea></dd>
+    <div>
+      <dt><label for="textarea">Textarea</label></dt>
+      <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. Long string of text"></textarea></dd>
+    </div>
   </dl>
 </form>
 </escape></code></pre>
 
       <form class="semanticForms">
         <dl>
-          <dt><label for="textarea">Textarea</label></dt>
-          <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. Long string of text"></textarea></dd>
+          <div>
+            <dt><label for="textarea">Textarea</label></dt>
+            <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. Long string of text"></textarea></dd>
+          </div>
         </dl>
       </form>
 
@@ -87,22 +97,26 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms" method="post">
   <dl>
-    <dt><label for="password">Password</label></dt>
-    <dd>
-      <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required autocomplete="off">
-      <label for="password">Must be at least 8 characters long.</label>
-    </dd>
+    <div>
+      <dt><label for="password">Password</label></dt>
+      <dd>
+        <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required autocomplete="off">
+        <label for="password">Must be at least 8 characters long.</label>
+      </dd>
+    </div>
   </dl>
 </form>
 </escape></code></pre>
 
       <form class="semanticForms" method="post">
         <dl>
-          <dt><label for="password">Password</label></dt>
-          <dd>
-            <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required autocomplete="off">
-            <label for="password">Must be at least 8 characters long.</label>
-          </dd>
+          <div>
+            <dt><label for="password">Password</label></dt>
+            <dd>
+              <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required autocomplete="off">
+              <label for="password">Must be at least 8 characters long.</label>
+            </dd>
+          </div>
         </dl>
       </form>
 
@@ -113,22 +127,26 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms" method="post">
   <dl>
-    <dt><label for="email">Email address</label></dt>
-    <dd>
-      <input id="email" name="email" type="email" placeholder="Enter an email address" autocomplete="off">
-      <button type="submit">Sign up</button>
-    </dd>
+    <div>
+      <dt><label for="email">Email address</label></dt>
+      <dd>
+        <input id="email" name="email" type="email" placeholder="Enter an email address" autocomplete="off">
+        <button type="submit">Sign up</button>
+      </dd>
+    </div>
   </dl>
 </form>
 </escape></code></pre>
       
       <form class="semanticForms" method="post">
         <dl>
-          <dt><label for="email">Email address</label></dt>
-          <dd>
-            <input id="email" name="email" type="email" placeholder="Enter an email address" autocomplete="off">
-            <button type="submit">Sign up!</button>
-          </dd>
+          <div>
+            <dt><label for="email">Email address</label></dt>
+            <dd>
+              <input id="email" name="email" type="email" placeholder="Enter an email address" autocomplete="off">
+              <button type="submit">Sign up!</button>
+            </dd>
+          </div>
         </dl>
       </form>
 
@@ -139,32 +157,44 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms" method="post">
   <dl>
-    <dt><label for="focus-1">Focus me!</label></dt>
-    <dd><input id="focus-1" name="focus-1" type="text" data-focus-key="Y"></dd>
+    <div>
+      <dt><label for="focus-1">Focus me!</label></dt>
+      <dd><input id="focus-1" name="focus-1" type="text" data-focus-key="Y"></dd>
+    </div>
 
     <!-- change the modifier -->
-    <dt><label for="focus-2">Focus me!</label></dt>
-    <dd><input id="focus-2" name="focus-2" type="text" data-focus-key="Y" data-focus-modifier="alt"></dd>
+    <div>
+      <dt><label for="focus-2">Focus me!</label></dt>
+      <dd><input id="focus-2" name="focus-2" type="text" data-focus-key="Y" data-focus-modifier="alt"></dd>
+    </div>
 
     <!-- specify modifier by OS -->
-    <dt><label for="focus-2">Focus me!</label></dt>
-    <dd><input id="focus-2" name="focus-2" type="text" data-focus-key="Z" data-focus-modifier-win="alt" data-focus-modifier-linux="meta" data-focus-modifier-mac="cmd"></dd>
+    <div>
+      <dt><label for="focus-2">Focus me!</label></dt>
+      <dd><input id="focus-2" name="focus-2" type="text" data-focus-key="Z" data-focus-modifier-win="alt" data-focus-modifier-linux="meta" data-focus-modifier-mac="cmd"></dd>
+    </div>
   </dl>
 </form>
 </escape></code></pre>
       
       <form class="semanticForms" method="post">
         <dl>
-          <dt><label for="focus-1">Focus me!</label></dt>
-          <dd><input id="focus-1" name="focus-1" type="text" data-focus-key="Y"></dd>
+          <div>
+            <dt><label for="focus-1">Focus me!</label></dt>
+            <dd><input id="focus-1" name="focus-1" type="text" data-focus-key="Y"></dd>
+          </div>
       
           <!-- change the modifier -->
-          <dt><label for="focus-2">Focus me!</label></dt>
-          <dd><input id="focus-2" name="focus-2" type="text" data-focus-key="Y" data-focus-modifier="alt"></dd>
+          <div>
+            <dt><label for="focus-2">Focus me!</label></dt>
+            <dd><input id="focus-2" name="focus-2" type="text" data-focus-key="Y" data-focus-modifier="alt"></dd>
+          </div>
       
           <!-- specify modifier by OS -->
-          <dt><label for="focus-3">Focus me!</label></dt>
-          <dd><input id="focus-3" name="focus-3" type="text" data-focus-key="Z" data-focus-modifier-win="alt" data-focus-modifier-linux="meta" data-focus-modifier-max="cmd"></dd>
+          <div>
+            <dt><label for="focus-3">Focus me!</label></dt>
+            <dd><input id="focus-3" name="focus-3" type="text" data-focus-key="Z" data-focus-modifier-win="alt" data-focus-modifier-linux="meta" data-focus-modifier-max="cmd"></dd>
+          </div>
         </dl>
       </form>
 
@@ -209,16 +239,20 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
   <dl>
-    <dt><label for="search-field">Search</label></dt>
-    <dd><input id="search-field" name="search-field" type="search" placeholder="e.g. cool stuff" class="no-float-label"></dd>
+    <div>
+      <dt><label for="search-field">Search</label></dt>
+      <dd><input id="search-field" name="search-field" type="search" placeholder="e.g. cool stuff" class="no-float-label"></dd>
+    </div>
   </dl>
 </form>
 </escape></code></pre>
 
       <form class="semanticForms">
         <dl>
-          <dt><label for="search-field">Search</label></dt>
-          <dd><input id="search-field" name="search-field" type="search" placeholder="e.g. cool stuff" class="no-float-label"></dd>
+          <div>
+            <dt><label for="search-field">Search</label></dt>
+            <dd><input id="search-field" name="search-field" type="search" placeholder="e.g. cool stuff" class="no-float-label"></dd>
+          </div>
         </dl>
       </form>
 
@@ -233,30 +267,42 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
   <dl class="colspan-2">
-    <dt><label for="input-a">Input A</label></dt>
-    <dd><input type="text" id="input-a" name="input-a"></dd>
+    <div>
+      <dt><label for="input-a">Input A</label></dt>
+      <dd><input type="text" id="input-a" name="input-a"></dd>
+    </div>
 
-    <dt><label for="input-b">Input B</label></dt>
-    <dd><input type="text" id="input-b" name="input-b"></dd>
+    <div>
+      <dt><label for="input-b">Input B</label></dt>
+      <dd><input type="text" id="input-b" name="input-b"></dd>
+    </div>
 
     <!-- wraps to the next row -->
-    <dt><label for="input-c">Input C</label></dt>
-    <dd><input type="text" id="input-c" name="input-c"></dd>
+    <div>
+      <dt><label for="input-c">Input C</label></dt>
+      <dd><input type="text" id="input-c" name="input-c"></dd>
+    </div>
   </dl>
 </form>
 </escape></code></pre>
 
       <form class="semanticForms">
         <dl class="colspan-2">
-          <dt><label for="input-a">Input A</label></dt>
-          <dd><input type="text" id="input-a" name="input-a"></dd>
+          <div>
+            <dt><label for="input-a">Input A</label></dt>
+            <dd><input type="text" id="input-a" name="input-a"></dd>
+          </div>
 
-          <dt><label for="input-b">Input B</label></dt>
-          <dd><input type="text" id="input-b" name="input-b"></dd>
+          <div>
+            <dt><label for="input-b">Input B</label></dt>
+            <dd><input type="text" id="input-b" name="input-b"></dd>
+          </div>
 
           <!-- wraps to the next row -->
-          <dt><label for="input-c">Input C</label></dt>
-          <dd><input type="text" id="input-c" name="input-c"></dd>
+          <div>
+            <dt><label for="input-c">Input C</label></dt>
+            <dd><input type="text" id="input-c" name="input-c"></dd>
+          </div>
         </dl>
       </form>
 
@@ -267,26 +313,38 @@
   <fieldset class="colspan-3">
     <!-- inherits 3 column class -->
     <dl>
-      <dt><label for="f-ex-input-a">Input A</label></dt>
-      <dd><input type="text" id="f-ex-input-a" name="f-ex-input-a"></dd>
+      <div>
+        <dt><label for="f-ex-input-a">Input A</label></dt>
+        <dd><input type="text" id="f-ex-input-a" name="f-ex-input-a"></dd>
+      </div>
 
-      <dt><label for="f-ex-input-b">Input B</label></dt>
-      <dd><input type="text" id="f-ex-input-b" name="f-ex-input-b"></dd>
+      <div>
+        <dt><label for="f-ex-input-b">Input B</label></dt>
+        <dd><input type="text" id="f-ex-input-b" name="f-ex-input-b"></dd>
+      </div>
 
-      <dt><label for="f-ex-input-c">Input C</label></dt>
-      <dd><input type="text" id="f-ex-input-c" name="f-ex-input-c"></dd>
+      <div>
+        <dt><label for="f-ex-input-c">Input C</label></dt>
+        <dd><input type="text" id="f-ex-input-c" name="f-ex-input-c"></dd>
+      </div>
     </dl>
 
     <!-- has 4 columns -->
     <dl class="colspan-4">
-      <dt><label for="f-ex-input-d">Input D</label></dt>
-      <dd><input type="text" id="f-ex-input-d" name="f-ex-input-d"></dd>
+      <div>
+        <dt><label for="f-ex-input-d">Input D</label></dt>
+        <dd><input type="text" id="f-ex-input-d" name="f-ex-input-d"></dd>
+      </div>
 
-      <dt><label for="f-ex-input-e">Input E</label></dt>
-      <dd><input type="text" id="f-ex-input-e" name="f-ex-input-e"></dd>
+      <div>
+        <dt><label for="f-ex-input-e">Input E</label></dt>
+        <dd><input type="text" id="f-ex-input-e" name="f-ex-input-e"></dd>
+      </div>
 
-      <dt><label for="f-ex-input-f">Input F</label></dt>
-      <dd><input type="text" id="f-ex-input-f" name="f-ex-input-f"></dd>
+      <div>
+        <dt><label for="f-ex-input-f">Input F</label></dt>
+        <dd><input type="text" id="f-ex-input-f" name="f-ex-input-f"></dd>
+      </div>
     </dl>
   </fieldset>
 </form>
@@ -296,26 +354,38 @@
         <fieldset class="colspan-3">
           <!-- inherits 3 column class -->
           <dl>
-            <dt><label for="f-ex-input-a">Input A</label></dt>
-            <dd><input type="text" id="f-ex-input-a" name="f-ex-input-a"></dd>
+            <div>
+              <dt><label for="f-ex-input-a">Input A</label></dt>
+              <dd><input type="text" id="f-ex-input-a" name="f-ex-input-a"></dd>
+            </div>
 
-            <dt><label for="f-ex-input-b">Input B</label></dt>
-            <dd><input type="text" id="f-ex-input-b" name="f-ex-input-b"></dd>
+            <div>
+              <dt><label for="f-ex-input-b">Input B</label></dt>
+              <dd><input type="text" id="f-ex-input-b" name="f-ex-input-b"></dd>
+            </div>
 
-            <dt><label for="f-ex-input-c">Input C</label></dt>
-            <dd><input type="text" id="f-ex-input-c" name="f-ex-input-c"></dd>
+            <div>
+              <dt><label for="f-ex-input-c">Input C</label></dt>
+              <dd><input type="text" id="f-ex-input-c" name="f-ex-input-c"></dd>
+            </div>
           </dl>
 
           <!-- has 4 columns -->
           <dl class="colspan-4">
-            <dt><label for="f-ex-input-d">Input D</label></dt>
-            <dd><input type="text" id="f-ex-input-d" name="f-ex-input-d"></dd>
+            <div>
+              <dt><label for="f-ex-input-d">Input D</label></dt>
+              <dd><input type="text" id="f-ex-input-d" name="f-ex-input-d"></dd>
+            </div>
 
-            <dt><label for="f-ex-input-e">Input E</label></dt>
-            <dd><input type="text" id="f-ex-input-e" name="f-ex-input-e"></dd>
+            <div>
+              <dt><label for="f-ex-input-e">Input E</label></dt>
+              <dd><input type="text" id="f-ex-input-e" name="f-ex-input-e"></dd>
+            </div>
 
-            <dt><label for="f-ex-input-f">Input F</label></dt>
-            <dd><input type="text" id="f-ex-input-f" name="f-ex-input-f"></dd>
+            <div>
+              <dt><label for="f-ex-input-f">Input F</label></dt>
+              <dd><input type="text" id="f-ex-input-f" name="f-ex-input-f"></dd>
+            </div>
           </dl>
         </fieldset>
       </form>
@@ -328,17 +398,23 @@
 <form class="semanticForms">
   <fieldset>
     <dl>
-      <dt><label for="cspan-ex-input-a">Input A</label></dt>
-      <!-- 1 column -->
-      <dd class="colspan-1"><input type="text" id="cspan-ex-input-a" name="cspan-ex-input-a"></dd>
+      <div>
+        <dt><label for="cspan-ex-input-a">Input A</label></dt>
+        <!-- 1 column -->
+        <dd class="colspan-1"><input type="text" id="cspan-ex-input-a" name="cspan-ex-input-a"></dd>
+      </div>
 
-      <dt><label for="cspan-ex-input-b">Input B</label></dt>
-      <!-- 2 columns  -->
-      <dd class="colspan-2"><input type="text" id="cspan-ex-input-b" name="cspan-ex-input-b"></dd>
+      <div>
+        <dt><label for="cspan-ex-input-b">Input B</label></dt>
+        <!-- 2 columns  -->
+        <dd class="colspan-2"><input type="text" id="cspan-ex-input-b" name="cspan-ex-input-b"></dd>
+      </div>
 
-      <dt><label for="cspan-ex-input-c">Input C</label></dt>
-      <!-- 5 columns (max) -->
-      <dd class="colspan-5"><input type="text" id="cspan-ex-input-c" name="cspan-ex-input-c"></dd>
+      <div>
+        <dt><label for="cspan-ex-input-c">Input C</label></dt>
+        <!-- 5 columns (max) -->
+        <dd class="colspan-5"><input type="text" id="cspan-ex-input-c" name="cspan-ex-input-c"></dd>
+      </div>
     </dl>
   </fieldset>
 </form>
@@ -347,17 +423,23 @@
       <form class="semanticForms">
         <fieldset>
           <dl>
-            <dt><label for="cspan-ex-input-a">Input A</label></dt>
-            <!-- 1 column -->
-            <dd class="colspan-1"><input type="text" id="cspan-ex-input-a" name="cspan-ex-input-a"></dd>
+            <div>
+              <dt><label for="cspan-ex-input-a">Input A</label></dt>
+              <!-- 1 column -->
+              <dd class="colspan-1"><input type="text" id="cspan-ex-input-a" name="cspan-ex-input-a"></dd>
+            </div>
 
-            <dt><label for="cspan-ex-input-b">Input B</label></dt>
-            <!-- 2 columns  -->
-            <dd class="colspan-2"><input type="text" id="cspan-ex-input-b" name="cspan-ex-input-b"></dd>
+            <div>
+              <dt><label for="cspan-ex-input-b">Input B</label></dt>
+              <!-- 2 columns  -->
+              <dd class="colspan-2"><input type="text" id="cspan-ex-input-b" name="cspan-ex-input-b"></dd>
+            </div>
 
-            <dt><label for="cspan-ex-input-c">Input C</label></dt>
-            <!-- 5 columns (max) -->
-            <dd class="colspan-5"><input type="text" id="cspan-ex-input-c" name="cspan-ex-input-c"></dd>
+            <div>
+              <dt><label for="cspan-ex-input-c">Input C</label></dt>
+              <!-- 5 columns (max) -->
+              <dd class="colspan-5"><input type="text" id="cspan-ex-input-c" name="cspan-ex-input-c"></dd>
+            </div>
           </dl>
         </fieldset>
       </form>
@@ -368,17 +450,23 @@
 <form class="semanticForms">
   <fieldset>
     <dl>
-      <dt><label for="cspanfull-ex-input-a">Input A</label></dt>
-      <!-- this spans 2 columns on row 1 -->
-      <dd class="colspan-2"><input type="text" id="cspanfull-ex-input-a" name="cspanfull-ex-input-a"></dd>
+      <div>
+        <dt><label for="cspanfull-ex-input-a">Input A</label></dt>
+        <!-- this spans 2 columns on row 1 -->
+        <dd class="colspan-2"><input type="text" id="cspanfull-ex-input-a" name="cspanfull-ex-input-a"></dd>
+      </div>
 
-      <dt><label for="cspanfull-ex-input-b">Input B</label></dt>
-      <!-- this spans the full width of row 2 -->
-      <dd class="colspan-full"><input type="text" id="cspanfull-ex-input-b" name="cspanfull-ex-input-b"></dd>
+      <div>
+        <dt><label for="cspanfull-ex-input-b">Input B</label></dt>
+        <!-- this spans the full width of row 2 -->
+        <dd class="colspan-full"><input type="text" id="cspanfull-ex-input-b" name="cspanfull-ex-input-b"></dd>
+      </div>
 
-      <!-- this spans 1 column on row 3 -->
-      <dt><label for="cspanfull-ex-input-c">Input C</label></dt>
-      <dd><input type="text" id="cspanfull-ex-input-c" name="cspanfull-ex-input-c"></dd>
+      <div>
+        <!-- this spans 1 column on row 3 -->
+        <dt><label for="cspanfull-ex-input-c">Input C</label></dt>
+        <dd><input type="text" id="cspanfull-ex-input-c" name="cspanfull-ex-input-c"></dd>
+      </div>
     </dl>
   </fieldset>
 </form>
@@ -387,19 +475,69 @@
       <form class="semanticForms">
         <fieldset>
           <dl>
-            <dt><label for="cspanfull-ex-input-a">Input A</label></dt>
-            <!-- this spans 2 columns on row 1 -->
-            <dd class="colspan-2"><input type="text" id="cspanfull-ex-input-a" name="cspanfull-ex-input-a"></dd>
+            <div>
+              <dt><label for="cspanfull-ex-input-a">Input A</label></dt>
+              <!-- this spans 2 columns on row 1 -->
+              <dd class="colspan-2"><input type="text" id="cspanfull-ex-input-a" name="cspanfull-ex-input-a"></dd>
+            </div>
 
-            <dt><label for="cspanfull-ex-input-b">Input B</label></dt>
-            <!-- this spans the full width of row 2 -->
-            <dd class="colspan-full"><input type="text" id="cspanfull-ex-input-b" name="cspanfull-ex-input-b"></dd>
+            <div>
+              <dt><label for="cspanfull-ex-input-b">Input B</label></dt>
+              <!-- this spans the full width of row 2 -->
+              <dd class="colspan-full"><input type="text" id="cspanfull-ex-input-b" name="cspanfull-ex-input-b"></dd>
+            </div>
 
-            <!-- this spans 1 column on row 3 -->
-            <dt><label for="cspanfull-ex-input-c">Input C</label></dt>
-            <dd><input type="text" id="cspanfull-ex-input-c" name="cspanfull-ex-input-c"></dd>
+            <div>
+              <!-- this spans 1 column on row 3 -->
+              <dt><label for="cspanfull-ex-input-c">Input C</label></dt>
+              <dd><input type="text" id="cspanfull-ex-input-c" name="cspanfull-ex-input-c"></dd>
+            </div>
           </dl>
         </fieldset>
+      </form>
+
+      <h5>Align elements within the responsive grid</h5>
+      
+      <p>Use classes to align an element at the start, center, or end of its available space. Available classes are <code>align-start</code>, <code>align-center</code>, and <code>align-end</code>.</p>
+      
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms" method="post">
+  <dl class="colspan-3">
+    <div>
+      <dt><label for="align-start">align-start</label></dt>
+      <dd class="align-start"><input id="align-start" name="align-start" type="text"></dd>
+    </div>
+
+    <div>
+      <dt><label for="align-center">align-center</label></dt>
+      <dd class="align-center"><input id="align-center" name="align-center" type="text"></dd>
+    </div>
+
+    <div>
+      <dt><label for="align-end">align-end</label></dt>
+      <dd class="align-end"><input id="align-end" name="align-end" type="text"></dd>
+    </div>
+  </dl>
+</form>
+</escape></code></pre>
+      
+      <form class="semanticForms" method="post">
+        <dl class="colspan-3">
+          <div>
+            <dt><label for="align-start">align-start</label></dt>
+            <dd class="align-start"><input id="align-start" name="align-start" type="text"></dd>
+          </div>
+      
+          <div>
+            <dt><label for="align-center">align-center</label></dt>
+            <dd class="align-center"><input id="align-center" name="align-center" type="text"></dd>
+          </div>
+      
+          <div>
+            <dt><label for="align-end">align-end</label></dt>
+            <dd class="align-end"><input id="align-end" name="align-end" type="text"></dd>
+          </div>
+        </dl>
       </form>
 
       <h4 id="buttongroups">Button groups</h4>
@@ -458,6 +596,38 @@
         </menu>
       </form>
 
+      <p>Buttons may also be integrated into the responsive grid by treating it like a standard form input.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms" method="post">
+  <dl>
+    <div>
+      <dt><label for="inline-btn-input">Some input</label></dt>
+      <dd><input type="text" name="inline-btn-input" id="inline-btn-input"></dd>
+    </div>
+
+    <div>
+      <dt><label for="inline-btn">Inline button</label></dt>
+      <dd><button id="inline-btn">Inline button</button></dd>
+    </div>
+  </dl>
+</form>
+</escape></code></pre>
+      
+      <form class="semanticForms" method="post">
+        <dl>
+          <div>
+            <dt><label for="inline-btn-input">Some input</label></dt>
+            <dd><input type="text" name="inline-btn-input" id="inline-btn-input"></dd>
+          </div>
+        
+          <div>
+            <dt><label for="inline-btn">Inline button</label></dt>
+            <dd><button id="inline-btn">Inline button</button></dd>
+          </div>
+        </dl>
+      </form>
+
       <p>You can also style a link like a Semantic Forms button by applying a class of <code>button-link</code> to it.</p>
 
       <h4 id="checkboxesandradios">Checkboxes and radio buttons</h4>
@@ -471,16 +641,20 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
   <dl>
-    <dt><label for="some_field_name">Single checkbox</label></dt>
-    <dd><input type="checkbox" name="some_field_name" id="some_field_name"></dd>
+    <div>
+      <dt><label for="some_field_name">Single checkbox</label></dt>
+      <dd><input type="checkbox" name="some_field_name" id="some_field_name"></dd>
+    </div>
   </dl>
 </form>
       </escape></code></pre>
 
       <form class="semanticForms">
         <dl>
-          <dt><label for="some_field_name">Single checkbox</label></dt>
-          <dd><input type="checkbox" name="some_field_name" id="some_field_name"></dd>
+          <div>
+            <dt><label for="some_field_name">Single checkbox</label></dt>
+            <dd><input type="checkbox" name="some_field_name" id="some_field_name"></dd>
+          </div>
         </dl>
       </form>
 
@@ -489,28 +663,32 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
   <dl>
-    <dt><label data-for="some_checkboxes">Checkboxes:</label></dt>
-    <dd class="checkboxes">
-      <ul id="some_checkboxes">
-        <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one"> <label for="some_field_name_checkboxes_one">One</label></li>
-        <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
-        <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
-      </ul>
-    </dd>
+    <div>
+      <dt><label data-for="some_checkboxes">Checkboxes:</label></dt>
+      <dd class="checkboxes">
+        <ul id="some_checkboxes">
+          <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one"> <label for="some_field_name_checkboxes_one">One</label></li>
+          <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
+          <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
+        </ul>
+      </dd>
+    </div>
   </dl>
 </form>
       </escape></code></pre>
 
       <form class="semanticForms">
         <dl>
-          <dt><label data-for="some_checkboxes">Checkboxes:</label></dt>
-          <dd class="checkboxes">
-            <ul id="some_checkboxes">
-              <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one"> <label for="some_field_name_checkboxes_one">One</label></li>
-              <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
-              <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
-            </ul>
-          </dd>
+          <div>
+            <dt><label data-for="some_checkboxes">Checkboxes:</label></dt>
+            <dd class="checkboxes">
+              <ul id="some_checkboxes">
+                <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one"> <label for="some_field_name_checkboxes_one">One</label></li>
+                <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
+                <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
+              </ul>
+            </dd>
+          </div>
         </dl>
       </form>
 
@@ -519,28 +697,32 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
   <dl>
-    <dt><label data-for="some_radios">Radios:</label></dt>
-    <dd class="radios">
-      <ul id="some_radios">
-        <li><input type="radio" name="some_field_name" id="some_field_name_radios_one"> <label for="some_field_name_radios_one">One</label></li>
-        <li><input type="radio" name="some_field_name" id="some_field_name_radios_two"> <label for="some_field_name_radios_two">Two</label></li>
-        <li><input type="radio" name="some_field_name" id="some_field_name_radios_three"> <label for="some_field_name_radios_three">Three</label></li>
-      </ul>
-    </dd>
+    <div>
+      <dt><label data-for="some_radios">Radios:</label></dt>
+      <dd class="radios">
+        <ul id="some_radios">
+          <li><input type="radio" name="some_field_name" id="some_field_name_radios_one"> <label for="some_field_name_radios_one">One</label></li>
+          <li><input type="radio" name="some_field_name" id="some_field_name_radios_two"> <label for="some_field_name_radios_two">Two</label></li>
+          <li><input type="radio" name="some_field_name" id="some_field_name_radios_three"> <label for="some_field_name_radios_three">Three</label></li>
+        </ul>
+      </dd>
+    </div>
   </dl>
 </form>
       </escape></code></pre>
 
       <form class="semanticForms">
         <dl>
-          <dt><label data-for="some_radios">Radios:</label></dt>
-          <dd class="radios">
-            <ul id="some_radios">
-              <li><input type="radio" name="some_field_name" id="some_field_name_radios_one"> <label for="some_field_name_radios_one">One</label></li>
-              <li><input type="radio" name="some_field_name" id="some_field_name_radios_two"> <label for="some_field_name_radios_two">Two</label></li>
-              <li><input type="radio" name="some_field_name" id="some_field_name_radios_three"> <label for="some_field_name_radios_three">Three</label></li>
-            </ul>
-          </dd>
+          <div>
+            <dt><label data-for="some_radios">Radios:</label></dt>
+            <dd class="radios">
+              <ul id="some_radios">
+                <li><input type="radio" name="some_field_name" id="some_field_name_radios_one"> <label for="some_field_name_radios_one">One</label></li>
+                <li><input type="radio" name="some_field_name" id="some_field_name_radios_two"> <label for="some_field_name_radios_two">Two</label></li>
+                <li><input type="radio" name="some_field_name" id="some_field_name_radios_three"> <label for="some_field_name_radios_three">Three</label></li>
+              </ul>
+            </dd>
+          </div>
         </dl>
       </form>
 
@@ -551,16 +733,20 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
   <dl>
-    <dt><label for="input" data-no-asterisk>Input label</label></dt>
-    <dd><input type="text" name="input" id="input" required>
+    <div>
+      <dt><label for="input" data-no-asterisk>Input label</label></dt>
+      <dd><input type="text" name="input" id="input" required>
+    </div>
   </dl>
 </form>
       </escape></code></pre>
 
       <form class="semanticForms">
         <dl>
-          <dt><label for="input" data-no-asterisk>Input label</label></dt>
-          <dd><input type="text" name="input" id="input" required>
+          <div>
+            <dt><label for="input" data-no-asterisk>Input label</label></dt>
+            <dd><input type="text" name="input" id="input" required>
+          </div>
         </dl>
       </form>
 
@@ -569,22 +755,26 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms" method="post">
   <dl>
-    <dt><label for="password_validation">Password label</label></dt>
-    <dd>
-      <input type="password" name="password" id="password_validation" minlength="8" autocomplete="off">
-      <p data-invalid-text>Password must be at least 8 characters long.</p>
-    </dd>
+    <div>
+      <dt><label for="password_validation">Password label</label></dt>
+      <dd>
+        <input type="password" name="password" id="password_validation" minlength="8" autocomplete="off">
+        <p data-invalid-text>Password must be at least 8 characters long.</p>
+      </dd>
+    </div>
   </dl>
 </form>
       </escape></code></pre>
 
       <form class="semanticForms" method="post">
         <dl>
-          <dt><label for="password_validation">Password label</label></dt>
-          <dd>
-            <input type="password" name="password" id="password_validation" minlength="8" autocomplete="off">
-            <p data-invalid-text>Password must be at least 8 characters long.</p>
-          </dd>
+          <div>
+            <dt><label for="password_validation">Password label</label></dt>
+            <dd>
+              <input type="password" name="password" id="password_validation" minlength="8" autocomplete="off">
+              <p data-invalid-text>Password must be at least 8 characters long.</p>
+            </dd>
+          </div>
         </dl>
       </form>
 
@@ -593,16 +783,20 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
   <dl>
-    <dt><label for="input_validation" data-asterisk-text="This is a custom tooltip.">Input label</label></dt>
-    <dd><input type="text" name="input" id="input_validation" required>
+    <div>
+      <dt><label for="input_validation" data-asterisk-text="This is a custom tooltip.">Input label</label></dt>
+      <dd><input type="text" name="input" id="input_validation" required>
+    </div>
   </dl>
 </form>
       </escape></code></pre>
 
       <form class="semanticForms">
         <dl>
-          <dt><label for="input_validation" data-asterisk-text="This is a custom tooltip.">Input label</label></dt>
-          <dd><input type="text" name="input" id="input_validation" required>
+          <div>
+            <dt><label for="input_validation" data-asterisk-text="This is a custom tooltip.">Input label</label></dt>
+            <dd><input type="text" name="input" id="input_validation" required>
+          </div>
         </dl>
       </form>
 
@@ -613,16 +807,20 @@
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
   <dl>
-    <dt><label for="rangeValue">Range value</label></dt>
-    <dd><input id="rangeValue" name="rangeValue" type="range" class="displayValue"></dd>
+    <div>
+      <dt><label for="rangeValue">Range value</label></dt>
+      <dd><input id="rangeValue" name="rangeValue" type="range" class="displayValue"></dd>
+    </div>
   </dl>
 </form>
       </escape></code></pre>
 
       <form class="semanticForms">
         <dl>
-          <dt><label for="rangeValue">Range value</label></dt>
-          <dd><input id="rangeValue" name="rangeValue" type="range" class="displayValue"></dd>
+          <div>
+            <dt><label for="rangeValue">Range value</label></dt>
+            <dd><input id="rangeValue" name="rangeValue" type="range" class="displayValue"></dd>
+          </div>
         </dl>
       </form>
 

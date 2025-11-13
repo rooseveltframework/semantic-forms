@@ -1,3 +1,10 @@
+## 5.3.0
+
+- Added `align-start`, `align-center`, and `align-end` classes that align form inputs within their available space.
+- Added the ability to include individual buttons into the responsive form grid.
+- Updated the preferred form markup to wrap each `<dt>` and `<dd>` pair in a `<div>`.
+- Updated dependencies.
+
 ## 5.2.2
 
 - Fixed a bug in `data-auto-grow` fields that would apply a scrollbar inappropriately.
