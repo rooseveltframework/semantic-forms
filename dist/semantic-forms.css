@@ -295,6 +295,7 @@ table.semanticForms.dark input::-webkit-calendar-picker-indicator {
 .semanticForms select[type=color],
 .semanticForms textarea[type=color] {
   height: var(--semanticFormsInputHeight);
+  min-width: var(--semanticFormsInputMinWidth);
   padding: 4px 30px 4px 10px;
 }
 .semanticForms input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio])[type=file],
@@ -1422,14 +1423,17 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   gap: 10px;
   list-style-type: none;
 }
-.semanticForms .align-start {
-  justify-self: start;
+.semanticForms div:has(.align-start) {
+  display: flex;
+  justify-content: start;
 }
-.semanticForms .align-center {
-  justify-self: center;
+.semanticForms div:has(.align-center) {
+  display: flex;
+  justify-content: center;
 }
-.semanticForms .align-end {
-  justify-self: end;
+.semanticForms div:has(.align-end) {
+  display: flex;
+  justify-content: end;
 }
 
 .semanticForms table,

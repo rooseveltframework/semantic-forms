@@ -90,7 +90,7 @@ input.dispatchEvent(new Event("input",{bubbles:true}))});insertAfter(clearBtn,dd
 if(/colspan-/.test(dd.className)){const match=dd.className.match(/colspan-([0-9]|full)/)[0];dd.classList.remove(match);div.classList.add(match)}
 // check for max-content attribute
 // this may be removed once fully supported in Firefox and Safari: https://caniuse.com/wf-field-sizing
-if(input.getAttribute("data-max-content")!==null)if(!("fieldSizing"in document.createElement("input").style)){const adjustWidth=()=>{const value=input.value!==""?input.value:input.placeholder;const width=value.length*8+40;input.style.width=width+"px";input.style.maxWidth="100%";div.style.width=width+"px"};adjustWidth();input.addEventListener("input",adjustWidth)}
+if(input.getAttribute("data-max-content")!==null)if(!("fieldSizing"in document.createElement("input").style)){const adjustWidth=()=>{const value=input.value!==""?input.value:input.placeholder;const width=value.length*8+40;input.style.width=width+"px";input.style.maxWidth="100%"};adjustWidth();input.addEventListener("input",adjustWidth)}
 // if the user did not wrap the input in a div, do it for them
 if(!isWrapped){div.append(dt,dd);dl.append(div);
 // determine visibility of newly created <div>

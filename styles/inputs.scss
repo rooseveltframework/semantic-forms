@@ -68,6 +68,7 @@
 
     &[type=color] {
       height: var(--semanticFormsInputHeight);
+      min-width: var(--semanticFormsInputMinWidth);
       padding: 4px 30px 4px 10px;
     }
 

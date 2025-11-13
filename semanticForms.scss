@@ -283,16 +283,19 @@
     list-style-type: none;
   }
 
-  .align-start {
-    justify-self: start;
+  div:has(.align-start) {
+    display: flex;
+    justify-content: start;
   }
 
-  .align-center {
-    justify-self: center;
+  div:has(.align-center) {
+    display: flex;
+    justify-content: center;
   }
 
-  .align-end {
-    justify-self: end;
+  div:has(.align-end) {
+    display: flex;
+    justify-content: end;
   }
 }
 
