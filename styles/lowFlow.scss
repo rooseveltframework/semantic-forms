@@ -35,6 +35,37 @@ form.semanticForms:not(.semanticFormsActive) {
     }
   }
 
+  div:has(.align-start) {
+    flex-direction: column;
+    align-items: start;
+
+    dd {
+      display: flex;
+      align-items: start;
+    }
+  }
+
+  div:has(.align-center) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    dd {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  div:has(.align-end) {
+    flex-direction: column;
+    align-items: end;
+
+    dd {
+      display: flex;
+      align-items: end;
+    }
+  }
+
   dt {
     min-width: var(--semanticFormsInputMinWidth); /* this matches the max-width of js-enabled inputs */
 
