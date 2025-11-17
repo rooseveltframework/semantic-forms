@@ -105,23 +105,18 @@ table.semanticForms dd > p {
   font-family: var(--semanticFormsFontFamily);
   box-sizing: border-box;
 }
-form.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
-form.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
-form.semanticForms dt:has(> input, > select, > textarea),
-form.semanticForms dd:has(> input, > select, > textarea, > ul, > menu),
-form.semanticForms div:has(dt, dd),
-form.semanticForms dd > p,
-form.semanticForms.light menu:has(li > input, li > label, li > button, li > select, li > textarea),
-form.semanticForms.light dl:has(dt > label, dd > input, dd > select, dd > textarea),
-form.semanticForms.light dt:has(> input, > select, > textarea),
-form.semanticForms.light dd:has(> input, > select, > textarea, > ul, > menu),
-form.semanticForms.light div:has(dt, dd),
+form.semanticForms menu, form.semanticForms dl, form.semanticForms dt, form.semanticForms dd, form.semanticForms div, form.semanticForms dd > p,
+form.semanticForms.light menu,
+form.semanticForms.light dl,
+form.semanticForms.light dt,
+form.semanticForms.light dd,
+form.semanticForms.light div,
 form.semanticForms.light dd > p,
-table.semanticForms menu:has(li > input, li > label, li > button, li > select, li > textarea),
-table.semanticForms dl:has(dt > label, dd > input, dd > select, dd > textarea),
-table.semanticForms dt:has(> input, > select, > textarea),
-table.semanticForms dd:has(> input, > select, > textarea, > ul, > menu),
-table.semanticForms div:has(dt, dd),
+table.semanticForms menu,
+table.semanticForms dl,
+table.semanticForms dt,
+table.semanticForms dd,
+table.semanticForms div,
 table.semanticForms dd > p {
   margin: 0;
   padding: 0;
@@ -1253,8 +1248,7 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
 .semanticForms fieldset fieldset {
   background-color: var(--semanticFormsNestedFieldsetBgColor);
   border: var(--semanticFormsNestedFieldsetBorder);
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin: 0;
 }
 .semanticForms fieldset fieldset input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
 .semanticForms fieldset fieldset select,
@@ -1270,8 +1264,8 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 20px 10px 10px 10px;
-  margin-top: 0;
+  padding: 30px 10px 10px 10px;
+  margin: 0;
   min-height: calc(var(--semanticFormsFontSize) + 20px);
 }
 .semanticForms details::details-content {
@@ -1336,7 +1330,7 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
   gap: 10px;
-  margin-bottom: 10px;
+  margin: 0;
 }
 .semanticForms dl div {
   position: relative;
@@ -1370,6 +1364,7 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   grid-template-columns: 15px 1fr;
   align-items: center;
   padding-left: 11px;
+  gap: 5px 10px;
 }
 .semanticForms dl div dd.singleCheckbox > :not(input[type=checkbox], input[type=radio], label), .semanticForms dl div dd.singleRadio > :not(input[type=checkbox], input[type=radio], label) {
   grid-column: 1/-1;

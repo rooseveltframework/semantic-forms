@@ -81,12 +81,8 @@ table.semanticForms {
     box-sizing: border-box;
   }
 
-  menu:has(li > input, li > label, li > button, li > select, li > textarea),
-  dl:has(dt > label, dd > input, dd > select, dd > textarea),
-  dt:has(> input, > select, > textarea),
-  dd:has(> input, > select, > textarea, > ul, > menu),
-  div:has(dt, dd),
-  dd > p {
+  // margin/padding reset for various elements commonly used in semantic-forms
+  menu, dl, dt, dd, div, dd > p {
     margin: 0;
     padding: 0;
   }
