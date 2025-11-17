@@ -1,6 +1,6 @@
 ## 5.3.2
 
-- Tweaked various layout spacings.
+- Fixed various layout spacings.
 
 ## 5.3.1
 
