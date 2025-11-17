@@ -1,3 +1,7 @@
+## 5.3.2
+
+- Fixed various layout spacings.
+
 ## 5.3.1
 
 - Fixed broken exports.
