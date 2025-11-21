@@ -7,7 +7,7 @@
   "dependencies": {
     "check-if-css-is-disabled": "2.0.2",
     "highlight.js": "11.11.1",
-    "roosevelt": "0.31.4",
+    "roosevelt": "0.31.5",
     "semantic-forms": "../",
     "sass": "1.94.0",
     "teddy": "1.1.4",
