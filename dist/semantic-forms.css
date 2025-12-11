@@ -1264,7 +1264,7 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 30px 10px 10px 10px;
+  padding: 10px;
   margin: 0;
   min-height: calc(var(--semanticFormsFontSize) + 20px);
 }
@@ -1309,6 +1309,9 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   transform-origin: 0.2rem 50%;
   transition: 250ms transform ease;
 }
+.semanticForms details[open] {
+  padding-top: 30px;
+}
 .semanticForms details[open]::details-content {
   visibility: visible;
   opacity: 1;
@@ -1348,6 +1351,9 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   field-sizing: content;
   min-width: 150px;
   max-width: max-content;
+}
+.semanticForms dl div:not(:has(ul, ol)):has(dd input[type=radio]:only-of-type, dd input[type=checkbox]:only-of-type) {
+  padding-top: 22px;
 }
 .semanticForms dl div:has(dd > button:only-child, dd > input[type=button]:only-child, dd > input[type=submit]:only-child, dd > input[type=reset]:only-child) dt label {
   display: none;

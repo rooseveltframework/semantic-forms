@@ -1,3 +1,8 @@
+## 5.3.3
+
+- Fixed a bug where radio and checkbox inputs would be moved to the end of the parent `<dl>`.
+- Updated dependencies.
+
 ## 5.3.2
 
 - Fixed various layout spacings.
