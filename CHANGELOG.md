@@ -1,3 +1,8 @@
+## 5.3.4
+
+- Reverted a change to single radio and checkbox inputs.
+- Added sample forms to the demo page.
+
 ## 5.3.3
 
 - Fixed a bug where radio and checkbox inputs would be moved to the end of the parent `<dl>`.
