@@ -145,11 +145,6 @@
         }
       }
 
-      &:not(:has(ul, ol)):has(dd input[type=radio]:only-of-type, dd input[type=checkbox]:only-of-type) {
-        // place in line with other inputs w/ labels
-        padding-top: 22px;
-      }
-
       // hide labels for singular buttons
       &:has(dd > button:only-child, dd > input[type=button]:only-child, dd > input[type=submit]:only-child, dd > input[type=reset]:only-child) {
         dt label {
@@ -289,6 +284,11 @@
     flex-wrap: wrap;
     gap: 10px;
     list-style-type: none;
+
+    li {
+      display: flex;
+      align-items: center;
+    }
   }
 
   div:has(.align-start) {

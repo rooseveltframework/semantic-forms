@@ -76,6 +76,7 @@
                 <li><a href="#low-flow-p_tag_elements">P tag elements</a></li>
               </ul>
             </li>
+            <li><a href="#sample_forms">Sample forms</a></li>
             <li><a href="#non_form_related_elements">Non-form related HTML elements</a></li>
           </ul>
         </details>
@@ -2325,6 +2326,71 @@
             </p>
           </fieldset>
         </form>
+
+        <hr>
+
+        <h2 id="sample_forms">Sample forms</h2>
+
+        <section style="display: flex; flex-wrap: wrap; gap: 20px;">
+          <article id="form1" style="width: 370px;">
+            <form action="/somewhere" method="post" class="semanticForms">
+              <fieldset>
+                <legend>One column form</legend>
+
+                <dl>
+                  <div>
+                    <dt><label for="form1-name">Name</label></dt>
+                    <dd><input type="text" name="form1-name" id="form1-name"></dd>
+                  </div>
+
+                  <div>
+                    <dt><label for="form1-email">Email</label></dt>
+                    <dd><input type="text" name="form1-email" id="form1-email"></dd>
+                  </div>
+
+                  <div>
+                    <dt><label for="form1-agree">I agree to the Terms and Conditions</label></dt>
+                    <dd><input type="checkbox" name="form1-agree" id="form1-agree"></dd>
+                  </div>
+
+                  <div>
+                    <dt><label for="form1-receive-emails">I want to sign up for the weekly newsletter</label></dt>
+                    <dd><input type="checkbox" name="form1-receive-emails" id="form1-receive-emails"></dd>
+                  </div>
+                </dl>
+                <menu>
+                  <li><button type="submit">Sign up</button></li>
+                </menu>
+              </fieldset>
+            </form>
+          </article>
+
+          <article id="form2" style="width: 550px;">
+            <form action="/somewhere" method="post" class="semanticForms">
+              <fieldset>
+                <legend>Two column form</legend>
+
+                <dl class="colspan-2">
+                  <div>
+                    <dt><label for="form2-username">Username</label></dt>
+                    <dd><input type="text" name="form2-username" id="form2-username"></dd>
+                  </div>
+
+                  <div>
+                    <dt><label for="form2-password">Password</label></dt>
+                    <dd><input type="password" name="form2-password" id="form2-password"></dd>
+                  </div>
+                </dl>
+                <menu>
+                  <li><button type="submit">Sign in</button></li>
+                  <li><a href="/somewhere">Forgot password?</a></li>
+                </menu>
+              </fieldset>
+            </form>
+          </article>
+        </section>
+
+        <hr>
 
         <h2 id="non_form_related_elements">Non-form related HTML elements</h2>
         <form action="/somewhere" method="post" class="semanticForms">
