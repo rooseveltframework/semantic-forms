@@ -40,8 +40,8 @@ test.describe('semantic forms', () => {
       }
 
       // a float label should be added to the <dd>
-      for (const dt of await page.locator('article form').nth(0).locator('dl').nth(0).locator('dd').all()) {
-        await expect(dt.locator('label.floatLabelFormAnimatedLabel')).toBeVisible()
+      for (const dd of await page.locator('article form').nth(0).locator('dl').nth(0).locator('dd').all()) {
+        await expect(dd.locator('label.floatLabelFormAnimatedLabel')).toBeVisible()
       }
 
       // focusing the element should float the label above the input
