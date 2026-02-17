@@ -1245,21 +1245,23 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
   padding: 10px 10px 20px 10px;
   margin-bottom: 15px;
 }
-.semanticForms fieldset fieldset {
+.semanticForms fieldset fieldset, .semanticForms fieldset details {
   background-color: var(--semanticFormsNestedFieldsetBgColor);
   border: var(--semanticFormsNestedFieldsetBorder);
   margin: 0;
 }
 .semanticForms fieldset fieldset input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
 .semanticForms fieldset fieldset select,
-.semanticForms fieldset fieldset textarea {
+.semanticForms fieldset fieldset textarea, .semanticForms fieldset details input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
+.semanticForms fieldset details select,
+.semanticForms fieldset details textarea {
   background-color: var(--semanticFormsNestedInputBgColor);
 }
 .semanticForms details {
   box-sizing: border-box;
   position: relative;
-  background-color: var(--semanticFormsNestedFieldsetBgColor);
-  border: var(--semanticFormsNestedFieldsetBorder);
+  background-color: var(--semanticFormsFormSubBgColor);
+  border: 1px var(--semanticFormsSubBorderColor) solid;
   border-radius: var(--semanticFormsBorderRadius);
   display: flex;
   flex-direction: column;
@@ -1328,6 +1330,18 @@ form.semanticForms:not(.semanticFormsActive) dd input[type=button]:not(.clear, .
 .semanticForms details[open] > dl:first-of-type {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+.semanticForms details details,
+.semanticForms details fieldset {
+  margin-top: 10px;
+  background-color: var(--semanticFormsNestedFieldsetBgColor);
+  border: var(--semanticFormsNestedFieldsetBorder);
+}
+.semanticForms details details[open] summary::before {
+  transform: rotate(90deg);
+}
+.semanticForms details details:not([open]) summary::before {
+  transform: rotate(0deg);
 }
 .semanticForms dl {
   display: grid;

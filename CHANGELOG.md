@@ -1,3 +1,8 @@
+## 5.3.5
+
+- Fixed visual issues that occured on standalone and nested `<details>` elements.
+- Updated various dependencies.
+
 ## 5.3.4
 
 - Reverted a change to single radio and checkbox inputs.
