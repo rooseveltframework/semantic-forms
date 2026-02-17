@@ -1,6 +1,6 @@
 ## 5.3.5
 
-- Fixed visual issues that occured on standalone and nested `<details>` elements.
+- Fixed visual issues that occurred on standalone and nested `<details>` elements.
 - Updated various dependencies.
 
 ## 5.3.4
