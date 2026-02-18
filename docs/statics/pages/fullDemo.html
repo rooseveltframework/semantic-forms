@@ -943,7 +943,7 @@
             </details>
 
             <details>
-              <summary>Another detail element with a nested fieldset</summary>
+              <summary>Another detail element with a nested fieldset and details element</summary>
               <dl>
                 <div>
                   <dt><label for="another-detail-input-1">Detail input</label></dt>
@@ -961,8 +961,29 @@
                   </div>
                 </dl>
               </fieldset>
+
+              <details>
+                <summary>Some details</summary>
+                <dl>
+                  <div>
+                    <dt><label for="another-detail-input-3">Nested detail input</label></dt>
+                    <dd><input type="text" name="another-detail-input-3" id="another-detail-input-3"></dd>
+                  </div>
+                </dl>
+              </details>
             </details>
           </fieldset>
+
+          <details>
+            <summary>Standalone details</summary>
+
+            <dl>
+              <div>
+                <dt><label for="another-detail-input-4">Nested detail input 2</label></dt>
+                <dd><input type="text" name="another-detail-input-4" id="another-detail-input-4"></dd>
+              </div>
+            </dl>
+          </details>
 
           <fieldset id="buttons">
             <legend>Buttons</legend>

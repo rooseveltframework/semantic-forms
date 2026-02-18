@@ -15,8 +15,8 @@
     padding: 10px 10px 20px 10px;
     margin-bottom: 15px;
 
-    // nested fieldsets are darkened
-    fieldset {
+    // nested fieldsets and details are darkened
+    fieldset, details {
       background-color: var(--semanticFormsNestedFieldsetBgColor);
       border: var(--semanticFormsNestedFieldsetBorder);
       margin: 0;
@@ -33,8 +33,8 @@
   details {
     box-sizing: border-box; // ensure sizings match across browsers
     position: relative;
-    background-color: var(--semanticFormsNestedFieldsetBgColor);
-    border: var(--semanticFormsNestedFieldsetBorder);
+    background-color: var(--semanticFormsFormSubBgColor);
+    border: 1px var(--semanticFormsSubBorderColor) solid;
     border-radius: var(--semanticFormsBorderRadius);
     display: flex;
     flex-direction: column;
@@ -116,6 +116,21 @@
         margin-bottom: 15px;
       }
     }
+  }
+
+  details details,
+  details fieldset {
+    margin-top: 10px;
+    background-color: var(--semanticFormsNestedFieldsetBgColor);
+    border: var(--semanticFormsNestedFieldsetBorder);
+  }
+
+  details details[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  details details:not([open]) summary::before {
+    transform: rotate(0deg);
   }
 
   dl {
