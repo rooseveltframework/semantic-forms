@@ -42,16 +42,14 @@
 
       <p>The float label input pattern is notoriously difficult to implement in a fashion that doesn't degrade HTML semantics or accessibility. This pattern library implements a solution that solves that problem. Your label doesn't need to be a sibling of your input like with other implementations. This implementation also has a custom clear button for each input.</p>
 
-      <p>Note: Although wrapping the input and label elements in a <code><!--#<div>--></code> is not required, it is highly recommended as it reduces <a href="https://en.wikipedia.org/wiki/Flash_of_unstyled_content"><abbr>FOUC</abbr></a>.</p>
-
       <h5 id="floatlabelex">Example</h5>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
   <dl>
     <div>
-      <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
       <dt><label for="name">Name</label></dt>
+      <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
     </div>
   </dl>
 </form>
@@ -65,6 +63,8 @@
           </div>
         </dl>
       </form>
+
+      <aside><p><em>Note: Although wrapping the input and label elements in a <code><!--#<div>--></code> is not required, it is highly recommended as it reduces <a href="https://en.wikipedia.org/wiki/Flash_of_unstyled_content"><abbr>FOUC</abbr></a>. This is because the <code><!--#<div>--></code> is required for proper styling. If you omit it, it will be added with JavaScript, which is what causes the FOUC. Notably, we considered using a <code><!--#<dfn>--></code> element for this instead for grouping the <code><!--#<dt>--></code> and <code><!--#<dd>--></code>, since <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dfn"></a>semantically it would seem to be a natural fit for this purpose</a>, but HTML validation fails if you do that because <code><!--#<dfn>--></code> is not allowed as a child of <code><!--#<dl>--></code>, which is unfortunate. Hence, why we must unavoidably contribute to <a href="https://curly-braces-merch.printify.me/product/11918091/div-soup-t-shirt-dark">div soup.</a> But hey, it <a href="https://curly-braces-merch.printify.me/product/11808761/divs-and-spans-t-shirt-dark">could be worse</a>!</em></p></aside>
 
       <h5 id="floatlabelextextarea">Or with a <code><!--#<textarea>--></code></h5>
 
@@ -88,7 +88,7 @@
         </dl>
       </form>
 
-      <p>Note: <code><!--#<textarea>--></code> elements autosize when you type in them. This can be disabled with <code>data-no-autosize</code> attribute. The row count can also be limited with the <code>data-max-rows</code> attribute.</p>
+      <aside><p><em>Note: <code><!--#<textarea>--></code> elements autosize when you type in them. This can be disabled with <code>data-no-autosize</code> attribute. The row count can also be limited with the <code>data-max-rows</code> attribute.</em></p></aside>
 
       <h5 id="addhelptext">Add help text</h5>
 
@@ -137,7 +137,7 @@
   </dl>
 </form>
 </escape></code></pre>
-      
+
       <form class="semanticForms" method="post">
         <dl>
           <div>
@@ -176,20 +176,20 @@
   </dl>
 </form>
 </escape></code></pre>
-      
+
       <form class="semanticForms" method="post">
         <dl>
           <div>
             <dt><label for="focus-1">Focus me!</label></dt>
             <dd><input id="focus-1" name="focus-1" type="text" data-focus-key="Y"></dd>
           </div>
-      
+
           <!-- change the modifier -->
           <div>
             <dt><label for="focus-2">Focus me!</label></dt>
             <dd><input id="focus-2" name="focus-2" type="text" data-focus-key="Y" data-focus-modifier="alt"></dd>
           </div>
-      
+
           <!-- specify modifier by OS -->
           <div>
             <dt><label for="focus-3">Focus me!</label></dt>
@@ -497,9 +497,9 @@
       </form>
 
       <h5>Align elements within the responsive grid</h5>
-      
+
       <p>Use classes to align an element at the start, center, or end of its available space. Available classes are <code>align-start</code>, <code>align-center</code>, and <code>align-end</code>.</p>
-      
+
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms" method="post">
   <dl class="colspan-3">
@@ -520,19 +520,19 @@
   </dl>
 </form>
 </escape></code></pre>
-      
+
       <form class="semanticForms" method="post">
         <dl class="colspan-3">
           <div>
             <dt><label for="align-start">align-start</label></dt>
             <dd class="align-start"><input id="align-start" name="align-start" type="text"></dd>
           </div>
-      
+
           <div>
             <dt><label for="align-center">align-center</label></dt>
             <dd class="align-center"><input id="align-center" name="align-center" type="text"></dd>
           </div>
-      
+
           <div>
             <dt><label for="align-end">align-end</label></dt>
             <dd class="align-end"><input id="align-end" name="align-end" type="text"></dd>
@@ -613,14 +613,14 @@
   </dl>
 </form>
 </escape></code></pre>
-      
+
       <form class="semanticForms" method="post">
         <dl>
           <div>
             <dt><label for="inline-btn-input">Some input</label></dt>
             <dd><input type="text" name="inline-btn-input" id="inline-btn-input"></dd>
           </div>
-        
+
           <div>
             <dt><label for="inline-btn">Inline button</label></dt>
             <dd><button id="inline-btn">Inline button</button></dd>
