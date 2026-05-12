@@ -11,7 +11,7 @@
     "semantic-forms": "../",
     "sass": "1.98.0",
     "teddy": "1.1.4",
-    "webpack": "5.105.4"
+    "webpack": "5.106.2"
   },
   "devDependencies": {
     "http-server": "14.1.1",
