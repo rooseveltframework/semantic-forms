@@ -30,7 +30,7 @@
   "readmeFilename": "README.md",
   "devDependencies": {
     "@jsdevtools/coverage-istanbul-loader": "3.0.5",
-    "@playwright/test": "1.58.2",
+    "@playwright/test": "1.60.0",
     "eslint": "10.3.0",
     "eslint-plugin-html": "8.1.4",
     "express": "5.2.1",
