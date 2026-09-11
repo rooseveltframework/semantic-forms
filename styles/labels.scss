@@ -1,8 +1,15 @@
+// the resting float label's line height, which its centering calculation depends on
+//
+// tall enough to hold a descender. a line height of 1.2 gives a box shorter than some fonts need for the tail of a g or a p, and the label clips its overflow in order to end long text with an ellipsis, so the tail was being cut off. the distance the label travels when it floats is written as a share of this height, and was adjusted to match, so the floated label lands exactly where it did before at any font size
+$floatLabelLineHeight: 1.5;
+
 .semanticForms {
   input[type=checkbox] + label:first-of-type,
   input[type=radio] + label:first-of-type {
-    // shift text down to match center
-    padding-top: 2px;
+    // the label sits beside the box rather than inside it, so it is nudged to line the words up with the middle of the box, less the measured ink offset
+    //
+    // taking the offset off once rather than twice: measured from drawn pixels in firefox and chrome on both linux and mac, one lands every one of them within half a pixel, while twice is out by a full pixel on mac, where the offset is negative and so adds padding rather than removing it
+    padding-top: calc(2px - var(--semanticFormsTextInkOffset, 0px));
     font-size: var(--semanticFormsInputFontSize);
     cursor: pointer;
     display: flex;
@@ -83,9 +90,14 @@
           &:focus:not([type=checkbox], [type=radio], .no-float-label) ~ label:first-of-type,
           &:not(:placeholder-shown):not(.no-float-label):not([type=checkbox]):not([type=radio]) ~ label:first-of-type {
             color: var(--semanticFormsTextColor);
-            transform: translateY(-150%) scale(0.7);
+            transform: translateY(-120%) scale(0.7);
             width: 100%;
           }
+        }
+
+        // an empty field has no clear button, so the resting label can use the space that was kept for it rather than being cut short
+        input:placeholder-shown:not(.no-float-label) ~ label:first-of-type {
+          width: calc(100% - 20px);
         }
 
         // hide float label if no-float-label class is present
@@ -109,14 +121,16 @@
         }
 
         // input label
+        //
+        // the resting label is centered on the field by measuring rather than by a fixed offset: its own box is the line height below, so half of whatever the field has left over puts it exactly in the middle. a hardcoded offset only centers the one font size it was written for, and is off by a fraction of a pixel everywhere else, which rounds to a visible pixel on a non-retina display
         label:first-of-type {
           position: absolute;
-          top: calc(var(--semanticFormsInputTopMargin) + 10px);
+          top: calc(var(--semanticFormsInputTopMargin) + (var(--semanticFormsInputHeight) - var(--semanticFormsInputFontSize) * #{$floatLabelLineHeight}) / 2 - var(--semanticFormsTextInkOffset, 0px));
           left: 20px;
           display: flex;
           align-items: center;
           gap: 5px;
-          line-height: 1.2;
+          line-height: $floatLabelLineHeight;
           font-size: var(--semanticFormsInputFontSize);
           transform-origin: left center;
           pointer-events: none;
@@ -127,6 +141,7 @@
           overflow: hidden;
           text-overflow: ellipsis;
           min-width: 0;
+          // the gap on the right keeps the words clear of the clear button
           width: calc(100% - 35px);
           user-select: none;
           color: var(--semanticFormsPlaceholderColor);
@@ -158,7 +173,8 @@
           }
 
           span.focus-key {
-            display: block;
+            // flex rather than block, so the centering set on this element further down still applies once it is shown. as a block it sits at the top of the field instead
+            display: flex;
 
             kbd {
               font-family: sans-serif;
@@ -236,7 +252,13 @@
         span.focus-key {
           color: var(--semanticFormsPlaceholderColor);
           position: absolute;
-          top: calc(var(--semanticFormsInputTopMargin) + 11px);
+          // spans the field and centers its own contents, which keeps it centered whatever height the shortcut text turns out to be. centering that way puts the middle of the box on the middle of the field, and the letters sit off the middle of their own box by the measured amount, so that comes off here as it does elsewhere
+          top: calc(var(--semanticFormsInputTopMargin) - var(--semanticFormsTextInkOffset, 0px));
+          height: var(--semanticFormsInputHeight);
+          display: flex;
+          align-items: center;
+          // it sits over the field, and is a hint rather than a control
+          pointer-events: none;
           right: 20px;
 
           kbd {
@@ -244,9 +266,10 @@
           }
         }
 
+        // a number field draws its own stepper, which sits at the inner edge of the field rather than the outer one, so the hint has to clear the field's right padding as well as the stepper itself
         &:has(input[type=number]) {
           .focus-key {
-            right: 45px;
+            right: 60px;
           }
         }
 

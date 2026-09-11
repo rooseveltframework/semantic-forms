@@ -1,6 +1,6 @@
 .semanticForms {
   div {
-    &[class^=colspan-] {
+    &[class*=colspan-] {
       max-width: 100% !important;
     }
 
@@ -9,28 +9,49 @@
     }
 
     &.colspan-5 {
-      grid-column: span 5;
+      grid-column-end: span 5;
     }
 
     &.colspan-4 {
-      grid-column: span 4;
+      grid-column-end: span 4;
     }
 
     &.colspan-3 {
-      grid-column: span 3;
+      grid-column-end: span 3;
     }
 
     &.colspan-2 {
-      grid-column: span 2;
+      grid-column-end: span 2;
     }
 
     &.colspan-1 {
-      grid-column: span 1;
+      grid-column-end: span 1;
+    }
+
+    // col-# places a field in a particular column. the colspan rules above put their span on grid-column-end rather than the shorthand, so setting the start here does not undo it: colspan decides how wide the field is and col decides which column it starts in
+    &.col-5 {
+      grid-column-start: 5;
+    }
+
+    &.col-4 {
+      grid-column-start: 4;
+    }
+
+    &.col-3 {
+      grid-column-start: 3;
+    }
+
+    &.col-2 {
+      grid-column-start: 2;
+    }
+
+    &.col-1 {
+      grid-column-start: 1;
     }
   }
 
-  fieldset[class^=colspan-] dl,
-  dl[class^='colspan-'] {
+  fieldset[class*=colspan-] dl,
+  dl[class*='colspan-'] {
     div {
       max-width: 100% !important;
     }
@@ -38,32 +59,32 @@
 
   fieldset.colspan-full dl,
   dl.colspan-full {
-    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
   fieldset.colspan-5 dl,
   dl.colspan-5 {
-    grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
   fieldset.colspan-4 dl,
   dl.colspan-4 {
-    grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
   fieldset.colspan-3 dl,
   dl.colspan-3 {
-    grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
   fieldset.colspan-2 dl,
   dl.colspan-2 {
-    grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
   fieldset.colspan-1 dl,
   dl.colspan-1 {
-    grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
   fieldset.colspan-1 dl,
@@ -157,15 +178,16 @@
   }
 }
 
+// scoped to the library's own forms: a bare `fieldset` here would give every fieldset on the host page a container context, and the queries below would then lay out its <dl> children too
 form.semanticForms,
-fieldset {
+form.semanticForms fieldset {
   container: semanticForm / inline-size;
 
   // max 7 columns
   @container semanticForm (width >= 1810px) {
     & fieldset dl,
     & dl {
-      grid-template-columns: repeat(7, minmax(var(--semanticFormsInputMinWidth), 1fr));
+      grid-template-columns: repeat(7, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
     }
   }
 
@@ -173,7 +195,7 @@ fieldset {
   @container semanticForm (width >= 1550px) and (width < 1810px) {
     & fieldset dl,
     & dl {
-      grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), 1fr));
+      grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
     }
   }
 
@@ -181,7 +203,7 @@ fieldset {
   @container semanticForm (width >= 1290px) and (width < 1550px) {
     & fieldset dl,
     & dl {
-      grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), 1fr));
+      grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
     }
   }
 
@@ -191,10 +213,14 @@ fieldset {
     & fieldset.colspan-5 dl,
     & dl,
     & dl.colspan-5 {
-      grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), 1fr));
+      grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
 
       div.colspan-5 {
-        grid-column: span 4;
+        grid-column-end: span 4;
+      }
+
+      div.col-5 {
+        grid-column-start: auto;
       }
     }
   }
@@ -207,11 +233,16 @@ fieldset {
     & dl,
     & dl.colspan-4,
     & dl.colspan-5 {
-      grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), 1fr));
+      grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
 
       div.colspan-4,
       div.colspan-5 {
-        grid-column: span 3;
+        grid-column-end: span 3;
+      }
+
+      div.col-4,
+      div.col-5 {
+        grid-column-start: auto;
       }
     }
   }
@@ -226,12 +257,18 @@ fieldset {
     & dl.colspan-3,
     & dl.colspan-4,
     & dl.colspan-5 {
-      grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), 1fr));
+      grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
 
       div.colspan-3,
       div.colspan-4,
       div.colspan-5 {
-        grid-column: span 2;
+        grid-column-end: span 2;
+      }
+
+      div.col-3,
+      div.col-4,
+      div.col-5 {
+        grid-column-start: auto;
       }
     }
   }
@@ -254,7 +291,14 @@ fieldset {
       div.colspan-3,
       div.colspan-4,
       div.colspan-5 {
-        grid-column: span 1;
+        grid-column-end: span 1;
+      }
+
+      div.col-2,
+      div.col-3,
+      div.col-4,
+      div.col-5 {
+        grid-column-start: auto;
       }
     }
   }

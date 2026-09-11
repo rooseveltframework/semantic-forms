@@ -8,10 +8,12 @@ form.semanticForms:not(.semanticFormsActive) {
   }
 
   // single checkbox/radios
-  div:not(:has(dd > ul)):has(dd > input[type=checkbox], dd > input[type=radio]) {
+  //
+  // the combinators inside :has() are relative to this div on purpose. without them any ancestor div holding a checkbox anywhere below it matches too, and these rules then apply to every field inside it rather than to the one wrapping the checkbox
+  div:not(:has(> dd > ul)):has(> dd > input[type=checkbox], > dd > input[type=radio]) {
     padding-left: 11px;
 
-    &:has(dd > input[type=radio]) {
+    &:has(> dd > input[type=radio]) {
       margin-top: -2px;
     }
 
@@ -21,6 +23,11 @@ form.semanticForms:not(.semanticFormsActive) {
         margin-top: 4px;
         margin-left: -4px;
       }
+    }
+
+    // a switch is wider than a checkbox, so its label has to start further along the row to clear it; the offset is the 29px a checkbox gets plus the 16px of extra track
+    &:has(dd > input[type=checkbox][switch]) dt label {
+      padding-left: 45px;
     }
 
     dd {
@@ -67,7 +74,7 @@ form.semanticForms:not(.semanticFormsActive) {
   }
 
   dt {
-    min-width: var(--semanticFormsInputMinWidth); /* this matches the max-width of js-enabled inputs */
+    min-width: var(--semanticFormsInputMinWidth); // this matches the max-width of js-enabled inputs
 
     label {
       position: absolute;
@@ -98,9 +105,14 @@ form.semanticForms:not(.semanticFormsActive) {
     }
   }
 
+  .checkboxes ul,
+  .radios ul {
+    margin-top: var(--semanticFormsInputTopMargin);
+  }
+
   dd {
     margin-top: var(--semanticFormsInputTopMargin);
-    min-width: var(--semanticFormsInputMinWidth); /* this matches the max-width of js-enabled inputs */
+    min-width: var(--semanticFormsInputMinWidth); // this matches the max-width of js-enabled inputs
 
     // checkbox/radio groups
     &.checkboxes,
@@ -148,9 +160,4 @@ form.semanticForms:not(.semanticFormsActive) {
       margin-top: 0;
     }
   }
-}
-
-.checkboxes ul,
-.radios ul {
-  margin-top: var(--semanticFormsInputTopMargin);
 }

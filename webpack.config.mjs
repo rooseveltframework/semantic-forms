@@ -5,6 +5,19 @@ import TerserPlugin from 'terser-webpack-plugin'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+// `npm run coverage` builds the library with istanbul counters so that the browser exposes window.__coverage__ for the tests to harvest
+const coverageInstrumentation = process.argv.includes('coverage')
+  ? {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: '@jsdevtools/coverage-istanbul-loader'
+        }
+      ]
+    }
+  : undefined
+
 export default [
   // esm
   {
@@ -75,7 +88,9 @@ export default [
           }
         })
       ]
-    }
+    },
+    // the docs site the tests run against bundles dist/semantic-forms.cjs, so this is the build that has to carry the counters for a coverage run to measure anything
+    module: coverageInstrumentation
   },
 
   // standalone (directly includable in a <script> tag)
@@ -109,18 +124,7 @@ export default [
           }
         })
       ]
-    },
-    module: process.argv.includes('coverage')
-      ? {
-          rules: [
-            {
-              test: /\.js/,
-              exclude: /node_modules/,
-              use: '@jsdevtools/coverage-istanbul-loader'
-            }
-          ]
-        }
-      : undefined
+    }
   },
 
   // esm minified

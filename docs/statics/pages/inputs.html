@@ -1,0 +1,384 @@
+<include src="layouts/main">
+  <arg pageTitle>Semantic Forms — Inputs</arg>
+  <arg pageContent>
+    <article>
+      <p><a href="/usage.html">← Usage</a></p>
+
+      <h2 id="floatlabel">Float label inputs</h2>
+
+      <p>The float label input pattern is notoriously difficult to implement in a fashion that doesn't degrade HTML semantics or accessibility. This pattern library implements a solution that solves that problem. Your label doesn't need to be a sibling of your input like with other implementations. This implementation also has a custom clear button for each input.</p>
+
+      <h3 id="floatlabelex">Example</h3>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <div>
+      <dt><label for="name">Name</label></dt>
+      <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+    </div>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <div>
+            <dt><label for="name">Name</label></dt>
+            <dd><input id="name" name="name" type="text" placeholder="e.g. John Smith"></dd>
+          </div>
+        </dl>
+      </form>
+
+      <aside><p><em>Note: Although wrapping the input and label elements in a <code><!--#<div>--></code> is not required, it is highly recommended as it reduces <a href="https://en.wikipedia.org/wiki/Flash_of_unstyled_content"><abbr>FOUC</abbr></a>. This is because the <code><!--#<div>--></code> is required for proper styling. If you omit it, it will be added with JavaScript, which is what causes the FOUC. Notably, we considered using a <code><!--#<dfn>--></code> element for this instead for grouping the <code><!--#<dt>--></code> and <code><!--#<dd>--></code>, since <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dfn">semantically it would seem to be a natural fit for this purpose</a>, but HTML validation fails if you do that because <code><!--#<dfn>--></code> is not allowed as a child of <code><!--#<dl>--></code>, which is unfortunate. Hence, why we must unavoidably contribute to <a href="https://curly-braces-merch.printify.me/product/11918091/div-soup-t-shirt-dark">div soup.</a> But hey, it <a href="https://curly-braces-merch.printify.me/product/11808761/divs-and-spans-t-shirt-dark">could be worse</a>!</em></p></aside>
+
+      <h3 id="floatlabelextextarea">Or with a <code><!--#<textarea>--></code></h3>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <div>
+      <dt><label for="textarea">Textarea</label></dt>
+      <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. Long string of text"></textarea></dd>
+    </div>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <div>
+            <dt><label for="textarea">Textarea</label></dt>
+            <dd><textarea id="textarea" name="textarea" rows="5" cols="50" placeholder="e.g. Long string of text"></textarea></dd>
+          </div>
+        </dl>
+      </form>
+
+      <aside><p><em>Note: <code><!--#<textarea>--></code> elements autosize when you type in them. This can be disabled with the <code>data-disable-autosize</code> attribute. The row count can also be limited with the <code>data-max-rows</code> attribute.</em></p></aside>
+
+      <h3 id="addhelptext">Add help text</h3>
+
+      <p>Include a label in the <code><!--#<dd>--></code> element with a matching <code>for</code> attribute to place help text beneath the input:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms" method="post">
+  <dl>
+    <div>
+      <dt><label for="password">Password</label></dt>
+      <dd>
+        <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required autocomplete="off">
+        <label for="password">Must be at least 8 characters long.</label>
+      </dd>
+    </div>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms" method="post">
+        <dl>
+          <div>
+            <dt><label for="password">Password</label></dt>
+            <dd>
+              <input id="password" name="password" type="password" placeholder="Enter a password" minlength="8" required autocomplete="off">
+              <label for="password">Must be at least 8 characters long.</label>
+            </dd>
+          </div>
+        </dl>
+      </form>
+
+      <h3 id="inlinebuttons">Add inline buttons</h3>
+
+      <p>Include a button or input with the type "submit" in the <code><!--#<dd>--></code> element to place it next to the input:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms" method="post">
+  <dl>
+    <div>
+      <dt><label for="email">Email address</label></dt>
+      <dd>
+        <input id="email" name="email" type="email" placeholder="Enter an email address" autocomplete="off">
+        <button type="submit">Sign up</button>
+      </dd>
+    </div>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms" method="post">
+        <dl>
+          <div>
+            <dt><label for="email">Email address</label></dt>
+            <dd>
+              <input id="email" name="email" type="email" placeholder="Enter an email address" autocomplete="off">
+              <button type="submit">Sign up!</button>
+            </dd>
+          </div>
+        </dl>
+      </form>
+
+      <h3 id="keyboardshortcuts">Add custom keyboard shortcuts</h3>
+
+      <p>Add keyboard shortcuts on specific inputs to focus them by adding a <code>data-focus-key</code> attribute and optional <code>data-focus-modifier</code> attribute.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms" method="post">
+  <dl>
+    <div>
+      <dt><label for="focus-1">Focus me!</label></dt>
+      <dd><input id="focus-1" name="focus-1" type="text" data-focus-key="Y"></dd>
+    </div>
+
+    <!-- change the modifier -->
+    <div>
+      <dt><label for="focus-2">Focus me!</label></dt>
+      <dd><input id="focus-2" name="focus-2" type="text" data-focus-key="Y" data-focus-modifier="alt"></dd>
+    </div>
+
+    <!-- specify modifier by OS -->
+    <div>
+      <dt><label for="focus-2">Focus me!</label></dt>
+      <dd><input id="focus-2" name="focus-2" type="text" data-focus-key="Z" data-focus-modifier-win="alt" data-focus-modifier-linux="meta" data-focus-modifier-mac="cmd"></dd>
+    </div>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms" method="post">
+        <dl>
+          <div>
+            <dt><label for="focus-1">Focus me!</label></dt>
+            <dd><input id="focus-1" name="focus-1" type="text" data-focus-key="Y"></dd>
+          </div>
+
+          <!-- change the modifier -->
+          <div>
+            <dt><label for="focus-2">Focus me!</label></dt>
+            <dd><input id="focus-2" name="focus-2" type="text" data-focus-key="Y" data-focus-modifier="alt"></dd>
+          </div>
+
+          <!-- specify modifier by OS -->
+          <div>
+            <dt><label for="focus-3">Focus me!</label></dt>
+            <dd><input id="focus-3" name="focus-3" type="text" data-focus-key="Z" data-focus-modifier-win="alt" data-focus-modifier-linux="meta" data-focus-modifier-max="cmd"></dd>
+          </div>
+        </dl>
+      </form>
+
+      <ul>
+        <li><p>The focus key should be a single character, and is not case-sensitive. If multiple characters are detected, only the first one will be used. Special characters (!, @, #, etc.) will require <kbd>Shift</kbd> to be pressed with the keyboard shortcut.</p></li>
+        <li>
+          <p>The modifier key value may be "metactrl," "ctrl," "cmd," "meta," or "alt." The default value is "metactrl" and will automatically be applied if the <code>data-focus-modifier</code> attribute is not present.</p>
+          <ul>
+            <li>Some combinations are unable to be used due to conflicts with browser and OS keyboard shortcuts. See <a href="https://rooseveltframework.org/docs/semantic-forms/latest/reservedKeyboardShortcuts">reserved keyboard shortcuts</a> for a full overview.</li>
+            <li><p>OS-specific modifier keys can be set with <code>data-focus-modifier-win</code> (Windows), <code>data-focus-modifier-linux</code> (Linux) and <code>data-focus-modifier-mac</code> (Mac).</p></li>
+            <li><p>Due to a limited range of available shortcuts, the "Start" (win) key on Windows will be replaced with "Ctrl."</p></li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3 id="custominputfields">Customizing input fields</h3>
+
+      <p>By default, input fields will display an X icon to clear the text and password fields will also display a show/hide toggle for displaying the password in plain text. You can customize this behavior as follows:</p>
+
+      <ul>
+        <li><p>Customize the hover text of the clear field button by applying a <code>data-clear-field-text=&quot;your text&quot;</code> attribute to the input.</p></li>
+        <li><p>Customize the hover text of the show password button by applying a <code>data-show-password-text=&quot;your text&quot;</code> attribute to the input.</p></li>
+        <li><p>Customize the hover text of the hide password button by applying a <code>data-hide-password-text=&quot;your text&quot;</code> attribute to the input.</p></li>
+        <li><p>Prevent the show/hide toggle from appearing on password fields by applying a <code>data-no-reveal</code> attribute to the input.</p></li>
+        <li>
+          <p>Show a help text icon next to labels of inputs that contain a <code>title</code> attribute by applying a <code>data-show-help-icon</code> attribute to the label.</p>
+          <ul>
+            <li>Note that checkboxes and radios should have a <code>title</code> attribute on the label instead of the inputs.</li>
+          </ul>
+        </li>
+        <li><p>Allow fixed-width inputs to grow/shrink to their longest content by applying a <code>data-max-content</code> attribute to the input.</p></li>
+        <li>
+          <p>Create a one-line text input that grows in height by applying a <code>data-auto-grow</code> attribute to a <code>textarea</code> or <code>input</code> (with type "text") element.</p>
+          <ul>
+            <li>Note that pressing <kbd>Enter</kbd> with this attribute will attempt to submit the form. Use <kbd>Shift + Enter</kbd> to add new lines.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <p>You can also disable float labels on a per-field basis with the <code>no-float-label</code> class:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <div>
+      <dt><label for="search-field">Search</label></dt>
+      <dd><input id="search-field" name="search-field" type="search" placeholder="e.g. cool stuff" class="no-float-label"></dd>
+    </div>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <div>
+            <dt><label for="search-field">Search</label></dt>
+            <dd><input id="search-field" name="search-field" type="search" placeholder="e.g. cool stuff" class="no-float-label"></dd>
+          </div>
+        </dl>
+      </form>
+
+      <aside><p><em>Note: fields with the <code>readonly</code> or <code>disabled</code> attribute do not get a clear button, since it would empty a field the visitor is not meant to be able to change.</em></p></aside>
+
+      <h2 id="selects">Selects</h2>
+
+      <p>A <code><!--#&lt;select&gt;--></code> takes the same markup as any other field and is styled to match, with the browser's dropdown arrow replaced by the graphic in the <code>--semanticFormsSelectIcon</code> variable. A <code>multiple</code> select is styled as a scrolling list instead, and keeps its label above it rather than floating.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <div>
+      <dt><label for="select-ex-single">Select box</label></dt>
+      <dd>
+        <select id="select-ex-single" name="select-ex-single">
+          <option>One</option>
+          <option>Two</option>
+        </select>
+      </dd>
+    </div>
+
+    <div>
+      <dt><label for="select-ex-multiple">Multiple select</label></dt>
+      <dd>
+        <select id="select-ex-multiple" name="select-ex-multiple" multiple>
+          <option>One</option>
+          <option>Two</option>
+          <option>Three</option>
+        </select>
+      </dd>
+    </div>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <div>
+            <dt><label for="select-ex-single">Select box</label></dt>
+            <dd>
+              <select id="select-ex-single" name="select-ex-single">
+                <option>One</option>
+                <option>Two</option>
+              </select>
+            </dd>
+          </div>
+
+          <div>
+            <dt><label for="select-ex-multiple">Multiple select</label></dt>
+            <dd>
+              <select id="select-ex-multiple" name="select-ex-multiple" multiple>
+                <option>One</option>
+                <option>Two</option>
+                <option>Three</option>
+              </select>
+            </dd>
+          </div>
+        </dl>
+      </form>
+
+      <h2 id="validationstyles">Validation styles</h2>
+
+      <p>Inputs with the <code>required</code> attribute will result in a visual indicator (*) being added to its label. You can disable this indicator with the <code>data-no-asterisk</code> attribute on the label element:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <div>
+      <dt><label for="input" data-no-asterisk>Input label</label></dt>
+      <dd><input type="text" name="input" id="input" required>
+    </div>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <div>
+            <dt><label for="input" data-no-asterisk>Input label</label></dt>
+            <dd><input type="text" name="input" id="input" required>
+          </div>
+        </dl>
+      </form>
+
+      <p>You can set a paragraph of text below a field to only appear when a field is invalid with the <code>data-invalid-text</code> attribute:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms" method="post">
+  <dl>
+    <div>
+      <dt><label for="password_validation">Password label</label></dt>
+      <dd>
+        <input type="password" name="password" id="password_validation" minlength="8" autocomplete="off">
+        <p data-invalid-text>Password must be at least 8 characters long.</p>
+      </dd>
+    </div>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms" method="post">
+        <dl>
+          <div>
+            <dt><label for="password_validation">Password label</label></dt>
+            <dd>
+              <input type="password" name="password" id="password_validation" minlength="8" autocomplete="off">
+              <p data-invalid-text>Password must be at least 8 characters long.</p>
+            </dd>
+          </div>
+        </dl>
+      </form>
+
+      <p>You can adjust the tooltip text of the asterisk with the <code>data-asterisk-text</code> attribute:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <div>
+      <dt><label for="input_validation" data-asterisk-text="This is a custom tooltip.">Input label</label></dt>
+      <dd><input type="text" name="input" id="input_validation" required>
+    </div>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <div>
+            <dt><label for="input_validation" data-asterisk-text="This is a custom tooltip.">Input label</label></dt>
+            <dd><input type="text" name="input" id="input_validation" required>
+          </div>
+        </dl>
+      </form>
+
+      <h2 id="rangeInputsThatDisplayValues">Range inputs that display values</h2>
+
+      <p>Add a <code>data-display-value</code> attribute to any <code><!--#<input type="range">--></code> element to make its value display on the label:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <div>
+      <dt><label for="rangeValue">Range value</label></dt>
+      <dd><input id="rangeValue" name="rangeValue" type="range" data-display-value></dd>
+    </div>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <div>
+            <dt><label for="rangeValue">Range value</label></dt>
+            <dd><input id="rangeValue" name="rangeValue" type="range" data-display-value></dd>
+          </div>
+        </dl>
+      </form>
+
+      <p>Earlier versions asked for this with a class of <code>displayValue</code>, which still works.</p>
+    </article>
+  </arg>
+</include>

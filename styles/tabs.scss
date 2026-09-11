@@ -1,0 +1,70 @@
+.semanticForms {
+  // before the enhancement runs this is a plain stack of fieldsets, which is how it stays in a browser without javascript. the rules below only apply once the tabs have been built
+  .tabs.semanticFormsTabsActive {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+    .tabList {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 3px;
+
+      // the selected tab sits over the panel's top border to join the two together
+      margin-bottom: -1px;
+    }
+
+    button[role=tab] {
+      appearance: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: var(--semanticFormsInputFontSize);
+      line-height: 1;
+      color: var(--semanticFormsTextColor);
+      margin: 0;
+      padding: 9px 20px;
+      max-width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      // an unselected tab is raised like the library's buttons are
+      background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
+      background-origin: border-box;
+      border: 1px solid var(--semanticFormsSubBorderColor);
+      border-radius: var(--semanticFormsBorderRadius) var(--semanticFormsBorderRadius) 0 0;
+      transition: padding 120ms ease-out;
+
+      &:hover:not([aria-selected=true]) {
+        padding-bottom: 12px;
+      }
+
+      // the selected tab is part of the panel: same fill, and no border between the two
+      &[aria-selected=true] {
+        background-image: none;
+        background-color: var(--semanticFormsFormSubBgColor);
+        border-bottom-color: var(--semanticFormsFormSubBgColor);
+        padding-bottom: 12px;
+      }
+
+      // matches the highlight the inputs use, drawn inside so it is never clipped
+      &:focus-visible {
+        outline: none;
+        box-shadow: inset 0 0 0 2px var(--semanticFormsFocusColor);
+      }
+    }
+
+    // the panel is a fieldset already, so it only needs joining to the strip above it
+    fieldset {
+      margin: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+
+      // the fieldset rules set a display, which the hidden attribute cannot override on its own
+      &[hidden] {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,3 +1,23 @@
+## 5.3.6
+
+- Added support for the HTML `switch` attribute on checkboxes. Browsers with native support render their own switch; elsewhere Semantic Forms draws one, applies the `switch` ARIA role, and supports dragging the thumb to toggle it.
+- Added `col-1` through `col-5` classes for placing a field in a particular grid column, which can be combined with `colspan-#`. Like spans, positions fall back to normal flow when the form narrows to fewer columns than the class asks for.
+- Added a `--semanticFormsInputColumnMaxWidth` variable, defaulting to `1fr`, which sets the widest an input column in the layout grid may grow. `--semanticFormsInputMaxWidth` is unchanged and still caps the field itself within its column.
+- Added tab support. An element with the `tabs` class holding one `<fieldset>` per tab becomes a tab strip, titled by each fieldset's `<legend>`, with the `tab` and `tabpanel` roles and arrow key navigation. Without JavaScript the fieldsets stay stacked and readable.
+- Added a `data-display-value` attribute for range inputs, matching how every other per-field option is set. The `displayValue` class it replaces still works.
+- Fixed lowFlow single checkbox and radio styling leaking. The rule matched any ancestor `<div>` containing a checkbox rather than the one wrapping it, so every field inside such a container lost the space above its label.
+- Fixed fields being reordered on enhancement. Every enhanced field was moved to the end of its `<dl>`, which pushed anything the enhancer leaves alone, such as a `<dd>` containing only a button, to the top. Fields now stay where they were written.
+- Fixed the float label, the clear button and the keyboard shortcut hint sitting slightly off center on their fields. Each was placed with a fixed offset that only centered the one font size it was written for. They are now positioned from the field's own height, so they stay centered when `--semanticFormsInputHeight` or `--semanticFormsInputFontSize` is overridden.
+- Fixed the float label's text still reading low even once its box was centered. Browsers position a line of text by the font's ascent and descent, which are rarely symmetrical, so the letters sit slightly off center inside the box holding them by an amount that differs with the font the page resolves. Semantic Forms now measures that for whichever font is in use and corrects for it, to the nearest whole pixel the display can draw.
+- Fixed the focus highlight rendering thinner on fields sitting flush against the edge of their form. It is now drawn inside the field, where the form's overflow clipping cannot cut it off.
+- `semanticForms()` now takes an optional document or shadow root to search, so forms inside a shadow root can be enhanced with `semanticForms(myElement.shadowRoot)`. Each tree is watched separately, and `reinitialize()` works out which tree a form belongs to. Labels are now looked up in the form's own tree rather than the document, which is what previously stopped fields in a shadow root from being enhanced at all.
+- Fixed inputs with the `readonly` or `disabled` attribute being given a clear button, which could empty a field the visitor is not meant to be able to change. A field made readonly after the enhancement has run has its clear button hidden by the stylesheet instead.
+- Fixed an error thrown when undo was pressed while a field with no clear button was focused, such as a range input.
+- Fixed undo and redo duplicating a field's contents. The browser's own undo ran in addition to the library's, applying the edit it reverses on top of the value the library had already restored.
+- Fixed the library styling markup outside its own forms. A bare `fieldset` selector gave every fieldset on the host page a container context, which then applied the responsive grid to any `<dl>` inside any fieldset, and the `.checkboxes`/`.radios` list rule was not scoped to the form either.
+- Improved docs.
+- Updated dependencies.
+
 ## 5.3.5
 
 - Fixed visual issues that occurred on standalone and nested `<details>` elements.

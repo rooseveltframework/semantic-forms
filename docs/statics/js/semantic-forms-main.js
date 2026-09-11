@@ -9,8 +9,9 @@ window.addEventListener('cssDisabled', (event) => {
 // replace no-js class with js class which allows us to write css that targets non-js or js enabled users separately
 document.body.classList.replace('no-js', 'js')
 
-// load semantic-forms library
-require('semantic-forms')()
+// load semantic-forms library, exposing it the way the standalone build does so that the documented window.semanticForms.reinitialize() api is available on this page too
+window.semanticForms = require('semantic-forms')
+window.semanticForms()
 
 // dark mode / light mode
 function toggleDarkMode (mode) {

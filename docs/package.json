@@ -1,30 +1,23 @@
 {
   "name": "semantic-forms-documentation",
-  "main": "build.js",
+  "main": "test-server.js",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.20.0"
   },
   "dependencies": {
-    "check-if-css-is-disabled": "2.0.2",
-    "highlight.js": "11.11.1",
-    "roosevelt": "0.31.8",
+    "check-if-css-is-disabled": "2.1.0",
+    "express": "5.2.1",
+    "highlight.js": "11.12.0",
+    "roosevelt": "0.33.2",
     "semantic-forms": "../",
-    "sass": "1.100.0",
-    "teddy": "1.1.4",
-    "webpack": "5.107.2"
+    "sass": "1.104.1",
+    "teddy": "2.0.2",
+    "webpack": "5.110.3"
   },
   "devDependencies": {
-    "http-server": "14.1.1",
-    "nodemon": "3.1.14",
     "standard": "17.1.2",
-    "stylelint": "17.12.0",
+    "stylelint": "17.15.0",
     "stylelint-config-standard-scss": "17.0.0"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "public/"
-    ],
-    "ext": "scss html js json"
   },
   "standard": {
     "ignore": [
@@ -32,18 +25,18 @@
     ]
   },
   "scripts": {
-    "d": "nodemon --exec \"node build.js --development-mode && http-server public/\"",
-    "dev": "nodemon --exec \"node build.js --development-mode && http-server public/\"",
-    "development": "nodemon --exec \"node build.js --development-mode && http-server public/\"",
-    "p": "nodemon --exec \"node build.js --production-mode && http-server public/\"",
-    "prod": "nodemon --exec \"node build.js --production-mode && http-server public/\"",
-    "production": "nodemon --exec \"node build.js --production-mode && http-server public/\"",
-    "build": "node build.js --production-mode",
-    "build-dev": "node build.js --development-mode",
+    "d": "node --watch test-server.js --development-mode",
+    "dev": "node --watch test-server.js --development-mode",
+    "development": "node --watch test-server.js --development-mode",
+    "p": "node test-server.js --production-mode",
+    "prod": "node test-server.js --production-mode",
+    "production": "node test-server.js --production-mode",
+    "build": "node test-server.js --build --production-mode",
+    "build-dev": "node test-server.js --build --development-mode",
     "lint": "npm run standard && npm run stylelint",
     "standard": "./node_modules/.bin/standard",
     "stylelint": "./node_modules/.bin/stylelint \"statics/css/**/*.scss\"",
-    "start": "nodemon --exec \"node build.js --production-mode && http-server public/\"",
+    "start": "node test-server.js --production-mode",
     "test": "npm run lint"
   }
 }

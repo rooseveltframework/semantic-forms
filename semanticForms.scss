@@ -2,6 +2,7 @@
 @use 'styles/inputs.scss';
 @use 'styles/labels.scss';
 @use 'styles/colspan.scss';
+@use 'styles/tabs.scss';
 @use 'styles/lowFlow.scss';
 
 .semanticForms {
@@ -66,7 +67,8 @@
       margin-bottom: 10px;
       line-height: 1;
       position: absolute;
-      top: 10px;
+      // the ink offset comes off here as it does elsewhere, so the words rather than the box holding them line up
+      top: calc(10px - var(--semanticFormsTextInkOffset, 0px));
       left: 22px;
       transition: top 250ms;
 
@@ -83,7 +85,8 @@
         border-color: transparent transparent transparent var(--semanticFormsTextColor);
         position: absolute;
         top: 0;
-        left: -10px;
+        // far enough from the words to read as a separate mark rather than part of the first letter
+        left: -14px;
         transform: rotate(0);
         transform-origin: .2rem 50%;
         transition: 250ms transform ease;
@@ -135,7 +138,7 @@
 
   dl {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
     gap: 10px;
     margin: 0;
 
@@ -182,6 +185,11 @@
           align-items: center;
           padding-left: 11px;
           gap: 5px 10px;
+
+          // a switch is wider than a checkbox, so it needs a wider column to sit in
+          &:has(input[type=checkbox][switch]) {
+            grid-template-columns: 34px 1fr;
+          }
 
           // anything that is not the radio/checkbox and its label
           & > :not(input[type='checkbox'], input[type='radio'], label) {
@@ -257,7 +265,8 @@
             grid-column: 2 / 3;
             width: 100%;
             max-width: 100%;
-            padding: 10px; // reduce default padding to allow more button text to show
+            // reduced from the default so more of the button's text fits. the vertical halves carry the measured ink offset, as they do on every other control, so the words sit in the middle of the button rather than the box holding them sitting there
+            padding: calc(10px - var(--semanticFormsFieldTextInkOffset, 0px)) 10px calc(10px + var(--semanticFormsFieldTextInkOffset, 0px));
             height: var(--semanticFormsInputHeight);
             text-overflow: ellipsis;
             white-space: nowrap;

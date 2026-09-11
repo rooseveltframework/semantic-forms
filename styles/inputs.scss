@@ -1,3 +1,6 @@
+// the clear button is square, and its size is what centers it on the field
+$clearButtonSize: 25px;
+
 .semanticForms {
   input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
   select {
@@ -16,6 +19,59 @@
     }
   }
 
+  // a checkbox carrying the switch attribute is a switch
+  // https://html.spec.whatwg.org/multipage/input.html#the-switch-attribute
+  //
+  // browsers without native support render an ordinary checkbox, so it is drawn here instead: the element's background is the track and the thumb is a circle painted on top of it, which slides across when it is checked
+  //
+  // the thumb used to be the background showing through a gap in an inset shadow, which left it flat on the side facing the track and stepped where that flat side met the rounded ends. a circle has a round edge all the way around, and the browser draws its curve smoothly
+  input[type=checkbox][switch] {
+    appearance: none;
+    box-sizing: border-box;
+    width: 34px;
+    height: 18px;
+    border-radius: 999px;
+    background-color: var(--semanticFormsSwitchOffColor);
+    border: 1px solid var(--semanticFormsSwitchOffColor);
+    // the colour stops a pixel short of the edge so the browser has a band to shade across. a stop at the very edge gives it nothing to work with and it draws the circle as a polygon
+    //
+    // the box the circle is drawn in is exactly as tall as the space inside the border, so centering it lands on a whole pixel. a box any smaller leaves an odd number of pixels to share between top and bottom, and each browser rounds that half pixel its own way
+    background-image: radial-gradient(circle 7px at center, var(--semanticFormsSwitchThumbColor) 6px, transparent 7px);
+    background-size: 16px 16px;
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    transition: background-color 200ms ease-in-out, background-position 200ms ease-in-out, border-color 200ms ease-in-out;
+    touch-action: none; // the thumb can be dragged, which must not scroll the page
+
+    &:checked {
+      background-color: var(--semanticFormsSwitchOnColor);
+      border-color: var(--semanticFormsSwitchOnColor);
+      background-position: 16px center; // the far end of the 32px of space inside the border, less the 16px the thumb occupies
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--semanticFormsFocusColor);
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.5;
+    }
+
+    // the track and the thumb must stay distinguishable when colors are overridden
+    @media (forced-colors: active) {
+      forced-color-adjust: none;
+      background-color: Canvas;
+      border-color: ButtonText;
+      background-image: radial-gradient(circle 7px at center, ButtonText 6px, transparent 7px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
   input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
   select,
   textarea {
@@ -28,22 +84,27 @@
     outline: none;
 
     // custom focus highlight
+    //
+    // drawn inside the element rather than around it: forms clip their horizontal overflow, so a ring painted outside the box loses its outer edge on any field sitting flush against the form's edge, which made the highlight look thinner there than everywhere else
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 1px var(--semanticFormsFocusColor);
+      box-shadow: inset 0 0 0 1px var(--semanticFormsFocusColor);
     }
 
-    &:not([type=range]) {
-      padding: 6px 30px 6px 20px;
+    // the browser centers a control's text on the middle of the box holding it, which is not quite where the letters sit. the enhancement measures that difference for the page's font, and taking it off the top padding and adding it to the bottom moves the letters rather than the box
+    //
+    // textareas are left out: their text starts at the top and runs down, so there is no single line to center, and shifting it up only crops the last one against the bottom edge. selects are left out too and padded further down, because the browser places the text of a select differently from the text a field draws inside itself
+    &:not([type=range], textarea, select) {
+      padding: calc(6px - var(--semanticFormsFieldTextInkOffset, 0px)) 30px calc(6px + var(--semanticFormsFieldTextInkOffset, 0px)) 20px;
     }
 
     // input type styling
     &[type=password], &[type=text]:has(~ button.show) {
-      padding: 6px 55px 6px 20px;
+      padding: calc(6px - var(--semanticFormsFieldTextInkOffset, 0px)) 55px calc(6px + var(--semanticFormsFieldTextInkOffset, 0px)) 20px;
     }
 
     &[type=search] {
-      padding: 6px 20px 6px 32px;
+      padding: calc(6px - var(--semanticFormsFieldTextInkOffset, 0px)) 20px calc(6px + var(--semanticFormsFieldTextInkOffset, 0px)) 32px;
       background: var(--semanticFormsSearchIcon) no-repeat 10px;
       background-color: var(--semanticFormsFormBgColor);
       background-size: 18px;
@@ -93,6 +154,8 @@
 
   select {
     cursor: pointer;
+    // the browser centers a control's text on the middle of the box holding it, which is not quite where the letters sit. the enhancement measures that difference for the page's font, and taking it off the top padding and adding it to the bottom moves the letters rather than the box
+    padding: calc(6px - var(--semanticFormsTextInkOffset, 0px)) 30px calc(6px + var(--semanticFormsTextInkOffset, 0px)) 20px;
 
     // single selects
     &:not([multiple]) {
@@ -127,6 +190,7 @@
   }
 
   textarea {
+    padding: 6px 30px 6px 20px;
     resize: vertical;
     line-height: 1.5;
     width: 100%;
@@ -143,12 +207,11 @@
     appearance: none;
     -webkit-appearance: none;
     position: absolute;
-    height: min-content;
-    // account for margin above each input
-    top: calc(var(--semanticFormsInputTopMargin) + 6px);
+    // centered on the field from its own size rather than by a fixed offset, so that it stays centered when the field height is overridden
+    top: calc(var(--semanticFormsInputTopMargin) + (var(--semanticFormsInputHeight) - #{$clearButtonSize}) / 2);
     right: 0;
-    width: 25px;
-    height: 25px;
+    width: $clearButtonSize;
+    height: $clearButtonSize;
     margin: auto 6px;
     padding: 5px;
     background: none;
@@ -180,6 +243,12 @@
     display: none;
   }
 
+  // a field the user cannot edit has no clear button to begin with, but one that is made readonly or disabled after the enhancement ran still has the button it was given
+  input:read-only ~ .clear,
+  textarea:read-only ~ .clear {
+    display: none;
+  }
+
   // button styling
   input[type=submit],
   input[type=reset],
@@ -196,7 +265,8 @@
     border: 1px var(--semanticFormsButtonGradientDark) solid;
     corner-shape: squircle;
     border-radius: 20px;
-    padding: 5px 25px;
+    // the browser centers a control's text on the middle of the box holding it, which is not quite where the letters sit. the enhancement measures that difference for the page's font, and taking it off the top padding and adding it to the bottom moves the letters rather than the box
+    padding: calc(5px - var(--semanticFormsFieldTextInkOffset, 0px)) 25px calc(5px + var(--semanticFormsFieldTextInkOffset, 0px));
     font-size: 100%;
     line-height: 1;
     user-select: none;
