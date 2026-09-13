@@ -290,7 +290,7 @@
 
       <h3 id="setcolnumber">Set which column a single input field goes in</h3>
 
-      <p>You can place a field in a particular column using the <code>col-#</code> class on the <code><!--#&lt;dd&gt;--></code> element. Available numbered classes are <code>col-1</code> through <code>col-5</code>. It can be combined with <code>colspan-#</code>, in which case <code>col-#</code> decides where the field starts and <code>colspan-#</code> decides how wide it is.</p>
+      <p>You can place a field in a particular column using the <code>col-#</code> class on the <code><!--#<dd>--></code> element. Available numbered classes are <code>col-1</code> through <code>col-5</code>. It can be combined with <code>colspan-#</code>, in which case <code>col-#</code> decides where the field starts and <code>colspan-#</code> decides how wide it is.</p>
 
       <p>Positions are responsive in the same way spans are: when the form narrows to fewer columns than the class asks for, the field falls back to flowing into the next free space rather than forcing a column that is no longer there.</p>
 
@@ -343,7 +343,7 @@
 
       <h2 id="tables">Tables</h2>
 
-      <p>Applying the <code>semanticForms</code> class to a <code><!--#&lt;table&gt;--></code> styles the table itself and any fields inside its cells. A <code><!--#&lt;tr&gt;--></code> with a class of <code>title</code> is styled as a title row spanning the table.</p>
+      <p>Applying the <code>semanticForms</code> class to a <code><!--#<table>--></code> styles the table itself and any fields inside its cells. A <code><!--#<tr>--></code> with a class of <code>title</code> is styled as a title row spanning the table.</p>
 
       <pre><code class='language-html' lang='html'><escape>
 <table class="semanticForms">
@@ -373,11 +373,11 @@
         </tbody>
       </table>
 
-      <p>A whole <code><!--#&lt;form class="semanticForms"&gt;--></code> can also go inside a single cell of a table that has no <code>semanticForms</code> class of its own, if you would rather leave the table unstyled.</p>
+      <p>A whole <code><!--#<form class="semanticForms">--></code> can also go inside a single cell of a table that has no <code>semanticForms</code> class of its own, if you would rather leave the table unstyled.</p>
 
       <h2 id="fieldsets">Fieldsets and details</h2>
 
-      <p>A <code><!--#&lt;fieldset&gt;--></code> groups fields under its <code><!--#&lt;legend&gt;--></code>. Nesting one inside another darkens it, so the levels stay distinguishable, and <code><!--#&lt;details&gt;--></code> elements are styled and animated the same way as a nested fieldset.</p>
+      <p>A <code><!--#<fieldset>--></code> groups fields under its <code><!--#<legend>--></code>. Nesting one inside another darkens it, so the levels stay distinguishable, and <code><!--#<details>--></code> elements are styled and animated the same way as a nested fieldset.</p>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
@@ -433,7 +433,7 @@
 
       <h2 id="ptags">Fields in p tags</h2>
 
-      <p>Where a <code><!--#&lt;dl&gt;--></code> is more structure than you need, a field and its label can go in a <code><!--#&lt;p&gt;--></code> instead. These do not get the float label treatment, so the label stays beside the field.</p>
+      <p>Where a <code><!--#<dl>--></code> is more structure than you need, a field and its label can go in a <code><!--#<p>--></code> instead. These do not get the float label treatment, so the label stays beside the field.</p>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">
@@ -461,7 +461,7 @@
 
       <h2 id="tabs">Tabs</h2>
 
-      <p>Add the <code>tabs</code> class to an element holding one <code><!--#&lt;fieldset&gt;--></code> per tab. Each fieldset's <code><!--#&lt;legend&gt;--></code> names its tab.</p>
+      <p>Add the <code>tabs</code> class to an element holding one <code><!--#<fieldset>--></code> per tab. Each fieldset's <code><!--#<legend>--></code> names its tab.</p>
 
       <p>Semantic Forms builds the tab strip, wires up the <code>tab</code> and <code>tabpanel</code> roles, and moves between tabs with the left and right arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>. Left alone the markup is a stack of labelled field groups, which is what a visitor without JavaScript gets, so nothing is hidden from them.</p>
 
