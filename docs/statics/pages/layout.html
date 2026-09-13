@@ -1,0 +1,521 @@
+<include src="layouts/main">
+  <arg pageTitle>Semantic Forms — Layout</arg>
+  <arg pageContent>
+    <article>
+      <p><a href="/usage.html">← Usage</a></p>
+
+      <h2 id="responsivecolumns">Responsive columns</h2>
+
+      <p>This feature makes it so the form fields will grow, shrink, expand the number of columns, or reduce the number of columns based on how much space exists in the container. You can customize it by applying various <code>colspan-#</code> classes to various elements in the form markup structure.</p>
+
+      <h3 id="colspan">Set number of columns for a group of forms</h3>
+
+      <p>You can limit the number of columns on your forms using the <code>colspan-#</code> class on a <code><!--#<dl>--></code> element:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl class="colspan-2">
+    <div>
+      <dt><label for="input-a">Input A</label></dt>
+      <dd><input type="text" id="input-a" name="input-a"></dd>
+    </div>
+
+    <div>
+      <dt><label for="input-b">Input B</label></dt>
+      <dd><input type="text" id="input-b" name="input-b"></dd>
+    </div>
+
+    <!-- wraps to the next row -->
+    <div>
+      <dt><label for="input-c">Input C</label></dt>
+      <dd><input type="text" id="input-c" name="input-c"></dd>
+    </div>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms">
+        <dl class="colspan-2">
+          <div>
+            <dt><label for="input-a">Input A</label></dt>
+            <dd><input type="text" id="input-a" name="input-a"></dd>
+          </div>
+
+          <div>
+            <dt><label for="input-b">Input B</label></dt>
+            <dd><input type="text" id="input-b" name="input-b"></dd>
+          </div>
+
+          <!-- wraps to the next row -->
+          <div>
+            <dt><label for="input-c">Input C</label></dt>
+            <dd><input type="text" id="input-c" name="input-c"></dd>
+          </div>
+        </dl>
+      </form>
+
+      <p>You can also apply the class to a <code><!--#<fieldset>--></code> which will apply that styling to all nested <code><!--#<dl>--></code> elements:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <fieldset class="colspan-3">
+    <!-- inherits 3 column class -->
+    <dl>
+      <div>
+        <dt><label for="f-ex-input-a">Input A</label></dt>
+        <dd><input type="text" id="f-ex-input-a" name="f-ex-input-a"></dd>
+      </div>
+
+      <div>
+        <dt><label for="f-ex-input-b">Input B</label></dt>
+        <dd><input type="text" id="f-ex-input-b" name="f-ex-input-b"></dd>
+      </div>
+
+      <div>
+        <dt><label for="f-ex-input-c">Input C</label></dt>
+        <dd><input type="text" id="f-ex-input-c" name="f-ex-input-c"></dd>
+      </div>
+    </dl>
+
+    <!-- has 4 columns -->
+    <dl class="colspan-4">
+      <div>
+        <dt><label for="f-ex-input-d">Input D</label></dt>
+        <dd><input type="text" id="f-ex-input-d" name="f-ex-input-d"></dd>
+      </div>
+
+      <div>
+        <dt><label for="f-ex-input-e">Input E</label></dt>
+        <dd><input type="text" id="f-ex-input-e" name="f-ex-input-e"></dd>
+      </div>
+
+      <div>
+        <dt><label for="f-ex-input-f">Input F</label></dt>
+        <dd><input type="text" id="f-ex-input-f" name="f-ex-input-f"></dd>
+      </div>
+    </dl>
+  </fieldset>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <fieldset class="colspan-3">
+          <!-- inherits 3 column class -->
+          <dl>
+            <div>
+              <dt><label for="f-ex-input-a">Input A</label></dt>
+              <dd><input type="text" id="f-ex-input-a" name="f-ex-input-a"></dd>
+            </div>
+
+            <div>
+              <dt><label for="f-ex-input-b">Input B</label></dt>
+              <dd><input type="text" id="f-ex-input-b" name="f-ex-input-b"></dd>
+            </div>
+
+            <div>
+              <dt><label for="f-ex-input-c">Input C</label></dt>
+              <dd><input type="text" id="f-ex-input-c" name="f-ex-input-c"></dd>
+            </div>
+          </dl>
+
+          <!-- has 4 columns -->
+          <dl class="colspan-4">
+            <div>
+              <dt><label for="f-ex-input-d">Input D</label></dt>
+              <dd><input type="text" id="f-ex-input-d" name="f-ex-input-d"></dd>
+            </div>
+
+            <div>
+              <dt><label for="f-ex-input-e">Input E</label></dt>
+              <dd><input type="text" id="f-ex-input-e" name="f-ex-input-e"></dd>
+            </div>
+
+            <div>
+              <dt><label for="f-ex-input-f">Input F</label></dt>
+              <dd><input type="text" id="f-ex-input-f" name="f-ex-input-f"></dd>
+            </div>
+          </dl>
+        </fieldset>
+      </form>
+
+      <h3 id="setcolspannumber">Set number of columns a single input field takes up</h3>
+
+      <p>You can specify the number of columns an input will span using the <code>colspan-#</code> class on the <code><!--#<dd>--></code> element. The inputs are responsive and will shrink according to available space. Available numbered classes are <code>colspan-1</code> through <code>colspan-5</code>:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <fieldset>
+    <dl>
+      <div>
+        <dt><label for="cspan-ex-input-a">Input A</label></dt>
+        <!-- 1 column -->
+        <dd class="colspan-1"><input type="text" id="cspan-ex-input-a" name="cspan-ex-input-a"></dd>
+      </div>
+
+      <div>
+        <dt><label for="cspan-ex-input-b">Input B</label></dt>
+        <!-- 2 columns  -->
+        <dd class="colspan-2"><input type="text" id="cspan-ex-input-b" name="cspan-ex-input-b"></dd>
+      </div>
+
+      <div>
+        <dt><label for="cspan-ex-input-c">Input C</label></dt>
+        <!-- 5 columns (max) -->
+        <dd class="colspan-5"><input type="text" id="cspan-ex-input-c" name="cspan-ex-input-c"></dd>
+      </div>
+    </dl>
+  </fieldset>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms">
+        <fieldset>
+          <dl>
+            <div>
+              <dt><label for="cspan-ex-input-a">Input A</label></dt>
+              <!-- 1 column -->
+              <dd class="colspan-1"><input type="text" id="cspan-ex-input-a" name="cspan-ex-input-a"></dd>
+            </div>
+
+            <div>
+              <dt><label for="cspan-ex-input-b">Input B</label></dt>
+              <!-- 2 columns  -->
+              <dd class="colspan-2"><input type="text" id="cspan-ex-input-b" name="cspan-ex-input-b"></dd>
+            </div>
+
+            <div>
+              <dt><label for="cspan-ex-input-c">Input C</label></dt>
+              <!-- 5 columns (max) -->
+              <dd class="colspan-5"><input type="text" id="cspan-ex-input-c" name="cspan-ex-input-c"></dd>
+            </div>
+          </dl>
+        </fieldset>
+      </form>
+
+      <p><code>colspan-full</code> can also be used to force an input to take up the entire width of a form:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <fieldset>
+    <dl>
+      <div>
+        <dt><label for="cspanfull-ex-input-a">Input A</label></dt>
+        <!-- this spans 2 columns on row 1 -->
+        <dd class="colspan-2"><input type="text" id="cspanfull-ex-input-a" name="cspanfull-ex-input-a"></dd>
+      </div>
+
+      <div>
+        <dt><label for="cspanfull-ex-input-b">Input B</label></dt>
+        <!-- this spans the full width of row 2 -->
+        <dd class="colspan-full"><input type="text" id="cspanfull-ex-input-b" name="cspanfull-ex-input-b"></dd>
+      </div>
+
+      <div>
+        <!-- this spans 1 column on row 3 -->
+        <dt><label for="cspanfull-ex-input-c">Input C</label></dt>
+        <dd><input type="text" id="cspanfull-ex-input-c" name="cspanfull-ex-input-c"></dd>
+      </div>
+    </dl>
+  </fieldset>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <fieldset>
+          <dl>
+            <div>
+              <dt><label for="cspanfull-ex-input-a">Input A</label></dt>
+              <!-- this spans 2 columns on row 1 -->
+              <dd class="colspan-2"><input type="text" id="cspanfull-ex-input-a" name="cspanfull-ex-input-a"></dd>
+            </div>
+
+            <div>
+              <dt><label for="cspanfull-ex-input-b">Input B</label></dt>
+              <!-- this spans the full width of row 2 -->
+              <dd class="colspan-full"><input type="text" id="cspanfull-ex-input-b" name="cspanfull-ex-input-b"></dd>
+            </div>
+
+            <div>
+              <!-- this spans 1 column on row 3 -->
+              <dt><label for="cspanfull-ex-input-c">Input C</label></dt>
+              <dd><input type="text" id="cspanfull-ex-input-c" name="cspanfull-ex-input-c"></dd>
+            </div>
+          </dl>
+        </fieldset>
+      </form>
+
+      <h3 id="alignmentclasses">Align elements within the responsive grid</h3>
+
+      <p>Use classes to align an element at the start, center, or end of its available space. Available classes are <code>align-start</code>, <code>align-center</code>, and <code>align-end</code>.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms" method="post">
+  <dl class="colspan-3">
+    <div>
+      <dt><label for="align-start">align-start</label></dt>
+      <dd class="align-start"><input id="align-start" name="align-start" type="text"></dd>
+    </div>
+
+    <div>
+      <dt><label for="align-center">align-center</label></dt>
+      <dd class="align-center"><input id="align-center" name="align-center" type="text"></dd>
+    </div>
+
+    <div>
+      <dt><label for="align-end">align-end</label></dt>
+      <dd class="align-end"><input id="align-end" name="align-end" type="text"></dd>
+    </div>
+  </dl>
+</form>
+</escape></code></pre>
+
+      <form class="semanticForms" method="post">
+        <dl class="colspan-3">
+          <div>
+            <dt><label for="align-start">align-start</label></dt>
+            <dd class="align-start"><input id="align-start" name="align-start" type="text"></dd>
+          </div>
+
+          <div>
+            <dt><label for="align-center">align-center</label></dt>
+            <dd class="align-center"><input id="align-center" name="align-center" type="text"></dd>
+          </div>
+
+          <div>
+            <dt><label for="align-end">align-end</label></dt>
+            <dd class="align-end"><input id="align-end" name="align-end" type="text"></dd>
+          </div>
+        </dl>
+      </form>
+
+      <h3 id="setcolnumber">Set which column a single input field goes in</h3>
+
+      <p>You can place a field in a particular column using the <code>col-#</code> class on the <code><!--#&lt;dd&gt;--></code> element. Available numbered classes are <code>col-1</code> through <code>col-5</code>. It can be combined with <code>colspan-#</code>, in which case <code>col-#</code> decides where the field starts and <code>colspan-#</code> decides how wide it is.</p>
+
+      <p>Positions are responsive in the same way spans are: when the form narrows to fewer columns than the class asks for, the field falls back to flowing into the next free space rather than forcing a column that is no longer there.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <fieldset>
+    <dl class="colspan-3">
+      <div>
+        <dt><label for="col-ex-input-a">Input A</label></dt>
+        <!-- third column -->
+        <dd class="col-3"><input type="text" id="col-ex-input-a" name="col-ex-input-a"></dd>
+      </div>
+
+      <div>
+        <dt><label for="col-ex-input-b">Input B</label></dt>
+        <!-- first column -->
+        <dd class="col-1"><input type="text" id="col-ex-input-b" name="col-ex-input-b"></dd>
+      </div>
+
+      <div>
+        <dt><label for="col-ex-input-c">Input C</label></dt>
+        <!-- starts in the second column and spans two -->
+        <dd class="col-2 colspan-2"><input type="text" id="col-ex-input-c" name="col-ex-input-c"></dd>
+      </div>
+    </dl>
+  </fieldset>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <fieldset>
+          <dl class="colspan-3">
+            <div>
+              <dt><label for="col-ex-input-a">Input A</label></dt>
+              <dd class="col-3"><input type="text" id="col-ex-input-a" name="col-ex-input-a"></dd>
+            </div>
+
+            <div>
+              <dt><label for="col-ex-input-b">Input B</label></dt>
+              <dd class="col-1"><input type="text" id="col-ex-input-b" name="col-ex-input-b"></dd>
+            </div>
+
+            <div>
+              <dt><label for="col-ex-input-c">Input C</label></dt>
+              <dd class="col-2 colspan-2"><input type="text" id="col-ex-input-c" name="col-ex-input-c"></dd>
+            </div>
+          </dl>
+        </fieldset>
+      </form>
+
+      <h2 id="tables">Tables</h2>
+
+      <p>Applying the <code>semanticForms</code> class to a <code><!--#&lt;table&gt;--></code> styles the table itself and any fields inside its cells. A <code><!--#&lt;tr&gt;--></code> with a class of <code>title</code> is styled as a title row spanning the table.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<table class="semanticForms">
+  <thead>
+    <tr class="title"><th colspan="2">Table title</th></tr>
+    <tr><th>Column 1</th><th>Column 2</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><input type="text" id="table-ex-input" name="table-ex-input" placeholder="A text input in a table"></td>
+    </tr>
+  </tbody>
+</table>
+      </escape></code></pre>
+
+      <table class="semanticForms">
+        <thead>
+          <tr class="title"><th colspan="2">Table title</th></tr>
+          <tr><th>Column 1</th><th>Column 2</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><input type="text" id="table-ex-input" name="table-ex-input" placeholder="A text input in a table"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>A whole <code><!--#&lt;form class="semanticForms"&gt;--></code> can also go inside a single cell of a table that has no <code>semanticForms</code> class of its own, if you would rather leave the table unstyled.</p>
+
+      <h2 id="fieldsets">Fieldsets and details</h2>
+
+      <p>A <code><!--#&lt;fieldset&gt;--></code> groups fields under its <code><!--#&lt;legend&gt;--></code>. Nesting one inside another darkens it, so the levels stay distinguishable, and <code><!--#&lt;details&gt;--></code> elements are styled and animated the same way as a nested fieldset.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <fieldset>
+    <legend>Outer group</legend>
+    <fieldset>
+      <legend>Inner group</legend>
+      <dl>
+        <div>
+          <dt><label for="nested-ex-input">Input</label></dt>
+          <dd><input type="text" id="nested-ex-input" name="nested-ex-input"></dd>
+        </div>
+      </dl>
+    </fieldset>
+
+    <details>
+      <summary>Show more</summary>
+      <dl>
+        <div>
+          <dt><label for="details-ex-input">Hidden until opened</label></dt>
+          <dd><input type="text" id="details-ex-input" name="details-ex-input"></dd>
+        </div>
+      </dl>
+    </details>
+  </fieldset>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <fieldset>
+          <legend>Outer group</legend>
+          <fieldset>
+            <legend>Inner group</legend>
+            <dl>
+              <div>
+                <dt><label for="nested-ex-input">Input</label></dt>
+                <dd><input type="text" id="nested-ex-input" name="nested-ex-input"></dd>
+              </div>
+            </dl>
+          </fieldset>
+
+          <details>
+            <summary>Show more</summary>
+            <dl>
+              <div>
+                <dt><label for="details-ex-input">Hidden until opened</label></dt>
+                <dd><input type="text" id="details-ex-input" name="details-ex-input"></dd>
+              </div>
+            </dl>
+          </details>
+        </fieldset>
+      </form>
+
+      <h2 id="ptags">Fields in p tags</h2>
+
+      <p>Where a <code><!--#&lt;dl&gt;--></code> is more structure than you need, a field and its label can go in a <code><!--#&lt;p&gt;--></code> instead. These do not get the float label treatment, so the label stays beside the field.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <p>
+    <label for="p-ex-input">Text input</label>
+    <input type="text" id="p-ex-input" name="p-ex-input">
+  </p>
+  <p>
+    <input type="checkbox" id="p-ex-checkbox" name="p-ex-checkbox">
+    <label for="p-ex-checkbox">Checkbox</label>
+  </p>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <p>
+          <label for="p-ex-input">Text input</label>
+          <input type="text" id="p-ex-input" name="p-ex-input">
+        </p>
+        <p>
+          <input type="checkbox" id="p-ex-checkbox" name="p-ex-checkbox">
+          <label for="p-ex-checkbox">Checkbox</label>
+        </p>
+      </form>
+
+      <h2 id="tabs">Tabs</h2>
+
+      <p>Add the <code>tabs</code> class to an element holding one <code><!--#&lt;fieldset&gt;--></code> per tab. Each fieldset's <code><!--#&lt;legend&gt;--></code> names its tab.</p>
+
+      <p>Semantic Forms builds the tab strip, wires up the <code>tab</code> and <code>tabpanel</code> roles, and moves between tabs with the left and right arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>. Left alone the markup is a stack of labelled field groups, which is what a visitor without JavaScript gets, so nothing is hidden from them.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <div class="tabs">
+    <fieldset>
+      <legend>Account</legend>
+      <dl>
+        <div>
+          <dt><label for="tabs-ex-username">Username</label></dt>
+          <dd><input type="text" id="tabs-ex-username" name="tabs-ex-username"></dd>
+        </div>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>Preferences</legend>
+      <dl>
+        <div>
+          <dt><label for="tabs-ex-newsletter">Newsletter</label></dt>
+          <dd><input type="checkbox" switch id="tabs-ex-newsletter" name="tabs-ex-newsletter"></dd>
+        </div>
+      </dl>
+    </fieldset>
+  </div>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <div class="tabs">
+          <fieldset>
+            <legend>Account</legend>
+            <dl>
+              <div>
+                <dt><label for="tabs-ex-username">Username</label></dt>
+                <dd><input type="text" id="tabs-ex-username" name="tabs-ex-username"></dd>
+              </div>
+            </dl>
+          </fieldset>
+
+          <fieldset>
+            <legend>Preferences</legend>
+            <dl>
+              <div>
+                <dt><label for="tabs-ex-newsletter">Newsletter</label></dt>
+                <dd><input type="checkbox" switch id="tabs-ex-newsletter" name="tabs-ex-newsletter"></dd>
+              </div>
+            </dl>
+          </fieldset>
+        </div>
+      </form>
+
+      <p>The tab strip takes its colors from <code>--semanticFormsButtonGradientLight</code> and <code>--semanticFormsButtonGradientDark</code> for the unselected tabs, and <code>--semanticFormsFormSubBgColor</code> for the selected one, so it matches the buttons and fieldsets around it.</p>
+    </article>
+  </arg>
+</include>

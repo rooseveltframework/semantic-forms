@@ -23,7 +23,17 @@ table.semanticForms {
   --semanticFormsInputTopMargin: 15px;
   --semanticFormsInputMinWidth: 250px;
   --semanticFormsInputMaxWidth: 365px;
+  --semanticFormsInputColumnMaxWidth: 1fr;
   --semanticFormsBorderRadius: 10px;
+  // the operating system's own highlight colour, so a switch matches the other controls the visitor sees, with the blue kept for anything that does not know the keyword. overriding this variable still wins over both
+  --semanticFormsSwitchOnColor: #2196f3;
+
+  @supports (color: AccentColor) {
+    --semanticFormsSwitchOnColor: AccentColor;
+  }
+
+  --semanticFormsSwitchOffColor: #c0c0c0;
+  --semanticFormsSwitchThumbColor: #fff;
   --semanticFormsNestedFieldsetBgColor: oklch(from var(--semanticFormsFormSubBgColor) 0.3 c h / 0.05);
   --semanticFormsNestedFieldsetBorder: 1px rgba(0, 0, 0, .2) solid;
   --semanticFormsNestedInputBgColor: #fff;
@@ -101,6 +111,15 @@ table.semanticForms {
   --semanticFormsClearButtonColor: #fff;
   --semanticFormsButtonGradientLight: #6f6f6f;
   --semanticFormsButtonGradientDark: #373737;
+  // the operating system's own highlight colour, so a switch matches the other controls the visitor sees, with the blue kept for anything that does not know the keyword. overriding this variable still wins over both
+  --semanticFormsSwitchOnColor: #2196f3;
+
+  @supports (color: AccentColor) {
+    --semanticFormsSwitchOnColor: AccentColor;
+  }
+
+  --semanticFormsSwitchOffColor: #656565;
+  --semanticFormsSwitchThumbColor: #fff;
   --semanticFormsNestedFieldsetBgColor: oklch(from var(--semanticFormsFormSubBgColor) 0.9 c h / 0.05);
   --semanticFormsNestedFieldsetBorder: 1px rgba(255, 255, 255, .1) solid;
   --semanticFormsNestedInputBgColor: rgba(255, 255, 255, .15);

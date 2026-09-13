@@ -4,8 +4,9 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false # show all CI failures rather than stopping CI on first failure
       matrix:
-        node-version: [22.x, 24.x]
+        node-version: [22.x, 24.x, 26.x]
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v7
@@ -13,9 +14,51 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            docs/package-lock.json
+      # roosevelt depends on better-sqlite3, which ships no prebuilt binaries and so is compiled during install. the node-gyp bundled with the npm that ships with node only looks for Visual Studio 2019 and 2022, and the windows runner image now carries 2026. npm always uses its own copy, so the fix is to update npm rather than to install node-gyp alongside it
+      - name: Use an npm whose node-gyp knows about Visual Studio 2026
+        if: runner.os == 'Windows'
+        run: |
+          npm install -g npm@latest
+          $version = npm --version
+          Write-Host "npm is now $version"
+          if ([version]$version -lt [version]'11.7.0') { throw "npm is still $version, whose node-gyp cannot find Visual Studio 2026" }
       - run: npm ci
       - run: npm ci
         working-directory: docs
       - run: npx playwright install
       - run: npm run lint
       - run: npm t
+
+  # screenshot baselines are only comparable within one rendering environment, so the visual tests run in the playwright container that produced them rather than on the runner directly. the container is started by the npm script, which works out which image to use from the installed playwright version, so the version is not written down here as well
+  visual:
+    runs-on: ubuntu-latest
+    steps:
+      # the baseline screenshots are stored in git lfs, and a checkout without this gets the pointer files instead of the images
+      - uses: actions/checkout@v7
+        with:
+          lfs: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.x
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            docs/package-lock.json
+      - run: npm ci
+      - run: npm ci
+        working-directory: docs
+      - run: npm run test-visual-docker
+      # the report holds the expected, actual, and diff images for anything that moved
+      - uses: actions/upload-artifact@v5
+        if: failure()
+        with:
+          name: visual-regression-report
+          # the snapshot folder is included so that the first run, which has no baselines to compare against yet, produces a downloadable set taken in this container
+          path: |
+            test-results/
+            test/visual.spec.js-snapshots/
+          retention-days: 7

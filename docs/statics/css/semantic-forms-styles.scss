@@ -1,6 +1,7 @@
 @use '../../../dist/semantic-forms.css';
 
-@view-transition { /* enable multi-page view transitions */
+// enable multi-page view transitions
+@view-transition {
   navigation: auto;
 }
 
@@ -54,4 +55,16 @@ form#mode {
   width: auto;
   container-type: unset;
   display: block;
+}
+
+// the full demo carries each widget twice: enhanced by javascript, and with the lowFlow class that turns those enhancements off. only one of the two is on screen at a time
+body.js:not(.lowFlowView) #low_flow,
+body.js.lowFlowView #high_flow {
+  display: none;
+}
+
+// without javascript the toggle cannot do anything, and every form renders unenhanced anyway, so the enhanced copy is hidden and the noscript note explains why
+body.no-js #flow_toggle,
+body.no-js #high_flow {
+  display: none;
 }

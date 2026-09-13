@@ -1,0 +1,130 @@
+<include src="layouts/main">
+  <arg pageTitle>Semantic Forms — Checkboxes, radios and switches</arg>
+  <arg pageContent>
+    <article>
+      <p><a href="/usage.html">← Usage</a></p>
+
+      <h2 id="checkboxesandradios">Checkboxes and radio buttons</h2>
+
+      <p>Checkboxes and radio buttons need to follow the following markup structure:</p>
+
+      <h3 id="singlecheckbox">A single checkbox</h3>
+
+      <p>Not too different than other inputs:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <div>
+      <dt><label for="some_field_name">Single checkbox</label></dt>
+      <dd><input type="checkbox" name="some_field_name" id="some_field_name"></dd>
+    </div>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <div>
+            <dt><label for="some_field_name">Single checkbox</label></dt>
+            <dd><input type="checkbox" name="some_field_name" id="some_field_name"></dd>
+          </div>
+        </dl>
+      </form>
+
+      <h3 id="switches">A switch</h3>
+
+      <p>Adding the <a href="https://html.spec.whatwg.org/multipage/input.html#the-switch-attribute"><code>switch</code></a> attribute to a checkbox turns it into a switch. Browsers that support the attribute natively render one themselves; in the rest, Semantic Forms draws the switch and applies the <code>switch</code> ARIA role. It can be toggled by clicking it, by dragging the thumb across the track, or from the keyboard the same way a checkbox can.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <div>
+      <dt><label for="some_switch">Switch</label></dt>
+      <dd><input type="checkbox" switch name="some_switch" id="some_switch"></dd>
+    </div>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <div>
+            <dt><label for="some_switch">Switch</label></dt>
+            <dd><input type="checkbox" switch name="some_switch" id="some_switch"></dd>
+          </div>
+        </dl>
+      </form>
+
+      <p>The colors are set by the <code>--semanticFormsSwitchOnColor</code>, <code>--semanticFormsSwitchOffColor</code>, and <code>--semanticFormsSwitchThumbColor</code> CSS variables.</p>
+
+      <h3 id="checkboxgroup">Checkbox group</h3>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <div>
+      <dt><label data-for="some_checkboxes">Checkboxes:</label></dt>
+      <dd class="checkboxes">
+        <ul id="some_checkboxes">
+          <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one"> <label for="some_field_name_checkboxes_one">One</label></li>
+          <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
+          <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
+        </ul>
+      </dd>
+    </div>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <div>
+            <dt><label data-for="some_checkboxes">Checkboxes:</label></dt>
+            <dd class="checkboxes">
+              <ul id="some_checkboxes">
+                <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_one"> <label for="some_field_name_checkboxes_one">One</label></li>
+                <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_two"> <label for="some_field_name_checkboxes_two">Two</label></li>
+                <li><input type="checkbox" name="some_field_name" id="some_field_name_checkboxes_three"> <label for="some_field_name_checkboxes_three">Three</label></li>
+              </ul>
+            </dd>
+          </div>
+        </dl>
+      </form>
+
+      <h3 id="radiobuttons">Radio buttons</h3>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <dl>
+    <div>
+      <dt><label data-for="some_radios">Radios:</label></dt>
+      <dd class="radios">
+        <ul id="some_radios">
+          <li><input type="radio" name="some_field_name" id="some_field_name_radios_one"> <label for="some_field_name_radios_one">One</label></li>
+          <li><input type="radio" name="some_field_name" id="some_field_name_radios_two"> <label for="some_field_name_radios_two">Two</label></li>
+          <li><input type="radio" name="some_field_name" id="some_field_name_radios_three"> <label for="some_field_name_radios_three">Three</label></li>
+        </ul>
+      </dd>
+    </div>
+  </dl>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <dl>
+          <div>
+            <dt><label data-for="some_radios">Radios:</label></dt>
+            <dd class="radios">
+              <ul id="some_radios">
+                <li><input type="radio" name="some_field_name" id="some_field_name_radios_one"> <label for="some_field_name_radios_one">One</label></li>
+                <li><input type="radio" name="some_field_name" id="some_field_name_radios_two"> <label for="some_field_name_radios_two">Two</label></li>
+                <li><input type="radio" name="some_field_name" id="some_field_name_radios_three"> <label for="some_field_name_radios_three">Three</label></li>
+              </ul>
+            </dd>
+          </div>
+        </dl>
+      </form>
+    </article>
+  </arg>
+</include>

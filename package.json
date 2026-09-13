@@ -8,7 +8,7 @@
       "url": "https://github.com/rooseveltframework/semantic-forms/graphs/contributors"
     }
   ],
-  "version": "5.3.5",
+  "version": "5.3.6",
   "files": [
     "dist",
     "semanticForms.scss",
@@ -26,36 +26,50 @@
   },
   "homepage": "https://rooseveltframework.org/docs/semantic-forms/latest",
   "license": "CC-BY-4.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "main": "semanticForms.js",
   "readmeFilename": "README.md",
   "devDependencies": {
     "@jsdevtools/coverage-istanbul-loader": "3.0.5",
-    "@playwright/test": "1.60.0",
-    "eslint": "10.4.0",
-    "eslint-plugin-html": "8.1.4",
-    "express": "5.2.1",
-    "nodemon": "3.1.14",
+    "@playwright/test": "1.63.0",
+    "eslint-plugin-html": "8.2.0",
     "nyc": "18.0.0",
-    "sass": "1.100.0",
-    "http-server": "14.1.1",
+    "sass": "1.104.1",
     "standard": "17.1.2",
-    "webpack-cli": "7.0.2"
+    "terser-webpack-plugin": "5.6.1",
+    "webpack": "5.110.3",
+    "webpack-cli": "7.2.3"
   },
   "scripts": {
+    "prepare": "npm run build",
     "build": "webpack && sass semanticForms.scss dist/semantic-forms.css",
     "watch": "webpack && sass --watch semanticForms.scss dist/semantic-forms.css",
-    "d": "nodemon dev-server.js --ext js,scss",
-    "dev": "nodemon dev-server.js --ext js,scss",
-    "development": "nodemon dev-server.js --ext js,scss",
+    "d": "node --watch-path=semanticForms.js --watch-path=lib --watch-path=semanticForms.scss --watch-path=styles --watch-path=docs/statics dev-server.js",
+    "dev": "node --watch-path=semanticForms.js --watch-path=lib --watch-path=semanticForms.scss --watch-path=styles --watch-path=docs/statics dev-server.js",
+    "development": "node --watch-path=semanticForms.js --watch-path=lib --watch-path=semanticForms.scss --watch-path=styles --watch-path=docs/statics dev-server.js",
     "lint": "standard && standard --plugin html docs/statics/pages/*.html",
     "lint-fix": "standard --fix && standard --plugin html docs/statics/pages/*.html --fix",
     "test": "npm run build && playwright test",
+    "test-visual": "playwright test --config=playwright.visual.config.js",
+    "test-visual-docker": "node visual-tests.js",
     "coverage": "webpack --env coverage && sass semanticForms.scss dist/semantic-forms.css && nyc playwright test && npm run build"
   },
   "standard": {
     "ignore": [
       "dist/",
       "docs/public"
+    ]
+  },
+  "nyc": {
+    "include": [
+      "semanticForms.js",
+      "lib/**/*.js"
+    ],
+    "reporter": [
+      "text",
+      "html"
     ]
   },
   "repository": {
