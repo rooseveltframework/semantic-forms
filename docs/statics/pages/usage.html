@@ -44,7 +44,7 @@
 
       <p>Each tree you pass gets watched separately, so calling it for the document and for one or more shadow roots is fine and they do not interfere with each other. <code>semanticForms.reinitialize(formElement)</code> works out which tree the form belongs to on its own.</p>
 
-      <p>Shadow roots do not inherit the page's stylesheets, so the shadow root needs its own copy of the CSS, either through a <code><!--#&lt;link&gt;--></code> inside it or by adopting a stylesheet:</p>
+      <p>Shadow roots do not inherit the page's stylesheets, so the shadow root needs its own copy of the CSS, either through a <code><!--#<link>--></code> inside it or by adopting a stylesheet:</p>
 
       <pre><code class='language-javascript'><escape>const sheet = new CSSStyleSheet()
 await sheet.replace(await (await fetch('/path/to/semantic-forms.css')).text())
