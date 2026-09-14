@@ -84,7 +84,8 @@
         border-style: solid;
         border-color: transparent transparent transparent var(--semanticFormsTextColor);
         position: absolute;
-        top: 0;
+        // centered on the line of text beside it: the arrow is 0.8rem tall and the line is 1em, so half the difference puts it in the middle, less the measured ink offset because the letters do not sit in the middle of their own line either. it was pinned to the top of the line before
+        top: calc((1em - 0.8rem) / 2 + var(--semanticFormsFieldTextInkOffset, 0px));
         // far enough from the words to read as a separate mark rather than part of the first letter
         left: -14px;
         transform: rotate(0);

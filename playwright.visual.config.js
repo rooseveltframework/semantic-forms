@@ -15,7 +15,8 @@ module.exports = {
   },
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: 0.01, // antialiasing still differs slightly even within one environment
+      // no allowance at all: the container pins the rendering, so the same markup produces the same pixels every time and any difference is a real change worth looking at. an allowance here hides exactly what these tests exist to catch, and a generous one let a whole section shift while still comparing clean against a baseline of the old layout
+      maxDiffPixels: 0,
       animations: 'disabled',
       caret: 'hide',
       scale: 'css'
