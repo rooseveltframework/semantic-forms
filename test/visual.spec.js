@@ -8,6 +8,10 @@ test.describe('visual regression', () => {
 
   // each demo section is a fieldset, which is the element these capture
   const sections = {
+    basic_inputs: '#basic_inputs',
+    single_field: '#single_field',
+    content_sized: '#content_sized',
+    col_classes: '#col_classes',
     inputs_section: '#inputs',
     select_section: '#selects',
     checkboxes_section: '#checkboxes',
@@ -28,6 +32,11 @@ test.describe('visual regression', () => {
       await expect(page.locator(selector)).toHaveScreenshot(`${name}.png`)
     })
   }
+
+  // the tab strip only exists once the enhancement has built it, so it is found by the panel it creates
+  test('tabs should match visually', async ({ page }) => {
+    await expect(page.locator('.tabs').first()).toHaveScreenshot('tabs.png')
+  })
 
   test('details should match visually when opened', async ({ page }) => {
     // the closed state is already covered by the section shots above. the third details element in this section is nested inside the second, so opening the two top level ones reveals it

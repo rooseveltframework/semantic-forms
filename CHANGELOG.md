@@ -1,3 +1,8 @@
+## 5.3.7
+
+- Fixed details/summary styling.
+- Updated dependencies.
+
 ## 5.3.6
 
 - Added support for the HTML `switch` attribute on checkboxes. Browsers with native support render their own switch; elsewhere Semantic Forms draws one, applies the `switch` ARIA role, and supports dragging the thumb to toggle it.
