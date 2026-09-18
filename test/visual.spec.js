@@ -22,6 +22,10 @@ test.describe('visual regression', () => {
     table_with_inputs: '#tables',
     semantic_table: '#semantic_table + section',
     nested_fieldsets: '#nested_fieldsets',
+
+    // a tab group inside a fieldset: the panels are nested fieldsets there, so the strip has to be drawn in the nested colours and the selected tab still has to join cleanly to the panel below it
+    nested_tabs: '#nested_tabs',
+
     buttons: '#buttons',
     colspan_classes: '#colspan_classes',
     p_tag_elements: '#p_tag_elements'
@@ -43,6 +47,24 @@ test.describe('visual regression', () => {
     for (const index of [0, 1]) {
       await page.locator('#details details').nth(index).locator('summary').first().click()
     }
+
+    // opening one animates its height, and the disabled animations setting does not cover the discrete height transition these use, so the shot has to wait for the section to stop moving or it catches a frame partway through
+    await page.locator('#details').evaluate(section => new Promise(resolve => {
+      let last = -1
+      let stable = 0
+
+      // several frames rather than one, so this cannot finish on the frames before the animation has started moving
+      const settle = () => {
+        const height = section.getBoundingClientRect().height
+        stable = height === last ? stable + 1 : 0
+        last = height
+        if (stable === 5) return resolve()
+        window.requestAnimationFrame(settle)
+      }
+
+      window.requestAnimationFrame(settle)
+    }))
+
     await expect(page.locator('#details')).toHaveScreenshot('details.png')
   })
 })

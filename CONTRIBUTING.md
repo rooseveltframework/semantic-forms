@@ -38,7 +38,7 @@ A failed comparison writes `-expected.png`, `-actual.png` and `-diff.png` into `
 npm run test-visual-docker -- --update-snapshots
 ```
 
-If the visual diff is not a diff you meant to make, then you have found a regression.
+If the visual diff is not a diff you meant to make, then you may have found a regression. We say you "may" have found a regression, because sometimes the visual regression tests are off by a pixel or so, which can be caused by other UI elements on the page shifting around. So if you add something new to the "full demo" page, then several visual regression tests may fail simply because UI controls were moved up or down, without an actual visual regression being present. Don't try to chase pixel perfect rendering. It's a rabbit hole. Just make sure things look as close to right as possible.
 
 #### Updating the Playwright dependency
 

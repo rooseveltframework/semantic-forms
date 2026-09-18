@@ -40,11 +40,11 @@
         padding-bottom: 12px;
       }
 
-      // the selected tab is part of the panel: same fill, and no border between the two
+      // the selected tab is part of the panel: same fill, and no border between the two. the bottom border is left transparent rather than painted in the fill colour so that the fill itself, which reaches under the border, is what covers the panel's top border. that keeps the join working whatever the fill happens to be
       &[aria-selected=true] {
         background-image: none;
         background-color: var(--semanticFormsFormSubBgColor);
-        border-bottom-color: var(--semanticFormsFormSubBgColor);
+        border-bottom-color: transparent;
         padding-bottom: 12px;
       }
 
@@ -65,6 +65,17 @@
       &[hidden] {
         display: none;
       }
+    }
+  }
+
+  // inside a fieldset the panels are nested fieldsets, so they take the darkened nested treatment. the strip has to follow them or the selected tab reads as a different surface from the panel it is joined to
+  fieldset .tabs.semanticFormsTabsActive button[role=tab] {
+    border: var(--semanticFormsNestedFieldsetBorder);
+
+    &[aria-selected=true] {
+      // the nested fill is translucent, and a translucent fill cannot hide the panel's top border underneath it, which is what leaves a line across the bottom of the selected tab. so the same colour is rebuilt opaquely here: the tint painted as a layer over the surface the panel sits on comes out at the panel's exact colour, and covers
+      background-color: var(--semanticFormsFormSubBgColor);
+      background-image: linear-gradient(var(--semanticFormsNestedFieldsetBgColor), var(--semanticFormsNestedFieldsetBgColor));
     }
   }
 }

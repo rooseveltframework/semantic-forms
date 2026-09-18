@@ -15,7 +15,10 @@ module.exports = {
   },
   expect: {
     toHaveScreenshot: {
-      // no allowance at all: the container pins the rendering, so the same markup produces the same pixels every time and any difference is a real change worth looking at. an allowance here hides exactly what these tests exist to catch, and a generous one let a whole section shift while still comparing clean against a baseline of the old layout
+      // no pixel is allowed to differ: the container pins the rendering, so the same markup produces the same pixels every time and any difference is a real change worth looking at. an allowance here hides exactly what these tests exist to catch, and a generous one let a whole section shift while still comparing clean against a baseline of the old layout
+      //
+      // threshold matters as much as the count, because it decides whether a pixel is counted as differing in the first place, and the default of 0.2 is wide enough to swallow a recolour whole: a fill moving by ten values out of 255 registered as zero differing pixels, so a tab drawn in entirely the wrong colour still compared clean against its baseline. this is set just above the rendering's own noise, which is a handful of pixels a shade or two either way, and well under the smallest change worth catching
+      threshold: 0.02,
       maxDiffPixels: 0,
       animations: 'disabled',
       caret: 'hide',

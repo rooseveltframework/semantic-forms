@@ -1,3 +1,8 @@
+## 5.3.8
+
+- Fixed tabs in a nested fieldset.
+- Updated dependencies.
+
 ## 5.3.7
 
 - Fixed details/summary styling.
