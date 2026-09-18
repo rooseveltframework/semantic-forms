@@ -65,6 +65,7 @@
                     <li><a href="#low-flow-colspan_classes" data-section="colspan_classes">Colspan classes</a></li>
                     <li><a href="#low-flow-col_classes" data-section="col_classes">Col classes</a></li>
                     <li><a href="#low-flow-tabs" data-section="tabs">Tabs</a></li>
+                    <li><a href="#low-flow-nested_tabs" data-section="nested_tabs">Tabs in a nested fieldset</a></li>
                     <li><a href="#low-flow-tables" data-section="tables">Tables</a></li>
                     <li><a href="#low-flow-nested_fieldsets" data-section="nested_fieldsets">Nested fieldsets</a></li>
                     <li><a href="#low-flow-details" data-section="details">Detail elements</a></li>
@@ -937,6 +938,60 @@
               </dl>
             </fieldset>
           </div>
+
+          <fieldset id="nested_tabs">
+            <legend>Tabs in a nested fieldset</legend>
+
+            <div class="tabs" id="nested_tab_group">
+              <fieldset>
+                <legend>Account</legend>
+                <dl>
+                  <div>
+                    <dt><label for="nested-tab-username">Username</label></dt>
+                    <dd><input type="text" name="nested-tab-username" id="nested-tab-username"></dd>
+                  </div>
+                  <div>
+                    <dt><label for="nested-tab-email">Email</label></dt>
+                    <dd><input type="email" name="nested-tab-email" id="nested-tab-email"></dd>
+                  </div>
+                </dl>
+              </fieldset>
+
+              <fieldset>
+                <legend>Profile</legend>
+                <dl>
+                  <div>
+                    <dt><label for="nested-tab-display-name">Display name</label></dt>
+                    <dd><input type="text" name="nested-tab-display-name" id="nested-tab-display-name"></dd>
+                  </div>
+                  <div>
+                    <dt><label for="nested-tab-bio">Bio</label></dt>
+                    <dd><textarea name="nested-tab-bio" id="nested-tab-bio"></textarea></dd>
+                  </div>
+                </dl>
+              </fieldset>
+
+              <fieldset>
+                <legend>Preferences</legend>
+                <dl>
+                  <div>
+                    <dt><label for="nested-tab-newsletter">Newsletter</label></dt>
+                    <dd><input type="checkbox" switch name="nested-tab-newsletter" id="nested-tab-newsletter"></dd>
+                  </div>
+                  <div>
+                    <dt><label for="nested-tab-theme">Theme</label></dt>
+                    <dd>
+                      <select name="nested-tab-theme" id="nested-tab-theme">
+                        <option>System</option>
+                        <option>Light</option>
+                        <option>Dark</option>
+                      </select>
+                    </dd>
+                  </div>
+                </dl>
+              </fieldset>
+            </div>
+          </fieldset>
 
           <fieldset id="tables">
             <legend>Tables</legend>
@@ -2142,6 +2197,60 @@
               </dl>
             </fieldset>
           </div>
+
+          <fieldset id="low-flow-nested_tabs">
+            <legend>Tabs in a nested fieldset</legend>
+
+            <div class="tabs" id="low-flow-nested_tab_group">
+              <fieldset>
+                <legend>Account</legend>
+                <dl>
+                  <div>
+                    <dt><label for="low-flow-nested-tab-username">Username</label></dt>
+                    <dd><input type="text" name="low-flow-nested-tab-username" id="low-flow-nested-tab-username"></dd>
+                  </div>
+                  <div>
+                    <dt><label for="low-flow-nested-tab-email">Email</label></dt>
+                    <dd><input type="email" name="low-flow-nested-tab-email" id="low-flow-nested-tab-email"></dd>
+                  </div>
+                </dl>
+              </fieldset>
+
+              <fieldset>
+                <legend>Profile</legend>
+                <dl>
+                  <div>
+                    <dt><label for="low-flow-nested-tab-display-name">Display name</label></dt>
+                    <dd><input type="text" name="low-flow-nested-tab-display-name" id="low-flow-nested-tab-display-name"></dd>
+                  </div>
+                  <div>
+                    <dt><label for="low-flow-nested-tab-bio">Bio</label></dt>
+                    <dd><textarea name="low-flow-nested-tab-bio" id="low-flow-nested-tab-bio"></textarea></dd>
+                  </div>
+                </dl>
+              </fieldset>
+
+              <fieldset>
+                <legend>Preferences</legend>
+                <dl>
+                  <div>
+                    <dt><label for="low-flow-nested-tab-newsletter">Newsletter</label></dt>
+                    <dd><input type="checkbox" switch name="low-flow-nested-tab-newsletter" id="low-flow-nested-tab-newsletter"></dd>
+                  </div>
+                  <div>
+                    <dt><label for="low-flow-nested-tab-theme">Theme</label></dt>
+                    <dd>
+                      <select name="low-flow-nested-tab-theme" id="low-flow-nested-tab-theme">
+                        <option>System</option>
+                        <option>Light</option>
+                        <option>Dark</option>
+                      </select>
+                    </dd>
+                  </div>
+                </dl>
+              </fieldset>
+            </div>
+          </fieldset>
 
           <fieldset id="low-flow-tables">
             <legend>Tables</legend>
