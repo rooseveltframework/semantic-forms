@@ -4,6 +4,9 @@ const { test, expect } = require('@playwright/test')
 test.describe('visual regression', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/fullDemo.html')
+
+    // the library measures how far the font paints its letters from the middle of their line and corrects for it, then measures again once the fonts have finished loading, because the first reading was taken against whatever was rendering at the time. a shot caught between the two shows every line of text a pixel out. the enhancement registers its callback on this same promise before the page finishes loading, so waiting on it here lands after that callback has run
+    await page.evaluate(() => document.fonts.ready)
   })
 
   // each demo section is a fieldset, which is the element these capture

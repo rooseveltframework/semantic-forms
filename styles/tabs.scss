@@ -55,16 +55,16 @@
       }
     }
 
-    // the panel is a fieldset already, so it only needs joining to the strip above it
-    fieldset {
+    // the panel is a fieldset already, so it only needs joining to the strip above it. only a child of the group is a panel, which is the same set the enhancement builds tabs from, so a fieldset the author nested inside a panel keeps its own corners rather than being squared off against a strip it has nothing to do with
+    > fieldset {
       margin: 0;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
+    }
 
-      // the fieldset rules set a display, which the hidden attribute cannot override on its own
-      &[hidden] {
-        display: none;
-      }
+    // the fieldset rules set a display, which the hidden attribute cannot override on its own
+    fieldset[hidden] {
+      display: none;
     }
   }
 
