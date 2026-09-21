@@ -1,3 +1,7 @@
+## 5.3.10
+
+- Added the ability to decide which tab is selected by default in the tab pattern.
+
 ## 5.3.9
 
 - Fixed nested fieldsets in tab boxes.

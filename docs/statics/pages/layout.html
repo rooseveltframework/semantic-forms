@@ -515,6 +515,22 @@
         </div>
       </form>
 
+      <p>The first tab opens by default. To open a different one, put <code>data-selected</code> on its fieldset. Without JavaScript every panel is on the page at once, so the attribute does nothing there. Marking more than one fieldset uses the first and logs an error.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<div class="tabs">
+  <fieldset>
+    <legend>Account</legend>
+    ...
+  </fieldset>
+
+  <fieldset data-selected>
+    <legend>Preferences</legend>
+    ...
+  </fieldset>
+</div>
+      </escape></code></pre>
+
       <p>The tab strip takes its colors from <code>--semanticFormsButtonGradientLight</code> and <code>--semanticFormsButtonGradientDark</code> for the unselected tabs, and <code>--semanticFormsFormSubBgColor</code> for the selected one, so it matches the buttons and fieldsets around it.</p>
     </article>
   </arg>
