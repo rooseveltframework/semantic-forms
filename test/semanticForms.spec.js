@@ -669,6 +669,121 @@ test.describe('semantic forms', () => {
       expect(await selected()).toBe('Account')
     })
 
+    test('should open the tab whose fieldset carries data-selected', async ({ page }) => {
+      await addForm(page, `
+        <form class="semanticForms" id="preselected-tab-form">
+          <div class="tabs">
+            <fieldset>
+              <legend>One</legend>
+              <dl>
+                <div>
+                  <dt><label for="preselected-tab-form-1">Field 1</label></dt>
+                  <dd><input type="text" id="preselected-tab-form-1" name="preselected-tab-form-1"></dd>
+                </div>
+              </dl>
+            </fieldset>
+            <fieldset data-selected>
+              <legend>Two</legend>
+              <dl>
+                <div>
+                  <dt><label for="preselected-tab-form-2">Field 2</label></dt>
+                  <dd><input type="text" id="preselected-tab-form-2" name="preselected-tab-form-2"></dd>
+                </div>
+              </dl>
+            </fieldset>
+            <fieldset>
+              <legend>Three</legend>
+              <dl>
+                <div>
+                  <dt><label for="preselected-tab-form-3">Field 3</label></dt>
+                  <dd><input type="text" id="preselected-tab-form-3" name="preselected-tab-form-3"></dd>
+                </div>
+              </dl>
+            </fieldset>
+          </div>
+        </form>`)
+
+      const tabs = page.locator('#preselected-tab-form [role=tab]')
+      await expect(tabs.nth(1)).toHaveAttribute('aria-selected', 'true')
+      await expect(tabs.nth(0)).toHaveAttribute('aria-selected', 'false')
+
+      // and it is the marked panel that is on screen, not merely the tab that looks active
+      await expect(page.locator('#preselected-tab-form [role=tabpanel]').nth(1)).toBeVisible()
+      await expect(page.locator('#preselected-tab-form [role=tabpanel]').nth(0)).toBeHidden()
+
+      // the selected tab is the one in the tab order, the same as when the first tab opens
+      await expect(tabs.nth(1)).toHaveAttribute('tabindex', '0')
+      await expect(tabs.nth(0)).toHaveAttribute('tabindex', '-1')
+    })
+
+    test('should open the first tab when no fieldset carries data-selected', async ({ page }) => {
+      await addForm(page, `
+        <form class="semanticForms" id="unmarked-tab-form">
+          <div class="tabs">
+            <fieldset>
+              <legend>One</legend>
+              <dl>
+                <div>
+                  <dt><label for="unmarked-tab-form-1">Field 1</label></dt>
+                  <dd><input type="text" id="unmarked-tab-form-1" name="unmarked-tab-form-1"></dd>
+                </div>
+              </dl>
+            </fieldset>
+            <fieldset>
+              <legend>Two</legend>
+              <dl>
+                <div>
+                  <dt><label for="unmarked-tab-form-2">Field 2</label></dt>
+                  <dd><input type="text" id="unmarked-tab-form-2" name="unmarked-tab-form-2"></dd>
+                </div>
+              </dl>
+            </fieldset>
+          </div>
+        </form>`)
+
+      await expect(page.locator('#unmarked-tab-form [role=tab]').nth(0)).toHaveAttribute('aria-selected', 'true')
+    })
+
+    test('should use the first of several data-selected fieldsets and report the rest', async ({ page }) => {
+      const errors = watchConsole(page, 'error')
+
+      await addForm(page, `
+        <form class="semanticForms" id="duplicate-selected-tab-form">
+          <div class="tabs">
+            <fieldset>
+              <legend>One</legend>
+              <dl>
+                <div>
+                  <dt><label for="duplicate-selected-tab-form-1">Field 1</label></dt>
+                  <dd><input type="text" id="duplicate-selected-tab-form-1" name="duplicate-selected-tab-form-1"></dd>
+                </div>
+              </dl>
+            </fieldset>
+            <fieldset data-selected>
+              <legend>Two</legend>
+              <dl>
+                <div>
+                  <dt><label for="duplicate-selected-tab-form-2">Field 2</label></dt>
+                  <dd><input type="text" id="duplicate-selected-tab-form-2" name="duplicate-selected-tab-form-2"></dd>
+                </div>
+              </dl>
+            </fieldset>
+            <fieldset data-selected>
+              <legend>Three</legend>
+              <dl>
+                <div>
+                  <dt><label for="duplicate-selected-tab-form-3">Field 3</label></dt>
+                  <dd><input type="text" id="duplicate-selected-tab-form-3" name="duplicate-selected-tab-form-3"></dd>
+                </div>
+              </dl>
+            </fieldset>
+          </div>
+        </form>`)
+
+      await expect(page.locator('#duplicate-selected-tab-form [role=tab]').nth(1)).toHaveAttribute('aria-selected', 'true')
+      await expect.poll(() => errors.some(error => error.includes('more than one <fieldset> with a "data-selected" attribute'))).toBe(true)
+    })
+
     test('should number a tab whose fieldset has no legend, and keep any id it was given', async ({ page }) => {
       await addForm(page, `
         <form class="semanticForms" id="unnamed-tab-form">
