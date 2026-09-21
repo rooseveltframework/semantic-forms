@@ -750,11 +750,11 @@ test.describe('semantic forms', () => {
     test('should leave the fieldsets stacked and readable', async ({ page }) => {
       await page.goto('/fullDemo.html')
 
-      // nothing builds the tabs, so every group of fields stays on the page with its legend
+      // nothing builds the tabs, so every group of fields stays on the page with its legend. only the group's own children are panels, the same set the enhancement would have built tabs from, so a fieldset nested inside one is not counted
       await expect(page.locator('#low-flow-tab_group [role=tab]')).toHaveCount(0)
-      await expect(page.locator('#low-flow-tab_group fieldset')).toHaveCount(3)
+      await expect(page.locator('#low-flow-tab_group > fieldset')).toHaveCount(3)
       for (let index = 0; index < 3; index++) {
-        await expect(page.locator('#low-flow-tab_group fieldset').nth(index)).toBeVisible()
+        await expect(page.locator('#low-flow-tab_group > fieldset').nth(index)).toBeVisible()
       }
       await expect(page.locator('#low-flow-tab_group legend').first()).toBeVisible()
     })

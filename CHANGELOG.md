@@ -1,3 +1,8 @@
+## 5.3.9
+
+- Fixed nested fieldsets in tab boxes.
+- Updated dependencies.
+
 ## 5.3.8
 
 - Fixed tabs in a nested fieldset.
