@@ -12,7 +12,7 @@
     "semantic-forms": "../",
     "sass": "1.104.1",
     "teddy": "2.0.4",
-    "webpack": "5.111.0"
+    "webpack": "5.111.1"
   },
   "devDependencies": {
     "standard": "17.1.2",
