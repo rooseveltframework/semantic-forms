@@ -1,3 +1,8 @@
+## 5.3.11
+
+- Removed the comments naming each module's path from the unminified builds in `dist`. They marked themselves as licenses, so a project bundling this one ended up with a `*.LICENSE.txt` file full of them.
+- Updated dependencies.
+
 ## 5.3.10
 
 - Added the ability to decide which tab is selected by default in the tab pattern.

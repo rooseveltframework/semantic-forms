@@ -24,6 +24,8 @@ export default [
     name: 'main',
     entry: './semanticForms.js',
     output: {
+      // development mode labels every module in the bundle with a comment naming its path, e.g. /*! ./lib/helpers.js */, which is noise to anyone reading this build and does not survive being bundled again cleanly: the /*! marks it as a license, so the minifier of a project that bundles this one moves every label out into a *.LICENSE.txt file of its own
+      pathinfo: false,
       path: path.join(__dirname, 'dist'),
       filename: 'semantic-forms.mjs',
       library: {
@@ -62,6 +64,8 @@ export default [
     name: 'main',
     entry: './semanticForms.js',
     output: {
+      // development mode labels every module in the bundle with a comment naming its path, e.g. /*! ./lib/helpers.js */, which is noise to anyone reading this build and does not survive being bundled again cleanly: the /*! marks it as a license, so the minifier of a project that bundles this one moves every label out into a *.LICENSE.txt file of its own
+      pathinfo: false,
       path: path.join(__dirname, 'dist'),
       filename: 'semantic-forms.cjs',
       library: 'semanticForms',
