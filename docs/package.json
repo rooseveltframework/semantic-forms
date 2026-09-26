@@ -8,7 +8,7 @@
     "check-if-css-is-disabled": "2.1.0",
     "express": "5.2.1",
     "highlight.js": "11.12.0",
-    "roosevelt": "0.33.2",
+    "roosevelt": "0.34.0",
     "semantic-forms": "../",
     "sass": "1.104.1",
     "teddy": "2.0.4",
