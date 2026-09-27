@@ -1,3 +1,8 @@
+## 5.3.12
+
+- Improved page load performance on pages with many forms.
+- Updated dependencies.
+
 ## 5.3.11
 
 - Removed the comments naming each module's path from the unminified builds in `dist`. They marked themselves as licenses, so a project bundling this one ended up with a `*.LICENSE.txt` file full of them.
