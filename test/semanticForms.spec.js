@@ -143,6 +143,32 @@ test.describe('semantic forms', () => {
     }
   })
 
+  test.describe('content-visibility', () => {
+    // a form under an off screen element styled content-visibility: auto is one the browser is skipping rendering for. measuring its font's ink offset reads its computed style, which would make the browser render it on the spot and throw away what content-visibility saved, so it is measured once it comes near the screen instead
+    test('should wait to measure a form the browser is skipping rendering for until it is about to be seen', async ({ page }) => {
+      await page.evaluate(() => {
+        const section = document.createElement('section')
+        section.style.cssText = 'content-visibility: auto; contain-intrinsic-size: auto 500px; margin-top: 20000px'
+        section.innerHTML = '<form class="semanticForms" id="skippedForm"><dl><dt><label for="skippedInput">Skipped</label></dt><dd><input type="text" id="skippedInput"></dd></dl></form>'
+        document.body.append(section)
+      })
+      const form = page.locator('#skippedForm')
+      await expect(form).toContainClass('semanticFormsActive') // enhanced as it was added
+      const inkOffset = () => form.evaluate(element => element.style.getPropertyValue('--semanticFormsTextInkOffset'))
+
+      expect(await inkOffset()).toBe('')
+      expect(await form.evaluate(element => element.checkVisibility({ contentVisibilityAuto: true }))).toBe(false) // and still skipped
+
+      await form.scrollIntoViewIfNeeded()
+      await expect.poll(inkOffset).toMatch(/^-?[\d.]+px$/)
+    })
+
+    test('should measure a form on screen once the page has been laid out', async ({ page }) => {
+      const form = page.locator('form.semanticForms').first()
+      await expect.poll(() => form.evaluate(element => element.style.getPropertyValue('--semanticFormsTextInkOffset'))).toMatch(/^-?[\d.]+px$/)
+    })
+  })
+
   test.describe('labels', () => {
     test('should apply float labels to forms', async ({ page }) => {
       // class should be applied
