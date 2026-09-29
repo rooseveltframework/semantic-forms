@@ -1,3 +1,9 @@
+## 5.3.13
+
+- Fixed a table's caption having the edge of its first or last letter cut off, since the table clips its contents to its rounded corners.
+- Fixed a table with a `<tfoot>` drawing two borders along its bottom, and no border between its body and its footer. The last row of the table now draws no bottom border, whichever part of the table it is in.
+- Updated dependencies.
+
 ## 5.3.12
 
 - Improved page load performance on pages with many forms.

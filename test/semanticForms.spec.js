@@ -1721,4 +1721,31 @@ test.describe('semantic forms', () => {
       await expect(page.locator('#single-radio-form dl > div > dd')).toContainClass('singleRadio')
     })
   })
+
+  test.describe('tables', () => {
+    // the bottom border of each cell in a row of a table, by the row's place in its part of the table, such as 'tbody tr:last-child'
+    const bottomBorders = (page, table, row) => page.locator(`${table} ${row}`).evaluate(tr => [...tr.children].map(cell => window.getComputedStyle(cell).borderBottomWidth))
+
+    test('should draw no bottom border on the last row of a table, since the table draws its own', async ({ page }) => {
+      expect(await bottomBorders(page, '#table_semantic_form_class + table', 'tbody tr:last-child')).toEqual(['0px', '0px', '0px'])
+    })
+
+    test('should draw no bottom border on the last row of a table\'s footer, and keep the one dividing its body from its footer', async ({ page }) => {
+      const table = '#table_caption_footer + table'
+      expect(await bottomBorders(page, table, 'tfoot tr:last-child')).toEqual(['0px', '0px'])
+      expect(await bottomBorders(page, table, 'tbody tr:last-child')).toEqual(['1px', '1px'])
+    })
+
+    test('should keep a caption\'s letters clear of the edges its table is clipped to', async ({ page }) => {
+      const gaps = await page.locator('#table_caption_footer + table').evaluate(table => {
+        const text = document.createRange()
+        text.selectNodeContents(table.querySelector('caption'))
+        const letters = text.getBoundingClientRect()
+        const edges = table.getBoundingClientRect()
+        return { left: letters.left - edges.left, right: edges.right - letters.right }
+      })
+      expect(gaps.left).toBeGreaterThanOrEqual(2)
+      expect(gaps.right).toBeGreaterThanOrEqual(2)
+    })
+  })
 })
