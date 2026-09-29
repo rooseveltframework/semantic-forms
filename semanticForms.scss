@@ -369,12 +369,16 @@ table.semanticForms {
     border-right: none;
   }
 
-  tbody {
-    tr:last-of-type {
-      th, td {
-        border-bottom: none;
-      }
+  // the last row draws no bottom border, since the table draws its own. in a table with a footer, that is the footer's last row, and the body's last row keeps its border, which divides the body from the footer
+  tbody:last-child tr:last-child, tfoot tr:last-child {
+    th, td {
+      border-bottom: none;
     }
+  }
+
+  // the table's overflow is hidden to clip its cells to its rounded corners, which clips the caption too, cutting the edge off a letter that reaches past it, such as the T at the start of a caption. a little padding keeps the caption's letters clear of the edge
+  caption {
+    padding: 0 3px;
   }
 
   // adjust styling of button menus in tables
