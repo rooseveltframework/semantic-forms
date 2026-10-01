@@ -10,7 +10,7 @@
     "highlight.js": "11.12.0",
     "roosevelt": "0.33.2",
     "semantic-forms": "../",
-    "sass": "1.104.1",
+    "sass": "1.105.0",
     "teddy": "2.0.4",
     "webpack": "5.111.0"
   },
