@@ -1,5 +1,8 @@
+@use 'layoutScope.scss' as *;
+
+// the column classes size and place fields in the grid layout, so like the grid itself they do not apply inside a customLayout element: see layoutScope.scss
 .semanticForms {
-  div {
+  div#{$notCustomLayout} {
     &[class*=colspan-] {
       max-width: 100% !important;
     }
@@ -50,53 +53,53 @@
     }
   }
 
-  fieldset[class*=colspan-] dl,
-  dl[class*='colspan-'] {
+  fieldset[class*=colspan-] dl#{$notCustomLayout},
+  dl[class*='colspan-']#{$notCustomLayout} {
     div {
       max-width: 100% !important;
     }
   }
 
-  fieldset.colspan-full dl,
-  dl.colspan-full {
+  fieldset.colspan-full dl#{$notCustomLayout},
+  dl.colspan-full#{$notCustomLayout} {
     grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
-  fieldset.colspan-5 dl,
-  dl.colspan-5 {
+  fieldset.colspan-5 dl#{$notCustomLayout},
+  dl.colspan-5#{$notCustomLayout} {
     grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
-  fieldset.colspan-4 dl,
-  dl.colspan-4 {
+  fieldset.colspan-4 dl#{$notCustomLayout},
+  dl.colspan-4#{$notCustomLayout} {
     grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
-  fieldset.colspan-3 dl,
-  dl.colspan-3 {
+  fieldset.colspan-3 dl#{$notCustomLayout},
+  dl.colspan-3#{$notCustomLayout} {
     grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
-  fieldset.colspan-2 dl,
-  dl.colspan-2 {
+  fieldset.colspan-2 dl#{$notCustomLayout},
+  dl.colspan-2#{$notCustomLayout} {
     grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
-  fieldset.colspan-1 dl,
-  dl.colspan-1 {
+  fieldset.colspan-1 dl#{$notCustomLayout},
+  dl.colspan-1#{$notCustomLayout} {
     grid-template-columns: repeat(1, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
   }
 
-  fieldset.colspan-1 dl,
-  dl.colspan-1 {
+  fieldset.colspan-1 dl#{$notCustomLayout},
+  dl.colspan-1#{$notCustomLayout} {
     dt:nth-of-type(n + 1),
     dd:nth-of-type(n + 1) {
       grid-column: 1;
     }
   }
 
-  fieldset.colspan-2 dl,
-  dl.colspan-2 {
+  fieldset.colspan-2 dl#{$notCustomLayout},
+  dl.colspan-2#{$notCustomLayout} {
     dt:nth-of-type(2n + 1),
     dd:nth-of-type(2n + 1) {
       grid-column: 1;
@@ -108,8 +111,8 @@
     }
   }
 
-  fieldset.colspan-3 dl,
-  dl.colspan-3 {
+  fieldset.colspan-3 dl#{$notCustomLayout},
+  dl.colspan-3#{$notCustomLayout} {
     dt:nth-of-type(3n + 1),
     dd:nth-of-type(3n + 1) {
       grid-column: 1;
@@ -126,8 +129,8 @@
     }
   }
 
-  fieldset.colspan-4 dl,
-  dl.colspan-4 {
+  fieldset.colspan-4 dl#{$notCustomLayout},
+  dl.colspan-4#{$notCustomLayout} {
     dt:nth-of-type(4n + 1),
     dd:nth-of-type(4n + 1) {
       grid-column: 1;
@@ -149,8 +152,8 @@
     }
   }
 
-  fieldset.colspan-5 dl,
-  dl.colspan-5 {
+  fieldset.colspan-5 dl#{$notCustomLayout},
+  dl.colspan-5#{$notCustomLayout} {
     dt:nth-of-type(5n + 1),
     dd:nth-of-type(5n + 1) {
       grid-column: 1;
@@ -185,34 +188,34 @@ form.semanticForms fieldset {
 
   // max 7 columns
   @container semanticForm (width >= 1810px) {
-    & fieldset dl,
-    & dl {
+    & fieldset dl#{$notCustomLayout},
+    & dl#{$notCustomLayout} {
       grid-template-columns: repeat(7, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
     }
   }
 
   // max 6 columns
   @container semanticForm (width >= 1550px) and (width < 1810px) {
-    & fieldset dl,
-    & dl {
+    & fieldset dl#{$notCustomLayout},
+    & dl#{$notCustomLayout} {
       grid-template-columns: repeat(6, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
     }
   }
 
   // max 5 columns
   @container semanticForm (width >= 1290px) and (width < 1550px) {
-    & fieldset dl,
-    & dl {
+    & fieldset dl#{$notCustomLayout},
+    & dl#{$notCustomLayout} {
       grid-template-columns: repeat(5, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
     }
   }
 
   // max 4 columns
   @container semanticForm (width >= 1030px) and (width < 1290px) {
-    & fieldset dl,
-    & fieldset.colspan-5 dl,
-    & dl,
-    & dl.colspan-5 {
+    & fieldset dl#{$notCustomLayout},
+    & fieldset.colspan-5 dl#{$notCustomLayout},
+    & dl#{$notCustomLayout},
+    & dl.colspan-5#{$notCustomLayout} {
       grid-template-columns: repeat(4, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
 
       div.colspan-5 {
@@ -227,12 +230,12 @@ form.semanticForms fieldset {
 
   // max 3 columns
   @container semanticForm (width >= 850px) and (width < 1030px) {
-    & fieldset dl,
-    & fieldset.colspan-4 dl,
-    & fieldset.colspan-5 dl,
-    & dl,
-    & dl.colspan-4,
-    & dl.colspan-5 {
+    & fieldset dl#{$notCustomLayout},
+    & fieldset.colspan-4 dl#{$notCustomLayout},
+    & fieldset.colspan-5 dl#{$notCustomLayout},
+    & dl#{$notCustomLayout},
+    & dl.colspan-4#{$notCustomLayout},
+    & dl.colspan-5#{$notCustomLayout} {
       grid-template-columns: repeat(3, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
 
       div.colspan-4,
@@ -249,14 +252,14 @@ form.semanticForms fieldset {
 
   // max 2 columns
   @container semanticForm (width >= 510px) and (width < 850px) {
-    & fieldset dl,
-    & fieldset.colspan-3 dl,
-    & fieldset.colspan-4 dl,
-    & fieldset.colspan-5 dl,
-    & dl,
-    & dl.colspan-3,
-    & dl.colspan-4,
-    & dl.colspan-5 {
+    & fieldset dl#{$notCustomLayout},
+    & fieldset.colspan-3 dl#{$notCustomLayout},
+    & fieldset.colspan-4 dl#{$notCustomLayout},
+    & fieldset.colspan-5 dl#{$notCustomLayout},
+    & dl#{$notCustomLayout},
+    & dl.colspan-3#{$notCustomLayout},
+    & dl.colspan-4#{$notCustomLayout},
+    & dl.colspan-5#{$notCustomLayout} {
       grid-template-columns: repeat(2, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
 
       div.colspan-3,
@@ -275,16 +278,16 @@ form.semanticForms fieldset {
 
   // max 1 column
   @container semanticForm (width < 510px) {
-    & fieldset dl,
-    & fieldset.colspan-2 dl,
-    & fieldset.colspan-3 dl,
-    & fieldset.colspan-4 dl,
-    & fieldset.colspan-5 dl,
-    & dl,
-    & dl.colspan-2,
-    & dl.colspan-3,
-    & dl.colspan-4,
-    & dl.colspan-5 {
+    & fieldset dl#{$notCustomLayout},
+    & fieldset.colspan-2 dl#{$notCustomLayout},
+    & fieldset.colspan-3 dl#{$notCustomLayout},
+    & fieldset.colspan-4 dl#{$notCustomLayout},
+    & fieldset.colspan-5 dl#{$notCustomLayout},
+    & dl#{$notCustomLayout},
+    & dl.colspan-2#{$notCustomLayout},
+    & dl.colspan-3#{$notCustomLayout},
+    & dl.colspan-4#{$notCustomLayout},
+    & dl.colspan-5#{$notCustomLayout} {
       grid-template-columns: 1fr;
 
       div.colspan-2,

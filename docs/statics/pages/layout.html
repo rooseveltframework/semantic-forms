@@ -459,6 +459,265 @@
         </p>
       </form>
 
+      <h2 id="customlayout">Your own layout</h2>
+
+      <p>To lay a form out yourself while still using the recommended markup and the way Semantic Forms styles the controls, add the <code>customLayout</code> class to the <code><!--#<form>--></code>, a <code><!--#<fieldset>--></code> or a <code><!--#<dl>--></code>. On a fieldset it covers every <code><!--#<dl>--></code> inside it, the same way the <code>colspan-#</code> classes do.</p>
+
+      <p>Inside it, none of the library's layout of the <code><!--#<dl>--></code> applies: no responsive grid, no <code>colspan-#</code>, <code>col-#</code> or <code>align-*</code> classes, no sizing of the <code><!--#<div>--></code> and <code><!--#<dd>--></code> elements, no float labels, and no room kept beside a field for a clear button. The JavaScript adds, moves and hides nothing around the fields there: no float labels, no clear or show password buttons, no wrapping <code><!--#<div>--></code>, no extra label beside a single checkbox or switch, no required asterisk or help icon, and no value appended to the label of a <code>data-display-value</code> range. A <code><!--#<dt>--></code> label beside a <code><!--#<dd>--></code> that only holds a button stays visible too.</p>
+
+      <p>What still applies is everything that styles the controls themselves: text and number fields, selects and their arrow, buttons and button menus, checkboxes, switches, range sliders and color pickers, along with their focus, disabled, invalid and warning styles, the fieldsets and legends, and the theming variables. Switches can still be dragged, textareas still grow to fit their text, and <code>data-focus-key</code> keyboard shortcuts still work, though the shortcut is put in the field's <code>title</code> rather than drawn over the field.</p>
+
+      <p>This example puts each field's label and a description in its <code><!--#<dt>--></code> and the control in its <code><!--#<dd>--></code>, and lays each <code><!--#<div>--></code> out as a row:</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms customLayout settingsExample">
+  <fieldset>
+    <legend>Playback</legend>
+    <dl>
+      <div>
+        <dt>
+          <label for="custom-ex-crossfade">Crossfade</label>
+          <p>Milliseconds to blend the end of one track into the next.</p>
+        </dt>
+        <dd>
+          <input type="number" id="custom-ex-crossfade" name="custom-ex-crossfade" min="0" max="10000" value="1000" required>
+          <p data-invalid-text>Enter a number from 0 to 10000.</p>
+        </dd>
+      </div>
+
+      <div>
+        <dt>
+          <label for="custom-ex-output">Output device</label>
+          <p>Where the sound goes.</p>
+        </dt>
+        <dd>
+          <select id="custom-ex-output" name="custom-ex-output">
+            <option>System default</option>
+            <option>Headphones</option>
+          </select>
+        </dd>
+      </div>
+
+      <div>
+        <dt>
+          <label for="custom-ex-gapless">Gapless playback</label>
+          <p>Play albums without a pause between tracks.</p>
+        </dt>
+        <dd><input type="checkbox" switch id="custom-ex-gapless" name="custom-ex-gapless" checked></dd>
+      </div>
+
+      <div>
+        <dt>
+          <label for="custom-ex-volume">Interface volume</label>
+          <p>How loud clicks and alerts are.</p>
+        </dt>
+        <dd>
+          <input type="range" id="custom-ex-volume" name="custom-ex-volume" value="80">
+          <output for="custom-ex-volume">80</output>
+        </dd>
+      </div>
+    </dl>
+  </fieldset>
+
+  <fieldset>
+    <legend>Appearance</legend>
+    <dl>
+      <div>
+        <dt>
+          <label for="custom-ex-accent">Accent color</label>
+          <p>Used for highlights and switches.</p>
+        </dt>
+        <dd><input type="color" id="custom-ex-accent" name="custom-ex-accent" value="#3366cc"></dd>
+      </div>
+
+      <div>
+        <dt>
+          <label id="custom-ex-columns-label">Visible columns</label>
+          <p>Which columns the track list shows.</p>
+        </dt>
+        <dd>
+          <ul aria-labelledby="custom-ex-columns-label">
+            <li><input type="checkbox" id="custom-ex-artist" name="custom-ex-columns" value="artist" checked> <label for="custom-ex-artist">Artist</label></li>
+            <li><input type="checkbox" id="custom-ex-album" name="custom-ex-columns" value="album" checked> <label for="custom-ex-album">Album</label></li>
+            <li><input type="checkbox" id="custom-ex-year" name="custom-ex-columns" value="year"> <label for="custom-ex-year">Year</label></li>
+          </ul>
+        </dd>
+      </div>
+
+      <div>
+        <dt>
+          <label for="custom-ex-reset">Reset settings</label>
+          <p>Put everything back how it was.</p>
+        </dt>
+        <dd><button type="button" id="custom-ex-reset">Reset</button></dd>
+      </div>
+    </dl>
+  </fieldset>
+</form>
+      </escape></code></pre>
+
+      <p>With CSS of your own for the rows, along these lines:</p>
+
+      <pre><code class='language-css' lang='css'><escape>
+form.settingsExample dl {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* each row: the label and description on the left, the control on the right */
+form.settingsExample dl > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 20px;
+}
+
+form.settingsExample dt {
+  flex: 1 1 250px;
+}
+
+form.settingsExample dt p {
+  margin: 2px 0 0;
+  font-size: small;
+  color: var(--semanticFormsPlaceholderColor);
+}
+
+form.settingsExample dd {
+  flex: 0 0 200px;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+form.settingsExample dd:has(output) {
+  flex-direction: row;
+  align-items: center;
+}
+
+/* outside the grid a list of checkboxes is a wrapping row, so stack it instead */
+form.settingsExample dd ul {
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+form.settingsExample dd li {
+  gap: 5px;
+}
+
+form.settingsExample input[type=number] {
+  width: 110px;
+}
+
+form.settingsExample input[type=color] {
+  width: 80px;
+}
+      </escape></code></pre>
+
+      <p>And a line of JavaScript to keep the range's <code><!--#<output>--></code> up to date, since <code>data-display-value</code> writes into the label, which is left alone here:</p>
+
+      <pre><code class='language-javascript'><escape>
+const volume = document.getElementById('custom-ex-volume')
+volume.addEventListener('input', () => { volume.nextElementSibling.value = volume.value })
+      </escape></code></pre>
+
+      <form class="semanticForms customLayout settingsExample">
+        <fieldset>
+          <legend>Playback</legend>
+          <dl>
+            <div>
+              <dt>
+                <label for="custom-ex-crossfade">Crossfade</label>
+                <p>Milliseconds to blend the end of one track into the next.</p>
+              </dt>
+              <dd>
+                <input type="number" id="custom-ex-crossfade" name="custom-ex-crossfade" min="0" max="10000" value="1000" required>
+                <p data-invalid-text>Enter a number from 0 to 10000.</p>
+              </dd>
+            </div>
+
+            <div>
+              <dt>
+                <label for="custom-ex-output">Output device</label>
+                <p>Where the sound goes.</p>
+              </dt>
+              <dd>
+                <select id="custom-ex-output" name="custom-ex-output">
+                  <option>System default</option>
+                  <option>Headphones</option>
+                </select>
+              </dd>
+            </div>
+
+            <div>
+              <dt>
+                <label for="custom-ex-gapless">Gapless playback</label>
+                <p>Play albums without a pause between tracks.</p>
+              </dt>
+              <dd><input type="checkbox" switch id="custom-ex-gapless" name="custom-ex-gapless" checked></dd>
+            </div>
+
+            <div>
+              <dt>
+                <label for="custom-ex-volume">Interface volume</label>
+                <p>How loud clicks and alerts are.</p>
+              </dt>
+              <dd>
+                <input type="range" id="custom-ex-volume" name="custom-ex-volume" value="80">
+                <output for="custom-ex-volume">80</output>
+              </dd>
+            </div>
+          </dl>
+        </fieldset>
+
+        <fieldset>
+          <legend>Appearance</legend>
+          <dl>
+            <div>
+              <dt>
+                <label for="custom-ex-accent">Accent color</label>
+                <p>Used for highlights and switches.</p>
+              </dt>
+              <dd><input type="color" id="custom-ex-accent" name="custom-ex-accent" value="#3366cc"></dd>
+            </div>
+
+            <div>
+              <dt>
+                <label id="custom-ex-columns-label">Visible columns</label>
+                <p>Which columns the track list shows.</p>
+              </dt>
+              <dd>
+                <ul aria-labelledby="custom-ex-columns-label">
+                  <li><input type="checkbox" id="custom-ex-artist" name="custom-ex-columns" value="artist" checked> <label for="custom-ex-artist">Artist</label></li>
+                  <li><input type="checkbox" id="custom-ex-album" name="custom-ex-columns" value="album" checked> <label for="custom-ex-album">Album</label></li>
+                  <li><input type="checkbox" id="custom-ex-year" name="custom-ex-columns" value="year"> <label for="custom-ex-year">Year</label></li>
+                </ul>
+              </dd>
+            </div>
+
+            <div>
+              <dt>
+                <label for="custom-ex-reset">Reset settings</label>
+                <p>Put everything back how it was.</p>
+              </dt>
+              <dd><button type="button" id="custom-ex-reset">Reset</button></dd>
+            </div>
+          </dl>
+        </fieldset>
+      </form>
+
+      <p>To show a message when a field is invalid, put an element with the <code>data-invalid-text</code> attribute after the control in the same <code><!--#<dd>--></code>, as the crossfade field above does. It is hidden until the field is invalid, which is when the browser's own validation or an <code>invalid</code> class you add says so, and it is shown in the invalid color. A <code>warn</code> class on the control shows it in the same way. It has to come after the control and share its parent, since it is found with a sibling selector.</p>
+
+      <p>The controls fill the width of whatever holds them, so give them a width of your own where that is not what you want. A list of checkboxes or radios outside the grid is laid out as a wrapping row with the browser's own list spacing, which the example above stacks into a column instead. The library's control styles weigh no more than the form's class and the element, so an ordinary rule such as <code>form.settingsExample input[type=number]</code> overrides them without needing an id or <code>!important</code>.</p>
+
+      <p>Leaving the <code><!--#<dl>--></code> out altogether works too. Everything described above as still applying is styled wherever it sits in a <code>semanticForms</code> form, and the grid, float labels and clear buttons only ever apply inside a <code><!--#<dl>--></code>, so markup of your own without one needs no extra class.</p>
+
       <h2 id="tabs">Tabs</h2>
 
       <p>Add the <code>tabs</code> class to an element holding one <code><!--#<fieldset>--></code> per tab. Each fieldset's <code><!--#<legend>--></code> names its tab.</p>

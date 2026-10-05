@@ -1,6 +1,5 @@
-form.semanticForms,
-form.semanticForms.light,
-table.semanticForms {
+// the variables are set at zero specificity, so that an app overriding one with any selector of its own, such as form.semanticForms, wins without needing a heavier selector or !important. that holds in dark mode too, whose blocks further down are written the same way
+:where(form.semanticForms, table.semanticForms) {
   --semanticFormsFontFamily: sans-serif;
   --semanticFormsFontSize: 16px;
   --semanticFormsFormBgColor: #fff;
@@ -46,7 +45,12 @@ table.semanticForms {
   --semanticFormsSelectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23000'%3E%3Cpolygon points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --semanticFormsCustomResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23aaa;stroke:%23aaa;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
   --semanticFormsSearchIcon: url("data:image/svg+xml,%3Csvg%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.7955%2015.8111L21%2021M18%2010.5C18%2014.6421%2014.6421%2018%2010.5%2018C6.35786%2018%203%2014.6421%203%2010.5C3%206.35786%206.35786%203%2010.5%203C14.6421%203%2018%206.35786%2018%2010.5Z%22%20stroke%3D%22%23000000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  // the colour of the page the theme was designed against. the library paints nothing with it, since the page is outside the form, but an app can give the form this background so that, for example, a form in dark mode stays readable on a light page. see the theming docs
+  --semanticFormsPageBgColor: #fff;
+}
 
+form.semanticForms,
+table.semanticForms {
   font-family: var(--semanticFormsFontFamily);
   font-size: var(--semanticFormsFontSize);
   width: 100%;
@@ -74,28 +78,21 @@ table.semanticForms {
   }
 
   // input + container style reset
-  fieldset,
-  label,
-  input,
-  select,
-  textarea,
-  button,
-  menu:has(li > input, li > label, li > button, li > select, li > textarea),
-  dl:has(dt > label, dd > input, dd > select, dd > textarea),
-  dt:has(> input, > select, > textarea),
-  dd:has(> input, > select, > textarea, > ul, > menu),
-  div:has(dt, dd),
-  dd > p {
+  //
+  // wrapped in :where so that this weighs no more than the form's own class and element, which an app's ordinary rule for its own markup can match
+  :where(fieldset, label, input, select, textarea, button, menu:has(li > input, li > label, li > button, li > select, li > textarea), dl:has(dt > label, dd > input, dd > select, dd > textarea), dt:has(> input, > select, > textarea), dd:has(> input, > select, > textarea, > ul, > menu), div:has(dt, dd), dd > p) {
     color: var(--semanticFormsTextColor);
     font-family: var(--semanticFormsFontFamily);
     box-sizing: border-box;
   }
+}
 
-  // margin/padding reset for various elements commonly used in semantic-forms
-  menu, dl, dt, dd, div, dd > p {
-    margin: 0;
-    padding: 0;
-  }
+// margin/padding reset for various elements commonly used in semantic-forms
+//
+// this only undoes the browser's own margins and padding, so it weighs no more than a single class: it still wins over a page's rules for bare elements, such as `p` or `div`, while any rule an app writes for its own markup inside the form, such as a row of its own design, wins over it
+:where(form, table).semanticForms :where(menu, dl, dt, dd, div, dd > p) {
+  margin: 0;
+  padding: 0;
 }
 
 @mixin dark-mode {
@@ -132,31 +129,24 @@ table.semanticForms {
   --semanticFormsSelectIcon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%23fff'%3E%3Cpolygon stroke='%23fff' points='0,0 100,0 50,50'/%3E%3C/svg%3E");
   --semanticFormsCustomResizer: url("data:image/svg+xml;utf8,%3Csvg width='20' height='20' viewBox='0 0 5.2916665 5.2916666' version='1.1' id='svg5' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cdefs id='defs2' /%3E%3Cg id='layer1'%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 2.8245112,5.0994569 C 4.9396993,2.9842685 4.9396993,2.9842685 4.9396993,2.9842685' id='path1034' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-dasharray:none;stroke-opacity:1' d='M 1.515747,5.0406977 C 4.8873304,1.6691138 4.8873304,1.6691138 4.8873304,1.6691138' id='path1034-1' /%3E%3Cpath style='fill:%23c9c9c9;stroke:%23c9c9c9;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1' d='M 0.20657789,5.0909782 C 4.9312207,0.3663348 4.9312207,0.3663348 4.9312207,0.3663348' id='path1034-9' /%3E%3C/g%3E%3C/svg%3E");
   --semanticFormsSearchIcon: url("data:image/svg+xml,%3Csvg%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.7955%2015.8111L21%2021M18%2010.5C18%2014.6421%2014.6421%2018%2010.5%2018C6.35786%2018%203%2014.6421%203%2010.5C3%206.35786%206.35786%203%2010.5%203C14.6421%203%2018%206.35786%2018%2010.5Z%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E");
+  --semanticFormsPageBgColor: #000;
 
   input::-webkit-calendar-picker-indicator {
     filter: invert(100%);
   }
 }
 
+// like the light values above, these are wrapped in :where so they weigh nothing, and an app's own override of a variable wins in dark mode just as it does in light mode. they still take over from the light values because they come later
 @media (prefers-color-scheme: dark) {
-  html:not(.light) {
-    body:not(.light) {
-      form.semanticForms:not(.light), table.semanticForms:not(.light) {
-        @include dark-mode;
-      }
-    }
+  :where(html:not(.light) body:not(.light) form.semanticForms:not(.light), html:not(.light) body:not(.light) table.semanticForms:not(.light)) {
+    @include dark-mode;
   }
 }
 
-html:not(.light) {
-  body:not(.light) {
-    form.semanticForms.dark, table.semanticForms.dark {
-      @include dark-mode;
-    }
-  }
+:where(html:not(.light) body:not(.light) form.semanticForms.dark, html:not(.light) body:not(.light) table.semanticForms.dark) {
+  @include dark-mode;
 }
 
-form.semanticForms.dark,
-table.semanticForms.dark {
+:where(form.semanticForms.dark, table.semanticForms.dark) {
   @include dark-mode;
 }

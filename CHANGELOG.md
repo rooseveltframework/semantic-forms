@@ -1,3 +1,14 @@
+## 5.3.14
+
+- Added a `customLayout` class for laying out a form yourself while keeping the recommended `<dl>`, `<dt>` and `<dd>` markup.
+- Added a `--semanticFormsPageBgColor` variable holding the page background each theme is designed against, `#fff` in light mode and `#000` in dark mode.
+- Made the library's styles for the controls themselves, and its CSS variables, carry almost no selector weight, so an app's ordinary rules override them without needing an id or `!important`.
+- Fixed fields outside a `<dl>` keeping room on their right for a clear button, or for the show password button, that the enhancement only ever adds inside a `<dd>`. Short fields, such as a narrow number field, had their text cut off. Fields in the grid layout are unchanged.
+- Fixed color fields outside a `<dl>` being stretched to the full width of their container, with room for a clear button they do not have. That sizing is now only applied in the grid layout.
+- Fixed the select arrow sitting off center when `--semanticFormsInputHeight` or the height of a select is overridden. It was placed a fixed distance from the top, which only centered it at the default height.
+- Fixed the message beside an invalid field being drawn in the text color rather than the invalid color in a form with the `light` class.
+- Updated dependencies.
+
 ## 5.3.13
 
 - Fixed a table's caption having the edge of its first or last letter cut off, since the table clips its contents to its rounded corners.

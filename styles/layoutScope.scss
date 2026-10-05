@@ -1,0 +1,4 @@
+// the library's own layout of a <dl>, which is the grid, its column classes, the float labels and everything else that sizes, places, hides or moves a <dl>, <dt>, <dd> or the <div> around them, does not apply inside an element with the customLayout class. that class can go on the form, a fieldset or a <dl>, and inside it the app lays the <dl> out itself while the controls are still styled as they are anywhere else
+//
+// this is appended to the element in each of those rules that the class can be on or inside, such as `dl#{$notCustomLayout}`. it is written as :not(:where()) so that it adds no weight at all: the rules keep exactly the specificity they had, and the layouts that do not use the class are unchanged
+$notCustomLayout: ':not(:where(.customLayout, .customLayout *))';

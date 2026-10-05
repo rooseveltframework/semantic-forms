@@ -26,3 +26,7 @@ if (flowToggle) {
   flowToggle.addEventListener('change', showLowFlow)
   showLowFlow()
 }
+
+// the custom layout example on the layout page shows a range's value in an <output> beside it, which the page's own code keeps up to date, as shown there
+const customLayoutVolume = document.getElementById('custom-ex-volume')
+if (customLayoutVolume) customLayoutVolume.addEventListener('input', () => { customLayoutVolume.nextElementSibling.value = customLayoutVolume.value })

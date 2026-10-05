@@ -68,3 +68,64 @@ body.no-js #flow_toggle,
 body.no-js #high_flow {
   display: none;
 }
+
+// the custom layout example on the layout page, which lays its <dl> out as rows itself. the same rules are shown on that page
+form.settingsExample {
+  dl {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  dl > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 20px;
+  }
+
+  dt {
+    flex: 1 1 250px;
+  }
+
+  dt p {
+    margin: 2px 0 0;
+    font-size: small;
+    color: var(--semanticFormsPlaceholderColor);
+  }
+
+  dd {
+    flex: 0 0 200px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+  }
+
+  dd:has(output) {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  dd ul {
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  dd li {
+    gap: 5px;
+  }
+
+  input[type=number] {
+    width: 110px;
+  }
+
+  input[type=color] {
+    width: 80px;
+  }
+}
