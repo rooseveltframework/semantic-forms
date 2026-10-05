@@ -23,6 +23,34 @@ form.semanticForms {
 }
       </escape></code></pre>
 
+      <p>The built-in values carry no selector weight of their own, including the dark mode ones, so an override like the one above wins in both light mode and dark mode, and does not need to be heavier than <code>form.semanticForms</code>. To change a value in dark mode only, put the override inside a dark mode media query, and add a rule for the <code>dark</code> class if you use it:</p>
+
+      <pre><code class='language-css' lang='css'><escape>
+@media (prefers-color-scheme: dark) {
+  form.semanticForms:not(.light) {
+    --semanticFormsSwitchOnColor: limegreen;
+  }
+}
+
+form.semanticForms.dark {
+  --semanticFormsSwitchOnColor: limegreen;
+}
+      </escape></code></pre>
+
+      <h3 id="pagebackground">Page background</h3>
+
+      <p>Semantic Forms only styles its own forms, so it leaves the page behind them alone. Its colors are designed against a white page in light mode and a black one in dark mode, which is what <code>--semanticFormsPageBgColor</code> holds for each mode. The library does not paint anything with it by default.</p>
+
+      <p>It matters when the page and the form are in different modes, such as a form in dark mode on a light page. A legend straddles the top border of its fieldset, so its text is drawn partly over whatever is behind the form rather than over the fieldset, and dark mode's light legend text is hard to read on a light page. Give the form the background it was designed against to fix that:</p>
+
+      <pre><code class='language-css' lang='css'><escape>
+form.semanticForms {
+  background-color: var(--semanticFormsPageBgColor);
+}
+      </escape></code></pre>
+
+      <p>The variable is set on the form, so it is available to the form and everything inside it, but not to the page around it. To paint the whole page instead, give the page's own background the same colors: <code>#fff</code> in light mode and <code>#000</code> in dark mode, unless you have overridden the variable.</p>
+
       <h3 id="widthvariables">Controlling how wide fields get</h3>
 
       <p>Fields are laid out in a grid whose columns grow to fill the available width. Three variables control the sizing:</p>

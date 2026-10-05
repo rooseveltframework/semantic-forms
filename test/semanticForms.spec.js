@@ -1212,6 +1212,470 @@ test.describe('semantic forms', () => {
     })
   })
 
+  test.describe('controls outside the grid layout', () => {
+    // a settings style form: fieldsets and rows of the app's own markup, with no <dl>, so none of the grid, float label or clear button enhancements apply
+    const controlsOnlyForm = `
+      <form class="semanticForms appForm" id="controls-only-form">
+        <fieldset>
+          <legend>Settings</legend>
+          <div class="row"><label for="co-text">Text</label><input type="text" id="co-text" value="Some text"></div>
+          <div class="row"><label for="co-password">Password</label><input type="password" id="co-password" value="secret"></div>
+          <div class="row"><label for="co-textarea">Notes</label><textarea id="co-textarea">Notes</textarea></div>
+          <div class="row"><label for="co-number">Number</label><input type="number" id="co-number" value="1000"></div>
+          <div class="row" style="width: 200px"><label for="co-color">Color</label><input type="color" id="co-color"></div>
+          <div class="row"><label for="co-switch">Switch</label><input type="checkbox" switch id="co-switch" checked></div>
+        </fieldset>
+      </form>`
+
+    // an app's own stylesheet, put ahead of the library's so that it can only win by its selectors and not by coming later
+    const addAppStyles = (page, css) => page.evaluate(text => {
+      const style = document.createElement('style')
+      style.textContent = text
+      document.head.prepend(style)
+    }, css)
+
+    const paddingRight = (page, selector) => page.locator(selector).evaluate(element => window.getComputedStyle(element).paddingRight)
+
+    test('should not keep room for a clear or show password button on a field outside a dl, which never gets one', async ({ page }) => {
+      await addForm(page, controlsOnlyForm)
+      // the enhancement leaves it alone
+      expect(await page.locator('#co-text').getAttribute('class')).toBeNull()
+
+      for (const selector of ['#co-text', '#co-password', '#co-textarea', '#co-number']) {
+        expect(await paddingRight(page, selector)).toBe('20px')
+      }
+      await expect(page.locator('#controls-only-form button.clear, #controls-only-form button.show')).toHaveCount(0)
+    })
+
+    test('should still keep room for the clear and show password buttons in the grid layout', async ({ page }) => {
+      expect(await paddingRight(page, '#prefilled')).toBe('30px')
+      expect(await paddingRight(page, '#number')).toBe('30px')
+      expect(await paddingRight(page, '#password')).toBe('55px')
+      expect(await page.locator('#color').evaluate(element => window.getComputedStyle(element).minWidth)).toBe('100%')
+    })
+
+    test('should not stretch a color field outside a dl to fill its container', async ({ page }) => {
+      await addAppStyles(page, 'form.appForm input[type=color] { width: 50px }')
+      await addForm(page, controlsOnlyForm)
+      const box = await page.locator('#co-color').boundingBox()
+      expect(Math.round(box.width)).toBe(50)
+      expect(await paddingRight(page, '#co-color')).toBe('10px')
+    })
+
+    test('should let an ordinary app rule override a control\'s padding', async ({ page }) => {
+      await addAppStyles(page, 'form.appForm input[type=number] { padding: 0 4px }')
+      await addForm(page, controlsOnlyForm)
+      const padding = await page.locator('#co-number').evaluate(element => {
+        const style = window.getComputedStyle(element)
+        return [style.paddingTop, style.paddingRight, style.paddingBottom, style.paddingLeft]
+      })
+      expect(padding).toEqual(['0px', '4px', '0px', '4px'])
+    })
+
+    const switchColor = page => page.locator('#co-switch').evaluate(element => window.getComputedStyle(element).backgroundColor)
+    const formBgColor = page => page.locator('#controls-only-form').evaluate(element => window.getComputedStyle(element).getPropertyValue('--semanticFormsFormBgColor').trim())
+
+    test('should let a variable override on form.semanticForms win in light mode', async ({ page }) => {
+      await addAppStyles(page, 'form.semanticForms { --semanticFormsSwitchOnColor: rgb(255, 0, 0) }')
+      await addForm(page, controlsOnlyForm)
+      expect(await switchColor(page)).toBe('rgb(255, 0, 0)')
+    })
+
+    test('should let a variable override on form.semanticForms win in dark mode', async ({ page }) => {
+      await page.emulateMedia({ colorScheme: 'dark' })
+      await page.goto('/fullDemo.html')
+      await addAppStyles(page, 'form.semanticForms { --semanticFormsSwitchOnColor: rgb(255, 0, 0) }')
+      await addForm(page, controlsOnlyForm)
+
+      // the dark values are in force, and the override still wins over them
+      expect(await formBgColor(page)).toBe('#555')
+      expect(await switchColor(page)).toBe('rgb(255, 0, 0)')
+    })
+
+    test('should let a variable override on form.semanticForms win over the dark class', async ({ page }) => {
+      await addAppStyles(page, 'form.semanticForms { --semanticFormsSwitchOnColor: rgb(255, 0, 0) }')
+      await addForm(page, controlsOnlyForm.replace('class="semanticForms appForm"', 'class="semanticForms appForm dark"'))
+      expect(await formBgColor(page)).toBe('#555')
+      expect(await switchColor(page)).toBe('rgb(255, 0, 0)')
+    })
+
+    test('should define a page background variable for light and dark mode', async ({ page }) => {
+      await addForm(page, controlsOnlyForm + '<form class="semanticForms dark" id="dark-page-bg-form"></form>')
+      const pageBg = selector => page.locator(selector).evaluate(element => window.getComputedStyle(element).getPropertyValue('--semanticFormsPageBgColor').trim())
+      expect(await pageBg('#controls-only-form')).toBe('#fff')
+      expect(await pageBg('#dark-page-bg-form')).toBe('#000')
+    })
+
+    test('should keep the select arrow centered when the input height is changed', async ({ page }) => {
+      await addForm(page, `
+        <form class="semanticForms" id="select-arrow-form">
+          <div><select id="arrow-default"><option>Default height</option></select></div>
+          <div style="--semanticFormsInputHeight: 32px"><select id="arrow-short"><option>Shorter</option></select></div>
+          <div style="--semanticFormsInputHeight: 50px"><select id="arrow-tall"><option>Taller</option></select></div>
+        </form>`)
+
+      // how far the middle of the drawn arrow sits below the middle of the select, read from the pixels in the strip at the right of the field where the arrow is drawn
+      const arrowOffset = async selector => {
+        const select = page.locator(selector)
+        await select.scrollIntoViewIfNeeded()
+        const box = await select.boundingBox()
+        const shot = await page.screenshot({ clip: { x: box.x + box.width - 22, y: box.y, width: 14, height: box.height } })
+        return page.evaluate(async ({ data, height }) => {
+          const image = new window.Image()
+          image.src = 'data:image/png;base64,' + data
+          await image.decode()
+          const canvas = document.createElement('canvas')
+          canvas.width = image.width
+          canvas.height = image.height
+          const context = canvas.getContext('2d')
+          context.drawImage(image, 0, 0)
+          const pixels = context.getImageData(0, 0, image.width, image.height).data
+          // weight each row by how dark it is, which finds the middle of the arrow to a fraction of a pixel despite its antialiased edges
+          let weight = 0
+          let sum = 0
+          for (let y = 0; y < image.height; y++) {
+            for (let x = 0; x < image.width; x++) {
+              const index = (y * image.width + x) * 4
+              const darkness = 255 - (pixels[index] + pixels[index + 1] + pixels[index + 2]) / 3
+              if (darkness > 60) {
+                weight += darkness
+                sum += darkness * (y + 0.5)
+              }
+            }
+          }
+          return sum / weight - height / 2
+        }, { data: shot.toString('base64'), height: box.height })
+      }
+
+      const height = selector => page.locator(selector).evaluate(element => element.getBoundingClientRect().height)
+      expect(await height('#arrow-default')).toBe(38)
+      expect(await height('#arrow-short')).toBe(32)
+
+      // the arrow sits wherever the field happens to land on the pixel grid, which moves its antialiased edges by up to a pixel between fields. an arrow placed a fixed distance from the top is out by 3px at 32px and 6px at 50px, well clear of that
+      const atDefault = await arrowOffset('#arrow-default')
+      expect(Math.abs(atDefault)).toBeLessThan(2)
+      expect(Math.abs(await arrowOffset('#arrow-short') - atDefault)).toBeLessThan(1.5)
+      expect(Math.abs(await arrowOffset('#arrow-tall') - atDefault)).toBeLessThan(1.5)
+    })
+  })
+
+  test.describe('custom layout', () => {
+    // the rows of a settings form, written the recommended way: a <dl> with a <div> per field, the label in the <dt> and the control in the <dd>. the prefix keeps the ids apart when more than one copy is on the page
+    const settingsRows = prefix => `
+      <div class="colspan-2 col-2">
+        <dt><label for="${prefix}-text">Text</label><p>A description.</p></dt>
+        <dd class="align-center"><input type="text" id="${prefix}-text" name="${prefix}-text" value="Some text" required></dd>
+      </div>
+      <div>
+        <dt><label for="${prefix}-password">Password</label></dt>
+        <dd><input type="password" id="${prefix}-password" name="${prefix}-password" value="secret"></dd>
+      </div>
+      <div>
+        <dt><label for="${prefix}-number">Number</label></dt>
+        <dd>
+          <input type="number" id="${prefix}-number" name="${prefix}-number" min="0" max="10" value="5">
+          <p data-invalid-text>Enter a number from 0 to 10.</p>
+        </dd>
+      </div>
+      <div>
+        <dt><label for="${prefix}-textarea">Notes</label></dt>
+        <dd><textarea id="${prefix}-textarea" name="${prefix}-textarea">Notes</textarea></dd>
+      </div>
+      <div>
+        <dt><label for="${prefix}-select">Select</label></dt>
+        <dd><select id="${prefix}-select" name="${prefix}-select"><option>One</option><option>Two</option></select></dd>
+      </div>
+      <div>
+        <dt><label for="${prefix}-checkbox">Checkbox</label></dt>
+        <dd><input type="checkbox" id="${prefix}-checkbox" name="${prefix}-checkbox" required></dd>
+      </div>
+      <div>
+        <dt><label for="${prefix}-switch" title="Help text" data-show-help-icon>Switch</label></dt>
+        <dd><input type="checkbox" switch id="${prefix}-switch" name="${prefix}-switch" checked></dd>
+      </div>
+      <div>
+        <dt><label for="${prefix}-range">Range</label></dt>
+        <dd><input type="range" id="${prefix}-range" name="${prefix}-range" value="30" data-display-value></dd>
+      </div>
+      <div>
+        <dt><label for="${prefix}-color">Color</label></dt>
+        <dd><input type="color" id="${prefix}-color" name="${prefix}-color"></dd>
+      </div>
+      <div>
+        <dt><label id="${prefix}-group-label">Group</label></dt>
+        <dd class="checkboxes">
+          <ul aria-labelledby="${prefix}-group-label">
+            <li><input type="checkbox" id="${prefix}-group-one" name="${prefix}-group"> <label for="${prefix}-group-one">One</label></li>
+            <li><input type="checkbox" id="${prefix}-group-two" name="${prefix}-group"> <label for="${prefix}-group-two">Two</label></li>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt><label for="${prefix}-with-button">With a button</label></dt>
+        <dd><input type="text" id="${prefix}-with-button" name="${prefix}-with-button"><button type="button">Go</button></dd>
+      </div>
+      <div>
+        <dt><label for="${prefix}-button">Reset</label></dt>
+        <dd><button type="button" id="${prefix}-button">Reset</button></dd>
+      </div>`
+
+    // the class on the form, on a fieldset, and on a <dl>. the last two share their form with an ordinary <dl>, which has to keep the grid layout. the column classes on the fieldset and the <dl> are there to show they are ignored
+    const customLayoutForms = `
+      <form class="semanticForms customLayout" id="cl-form">
+        <fieldset><legend>On the form</legend><dl id="cl-form-dl">${settingsRows('clf')}</dl></fieldset>
+      </form>
+      <form class="semanticForms" id="cl-fieldset">
+        <fieldset class="customLayout colspan-3"><legend>On a fieldset</legend><dl id="cl-fieldset-dl">${settingsRows('cls')}</dl></fieldset>
+        <fieldset><legend>Ordinary</legend><dl id="cl-fieldset-ordinary"><div><dt><label for="cls-ordinary">Ordinary</label></dt><dd><input type="text" id="cls-ordinary" name="cls-ordinary" value="x"></dd></div></dl></fieldset>
+      </form>
+      <form class="semanticForms" id="cl-dl">
+        <fieldset>
+          <legend>On a dl</legend>
+          <dl class="customLayout colspan-2" id="cl-dl-dl">${settingsRows('cld')}</dl>
+          <dl id="cl-dl-ordinary"><div><dt><label for="cld-ordinary">Ordinary</label></dt><dd><input type="text" id="cld-ordinary" name="cld-ordinary" value="x"></dd></div></dl>
+        </fieldset>
+      </form>`
+
+    const variants = [['form', 'clf', '#cl-form-dl'], ['fieldset', 'cls', '#cl-fieldset-dl'], ['dl', 'cld', '#cl-dl-dl']]
+
+    const addCustomLayoutForms = async page => {
+      await addForm(page, customLayoutForms)
+      for (const id of ['#cl-form', '#cl-fieldset', '#cl-dl']) await expect(page.locator(id)).toContainClass('semanticFormsActive')
+    }
+
+    const style = (page, selector, property) => page.locator(selector).evaluate((element, name) => window.getComputedStyle(element).getPropertyValue(name), property)
+
+    for (const [where, prefix, dl] of variants) {
+      test.describe(`on a ${where}`, () => {
+        test('should not add, move, hide or rewrite anything around the fields', async ({ page }) => {
+          await addCustomLayoutForms(page)
+
+          // the markup is exactly as written, apart from the marker on each enhanced field, the role a switch is given where the browser does not supply one, and the sizing of a textarea
+          const markup = await page.locator(dl).evaluate(element => {
+            const copy = element.cloneNode(true)
+            for (const field of copy.querySelectorAll('.semanticform')) {
+              field.classList.remove('semanticform')
+              if (!field.classList.length) field.removeAttribute('class')
+            }
+            for (const field of copy.querySelectorAll('[role=switch]')) field.removeAttribute('role')
+            // a textarea still sizes itself to its text, which it does with inline styles and its rows
+            for (const field of copy.querySelectorAll('textarea')) {
+              field.removeAttribute('style')
+              field.removeAttribute('rows')
+            }
+            return copy.innerHTML
+          })
+          const expected = await page.evaluate(html => {
+            const template = document.createElement('template')
+            template.innerHTML = `<dl>${html}</dl>`
+            return template.content.firstElementChild.innerHTML
+          }, settingsRows(prefix))
+          expect(markup).toBe(expected)
+
+          await expect(page.locator(dl)).not.toContainClass('floatLabelForm')
+          await expect(page.locator(`${dl} .floatLabelFormAnimatedLabel, ${dl} button.clear, ${dl} button.show, ${dl} span.required, ${dl} span.help, ${dl} output, ${dl} .singleCheckbox`)).toHaveCount(0)
+          await expect(page.locator(`${dl} [hidden]`)).toHaveCount(0)
+          expect(await page.locator(`#${prefix}-text`).getAttribute('placeholder')).toBeNull()
+
+          // the fields are enhanced all the same
+          await expect(page.locator(`#${prefix}-text`)).toContainClass('semanticform')
+        })
+
+        test('should keep every label in its dt visible, including beside a single checkbox, a switch and a lone button', async ({ page }) => {
+          await addCustomLayoutForms(page)
+          for (const field of ['text', 'checkbox', 'switch', 'range', 'button']) {
+            const label = page.locator(`${dl} dt label[for=${prefix}-${field}]`)
+            await expect(label).toBeVisible()
+            expect(await style(page, `${dl} dt label[for=${prefix}-${field}]`, 'position')).toBe('static')
+            expect(await style(page, `${dl} dt label[for=${prefix}-${field}]`, 'transform')).toBe('none')
+          }
+          // the range keeps its label as written, with no value appended
+          await page.locator(`#${prefix}-range`).fill('70')
+          await expect(page.locator(`${dl} dt label[for=${prefix}-range]`)).toHaveText('Range')
+        })
+
+        test('should not lay the dl out', async ({ page }) => {
+          await addCustomLayoutForms(page)
+          expect(await style(page, dl, 'display')).toBe('block')
+          expect(await style(page, dl, 'grid-template-columns')).toBe('none')
+
+          for (const div of [`${dl} > div:first-child`, `${dl} > div:has(#${prefix}-button)`, `${dl} > div:has(#${prefix}-checkbox)`]) {
+            expect(await style(page, div, 'display')).toBe('block')
+            expect(await style(page, div, 'position')).toBe('static')
+            expect(await style(page, div, 'max-width')).toBe('none')
+            expect(await style(page, div, 'grid-column-start')).toBe('auto')
+            expect(await style(page, div, 'grid-column-end')).toBe('auto')
+          }
+
+          for (const dd of [`${dl} dd:has(#${prefix}-text)`, `${dl} dd:has(#${prefix}-checkbox)`, `${dl} dd:has(#${prefix}-with-button)`, `${dl} dd:has(#${prefix}-button)`, `${dl} dd.checkboxes`]) {
+            expect(await style(page, dd, 'display')).toBe('block')
+            expect(await style(page, dd, 'position')).toBe('static')
+            expect(await style(page, dd, 'margin-left')).toBe('0px')
+            expect(await style(page, dd, 'padding-left')).toBe('0px')
+          }
+
+          // a lone button is not stretched to the field height, and the list of checkboxes is not given the grid's column
+          expect(await style(page, `#${prefix}-button`, 'height')).not.toBe('38px')
+          expect(await style(page, `${dl} dd.checkboxes ul`, 'flex-direction')).toBe('row')
+        })
+
+        test('should keep no room for a clear or show password button', async ({ page }) => {
+          await addCustomLayoutForms(page)
+          for (const field of ['text', 'password', 'number', 'textarea']) {
+            expect(await style(page, `#${prefix}-${field}`, 'padding-right')).toBe('20px')
+          }
+          expect(await style(page, `#${prefix}-color`, 'padding-right')).toBe('10px')
+          expect(await style(page, `#${prefix}-color`, 'min-width')).not.toBe('100%')
+        })
+
+        test('should still style the controls', async ({ page }) => {
+          await addCustomLayoutForms(page)
+          for (const field of ['text', 'number', 'select']) {
+            const selector = `#${prefix}-${field}`
+            expect(await style(page, selector, 'height')).toBe('38px')
+            expect(await style(page, selector, 'border-top-left-radius')).toBe('10px')
+            expect(await style(page, selector, 'border-top-width')).toBe('1px')
+            expect(await style(page, selector, 'border-top-color')).toBe('rgb(192, 192, 192)')
+            expect(await style(page, selector, 'background-color')).toBe('rgb(255, 255, 255)')
+            expect(await style(page, selector, 'padding-left')).toBe('20px')
+          }
+
+          expect(await style(page, `#${prefix}-select`, 'appearance')).toBe('none')
+          expect(await style(page, `#${prefix}-select`, 'background-image')).toContain('data:image/svg+xml')
+
+          const switchSelector = `#${prefix}-switch`
+          expect(await style(page, switchSelector, 'appearance')).toBe('none')
+          expect(await style(page, switchSelector, 'width')).toBe('34px')
+          expect(await style(page, switchSelector, 'height')).toBe('18px')
+          expect(await style(page, switchSelector, 'background-image')).toContain('radial-gradient')
+          const onColor = await page.locator(switchSelector).evaluate(element => {
+            // the on colour resolved the way the browser resolves it, which may be the system accent colour
+            const probe = document.createElement('div')
+            probe.style.color = window.getComputedStyle(element).getPropertyValue('--semanticFormsSwitchOnColor')
+            element.closest('form').append(probe)
+            const color = window.getComputedStyle(probe).color
+            probe.remove()
+            return color
+          })
+          expect(await style(page, switchSelector, 'background-color')).toBe(onColor)
+
+          // the switch is still a switch, and still drags
+          if (!(await page.evaluate(() => 'switch' in window.HTMLInputElement.prototype))) {
+            await expect(page.locator(switchSelector)).toHaveAttribute('role', 'switch')
+          }
+          await dragSwitch(page, page.locator(switchSelector), -30)
+          await expect(page.locator(switchSelector)).not.toBeChecked()
+
+          expect(await style(page, `#${prefix}-button`, 'background-image')).toContain('linear-gradient')
+          expect(await style(page, `#${prefix}-button`, 'border-top-left-radius')).toBe('20px')
+
+          // a field focused in a custom layout gets the same highlight as anywhere else
+          await page.locator(`#${prefix}-text`).focus()
+          expect(await style(page, `#${prefix}-text`, 'box-shadow')).toContain('inset')
+        })
+
+        test('should show invalid text placed beside the control', async ({ page }) => {
+          await addCustomLayoutForms(page)
+          const message = `${dl} dd:has(#${prefix}-number) [data-invalid-text]`
+          await expect(page.locator(message)).toBeHidden()
+
+          // the browser's own validation, once the user has changed the field
+          await page.locator(`#${prefix}-number`).fill('50')
+          await page.locator(`#${prefix}-number`).blur()
+          await expect(page.locator(message)).toBeVisible()
+          expect(await style(page, message, 'color')).toBe('rgb(255, 0, 0)')
+          expect(await style(page, `#${prefix}-number`, 'border-top-color')).toBe('rgb(255, 0, 0)')
+
+          await page.locator(`#${prefix}-number`).fill('5')
+          await page.locator(`#${prefix}-number`).blur()
+          await expect(page.locator(message)).toBeHidden()
+
+          // and an invalid class the app adds itself
+          await page.locator(`#${prefix}-number`).evaluate(element => element.classList.add('invalid'))
+          await expect(page.locator(message)).toBeVisible()
+        })
+      })
+    }
+
+    test('should leave an ordinary dl beside a custom one laid out as before', async ({ page }) => {
+      await addCustomLayoutForms(page)
+      for (const [dl, input] of [['#cl-fieldset-ordinary', '#cls-ordinary'], ['#cl-dl-ordinary', '#cld-ordinary']]) {
+        await expect(page.locator(dl)).toContainClass('floatLabelForm')
+        expect(await style(page, dl, 'display')).toBe('grid')
+        await expect(page.locator(`${dl} .floatLabelFormAnimatedLabel`)).toHaveCount(1)
+        await expect(page.locator(`${dl} button.clear`)).toHaveCount(1)
+        expect(await style(page, input, 'padding-right')).toBe('30px')
+        expect(await style(page, `${dl} > div`, 'max-width')).toBe('365px')
+      }
+    })
+
+    test('should leave the grid layout of the demo page as it was', async ({ page }) => {
+      // a spot check of the rules the class turns off, on the page's own forms, which never use it
+      const dl = page.locator('#basic_inputs dl').first()
+      await expect(dl).toContainClass('floatLabelForm')
+      expect(await dl.evaluate(element => window.getComputedStyle(element).display)).toBe('grid')
+      expect(await style(page, '#prefilled', 'padding-right')).toBe('30px')
+      expect(await page.locator('#prefilled').evaluate(element => window.getComputedStyle(element.parentNode.querySelector('label')).position)).toBe('absolute')
+    })
+
+    test('should still focus a field with its keyboard shortcut, giving the shortcut in its title rather than drawing it over the field', async ({ page }) => {
+      await addForm(page, `
+        <form class="semanticForms customLayout" id="cl-shortcut-form">
+          <dl><div><dt><label for="cl-shortcut">Shortcut</label></dt><dd><input type="text" id="cl-shortcut" name="cl-shortcut" data-focus-key="J" data-focus-modifier="alt"></dd></div></dl>
+        </form>`)
+      await expect(page.locator('#cl-shortcut-form')).toContainClass('semanticFormsActive')
+      await expect(page.locator('#cl-shortcut-form .focus-key')).toHaveCount(0)
+      await expect(page.locator('#cl-shortcut')).toHaveAttribute('title', /J/)
+
+      await page.keyboard.press('Alt+J')
+      await expect(page.locator('#cl-shortcut')).toBeFocused()
+    })
+
+    test('should still build tabs inside a custom layout, and around one', async ({ page }) => {
+      const panel = (id, name) => `<fieldset><legend>${name}</legend><dl><div><dt><label for="${id}">${name}</label></dt><dd><input type="text" id="${id}" name="${id}"></dd></div></dl></fieldset>`
+      await addForm(page, `
+        <form class="semanticForms customLayout" id="cl-tabs-inside">
+          <div class="tabs">${panel('cl-tab-a', 'First')}${panel('cl-tab-b', 'Second')}</div>
+        </form>
+        <form class="semanticForms" id="cl-tabs-around">
+          <div class="tabs">${panel('cl-tab-c', 'Third').replace('<fieldset>', '<fieldset class="customLayout">')}${panel('cl-tab-d', 'Fourth').replace('<fieldset>', '<fieldset class="customLayout">')}</div>
+        </form>`)
+
+      for (const [form, first, second] of [['#cl-tabs-inside', '#cl-tab-a', '#cl-tab-b'], ['#cl-tabs-around', '#cl-tab-c', '#cl-tab-d']]) {
+        const tabs = page.locator(`${form} [role=tab]`)
+        await expect(tabs).toHaveCount(2)
+        await expect(page.locator(first)).toBeVisible()
+        await expect(page.locator(second)).toBeHidden()
+        await tabs.nth(1).click()
+        await expect(page.locator(second)).toBeVisible()
+        await expect(page.locator(first)).toBeHidden()
+
+        // and the fields in the panels are left alone
+        await expect(page.locator(`${form} .floatLabelFormAnimatedLabel, ${form} button.clear`)).toHaveCount(0)
+      }
+    })
+
+    test('should not lay the dl out without javascript either', async ({ page }) => {
+      // the lowFlow class gives the layout a browser without javascript gets
+      await addForm(page, `
+        <form class="semanticForms lowFlow customLayout" id="cl-low-flow">
+          <dl>${settingsRows('cll')}</dl>
+        </form>`)
+      await expect(page.locator('#cl-low-flow')).toContainClass('semanticFormsActive')
+      expect(await style(page, '#cl-low-flow dl', 'display')).toBe('block')
+      for (const field of ['text', 'checkbox', 'switch']) {
+        const label = `#cl-low-flow dt label[for=cll-${field}]`
+        expect(await style(page, label, 'position')).toBe('static')
+        expect(await style(page, label, 'transform')).toBe('none')
+        expect(await style(page, label, 'padding-left')).toBe('0px')
+      }
+      expect(await style(page, '#cl-low-flow dd:has(#cll-text)', 'margin-top')).toBe('0px')
+      expect(await style(page, '#cl-low-flow dt:has(+ dd #cll-text)', 'min-width')).not.toBe('250px')
+      expect(await style(page, '#cll-text', 'padding-right')).toBe('20px')
+      expect(await page.locator('#cl-low-flow dt label[for=cll-text]').evaluate(label => window.getComputedStyle(label, '::after').content)).toBe('none')
+    })
+  })
+
   test.describe('style scoping', () => {
     test('should not style markup outside a semanticForms element', async ({ page }) => {
       // the library's promise is that it sets no global styles, so nothing in its stylesheet should match ordinary page markup that happens to use the same elements

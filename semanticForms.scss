@@ -4,6 +4,7 @@
 @use 'styles/colspan.scss';
 @use 'styles/tabs.scss';
 @use 'styles/lowFlow.scss';
+@use 'styles/layoutScope.scss' as *;
 
 .semanticForms {
   fieldset {
@@ -22,12 +23,17 @@
       border: var(--semanticFormsNestedFieldsetBorder);
       margin: 0;
 
-      // add opacity to styled inputs to prevent blending with background
-      input:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio]),
-      select,
-      textarea {
-        background-color: var(--semanticFormsNestedInputBgColor);
-      }
+    }
+  }
+
+  // add opacity to styled inputs to prevent blending with background
+  //
+  // the nesting is wrapped in :where so that this weighs no more than the field rules it overrides, and wins over them by coming later. a search field keeps its own background, as it always has
+  :where(fieldset fieldset, fieldset details) {
+    input:where(:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio], [type=search])),
+    select,
+    textarea {
+      background-color: var(--semanticFormsNestedInputBgColor);
     }
   }
 
@@ -115,7 +121,7 @@
         }
       }
 
-      & > dl:first-of-type {
+      & > dl:first-of-type#{$notCustomLayout} {
         margin-top: 15px;
         margin-bottom: 15px;
       }
@@ -137,7 +143,8 @@
     transform: rotate(0deg);
   }
 
-  dl {
+  // the grid layout. none of it applies inside a customLayout element, where the app lays the <dl> out itself: see layoutScope.scss
+  dl#{$notCustomLayout} {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--semanticFormsInputMinWidth), var(--semanticFormsInputColumnMaxWidth)));
     gap: 10px;
@@ -316,17 +323,17 @@
     }
   }
 
-  div:has(.align-start) {
+  div#{$notCustomLayout}:has(.align-start) {
     display: flex;
     justify-content: start;
   }
 
-  div:has(.align-center) {
+  div#{$notCustomLayout}:has(.align-center) {
     display: flex;
     justify-content: center;
   }
 
-  div:has(.align-end) {
+  div#{$notCustomLayout}:has(.align-end) {
     display: flex;
     justify-content: end;
   }

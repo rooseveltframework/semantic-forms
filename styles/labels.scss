@@ -1,3 +1,5 @@
+@use 'layoutScope.scss' as *;
+
 // the resting float label's line height, which its centering calculation depends on
 //
 // tall enough to hold a descender. a line height of 1.2 gives a box shorter than some fonts need for the tail of a g or a p, and the label clips its overflow in order to end long text with an ellipsis, so the tail was being cut off. the distance the label travels when it floats is written as a share of this height, and was adjusted to match, so the floated label lands exactly where it did before at any font size
@@ -34,7 +36,8 @@ $floatLabelLineHeight: 1.5;
     }
   }
 
-  .floatLabelForm {
+  // the float labels are part of the grid layout, so they do not apply inside a customLayout element, where the enhancement does not add the floatLabelForm class anyway: see layoutScope.scss
+  .floatLabelForm#{$notCustomLayout} {
     div {
       dt {
         position: relative;
