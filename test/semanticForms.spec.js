@@ -280,6 +280,12 @@ test.describe('semantic forms', () => {
       await expect(page.locator('#search-field')).toHaveCSS('background-image', searchIcon)
     })
 
+    test('should draw the search icon at the size its image says it is, so it isn\'t stretched', async ({ page }) => {
+      const searchIcon = await page.evaluate(() => window.getComputedStyle(document.querySelector('.semanticForms')).getPropertyValue('--semanticFormsSearchIcon'))
+      const imageSize = decodeURIComponent(searchIcon).match(/width="(\d+)px"/)[1]
+      await expect(page.locator('#search-field')).toHaveCSS('background-size', new RegExp(`^${imageSize}px( auto)?$`))
+    })
+
     test('should test clear fields work', async ({ page }) => {
       // fill
       await page.focus('#name')

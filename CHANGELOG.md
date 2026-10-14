@@ -1,3 +1,8 @@
+## 5.3.15
+
+- Fixed the search icon looking jagged on displays scaled by a fraction, such as 125%. Its image said it was 14px square, but it's drawn at 18px, so browsers drew it at 14px and then stretched it.
+- Updated dependencies.
+
 ## 5.3.14
 
 - Added a `customLayout` class for laying out a form yourself while keeping the recommended `<dl>`, `<dt>` and `<dd>` markup.
