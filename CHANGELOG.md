@@ -1,3 +1,7 @@
+## 5.3.16
+
+- Fixed the search icon still looking jagged at 100% scale. It was drawn on a 24 unit grid but shown at 18px, so its 1.5px lines and its circle fell between pixels. It's now drawn on an 18 unit grid, one unit to a pixel, with 2px lines placed on whole pixels, which makes it crisp and a little bolder.
+
 ## 5.3.15
 
 - Fixed the search icon looking jagged on displays scaled by a fraction, such as 125%. Its image said it was 14px square, but it's drawn at 18px, so browsers drew it at 14px and then stretched it.
