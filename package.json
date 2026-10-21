@@ -39,7 +39,7 @@
     "sass": "1.105.1",
     "standard": "17.1.2",
     "terser-webpack-plugin": "5.6.1",
-    "webpack": "5.111.1",
+    "webpack": "5.112.0",
     "webpack-cli": "7.2.3"
   },
   "scripts": {
