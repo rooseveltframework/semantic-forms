@@ -1,3 +1,20 @@
+## 5.3.17
+
+- Added `semanticForms.setInvalid(field, message, options)` and `semanticForms.clearInvalid(field)`, which mark a field invalid from your own code with a message saying why.
+- Added a `semanticFormsButton` class, which styles a button outside a form like the ones in one.
+- Added a `--semanticFormsCursor` variable, for the pointer over buttons, checkboxes, selects and the like.
+- Added a `data-display-format` attribute for ranges with `data-display-value`, with `{value}` standing for the value, such as `{value}%`. In a `customLayout` element, a range with `data-display-value` now keeps the `<output>` for it up to date.
+- Altered `--semanticFormsPageBgColor` to now set on the page's root element too, so the page can be painted with it. Forms in dark mode now set `color-scheme: dark` so things like date pickers and scrollbars are drawn dark.
+- Added a `data-semantic-forms-clear` attribute for the clear button. And clearing a field now fires a `change` event as well as an `input` event.
+- Fixed a keyboard listener being added every time a form was added to the page, since the enhancement runs again for each one. There's one for all of them now.
+- Fixed a form inside a `<dialog>` or a popover, or one holding only a button, shrinking to nothing.
+- Fixed a field without an id not having its control enhanced, so a switch without one wasn't given its role or dragging.
+- Fixed a field whose id has characters a selector gives a meaning to, such as `tag:title`, stopping the enhancement of that field and every field after it.
+- Fixed a help icon or required asterisk whose title holds quotes or markup breaking the label.
+- Fixed `data-auto-grow` dropping the field's name, class, and other attributes when it turns an input into a textarea.
+- Fixed enhancing a textarea firing an `input` event on it, which an app would take as the user having changed it.
+- Updated dependencies.
+
 ## 5.3.16
 
 - Fixed the search icon still looking jagged at 100% scale. It was drawn on a 24 unit grid but shown at 18px, so its 1.5px lines and its circle fell between pixels. It's now drawn on an 18 unit grid, one unit to a pixel, with 2px lines placed on whole pixels, which makes it crisp and a little bolder.

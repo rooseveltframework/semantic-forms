@@ -13,7 +13,7 @@ $floatLabelLineHeight: 1.5;
     // taking the offset off once rather than twice: measured from drawn pixels in firefox and chrome on both linux and mac, one lands every one of them within half a pixel, while twice is out by a full pixel on mac, where the offset is negative and so adds padding rather than removing it
     padding-top: calc(2px - var(--semanticFormsTextInkOffset, 0px));
     font-size: var(--semanticFormsInputFontSize);
-    cursor: pointer;
+    cursor: var(--semanticFormsCursor, pointer);
     display: flex;
     align-items: center;
     gap: 5px;

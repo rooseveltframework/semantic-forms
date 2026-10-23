@@ -2218,4 +2218,160 @@ test.describe('semantic forms', () => {
       expect(gaps.right).toBeGreaterThanOrEqual(2)
     })
   })
+
+  test.describe('in an app', () => {
+    test('should add one keyboard listener however many forms are added, and keep shortcuts working', async ({ page }) => {
+      const added = await page.evaluate(async () => {
+        const listeners = new Set()
+        const add = document.addEventListener
+        document.addEventListener = function (type, listener, options) {
+          if (type === 'keydown') listeners.add(listener)
+          return add.call(this, type, listener, options)
+        }
+        for (let i = 0; i < 5; i++) document.body.insertAdjacentHTML('beforeend', `<form class="semanticForms"><dl><div><dt><label for="leak-${i}">Leak ${i}</label></dt><dd><input type="text" id="leak-${i}" name="leak-${i}"></dd></div></dl></form>`)
+        await new Promise(resolve => setTimeout(resolve, 100))
+        document.addEventListener = add
+        return listeners.size
+      })
+      // (the undo and redo listener is the same function each time, taken off and put back)
+      expect(added).toBeLessThanOrEqual(1)
+
+      await addForm(page, '<form class="semanticForms" id="later-shortcut-form"><dl><div><dt><label for="later-shortcut">Later</label></dt><dd><input type="text" id="later-shortcut" name="later-shortcut" data-focus-key="j"></dd></div></dl></form>')
+      await expect(page.locator('#later-shortcut-form')).toContainClass('semanticFormsActive')
+      await page.locator('body').click({ position: { x: 1, y: 1 } })
+      const modifier = await page.evaluate(() => /Mac/.test(navigator.platform) ? 'Meta' : 'Control')
+      await page.keyboard.press(`${modifier}+j`)
+      await expect(page.locator('#later-shortcut')).toBeFocused()
+    })
+
+    test('should not shrink a dialog, or a form holding only a button, to nothing', async ({ page }) => {
+      await addForm(page, `
+        <dialog id="sized-dialog"><form class="semanticForms" method="dialog"><dl><div><dt><label for="dialog-name">Name</label></dt><dd><input type="text" id="dialog-name" name="dialog-name"></dd></div></dl><menu><li><button>OK</button></li></menu></form></dialog>
+        <div style="display: inline-block" id="button-holder"><form class="semanticForms"><button type="button">Clear</button></form></div>`)
+      await page.evaluate(() => document.getElementById('sized-dialog').showModal())
+      expect((await page.locator('#sized-dialog').boundingBox()).width).toBeGreaterThan(200)
+      expect((await page.locator('#button-holder').boundingBox()).width).toBeGreaterThan(40)
+    })
+
+    test('should enhance the control of a field without an id, such as a switch', async ({ page }) => {
+      const native = await page.evaluate(() => 'switch' in window.HTMLInputElement.prototype)
+      await addForm(page, '<form class="semanticForms" id="idless-form"><p><label><input type="checkbox" switch class="idless-switch"> On</label></p></form>')
+      await expect(page.locator('#idless-form')).toContainClass('semanticFormsActive')
+      if (!native) await expect(page.locator('.idless-switch')).toHaveAttribute('role', 'switch')
+      await expect(page.locator('.idless-switch')).toContainClass('semanticform')
+    })
+
+    test('should enhance a field whose id has characters a selector gives a meaning to, and the fields after it', async ({ page }) => {
+      await addForm(page, `
+        <form class="semanticForms" id="odd-id-form"><dl>
+          <div><dt><label for="tag:title">Title</label></dt><dd><input type="text" id="tag:title" name="title"></dd></div>
+          <div><dt><label for="after-odd">After</label></dt><dd><input type="text" id="after-odd" name="after"></dd></div>
+        </dl></form>`)
+      await expect(page.locator('[id="tag:title"]')).toContainClass('semanticform')
+      await expect(page.locator('#after-odd')).toContainClass('semanticform')
+    })
+
+    test('should write a help or required title holding quotes as it is', async ({ page }) => {
+      await addForm(page, `
+        <form class="semanticForms" id="quoted-form"><dl>
+          <div><dt><label for="quoted" data-asterisk-text='Say "hello" &amp; <b>wave</b>'>Quoted</label></dt><dd><input type="text" id="quoted" name="quoted" required></dd></div>
+        </dl></form>`)
+      await expect(page.locator('#quoted-form span.required').first()).toHaveAttribute('title', 'Say "hello" & <b>wave</b>')
+    })
+
+    test('should keep an auto-growing field\'s name, class and other attributes', async ({ page }) => {
+      await addForm(page, '<form class="semanticForms" id="grow-form"><dl><div><dt><label for="grow">Grow</label></dt><dd><input type="text" id="grow" name="grow" class="mine" required maxlength="20" data-auto-grow value="hi"></dd></div></dl></form>')
+      const grow = page.locator('#grow')
+      await expect(grow).toHaveJSProperty('nodeName', 'TEXTAREA')
+      await expect(grow).toHaveAttribute('name', 'grow')
+      await expect(grow).toHaveAttribute('maxlength', '20')
+      await expect(grow).toHaveAttribute('required', '')
+      await expect(grow).toContainClass('mine')
+      await expect(grow).toHaveValue('hi')
+    })
+
+    test('should not fire an input event as it enhances a textarea', async ({ page }) => {
+      const fired = await page.evaluate(async () => {
+        const events = []
+        document.addEventListener('input', event => events.push(event.target.id), true)
+        document.body.insertAdjacentHTML('beforeend', '<form class="semanticForms"><dl><div><dt><label for="quiet-textarea">Notes</label></dt><dd><textarea id="quiet-textarea" name="notes">some text</textarea></dd></div></dl></form>')
+        await new Promise(resolve => setTimeout(resolve, 100))
+        return events
+      })
+      expect(fired).toEqual([])
+    })
+
+    test('should mark its clear button, and fire change as well as input when it clears a field', async ({ page }) => {
+      await addForm(page, '<form class="semanticForms" id="clear-form"><dl><div><dt><label for="clearable">Clearable</label></dt><dd><input type="text" id="clearable" name="clearable" value="text" data-clear-field-text="Empty it"></dd></div></dl></form>')
+      const events = await trackToggleEvents(page, '#clearable')
+      const clear = page.locator('#clear-form [data-semantic-forms-clear]')
+      await expect(clear).toHaveCount(1)
+      await clear.click()
+      await expect(page.locator('#clearable')).toHaveValue('')
+      expect(await events()).toEqual(['input', 'change'])
+    })
+
+    test('should mark a field invalid with a message, and clear that', async ({ page }) => {
+      await addForm(page, `
+        <form class="semanticForms" id="invalid-form"><dl>
+          <div><dt><label for="checked-field">Checked</label></dt><dd><input type="text" id="checked-field" name="checked-field" aria-describedby="checked-help"></dd></div>
+        </dl><p id="checked-help">Help</p><div id="message-here"></div></form>`)
+      await expect(page.locator('#invalid-form')).toContainClass('semanticFormsActive')
+      const field = page.locator('#checked-field')
+      await page.evaluate(() => window.semanticForms.setInvalid(document.getElementById('checked-field'), 'Enter a number.'))
+      await expect(field).toContainClass('invalid')
+      await expect(field).toHaveAttribute('aria-invalid', 'true')
+      await expect(field).toHaveAttribute('aria-describedby', 'checked-help checked-fieldSemanticFormsInvalid')
+      await expect(page.locator('#checked-fieldSemanticFormsInvalid')).toHaveText('Enter a number.')
+      await expect(page.locator('#checked-fieldSemanticFormsInvalid')).toBeVisible()
+
+      // again, with somewhere else to put the message, replacing it
+      await page.evaluate(() => window.semanticForms.setInvalid(document.getElementById('checked-field'), 'Enter a smaller number.'))
+      await expect(page.locator('#checked-fieldSemanticFormsInvalid')).toHaveText('Enter a smaller number.')
+      await page.evaluate(() => window.semanticForms.clearInvalid(document.getElementById('checked-field')))
+      await expect(field).not.toContainClass('invalid')
+      await expect(field).not.toHaveAttribute('aria-invalid')
+      await expect(field).toHaveAttribute('aria-describedby', 'checked-help')
+      await expect(page.locator('#checked-fieldSemanticFormsInvalid')).toHaveCount(0)
+
+      await page.evaluate(() => window.semanticForms.setInvalid(document.getElementById('checked-field'), 'Elsewhere.', { messageIn: document.getElementById('message-here') }))
+      await expect(page.locator('#message-here #checked-fieldSemanticFormsInvalid')).toHaveText('Elsewhere.')
+    })
+
+    test('should let the pointer over its controls be changed, and style a button outside a form', async ({ page }) => {
+      await addForm(page, `
+        <form class="semanticForms" id="cursor-form" style="--semanticFormsCursor: default"><menu><li><button type="button" id="cursor-button">Go</button></li></menu></form>
+        <button type="button" class="semanticFormsButton" id="standalone-button">Alone</button>`)
+      expect(await page.locator('#cursor-button').evaluate(el => window.getComputedStyle(el).cursor)).toBe('default')
+      const standalone = await page.locator('#standalone-button').evaluate(el => {
+        const style = window.getComputedStyle(el)
+        return { background: style.backgroundImage, radius: style.borderTopLeftRadius, cursor: style.cursor }
+      })
+      expect(standalone.background).toContain('linear-gradient')
+      expect(standalone.radius).toBe('20px')
+      expect(standalone.cursor).toBe('pointer')
+    })
+
+    test('should draw a dark form\'s native parts dark, and give the page its background colour', async ({ page }) => {
+      await addForm(page, '<form class="semanticForms dark" id="dark-form"><dl><div><dt><label for="dark-field">Dark</label></dt><dd><input type="date" id="dark-field" name="dark-field"></dd></div></dl></form>')
+      expect(await page.locator('#dark-form').evaluate(el => window.getComputedStyle(el).colorScheme)).toBe('dark')
+      expect(await page.evaluate(() => window.getComputedStyle(document.documentElement).getPropertyValue('--semanticFormsPageBgColor').trim())).not.toBe('')
+    })
+
+    test('should format a range\'s value, and keep a customLayout range\'s own output up to date', async ({ page }) => {
+      await addForm(page, `
+        <form class="semanticForms" id="format-form"><dl>
+          <div><dt><label for="formatted">Volume</label></dt><dd><input type="range" id="formatted" name="formatted" min="0" max="100" value="50" data-display-value data-display-format="{value}%"></dd></div>
+        </dl></form>
+        <form class="semanticForms customLayout" id="custom-range-form"><dl>
+          <div><dt><label for="custom-range">Speed</label></dt><dd><input type="range" id="custom-range" name="custom-range" min="1" max="4" value="2" data-display-value data-display-format="{value}×"> <output for="custom-range"></output></dd></div>
+        </dl></form>`)
+      await expect(page.locator('#format-form output')).toHaveText('50%')
+      await page.locator('#formatted').fill('70')
+      await expect(page.locator('#format-form output')).toHaveText('70%')
+      await expect(page.locator('#custom-range-form output')).toHaveText('2×')
+      await page.locator('#custom-range').fill('3')
+      await expect(page.locator('#custom-range-form output')).toHaveText('3×')
+    })
+  })
 })

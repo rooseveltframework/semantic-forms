@@ -8,7 +8,7 @@
       "url": "https://github.com/rooseveltframework/semantic-forms/graphs/contributors"
     }
   ],
-  "version": "5.3.16",
+  "version": "5.3.17",
   "files": [
     "dist",
     "semanticForms.scss",
@@ -36,10 +36,10 @@
     "@playwright/test": "1.64.1",
     "eslint-plugin-html": "8.2.1",
     "nyc": "18.0.0",
-    "sass": "1.105.1",
+    "sass": "1.106.1",
     "standard": "17.1.2",
     "terser-webpack-plugin": "5.6.1",
-    "webpack": "5.111.1",
+    "webpack": "5.112.2",
     "webpack-cli": "7.2.3"
   },
   "scripts": {

@@ -17,7 +17,7 @@
 
     button[role=tab] {
       appearance: none;
-      cursor: pointer;
+      cursor: var(--semanticFormsCursor, pointer);
       font-family: inherit;
       font-size: var(--semanticFormsInputFontSize);
       line-height: 1;

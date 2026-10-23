@@ -181,7 +181,7 @@
       <p>By default, input fields will display an X icon to clear the text and password fields will also display a show/hide toggle for displaying the password in plain text. You can customize this behavior as follows:</p>
 
       <ul>
-        <li><p>Customize the hover text of the clear field button by applying a <code>data-clear-field-text=&quot;your text&quot;</code> attribute to the input.</p></li>
+        <li><p>Customize the hover text of the clear field button by applying a <code>data-clear-field-text=&quot;your text&quot;</code> attribute to the input. Whatever it says, the button has a <code>data-semantic-forms-clear</code> attribute, which is how to find it from your own code. Clearing a field fires both an <code>input</code> and a <code>change</code> event on it.</p></li>
         <li><p>Customize the hover text of the show password button by applying a <code>data-show-password-text=&quot;your text&quot;</code> attribute to the input.</p></li>
         <li><p>Customize the hover text of the hide password button by applying a <code>data-hide-password-text=&quot;your text&quot;</code> attribute to the input.</p></li>
         <li><p>Prevent the show/hide toggle from appearing on password fields by applying a <code>data-no-reveal</code> attribute to the input.</p></li>
@@ -304,7 +304,9 @@
         </dl>
       </form>
 
-      <p>You can set a paragraph of text below a field to only appear when a field is invalid with the <code>data-invalid-text</code> attribute:</p>
+      <p>You can set a paragraph of text below a field to only appear when a field is invalid with the <code>data-invalid-text</code> attribute. To mark a field invalid from your own code, with a message saying why, see "Marking a field invalid from JavaScript" in the usage docs.</p>
+
+      <p>The paragraph below a field:</p>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms" method="post">
@@ -356,7 +358,7 @@
 
       <h2 id="rangeInputsThatDisplayValues">Range inputs that display values</h2>
 
-      <p>Add a <code>data-display-value</code> attribute to any <code><!--#<input type="range">--></code> element to make its value display on the label:</p>
+      <p>Add a <code>data-display-value</code> attribute to any <code><!--#<input type="range">--></code> element to make its value display on the label. Add a <code>data-display-format</code> attribute too to say how it's shown, with <code>{value}</code> standing for the value, such as <code>data-display-format="{value}%"</code>:</p>
 
       <pre><code class='language-html' lang='html'><escape>
 <form class="semanticForms">

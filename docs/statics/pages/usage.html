@@ -36,6 +36,15 @@
 
       <p>If you make changes to the DOM after Semantic Forms is activated and want to activate any additional <code>semanticForms</code> forms you insert, you can re-scan for new forms by calling <code>semanticForms.reinitialize()</code> again. If you only want to reinitialize one form instead of all of them, call <code>semanticForms.reinitialize(formElement)</code>.</p>
 
+      <h3 id="setinvalid">Marking a field invalid from JavaScript</h3>
+
+      <p>A check the browser can't do itself, such as whether a name is already taken, can mark a field invalid the same way the browser's own validation does, with a message saying why:</p>
+
+      <pre><code class='language-javascript'>semanticForms.setInvalid(field, 'That name is already taken.')
+semanticForms.clearInvalid(field)</code></pre>
+
+      <p><code>setInvalid</code> gives the field the <code>invalid</code> class, which outlines it, sets <code>aria-invalid</code>, and puts the message after the field, adding it to the field's <code>aria-describedby</code> so screen readers read it along with the field. Calling it again replaces the message. In a <code>customLayout</code> element, or anywhere the message belongs somewhere other than after the field, say where: <code>semanticForms.setInvalid(field, message, { messageIn: element })</code>. <code>clearInvalid</code> undoes all of it.</p>
+
       <h3 id="shadowdom">Forms inside a shadow root</h3>
 
       <p>A shadow root is a separate tree, so <code>semanticForms()</code> cannot see into one by default. Pass the root to enhance the forms inside it:</p>

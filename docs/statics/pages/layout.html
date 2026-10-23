@@ -512,7 +512,7 @@
           <p>How loud clicks and alerts are.</p>
         </dt>
         <dd>
-          <input type="range" id="custom-ex-volume" name="custom-ex-volume" value="80">
+          <input type="range" id="custom-ex-volume" name="custom-ex-volume" value="80" data-display-value>
           <output for="custom-ex-volume">80</output>
         </dd>
       </div>
@@ -620,12 +620,7 @@ form.settingsExample input[type=color] {
 }
       </escape></code></pre>
 
-      <p>And a line of JavaScript to keep the range's <code><!--#<output>--></code> up to date, since <code>data-display-value</code> writes into the label, which is left alone here:</p>
-
-      <pre><code class='language-javascript'><escape>
-const volume = document.getElementById('custom-ex-volume')
-volume.addEventListener('input', () => { volume.nextElementSibling.value = volume.value })
-      </escape></code></pre>
+      <p>A range with <code>data-display-value</code> keeps its <code><!--#<output for>--></code> up to date as it moves, since the label it would write into in other layouts is left alone here. Nothing is added if there's no <code><!--#<output>--></code> for it.</p>
 
       <form class="semanticForms customLayout settingsExample">
         <fieldset>
@@ -669,7 +664,7 @@ volume.addEventListener('input', () => { volume.nextElementSibling.value = volum
                 <p>How loud clicks and alerts are.</p>
               </dt>
               <dd>
-                <input type="range" id="custom-ex-volume" name="custom-ex-volume" value="80">
+                <input type="range" id="custom-ex-volume" name="custom-ex-volume" value="80" data-display-value>
                 <output for="custom-ex-volume">80</output>
               </dd>
             </div>

@@ -49,7 +49,17 @@ form.semanticForms {
 }
       </escape></code></pre>
 
-      <p>The variable is set on the form, so it is available to the form and everything inside it, but not to the page around it. To paint the whole page instead, give the page's own background the same colors: <code>#fff</code> in light mode and <code>#000</code> in dark mode, unless you have overridden the variable.</p>
+      <p>The variable is set on the page's root element as well, following the page's light or dark mode, so the page can be painted with it too:</p>
+
+      <pre><code class='language-css' lang='css'><escape>
+body {
+  background-color: var(--semanticFormsPageBgColor);
+}
+      </escape></code></pre>
+
+      <h3 id="cursor">The pointer over controls</h3>
+
+      <p>The pointer turns into a hand over buttons, checkboxes, selects and the like, as it does over a link. A desktop app, whose own controls keep the ordinary arrow, can set <code>--semanticFormsCursor</code> to change it, such as <code>form.semanticForms { --semanticFormsCursor: default }</code>.</p>
 
       <h3 id="widthvariables">Controlling how wide fields get</h3>
 

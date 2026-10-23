@@ -1,10 +1,17 @@
 const { createKeyboardShortcut, shortcutListener } = require('./lib/keyboardShortcuts.js')
-const { enhanceInput, handleUndoRedo } = require('./lib/inputEnhancements.js')
+const { enhanceInput, handleUndoRedo, setInvalid, clearInvalid } = require('./lib/inputEnhancements.js')
 const { enhanceTabs } = require('./lib/tabs.js')
 const { setInkOffset } = require('./lib/helpers.js')
 
 // one observer per tree that has been handed to semanticForms, so that a shadow root gets its own without replacing the document's
 const observers = new WeakMap()
+
+// the keyboard shortcuts every form has asked for, kept in one list with one listener for them all, since semanticForms runs again for every form added to the page. a shortcut whose field has left the page is dropped
+const keyboardShortcuts = []
+let listeningForShortcuts = false
+const pruneShortcuts = () => {
+  for (let i = keyboardShortcuts.length - 1; i >= 0; i--) if (!keyboardShortcuts[i].input.isConnected) keyboardShortcuts.splice(i, 1)
+}
 
 // progressively enhances every semanticForms form in a tree
 //
@@ -17,8 +24,11 @@ const semanticForms = (root = document) => {
   }
 
   // custom keyboard shortcut listener
-  const keyboardShortcuts = []
-  document.addEventListener('keydown', (e) => shortcutListener(e, keyboardShortcuts))
+  if (!listeningForShortcuts) {
+    document.addEventListener('keydown', (e) => shortcutListener(e, keyboardShortcuts))
+    listeningForShortcuts = true
+  }
+  pruneShortcuts()
 
   // progressively enhance form elements that have the semanticForms class
   const forms = root.querySelectorAll('form.semanticForms:not(.semanticFormsActive), table.semanticForms:not(.semanticFormsActive)')
@@ -36,7 +46,7 @@ const semanticForms = (root = document) => {
       enhanceInput(input, form)
 
       // handle keyboard shortcuts
-      if (input.getAttribute('data-focus-key') !== null) {
+      if (input.getAttribute('data-focus-key') !== null && !keyboardShortcuts.some(shortcut => shortcut.input === input)) {
         const shortcut = createKeyboardShortcut(input, keyboardShortcuts)
         keyboardShortcuts.push(shortcut)
       }
@@ -83,5 +93,9 @@ const semanticForms = (root = document) => {
     semanticForms(form.getRootNode())
   }
 }
+
+// marks a field invalid with a message saying why, or clears that: see the docs for setInvalid
+semanticForms.setInvalid = setInvalid
+semanticForms.clearInvalid = clearInvalid
 
 module.exports = semanticForms
