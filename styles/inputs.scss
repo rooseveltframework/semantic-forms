@@ -3,6 +3,41 @@
 // the clear button is square, and its size is what centers it on the field
 $clearButtonSize: 25px;
 
+// how a button looks, in a form or as a .semanticFormsButton outside one
+@mixin button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: var(--semanticFormsCursor, pointer);
+  max-width: max-content;
+  background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
+  background-origin: border-box; // prevents graphical errors in Firefox
+  border: 1px var(--semanticFormsButtonGradientDark) solid;
+  corner-shape: squircle;
+  border-radius: 20px;
+  // the browser centers a control's text on the middle of the box holding it, which is not quite where the letters sit. the enhancement measures that difference for the page's font, and taking it off the top padding and adding it to the bottom moves the letters rather than the box
+  padding: calc(5px - var(--semanticFormsFieldTextInkOffset, 0px)) 25px calc(5px + var(--semanticFormsFieldTextInkOffset, 0px));
+  font-size: 100%;
+  line-height: 1;
+  user-select: none;
+  transform: scale(1);
+  transition: transform 180ms;
+  text-decoration: none;
+  color: var(--semanticFormsTextColor);
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+@mixin button-hover {
+  transition: filter 0.1s;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+}
+
 // the control selectors below wrap everything past the element name in :where, so each weighs no more than the form's class and the element itself. that is the weight of an app's ordinary rule, such as `form.myForm input[type=number]`, which then wins without needing an id or !important. rules that have to win over these, such as focus and invalid states, add their own state on top, and the grid layout's rules in the other files are deliberately heavier
 .semanticForms {
   input:where(:not([type=submit], [type=reset], [type=button], [type=image], [type=checkbox], [type=radio])),
@@ -14,7 +49,7 @@ $clearButtonSize: 25px;
     width: 18px;
     height: 18px;
     margin: 3px 0;
-    cursor: pointer;
+    cursor: var(--semanticFormsCursor, pointer);
   }
 
   // this styles the label rather than the control, so it keeps the weight it has always had. rules elsewhere are written to lose to it, such as the subtext colour in the lowFlow layout
@@ -87,7 +122,7 @@ $clearButtonSize: 25px;
     }
 
     &:where([type=range], [type=color]) {
-      cursor: pointer;
+      cursor: var(--semanticFormsCursor, pointer);
     }
 
     &:where([type=color]) {
@@ -102,7 +137,7 @@ $clearButtonSize: 25px;
     }
 
     &:where([type=file]) {
-      cursor: pointer;
+      cursor: var(--semanticFormsCursor, pointer);
       font-size: var(--semanticFormsInputFontSize);
     }
 
@@ -128,7 +163,7 @@ $clearButtonSize: 25px;
   }
 
   select {
-    cursor: pointer;
+    cursor: var(--semanticFormsCursor, pointer);
     // the browser centers a control's text on the middle of the box holding it, which is not quite where the letters sit. the enhancement measures that difference for the page's font, and taking it off the top padding and adding it to the bottom moves the letters rather than the box
     padding: calc(6px - var(--semanticFormsTextInkOffset, 0px)) 30px calc(6px + var(--semanticFormsTextInkOffset, 0px)) 20px;
 
@@ -184,7 +219,7 @@ $clearButtonSize: 25px;
 
   // buttons
   button.clear, button.show {
-    cursor: pointer;
+    cursor: var(--semanticFormsCursor, pointer);
     appearance: none;
     -webkit-appearance: none;
     position: absolute;
@@ -234,39 +269,13 @@ $clearButtonSize: 25px;
   input:where([type=submit], [type=reset], [type=button]),
   button:where(:not(.clear, .show)),
   .button-link {
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    cursor: pointer;
-    max-width: max-content;
-    background-image: linear-gradient(to bottom, var(--semanticFormsButtonGradientLight) 0%, var(--semanticFormsButtonGradientDark) 100%);
-    background-origin: border-box; // prevents graphical errors in Firefox
-    border: 1px var(--semanticFormsButtonGradientDark) solid;
-    corner-shape: squircle;
-    border-radius: 20px;
-    // the browser centers a control's text on the middle of the box holding it, which is not quite where the letters sit. the enhancement measures that difference for the page's font, and taking it off the top padding and adding it to the bottom moves the letters rather than the box
-    padding: calc(5px - var(--semanticFormsFieldTextInkOffset, 0px)) 25px calc(5px + var(--semanticFormsFieldTextInkOffset, 0px));
-    font-size: 100%;
-    line-height: 1;
-    user-select: none;
-    transform: scale(1);
-    transition: transform 180ms;
-    text-decoration: none;
-    color: var(--semanticFormsTextColor);
-
-    &:active {
-      transform: scale(0.97);
-    }
+    @include button;
   }
 
   input:where([type=submit], [type=reset], [type=button], [type=image]),
   button:where(:not(.clear, .show)),
   .button-link {
-    transition: filter 0.1s;
-
-    &:hover {
-      filter: brightness(1.05);
-    }
+    @include button-hover;
   }
 
   .button-link {
@@ -281,6 +290,14 @@ $clearButtonSize: 25px;
   // invalid styling
   [data-invalid-text] {
     display: none;
+    color: var(--semanticFormsInvalid);
+  }
+
+  // the message semanticForms.setInvalid puts beside a field, which is shown wherever it was put, since it's only there while the field is invalid
+  .semanticFormsInvalidText {
+    display: block;
+    margin: 0;
+    font-size: small;
     color: var(--semanticFormsInvalid);
   }
 
@@ -418,4 +435,11 @@ $clearButtonSize: 25px;
       scrollbar-color: var(--semanticFormsScrollbarColor) transparent;
     }
   }
+}
+
+// a button outside a semanticForms form, which looks like one inside one, so that a page doesn't have to wrap a button in a form to have it match the form's buttons
+.semanticFormsButton:where(button, input, a) {
+  @include button;
+  @include button-hover;
+  font-family: var(--semanticFormsFontFamily);
 }

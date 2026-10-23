@@ -182,8 +182,10 @@
 }
 
 // scoped to the library's own forms: a bare `fieldset` here would give every fieldset on the host page a container context, and the queries below would then lay out its <dl> children too
-form.semanticForms,
-form.semanticForms fieldset {
+//
+// only a form or fieldset holding a grid of fields is made a container, since it's the grid the queries lay out. a container is measured as though it were empty, so one sized by its contents, such as a form holding only a button, would otherwise shrink to nothing
+form.semanticForms:has(dl#{$notCustomLayout}),
+form.semanticForms fieldset:has(dl#{$notCustomLayout}) {
   container: semanticForm / inline-size;
 
   // max 7 columns
@@ -305,4 +307,10 @@ form.semanticForms fieldset {
       }
     }
   }
+}
+
+// a dialog or popover is sized by its contents, so a form in one is not made a container, which would shrink the dialog to nothing. its grid of fields lays itself out by the width it's given, as the base grid does
+:is(dialog, [popover]) form.semanticForms:has(dl#{$notCustomLayout}),
+:is(dialog, [popover]) form.semanticForms fieldset:has(dl#{$notCustomLayout}) {
+  container-type: normal;
 }

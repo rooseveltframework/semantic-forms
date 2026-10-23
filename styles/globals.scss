@@ -1,6 +1,7 @@
 // the variables are set at zero specificity, so that an app overriding one with any selector of its own, such as form.semanticForms, wins without needing a heavier selector or !important. that holds in dark mode too, whose blocks further down are written the same way
-:where(form.semanticForms, table.semanticForms) {
+:where(form.semanticForms, table.semanticForms, .semanticFormsButton) {
   --semanticFormsFontFamily: sans-serif;
+  --semanticFormsCursor: pointer; // what the pointer looks like over a button, a checkbox, a select and the like. a desktop app may want default, as native controls have
   --semanticFormsFontSize: 16px;
   --semanticFormsFormBgColor: #fff;
   --semanticFormsFormSubBgColor: #f5f5f5;
@@ -132,6 +133,9 @@ table.semanticForms {
   --semanticFormsSearchIcon: url("data:image/svg+xml,%3Csvg%20width%3D%2218px%22%20height%3D%2218px%22%20viewBox%3D%220%200%2018%2018%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%225%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M12%2012L16%2016%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E");
   --semanticFormsPageBgColor: #000;
 
+  // the browser's own parts of the controls, such as scrollbars and date pickers, are drawn dark too
+  color-scheme: dark;
+
   input::-webkit-calendar-picker-indicator {
     filter: invert(100%);
   }
@@ -139,15 +143,30 @@ table.semanticForms {
 
 // like the light values above, these are wrapped in :where so they weigh nothing, and an app's own override of a variable wins in dark mode just as it does in light mode. they still take over from the light values because they come later
 @media (prefers-color-scheme: dark) {
-  :where(html:not(.light) body:not(.light) form.semanticForms:not(.light), html:not(.light) body:not(.light) table.semanticForms:not(.light)) {
+  :where(html:not(.light) body:not(.light) form.semanticForms:not(.light), html:not(.light) body:not(.light) table.semanticForms:not(.light), html:not(.light) body:not(.light) .semanticFormsButton:not(.light)) {
     @include dark-mode;
   }
 }
 
-:where(html:not(.light) body:not(.light) form.semanticForms.dark, html:not(.light) body:not(.light) table.semanticForms.dark) {
+:where(html:not(.light) body:not(.light) form.semanticForms.dark, html:not(.light) body:not(.light) table.semanticForms.dark, html:not(.light) body:not(.light) .semanticFormsButton.dark) {
   @include dark-mode;
 }
 
-:where(form.semanticForms.dark, table.semanticForms.dark) {
+:where(form.semanticForms.dark, table.semanticForms.dark, .semanticFormsButton.dark) {
   @include dark-mode;
+}
+
+// the colour of the page the theme was designed against, which the forms define for themselves, is defined for the whole page too, so a page can paint its own background with it: see the theming docs
+:where(:root) {
+  --semanticFormsPageBgColor: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :where(:root:not(.light)) {
+    --semanticFormsPageBgColor: #000;
+  }
+}
+
+:where(:root.dark) {
+  --semanticFormsPageBgColor: #000;
 }
