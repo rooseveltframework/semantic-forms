@@ -1,3 +1,15 @@
+## 5.3.18
+
+- Added vertical tabs. Put the `vertical` class on a `tabs` group to show the tabs in a column beside the panels.
+- Fixed `--semanticFormsFocusColor` to meet the 3:1 contrast WCAG asks of a focus indicator.
+- Fixed every animation to respect `prefers-reduced-motion`, rather than only the switch.
+- Fixed autofilled fields to stay marked as autofilled.
+- Fixed `aria-invalid` not being set on a field the stylesheet outlines on `:user-invalid`, so a field the browser considers invalid said nothing to a screen reader unless `setInvalid` had marked it.
+- Fixed a help icon's text not reaching a screen reader on a group of checkboxes or radios, where the title sits on the group's label and describes none of the fields.
+- Fixed the documentation site having no `color-scheme` meta tag, which made a visitor whose system is dark get a white page before the stylesheets arrived, and not following the system's light or dark setting when it changed while a page was open.
+- Fixed `semanticForms.scss` not compiling from the npm package, since the `styles` folder it pulls its partials from was left out of the package. It's now included, and the package declares its Sass entry point, so a Sass stylesheet can `@use "pkg:semantic-forms"` with Sass's Node.js package importer.
+- Updated dependencies.
+
 ## 5.3.17
 
 - Added `semanticForms.setInvalid(field, message, options)` and `semanticForms.clearInvalid(field)`, which mark a field invalid from your own code with a message saying why.

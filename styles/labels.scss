@@ -139,6 +139,11 @@ $floatLabelLineHeight: 1.5;
           pointer-events: none;
           transition: transform 250ms;
           cursor: text;
+
+          // the transform is what puts the label above the field, so it stays; only the travel to get there goes
+          @media (prefers-reduced-motion: reduce) {
+            transition: none;
+          }
           flex: 1;
           white-space: nowrap;
           overflow: hidden;

@@ -786,6 +786,80 @@ form.settingsExample input[type=color] {
       </escape></code></pre>
 
       <p>The tab strip takes its colors from <code>--semanticFormsButtonGradientLight</code> and <code>--semanticFormsButtonGradientDark</code> for the unselected tabs, and <code>--semanticFormsFormSubBgColor</code> for the selected one, so it matches the buttons and fieldsets around it.</p>
+
+      <h3 id="verticaltabs">Vertical tabs</h3>
+
+      <p>Add the <code>vertical</code> class alongside <code>tabs</code> to put the tabs in a column down the side of the panels. The up and down arrow keys move between them in place of left and right, and the strip is marked with <code>aria-orientation="vertical"</code>. The strip is as wide as its longest tab up to 40% of the group, past which a tab's name is cut off with an ellipsis. Unselected vertical tabs are a flat fill halfway between <code>--semanticFormsButtonGradientLight</code> and <code>--semanticFormsButtonGradientDark</code> rather than a gradient.</p>
+
+      <pre><code class='language-html' lang='html'><escape>
+<form class="semanticForms">
+  <div class="tabs vertical">
+    <fieldset>
+      <legend>General</legend>
+      <dl>
+        <div>
+          <dt><label for="vertical-tabs-ex-name">Name</label></dt>
+          <dd><input type="text" id="vertical-tabs-ex-name" name="vertical-tabs-ex-name"></dd>
+        </div>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>Playback</legend>
+      <dl>
+        <div>
+          <dt><label for="vertical-tabs-ex-crossfade">Crossfade</label></dt>
+          <dd><input type="checkbox" switch id="vertical-tabs-ex-crossfade" name="vertical-tabs-ex-crossfade"></dd>
+        </div>
+      </dl>
+    </fieldset>
+
+    <fieldset>
+      <legend>Appearance</legend>
+      <dl>
+        <div>
+          <dt><label for="vertical-tabs-ex-dark">Dark mode</label></dt>
+          <dd><input type="checkbox" switch id="vertical-tabs-ex-dark" name="vertical-tabs-ex-dark"></dd>
+        </div>
+      </dl>
+    </fieldset>
+  </div>
+</form>
+      </escape></code></pre>
+
+      <form class="semanticForms">
+        <div class="tabs vertical">
+          <fieldset>
+            <legend>General</legend>
+            <dl>
+              <div>
+                <dt><label for="vertical-tabs-ex-name">Name</label></dt>
+                <dd><input type="text" id="vertical-tabs-ex-name" name="vertical-tabs-ex-name"></dd>
+              </div>
+            </dl>
+          </fieldset>
+
+          <fieldset>
+            <legend>Playback</legend>
+            <dl>
+              <div>
+                <dt><label for="vertical-tabs-ex-crossfade">Crossfade</label></dt>
+                <dd><input type="checkbox" switch id="vertical-tabs-ex-crossfade" name="vertical-tabs-ex-crossfade"></dd>
+              </div>
+            </dl>
+          </fieldset>
+
+          <fieldset>
+            <legend>Appearance</legend>
+            <dl>
+              <div>
+                <dt><label for="vertical-tabs-ex-dark">Dark mode</label></dt>
+                <dd><input type="checkbox" switch id="vertical-tabs-ex-dark" name="vertical-tabs-ex-dark"></dd>
+              </div>
+            </dl>
+          </fieldset>
+        </div>
+      </form>
     </article>
   </arg>
 </include>

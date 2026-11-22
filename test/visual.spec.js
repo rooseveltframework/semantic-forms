@@ -28,6 +28,7 @@ test.describe('visual regression', () => {
 
     // a tab group inside a fieldset: the panels are nested fieldsets there, so the strip has to be drawn in the nested colours and the selected tab still has to join cleanly to the panel below it
     nested_tabs: '#nested_tabs',
+    vertical_tabs: '#vertical_tab_group',
 
     buttons: '#buttons',
     colspan_classes: '#colspan_classes',

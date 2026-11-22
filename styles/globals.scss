@@ -7,7 +7,8 @@
   --semanticFormsFormSubBgColor: #f5f5f5;
   --semanticFormsTextColor: #000;
   --semanticFormsBorderColor: #c0c0c0;
-  --semanticFormsFocusColor: #c0c0c0;
+  // the focus ring is drawn inside the field, so what it has to stand out against is the field's own background. this is the lightest grey that still clears the 3:1 WCAG asks of a focus indicator against white; the old #c0c0c0 managed 1.8:1
+  --semanticFormsFocusColor: #8c8c8c;
   --semanticFormsSubBorderColor: #c0c0c0;
   --semanticFormsPlaceholderColor: rgba(0, 0, 0, 0.75);
   --semanticFormsScrollbarColor: #c0c0c0;
@@ -34,6 +35,13 @@
 
   --semanticFormsSwitchOffColor: #c0c0c0;
   --semanticFormsSwitchThumbColor: #fff;
+  // the browser's own autofill highlight cannot be painted over, so the form hides it and marks an autofilled field itself: see inputs.scss. it follows the system accent, so it reads as something the browser did rather than part of the form
+  --semanticFormsAutofillColor: #2196f3;
+
+  @supports (color: AccentColor) {
+    --semanticFormsAutofillColor: AccentColor;
+  }
+
   --semanticFormsNestedFieldsetBgColor: oklch(from var(--semanticFormsFormSubBgColor) 0.3 c h / 0.05);
   --semanticFormsNestedFieldsetBorder: 1px rgba(0, 0, 0, .2) solid;
   --semanticFormsNestedInputBgColor: #fff;
@@ -103,7 +111,8 @@ table.semanticForms {
   --semanticFormsFormSubBgColor: #2f2f2f;
   --semanticFormsTextColor: #fff;
   --semanticFormsBorderColor: #656565;
-  --semanticFormsFocusColor: #656565;
+  // as in light mode, measured against the field's own background: #656565 on #555 was 1.3:1, which is all but invisible
+  --semanticFormsFocusColor: #b0b0b0;
   --semanticFormsSubBorderColor: #3f3f3f;
   --semanticFormsPlaceholderColor: rgba(255, 255, 255, 0.85);
   --semanticFormsScrollbarColor: #373737;
@@ -119,6 +128,13 @@ table.semanticForms {
 
   --semanticFormsSwitchOffColor: #656565;
   --semanticFormsSwitchThumbColor: #fff;
+  // as above
+  --semanticFormsAutofillColor: #2196f3;
+
+  @supports (color: AccentColor) {
+    --semanticFormsAutofillColor: AccentColor;
+  }
+
   --semanticFormsNestedFieldsetBgColor: oklch(from var(--semanticFormsFormSubBgColor) 0.9 c h / 0.05);
   --semanticFormsNestedFieldsetBorder: 1px rgba(255, 255, 255, .1) solid;
   --semanticFormsNestedInputBgColor: rgba(255, 255, 255, .15);
@@ -169,4 +185,18 @@ table.semanticForms {
 
 :where(:root.dark) {
   --semanticFormsPageBgColor: #000;
+}
+// help text that a screen reader reads but the page does not draw, which the enhancement adds beside a field carrying a help icon
+//
+// it is moved out of sight rather than hidden with display: none or the hidden attribute, either of which would take it out of the accessibility tree along with the screen, leaving the field with nothing to describe it. it is taken out of flow too, so a grid or flex row it lands in does not lay it out as an item
+.semanticFormsVisuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
