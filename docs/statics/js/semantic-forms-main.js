@@ -44,9 +44,19 @@ function toggleDarkMode (mode) {
   }
 }
 document.body.insertAdjacentHTML('afterbegin', '<form id="mode" class="semanticForms"><button></button></form>')
-document.querySelector('#mode button').addEventListener('click', (event) => toggleDarkMode())
-if (window.matchMedia('(prefers-color-scheme: dark)').matches) toggleDarkMode('dark')
-else toggleDarkMode('light')
+
+// the page follows the system setting, including a change to it made while the page is open, until the visitor overrides it with the button
+const systemDark = window.matchMedia('(prefers-color-scheme: dark)')
+let followingSystem = true
+
+document.querySelector('#mode button').addEventListener('click', (event) => {
+  followingSystem = false
+  toggleDarkMode()
+})
+systemDark.addEventListener('change', (event) => {
+  if (followingSystem) toggleDarkMode(event.matches ? 'dark' : 'light')
+})
+toggleDarkMode(systemDark.matches ? 'dark' : 'light')
 
 // syntax highlighting
 const hljs = require('highlight.js')

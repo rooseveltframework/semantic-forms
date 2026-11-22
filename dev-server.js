@@ -30,7 +30,11 @@ if (!fs.existsSync(path.join(docsDir, 'node_modules'))) run(npm, ['ci'], { cwd: 
 if (!process.argv.includes('--skip-library-build')) run(npm, ['run', 'build'])
 
 // roosevelt builds the docs site and serves it. development mode is deliberate: production mode sends a content security policy that forbids eval, and the istanbul instrumented bundle that `npm run coverage` builds needs eval in order to run at all. the html validator is turned off because it replaces the page with a report when markup is invalid, which the tests would then be asserting against instead of the demo itself
-const server = spawn(process.execPath, ['test-server.js', '--development-mode', '--disable-validator'], {
+//
+// `--no-frontend-reload` is passed through for the tests, which have no use for live reload and whose navigation can crash its websocket: see playwright.config.js
+const serverArgs = ['test-server.js', '--development-mode', '--disable-validator']
+if (process.argv.includes('--no-frontend-reload')) serverArgs.push('--no-frontend-reload')
+const server = spawn(process.execPath, serverArgs, {
   stdio: 'inherit',
   env: { ...env, HTTP_PORT: port },
   cwd: docsDir

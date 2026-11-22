@@ -1,8 +1,12 @@
 @use '../../../dist/semantic-forms.css';
 
 // enable multi-page view transitions
-@view-transition {
-  navigation: auto;
+//
+// the rule is gated rather than the animations it produces: a visitor who asked for less motion gets ordinary page loads, which is the whole of what this does
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
 }
 
 body {

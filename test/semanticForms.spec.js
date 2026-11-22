@@ -57,8 +57,8 @@ const focusRingEdges = async (page, selector) => {
     const context = canvas.getContext('2d')
     context.drawImage(image, 0, 0)
     const pixels = context.getImageData(0, 0, image.width, 1).data
-    // the focus color is #c0c0c0 in the light theme the tests run in
-    const isRing = i => [0, 1, 2].every(channel => Math.abs(pixels[i * 4 + channel] - 192) < 14)
+    // the focus color is #8c8c8c in the light theme the tests run in: the lightest grey that still clears 3:1 against a white field
+    const isRing = i => [0, 1, 2].every(channel => Math.abs(pixels[i * 4 + channel] - 140) < 14)
 
     let index = 0
     let left = 0
@@ -699,6 +699,43 @@ test.describe('semantic forms', () => {
 
       await page.keyboard.press('Home')
       expect(await selected()).toBe('Account')
+    })
+
+    test('should mark a horizontal strip as horizontal', async ({ page }) => {
+      await expect(page.locator('#tab_group [role=tablist]')).toHaveAttribute('aria-orientation', 'horizontal')
+    })
+
+    test('should lay a vertical group out as a column beside its panels', async ({ page }) => {
+      const strip = page.locator('#vertical_tab_group [role=tablist]')
+      await expect(strip).toHaveAttribute('aria-orientation', 'vertical')
+
+      const tabBoxes = await page.locator('#vertical_tab_group [role=tab]').evaluateAll(els => els.map(el => el.getBoundingClientRect().toJSON()))
+      expect(tabBoxes[1].top).toBeGreaterThanOrEqual(tabBoxes[0].bottom)
+
+      const stripBox = await strip.boundingBox()
+      const panelBox = await page.locator('#vertical_tab_group [role=tabpanel]').first().boundingBox()
+      expect(panelBox.x).toBeGreaterThan(stripBox.x)
+      expect(Math.abs(panelBox.y - stripBox.y)).toBeLessThan(2)
+    })
+
+    test('should move between vertical tabs with the up and down arrow keys', async ({ page }) => {
+      const tabs = page.locator('#vertical_tab_group [role=tab]')
+      const selected = () => page.locator('#vertical_tab_group [aria-selected=true]').textContent()
+
+      await tabs.nth(0).click()
+      await page.keyboard.press('ArrowDown')
+      expect(await selected()).toBe('Playback')
+
+      // left and right belong to a horizontal strip
+      await page.keyboard.press('ArrowRight')
+      expect(await selected()).toBe('Playback')
+
+      await page.keyboard.press('ArrowUp')
+      await page.keyboard.press('ArrowUp')
+      expect(await selected()).toBe('Appearance')
+
+      await page.keyboard.press('Home')
+      expect(await selected()).toBe('General')
     })
 
     test('should open the tab whose fieldset carries data-selected', async ({ page }) => {
@@ -2336,6 +2373,60 @@ test.describe('semantic forms', () => {
 
       await page.evaluate(() => window.semanticForms.setInvalid(document.getElementById('checked-field'), 'Elsewhere.', { messageIn: document.getElementById('message-here') }))
       await expect(page.locator('#message-here #checked-fieldSemanticFormsInvalid')).toHaveText('Elsewhere.')
+    })
+
+    test('should say a field is invalid only once the browser does, and keep aria-invalid saying what the stylesheet draws', async ({ page }) => {
+      await addForm(page, `
+        <form class="semanticForms" id="user-invalid-form"><dl>
+          <div><dt><label for="user-invalid-field">Email</label></dt><dd><input type="email" id="user-invalid-field" name="user-invalid-field" required></dd></div>
+        </dl></form>`)
+      const field = page.locator('#user-invalid-field')
+
+      // an empty required field nobody has reached yet is not a mistake the visitor has made
+      await expect(field).not.toHaveAttribute('aria-invalid')
+
+      // nor is one they only tabbed through, which is what marking it on blur gets wrong
+      await field.focus()
+      await field.blur()
+      await expect(field).not.toHaveAttribute('aria-invalid')
+
+      // once they have left something behind that does not pass, it is, and the stylesheet outlines it
+      await field.fill('not an email')
+      await field.blur()
+      expect(await field.evaluate(element => element.matches(':user-invalid'))).toBe(true)
+      await expect(field).toHaveAttribute('aria-invalid', 'true')
+
+      // and putting it right takes both away again
+      await field.fill('someone@example.com')
+      expect(await field.evaluate(element => element.matches(':user-invalid'))).toBe(false)
+      await expect(field).not.toHaveAttribute('aria-invalid')
+    })
+
+    test('should read a help icon\'s text out with the fields it describes', async ({ page }) => {
+      await addForm(page, `
+        <form class="semanticForms" id="help-form"><dl>
+          <div><dt><label for="help-field" data-show-help-icon>Card</label></dt><dd><input type="text" id="help-field" name="help-field" title="The four digits on the back."></dd></div>
+          <div><dt><label data-for="help-group" title="Pick as many as you like." data-show-help-icon>Toppings</label></dt>
+            <dd><ul id="help-group">
+              <li><input type="checkbox" name="toppings" id="help-a"> <label for="help-a">A</label></li>
+              <li><input type="checkbox" name="toppings" id="help-b"> <label for="help-b">B</label></li>
+            </ul></dd>
+          </div>
+        </dl></form>`)
+
+      // what a screen reader reads as the field's description, which a title on the group's label never reached
+      const description = selector => page.evaluate(target => {
+        const input = document.querySelector(target)
+        return (input.getAttribute('aria-describedby') || '').split(' ').filter(Boolean)
+          .map(id => document.getElementById(id)?.textContent).join(' ')
+      }, selector)
+
+      expect(await description('#help-field')).toBe('The four digits on the back.')
+      expect(await description('#help-a')).toBe('Pick as many as you like.')
+      expect(await description('#help-b')).toBe('Pick as many as you like.')
+
+      // the help icon keeps its tooltip for a mouse
+      await expect(page.locator('#help-form span.help').first()).toHaveAttribute('title', /.+/)
     })
 
     test('should let the pointer over its controls be changed, and style a button outside a form', async ({ page }) => {

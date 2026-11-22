@@ -61,6 +61,12 @@ body {
 
       <p>The pointer turns into a hand over buttons, checkboxes, selects and the like, as it does over a link. A desktop app, whose own controls keep the ordinary arrow, can set <code>--semanticFormsCursor</code> to change it, such as <code>form.semanticForms { --semanticFormsCursor: default }</code>.</p>
 
+      <h3 id="autofill">Autofilled fields</h3>
+
+      <p>A browser paints a field it filled for the visitor in a color of its own, which no background you set can override. Semantic Forms covers that color so your theme survives, and marks the field itself instead, with a bar down its leading edge drawn in <code>--semanticFormsAutofillColor</code>. That defaults to the system accent color, so it reads as something the browser did rather than part of your form.</p>
+
+      <p>The bar is drawn as a shadow inside the field, so it takes up no space and nothing on the page moves when a field is filled.</p>
+
       <h3 id="widthvariables">Controlling how wide fields get</h3>
 
       <p>Fields are laid out in a grid whose columns grow to fill the available width. Three variables control the sizing:</p>

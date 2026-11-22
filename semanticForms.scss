@@ -126,6 +126,25 @@
         margin-bottom: 15px;
       }
     }
+
+    // opening and closing the panel changes its height, and the marker beside the summary turns: both are motion, and both are dropped for a visitor who asked for less of it. the fade is a colour change rather than movement, so it is left running
+    @media (prefers-reduced-motion: reduce) {
+      @supports (interpolate-size: allow-keywords) {
+        transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
+
+        &::details-content {
+          transition: none;
+        }
+      }
+
+      summary {
+        transition: none;
+
+        &::before {
+          transition: none;
+        }
+      }
+    }
   }
 
   details details,

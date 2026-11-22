@@ -1,5 +1,7 @@
 // `npm run coverage` runs the tests under nyc, having already built the bundles with coverage instrumentation. rebuilding them in the dev server would silently discard that, so the build is skipped for that run only; every other run rebuilds so the tests never see a stale bundle
-const devServer = process.env.NYC_CONFIG ? 'node dev-server.js --skip-library-build' : 'node dev-server.js'
+//
+// live reload is turned off because nothing in the tests uses it, and its websocket can take the server down: the browser resets that connection as pages navigate, and the reload middleware leaves the reset unhandled, so the server crashes and every test after it fails with connection refused
+const devServer = process.env.NYC_CONFIG ? 'node dev-server.js --skip-library-build --no-frontend-reload' : 'node dev-server.js --no-frontend-reload'
 
 module.exports = {
   timeout: 60000,

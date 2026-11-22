@@ -40,11 +40,19 @@
         padding-bottom: 12px;
       }
 
-      // the selected tab is part of the panel: same fill, and no border between the two. the bottom border is left transparent rather than painted in the fill colour so that the fill itself, which reaches under the border, is what covers the panel's top border. that keeps the join working whatever the fill happens to be
+      // the nudge on hover is decoration rather than a state worth keeping, so under reduced motion the tab neither moves nor animates
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        &:hover:not([aria-selected=true]) {
+          padding-bottom: 9px; // the padding the tab has when it is not hovered
+        }
+      }
+
+      // the selected tab is part of the panel: same fill, and no border between the two
       &[aria-selected=true] {
         background-image: none;
         background-color: var(--semanticFormsFormSubBgColor);
-        border-bottom-color: transparent;
         padding-bottom: 12px;
       }
 
@@ -53,6 +61,11 @@
         outline: none;
         box-shadow: inset 0 0 0 2px var(--semanticFormsFocusColor);
       }
+    }
+
+    // the border facing the panel is left transparent rather than painted in the fill colour so that the fill itself, which reaches under the border, is what covers the panel's border. that keeps the join working whatever the fill happens to be
+    &:not(.vertical) button[role=tab][aria-selected=true] {
+      border-bottom-color: transparent;
     }
 
     // the panel is a fieldset already, so it only needs joining to the strip above it. only a child of the group is a panel, which is the same set the enhancement builds tabs from, so a fieldset the author nested inside a panel keeps its own corners rather than being squared off against a strip it has nothing to do with
@@ -66,6 +79,84 @@
     fieldset[hidden] {
       display: none;
     }
+
+    // a vertical group puts the strip in a column down the start side of the panels
+    &.vertical {
+      flex-direction: row;
+      align-items: stretch;
+
+      .tabList {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        flex: none;
+        max-width: 40%;
+
+        // the selected tab sits over the panel's start border to join the two together
+        margin-bottom: 0;
+        margin-inline-end: -1px;
+      }
+
+      button[role=tab] {
+        text-align: start;
+        border-radius: 0;
+        border-start-start-radius: var(--semanticFormsBorderRadius);
+        border-end-start-radius: var(--semanticFormsBorderRadius);
+
+        // an unselected tab is a flat fill halfway between the two button gradient colours
+        background-image: none;
+        background-color: color-mix(in srgb, var(--semanticFormsButtonGradientLight), var(--semanticFormsButtonGradientDark));
+
+        // an unselected tab is set in from the start edge and the selected one reaches it, the same way the horizontal strip raises the selected tab
+        margin-inline-start: 3px;
+        transition: margin-inline-start 120ms ease-out;
+
+        &:hover:not([aria-selected=true]) {
+          padding-bottom: 9px;
+          margin-inline-start: 0;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          transition: none;
+
+          &:hover:not([aria-selected=true]) {
+            margin-inline-start: 3px;
+          }
+        }
+
+        &[aria-selected=true] {
+          padding-bottom: 9px;
+          margin-inline-start: 0;
+          background-color: var(--semanticFormsFormSubBgColor);
+
+          // no end border, so the top and bottom borders run straight to the tab's end with no corner joint to lighten them. the fill stays out from under those borders so it cannot lighten them where they cross the panel's border either
+          border-inline-end-width: 0;
+          background-clip: padding-box;
+
+          // painted above the panel with a pixel of its fill past its end, between its top and bottom borders, so the fill still covers the panel's start border when the strip's width is fractional and the browser snaps the two to different device pixels
+          position: relative;
+          z-index: 1;
+          --semanticFormsTabJoin: 2px 0 0 -1px var(--semanticFormsFormSubBgColor);
+          box-shadow: var(--semanticFormsTabJoin);
+
+          &:dir(rtl) {
+            --semanticFormsTabJoin: -2px 0 0 -1px var(--semanticFormsFormSubBgColor);
+          }
+
+          &:focus-visible {
+            box-shadow: inset 0 0 0 2px var(--semanticFormsFocusColor), var(--semanticFormsTabJoin);
+          }
+        }
+      }
+
+      > fieldset {
+        flex: 1;
+        min-width: 0;
+        border-radius: var(--semanticFormsBorderRadius);
+        border-start-start-radius: 0;
+        border-end-start-radius: 0;
+      }
+    }
   }
 
   // inside a fieldset the panels are nested fieldsets, so they take the darkened nested treatment. the strip has to follow them or the selected tab reads as a different surface from the panel it is joined to
@@ -76,6 +167,15 @@
       // the nested fill is translucent, and a translucent fill cannot hide the panel's top border underneath it, which is what leaves a line across the bottom of the selected tab. so the same colour is rebuilt opaquely here: the tint painted as a layer over the surface the panel sits on comes out at the panel's exact colour, and covers
       background-color: var(--semanticFormsFormSubBgColor);
       background-image: linear-gradient(var(--semanticFormsNestedFieldsetBgColor), var(--semanticFormsNestedFieldsetBgColor));
+    }
+  }
+
+  // the strip of fill past a selected vertical tab's end is rebuilt the same way, as the tint layered over the surface
+  fieldset .tabs.semanticFormsTabsActive.vertical button[role=tab][aria-selected=true] {
+    --semanticFormsTabJoin: 2px 0 0 -1px var(--semanticFormsNestedFieldsetBgColor), 2px 0 0 -1px var(--semanticFormsFormSubBgColor);
+
+    &:dir(rtl) {
+      --semanticFormsTabJoin: -2px 0 0 -1px var(--semanticFormsNestedFieldsetBgColor), -2px 0 0 -1px var(--semanticFormsFormSubBgColor);
     }
   }
 }

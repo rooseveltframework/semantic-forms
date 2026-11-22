@@ -36,6 +36,16 @@
 
       <p>If you make changes to the DOM after Semantic Forms is activated and want to activate any additional <code>semanticForms</code> forms you insert, you can re-scan for new forms by calling <code>semanticForms.reinitialize()</code> again. If you only want to reinitialize one form instead of all of them, call <code>semanticForms.reinitialize(formElement)</code>.</p>
 
+      <h3 id="sass">Including the styles from Sass</h3>
+
+      <p>If your own stylesheets are written in <a href="https://sass-lang.com">Sass</a>, you can pull Semantic Forms into them from its Sass source rather than including the compiled CSS file separately. With Sass's Node.js package importer enabled, which is <code>importers: [new sass.NodePackageImporter()]</code> in the JavaScript API or <code>--pkg-importer=node</code> on the command line:</p>
+
+      <pre><code class='language-scss'>@use "pkg:semantic-forms";</code></pre>
+
+      <p>Or, with your <code>node_modules</code> folder in Sass's load paths:</p>
+
+      <pre><code class='language-scss'>@use "semantic-forms/semanticForms";</code></pre>
+
       <h3 id="setinvalid">Marking a field invalid from JavaScript</h3>
 
       <p>A check the browser can't do itself, such as whether a name is already taken, can mark a field invalid the same way the browser's own validation does, with a message saying why:</p>
