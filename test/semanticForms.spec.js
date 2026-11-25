@@ -718,6 +718,20 @@ test.describe('semantic forms', () => {
       expect(Math.abs(panelBox.y - stripBox.y)).toBeLessThan(2)
     })
 
+    test('should keep a vertical strip the same width whichever tab is hovered or selected', async ({ page }) => {
+      await page.addStyleTag({ content: '[role=tab] { transition: none !important; }' }) // (so each width is read once the tab has finished moving)
+      const strip = page.locator('#vertical_tab_group [role=tablist]')
+      const tabs = page.locator('#vertical_tab_group [role=tab]')
+      const width = async () => (await strip.boundingBox()).width
+      const initial = await width()
+      for (let i = 0; i < await tabs.count(); i++) {
+        await tabs.nth(i).hover()
+        expect(await width(), `hovering tab ${i}`).toBe(initial)
+        await tabs.nth(i).click()
+        expect(await width(), `selecting tab ${i}`).toBe(initial)
+      }
+    })
+
     test('should move between vertical tabs with the up and down arrow keys', async ({ page }) => {
       const tabs = page.locator('#vertical_tab_group [role=tab]')
       const selected = () => page.locator('#vertical_tab_group [aria-selected=true]').textContent()

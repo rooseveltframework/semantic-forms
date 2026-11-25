@@ -108,12 +108,16 @@
         background-color: color-mix(in srgb, var(--semanticFormsButtonGradientLight), var(--semanticFormsButtonGradientDark));
 
         // an unselected tab is set in from the start edge and the selected one reaches it, the same way the horizontal strip raises the selected tab
+        //
+        // a tab reaching the edge takes the inset into its padding, so its margin and padding always add up to the same and the strip, as wide as its widest tab, keeps its width
         margin-inline-start: 3px;
-        transition: margin-inline-start 120ms ease-out;
+        padding-inline-start: 20px;
+        transition: margin-inline-start 120ms ease-out, padding-inline-start 120ms ease-out;
 
         &:hover:not([aria-selected=true]) {
           padding-bottom: 9px;
           margin-inline-start: 0;
+          padding-inline-start: 23px;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -121,16 +125,19 @@
 
           &:hover:not([aria-selected=true]) {
             margin-inline-start: 3px;
+            padding-inline-start: 20px;
           }
         }
 
         &[aria-selected=true] {
           padding-bottom: 9px;
           margin-inline-start: 0;
+          padding-inline-start: 23px;
           background-color: var(--semanticFormsFormSubBgColor);
 
-          // no end border, so the top and bottom borders run straight to the tab's end with no corner joint to lighten them. the fill stays out from under those borders so it cannot lighten them where they cross the panel's border either
+          // no end border, so the top and bottom borders run straight to the tab's end with no corner joint to lighten them. the fill stays out from under those borders so it cannot lighten them where they cross the panel's border either. the border's pixel goes to the padding, keeping the tab as wide
           border-inline-end-width: 0;
+          padding-inline-end: 21px;
           background-clip: padding-box;
 
           // painted above the panel with a pixel of its fill past its end, between its top and bottom borders, so the fill still covers the panel's start border when the strip's width is fractional and the browser snaps the two to different device pixels

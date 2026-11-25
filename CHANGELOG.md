@@ -1,3 +1,8 @@
+## 5.3.19
+
+- Fixed a vertical tab strip changing width, moving the panels beside it, when its widest tab was hovered or selected. A tab now reaching the strip's edge takes the inset into its padding, so its label stays put and lines up with the others.
+- Updated dependencies.
+
 ## 5.3.18
 
 - Added vertical tabs. Put the `vertical` class on a `tabs` group to show the tabs in a column beside the panels.
