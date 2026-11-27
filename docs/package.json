@@ -11,7 +11,7 @@
     "roosevelt": "0.34.7",
     "semantic-forms": "../",
     "sass": "1.108.2",
-    "teddy": "2.3.3",
+    "teddy": "2.3.4",
     "webpack": "5.113.0"
   },
   "devDependencies": {
